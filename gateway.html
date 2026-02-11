@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ionity | Gateway</title>
+    <link rel="icon" type="image/png" href="assets/images/ionity-logo-edited.png">
+    <meta name="description" content="Ionity (Pty) Ltd - Gateway Interface.">
+    
+    <style>
+        :root {
+            --bg-dark: #020204;
+            --bg-panel: rgba(10, 15, 20, 0.6);
+            --text-main: #ffffff;
+            --text-muted: rgba(255, 255, 255, 0.85); 
+            --accent-cyan: #00d2ff;
+            --accent-dim: rgba(0, 210, 255, 0.1);
+            --border: rgba(255, 255, 255, 0.15);
+            --border-active: rgba(0, 210, 255, 0.6);
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-dark);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            color: var(--text-main);
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        /* --- 3D CANVAS BACKGROUND --- */
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0; 
+            pointer-events: none;
+        }
+
+        /* --- VISUAL FX --- */
+        .scanlines {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.2));
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 99;
+            opacity: 0.3;
+        }
+
+        /* --- GLOW ANIMATIONS --- */
+        @keyframes neonPulse {
+            0% { text-shadow: 0 0 5px rgba(255,255,255,0.8), 0 0 10px var(--accent-cyan); }
+            50% { text-shadow: 0 0 10px #fff, 0 0 20px var(--accent-cyan), 0 0 40px var(--accent-cyan); }
+            100% { text-shadow: 0 0 5px rgba(255,255,255,0.8), 0 0 10px var(--accent-cyan); }
+        }
+
+        @keyframes footerGlow {
+            0% { text-shadow: 0 0 2px rgba(255,255,255,0.1); }
+            100% { text-shadow: 0 0 8px rgba(0, 210, 255, 0.3); }
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            padding: 0 5vw;
+            height: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            background: rgba(2, 2, 4, 0.9);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-family: 'Courier New', monospace;
+            font-weight: 700;
+            letter-spacing: 0.2rem;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2rem;
+            position: relative;
+            text-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo:hover {
+            animation: neonPulse 1.5s infinite alternate;
+        }
+
+        .nav-logo {
+            height: 80px;
+            width: auto;
+            vertical-align: middle;
+            transition: all 0.3s ease;
+        }
+        .nav-logo:hover {
+            filter: drop-shadow(0 0 8px var(--accent-cyan));
+        }
+
+        /* Desktop Nav */
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+            font-weight: 600;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+            animation: neonPulse 1s infinite alternate;
+        }
+
+        .nav-links a.active {
+            color: var(--accent-cyan);
+            text-shadow: 0 0 15px var(--accent-cyan); 
+            border-bottom: 1px solid var(--accent-cyan);
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; width: 0; height: 1px;
+            background: var(--accent-cyan);
+            transition: width 0.3s ease;
+            box-shadow: 0 0 10px var(--accent-cyan);
+        }
+
+        .nav-links a:hover::before { width: 100%; }
+
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--accent-cyan);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem 0.8rem;
+            border-radius: 4px;
+            z-index: 101;
+        }
+
+        /* Mobile Dropdown */
+        .mobile-dropdown {
+            display: none;
+            position: absolute;
+            top: 80px;
+            left: 0;
+            width: 100%;
+            background: rgba(2, 2, 4, 0.98);
+            border-bottom: 1px solid var(--border);
+            flex-direction: column;
+            padding: 1rem 0;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.8);
+        }
+
+        .mobile-dropdown.open {
+            display: flex;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        .mobile-dropdown a {
+            color: #fff;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            transition: background 0.2s;
+        }
+        
+        .mobile-dropdown a.active {
+            color: var(--accent-cyan);
+            background: rgba(0, 210, 255, 0.05);
+            text-shadow: 0 0 15px var(--accent-cyan); 
+            border-left: 3px solid var(--accent-cyan);
+        }
+
+        .mobile-dropdown a:hover {
+            background: rgba(0, 210, 255, 0.1);
+            color: var(--accent-cyan);
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .mobile-menu-btn { display: block; }
+        }
+
+        /* --- PAGE CONTENT LAYER --- */
+        .page-container {
+            position: relative;
+            z-index: 10;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 5vw;
+        }
+
+        header {
+            margin-bottom: 4rem;
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 200;
+            letter-spacing: -0.1rem;
+            margin: 0 0 1rem 0;
+            color: #fff;
+            text-shadow: 0 0 20px rgba(0, 210, 255, 0.2);
+        }
+
+        .hero-sub {
+            font-family: 'Courier New', monospace;
+            color: var(--accent-cyan);
+            margin-top: 1rem;
+            letter-spacing: 0.2rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .hero-sub::before {
+            content: '>>';
+            color: #fff;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            margin-top: auto;
+            border-top: 1px solid var(--border);
+            padding: 3rem 5vw;
+            background: rgba(2, 2, 4, 0.95);
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 10;
+        }
+
+        .footer-logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 2rem;
+            width: 100%;
+        }
+
+        .footer-logo {
+            height: 80px;
+            width: auto;
+            opacity: 0.9;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-logo:hover {
+            opacity: 1;
+            filter: drop-shadow(0 0 15px rgba(0, 210, 255, 0.4));
+        }
+
+        .footer-content {
+            animation: footerGlow 3s infinite alternate;
+        }
+
+        a:hover { text-shadow: 0 0 8px var(--accent-cyan); color: #fff; }
+
+        /* --- PORTAL GATEWAY STYLES --- */
+        .portal-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 60vh;
+        }
+
+        .portal-frame {
+            background: rgba(10, 15, 20, 0.85);
+            border: 1px solid rgba(0, 210, 255, 0.3);
+            border-top: 3px solid var(--accent-cyan);
+            padding: 4rem 3rem;
+            width: 100%;
+            max-width: 500px;
+            backdrop-filter: blur(20px);
+            box-shadow: 
+                0 0 60px rgba(0, 210, 255, 0.1), 
+                inset 0 0 40px rgba(0, 210, 255, 0.05);
+            position: relative;
+            clip-path: polygon(
+                20px 0, 
+                100% 0, 
+                100% calc(100% - 20px), 
+                calc(100% - 20px) 100%, 
+                0 100%, 
+                0 20px
+            );
+            background-image: 
+                radial-gradient(circle at top right, rgba(0, 210, 255, 0.1) 0%, transparent 40%),
+                linear-gradient(rgba(0, 210, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 210, 255, 0.03) 1px, transparent 1px);
+            background-size: 100% 100%, 30px 30px, 30px 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .portal-frame:hover {
+            box-shadow: 0 0 80px rgba(0, 210, 255, 0.2), inset 0 0 50px rgba(0, 210, 255, 0.1);
+            border-color: rgba(0, 210, 255, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .portal-frame::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 100%;
+            background: linear-gradient(180deg, transparent 0%, rgba(0, 210, 255, 0.1) 50%, transparent 100%);
+            animation: scanline 4s linear infinite;
+            opacity: 0.1;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .portal-header {
+            color: #fff;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 0.3rem;
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 20px var(--accent-cyan);
+            font-size: 2rem;
+        }
+
+        .portal-status {
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            font-family: 'Courier New', monospace;
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            letter-spacing: 0.1rem;
+        }
+
+        .input-group input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            padding: 0.8rem;
+            color: #fff;
+            box-sizing: border-box;
+            font-family: 'Courier New', monospace;
+            transition: all 0.3s ease;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 10px rgba(0, 210, 255, 0.2);
+            background: rgba(0, 210, 255, 0.05);
+        }
+
+        .auth-2fa-section {
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .auth-switch {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+        }
+
+        .btn-login {
+            width: 100%;
+            background: var(--accent-cyan);
+            color: #000;
+            border: none;
+            padding: 1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            clip-path: polygon(0 0, 100% 0, 100% 80%, 95% 100%, 0 100%);
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-login:hover {
+            background: #fff;
+            box-shadow: 0 0 20px var(--accent-cyan);
+        }
+
+        .divider {
+            text-align: center;
+            margin: 1rem 0;
+            position: relative;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        
+        .divider:before, .divider:after {
+            content: "";
+            display: inline-block;
+            width: 30%;
+            height: 1px;
+            background: var(--border);
+            vertical-align: middle;
+            margin: 0 10px;
+        }
+
+        .btn-google {
+            width: 100%;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            padding: 0.8rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 0.9rem;
+        }
+        
+        .btn-google:hover {
+            border-color: #fff;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        @keyframes scanline {
+            0% { top: 0; opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
+
+    </style>
+    <!-- Three.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+
+    <div id="canvas-container"></div>
+    <div class="scanlines"></div>
+
+    <nav>
+        <a href="index.html" class="logo">
+             <img src="assets/images/ionity-logo-edited.png" alt="IONITY" class="nav-logo">
+        </a>
+        
+        <!-- Desktop Menu -->
+        <div class="nav-links">
+            <a href="inner-Page.html">Systems</a>
+            <a href="services.html">Services</a>
+            <a href="products.html">Products</a>
+            <a href="ai-innovation.html">Ai Innovation</a>
+            <a href="roadmap.html">Roadmap</a>
+            <a href="license.html">License</a>
+            <a href="about.html">About</a>
+            <a href="aedi-online.html">AEDI Online</a>
+            <a href="contact.html">Contact</a>
+            <a href="firmware-development.html">Dev</a>
+            <a href="gateway.html" class="active">IO Way</a>
+        </div>
+
+        <!-- Mobile Button -->
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+    </nav>
+
+    <!-- Mobile Dropdown -->
+    <div class="mobile-dropdown" id="mobileDropdown">
+        <a href="inner-Page.html">Systems</a>
+        <a href="services.html">Services</a>
+        <a href="products.html">Products</a>
+        <a href="ai-innovation.html">Ai Innovation</a>
+        <a href="roadmap.html">Roadmap</a>
+        <a href="license.html">License</a>
+        <a href="about.html">About</a>
+        <a href="aedi-online.html">AEDI Online</a>
+        <a href="contact.html">Contact</a>
+        <a href="firmware-development.html">Dev</a>
+        <a href="gateway.html" class="active">IO Way</a>
+    </div>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <div class="page-container">
+        
+        <header>
+            <h1 id="glitch-header" data-value="Gateway Interface">Gateway Interface</h1>
+            <div class="hero-sub" data-value="System Access Point // Restricted">System Access Point // Restricted</div>
+        </header>
+
+        <main class="portal-container">
+            <div class="portal-frame">
+                <h2 class="portal-header">LOGIN</h2>
+                <div class="portal-status">System Access Point // <span style="color:#ff3333">Restricted</span></div>
+                
+                <form class="login-form" onsubmit="event.preventDefault();">
+                    <div class="input-group">
+                        <label for="username">ID / Username</label>
+                        <input type="text" id="username" placeholder="Enter ID" autocomplete="off">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="password">Encrypted Key</label>
+                        <input type="password" id="password" placeholder="••••••••" autocomplete="off">
+                    </div>
+
+                    <div class="auth-2fa-section">
+                        <label class="auth-switch">
+                            <input type="checkbox" id="auth2-toggle" onchange="toggle2FA()"> 
+                            <span>Enable 2FA Verification</span>
+                        </label>
+                        <a href="javascript:void(0)" onclick="alert('Please email services@ionity.world or contact +27 646 999 877 for recovery assistance.')" style="font-size:0.85rem; color: var(--accent-cyan); text-decoration: none; border-bottom: 1px dashed var(--accent-cyan); transition: all 0.3s;">Forgot Key?</a>
+                    </div>
+
+                    <!-- Hidden 2FA Input (Visual Only) -->
+                    <div class="input-group" id="2fa-input-group" style="display:none; animation: slideDown 0.3s ease;">
+                        <label for="auth-code" style="color:var(--accent-cyan)">Authentication Code</label>
+                        <input type="text" id="auth-code" placeholder="SIX-DIGIT-CODE" style="text-align:center; letter-spacing:0.3rem;">
+                    </div>
+
+                    <button type="submit" class="btn-login" onclick="alert('Invalid credentials. Please verify your ID and Key.')">Initialize Session</button>
+                    
+                    <div class="divider">OR</div>
+                    
+                    <button type="button" class="btn-google">
+                        <svg viewBox="0 0 24 24" width="18" height="18" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.26.81-.58z" fill="#FBBC05"/>
+                            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                        </svg>
+                        <span>Login with Google</span>
+                    </button>
+                </form>
+            </div>
+        </main>
+
+    </div>
+
+    <footer>
+        <style>
+            @keyframes footerGlow {
+                0% { text-shadow: 0 0 2px rgba(255,255,255,0.1); }
+                100% { text-shadow: 0 0 8px rgba(0, 210, 255, 0.3); }
+            }
+            .footer-content {
+                animation: footerGlow 3s infinite alternate;
+                color: rgba(255,255,255,0.95); /* Improved Visibility */
+            }
+            footer {
+                background: #050510;
+                border-top: 1px solid var(--accent-cyan);
+            }
+            footer a { 
+                color: var(--accent-cyan);
+                text-decoration: none;
+                font-weight: bold;
+            }
+        </style>
+        <div class="footer-logo-container">
+            <img src="assets/images/ionity-logo-edited.png" alt="Ionity Logo" class="footer-logo">
+        </div>
+        <div class="footer-content" style="line-height: 2;">
+            <div>Ionity™ (Pty) Ltd 2025-2026 | Creative Commons BY_NC_SA 4.0 | Made with AEDI™ | Author: Antwerp Designs</div>
+            <div>South Africa Centurion 0157 | Policy AED 986 AED | License AED 900 | Ionity™ IoT-Ai-DAQ-PdM-CMS-F-iT Hardware, Software Integrations, ALL RIGHTS RESERVED</div>
+            <div>
+                <a href="tel:+27646999877">+27 646 999 877</a> 
+                <a href="mailto:ai@ionity.today">ai@ionity.today</a> &nbsp;|&nbsp; 
+                Author Profile <a href="https://www.ionity.world" target="_blank">www.ionity.world</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- 3D PARTICLE BACKGROUND (Simple) ---
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('canvas-container').appendChild(renderer.domElement);
+
+        // Particles
+        const geometry = new THREE.BufferGeometry();
+        const count = 4000;
+        const positions = new Float32Array(count * 3);
+        
+        for(let i = 0; i < count * 3; i++) {
+            positions[i] = (Math.random() - 0.5) * 100; // Wider Spread
+        }
+        
+        geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        const material = new THREE.PointsMaterial({ 
+            size: 0.15, 
+            color: 0x00d2ff,
+            transparent: true,
+            opacity: 0.8,
+            blending: THREE.AdditiveBlending
+        });
+        
+        const particles = new THREE.Points(geometry, material);
+        scene.add(particles);
+
+        camera.position.z = 50;
+
+        // Animate
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            const positions = particles.geometry.attributes.position.array;
+            
+            // Warp Speed Effect
+            for(let i = 0; i < count; i++) {
+                // Move stars towards camera (Z axis)
+                positions[i*3 + 2] += 0.8; 
+                
+                // Reset if they pass the camera
+                if(positions[i*3 + 2] > 55) {
+                    positions[i*3 + 2] = -50;
+                }
+            }
+            particles.geometry.attributes.position.needsUpdate = true;
+            
+            // Subtle rotation
+            particles.rotation.z += 0.0005;
+
+            renderer.render(scene, camera);
+        }
+        
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+        
+        animate();
+
+        // --- MOBILE MENU ---
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileDropdown');
+            menu.classList.toggle('open');
+        }
+
+        // --- GLITCH EFFECT ---
+        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&";
+        
+        function runGlitch(element) {
+            let iteration = 0;
+            const originalText = element.dataset.value;
+            if(element.interval) clearInterval(element.interval);
+
+            element.interval = setInterval(() => {
+                element.innerHTML = originalText 
+                    .split("")
+                    .map((letter, index) => {
+                        if(index < iteration) {
+                            return originalText[index];
+                        }
+                        if(originalText[index] === ' ' || originalText[index] === '<' || originalText[index] === '>') return originalText[index];
+                        return letters[Math.floor(Math.random() * letters.length)];
+                    })
+                    .join("");
+
+                if(iteration >= originalText.length){
+                    clearInterval(element.interval);
+                    element.innerHTML = originalText; 
+                }
+                iteration += 1 / 3; 
+            }, 50); 
+        }
+
+        const glitchTargets = document.querySelectorAll('#glitch-header, .hero-sub');
+        glitchTargets.forEach(target => {
+            target.addEventListener('mouseover', () => runGlitch(target));
+            if(target.id === 'glitch-header') {
+                setTimeout(() => runGlitch(target), 500);
+            }
+        });
+
+        // --- 2FA TOGGLE ---
+        function toggle2FA() {
+            const checkbox = document.getElementById('auth2-toggle');
+            const inputGroup = document.getElementById('2fa-input-group');
+            
+            if(checkbox.checked) {
+                inputGroup.style.display = 'block';
+            } else {
+                inputGroup.style.display = 'none';
+            }
+        }
+    </script>
+    <script src="assets/js/script.js" defer></script>
+    <script src="assets/js/audio-manager.js"></script>
+</body>
+</html>

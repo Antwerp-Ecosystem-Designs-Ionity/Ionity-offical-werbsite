@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+    
+    <!-- Homepage -->
+    <url>
+        <loc>https://antwerp-ecosystem-designs-ionity.github.io/</loc>
+        <lastmod>2026-02-09T18:00:00+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    
+    <!-- About Page -->
+    <url>
+        <loc>https://antwerp-ecosystem-designs-ionity.github.io/about.html</loc>
+        <lastmod>2026-02-09T18:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    
+    <!-- AEDI Online -->
+    <url>
+        <loc>https://antwerp-ecosystem-designs-ionity.github.io/aedi-online.html</loc>
+        <lastmod>2026-02-09T18:00:00+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    
+    <!-- AI Innovation -->
+    <url>
+        <loc>https://antwerp-ecosystem-designs-ionity.github.io/ai-innovation.html</loc>
+        <lastmod>2026-02-09T18:00:00+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <!-- Gateway -->
+    <url>
+        <loc>https://antwerp-ecosystem-designs-ionity.github.io/gateway.html</loc>
+        <lastmod>2026-02-09T18:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <!-- Products -->
+    <url>
+        <loc>https://antwerp-ecosystem-designs-ionity.github.io/products.html</loc>
+        <lastmod>2026-02-09T18:00:00+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    
+    <!-- Services -->
+    <url>
+        <loc>https://antwerp-ecosystem-designs-ionity.github.io/services.html</loc>
+        <lastmod>2026-02-09T18:00:00+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    
+    <!-- Systems -->
+    <url>
+        <loc>https://antwerp-ecosystem-designs-ionity.github.io/systems.html</loc>
+        <lastmod>2026-02-09T18:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    
+    <!-- Roadmap -->
+    <url>
+        <loc>https://antwerp-ecosystem-designs-ionity.github.io/roadmap.html</loc>
+        <lastmod>2026-02-09T18:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <!-- Contact -->
+    <url>
+        <loc>https://antwerp-ecosystem-designs-ionity.github.io/contact.html</loc>
+        <lastmod>2026-02-09T18:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    
+    <!-- License -->
+    <url>
+        <loc>https://antwerp-ecosystem-designs-ionity.github.io/license.html</loc>
+        <lastmod>2026-02-09T18:00:00+02:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.5</priority>
+    </url>
+
+</urlset>

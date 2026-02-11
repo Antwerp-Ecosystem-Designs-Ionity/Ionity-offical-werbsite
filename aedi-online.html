@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ionity | AEDI Online</title>
+    <link rel="icon" type="image/png" href="assets/images/ionity-logo-edited.png">
+    <meta name="description" content="Ionity (Pty) Ltd - AEDI Online Portal.">
+    
+    <style>
+        :root {
+            /* DEEP COOL BLUES - avoiding any warm/brown tones */
+            --bg-dark: #010409; 
+            --bg-panel: rgba(5, 15, 35, 0.7);
+            --text-main: #ffffff;
+            --text-muted: rgba(200, 230, 255, 0.8); 
+            --accent-cyan: #00d2ff;
+            --accent-dim: rgba(0, 210, 255, 0.1);
+            --border: rgba(0, 210, 255, 0.2); 
+            --border-active: rgba(0, 210, 255, 0.6);
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-dark);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            color: var(--text-main);
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        /* --- 3D CANVAS BACKGROUND --- */
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0; 
+            pointer-events: none;
+        }
+
+        /* --- VISUAL FX --- */
+        .scanlines {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.2));
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 99;
+            opacity: 0.3;
+        }
+
+        /* --- GLOW ANIMATIONS --- */
+        @keyframes neonPulse {
+            0% { text-shadow: 0 0 5px rgba(255,255,255,0.8), 0 0 10px var(--accent-cyan); }
+            50% { text-shadow: 0 0 10px #fff, 0 0 20px var(--accent-cyan), 0 0 40px var(--accent-cyan); }
+            100% { text-shadow: 0 0 5px rgba(255,255,255,0.8), 0 0 10px var(--accent-cyan); }
+        }
+
+        @keyframes footerGlow {
+            0% { text-shadow: 0 0 2px rgba(255,255,255,0.1); }
+            100% { text-shadow: 0 0 8px rgba(0, 210, 255, 0.3); }
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            padding: 0 5vw;
+            height: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            background: rgba(2, 2, 4, 0.9);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-family: 'Courier New', monospace;
+            font-weight: 700;
+            letter-spacing: 0.2rem;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2rem;
+            position: relative;
+            text-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo:hover {
+            animation: neonPulse 1.5s infinite alternate;
+        }
+
+        .nav-logo {
+            height: 80px;
+            width: auto;
+            vertical-align: middle;
+            transition: all 0.3s ease;
+        }
+        .nav-logo:hover {
+            filter: drop-shadow(0 0 8px var(--accent-cyan));
+        }
+
+        /* Desktop Nav */
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+            font-weight: 600;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+            animation: neonPulse 1s infinite alternate;
+        }
+
+        .nav-links a.active {
+            color: var(--accent-cyan);
+            text-shadow: 0 0 15px var(--accent-cyan); 
+            border-bottom: 1px solid var(--accent-cyan);
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; width: 0; height: 1px;
+            background: var(--accent-cyan);
+            transition: width 0.3s ease;
+            box-shadow: 0 0 10px var(--accent-cyan);
+        }
+
+        .nav-links a:hover::before { width: 100%; }
+
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--accent-cyan);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem 0.8rem;
+            border-radius: 4px;
+            z-index: 101;
+        }
+
+        /* Mobile Dropdown */
+        .mobile-dropdown {
+            display: none;
+            position: absolute;
+            top: 80px;
+            left: 0;
+            width: 100%;
+            background: rgba(2, 2, 4, 0.98);
+            border-bottom: 1px solid var(--border);
+            flex-direction: column;
+            padding: 1rem 0;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.8);
+        }
+
+        .mobile-dropdown.open {
+            display: flex;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        .mobile-dropdown a {
+            color: #fff;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            transition: background 0.2s;
+        }
+        
+        .mobile-dropdown a.active {
+            color: var(--accent-cyan);
+            background: rgba(0, 210, 255, 0.05);
+            text-shadow: 0 0 15px var(--accent-cyan); 
+            border-left: 3px solid var(--accent-cyan);
+        }
+
+        .mobile-dropdown a:hover {
+            background: rgba(0, 210, 255, 0.1);
+            color: var(--accent-cyan);
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .mobile-menu-btn { display: block; }
+        }
+
+        /* --- PAGE CONTENT LAYER --- */
+        .page-container {
+            position: relative;
+            z-index: 10;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 5vw;
+        }
+
+        header {
+            margin-bottom: 4rem;
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 200;
+            letter-spacing: -0.1rem;
+            margin: 0 0 1rem 0;
+            color: #fff;
+            text-shadow: 0 0 20px rgba(0, 210, 255, 0.2);
+        }
+
+        .hero-sub {
+            font-family: 'Courier New', monospace;
+            color: var(--accent-cyan);
+            margin-top: 1rem;
+            letter-spacing: 0.2rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .hero-sub::before {
+            content: '>>';
+            color: #fff;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            margin-top: auto;
+            border-top: 1px solid var(--border);
+            padding: 3rem 5vw;
+            background: rgba(2, 5, 12, 0.95);
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 10;
+        }
+
+        .footer-logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 2rem;
+            width: 100%;
+        }
+
+        .footer-logo {
+            height: 80px;
+            width: auto;
+            opacity: 0.9;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-logo:hover {
+            opacity: 1;
+            filter: drop-shadow(0 0 15px rgba(0, 210, 255, 0.4));
+        }
+
+        .footer-content {
+            animation: footerGlow 3s infinite alternate;
+        }
+
+        a { color: var(--accent-cyan); text-decoration: none; transition: 0.3s; }
+        a:hover { text-shadow: 0 0 8px var(--accent-cyan); color: #fff; }
+
+        /* --- ADDED RESOURCE CARD STYLES --- */
+        .resource-card {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 50, 100, 0.05);
+            border: 1px solid var(--border);
+            padding: 1.2rem;
+            text-align: center;
+            border-radius: 4px;
+            color: var(--text-muted) !important; /* Force override default link color */
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.1rem;
+            font-size: 0.8rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .resource-card:hover {
+            background: rgba(0, 210, 255, 0.15);
+            border-color: var(--accent-cyan);
+            color: #fff !important;
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px rgba(0, 210, 255, 0.3);
+            text-shadow: 0 0 8px var(--accent-cyan);
+            z-index: 2;
+        }
+        
+        .resource-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: 0.5s;
+        }
+        
+        .resource-card:hover::before {
+            left: 100%;
+        }
+
+    </style>
+    <!-- Three.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+
+    <div id="canvas-container"></div>
+    <div class="scanlines"></div>
+
+    <nav>
+        <a href="index.html" class="logo">
+             <img src="assets/images/ionity-logo-edited.png" alt="IONITY" class="nav-logo">
+        </a>
+        
+        <!-- Desktop Menu -->
+        <div class="nav-links">
+            <a href="inner-Page.html">Systems</a>
+            <a href="services.html">Services</a>
+            <a href="products.html">Products</a>
+            <a href="ai-innovation.html">Ai Innovation</a>
+            <a href="roadmap.html">Roadmap</a>
+            <a href="license.html">License</a>
+            <a href="about.html">About</a>
+            <a href="aedi-online.html" class="active">AEDI Online</a>
+            <a href="contact.html">Contact</a>
+            <a href="firmware-development.html">Dev</a>
+            <a href="gateway.html">IO Way</a>
+        </div>
+
+        <!-- Mobile Button -->
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+    </nav>
+
+    <!-- Mobile Dropdown -->
+    <div class="mobile-dropdown" id="mobileDropdown">
+        <a href="inner-Page.html">Systems</a>
+        <a href="services.html">Services</a>
+        <a href="products.html">Products</a>
+        <a href="ai-innovation.html">Ai Innovation</a>
+        <a href="roadmap.html">Roadmap</a>
+        <a href="license.html">License</a>
+        <a href="about.html">About</a>
+        <a href="aedi-online.html" class="active">AEDI Online</a>
+        <a href="contact.html">Contact</a>
+        <a href="firmware-development.html">Dev</a>
+        <a href="gateway.html">IO Way</a>
+    </div>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <div class="page-container">
+        
+        <header>
+            <h1 id="glitch-header" data-value="AEDI Online Portal">AEDI Online Portal</h1>
+            <div class="hero-sub" data-value="Network: Offline // Status: Pending">Network: Offline // Status: Pending</div>
+        </header>
+
+        <main style="display: flex; flex-direction: column; gap: 4rem; min-height: 60vh; padding-bottom: 4rem;">
+            
+            <!-- Hero / Intro -->
+            <div style="text-align: center; border: 1px dashed var(--border); border-radius: 8px; padding: 4rem 2rem; background: rgba(5, 20, 40, 0.4); backdrop-filter: blur(2px); position: relative;">
+                <div style="position: absolute; top: -10px; left: 20px; background: var(--bg-dark); padding: 0 10px; color: var(--accent-cyan); font-size: 0.7rem; border: 1px solid var(--border);">SYSTEM NOTIFICATION</div>
+                <h2 style="color: var(--accent-cyan); margin-bottom: 1.5rem; font-size: 2.5rem; text-transform: uppercase; letter-spacing: 0.3rem;">Portal to all Ai global needs</h2>
+                <p style="max-width: 800px; margin: 0 auto; color: var(--text-muted); line-height: 1.8; font-size: 1.1rem;">
+                    The AEDI Online system is preparing for initialization.<br>
+                    Access the frontier of Artificial Intelligence. Curated connections to global technology leaders, cutting-edge generative models, security standards, and regulatory frameworks.
+                </p>
+            </div>
+
+            <!-- 1. Global Tech Leaders -->
+            <div>
+                <h3 style="color: #fff; border-left: 3px solid var(--accent-cyan); padding-left: 1rem; margin-bottom: 2rem; font-size: 1.5rem; letter-spacing: 0.1rem;">Official Tech Giants & Ecosystems</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem;">
+                    <a href="https://cloud.google.com/vertex-ai" target="_blank" class="resource-card">Google Cloud AI</a>
+                    <a href="https://www.microsoft.com/en-us/ai" target="_blank" class="resource-card">Microsoft AI</a>
+                    <a href="https://www.ibm.com/watson" target="_blank" class="resource-card">IBM Watson</a>
+                    <a href="https://github.com/features/copilot" target="_blank" class="resource-card">GitHub</a>
+                    <a href="https://www.iotsecurityfoundation.org/" target="_blank" class="resource-card">Security IoT</a>
+                    <a href="https://aws.amazon.com/bedrock/nova/" target="_blank" class="resource-card">Amazon Nova</a>
+                    <a href="https://www.nvidia.com/en-us/ai-data-science/" target="_blank" class="resource-card">NVIDIA AI</a>
+                    <a href="https://ai.meta.com/" target="_blank" class="resource-card">Meta AI</a>
+                    <a href="https://machinelearning.apple.com/" target="_blank" class="resource-card">Apple ML</a>
+                    <a href="https://huggingface.co/docs/transformers/index" target="_blank" class="resource-card">Hugging Face Ecosystem</a>
+                </div>
+            </div>
+
+            <!-- 2. Generative Models & Tools -->
+            <div>
+                <h3 style="color: #fff; border-left: 3px solid var(--accent-cyan); padding-left: 1rem; margin-bottom: 2rem; font-size: 1.5rem; letter-spacing: 0.1rem;">Generative Models & Ai Tools</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem;">
+                    <a href="https://chat.deepseek.com/" target="_blank" class="resource-card">DeepSeek</a>
+                    <a href="https://gemini.google.com/" target="_blank" class="resource-card">Google Gemini</a>
+                    <a href="https://copilot.microsoft.com/" target="_blank" class="resource-card">Microsoft Copilot</a>
+                    <a href="https://claude.ai/" target="_blank" class="resource-card">Anthropic Claude</a>
+                    <a href="https://grok.x.ai/" target="_blank" class="resource-card">xAI Grok</a>
+                    <a href="https://www.slidesai.io/" target="_blank" class="resource-card">SlidesAI</a>
+                    <a href="https://openai.com/chatgpt" target="_blank" class="resource-card">ChatGPT</a>
+                    <a href="https://huggingface.co/" target="_blank" class="resource-card">Hugging Face</a>
+                    <a href="https://www.midjourney.com/" target="_blank" class="resource-card">Midjourney</a>
+                    <a href="https://runwayml.com/" target="_blank" class="resource-card">Runway ML</a>
+                    <a href="https://chatglm.cn/" target="_blank" class="resource-card">GLM (Zhipu)</a>
+                    <a href="#" class="resource-card">Apriel Ai</a>
+                    <a href="https://openai.com/gpt-4" target="_blank" class="resource-card">GPT-4</a>
+                    <a href="https://www.perplexity.ai/" target="_blank" class="resource-card">Perplexity AI</a>
+                    <a href="https://elevenlabs.io/" target="_blank" class="resource-card">ElevenLabs</a>
+                    <a href="https://leonardo.ai/" target="_blank" class="resource-card">Leonardo.ai</a>
+                    <a href="https://suno.com/" target="_blank" class="resource-card">Suno</a>
+                    <a href="https://www.krea.ai/" target="_blank" class="resource-card">Krea AI</a>
+                    <a href="https://ideogram.ai/" target="_blank" class="resource-card">Ideogram</a>
+                    <a href="https://gamma.app/" target="_blank" class="resource-card">Gamma</a>
+                    <a href="https://cohere.com/" target="_blank" class="resource-card">Cohere</a>
+                    <a href="https://stability.ai/" target="_blank" class="resource-card">Stability AI</a>
+                    <a href="https://poe.com/" target="_blank" class="resource-card">Quora Poe</a>
+                    <a href="https://you.com/" target="_blank" class="resource-card">You.com</a>
+                    <a href="https://www.ai21.com/" target="_blank" class="resource-card">AI21 Studio</a>
+                    <a href="https://qwenlm.github.io/" target="_blank" class="resource-card">Qwen (Alibaba)</a>
+                    <a href="https://01.ai/" target="_blank" class="resource-card">Yi (01.AI)</a>
+                    <a href="https://character.ai/" target="_blank" class="resource-card">Character.ai</a>
+                    <a href="https://www.phind.com/" target="_blank" class="resource-card">Phind</a>
+                    <a href="https://www.cursor.com/" target="_blank" class="resource-card">Cursor</a>
+                    <a href="https://www.udio.com/" target="_blank" class="resource-card">Udio</a>
+                    <a href="https://lumalabs.ai/dream-machine" target="_blank" class="resource-card">Luma Dream Machine</a>
+                    <a href="https://hume.ai/" target="_blank" class="resource-card">Hume AI</a>
+                    <a href="https://civitai.com/" target="_blank" class="resource-card">Civitai</a>
+                </div>
+            </div>
+
+            <!-- 3. Offline Ai, Local LLMs & CLI -->
+            <div>
+                <h3 style="color: #fff; border-left: 3px solid var(--accent-cyan); padding-left: 1rem; margin-bottom: 2rem; font-size: 1.5rem; letter-spacing: 0.1rem;">Offline Ai, Local LLMs & CLI</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem;">
+                    <a href="https://githubnext.com/projects/copilot-cli/" target="_blank" class="resource-card">CLI Copilot</a>
+                    <a href="https://gemini.google.com/" target="_blank" class="resource-card">Gemini</a>
+                    <a href="https://ollama.com/" target="_blank" class="resource-card">Lama Download (Ollama)</a>
+                    <a href="#" class="resource-card">Apriel</a>
+                    <a href="https://kimi.moonshot.cn/" target="_blank" class="resource-card">Kimi Ai</a>
+                    <a href="https://mistral.ai/" target="_blank" class="resource-card">Mistral Ai</a>
+                    <a href="https://lmstudio.ai/" target="_blank" class="resource-card">LM Studio</a>
+                    <a href="https://gpt4all.io/" target="_blank" class="resource-card">GPT4All</a>
+                    <a href="https://jan.ai/" target="_blank" class="resource-card">Jan.ai</a>
+                    <a href="https://pinokio.computer/" target="_blank" class="resource-card">Pinokio</a>
+                    <a href="https://openwebui.com/" target="_blank" class="resource-card">Open WebUI</a>
+                    <a href="https://github.com/ggerganov/llama.cpp" target="_blank" class="resource-card">Llama.cpp</a>
+                    <a href="https://github.com/oobabooga/text-generation-webui" target="_blank" class="resource-card">TextGen WebUI</a>
+                    <a href="https://privategpt.io/" target="_blank" class="resource-card">PrivateGPT</a>
+                    <a href="https://localai.io/" target="_blank" class="resource-card">LocalAI</a>
+                    <a href="https://khoj.dev/" target="_blank" class="resource-card">Khoj</a>
+                    <a href="https://openinterpreter.com/" target="_blank" class="resource-card">Open Interpreter</a>
+                    <a href="https://github.com/danielmiessler/fabric" target="_blank" class="resource-card">Fabric (CLI)</a>
+                    <a href="https://www.warp.dev/" target="_blank" class="resource-card">Warp Terminal</a>
+                    <a href="https://pi-hole.net/" target="_blank" class="resource-card">Pi-hole</a>
+                    <a href="https://adguard.com/en/adguard-home/overview.html" target="_blank" class="resource-card">AdGuard Home</a>
+                </div>
+            </div>
+
+            <!-- 4. Ai Development & Frameworks -->
+            <div>
+                <h3 style="color: #fff; border-left: 3px solid var(--accent-cyan); padding-left: 1rem; margin-bottom: 2rem; font-size: 1.5rem; letter-spacing: 0.1rem;">Ai Development & Frameworks</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem;">
+                    <a href="https://www.langchain.com/" target="_blank" class="resource-card">LangChain</a>
+                    <a href="https://www.llamaindex.ai/" target="_blank" class="resource-card">LlamaIndex</a>
+                    <a href="https://pytorch.org/" target="_blank" class="resource-card">PyTorch</a>
+                    <a href="https://www.tensorflow.org/" target="_blank" class="resource-card">TensorFlow</a>
+                    <a href="https://keras.io/" target="_blank" class="resource-card">Keras</a>
+                    <a href="https://news.agpt.co/" target="_blank" class="resource-card">AutoGPT</a>
+                    <a href="https://streamlit.io/" target="_blank" class="resource-card">Streamlit</a>
+                    <a href="https://gradio.app/" target="_blank" class="resource-card">Gradio</a>
+                    <a href="https://opencv.org/" target="_blank" class="resource-card">OpenCV</a>
+                    <a href="https://scikit-learn.org/" target="_blank" class="resource-card">Scikit-learn</a>
+                    <a href="https://github.com/microsoft/semantic-kernel" target="_blank" class="resource-card">Semantic Kernel</a>
+                    <a href="https://microsoft.github.io/autogen/" target="_blank" class="resource-card">AutoGen</a>
+                    <a href="https://www.crewai.com/" target="_blank" class="resource-card">CrewAI</a>
+                    <a href="https://github.com/stanfordnlp/dspy" target="_blank" class="resource-card">DSPy</a>
+                    <a href="https://superagi.com/" target="_blank" class="resource-card">SuperAGI</a>
+                    <a href="https://dotnet.microsoft.com/en-us/apps/ai" target="_blank" class="resource-card">.NET AI</a>
+                </div>
+            </div>
+
+            <!-- 5. Workflow & Orchestration -->
+            <div>
+                <h3 style="color: #fff; border-left: 3px solid var(--accent-cyan); padding-left: 1rem; margin-bottom: 2rem; font-size: 1.5rem; letter-spacing: 0.1rem;">Workflow & Orchestration</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem;">
+                    <a href="https://n8n.io/" target="_blank" class="resource-card">n8n</a>
+                    <a href="https://aistudio.google.com/" target="_blank" class="resource-card">Google AI Studio</a>
+                    <a href="https://flowiseai.com/" target="_blank" class="resource-card">Flowise</a>
+                    <a href="https://www.langflow.org/" target="_blank" class="resource-card">LangFlow</a>
+                    <a href="https://zapier.com/" target="_blank" class="resource-card">Zapier</a>
+                    <a href="https://www.make.com/" target="_blank" class="resource-card">Make</a>
+                    <a href="https://powerautomate.microsoft.com/" target="_blank" class="resource-card">Power Automate</a>
+                    <a href="https://retool.com/" target="_blank" class="resource-card">Retool</a>
+                </div>
+            </div>
+
+            <!-- 6. Design, Audio & Vision AI -->
+            <div>
+                <h3 style="color: #fff; border-left: 3px solid var(--accent-cyan); padding-left: 1rem; margin-bottom: 2rem; font-size: 1.5rem; letter-spacing: 0.1rem;">Design, Audio & Vision AI</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem;">
+                    <!-- Design -->
+                    <a href="https://www.framer.com/ai" target="_blank" class="resource-card">Framer AI</a>
+                    <a href="https://uizard.io/" target="_blank" class="resource-card">Uizard</a>
+                    <a href="https://designer.microsoft.com/" target="_blank" class="resource-card">MS Designer</a>
+                    <a href="https://www.galileo.ai/" target="_blank" class="resource-card">Galileo AI</a>
+                    <a href="https://recraft.ai/" target="_blank" class="resource-card">Recraft</a>
+                    
+                    <!-- Speech (TTS/STT) -->
+                    <a href="https://speechify.com/" target="_blank" class="resource-card">Speechify</a>
+                    <a href="https://otter.ai/" target="_blank" class="resource-card">Otter.ai</a>
+                    <a href="https://murf.ai/" target="_blank" class="resource-card">Murf.ai</a>
+                    <a href="https://openai.com/research/whisper" target="_blank" class="resource-card">OpenAI Whisper</a>
+                    <a href="https://play.ht/" target="_blank" class="resource-card">Play.ht</a>
+                    
+                    <!-- Image Recognition -->
+                    <a href="https://cloud.google.com/vision" target="_blank" class="resource-card">Google Vision</a>
+                    <a href="https://roboflow.com/" target="_blank" class="resource-card">Roboflow</a>
+                    <a href="https://www.clarifai.com/" target="_blank" class="resource-card">Clarifai</a>
+                    <a href="https://landing.ai/" target="_blank" class="resource-card">Landing AI</a>
+                </div>
+            </div>
+
+            <!-- 7. Global Tech News -->
+            <div>
+                <h3 style="color: #fff; border-left: 3px solid var(--accent-cyan); padding-left: 1rem; margin-bottom: 2rem; font-size: 1.5rem; letter-spacing: 0.1rem;">Global Tech News</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem;">
+                    <a href="https://techcrunch.com/" target="_blank" class="resource-card">TechCrunch</a>
+                    <a href="https://www.theverge.com/tech" target="_blank" class="resource-card">The Verge</a>
+                    <a href="https://www.wired.com/" target="_blank" class="resource-card">Wired</a>
+                    <a href="https://arstechnica.com/" target="_blank" class="resource-card">Ars Technica</a>
+                    <a href="https://venturebeat.com/category/ai/" target="_blank" class="resource-card">VentureBeat</a>
+                    <a href="https://www.technologyreview.com/topic/artificial-intelligence/" target="_blank" class="resource-card">MIT Tech Review</a>
+                    <a href="https://humanloop.com/blog" target="_blank" class="resource-card">Humanloop Blog</a>
+                    <a href="https://the-decoder.com/" target="_blank" class="resource-card">The Decoder</a>
+                </div>
+            </div>
+
+            <!-- 8. Regulations & Global Standards -->
+            <div>
+                <h3 style="color: #fff; border-left: 3px solid var(--accent-cyan); padding-left: 1rem; margin-bottom: 2rem; font-size: 1.5rem; letter-spacing: 0.1rem;">Regulations & Global Governance</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem;">
+                    <a href="https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai" target="_blank" class="resource-card">EU AI Act</a>
+                    <a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" class="resource-card">NIST AI RMF</a>
+                    <a href="https://www.iso.org/committee/6794475.html" target="_blank" class="resource-card">ISO/IEC AI Standards</a>
+                    <a href="https://oecd.ai/en/" target="_blank" class="resource-card">OECD.AI Policy</a>
+                    <a href="https://futureoflife.org/cause/artificial-intelligence/" target="_blank" class="resource-card">Future of Life Inst.</a>
+                    <a href="https://www.unesco.org/en/artificial-intelligence/recommendation-ethics" target="_blank" class="resource-card">UNESCO AI Ethics</a>
+                    <a href="https://www.aisi.gov.uk/" target="_blank" class="resource-card">UK AI Safety Inst.</a>
+                    <a href="https://www.nist.gov/isi/ai-safety-institute" target="_blank" class="resource-card">US AI Safety Inst.</a>
+                </div>
+            </div>
+
+        </main>
+
+    </div>
+
+    <footer>
+        <style>
+            @keyframes footerGlow {
+                0% { text-shadow: 0 0 2px rgba(255,255,255,0.1); }
+                100% { text-shadow: 0 0 8px rgba(0, 210, 255, 0.3); }
+            }
+            .footer-content {
+                animation: footerGlow 3s infinite alternate;
+            }
+        </style>
+        <div class="footer-logo-container">
+            <img src="assets/images/ionity-logo-edited.png" alt="Ionity Logo" class="footer-logo">
+        </div>
+        <div class="footer-content" style="line-height: 2;">
+            <div>Ionity™ (Pty) Ltd 2025-2026 | Creative Commons BY_NC_SA 4.0 | Made with AEDI™ | Author: Antwerp Designs</div>
+            <div>South Africa Centurion 0157 | Policy AED 986 AED | License AED 900 | Ionity™ IoT-Ai-DAQ-PdM-CMS-F-iT Hardware, Software Integrations, ALL RIGHTS RESERVED</div>
+            <div>
+                <a href="tel:+27646999877">+27 646 999 877</a> 
+                <a href="mailto:ai@ionity.today">ai@ionity.today</a> &nbsp;|&nbsp; 
+                Author Profile <a href="https://www.ionity.world" target="_blank">www.ionity.world</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- 3D EARTH CAD VISUAL ---
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+        // Position camera to see the full wireframe earth
+        camera.position.z = 25;
+
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, powerPreference: "high-performance" });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        document.getElementById('canvas-container').appendChild(renderer.domElement);
+
+        // Group to hold Earth Objects
+        const earthGroup = new THREE.Group();
+        scene.add(earthGroup);
+
+        // 1. Wireframe Earth Sphere
+        const radius = 8;
+        const detail = 2; // Icosahedron detail
+        const geometry = new THREE.IcosahedronGeometry(radius, detail);
+        
+        const wireframeMat = new THREE.MeshBasicMaterial({ 
+            color: 0x00d2ff, 
+            wireframe: true, 
+            transparent: true, 
+            opacity: 0.15 
+        });
+        const earthWire = new THREE.Mesh(geometry, wireframeMat);
+        earthGroup.add(earthWire);
+
+        // 2. Inner Dark Sphere (to block particles behind)
+        const innerMat = new THREE.MeshBasicMaterial({ color: 0x010409, transparent: true, opacity: 0.8 });
+        const earthInner = new THREE.Mesh(geometry, innerMat);
+        // Slightly smaller to avoid z-fighting if exact match
+        earthInner.scale.setScalar(0.99); 
+        earthGroup.add(earthInner);
+
+        // 3. Orbital Ring (Equator)
+        const ringGeo = new THREE.RingGeometry(11, 11.2, 64);
+        const ringMat = new THREE.MeshBasicMaterial({ color: 0x00d2ff, opacity: 0.3, transparent: true, side: THREE.DoubleSide });
+        const ring = new THREE.Mesh(ringGeo, ringMat);
+        ring.rotation.x = Math.PI / 2; // Lie flat
+        earthGroup.add(ring);
+
+        // 4. Floating Elements (Satellites/Points)
+        const pointsGeo = new THREE.BufferGeometry();
+        const pointsCount = 40;
+        const pointsPos = [];
+        for(let i=0; i<pointsCount; i++) {
+            // Random point on sphere surface
+            const theta = Math.random() * Math.PI * 2;
+            const phi = Math.acos(Math.random() * 2 - 1);
+            const r = radius + 0.5 + Math.random() * 3; // Float above surface
+            
+            const x = r * Math.sin(phi) * Math.cos(theta);
+            const y = r * Math.sin(phi) * Math.sin(theta);
+            const z = r * Math.cos(phi);
+            pointsPos.push(x, y, z);
+        }
+        pointsGeo.setAttribute('position', new THREE.Float32BufferAttribute(pointsPos, 3));
+        const pointsMat = new THREE.PointsMaterial({ color: 0xffffff, size: 0.15, transparent: true, opacity: 0.8 });
+        const earthPoints = new THREE.Points(pointsGeo, pointsMat);
+        earthGroup.add(earthPoints);
+
+        // Interaction Variables
+        let mouseX = 0;
+        let targetRotationY = 0.001; // Base rotation speed
+        let targetRotationX = 0;
+        let currentRotationY = 0;
+        let windowHalfX = window.innerWidth / 2;
+
+        document.addEventListener('mousemove', (event) => {
+            // Normalized -1 to 1 based on center
+            mouseX = (event.clientX - windowHalfX) / windowHalfX;
+            
+            // Interaction: Mouse modifies rotation speed & direction slightly
+            // If mouse is right, spin faster right (-ish). If left, spin left. content moves left = rotate Y positive? 
+            targetRotationY = 0.001 + (mouseX * 0.005); 
+            // Tilt slightly
+            earthGroup.rotation.z = mouseX * 0.05;
+        });
+
+        // Animation Loop
+        function animate() {
+            requestAnimationFrame(animate);
+
+            // Smoothly interpolate speed
+            // earthGroup.rotation.y += targetRotationY;
+            earthGroup.rotation.y += targetRotationY;
+
+            // Rotate inner components differently for "Tech" feel
+            earthWire.rotation.y += 0.0005;
+            earthPoints.rotation.y -= 0.001; // Orbit counter
+            ring.rotation.z += 0.002; 
+            
+            // Slight bobbing - moved lower to sit behind button grid
+            earthGroup.position.y = -8 + (Math.sin(Date.now() * 0.0005) * 0.5);
+
+            renderer.render(scene, camera);
+        }
+        
+        window.addEventListener('resize', () => {
+            windowHalfX = window.innerWidth / 2;
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+        
+        animate();
+
+        // --- MOBILE MENU ---
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileDropdown');
+            menu.classList.toggle('open');
+        }
+
+        // --- GLITCH EFFECT ---
+        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&";
+        
+        function runGlitch(element) {
+            let iteration = 0;
+            const originalText = element.dataset.value;
+            if(element.interval) clearInterval(element.interval);
+
+            element.interval = setInterval(() => {
+                element.innerHTML = originalText 
+                    .split("")
+                    .map((letter, index) => {
+                        if(index < iteration) {
+                            return originalText[index];
+                        }
+                        if(originalText[index] === ' ' || originalText[index] === '<' || originalText[index] === '>') return originalText[index];
+                        return letters[Math.floor(Math.random() * letters.length)];
+                    })
+                    .join("");
+
+                if(iteration >= originalText.length){
+                    clearInterval(element.interval);
+                    element.innerHTML = originalText; 
+                }
+                iteration += 1 / 3; 
+            }, 50); 
+        }
+
+        const glitchTargets = document.querySelectorAll('#glitch-header, .hero-sub');
+        glitchTargets.forEach(target => {
+            target.addEventListener('mouseover', () => runGlitch(target));
+            if(target.id === 'glitch-header') {
+                setTimeout(() => runGlitch(target), 500);
+            }
+        });
+    </script>
+    <script src="assets/js/script.js" defer></script>
+    <script src="assets/js/audio-manager.js"></script>
+</body>
+</html>

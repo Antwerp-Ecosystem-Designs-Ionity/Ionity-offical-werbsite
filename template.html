@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ionity | Template Page</title>
+    <meta name="description" content="Ionity (Pty) Ltd - Standard Template. Architecting the living digital ecosystems of the future.">
+    
+    <style>
+        :root {
+            --bg-dark: #020204;
+            --bg-panel: rgba(10, 15, 20, 0.6);
+            --text-main: #ffffff;
+            --text-muted: rgba(255, 255, 255, 0.85); 
+            --accent-cyan: #00d2ff;
+            --accent-dim: rgba(0, 210, 255, 0.1);
+            --border: rgba(255, 255, 255, 0.15);
+            --border-active: rgba(0, 210, 255, 0.6);
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-dark);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            color: var(--text-main);
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        /* --- 3D CANVAS BACKGROUND --- */
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0; 
+            pointer-events: none;
+        }
+
+        /* --- VISUAL FX --- */
+        .scanlines {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.2));
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 99;
+            opacity: 0.3;
+        }
+
+        /* --- GLOW ANIMATIONS --- */
+        @keyframes neonPulse {
+            0% { text-shadow: 0 0 5px rgba(255,255,255,0.8), 0 0 10px var(--accent-cyan); }
+            50% { text-shadow: 0 0 10px #fff, 0 0 20px var(--accent-cyan), 0 0 40px var(--accent-cyan); }
+            100% { text-shadow: 0 0 5px rgba(255,255,255,0.8), 0 0 10px var(--accent-cyan); }
+        }
+
+        @keyframes flashGlow {
+            0% { text-shadow: 0 0 0 transparent; }
+            50% { text-shadow: 0 0 20px #fff, 0 0 50px var(--accent-cyan); color: #fff; }
+            100% { text-shadow: 0 0 10px rgba(0,0,0,0.5); color: #fff; }
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            padding: 0 5vw;
+            height: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            background: rgba(2, 2, 4, 0.9);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-family: 'Courier New', monospace;
+            font-weight: 700;
+            letter-spacing: 0.2rem;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2rem;
+            position: relative;
+            text-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo:hover {
+            animation: neonPulse 1.5s infinite alternate;
+        }
+
+        .nav-logo {
+            height: 80px;
+            width: auto;
+            vertical-align: middle;
+            transition: all 0.3s ease;
+        }
+        .nav-logo:hover {
+            filter: drop-shadow(0 0 8px var(--accent-cyan));
+        }
+
+        /* Desktop Nav */
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+            font-weight: 600;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+            animation: neonPulse 1s infinite alternate;
+        }
+
+        .nav-links a.active {
+            color: var(--accent-cyan);
+            text-shadow: 0 0 15px var(--accent-cyan); 
+            border-bottom: 1px solid var(--accent-cyan);
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; width: 0; height: 1px;
+            background: var(--accent-cyan);
+            transition: width 0.3s ease;
+            box-shadow: 0 0 10px var(--accent-cyan);
+        }
+
+        .nav-links a:hover::before { width: 100%; }
+
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--accent-cyan);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem 0.8rem;
+            border-radius: 4px;
+            z-index: 101;
+        }
+
+        /* Mobile Dropdown */
+        .mobile-dropdown {
+            display: none;
+            position: fixed;
+            top: 80px;
+            right: 0;
+            left: auto;
+            width: 280px;
+            background: rgba(5, 10, 15, 0.95);
+            border: 1px solid var(--accent-cyan);
+            border-top: none;
+            border-right: none;
+            flex-direction: column;
+            padding: 1rem 0;
+            box-shadow: -5px 5px 20px rgba(0, 0, 0, 0.8), 0 0 15px rgba(0, 210, 255, 0.2);
+            z-index: 99999;
+            backdrop-filter: blur(20px);
+        }
+
+        .mobile-dropdown.open {
+            display: flex;
+            animation: slideDown 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .mobile-dropdown a {
+            color: #fff;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            transition: background 0.2s;
+        }
+        
+        .mobile-dropdown a.active {
+            color: var(--accent-cyan);
+            background: rgba(0, 210, 255, 0.05);
+            text-shadow: 0 0 15px var(--accent-cyan); 
+            border-left: 3px solid var(--accent-cyan);
+        }
+
+        .mobile-dropdown a:hover {
+            background: rgba(0, 210, 255, 0.1);
+            color: var(--accent-cyan);
+        }
+
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- LAYOUT --- */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            min-height: 80vh;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* --- HERO HEADER --- */
+        .hero-section {
+            margin-bottom: 6rem;
+            animation: slideIn 1s ease-out;
+            background: radial-gradient(circle at center, rgba(0,0,0,0.6), transparent 70%);
+            padding: 2rem 0;
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 300;
+            margin: 0;
+            letter-spacing: -0.05rem;
+            color: #fff;
+            text-shadow: 0 0 30px rgba(255,255,255,0.5); /* Brightened */
+            cursor: default;
+            transition: text-shadow 0.3s;
+        }
+        
+        h1:hover {
+            animation: neonPulse 1.5s infinite alternate;
+        }
+
+        .hero-sub {
+            font-family: 'Courier New', monospace;
+            color: var(--accent-cyan);
+            margin-top: 1rem;
+            letter-spacing: 0.2rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-shadow: 0 0 10px var(--accent-cyan); /* Brightened */
+            transition: all 0.3s;
+        }
+
+        .hero-sub:hover {
+            text-shadow: 0 0 20px var(--accent-cyan);
+        }
+
+        .hero-sub::before {
+            content: '';
+            width: 40px; height: 1px;
+            background: var(--accent-cyan);
+            box-shadow: 0 0 5px var(--accent-cyan);
+        }
+
+        .hero-desc {
+            max-width: 600px; 
+            margin-top: 2rem; 
+            color: var(--text-muted); 
+            line-height: 1.8;
+            font-size: 1.1rem;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+        }
+
+        /* --- GRID SYSTEM --- */
+        .system-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: rgba(10, 15, 20, 0.8);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--border);
+            padding: 2.5rem;
+            position: relative;
+            transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            
+            /* Initial Scroll State */
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        
+        /* State for Scroll Animation */
+        .card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 2px; height: 0;
+            background: var(--accent-cyan);
+            transition: height 0.4s ease;
+            box-shadow: 0 0 10px var(--accent-cyan);
+        }
+
+        .card:hover {
+            transform: translateY(-5px) !important;
+            border-color: var(--border-active);
+            box-shadow: 0 10px 50px rgba(0, 210, 255, 0.15); /* Tinted shadow */
+            background: rgba(20, 25, 35, 0.95);
+        }
+
+        .card:hover::before { height: 100%; }
+
+        .card-icon {
+            font-size: 1.5rem;
+            color: var(--accent-cyan);
+            margin-bottom: 1.5rem;
+            opacity: 1;
+            text-shadow: 0 0 15px var(--accent-cyan);
+        }
+
+        .card h3 {
+            font-size: 1.4rem;
+            font-weight: 500;
+            margin: 0 0 1rem 0;
+            letter-spacing: 0.05rem;
+            color: #fff;
+            text-shadow: 0 0 15px rgba(0,0,0,0.5);
+            cursor: default;
+        }
+
+        .card h3:hover, .card:hover h3 {
+            animation: neonPulse 1.5s infinite alternate;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            line-height: 1.6;
+            font-size: 1rem;
+            flex-grow: 1;
+            text-shadow: 0 1px 1px rgba(0,0,0,1);
+        }
+
+        .card-meta {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+            font-family: 'Courier New', monospace;
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.6); /* Brighter */
+            display: flex;
+            justify-content: space-between;
+        }
+
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+        @keyframes slideIn { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
+
+        /* Footer */
+        footer {
+            margin-top: 8rem;
+            padding: 3rem 5vw;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.7rem;
+            position: relative;
+            z-index: 10;
+            background: rgba(2, 2, 4, 0.95);
+        }
+        
+        footer a { color: var(--text-muted); text-decoration: none; margin: 0 10px; transition: color 0.3s; }
+        footer a:hover { color: var(--accent-cyan); }
+
+        .footer-logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 2rem;
+            width: 100%;
+        }
+        
+        .footer-logo {
+            height: 80px;
+            width: auto;
+            opacity: 0.9;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-logo:hover {
+            opacity: 1;
+            filter: drop-shadow(0 0 15px rgba(0, 210, 255, 0.4));
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            nav { padding: 0 1.5rem; }
+            .nav-links { display: none; }
+            .mobile-menu-btn { display: block; }
+            .logo { font-size: 1rem; }
+            body { filter: brightness(1.3); } /* Even brighter on mobile */
+            h1 { animation: neonPulse 3s infinite alternate; }
+            .mobile-dropdown a.active { animation: neonPulse 2s infinite alternate; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="canvas-container"></div>
+    <div class="scanlines"></div>
+
+    <nav>
+        <a href="index.html" class="logo">
+             <img src="assets/images/ionity-logo-edited.png" alt="IONITY" class="nav-logo">
+        </a>
+        
+        <!-- Desktop Menu -->
+        <div class="nav-links">
+            <a href="inner-Page.html">Systems</a>
+            <a href="services.html">Services</a>
+            <a href="products.html">Products</a>
+            <a href="ai-innovation.html">Ai Innovation</a>
+            <a href="roadmap.html">Roadmap</a>
+            <a href="license.html">License</a>
+            <a href="about.html">About</a>
+            <a href="aedi-online.html">AEDI Online</a>
+            <a href="contact.html">Contact</a>
+            <a href="firmware-development.html">Dev</a>
+            <a href="gateway.html">IO Way</a>
+        </div>
+
+        <!-- Mobile Button -->
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+    </nav>
+
+    <!-- Mobile Dropdown -->
+    <div class="mobile-dropdown" id="mobileDropdown">
+        <a href="inner-Page.html">Systems</a>
+        <a href="services.html">Services</a>
+        <a href="products.html">Products</a>
+        <a href="ai-innovation.html">Ai Innovation</a>
+        <a href="roadmap.html">Roadmap</a>
+        <a href="license.html">License</a>
+        <a href="about.html">About</a>
+        <a href="aedi-online.html">AEDI Online</a>
+        <a href="contact.html">Contact</a>
+        <a href="firmware-development.html">Dev</a>
+        <a href="gateway.html">IO Way</a>
+    </div>
+
+    <div class="container">
+
+        <!-- Template Hero -->
+        <div class="hero-section">
+            <h1 data-value="The Architects of Datastreams">The Architects<br>of Datastreams</h1>
+            <div class="hero-sub" data-value="Johan Wilhelm van Antwerp // Systems Architect & Integrator"> // Systems Architect & Integrator</div>
+            <div class="hero-sub" data-value="Ian Raven // Industrial Process & Design and Engineer" style="margin-top: 0.5rem;"> // Industrial Process & Design and Engineer</div>
+            <div class="hero-sub" data-value="Darrell Culverwell // Business & Engineering Solution Expert" style="margin-top: 0.5rem;"> // Business & Engineering Solution Expert</div>
+            <div class="hero-sub" data-value="Asman Bakhtiar // Embedded Engineer & Communication Encryption Engineer" style="margin-top: 0.5rem;"> // Embedded Engineer & Communication Encryption Engineer</div>
+            <div class="hero-sub" data-value="Richard Wood // Managing Member & Regulatory Enforcer" style="margin-top: 0.5rem;"> // Managing Member & Regulatory Enforcer</div>
+            <div class="hero-sub" data-value="Andrew Woods // Industrial Engineer & Marketing Relations Expert" style="margin-top: 0.5rem;"> // Industrial Engineer & Marketing Relations Expert</div>
+            <div class="hero-sub" data-value="Dennis Grobler // Systems Technician and Network Relations" style="margin-top: 0.5rem;"> // Systems Technician and Network Relations</div>
+            <p class="hero-desc">
+                [INSERT DESCRIPTION PROTOCOL] <br>
+                This template serves as the foundation for new Ionity ecosystem modules. 
+                Configure content nodes below.
+            </p>
+        </div>
+
+        <!-- Template Content Grid -->
+        <div class="system-grid">
+            
+            <!-- Standard Content Card 1 -->
+            <div class="card">
+                <div class="card-icon">❖</div>
+                <h3>CONTENT_BLOCK_01</h3>
+                <p>Initialize primary content stream here. Maintain data integrity and follow ecosystem design guidelines.</p>
+                <div class="card-meta">
+                    <span>TYPE: ALPHA</span>
+                    <span>PRIORITY: HIGH</span>
+                </div>
+            </div>
+
+            <!-- Standard Content Card 2 -->
+            <div class="card">
+                <div class="card-icon">⚡</div>
+                <h3>CONTENT_BLOCK_02</h3>
+                <p>Secondary processing unit. Expand functionality using modular components.</p>
+                <div class="card-meta">
+                    <span>TYPE: BETA</span>
+                    <span>PRIORITY: NORMAL</span>
+                </div>
+            </div>
+
+            <!-- Standard Content Card 3 -->
+            <div class="card">
+                <div class="card-icon">◈</div>
+                <h3>CONTENT_BLOCK_03</h3>
+                <p>Output interface. Ensure final render matches system aesthetics.</p>
+                <div class="card-meta">
+                    <span>TYPE: GAMMA</span>
+                    <span>PRIORITY: LOW</span>
+                </div>
+            </div>
+            
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <style>
+            @keyframes footerGlow {
+                0% { text-shadow: 0 0 2px rgba(255,255,255,0.1); }
+                100% { text-shadow: 0 0 8px rgba(0, 210, 255, 0.3); }
+            }
+            .footer-content {
+                animation: footerGlow 3s infinite alternate;
+            }
+        </style>
+        <div class="footer-logo-container">
+            <img src="assets/images/ionity-logo-edited.png" alt="Ionity Logo" class="footer-logo">
+        </div>
+        <div class="footer-content" style="line-height: 2;">
+            <div>Ionity™ (Pty) Ltd 2025-2026 | Creative Commons BY_NC_SA 4.0 | Made with AEDI™ | Author: Antwerp Designs</div>
+            <div>South Africa Centurion 0157 | Policy AED 986 AED | License AED 900 | Ionity™ IoT-Ai-DAQ-PdM-CMS-F-iT Hardware, Software Integrations, ALL RIGHTS RESERVED</div>
+            <div>
+                <a href="tel:+27646999877">+27 646 999 877</a> 
+                <a href="mailto:ai@ionity.today">ai@ionity.today</a> &nbsp;|&nbsp; 
+                Author Profile <a href="https://www.ionity.world" target="_blank">www.ionity.world</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- THREE JS ECOSYSTEM -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+        import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+        import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+
+        // --- CONFIG ---
+        const NODE_COUNT = 150;
+        const CONNECTION_DIST = 200;
+
+        // --- SCENE ---
+        const container = document.getElementById('canvas-container');
+        const scene = new THREE.Scene();
+        scene.fog = new THREE.FogExp2(0x020204, 0.0012);
+
+        const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 2000);
+        camera.position.z = 800;
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2.0));
+        container.appendChild(renderer.domElement);
+
+        // --- POST PROCESSING ---
+        const composer = new EffectComposer(renderer);
+        composer.addPass(new RenderPass(scene, camera));
+        
+        const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.5, 0.4, 0.85);
+        bloomPass.threshold = 0.2;
+        bloomPass.strength = 1.2;
+        bloomPass.radius = 0.5;
+        composer.addPass(bloomPass);
+
+        // --- OBJECTS ---
+        const nodes = [];
+        const dummy = new THREE.Object3D();
+        
+        const geometry = new THREE.TetrahedronGeometry(4); 
+        const material = new THREE.MeshBasicMaterial({ color: 0x00d2ff });
+        const nodeMesh = new THREE.InstancedMesh(geometry, material, NODE_COUNT);
+        scene.add(nodeMesh);
+
+        // Lines
+        const lineGeo = new THREE.BufferGeometry();
+        const lineMat = new THREE.LineBasicMaterial({
+            color: 0x00d2ff, transparent: true, opacity: 0.15, blending: THREE.AdditiveBlending
+        });
+        const linesMesh = new THREE.LineSegments(lineGeo, lineMat);
+        scene.add(linesMesh);
+
+        // Initialize Nodes
+        for(let i=0; i<NODE_COUNT; i++) {
+            nodes.push({
+                x: (Math.random() - 0.5) * 1500,
+                y: (Math.random() - 0.5) * 1000,
+                z: (Math.random() - 0.5) * 1500,
+                vx: (Math.random() - 0.5) * 0.5,
+                vy: (Math.random() - 0.5) * 0.5,
+                vz: (Math.random() - 0.5) * 0.5
+            });
+        }
+
+        // --- ANIMATE ---
+        function animate() {
+            requestAnimationFrame(animate);
+
+            const linePositions = [];
+            
+            nodes.forEach((n, i) => {
+                n.x += n.vx;
+                n.y += n.vy;
+                n.z += n.vz;
+
+                // Bounce
+                if(Math.abs(n.x) > 750) n.vx *= -1;
+                if(Math.abs(n.y) > 500) n.vy *= -1;
+                if(Math.abs(n.z) > 750) n.vz *= -1;
+
+                dummy.position.set(n.x, n.y, n.z);
+                
+                // Rotate nodes slightly
+                dummy.rotation.x += 0.01;
+                dummy.rotation.y += 0.01;
+                
+                dummy.updateMatrix();
+                nodeMesh.setMatrixAt(i, dummy.matrix);
+
+                // Check connections
+                for(let j=i+1; j<NODE_COUNT; j++) {
+                    const n2 = nodes[j];
+                    const dist = Math.sqrt((n.x-n2.x)**2 + (n.y-n2.y)**2 + (n.z-n2.z)**2);
+                    
+                    if(dist < CONNECTION_DIST) {
+                        linePositions.push(n.x, n.y, n.z);
+                        linePositions.push(n2.x, n2.y, n2.z);
+                    }
+                }
+            });
+
+            nodeMesh.instanceMatrix.needsUpdate = true;
+            
+            lineGeo.setAttribute('position', new THREE.Float32BufferAttribute(linePositions, 3));
+
+            composer.render();
+        }
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            composer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        animate();
+    </script>
+    
+    <!-- UI Logic Script -->
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileDropdown');
+            menu.classList.toggle('open');
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const cards = document.querySelectorAll('.card');
+            
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: "0px"
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add('visible');
+                            const h3 = entry.target.querySelector('h3');
+                            if(h3) {
+                                h3.style.animation = "flashGlow 0.8s ease-out";
+                                setTimeout(() => h3.style.animation = "", 800);
+                            }
+                        }, index * 100); 
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            cards.forEach(card => observer.observe(card));
+        });
+
+        const letters = "██▓▓▒▒░░▖▗▘▙▚▛▜▝▞▟"; 
+
+        function runGlitch(element) {
+            if (element.dataset.isCoolingDown === "true") return;
+
+            element.dataset.isCoolingDown = "true";
+            setTimeout(() => {
+                element.dataset.isCoolingDown = "false";
+            }, 2000);
+
+            let iteration = 0;
+            const originalText = element.dataset.value;
+            if(element.interval) clearInterval(element.interval);
+
+            element.interval = setInterval(() => {
+                element.innerHTML = originalText 
+                    .split("")
+                    .map((letter, index) => {
+                        if(index < iteration) {
+                            return originalText[index];
+                        }
+                        if(originalText[index] === ' ' || originalText[index] === '<' || originalText[index] === '>') return originalText[index];
+                        
+                        return letters[Math.floor(Math.random() * letters.length)];
+                    })
+                    .join("");
+
+                if(iteration >= originalText.length){
+                    clearInterval(element.interval);
+                    element.innerHTML = originalText;
+                }
+
+                iteration += 1 / 3; 
+            }, 50); 
+        }
+
+        const glitchTargets = document.querySelectorAll('h1, h3, .logo, .hero-sub');
+        
+        glitchTargets.forEach(target => {
+            target.addEventListener('mouseover', () => runGlitch(target));
+            
+            if(target.tagName === 'H1') {
+                setTimeout(() => runGlitch(target), 500);
+            }
+        });
+
+    </script>
+    <script src="assets/js/script.js" defer></script>
+    <script src="assets/js/audio-manager.js"></script>
+</body>
+</html>

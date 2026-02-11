@@ -1,0 +1,1654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ionity | High-Performance IoT Ai Tech Solutions, Cost Saving, Power Saving Johan Wilhelm van Antwerp</title>
+    <meta name="description" content="Ionity or Ionity (Pty) Ltd is the Ai center globally for Ai-EDGE-OFFLINE-development-hardware and software, technology owned by Johan Wilhelm van Antwerp Centurion South Africa yet USA EU and Global intent, Ai-M motherboards inhouse and Solutions hub, clean energy, and innovative cloud, web, hybrid and edge solutions with encryption and Highprofile Cloud usage to ensure OTA and Network stability using Google and Azure as market choice. Services are IoT net development and Designs , aircon ai, controllsystems new ai, news">
+    <meta property="og:title" content="Ionity.today | antwerp Designs">
+    <meta property="og:image" content="https://ionity.today/assets/ionity-today-logo-edited -policy986aed-johanwilhelmvanantwerp-ionity-today-world-global-iot-ai-network-it.png">
+    
+    <!-- Use same styles as template, but we will add specific overrides for Services if needed -->
+    <style>
+        :root {
+            --bg-dark: #020204;
+            --bg-panel: rgba(10, 15, 20, 0.6);
+            --text-main: #ffffff;
+            --text-muted: rgba(255, 255, 255, 0.85); 
+            --accent-cyan: #00d2ff;
+            --accent-blue: #2979ff;
+            --accent-gold: #ffd700; /* Adding a gold accent for gears/mechanical feel if needed, mostly staying cyan */
+            --accent-dim: rgba(0, 210, 255, 0.1);
+            --border: rgba(255, 255, 255, 0.15);
+            --border-active: rgba(0, 210, 255, 0.6);
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-dark);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            color: var(--text-main);
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        /* --- 3D CANVAS BACKGROUND --- */
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0; 
+            pointer-events: none;
+        }
+
+        /* --- VISUAL FX --- */
+        .scanlines {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.2));
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 99;
+            opacity: 0.3;
+        }
+
+        /* --- GLOW ANIMATIONS --- */
+        @keyframes neonPulse {
+            0% { text-shadow: 0 0 5px rgba(255,255,255,0.8), 0 0 10px var(--accent-cyan); }
+            50% { text-shadow: 0 0 10px #fff, 0 0 20px var(--accent-cyan), 0 0 40px var(--accent-cyan); }
+            100% { text-shadow: 0 0 5px rgba(255,255,255,0.8), 0 0 10px var(--accent-cyan); }
+        }
+
+        @keyframes flashGlow {
+            0% { text-shadow: 0 0 0 transparent; }
+            50% { text-shadow: 0 0 20px #fff, 0 0 50px var(--accent-cyan); color: #fff; }
+            100% { text-shadow: 0 0 10px rgba(0,0,0,0.5); color: #fff; }
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            padding: 0 5vw;
+            height: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            background: rgba(2, 2, 4, 0.9);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-family: 'Courier New', monospace;
+            font-weight: 700;
+            letter-spacing: 0.2rem;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2rem;
+            position: relative;
+            text-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo:hover {
+            animation: neonPulse 1.5s infinite alternate;
+        }
+
+        .nav-logo {
+            height: 80px;
+            width: auto;
+            vertical-align: middle;
+            transition: all 0.3s ease;
+        }
+        .nav-logo:hover {
+            filter: drop-shadow(0 0 8px var(--accent-cyan));
+        }
+
+        /* Desktop Nav */
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+            font-weight: 600;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+            animation: neonPulse 1s infinite alternate;
+        }
+
+        .nav-links a.active {
+            color: var(--accent-cyan);
+            text-shadow: 0 0 15px var(--accent-cyan); 
+            border-bottom: 1px solid var(--accent-cyan);
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; width: 0; height: 1px;
+            background: var(--accent-cyan);
+            transition: width 0.3s ease;
+            box-shadow: 0 0 10px var(--accent-cyan);
+        }
+
+        .nav-links a:hover::before { width: 100%; }
+
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--accent-cyan);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem 0.8rem;
+            border-radius: 4px;
+            z-index: 101;
+        }
+
+        /* Mobile Dropdown */
+        .mobile-dropdown {
+            display: none;
+            position: absolute;
+            top: 80px;
+            left: 0;
+            width: 100%;
+            background: rgba(2, 2, 4, 0.85);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--border);
+            flex-direction: column;
+            padding: 1rem 0;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.8);
+            z-index: 1001;
+        }
+
+        .mobile-dropdown.open {
+            display: flex;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        .mobile-dropdown a {
+            color: #fff;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            transition: background 0.2s;
+        }
+        
+        .mobile-dropdown a.active {
+            color: var(--accent-cyan);
+            background: rgba(0, 210, 255, 0.05);
+            text-shadow: 0 0 15px var(--accent-cyan); 
+            border-left: 3px solid var(--accent-cyan);
+        }
+
+        .mobile-dropdown a:hover {
+            background: rgba(0, 210, 255, 0.1);
+            color: var(--accent-cyan);
+            padding-left: 2.5rem;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- MAIN LAYOUT --- */
+        .container {
+            position: relative;
+            z-index: 1; 
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 5vw;
+        }
+
+        .hero-section {
+            margin-bottom: 6rem;
+            border-left: 2px solid var(--accent-cyan);
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; 
+            width: 100px; height: 100%;
+            background: linear-gradient(90deg, rgba(0,210,255,0.05), transparent);
+            pointer-events: none;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: -2px;
+            margin: 0;
+            text-transform: uppercase;
+            line-height: 1.1;
+        }
+
+        .hero-sub {
+            font-family: 'Courier New', monospace;
+            color: var(--accent-cyan);
+            font-size: 1rem;
+            letter-spacing: 0.1rem;
+            margin: 1rem 0 2rem 0;
+        }
+
+        .hero-desc {
+            max-width: 600px;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--text-muted);
+        }
+
+        /* --- CONTENT GRID --- */
+        .system-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--bg-panel);
+            border: 1px solid var(--border);
+            padding: 2rem;
+            transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+        }
+
+        .card::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 2px;
+            background: var(--accent-cyan);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--border-active);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .card:hover::after {
+            transform: scaleX(1);
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            color: var(--accent-cyan);
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+
+        .card h3 {
+            margin: 0 0 1rem 0;
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .card-meta {
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-family: 'Courier New', monospace;
+            font-size: 0.75rem;
+            display: flex;
+            justify-content: space-between;
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* Visible class for IntersectionObserver */
+        .card {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease, border-color 0.4s;
+        }
+        .card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            margin-top: 8rem;
+            padding: 4rem 5vw;
+            border-top: 1px solid var(--border);
+            background: rgba(2, 2, 4, 0.95);
+            backdrop-filter: blur(10px);
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            position: relative;
+            z-index: 10;
+        }
+
+        footer a {
+            color: var(--accent-cyan);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #fff;
+            text-shadow: 0 0 10px var(--accent-cyan);
+        }
+
+        .footer-logo-container img{
+             max-width: 15rem;
+             height: auto;
+             margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            img { max-width: 100%; height: auto; }
+            .nav-links { display: none; }
+            .mobile-menu-btn { display: block; }
+            h1 { font-size: 2.5rem; }
+            .container { padding: 2rem 5vw; }
+        }
+
+        /* --- SUBSCRIPTION TIER STYLES --- */
+        .tier-card {
+            background: rgba(10, 20, 30, 0.7);
+            border: 1px solid rgba(0, 210, 255, 0.3);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            display: flex; 
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .tier-card h3 {
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 0.05rem;
+            text-shadow: 0 0 10px rgba(0, 210, 255, 0.4);
+            border-bottom: 1px solid rgba(0, 210, 255, 0.2);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .tier-card:hover {
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 30px rgba(0, 210, 255, 0.15);
+            transform: translateY(-8px) scale(1.02);
+            z-index: 2;
+        }
+
+        .tier-action {
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .tier-btn {
+            display: inline-block;
+            width: 100%;
+            padding: 0.8rem 0;
+            text-align: center;
+            border: 1px solid var(--accent-cyan);
+            color: var(--accent-cyan);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.15rem;
+            background: rgba(0, 210, 255, 0.05);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .tier-btn:hover {
+            background: var(--accent-cyan);
+            color: #000;
+            box-shadow: 0 0 20px var(--accent-cyan);
+            font-weight: 700;
+        }
+
+        /* Highlight Recommended Tier */
+        .tier-card.highlight {
+            border: 1px solid var(--accent-cyan);
+            background: rgba(0, 210, 255, 0.08);
+            box-shadow: 0 0 40px rgba(0, 210, 255, 0.1);
+            transform: scale(1.03); /* Slightly larger by default */
+        }
+        .tier-card.highlight:hover {
+             transform: translateY(-8px) scale(1.05);
+        }
+    
+        /* --- RUNNING HEADER LINE ANIMATION --- */
+        nav::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00d2ff, transparent);
+            background-size: 50% 100%;
+            background-repeat: no-repeat;
+            opacity: 0.8;
+            animation: headerLineRun 7s linear infinite;
+            pointer-events: none;
+            z-index: 1002;
+        }
+
+        @keyframes headerLineRun {
+            0% { background-position: 150% 0; }
+            100% { background-position: -50% 0; }
+        }
+
+        /* --- SLIDER / CAROUSEL STYLES --- */
+        .slider-viewport {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            padding: 2rem 0;
+            mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+        }
+
+        .slider-track {
+            display: flex;
+            gap: 2rem;
+            width: max-content;
+            /* Animation duration will be set primarily via JS or default here, 
+               but we need to duplicate content for the infinite effect */
+        }
+        
+        /* Stop animation on hover for readability */
+        .slider-track:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes slide-left {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Ensure cards in slider maintain width */
+        .slider-track .card, .slider-track .card-3d-scene {
+            width: 320px;
+            flex-shrink: 0;
+            /* Reset transform from grid hover if conflicts, but keep hover effect */
+        }
+
+        /* --- 3D DIGITAL CARDS --- */
+        .card-3d-scene {
+            width: 320px; 
+            height: 400px;
+            perspective: 1200px;
+            cursor: pointer;
+        }
+
+        .card-3d-obj {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .card-3d-scene:hover .card-3d-obj {
+            transform: rotateY(180deg);
+        }
+
+        .card-3d-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden; /* Hides back of face when rotated */
+            -webkit-backface-visibility: hidden;
+            border: 1px solid var(--accent-cyan);
+            background: rgba(10, 20, 30, 0.85);
+            backdrop-filter: blur(8px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            box-sizing: border-box;
+            box-shadow: 0 0 15px rgba(0, 210, 255, 0.2);
+        }
+
+        .card-3d-front {
+            transform: rotateY(0deg);
+        }
+
+        .card-3d-back {
+            transform: rotateY(180deg);
+            background: rgba(0, 210, 255, 0.1);
+            border: 1px solid var(--accent-gold);
+            text-align: center;
+        }
+
+        /* 3D Glowing Elements */
+        .holo-emitter {
+            width: 120px;
+            height: 120px;
+            position: relative;
+            margin-bottom: 2rem;
+            transform-style: preserve-3d;
+            animation: holoFloat 4s ease-in-out infinite;
+        }
+
+        .holo-node {
+            position: absolute;
+            top: 50%; left: 50%;
+            width: 60px; height: 60px;
+            background: rgba(0, 210, 255, 0.2);
+            border: 2px solid var(--accent-cyan);
+            transform: translate(-50%, -50%) rotateX(45deg) rotateY(45deg);
+            box-shadow: 0 0 30px var(--accent-cyan);
+            animation: nodeSpin 10s linear infinite;
+        }
+        
+        .holo-node::after {
+            content: '';
+            position: absolute;
+            top: -10px; left: -10px; right: -10px; bottom: -10px;
+            border: 1px dashed rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+        }
+
+        .holo-ring {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%) rotateX(70deg);
+            width: 100px; height: 100px;
+            border: 2px solid var(--accent-cyan);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent-cyan);
+            animation: pulseRing 2s infinite alternate;
+        }
+
+        @keyframes holoFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        @keyframes nodeSpin {
+            0% { transform: translate(-50%, -50%) rotateX(45deg) rotateY(0deg); }
+            100% { transform: translate(-50%, -50%) rotateX(45deg) rotateY(360deg); }
+        }
+
+        @keyframes pulseRing {
+            0% { transform: translate(-50%, -50%) rotateX(70deg) scale(1); opacity: 0.5; }
+            100% { transform: translate(-50%, -50%) rotateX(70deg) scale(1.2); opacity: 1; }
+        }
+</style>
+    <link rel="icon" type="image/png" href="assets/images/ionity-logo-edited.png">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+
+    <!-- Background Canvas -->
+    <div id="canvas-container"></div>
+    
+    <!-- CRT Scanline Effect -->
+    <div class="scanlines"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="index.html" class="logo">
+            <img src="assets/images/ionity-logo-edited.png" alt="IONITY" class="nav-logo">
+        </a>
+        
+        <div class="nav-links">
+            <a href="inner-Page.html">Systems</a>
+            <a href="services.html" class="active">Services</a>
+            <a href="products.html">Products</a>
+            <a href="ai-innovation.html">Ai Innovation</a>
+            <a href="roadmap.html">Roadmap</a>
+            <a href="license.html">License</a>
+            <a href="about.html">About</a>
+            <a href="aedi-online.html">AEDI Online</a>
+            <a href="contact.html">Contact</a>
+            <a href="firmware-development.html">Dev</a>
+            <a href="gateway.html">IO Way</a>
+        </div>
+
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+        
+        <div class="mobile-dropdown" id="mobileDropdown">
+        <a href="inner-Page.html">Systems</a>
+        <a href="services.html" class="active">Services</a>
+        <a href="products.html">Products</a>
+        <a href="ai-innovation.html">Ai Innovation</a>
+        <a href="roadmap.html">Roadmap</a>
+        <a href="license.html">License</a>
+        <a href="about.html">About</a>
+        <a href="aedi-online.html">AEDI Online</a>
+        <a href="contact.html">Contact</a>
+        <a href="firmware-development.html">Dev</a>
+        <a href="gateway.html">IO Way</a>
+    </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+
+        <!-- Services Hero -->
+        <div class="hero-section">
+            <h1 data-value="SERVICES">SERVICES</h1>
+            <div class="hero-sub" data-value="SYSTEM_MODULES // DEPLOYED">
+                SYSTEM_MODULES // DEPLOYED
+            </div>
+            <p class="hero-desc">
+                Architecting the nervous system of the digital world. <br>
+                Our services bridge the gap between physical hardware and digital intelligence using advanced IoT and AI protocols.
+            </p>
+        </div>
+
+        <!-- Services Content Grid -->
+        <div class="carousel-wrapper">
+            <button class="carousel-btn prev-btn">&#10094;</button>
+            <div class="slider-viewport">
+                <div class="slider-track" id="track-services">
+
+                <!-- 3D Digital Card -->
+                <div class="card-3d-scene">
+                    <div class="card-3d-obj">
+                        <div class="card-3d-face card-3d-front">
+                            <div class="holo-emitter">
+                                <div class="holo-node"></div>
+                                <div class="holo-ring"></div>
+                            </div>
+                            <h3>IoT NODE</h3>
+                            <p style="text-align:center; color: var(--accent-cyan); font-family: monospace; letter-spacing: 2px;">STATUS: ONLINE</p>
+                        </div>
+                        <div class="card-3d-face card-3d-back">
+                            <h3>IONITY CORE</h3>
+                            <p>Real-time telemetry and control.</p>
+                            <div class="card-meta" style="width: 100%; border-top: 1px solid var(--accent-gold); color: var(--accent-gold);">
+                                <span>PING: 12ms</span>
+                                <span>SECURE</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            <!-- Service 1: IoT -->
+            <div class="card">
+                <div class="card-icon">⟁</div>
+                <h3>IoT INTEGRATION</h3>
+                <p>Full-stack hardware-to-cloud telemetry. We design and implement sensor networks that breath life into static infrastructure.</p>
+                <div class="card-meta">
+                    <span>SENSOR GRID</span>
+                    <span>STATUS: LIVE</span>
+                </div>
+            </div>
+
+            <!-- Service 2: AI -->
+            <div class="card">
+                <div class="card-icon">⌬</div>
+                <h3>AI & ANALYTICS</h3>
+                <p>Neural networks for predictive maintenance (PdM) and anomaly detection. Turn raw data into actionable foresight.</p>
+                <div class="card-meta">
+                    <span>MODEL: ACTIVE</span>
+                    <span>ACCURACY: 99.9%</span>
+                </div>
+            </div>
+
+            <!-- Service 3: Ecosystem -->
+            <div class="card">
+                <div class="card-icon">❖</div>
+                <h3>ECOSYSTEM DESIGN</h3>
+                <p>Holistic system architecture. We build living digital twins that mirror your physical operations in real-time.</p>
+                <div class="card-meta">
+                    <span>ARCH: HYBRID</span>
+                    <span>SCOPE: GLOBAL</span>
+                </div>
+            </div>
+
+             <!-- Service 4: Self Sustained (Was Living Automation) -->
+            <div class="card">
+                <div class="card-icon">☇</div>
+                <h3>SELF-SUSTAINED AUTO UPDATING</h3>
+                <p>Self-healing, autonomous control systems that adapt to environmental changes without human intervention.</p>
+                <div class="card-meta">
+                    <span>AUTO: L5</span>
+                    <span>UPTIME: 24/7</span>
+                </div>
+            </div>
+
+            <!-- Service 5: Edge Computing -->
+            <div class="card">
+                <div class="card-icon">⨠</div>
+                <h3>EDGE COMPUTING</h3>
+                <p>Processing power at the source. Real-time decision making at the device level, reducing latency and bandwidth usage.</p>
+                <div class="card-meta">
+                    <span>LATENCY: ZERO</span>
+                    <span>INFER: LOCAL</span>
+                </div>
+            </div>
+
+            <!-- Service 6: Monitoring -->
+            <div class="card">
+                <div class="card-icon">◉</div>
+                <h3>MONITORING</h3>
+                <p>Comprehensive remote oversight for industrial assets. 24/7 visuals and status tracking from anywhere in the world.</p>
+                <div class="card-meta">
+                    <span>VIEW: 360°</span>
+                    <span>ALERT: INSTANT</span>
+                </div>
+            </div>
+
+            <!-- Service 7: Data Acquisition -->
+            <div class="card">
+                <div class="card-icon">⫳</div>
+                <h3>DATA ACQUISITION</h3>
+                <p>High-fidelity signal capturing. Logging millions of data points for deep granular analysis and historical archiving.</p>
+                <div class="card-meta">
+                    <span>FREQ: HIGH</span>
+                    <span>DAQ: ACTIVE</span>
+                </div>
+            </div>
+
+            <!-- Service 8: Preventative Maintenance -->
+            <div class="card">
+                <div class="card-icon">⬡</div>
+                <h3>PREVENTATIVE MAINTENANCE</h3>
+                <p>Proactive health management. Schedule repairs before breakdown occurs, maximizing asset uptime and ROI.</p>
+                <div class="card-meta">
+                    <span>UPTIME: MAX</span>
+                    <span>RISK: MIN</span>
+                </div>
+            </div>
+
+            <!-- Service 9: Enhance Quote Accuracy -->
+            <div class="card">
+                <div class="card-icon">⌖</div>
+                <h3>ENHANCE QUOTE ACCURACY</h3>
+                <p>Data-driven estimation. Use historical performance analytics to generate precise, profitable project quotes.</p>
+                <div class="card-meta">
+                    <span>COST: PRECISE</span>
+                    <span>MARGIN: OPTIMIZED</span>
+                </div>
+            </div>
+
+            <!-- Service 10: Energy Analytics -->
+            <div class="card">
+                <div class="card-icon">⏚</div>
+                <h3>ENERGY ANALYTICS</h3>
+                <p>Deep insights into power patterns. Optimize efficiency, reduce costs, and track renewable generation.</p>
+                <div class="card-meta">
+                    <span>EFFICIENCY: HIGH</span>
+                    <span>GREEN: YES</span>
+                </div>
+            </div>
+
+            <!-- Service 11: AI & IoT Integration -->
+            <div class="card">
+                <div class="card-icon">⨦</div>
+                <h3>AI & IoT Integration</h3>
+                <p>Developing neural mesh networks where every sensor and node acts as a cognitive unit. Real-time data processing at the edge for hyper-aware industrial environments.</p>
+                <div class="card-meta">
+                    <span>NEURAL MESH</span>
+                    <span>IOT</span>
+                </div>
+            </div>
+
+            <!-- Service 12: AEDI Core Systems -->
+            <div class="card">
+                <div class="card-icon">⦾</div>
+                <h3>AEDI Core Systems</h3>
+                <p>The Antwerp Ecosystem Designs Ionity (AEDI) methodology. Biological resilience meets silicon logic to create self-healing digital infrastructures.</p>
+                <div class="card-meta">
+                    <span>CORE</span>
+                    <span>LIVING GRID</span>
+                </div>
+            </div>
+
+            <!-- Service 13: Hardware Solutions -->
+            <div class="card">
+                <div class="card-icon">⧈</div>
+                <h3>Hardware Solutions</h3>
+                <p>Ruggedized industrial hardware designed to survive the harshest conditions. From micro-controllers to custom enclosures, we build the physical bones of the digital world.</p>
+                <div class="card-meta">
+                    <span>INDUSTRIAL</span>
+                    <span>HARDWARE</span>
+                </div>
+            </div>
+
+            <!-- Service 14: GIS & Spatial Solutions -->
+            <div class="card">
+                <div class="card-icon">🜨</div>
+                <h3>GIS & Spatial Solutions</h3>
+                <p>Advanced Geographic Information Systems. Visualizing complex data through spatial intelligence, mapping the future of infrastructure and logistics.</p>
+                <div class="card-meta">
+                    <span>SPATIAL</span>
+                    <span>MAPPING</span>
+                </div>
+            </div>
+
+            <!-- Service 15: System Integrations -->
+            <div class="card">
+                <div class="card-icon">⨝</div>
+                <h3>System Integrations</h3>
+                <p>Streamlining technologies into a unified flow. We specialize in retrofitting legacy industrial protocols into modern, automated API-driven grids.</p>
+                <div class="card-meta">
+                    <span>API</span>
+                    <span>LEGACY BRIDGE</span>
+                </div>
+            </div>
+            
+        </div>
+        </div>
+        <button class="carousel-btn next-btn">&#10095;</button>
+        </div>
+
+        <!-- Spacer -->
+        <div style="height: 6rem;"></div>
+
+        <!-- Industrial Deployment Hero -->
+        <div class="hero-section">
+            <h1 data-value="DEPLOYMENT">INDUSTRIAL DEPLOYMENT</h1>
+            <div class="hero-sub" data-value="HARD_LINK // CONNECTED">
+                HARD_LINK // CONNECTED
+            </div>
+             <p class="hero-desc">
+                Robust, field-tested solutions designed for harsh environments and critical infrastructure monitoring.
+            </p>
+        </div>
+
+        <!-- Industrial Grid -->
+        <div class="carousel-wrapper">
+            <button class="carousel-btn prev-btn">&#10094;</button>
+            <div class="slider-viewport">
+                 <div class="slider-track" id="track-industrial">
+             <!-- Smart AC -->
+             <div class="card">
+                <div class="card-icon">✳</div>
+                <h3>Smart AC Monitoring</h3>
+                <p>Comprehensive HVAC monitoring platform for industrial facilities. Real-time electrical insights and predictive maintenance to stop failure before it happens.</p>
+                <ul style="text-align: left; padding-left: 1rem; color: rgba(255,255,255,0.7); font-size: 0.85rem; margin-bottom: 0;">
+                    <li>Real-time Voltage/Current/Power tracking</li>
+                    <li>Cloud data storage & analytics</li>
+                    <li>Anomaly alert system (Email/SMS)</li>
+                    <li>Optional remote switching control</li>
+                </ul>
+                <div class="card-meta">
+                    <span>HVAC: LIVE</span>
+                    <span>PREDICT: ACTIVE</span>
+                </div>
+            </div>
+
+            <!-- Water ATM -->
+            <div class="card">
+                <div class="card-icon">≋</div>
+                <h3>Water ATM System</h3>
+                <p>Automated, metered water dispensing for communities and industrial sites. Coin or RFID-based payment ensures fair access.</p>
+                <ul style="text-align: left; padding-left: 1rem; color: rgba(255,255,255,0.7); font-size: 0.85rem; margin-bottom: 0;">
+                    <li>Dual payment: Coin acceptor & RFID</li>
+                    <li>Precise solenoid valve flow control</li>
+                    <li>GSM connectivity for remote auditing</li>
+                    <li>Maintenance & empty-tank alerts</li>
+                </ul>
+                <div class="card-meta">
+                    <span>FLOW: METERED</span>
+                    <span>ACCESS: SECURE</span>
+                </div>
+            </div>
+
+            <!-- Smart Energy -->
+            <div class="card">
+                <div class="card-icon">☼</div>
+                <h3>Smart Energy Meter</h3>
+                <p>High-precision solar generation tracking. Optimized for businesses looking to maximize ROI on renewable infrastructure.</p>
+                <ul style="text-align: left; padding-left: 1rem; color: rgba(255,255,255,0.7); font-size: 0.85rem; margin-bottom: 0;">
+                    <li>CT sensor-based precise measurement</li>
+                    <li>Mobile app generation tracking</li>
+                    <li>Firebase backend for instant sync</li>
+                    <li>ESP32 Microcontroller connectivity</li>
+                </ul>
+                <div class="card-meta">
+                    <span>SOLAR: TRACKED</span>
+                    <span>SYNC: REALTIME</span>
+                </div>
+            </div>
+
+            <!-- Ground Water -->
+            <div class="card">
+                <div class="card-icon">∰</div>
+                <h3>Ground Water Level</h3>
+                <p>Advanced platform for dams and reservoirs. Solar-powered units designed for continuous operation in remote, off-grid locations.</p>
+                <ul style="text-align: left; padding-left: 1rem; color: rgba(255,255,255,0.7); font-size: 0.85rem; margin-bottom: 0;">
+                    <li>Quectel EC21-AU Cellular connectivity</li>
+                    <li>ePaper display for ultra-low power</li>
+                    <li>BMS integrated Solar power</li>
+                    <li>ADXL accelerometer (Tamper detection)</li>
+                </ul>
+                <div class="card-meta">
+                    <span>PWR: SOLAR</span>
+                    <span>CONN: LTE/4G</span>
+                </div>
+            </div>
+        </div>
+        </div>
+        <button class="carousel-btn next-btn">&#10095;</button>
+        </div>
+
+        <!-- Spacer -->
+        <div style="height: 6rem;"></div>
+
+        <!-- Industries Section -->
+        <div class="hero-section">
+            <h1 data-value="INDUSTRIES">INDUSTRIES DEPLOYED</h1>
+            <div class="hero-sub" data-value="SECTORS // ACTIVE">
+                SECTORS // ACTIVE
+            </div>
+             <p class="hero-desc">
+                Serving critical sectors with unique requirements, from sterile medical environments to rugged mining operations.
+            </p>
+        </div>
+
+        <div class="carousel-wrapper">
+            <button class="carousel-btn prev-btn">&#10094;</button>
+            <div class="slider-viewport">
+            <div class="slider-track" id="track-industries">
+            <div class="card">
+                <div class="card-icon">⛟</div>
+                <h3>TRANSPORTATION</h3>
+                <p>Tracking and Asset management.</p>
+                <div class="card-meta">
+                    <span>LOGISTICS: LIVE</span>
+                    <span>ASSETS: SECURE</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-icon">↯</div>
+                <h3>ENERGY</h3>
+                <p>Solar refinement and management.</p>
+                <div class="card-meta">
+                    <span>SOLAR: REFINED</span>
+                    <span>POWER: GREEN</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-icon">✛</div>
+                <h3>MEDICAL</h3>
+                <p>Medical data and Queue management systems.</p>
+                <div class="card-meta">
+                    <span>DATA: SECURE</span>
+                    <span>QUEUE: SMART</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-icon">⫷</div>
+                <h3>BANKING</h3>
+                <p>Overall banking solutions and Video assistance.</p>
+                <div class="card-meta">
+                    <span>VIDEO: ASSIST</span>
+                    <span>SECURITY: HIGH</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-icon">🛡</div>
+                <h3>SECURITY</h3>
+                <p>Advanced security protocols and surveillance.</p>
+                <div class="card-meta">
+                    <span>THREAT: ZERO</span>
+                    <span>ACCESS: CONTROL</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-icon">⨁</div>
+                <h3>GIS</h3>
+                <p>Geographic Information Systems.</p>
+                <div class="card-meta">
+                    <span>MAP: PRECISE</span>
+                    <span>DATA: SPATIAL</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-icon">⫸</div>
+                <h3>DEPLOYMENT</h3>
+                <p>Rapid deployment and installation services.</p>
+                <div class="card-meta">
+                    <span>SETUP: FAST</span>
+                    <span>INTEGRATION: FULL</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-icon">⨅</div>
+                <h3>MINING</h3>
+                <p>Rugged solutions for deep earth extraction.</p>
+                <div class="card-meta">
+                    <span>ENV: HARSH</span>
+                    <span>SAFETY: MAX</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-icon">⌂</div>
+                <h3>HOSPITALITY</h3>
+                <p>Smart automation for guest experience.</p>
+                <div class="card-meta">
+                    <span>COMFORT: AUTO</span>
+                    <span>EFFICIENCY: HIGH</span>
+                </div>
+            </div>
+            <div class="card">
+                 <div class="card-icon">⊞</div>
+                <h3>RETAIL</h3>
+                <p>Analytics and footprint tracking.</p>
+                <div class="card-meta">
+                    <span>TRAFFIC: LIVE</span>
+                    <span>SALES: OPTIMIZED</span>
+                </div>
+            </div>
+            <div class="card">
+                 <div class="card-icon">⧇</div>
+                <h3>CORPORATE IT</h3>
+                <p>Corporate structures with IT and monitoring.</p>
+                <div class="card-meta">
+                    <span>SERVER: COOL</span>
+                    <span>POWER: STABLE</span>
+                </div>
+            </div>
+            <div class="card">
+                 <div class="card-icon">⬢</div>
+                <h3>INDUSTRIAL</h3>
+                <p>Factories and processing plants.</p>
+                <div class="card-meta">
+                    <span>PLANT: AUTO</span>
+                    <span>OUTPUT: MAX</span>
+                </div>
+            </div>
+        </div>
+        </div>
+        <button class="carousel-btn next-btn">&#10095;</button>
+        </div>
+
+        <!-- Spacer -->
+        <div style="height: 6rem;"></div>
+
+        <!-- AEDI Integrations Hero -->
+        <div class="hero-section">
+            <h1 data-value="INTEGRATIONS">AEDI INTEGRATIONS</h1>
+            <div class="hero-sub" data-value="AEDI // CORE">
+                AEDI // CORE
+            </div>
+            <p class="hero-desc">
+                Antwerp Ecosystem Designs Ionity. The "IO" of Integrations. We don't just build devices; we build the ecosystem that allows them to communicate, learn, and react.
+            </p>
+        </div>
+
+        <!-- Integrations Grid -->
+        <div class="carousel-wrapper">
+            <button class="carousel-btn prev-btn">&#10094;</button>
+            <div class="slider-viewport">
+            <div class="slider-track" id="track-integrations">
+            
+            <div class="card">
+                <div class="card-icon">⤡</div>
+                <h3>Cross-Platform</h3>
+                <p>Seamless operation across Linux, Windows, and Embedded RTOS.</p>
+                <div class="card-meta">
+                    <span>OS: AGNOSTIC</span>
+                    <span>RUNTIME: NATIVE</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">⨳</div>
+                <h3>Machine Learning</h3>
+                <p>Controlling ML models on the edge for real-time decisioning.</p>
+                <div class="card-meta">
+                    <span>EDGE: AI</span>
+                    <span>INFER: LOCAL</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">⫯</div>
+                <h3>Data Capturing</h3>
+                <p>High-fidelity sensors capturing millions of points for analysis.</p>
+                <div class="card-meta">
+                    <span>FREQ: HIGH</span>
+                    <span>LOG: CLOUD</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">◬</div>
+                <h3>Surveying</h3>
+                <p>Automated environmental surveying and mapping systems.</p>
+                <div class="card-meta">
+                    <span>MAP: 3D</span>
+                    <span>AUTO: DRONE</span>
+                </div>
+            </div>
+
+            </div>
+        </div>
+        <button class="carousel-btn next-btn">&#10095;</button>
+        </div>
+
+        <!-- Spacer -->
+        <div style="height: 6rem;"></div>
+
+        <!-- Subscription Tiers -->
+        <div class="hero-section">
+            <h1 data-value="SUBSCRIPTIONS">SUBSCRIPTIONS</h1>
+            <div class="hero-sub" data-value="EULA // GOVERNED">
+                EULA // GOVERNED
+            </div>
+             <p class="hero-desc">
+                Flexible tier options designed to scale with your organization's data needs and security requirements.
+            </p>
+        </div>
+
+        <div class="carousel-wrapper">
+            <button class="carousel-btn prev-btn">&#10094;</button>
+            <div class="slider-viewport">
+            <div class="slider-track" id="track-subscriptions">
+            
+            <!-- Tier 1 -->
+            <div class="card tier-card">
+                <div class="card-icon">⛨</div>
+                <h3>AEDI EDGE TIER</h3>
+                <p>No Data uploads but agreed and requirements, only updates from Cloud</p>
+                <div class="card-meta">
+                    <span>UPLOAD: NONE</span>
+                    <span>FROM: $92</span>
+                </div>
+                <div class="tier-action">
+                    <a href="contact.html?subject=AEDI%20EDGE%20TIER" class="tier-btn">Select Plan</a>
+                </div>
+            </div>
+
+            <!-- Tier 2 -->
+            <div class="card tier-card highlight">
+                <div class="card-icon">☁</div>
+                <h3>AEDI Full Cloud</h3>
+                <p>There is no limits to where data is sent and received within your limits and boundries set internally able to send encrypted data globally and locally secure across devices and platforms. For Best Interface possible remote</p>
+                <div class="card-meta">
+                    <span>GLOBAL: SECURE</span>
+                    <span>FROM: $350</span>
+                </div>
+                <div class="tier-action">
+                    <a href="contact.html?subject=AEDI%20Full%20Cloud" class="tier-btn">Select Plan</a>
+                </div>
+            </div>
+
+            <!-- Tier 3 -->
+            <div class="card tier-card">
+                <div class="card-icon">❖</div>
+                <h3>AEDI Hybrid Tier</h3>
+                <p>Secure Data local and internationally while able to lockdown aspects or categories keeping private even within organization layers and other data can be sent even as public. You have Full Control of What happens where</p>
+                <div class="card-meta">
+                    <span>CONTROL: FULL</span>
+                    <span>FROM: $450</span>
+                </div>
+                <div class="tier-action">
+                    <a href="contact.html?subject=AEDI%20Hybrid%20Tier" class="tier-btn">Select Plan</a>
+                </div>
+            </div>
+
+            </div>
+        </div>
+        <button class="carousel-btn next-btn">&#10095;</button>
+        </div>
+
+    </div>
+
+    <style>
+        /* Carousel Controls */
+        .carousel-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .slider-viewport {
+            overflow: hidden;
+            width: 100%;
+            padding: 2rem 0;
+            position: relative;
+            mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+        }
+
+        .slider-track {
+            display: flex;
+            gap: 2rem;
+            width: max-content;
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1); /* Ease-out cubic */
+        }
+
+        .carousel-btn {
+            background: rgba(2, 2, 4, 0.6);
+            border: 1px solid var(--accent-cyan);
+            color: var(--accent-cyan);
+            width: 45px;
+            height: 45px;
+            min-width: 45px; /* Prevent shrinking */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            z-index: 10;
+            backdrop-filter: blur(5px);
+        }
+
+        .carousel-btn:hover {
+            background: var(--accent-cyan);
+            color: #000;
+            box-shadow: 0 0 15px var(--accent-cyan);
+            transform: scale(1.1);
+        }
+        
+        /* Disable automatic scrolling on tracks */
+        .slider-auto-scroll {
+            animation: none !important;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const carousels = document.querySelectorAll('.carousel-wrapper');
+            
+            carousels.forEach(wrapper => {
+                const track = wrapper.querySelector('.slider-track');
+                const nextBtn = wrapper.querySelector('.next-btn');
+                const prevBtn = wrapper.querySelector('.prev-btn');
+                
+                let position = 0;
+                
+                const moveSlide = (direction) => {
+                    const cards = track.querySelectorAll('.card, .card-3d-scene');
+                    if(cards.length === 0) return;
+                    
+                    const cardStyle = window.getComputedStyle(cards[0]);
+                    const cardWidth = cards[0].offsetWidth + parseFloat(cardStyle.marginRight) + 32; // 32 is gap assumption from css
+                    
+                    // Total width of all content
+                    const trackWidth = track.scrollWidth;
+                    // Visible width
+                    const viewportWidth = wrapper.querySelector('.slider-viewport').clientWidth;
+                    
+                    const maxTranslate = -(trackWidth - viewportWidth);
+
+                    if (direction === 'next') {
+                        position -= cardWidth;
+                        if (position < maxTranslate) position = maxTranslate; // Stop at end
+                    } else {
+                        position += cardWidth;
+                        if (position > 0) position = 0; // Stop at start
+                    }
+                    
+                    track.style.transform = `translateX(${position}px)`;
+                };
+
+                nextBtn.addEventListener('click', () => moveSlide('next'));
+                prevBtn.addEventListener('click', () => moveSlide('prev'));
+            });
+        });
+    </script>
+    <!-- Footer -->
+    <footer>
+        <style>
+            @keyframes footerGlow {
+                0% { text-shadow: 0 0 2px rgba(255,255,255,0.1); }
+                100% { text-shadow: 0 0 8px rgba(0, 210, 255, 0.3); }
+            }
+            .footer-content {
+                animation: footerGlow 3s infinite alternate;
+            }
+        </style>
+        <div class="footer-logo-container">
+            <img src="assets/images/ionity-logo-edited.png" alt="Ionity Logo" class="footer-logo">
+        </div>
+        <div class="footer-content" style="line-height: 2;">
+            <div>Ionity™ (Pty) Ltd 2025-2026 | Creative Commons BY_NC_SA 4.0 | Made with AEDI™ | Author: Antwerp Designs</div>
+            <div>South Africa Centurion 0157 | Policy AED 986 AED | License AED 900 | Ionity™ IoT-Ai-DAQ-PdM-CMS-F-iT Hardware, Software Integrations, ALL RIGHTS RESERVED</div>
+            <div>
+                <a href="tel:+27646999877">+27 646 999 877</a> 
+                <a href="mailto:ai@ionity.today">ai@ionity.today</a> &nbsp;|&nbsp; 
+                Author Profile <a href="https://www.ionity.world" target="_blank">www.ionity.world</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- THREE JS ECOSYSTEM -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+        import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+        import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+
+        // --- CONFIG ---
+        const GEAR_COUNT = 15;
+        
+        // --- SCENE ---
+        const container = document.getElementById('canvas-container');
+        const scene = new THREE.Scene();
+        scene.fog = new THREE.FogExp2(0x020204, 0.0012);
+
+        const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 3000);
+        camera.position.z = 800;
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2.0));
+        container.appendChild(renderer.domElement);
+
+        // --- LIGHTING ---
+        const ambientLight = new THREE.AmbientLight(0x404040, 0.6); // Soft white light
+        scene.add(ambientLight);
+
+        const pointLight = new THREE.PointLight(0x00d2ff, 1.2, 2000);
+        pointLight.position.set(0, 0, 500);
+        scene.add(pointLight);
+        
+        const blueLight = new THREE.DirectionalLight(0x00aaff, 1.7);
+        blueLight.position.set(100, 200, 500);
+        scene.add(blueLight);
+
+        // --- POST PROCESSING ---
+        const composer = new EffectComposer(renderer);
+        composer.addPass(new RenderPass(scene, camera));
+        
+        const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.5, 0.4, 0.85);
+        bloomPass.threshold = 0.1;
+        bloomPass.strength = 0.8;
+        bloomPass.radius = 0.6;
+        composer.addPass(bloomPass);
+
+        // --- GEAR GENERATOR ---
+        function createGearShape(radius, teeth, toothDepth) {
+            const shape = new THREE.Shape();
+            const angleStep = (Math.PI * 2) / teeth;
+            
+            // "n" shape teeth parameters
+            const toothWidthVal = 0.4; // 40% of the angle is tooth
+            const bevel = 0.05; // Avoid perfectly sharp corners for realism
+
+            for (let i = 0; i < teeth; i++) {
+                const aStart = i * angleStep;
+                
+                // Points angles
+                const a1 = aStart; // Start of gap (inner)
+                const a2 = aStart + angleStep * (1 - toothWidthVal) / 2; // End of gap, start of tooth rise
+                const a3 = aStart + angleStep * (1 - toothWidthVal) / 2 + bevel; // Top of tooth start
+                const a4 = aStart + angleStep - (angleStep * (1 - toothWidthVal) / 2) - bevel; // Top of tooth end
+                const a5 = aStart + angleStep - (angleStep * (1 - toothWidthVal) / 2); // Bottom of tooth end
+                const a6 = aStart + angleStep; // End of cycle
+
+                // We simplify to 4 main points for "n" shape: 
+                // 1. Inner radius (start of tooth base)
+                // 2. Outer radius (start of tooth tip)
+                // 3. Outer radius (end of tooth tip)
+                // 4. Inner radius (end of tooth base)
+
+                // Let's do a proper flat-topped tooth
+                const rInner = radius;
+                const rOuter = radius + toothDepth;
+                
+                // Angle for start of tooth
+                const tStart = aStart + angleStep * 0.25; 
+                // Angle for end of tooth
+                const tEnd = aStart + angleStep * 0.75;
+                
+                if (i === 0) shape.moveTo(Math.cos(aStart) * rInner, Math.sin(aStart) * rInner);
+                
+                // Line along inner radius to start of tooth
+                shape.lineTo(Math.cos(tStart) * rInner, Math.sin(tStart) * rInner);
+                // Line out to tip
+                shape.lineTo(Math.cos(tStart) * rOuter, Math.sin(tStart) * rOuter);
+                // Line along outer radius (tooth top)
+                shape.lineTo(Math.cos(tEnd) * rOuter, Math.sin(tEnd) * rOuter);
+                // Line back in
+                shape.lineTo(Math.cos(tEnd) * rInner, Math.sin(tEnd) * rInner);
+                // Line to end of sector
+                shape.lineTo(Math.cos(aStart + angleStep) * rInner, Math.sin(aStart + angleStep) * rInner);
+            }
+            shape.closePath();
+            
+            // Hole in middle
+            const hole = new THREE.Path();
+            hole.absarc(0,0, radius * 0.4, 0, Math.PI * 2, false);
+            shape.holes.push(hole);
+            
+            return shape;
+        }
+
+        const gears = [];
+        // Improved realistic material
+        const gearMaterial = new THREE.MeshStandardMaterial({ 
+            color: 0x00d2ff, 
+            roughness: 0.2, // Smoother for better reflections
+            metalness: 0.9, // More metallic
+            transparent: false, // Solid for realism
+            opacity: 1.0,
+            side: THREE.DoubleSide
+        });
+
+        // Create gears at different depths
+        for(let i=0; i<GEAR_COUNT; i++) {
+            const radius = 50 + Math.random() * 150;
+            const teeth = Math.floor(8 + Math.random() * 10);
+            const depth = 5 + Math.random() * 20;
+            
+            const shape = createGearShape(radius, teeth, 20);
+            const extrudeSettings = {
+                steps: 2,
+                depth: depth,
+                bevelEnabled: true,
+                bevelThickness: 2,
+                bevelSize: 1,
+                bevelSegments: 4 // Smoother bevels
+            };
+
+            const geometry = new THREE.ExtrudeGeometry(shape, extrudeSettings);
+            const mesh = new THREE.Mesh(geometry, gearMaterial);
+            
+            // Center the geometry
+            geometry.center();
+
+            const group = new THREE.Group();
+            group.add(mesh);
+
+            // Position
+            group.position.x = (Math.random() - 0.5) * 1500;
+            group.position.y = (Math.random() - 0.5) * 1000;
+            group.position.z = (Math.random() - 0.5) * 1000 - 200; 
+
+            // Random rotation
+            group.rotation.x = Math.random() * Math.PI;
+            group.rotation.y = Math.random() * Math.PI;
+
+            // Store for animation with floating velocities
+            gears.push({
+                mesh: group,
+                rotSpeedZ: (Math.random() - 0.5) * 0.02,
+                rotSpeedY: (Math.random() - 0.5) * 0.01,
+                floatSpeedX: (Math.random() - 0.5) * 0.2,
+                floatSpeedY: (Math.random() - 0.5) * 0.2,
+                floatSpeedZ: (Math.random() - 0.5) * 0.2,
+                timeOffset: Math.random() * 100
+            });
+
+            scene.add(group);
+        }
+
+        // Removed Connecting lines (Axles/Data streams) as requested
+
+        // --- ANIMATE ---
+        function animate() {
+            requestAnimationFrame(animate);
+
+            // Removed linePositions calculation
+
+            gears.forEach((g) => {
+                // Rotate gears
+                g.mesh.rotation.z += g.rotSpeedZ;
+                g.mesh.rotation.y += g.rotSpeedY;
+
+                // Floating animation
+                // Add drift
+                g.mesh.position.x += g.floatSpeedX;
+                g.mesh.position.y += g.floatSpeedY;
+                g.mesh.position.z += g.floatSpeedZ;
+
+                // Add sinusoidal float for "slow floating" feel
+                const time = Date.now() * 0.0005 + g.timeOffset;
+                g.mesh.position.y += Math.sin(time) * 0.1;
+                g.mesh.position.x += Math.cos(time * 0.7) * 0.1;
+
+                // Bounds check (wrap around)
+                if (g.mesh.position.x > 1000) g.mesh.position.x = -1000;
+                if (g.mesh.position.x < -1000) g.mesh.position.x = 1000;
+                if (g.mesh.position.y > 800) g.mesh.position.y = -800;
+                if (g.mesh.position.y < -800) g.mesh.position.y = 800;
+                if (g.mesh.position.z > 500) g.mesh.position.z = -1000;
+                if (g.mesh.position.z < -1000) g.mesh.position.z = 500;
+            });
+
+            // Removed lineGeo update
+
+            composer.render();
+        }
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            composer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        animate();
+    </script>
+    
+    <!-- UI Logic Script -->
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileDropdown');
+            menu.classList.toggle('open');
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const cards = document.querySelectorAll('.card');
+            
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: "0px"
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add('visible');
+                            const h3 = entry.target.querySelector('h3');
+                            if(h3) {
+                                h3.style.animation = "flashGlow 0.8s ease-out";
+                                setTimeout(() => h3.style.animation = "", 800);
+                            }
+                        }, index * 100); 
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            cards.forEach(card => observer.observe(card));
+        });
+
+        const letters = "██▓▓▒▒░░▖▗▘▙▚▛▜▝▞▟"; 
+
+        function runGlitch(element) {
+            if (element.dataset.isCoolingDown === "true") return;
+
+            element.dataset.isCoolingDown = "true";
+            setTimeout(() => {
+                element.dataset.isCoolingDown = "false";
+            }, 2000);
+
+            let iteration = 0;
+            const originalText = element.dataset.value;
+            if(element.interval) clearInterval(element.interval);
+
+            element.interval = setInterval(() => {
+                element.innerHTML = originalText 
+                    .split("")
+                    .map((letter, index) => {
+                        if(index < iteration) {
+                            return originalText[index];
+                        }
+                        if(originalText[index] === ' ' || originalText[index] === '<' || originalText[index] === '>') return originalText[index];
+                        
+                        return letters[Math.floor(Math.random() * letters.length)];
+                    })
+                    .join("");
+
+                if(iteration >= originalText.length){
+                    clearInterval(element.interval);
+                    element.innerHTML = originalText;
+                }
+
+                iteration += 1 / 3; 
+            }, 50); 
+        }
+
+        const glitchTargets = document.querySelectorAll('h1, h3, .logo, .hero-sub');
+        
+        glitchTargets.forEach(target => {
+            target.addEventListener('mouseover', () => runGlitch(target));
+            
+            if(target.tagName === 'H1') {
+                setTimeout(() => runGlitch(target), 500);
+            }
+        });
+    </script>
+    <script src="assets/js/script.js" defer></script>
+    <script src="assets/js/audio-manager.js"></script>
+    <script src="assets/js/cookies.js" defer></script>
+</body>
+</html>

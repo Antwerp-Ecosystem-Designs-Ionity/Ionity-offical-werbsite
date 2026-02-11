@@ -1,0 +1,3275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ionity | AEDI Systems Core</title>
+    <link rel="icon" type="image/png" href="assets/images/ionity-logo-edited.png">
+    <meta name="description" content="Ionity AEDI - Industrial IoT Networking, AI Ecosystems, and Control Systems of Tomorrow.">
+    
+    <style>
+        :root {
+            --bg-dark: #020204;
+            --bg-panel: rgba(10, 15, 20, 0.6);
+            --text-main: #ffffff;
+            --text-muted: rgba(255, 255, 255, 0.85); 
+            --accent-cyan: #00d2ff;
+            --accent-blue: #2979ff;
+            --accent-dim: rgba(0, 210, 255, 0.1);
+            --border: rgba(255, 255, 255, 0.15);
+            --border-active: rgba(0, 210, 255, 0.6);
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-dark);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            color: var(--text-main);
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        /* --- 3D CANVAS BACKGROUND --- */
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0; 
+            pointer-events: none;
+        }
+
+        /* --- ONTOP GUI OVERLAY --- */
+        #ontop-gui {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 50;
+        }
+        .gui-corner {
+            position: absolute;
+            width: 15rem; height: 15rem;
+            border: 1px solid rgba(0, 210, 255, 0.3);
+            box-shadow: 0 0 15px rgba(0, 210, 255, 0.3), inset 0 0 10px rgba(0, 210, 255, 0.1);
+            pointer-events: none;
+        }
+        .gui-tl { top: 20px; left: 20px; border-right: none; border-bottom: none; }
+        .gui-tr { top: 20px; right: 20px; border-left: none; border-bottom: none; text-align: right; }
+        .gui-bl { bottom: 20px; left: 20px; border-right: none; border-top: none; display: flex; align-items: flex-end;}
+        .gui-br { bottom: 20px; right: 20px; border-left: none; border-top: none; text-align: right; display: flex; align-items: flex-end; justify-content: flex-end;}
+        
+        .gui-text {
+            font-family: 'Courier New', monospace;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: rgba(0, 160, 200, 0.8); /* Darker Cyan */
+            padding: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1rem;
+            opacity: 0.9;
+            text-shadow: 0 0 2px rgba(0, 160, 200, 0.2);
+        }
+
+        /* --- VISUAL FX --- */
+        .scanlines {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.2));
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 99;
+            opacity: 0.3;
+        }
+
+        /* --- GLOW ANIMATIONS --- */
+        @keyframes neonPulse {
+            0% { text-shadow: 0 0 5px rgba(255,255,255,0.8), 0 0 10px var(--accent-cyan); }
+            50% { text-shadow: 0 0 10px #fff, 0 0 20px var(--accent-cyan), 0 0 30px var(--accent-cyan); }
+            100% { text-shadow: 0 0 5px rgba(255,255,255,0.8), 0 0 10px var(--accent-cyan); }
+        }
+
+        @keyframes flashGlow {
+            0% { text-shadow: 0 0 0 transparent; }
+            50% { text-shadow: 0 0 20px #fff, 0 0 40px var(--accent-cyan); color: #fff; }
+            100% { text-shadow: 0 0 10px rgba(0,0,0,0.5); color: #fff; }
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            padding: 0 5vw;
+            height: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            background: rgba(2, 2, 4, 0.9);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-family: 'Courier New', monospace;
+            font-weight: 700;
+            letter-spacing: 0.2rem;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2rem;
+            position: relative;
+            text-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
+            transition: all 0.3s;
+        }
+        
+        .logo:hover {
+            animation: neonPulse 1.5s infinite alternate;
+        }
+        
+        .logo::after {
+            content: '_';
+            animation: blink 1s infinite;
+        }
+
+        .nav-logo {
+            height: 80px;
+            width: auto;
+            vertical-align: middle;
+            transition: all 0.3s ease;
+        }
+        .nav-logo:hover {
+            filter: drop-shadow(0 0 8px var(--accent-cyan));
+        }
+
+        /* Desktop Nav */
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+            font-weight: 600;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+            animation: neonPulse 1s infinite alternate;
+        }
+
+        .nav-links a.active {
+            color: var(--accent-cyan);
+            /* Permanent subtle glow for active tab */
+            text-shadow: 0 0 15px var(--accent-cyan); 
+            border-bottom: 1px solid var(--accent-cyan);
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; width: 0; height: 1px;
+            background: var(--accent-cyan);
+            transition: width 0.3s ease;
+            box-shadow: 0 0 10px var(--accent-cyan);
+        }
+
+        .nav-links a:hover::before { width: 100%; }
+
+        /* Mobile Menu Button - Hidden on Desktop */
+        .mobile-menu-btn {
+            display: none;
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--accent-cyan);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem 0.8rem;
+            border-radius: 4px;
+            z-index: 101;
+        }
+
+        /* Mobile Dropdown */
+        .mobile-dropdown {
+            display: none;
+            position: absolute;
+            top: 80px;
+            left: 0;
+            width: 100%;
+            background: rgba(2, 2, 4, 0.98);
+            border-bottom: 1px solid var(--border);
+            flex-direction: column;
+            padding: 1rem 0;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.8);
+        }
+
+        .mobile-dropdown.open {
+            display: flex;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        .mobile-dropdown a {
+            color: #fff;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            transition: background 0.2s;
+        }
+        
+        /* Mobile Active State */
+        .mobile-dropdown a.active {
+            color: var(--accent-cyan);
+            background: rgba(0, 210, 255, 0.05);
+            text-shadow: 0 0 15px var(--accent-cyan); 
+            border-left: 3px solid var(--accent-cyan);
+        }
+
+        .mobile-dropdown a:hover {
+            background: rgba(0, 210, 255, 0.1);
+            color: var(--accent-cyan);
+        }
+
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- LAYOUT --- */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            min-height: 80vh;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* --- HERO HEADER --- */
+        .hero-section {
+            margin-bottom: 6rem;
+            animation: slideIn 1s ease-out;
+            background: radial-gradient(circle at center, rgba(0,0,0,0.6), transparent 70%);
+            padding: 2rem 0;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 300;
+            margin: 0;
+            letter-spacing: -0.05rem;
+            color: #fff;
+            text-shadow: 0 0 20px rgba(255,255,255,0.3);
+            cursor: default;
+            transition: text-shadow 0.3s;
+        }
+        
+        h1:hover {
+            animation: neonPulse 1.5s infinite alternate;
+        }
+
+        .hero-sub {
+            font-family: 'Courier New', monospace;
+            color: var(--accent-cyan);
+            margin-top: 1rem;
+            letter-spacing: 0.2rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-shadow: 0 0 5px var(--accent-cyan);
+            transition: all 0.3s;
+        }
+
+        .hero-sub:hover {
+            text-shadow: 0 0 15px var(--accent-cyan);
+        }
+
+        .hero-sub::before {
+            content: '';
+            width: 40px; height: 1px;
+            background: var(--accent-cyan);
+            box-shadow: 0 0 5px var(--accent-cyan);
+        }
+
+        .hero-desc {
+            max-width: 600px; 
+            margin-top: 2rem; 
+            color: var(--text-muted); 
+            line-height: 1.8;
+            font-size: 1.1rem;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+        }
+
+        /* --- ARCHITECTURE FLOW --- */
+        .architecture-section {
+            margin-bottom: 6rem;
+            padding: 3rem;
+            background: rgba(10, 15, 20, 0.4);
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--accent-cyan);
+            backdrop-filter: blur(5px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .architecture-section h2 {
+            font-size: 2rem;
+            color: #fff;
+            margin-top: 0;
+            text-transform: uppercase;
+            letter-spacing: 0.2rem;
+            margin-bottom: 3rem;
+        }
+
+        .flow-diagram {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .flow-step {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .step-card {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 1.5rem 2rem;
+            border: 1px solid var(--border);
+            text-align: center;
+            min-width: 150px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .step-card::before {
+            content: '';
+            position: absolute;
+            top: -5px; left: -5px; right: -5px; bottom: -5px;
+            border: 1px dashed rgba(0, 210, 255, 0.2);
+            pointer-events: none;
+            transition: all 0.3s;
+        }
+
+        .step-card:hover {
+            transform: scale(1.05);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 20px rgba(0, 210, 255, 0.2);
+        }
+        
+        .step-card:hover::before {
+             border-color: var(--accent-cyan);
+             animation: spinBorder 10s linear infinite;
+        }
+
+        .step-card h3 {
+            color: var(--accent-cyan);
+            margin: 0;
+            font-size: 1.2rem;
+        }
+
+        .step-card p {
+            margin: 0.5rem 0 0 0;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .arrow {
+            font-size: 2rem;
+            color: rgba(255, 255, 255, 0.2);
+            font-weight: 100;
+        }
+
+        .relations-text {
+            margin-top: 3rem;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            color: var(--accent-cyan);
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1rem;
+        }
+
+        /* --- GRID SYSTEM --- */
+        .system-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: rgba(10, 15, 20, 0.8);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--border);
+            padding: 2.5rem;
+            position: relative;
+            transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            
+            /* Initial Scroll State */
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        
+        /* State for Scroll Animation */
+        .card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 2px; height: 0;
+            background: var(--accent-cyan);
+            transition: height 0.4s ease;
+            box-shadow: 0 0 10px var(--accent-cyan);
+        }
+
+        .card:hover {
+            transform: translateY(-5px) !important;
+            border-color: var(--border-active);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+            background: rgba(20, 25, 35, 0.95);
+        }
+
+        .card:hover::before { height: 100%; }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            color: var(--accent-cyan);
+            margin-bottom: 1.5rem;
+            opacity: 1;
+            filter: drop-shadow(0 0 5px var(--accent-cyan));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-icon svg {
+            width: 100%;
+            height: 100%;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .card h3 {
+            font-size: 1.4rem;
+            font-weight: 500;
+            margin: 0 0 1rem 0;
+            letter-spacing: 0.05rem;
+            color: #fff;
+            text-shadow: 0 0 10px rgba(0,0,0,0.5);
+            cursor: default;
+        }
+
+        /* Trigger Glow on Hover */
+        .card h3:hover, .card:hover h3 {
+            animation: neonPulse 1.5s infinite alternate;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            line-height: 1.6;
+            font-size: 1rem;
+            flex-grow: 1;
+            text-shadow: 0 1px 1px rgba(0,0,0,1);
+        }
+
+        .card-meta {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+            font-family: 'Courier New', monospace;
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.5);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* --- ANIMATIONS --- */
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+        @keyframes slideIn { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
+
+        /* --- FOOTER --- */
+        footer {
+            margin-top: 8rem;
+            padding: 2rem 5vw;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.7rem;
+            position: relative;
+            z-index: 10;
+            background: rgba(2, 2, 4, 0.95);
+        }
+        
+        footer a { color: var(--text-muted); text-decoration: none; margin: 0 10px; transition: color 0.3s; }
+        footer a:hover { color: var(--accent-cyan); }
+
+        /* Mobile Adjust */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            nav { padding: 0 1.5rem; }
+            .nav-links { display: none; } /* Hide desktop links */
+            .mobile-menu-btn { display: block; } /* Show hamburger */
+            .logo { font-size: 1rem; }
+
+            /* GLOBAL IMAGES RESIZE */
+            img { max-width: 100%; height: auto; }
+            
+            /* MONITOR MOBILE FIXES */
+            .monitor-focus-segment {
+                height: auto;
+                min-height: 400px;
+                perspective: none; /* Disable 3D on mobile */
+                margin-bottom: 2rem;
+                padding: 10px;
+            }
+            .monitor-frame {
+                width: 100%;
+                max-width: 100%;
+                height: auto;
+                transform: none !important; /* Flatten 3D */
+                border-width: 2px;
+                margin-bottom: 20px;
+            }
+            .monitor-frame:hover { transform: none; }
+            .monitor-frame::after { display: none; } /* Hide stand */
+            
+            .monitor-screen {
+               position: relative;
+               height: auto;
+               top: 0; left: 0; right: 0; bottom: 0;
+               margin: 5px;
+               width: auto;
+            }
+
+            .mon-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            #cad-container { height: 180px !important; }
+
+            /* FOOTER MOBILE */
+            footer {
+                padding: 2rem 1rem;
+                font-size: 0.6rem;
+            }
+            footer a { margin: 0 5px; display: inline-block; margin-bottom: 5px; }
+
+            /* BRIGHTNESS BOOST FOR MOBILE */
+            body { filter: brightness(1.2); }
+
+            /* AUTO GLOW ON MOBILE */
+            h1 { animation: neonPulse 3s infinite alternate; }
+            .mobile-dropdown a.active { animation: neonPulse 2s infinite alternate; }
+        }
+
+        /* --- GEN-AI IMPACT SECTION --- */
+        .gen-ai-section {
+            margin-top: 8rem;
+            margin-bottom: 6rem;
+            padding: 5rem 3rem;
+            border: 1px solid rgba(0, 210, 255, 0.3);
+            border-top: 4px solid var(--accent-cyan);
+            border-bottom: 4px solid var(--accent-cyan);
+            position: relative;
+            background: linear-gradient(135deg, rgba(10,15,20,0.95) 0%, rgba(2,2,4,0.98) 100%);
+            backdrop-filter: blur(20px);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 0 80px rgba(0, 210, 255, 0.15);
+            transition: all 0.5s ease;
+        }
+
+        .gen-ai-section:hover {
+             box-shadow: 0 0 100px rgba(0, 210, 255, 0.3);
+             transform: scale(1.01);
+        }
+
+        .gen-ai-section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 210, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 210, 255, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .gen-ai-section h2 {
+            font-size: 3.5rem;
+            color: #fff;
+            margin: 0 0 1.5rem 0;
+            letter-spacing: 0.5rem;
+            text-transform: uppercase;
+            text-shadow: 0 0 25px rgba(0, 210, 255, 0.6);
+            z-index: 1;
+            position: relative;
+        }
+        
+        .gen-ai-section h2::after {
+            content: 'GENERATIVE INTELLIGENCE';
+            display: block;
+            font-size: 0.8rem;
+            color: var(--accent-cyan);
+            letter-spacing: 0.8rem;
+            margin-top: 0.5rem;
+            opacity: 0.7;
+        }
+
+        .gen-ai-content {
+            z-index: 1;
+            max-width: 900px;
+            position: relative;
+        }
+
+        .gen-ai-content p {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+        }
+
+        /* CAD Cornermarks for Gen AI Section */
+        .cad-corner {
+            position: absolute;
+            width: 30px; height: 30px;
+            border: 2px solid var(--accent-cyan);
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+        .cad-corner-tl { top: 20px; left: 20px; border-right: none; border-bottom: none; }
+        .cad-corner-tr { top: 20px; right: 20px; border-left: none; border-bottom: none; }
+        .cad-corner-bl { bottom: 20px; left: 20px; border-right: none; border-top: none; }
+        .cad-corner-br { bottom: 20px; right: 20px; border-left: none; border-top: none; }
+
+        .gen-ai-section:hover .cad-corner {
+            width: 50px; height: 50px;
+            box-shadow: 0 0 15px var(--accent-cyan);
+        }
+
+        /* --- MOVED FROM INDEX: SYSTEM ROOT CAM --- */
+        .system-monitor {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            background: rgba(5, 10, 15, 0.6); 
+            border: 1px solid rgba(0, 210, 255, 0.2);
+            border-radius: 4px;
+            overflow: hidden;
+            font-family: 'Courier New', monospace;
+        }
+
+        .sys-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 210, 255, 0.05);
+            padding: 8px 12px;
+            font-size: 0.75rem;
+            color: var(--accent-cyan);
+            border-bottom: 1px solid rgba(0, 210, 255, 0.2);
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .sys-dot {
+            width: 8px; height: 8px;
+            background: #ff3333;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #ff3333;
+            animation: blink 0.8s infinite;
+        }
+
+        .cad-view {
+            flex-grow: 1;
+            min-height: 220px;
+            position: relative;
+            background: radial-gradient(circle at center, #051015 0%, #000 100%);
+        }
+
+        .cad-canvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+        
+        /* Scanline for CAD */
+        .cad-view::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 2px;
+            background: rgba(0, 210, 255, 0.5);
+            box-shadow: 0 0 10px var(--accent-cyan);
+            animation: scan 3s linear infinite;
+            pointer-events: none;
+        }
+
+        .mgraph-vis {
+            height: 60px;
+            display: flex;
+            align-items: flex-end;
+            gap: 3px;
+            padding: 8px;
+            background: rgba(0, 0, 0, 0.6);
+            /* SCRIPTED: Changed to a small glow frame */
+            border: 1px solid #0000ff;
+            box-shadow: 0 0 15px #0000ff, inset 0 0 20px rgba(0, 0, 255, 0.2);
+        }
+
+        .sys-cam-label {
+            position: absolute; top: 5px; left: 5px; 
+            font-size: 0.6rem; color: var(--accent-cyan); 
+            background: rgba(0,0,0,0.7); padding: 2px 4px;
+            z-index: 5;
+        }
+
+        .factory-cam-view {
+            height: 100px;
+            position: relative;
+            background: #080808;
+            border-top: 1px solid rgba(0, 210, 255, 0.3);
+            overflow: hidden;
+        }
+
+        .m-bar {
+            flex: 1;
+            background: linear-gradient(to top, rgba(0, 0, 255, 0.2), #0000ff);
+            border-top: 1px solid #fff;
+            /* SCRIPTED: Slowed down */
+            transition: height 2.5s ease;
+            opacity: 0.8;
+            box-shadow: 0 0 5px rgba(0, 0, 255, 0.3);
+        }
+        
+        @keyframes scan { 0% { top: 0%; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { top: 100%; opacity: 0; } }
+
+        /* --- 3D MONITOR SEGMENT --- */
+        .monitor-focus-segment {
+            perspective: 1200px;
+            height: 450px; 
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: monitorFloat 6s ease-in-out infinite;
+            z-index: 20; 
+            position: relative;
+        }
+
+        .monitor-frame {
+            width: 700px;
+            height: 400px;
+            background: #050510;
+            border: 4px solid #b0e2ff;
+            border-bottom: 8px solid #b0e2ff;
+            border-radius: 4px;
+            position: relative;
+            transform-style: preserve-3d;
+            transform: rotateX(10deg);
+            box-shadow: 0 50px 80px rgba(0,0,0,0.8), 0 0 30px rgba(0, 210, 255, 0.15);
+            transition: transform 0.5s ease;
+        }
+
+        .monitor-frame:hover {
+            transform: rotateX(0deg) scale(1.02);
+        }
+        
+        /* Monitor Stand */
+        .monitor-frame::after {
+            content: '';
+            position: absolute;
+            bottom: -50px; left: 50%; 
+            transform: translateX(-50%) translateZ(-50px);
+            width: 150px; height: 50px;
+            background: linear-gradient(#222, #111);
+            transform-origin: top;
+             clip-path: polygon(20% 0, 80% 0, 100% 100%, 0% 100%);
+        }
+
+        .monitor-screen {
+            position: absolute;
+            top: 10px; left: 10px; right: 10px; bottom: 10px;
+            background: #000;
+            background-image: 
+                radial-gradient(circle at center, #001 0%, #000 100%),
+                linear-gradient(rgba(0, 210, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 210, 255, 0.03) 1px, transparent 1px);
+            background-size: 100% 100%, 20px 20px, 20px 20px;
+            border: 1px solid #333;
+            overflow: hidden;
+            color: var(--accent-cyan);
+            font-family: 'Courier New', monospace;
+            padding: 20px;
+            box-shadow: inset 0 0 50px rgba(0,0,0,0.9);
+        }
+        
+        /* Screen Glare */
+        .monitor-screen::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 40%;
+            background: linear-gradient(rgba(255,255,255,0.05), transparent);
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        /* GUI Inside Monitor */
+        .mon-header {
+            border-bottom: 1px solid rgba(0, 210, 255, 0.5);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #ffffff;
+            display: flex;
+            justify-content: space-between;
+            text-transform: uppercase;
+            text-shadow: 0 0 5px rgba(0, 210, 255, 0.4);
+            letter-spacing: 1px;
+        }
+
+        .mon-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 20px;
+            height: 80%;
+        }
+
+        .mon-sidebar { border-right: 1px solid rgba(255,255,255,0.1); padding-right: 10px;}
+        .mon-main { display: flex; flex-direction: column; justify-content: space-between; }
+
+        .mon-data-box {
+            margin-bottom: 15px;
+        }
+
+        .mon-label { font-size: 0.75rem; color: rgba(255,255,255,0.9); font-weight: 600; display: block; margin-bottom: 3px; letter-spacing: 0.5px; }
+        .mon-val { font-size: 1.1rem; font-weight: bold; text-shadow: 0 0 5px var(--accent-cyan); }
+        
+        .mon-log {
+             font-size: 0.55rem; color: #aaa; margin-top: 10px; line-height: 1.4;
+             height: 100px; overflow: hidden;
+             opacity: 0.7;
+        }
+
+        .mon-chart-container {
+            width: 100%; height: 120px;
+            border: 1px solid rgba(0,210,255,0.2);
+            background: rgba(0,210,255,0.02);
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            padding: 5px;
+            gap: 2px;
+        }
+
+        .mon-bar {
+            flex: 1;
+            background: var(--accent-cyan);
+            opacity: 0.5;
+            transition: height 0.2s;
+            transform-origin: bottom;
+        }
+
+        @keyframes barGraph {
+            0%, 100% { transform: scaleY(1); opacity: 0.5; }
+            50% { transform: scaleY(0.6); opacity: 0.9; }
+        }
+        
+        .mon-indicator {
+             width: 10px; height: 10px; background: red;
+             border-radius: 50%; margin-right: 5px;
+             display: inline-block;
+             animation: blink 1s infinite;
+        }
+
+        @keyframes monitorFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+        /* --- CROSS-PLATFORM INDICATORS (CAROUSEL) --- */
+        .cross-platform-feedback {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 2rem;
+            /* Fade edges for carousel effect */
+            mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+        }
+
+        .cp-track {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            width: max-content;
+            animation: cpScroll 30s linear infinite;
+        }
+
+        /* Pause on hover/interaction */
+        .cross-platform-feedback:hover .cp-track {
+            animation-play-state: paused;
+        }
+
+        @keyframes cpScroll {
+            to { transform: translateX(-50%); }
+        }
+
+        .cp-node {
+            text-align: center;
+            opacity: 0.6;
+            transition: all 0.3s;
+            position: relative;
+            flex-shrink: 0; /* Prevent shrinking */
+            min-width: 100px;
+        }
+        
+        .cp-node:hover, .cp-node.active { opacity: 1; transform: translateY(-5px); }
+
+        .cp-icon {
+            font-size: 1.8rem;
+            display: block;
+            margin-bottom: 0.8rem;
+            color: var(--text-muted);
+            transition: color 0.3s;
+        }
+        
+        .cp-node.active .cp-icon { color: var(--accent-cyan); filter: drop-shadow(0 0 8px var(--accent-cyan)); }
+
+        .cp-icon svg {
+            width: 2rem;
+            height: 2rem;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .cp-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1rem; white-space: nowrap; }
+        .cp-status { font-size: 0.5rem; color: var(--accent-cyan); margin-top: 0.4rem;  opacity: 0; transition: opacity 0.3s;}
+        .cp-node.active .cp-status { opacity: 1; }
+
+        /* Connect lines */
+        .cp-connection {
+            height: 1px;
+            width: 80px; /* Fixed width for carousel */
+            flex-shrink: 0;
+            background: rgba(255,255,255,0.1);
+            position: relative;
+        }
+
+        .cp-connection::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 30%; height: 1px;
+            background: var(--accent-cyan);
+            animation: flowData 1.5s infinite linear;
+            box-shadow: 0 0 5px var(--accent-cyan);
+        }
+
+        @keyframes flowData {
+            0% { left: 0; width: 10%; opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { left: 90%; width: 10%; opacity: 0; }
+        }
+
+        /* --- FACTORY SECTION --- */
+        .factory-section {
+            margin-top: 8rem;
+            margin-bottom: 4rem;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            background: rgba(2, 2, 4, 0.8);
+            position: relative;
+            overflow: hidden;
+            padding: 4rem 0;
+            perspective: 1000px;
+        }
+
+        .factory-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            z-index: 2;
+            position: relative;
+        }
+        
+        .factory-header h2 {
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3rem;
+            color: #fff;
+            text-shadow: 0 0 15px rgba(0, 210, 255, 0.5);
+            margin: 0;
+        }
+
+        .factory-track-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            height: 350px;
+            background: 
+                linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.5)),
+                repeating-linear-gradient(90deg, transparent 0, transparent 99px, rgba(0, 210, 255, 0.1) 100px);
+            display: flex;
+            align-items: center;
+            /* 3D tilt effect for the floor */
+            transform-style: preserve-3d;
+        }
+
+        .factory-track {
+            display: flex;
+            gap: 15rem;
+            animation: moveFactory 15s linear infinite;
+            position: absolute;
+            left: 100%; /* Start from right */
+            will-change: transform;
+        }
+        
+        .factory-track:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes moveFactory {
+            0% { left: 100%; }
+            100% { left: -200%; } /* Move far enough left to clear */
+        }
+
+        /* Machine Visuals */
+        .machine-unit {
+            width: 200px;
+            height: 240px;
+            border: 2px solid var(--accent-cyan);
+            background: linear-gradient(180deg, rgba(0, 20, 30, 0.8), rgba(0, 10, 15, 0.95));
+            position: relative;
+            flex-shrink: 0;
+            box-shadow: 0 0 20px rgba(0, 210, 255, 0.15);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            transform: skewX(-5deg); /* Slight aggressive stance */
+            transition: all 0.3s ease;
+        }
+        
+        .machine-unit:hover {
+            box-shadow: 0 0 40px rgba(0, 210, 255, 0.4);
+            background: rgba(0, 40, 60, 0.8);
+        }
+        
+        .machine-status-light {
+            width: 100%;
+            height: 5px;
+            background: #222;
+            display: flex;
+            gap: 5px;
+            justify-content: center;
+        }
+        .m-light { width: 10px; height: 5px; background: #333; }
+        .m-light.active { background: #00ff00; box-shadow: 0 0 5px #00ff00; }
+        .m-light.warn { background: #ffaa00; box-shadow: 0 0 5px #ffaa00; }
+        
+        .machine-head {
+            width: 80%;
+            height: 40px;
+            background: rgba(0, 210, 255, 0.1);
+            border: 1px solid rgba(0, 210, 255, 0.3);
+            margin-top: 10px;
+            position: relative;
+        }
+        
+        .machine-head::after {
+            content: '';
+            position: absolute;
+            top: 50%; left: 10%;
+            width: 80%; height: 2px;
+            background: var(--accent-cyan);
+            animation: scan 1s infinite alternate;
+        }
+        
+        @keyframes scan { from { width: 10%; } to { width: 80%; } }
+        
+        .machine-arm {
+            width: 8px;
+            height: 80px;
+            background: #ccc;
+            transform-origin: top center;
+            animation: swing 3s ease-in-out infinite;
+            position: relative;
+        }
+        .machine-arm::after {
+             content: '';
+             position: absolute;
+             bottom: -10px; left: -10px;
+             width: 28px; height: 10px;
+             background: var(--accent-cyan);
+             border-radius: 2px;
+        }
+        
+        .machine-base {
+            width: 120%;
+            height: 20px;
+            background: repeating-linear-gradient(45deg, #020204, #020204 10px, #111 10px, #111 20px);
+            border-top: 2px solid var(--accent-cyan);
+        }
+
+        .conveyor-belt {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: #222;
+            z-index: -1;
+        }
+        
+        .machine-label {
+            font-family: 'Courier New', monospace;
+            font-size: 0.6rem;
+            color: var(--text-muted);
+            margin-top: 5px;
+        }
+
+        @keyframes swing {
+            0%, 100% { transform: rotate(-10deg); }
+            50% { transform: rotate(10deg); }
+        }
+
+        .factory-overlay {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: var(--accent-cyan);
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            background: rgba(0,0,0,0.7);
+            padding: 5px 12px;
+            border: 1px solid var(--accent-cyan);
+            z-index: 10;
+        }
+
+        /* --- INFO CARD STYLES --- */
+        .info-card {
+            background: linear-gradient(135deg, rgba(10, 20, 30, 0.9), rgba(5, 10, 15, 0.95));
+            border: 1px solid rgba(0, 210, 255, 0.3);
+            border-left: 4px solid var(--accent-cyan);
+            border-radius: 4px;
+            padding: 2rem;
+            position: relative;
+            box-shadow: 0 0 40px rgba(0, 210, 255, 0.1);
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            margin-top: 2rem;
+        }
+
+        .info-card::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
+            opacity: 0.7;
+        }
+
+        .highlight-title {
+            color: var(--accent-cyan);
+            font-size: 1.5rem;
+            display: block;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 0 0 10px rgba(0, 210, 255, 0.4);
+        }
+
+        .card-body p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 1.5rem 0;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.8rem;
+        }
+
+        .feature-list li {
+            display: flex;
+            align-items: center;
+            padding: 0.8rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-list li:hover {
+            background: rgba(0, 210, 255, 0.1);
+            border-color: rgba(0, 210, 255, 0.3);
+            transform: translateX(10px);
+        }
+
+        .feature-icon {
+            margin-right: 1rem;
+            font-size: 1.2rem;
+            color: var(--accent-blue);
+            filter: drop-shadow(0 0 5px var(--accent-blue));
+        }
+
+        .card-footer {
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1rem;
+            font-style: normal;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="canvas-container"></div>
+    
+    <!-- ONTOP GUI REMOVED -->
+
+    <!-- SCANLINES FX -->
+    <div class="scanlines"></div>
+
+    <nav>
+        <a href="index.html" class="logo">
+             <img src="assets/images/ionity-logo-edited.png" alt="IONITY" class="nav-logo">
+        </a>
+        
+        <!-- Desktop Menu -->
+        <div class="nav-links">
+            <a href="inner-Page.html" class="active">Systems</a>
+            <a href="services.html">Services</a>
+            <a href="products.html">Products</a>
+            <a href="ai-innovation.html">Ai Innovation</a>
+            <a href="roadmap.html">Roadmap</a>
+            <a href="license.html">License</a>
+            <a href="about.html">About</a>
+            <a href="aedi-online.html">AEDI Online</a>
+            <a href="contact.html">Contact</a>
+            <a href="firmware-development.html">Dev</a>
+            <a href="gateway.html">IO Way</a>
+        </div>
+
+        <!-- Mobile Button -->
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+    </nav>
+    
+    <!-- Mobile Dropdown -->
+    <div class="mobile-dropdown" id="mobileDropdown">
+        <a href="inner-Page.html" class="active">Systems</a>
+        <a href="services.html">Services</a>
+        <a href="products.html">Products</a>
+        <a href="ai-innovation.html">Ai Innovation</a>
+        <a href="roadmap.html">Roadmap</a>
+        <a href="license.html">License</a>
+        <a href="about.html">About</a>
+        <a href="aedi-online.html">AEDI Online</a>
+        <a href="contact.html">Contact</a>
+        <a href="firmware-development.html">Dev</a>
+        <a href="gateway.html">IO Way</a>
+    </div>
+
+    <div class="container">
+        
+        <!-- 3D MONITOR FOCUS POINT -->
+        <div class="monitor-focus-segment">
+            <div class="monitor-frame">
+                <div class="monitor-screen">
+                    <div class="mon-header">
+                        <span>SYS.ROOT.MONITOR</span>
+                        <span>[ LIVE FEED ]</span>
+                    </div>
+                    
+                    <div class="mon-grid">
+                        <div class="mon-sidebar">
+                            <div class="mon-data-box">
+                                <span class="mon-label">CPU LOAD</span>
+                                <span class="mon-val" id="mon-cpu">34%</span>
+                            </div>
+                            <div class="mon-data-box">
+                                <span class="mon-label">MEMORY</span>
+                                <span class="mon-val" id="mon-ram">12.4 GB</span>
+                            </div>
+                            <div class="mon-data-box">
+                                <span class="mon-label">NETWORK</span>
+                                <span class="mon-val" id="mon-net">1.2 TB/s</span>
+                            </div>
+                            <div class="mon-log" id="mon-log">
+                                > INIT SEQ...<br>
+                                > NODES CONNECTED.<br>
+                                > SYNCING...
+                            </div>
+                        </div>
+                        
+                        <div class="mon-main">
+                            <div style="flex-grow:1; display:flex; justify-content:center; align-items:center; position: relative;">
+                                <!-- 3D CAD / Vibration Monitor Container -->
+                                <div id="cad-container" style="width: 100%; height: 180px; position: relative; overflow: hidden;"></div>
+                                <div style="position: absolute; bottom: 5px; right: 5px; font-size: 0.6rem; font-weight: bold; color: rgba(0,210,255,1.0); text-shadow: 0 0 4px rgba(0,210,255,0.5);">[CAD.VIB.MONITOR]</div>
+                            </div>
+                            
+                            <div class="mon-chart-container" id="mon-bars">
+                                <!-- Bars injected via JS -->
+                            </div>
+                            <!-- LIVE LINE GRAPH -->
+                            <div style="height: 50px; margin-top: 5px; width: 100%; display: flex; justify-content: center;">
+                                <canvas id="mon-line-canvas" width="200" height="50"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-section" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4rem;">
+            <div style="flex: 1; min-width: 300px;">
+                <h1 data-value="Automated Ecosystem Designs Intelligence">Automated Ecosystem<br>Designs Intelligence</h1>
+                <div class="hero-sub" data-value="System Status: Active // Project Alpha">System Status: Active // Project Alpha</div>
+                <div class="info-card">
+                    <div class="card-header">
+                        <strong class="highlight-title">Ionity Systems: Architecting the Future</strong>
+                    </div>
+                    <div class="card-body">
+                        <p>Welcome to the digital ecosystem of tomorrow. Ionity Systems leverages the AEDI AI network to revolutionize industrial Gen-AI, turning complex data into actionable intelligence.</p>
+                        <p>By integrating IoT subsystems and smart nodes, we deliver:</p>
+                        <ul class="feature-list">
+                            <li><span class="feature-icon">⬡</span> <span><strong>Predictive Maintenance:</strong> Fix it before it breaks.</span></li>
+                            <li><span class="feature-icon">❖</span> <span><strong>Cost Efficiency:</strong> Streamlined operations through data engineering.</span></li>
+                            <li><span class="feature-icon">◉</span> <span><strong>Real-Time Monitoring:</strong> Total visibility across your infrastructure.</span></li>
+                            <li><span class="feature-icon">🛡</span> <span><strong>Next-Gen Security:</strong> Smarter systems for a safer world.</span></li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        Ionity (Pty) Ltd: Making industry smarter, safer, and more efficient.
+                    </div>
+                </div>
+            </div>
+            <div style="display: flex; flex-direction: column; width: 400px; gap: 15px;">
+                <div id="ionity-gui-cube-container" style="width: 100%; height: 400px; position: relative; border: 2px solid rgba(0, 210, 255, 0.8); background: radial-gradient(circle at center, rgba(0, 60, 90, 0.5), transparent); border-radius: 8px; box-shadow: 0 0 30px rgba(0, 210, 255, 0.35);">
+                    <!-- 3D Cube will attach here -->
+                    <div style="position: absolute; bottom: 10px; right: 10px; font-family: 'Courier New'; font-size: 0.7rem; font-weight: bold; color: var(--accent-cyan); opacity: 1.0; text-shadow: 0 0 8px var(--accent-cyan);">IONITY.GUI.SYS</div>
+                </div>
+
+
+            </div>
+        </div>
+
+
+
+        <!-- NEW ARCHITECTURE SECTION -->
+        <div class="architecture-section">
+            <h2 data-value="System Architecture">System Architecture</h2>
+            <div class="flow-diagram">
+                <div class="flow-step">
+                    <div class="step-card">
+                        <h3 data-value="ADA">ADA</h3>
+                        <p>Automated Design</p>
+                    </div>
+                    <div class="arrow">→</div>
+                </div>
+                <div class="flow-step">
+                    <div class="step-card">
+                        <h3 data-value="DAQ">DAQ</h3>
+                        <p>Data Acquisition</p>
+                    </div>
+                    <div class="arrow">→</div>
+                </div>
+                <div class="flow-step">
+                    <div class="step-card">
+                        <h3 data-value="Monitoring">Monitoring</h3>
+                        <p>Real-time Analytics</p>
+                    </div>
+                    <div class="arrow">→</div>
+                </div>
+                <div class="flow-step">
+                    <div class="step-card">
+                        <h3 data-value="PdM">PdM</h3>
+                        <p>Predictive Maint.</p>
+                    </div>
+                    <div class="arrow">→</div>
+                </div>
+            </div>
+            <div class="relations-text">
+                [ RELATIONS ESTABLISHED: ADA DEFINES > DAQ COLLECTS > MONITORING ANALYZES > PdM PREDICTS ]
+            </div>
+
+            <!-- CROSS-PLATFORM / REMOTE FEEDBACK -->
+            <div class="cross-platform-feedback">
+                <div class="cp-track">
+                    <!-- Original Set -->
+                    <div class="cp-node active">
+                        <span class="cp-icon">
+                            <svg viewBox="0 0 24 24"><path d="M12 2l9 4.5v9L12 20l-9-4.5v-9L12 2z"/><circle cx="12" cy="11" r="3"/></svg>
+                        </span>
+                        <div class="cp-label">Core System</div>
+                        <div class="cp-status">ONLINE</div>
+                    </div>
+                    
+                    <div class="cp-connection"></div>
+                    
+                    <div class="cp-node active">
+                        <span class="cp-icon">
+                            <svg viewBox="0 0 24 24"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+                        </span>
+                        <div class="cp-label">Remote / Mobile</div>
+                        <div class="cp-status">SYNCED</div>
+                    </div>
+
+                    <div class="cp-connection"></div>
+
+                    <div class="cp-node active">
+                        <span class="cp-icon">
+                            <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                        </span>
+                        <div class="cp-label">Edge Feedback RTS</div>
+                        <div class="cp-status">LIVE</div>
+                    </div>
+                    
+                    <div class="cp-connection"></div>
+                    
+                    <div class="cp-node active">
+                        <span class="cp-icon">
+                            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                        </span>
+                        <div class="cp-label">Cloud Mesh</div>
+                        <div class="cp-status">ACTIVE</div>
+                    </div>
+
+                    <div class="cp-connection"></div>
+
+                    <!-- Duplicated Set for Loop -->
+                    <div class="cp-node active">
+                        <span class="cp-icon">
+                            <svg viewBox="0 0 24 24"><path d="M12 2l9 4.5v9L12 20l-9-4.5v-9L12 2z"/><circle cx="12" cy="11" r="3"/></svg>
+                        </span>
+                        <div class="cp-label">Core System</div>
+                        <div class="cp-status">ONLINE</div>
+                    </div>
+                    
+                    <div class="cp-connection"></div>
+                    
+                    <div class="cp-node active">
+                        <span class="cp-icon">
+                            <svg viewBox="0 0 24 24"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+                        </span>
+                        <div class="cp-label">Remote / Mobile</div>
+                        <div class="cp-status">SYNCED</div>
+                    </div>
+
+                    <div class="cp-connection"></div>
+
+                    <div class="cp-node active">
+                        <span class="cp-icon">
+                            <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                        </span>
+                        <div class="cp-label">Edge Feedback RTS</div>
+                        <div class="cp-status">LIVE</div>
+                    </div>
+                    
+                    <div class="cp-connection"></div>
+                    
+                    <div class="cp-node active">
+                        <span class="cp-icon">
+                            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                        </span>
+                        <div class="cp-label">Cloud Mesh</div>
+                        <div class="cp-status">ACTIVE</div>
+                    </div>
+
+                    <div class="cp-connection"></div>
+                </div>
+            </div>
+
+
+
+        </div>
+
+        <!-- CAROUSEL SYSTEM (REPLACED GRID) -->
+        <style>
+            .carousel-wrapper {
+                position: relative;
+                width: 100%;
+                margin: 6rem 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                perspective: 1000px;
+            }
+            
+            .carousel-container {
+                overflow: hidden;
+                width: 95%; /* Wider view */
+                position: relative;
+                padding: 2rem 0;
+                mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            }
+        
+            .carousel-track {
+                display: flex;
+                gap: 2rem;
+                transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+                /* Ensure all items stretch to the same height (usually determined by the tallest, i.e., Monitor) */
+                align-items: stretch; 
+                padding: 1rem;
+            }
+        
+            .carousel-slide {
+                min-width: 200px; 
+                max-width: 200px; 
+                flex: 0 0 auto;
+                opacity: 0.5; 
+                transform: scale(0.9);
+                transition: all 0.6s ease;
+                display: flex; /* Make the slide a flex container so child card fills it */
+                flex-direction: column;
+            }
+
+            /* Exceptions for the System Monitor slide (First one) */
+            .carousel-slide:first-child {
+                min-width: 650px; /* Give the monitor more space */
+                max-width: 650px;
+            }
+            
+            /* Override .card initial state for carousel */
+            .carousel-slide .card {
+                opacity: 1 !important;
+                transform: none !important;
+                height: 100%; /* Fill the slide height */
+                width: 100%;
+                margin: 0;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between; /* Distribute content */
+                background: rgba(12, 18, 26, 0.9); /* Solid background */
+                border: 1px solid rgba(0, 210, 255, 0.3);
+                box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+                padding: 1.25rem;
+            }
+            
+            .carousel-slide.active {
+                opacity: 1;
+                transform: scale(1);
+                z-index: 10;
+                filter: drop-shadow(0 0 15px rgba(0, 210, 255, 0.2));
+            }
+
+            .carousel-slide.active .card {
+                border-color: var(--accent-cyan);
+                background: rgba(15, 22, 32, 0.95);
+            }
+        
+            .carousel-btn {
+                background: rgba(0, 10, 20, 0.8);
+                border: 1px solid var(--accent-cyan);
+                color: var(--accent-cyan);
+                font-size: 1.5rem;
+                cursor: pointer;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.3s;
+                backdrop-filter: blur(5px);
+                z-index: 20;
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                box-shadow: 0 0 20px rgba(0,0,0,0.8);
+            }
+            
+            .carousel-btn:hover {
+                background: var(--accent-cyan);
+                color: #000;
+                box-shadow: 0 0 25px var(--accent-cyan);
+            }
+            
+            .carousel-btn.prev { left: 10px; }
+            .carousel-btn.next { right: 10px; }
+            
+            @media (max-width: 768px) {
+                .carousel-slide { min-width: 85vw; max-width: 85vw; }
+                .carousel-slide:first-child { min-width: 85vw; max-width: 85vw; }
+                .carousel-container { width: 100%; mask-image: none; }
+            }
+        </style>
+
+        <div class="carousel-wrapper">
+            <button class="carousel-btn prev" onclick="moveCarousel(-1)">&#10094;</button>
+            <div class="carousel-container">
+                <div class="carousel-track" id="systemCarouselTrack">
+                    
+                    <!-- Slide 1: SYSTEM ROOT CAM -->
+                    <div class="carousel-slide active">
+                        <div class="card" style="padding: 0;">
+                            <div class="system-monitor" style="min-height: 400px; border: none; background: transparent;">
+                                <div class="sys-header">
+                                    <div class="sys-dot"></div>
+                                    <span>SYSTEM ROOT CAM [LIVE]</span>
+                                    <span>REC ●</span>
+                                </div>
+                                <div class="cad-view">
+                                    <canvas id="rotate-cube-canvas" style="width:100%; height:100%; display:block;"></canvas>
+                                </div>
+                                <div class="factory-cam-view" id="mini-factory-cam">
+                                    <div class="sys-cam-label">CAM 02: PRODUCTION</div>
+                                    <canvas id="factory-canvas" style="width:100%; height:100%; display:block;"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 2: IoT Networking -->
+                    <div class="carousel-slide">
+                        <div class="card">
+                            <div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 9V5m0 14v-4M8.5 14L5 16m14-2l-3.5-2M8.5 10L5 8m14 2l-3.5 2"/></svg></div>
+                            <h3>IoT Networking</h3>
+                            <p>Deploying decentralized networking nodes across all industrial sectors. Our mesh architectures ensure zero-latency communication between heavy machinery and decision-making cores.</p>
+                            <div class="card-meta"><span>NET_ID: 884-X</span><span>GLOBAL</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 3: AEDI Integration -->
+                    <div class="carousel-slide">
+                        <div class="card">
+                            <div class="card-icon"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/><path d="M9 1v3m6-3v3M23 9h-3m3 6h-3M15 23v-3m-6 3v-3M1 9h3m-3 6h3"/></svg></div>
+                            <h3>AEDI Integration</h3>
+                            <p>Proprietary Artificial Intelligence that doesn't just process data—it evolves. AEDI systems learn from environmental variables to optimize efficiency without human intervention.</p>
+                            <div class="card-meta"><span>VER: 10.1</span><span>ADAPTIVE</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 4: Networking Nodes -->
+                    <div class="carousel-slide">
+                        <div class="card">
+                            <div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></div>
+                            <h3>Networking Nodes</h3>
+                            <p>Physical and virtual bridge points that create the Ionity Living Ecosystem. Scalable from single-factory layouts to city-wide grid management.</p>
+                            <div class="card-meta"><span>HW/SW HYBRID</span><span>SECURE</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 5: Control Systems -->
+                    <div class="carousel-slide">
+                        <div class="card">
+                            <div class="card-icon"><svg viewBox="0 0 24 24"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg></div>
+                            <h3>Control Systems</h3>
+                            <p>The next generation of SCADA. We are redefining oversight with intuitive, immersive control interfaces that turn complex data into actionable vision.</p>
+                            <div class="card-meta"><span>FUTURE_RDY</span><span>IMMERSIVE</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 6: Data Encryption -->
+                    <div class="carousel-slide">
+                        <div class="card">
+                            <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><rect x="9" y="10" width="6" height="6" rx="1"/></svg></div>
+                            <h3>Data Encryption</h3>
+                            <p>Advanced cryptographic protocols ensuring data integrity and confidentiality across all transmission layers. Securing the flow of information from source to destination.</p>
+                            <div class="card-meta"><span>SECURE</span><span>PROTECTED</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 7: Global Improvement -->
+                    <div class="carousel-slide">
+                        <div class="card">
+                            <div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+                            <h3>Global Improvement</h3>
+                            <p>Our core mission: To elevate industrial standards worldwide through intelligent automation and ethical AI deployment.</p>
+                            <div class="card-meta"><span>TARGET: GLOBAL</span><span>ETHICAL</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 8: S2C Solutions -->
+                    <div class="carousel-slide">
+                        <div class="card">
+                            <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 19V5"/><polyline points="5 12 12 5 19 12"/><path d="M2 19h20"/></svg></div>
+                            <h3>S2C Solutions</h3>
+                            <p>Real-time Sensor-to-Cloud architecture combining ruggedized hardware with AEDI software logic. We deliver instant telemetry fidelity from the physical edge directly to the digital core.</p>
+                            <div class="card-meta"><span>SENSOR | HW | SW</span><span>REALTIME</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 9: E2E Security -->
+                    <div class="carousel-slide">
+                        <div class="card">
+                            <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg></div>
+                            <h3>E2E Security</h3>
+                            <p>Complete End-to-End encryption across the digital triad: Networking, Data, and Storage. We deploy military-grade cryptographic standards to ensure absolute sovereignty from the edge sensor to the archival core.</p>
+                            <div class="card-meta"><span>NET | DATA | STORE</span><span>ENCRYPTED</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 10: Power & Production -->
+                    <div class="carousel-slide">
+                        <div class="card">
+                            <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+                            <h3>Power & Production</h3>
+                            <p>Comprehensive power monitoring and production improvements tailored for F-IT B2B and B2C sectors. Optimizing energy usage and operational management.</p>
+                            <div class="card-meta"><span>B2B | B2C</span><span>EFFICIENCY</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 11: Hardware & SDKs -->
+                    <div class="carousel-slide">
+                        <div class="card">
+                            <div class="card-icon"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+                            <h3>Hardware & SDKs</h3>
+                            <p>In-house hardware sales, specialized integration software, and Firmware SDK development. providing the tools to build and extend the ecosystem.</p>
+                            <div class="card-meta"><span>SALES</span><span>DEV</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 12: OEE -->
+                    <div class="carousel-slide">
+                        <div class="card">
+                            <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg></div>
+                            <h3>Overall Equipment Effectiveness</h3>
+                            <p>Automation reducing labor costs and enhanced productivity, Resource optimization.</p>
+                            <div class="card-meta"><span>METRICS</span><span>OPTIMIZATION</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 13: Internet of Everything -->
+                    <div class="carousel-slide">
+                        <div class="card">
+                            <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+                            <h3>Internet of Everything</h3>
+                            <p>A networked connection of people, process, data, and things. Turning information into actions that create new capabilities.</p>
+                            <div class="card-meta"><span>NETWORK</span><span>CONNECTIVITY</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 14: Energy Management System -->
+                    <div class="carousel-slide">
+                        <div class="card">
+                            <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+                            <h3>Energy Management System</h3>
+                            <p>Intelligent monitoring and optimization of energy consumption across industrial infrastructure.</p>
+                            <div class="card-meta"><span>ENERGY</span><span>MANAGEMENT</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 15: Industrial IoT -->
+                    <div class="carousel-slide">
+                        <div class="card">
+                            <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+                            <h3>Industrial IoT</h3>
+                            <p>The interconnected sensors, instruments, and other devices networked together with industrial applications.</p>
+                            <div class="card-meta"><span>INDUSTRIAL</span><span>SMART</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 16: Industrial Security -->
+                    <div class="carousel-slide">
+                        <div class="card">
+                            <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+                            <h3>Industrial Security</h3>
+                            <p>The interconnected sensors, instruments, and other devices networked together with industrial applications.</p>
+                            <div class="card-meta"><span>SECURITY</span><span>ENCRYPTED</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 17: Production Cost reduction | RoI -->
+                    <div class="carousel-slide">
+                        <div class="card">
+                            <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+                            <h3>Production Cost reduction | RoI</h3>
+                            <p>Optimization of resource allocation and process efficiency to maximize Return on Investment and minimize operational overhead.</p>
+                            <div class="card-meta"><span>FINANCE</span><span>EFFICIENT</span></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <button class="carousel-btn next" onclick="moveCarousel(1)">&#10095;</button>
+        </div>
+
+        <script>
+            let currentIndex = 0;
+            
+            function moveCarousel(direction) {
+                const track = document.getElementById('systemCarouselTrack');
+                // Use Array.from to get a real array
+                const slides = Array.from(document.querySelectorAll('.carousel-slide'));
+                const totalSlides = slides.length;
+                
+                // Calculate new index
+                currentIndex += direction;
+                
+                // Boundaries
+                if (currentIndex < 0) currentIndex = 0;
+                if (currentIndex > totalSlides - 1) currentIndex = totalSlides - 1;
+                
+                // Calculate position based on the ACTUAL widths of previous slides
+                // This fixes the "broken" scroll when slides have different widths
+                let moveAmount = 0;
+                const gap = 32; // 2rem matches CSS
+                
+                for (let i = 0; i < currentIndex; i++) {
+                    moveAmount += slides[i].offsetWidth + gap;
+                }
+                
+                track.style.transform = `translateX(-${moveAmount}px)`;
+                
+                // Update active class for scaling effect
+                slides.forEach((slide, index) => {
+                    if (index === currentIndex) {
+                        slide.classList.add('active');
+                        // Ensure opacity is full for active
+                        slide.style.opacity = '1'; 
+                    } else {
+                        slide.classList.remove('active');
+                        slide.style.opacity = '0.5';
+                    }
+                });
+            }
+            
+            // Initial call to set active
+            window.addEventListener('load', () => {
+                moveCarousel(0);
+            });
+        </script>
+
+        <!-- GEN-AI IMPACT SECTION -->
+        <div class="gen-ai-section">
+            <div class="cad-corner cad-corner-tl"></div>
+            <div class="cad-corner cad-corner-tr"></div>
+            <div class="cad-corner cad-corner-bl"></div>
+            <div class="cad-corner cad-corner-br"></div>
+            
+            <h2>GEN-AI IMPACT</h2>
+            
+            <div class="gen-ai-content">
+                <p>
+                    Building the Best while creating the next. We ensure the tomorrow is possible today.  We are Gen-Ai Ready in Cloud, on Edge and in all enviroments and iundustries. Ai-M
+                    Artifical Intelegence Monitoring.
+                </p>
+            </div>
+        </div>
+
+        <!-- FACTORY LAYOUT SECTION -->
+        <div class="factory-section">
+            <div class="factory-header">
+                <h2>Automated Production Line</h2>
+                <div style="color: var(--text-muted); font-size: 0.9rem; letter-spacing: 2px;">LIVE MONITORING: SECTOR 7</div>
+                <div style="margin-top: 0.5rem; font-style: italic; color: var(--text-color);">If its moving we can enhance it.</div>
+            </div>
+            
+            <div class="factory-track-container">
+                <div class="factory-overlay">REMOTE VIEWER: ACTIVE</div>
+                
+                <div class="factory-track">
+                    <!-- Machine A -->
+                    <div class="machine-unit">
+                        <div class="machine-status-light"><div class="m-light active"></div><div class="m-light"></div></div>
+                        <div class="machine-head"></div>
+                        <div class="machine-arm" style="animation-delay: 0s;"></div>
+                        <div class="machine-label">UNIT A-01 [ASSEMBLY]</div>
+                        <div class="machine-base"></div>
+                    </div>
+                    <!-- Machine B -->
+                    <div class="machine-unit">
+                         <div class="machine-status-light"><div class="m-light warn"></div><div class="m-light"></div></div>
+                        <div class="machine-head" style="width: 60%;"></div>
+                        <div class="machine-arm" style="height: 60px; animation-delay: 0.5s;"></div>
+                        <div class="machine-label">UNIT B-04 [WELDING]</div>
+                        <div class="machine-base"></div>
+                    </div>
+                    <!-- Machine C -->
+                    <div class="machine-unit">
+                         <div class="machine-status-light"><div class="m-light active"></div><div class="m-light active"></div></div>
+                        <div class="machine-head" style="background: rgba(255, 255, 255, 0.1);"></div>
+                        <div class="machine-arm" style="animation-delay: 1.2s; transform-origin: center;"></div>
+                        <div class="machine-label">UNIT C-09 [QC SCAN]</div>
+                        <div class="machine-base"></div>
+                    </div>
+                     <!-- Machine D -->
+                    <div class="machine-unit">
+                        <div class="machine-status-light"><div class="m-light active"></div><div class="m-light"></div></div>
+                        <div class="machine-head"></div>
+                        <div class="machine-arm" style="animation-delay: 2.0s;"></div>
+                        <div class="machine-label">UNIT D-12 [PACKING]</div>
+                        <div class="machine-base"></div>
+                    </div>
+                     <!-- Machine E -->
+                    <div class="machine-unit">
+                        <div class="machine-status-light"><div class="m-light active"></div><div class="m-light active"></div></div>
+                        <div class="machine-head"></div>
+                        <div class="machine-arm" style="animation-duration: 1s;"></div>
+                        <div class="machine-label">UNIT E-02 [LOGISTICS]</div>
+                        <div class="machine-base"></div>
+                    </div>
+                    <!-- Repeat for endless feel -->
+                    <div class="machine-unit">
+                        <div class="machine-status-light"><div class="m-light active"></div><div class="m-light"></div></div>
+                        <div class="machine-head"></div>
+                        <div class="machine-arm" style="animation-delay: 0.3s;"></div>
+                        <div class="machine-label">UNIT A-02 [ASSEMBLY]</div>
+                        <div class="machine-base"></div>
+                    </div>
+                </div>
+                
+                <!-- Floor grid effect overlay -->
+                <div style="position: absolute; bottom: 0; left: 0; width: 100%; height: 2px; background: var(--accent-cyan); box-shadow: 0 0 10px var(--accent-cyan);"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <style>
+            @keyframes footerGlow {
+                0% { text-shadow: 0 0 2px rgba(255,255,255,0.1); }
+                100% { text-shadow: 0 0 8px rgba(0, 210, 255, 0.3); }
+            }
+            .footer-content {
+                animation: footerGlow 3s infinite alternate;
+            }
+            .footer-logo-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 2rem;
+                width: 100%;
+            }
+            .footer-logo {
+                height: 80px;
+                width: auto;
+                opacity: 0.9;
+                transition: all 0.3s ease;
+            }
+            .footer-logo:hover {
+                opacity: 1;
+                filter: drop-shadow(0 0 15px rgba(0, 210, 255, 0.4));
+            }
+        </style>
+        <div class="footer-logo-container">
+            <img src="assets/images/ionity-logo-edited.png" alt="Ionity Logo" class="footer-logo">
+        </div>
+        <div class="footer-content" style="opacity: 0.70; line-height: 2;">
+            <div>Ionity™ (Pty) Ltd 2025-2026 | Creative Commons BY_NC_SA 4.0 | Made with AEDI™ | Author: Antwerp Designs</div>
+            <div>South Africa Centurion 0157 | Policy AED 986 AED | License AED 900 | Ionity™ IoT-Ai-DAQ-PdM-CMS-F-iT Hardware, Software Integrations, ALL RIGHTS RESERVED</div>
+            <div>
+                <a href="tel:+27646999877">+27 646 999 877</a> 
+                <a href="mailto:ai@ionity.today">ai@ionity.today</a> &nbsp;|&nbsp; 
+                Author Profile <a href="https://www.ionity.world" target="_blank">www.ionity.world</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- THREE JS ECOSYSTEM -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+        import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+        import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+        import { FilmPass } from 'three/addons/postprocessing/FilmPass.js';
+
+        // --- CONFIGURATION ---
+        // Increased NODE_COUNT for "More Mesh"
+        const NODE_COUNT = 130; 
+        const CONNECTION_DIST = 260;
+        const DIAMOND_COUNT = 15;
+        const CLOUD_COUNT = 25;
+
+        // --- SCENE SETUP ---
+        const container = document.getElementById('canvas-container');
+        const scene = new THREE.Scene();
+        scene.fog = new THREE.FogExp2(0x020204, 0.0015);
+
+        const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 5000);
+        camera.position.z = 1000;
+
+        const renderer = new THREE.WebGLRenderer({ 
+            antialias: false, 
+            powerPreference: "high-performance",
+            alpha: true 
+        });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        // CHANGED: Increased pixel ratio cap to 2.0 for higher density/realism
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2.0));
+        // CHANGED: Added Tone Mapping and Exposure for brightness
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        renderer.toneMappingExposure = 1.2; 
+        container.appendChild(renderer.domElement);
+
+        // --- POST PROCESSING ---
+        const renderScene = new RenderPass(scene, camera);
+        const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.5, 0.4, 0.85);
+        bloomPass.threshold = 0.2;
+        // CHANGED: Increased Bloom Strength slightly to match brightness
+        bloomPass.strength = 1.0; 
+        bloomPass.radius = 0.5;
+
+        const filmPass = new FilmPass(0.35, 0.025, 648, false);
+
+        const composer = new EffectComposer(renderer);
+        composer.addPass(renderScene);
+        composer.addPass(bloomPass);
+        composer.addPass(filmPass);
+
+        // --- LIGHTING ---
+        // CHANGED: Increased Ambient intensity
+        const ambient = new THREE.AmbientLight(0x333344, 1.1);
+        scene.add(ambient);
+
+        const bottomLight = new THREE.DirectionalLight(0x0044ff, 1.0);
+        bottomLight.position.set(0, -500, 200);
+        scene.add(bottomLight);
+
+        // CHANGED: Added "Glow from Darkness" - Deep Volumetric PointLight
+        const deepGlow = new THREE.PointLight(0x0044ff, 2.0, 1000, 1.5);
+        deepGlow.position.set(0, -200, 200);
+        scene.add(deepGlow);
+
+        // --- ASSETS ---
+        function createCloudTexture() {
+            const canvas = document.createElement('canvas');
+            canvas.width = 256; canvas.height = 256;
+            const ctx = canvas.getContext('2d');
+            const grad = ctx.createRadialGradient(128, 128, 0, 128, 128, 128);
+            grad.addColorStop(0, 'rgba(255, 255, 255, 0.5)');
+            grad.addColorStop(0.3, 'rgba(220, 230, 255, 0.2)');
+            grad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+            ctx.fillStyle = grad;
+            ctx.fillRect(0, 0, 256, 256);
+            return new THREE.CanvasTexture(canvas);
+        }
+
+        // Clouds
+        const cloudParticles = [];
+        const cloudGeo = new THREE.PlaneGeometry(800, 800);
+        const cloudMat = new THREE.MeshLambertMaterial({
+            map: createCloudTexture(),
+            transparent: true,
+            opacity: 0.1,
+            depthWrite: false,
+            blending: THREE.AdditiveBlending,
+            side: THREE.DoubleSide
+        });
+
+        for(let i=0; i<CLOUD_COUNT; i++) {
+            const cloud = new THREE.Mesh(cloudGeo, cloudMat);
+            cloud.position.set(
+                Math.random() * 2000 - 1000,
+                Math.random() * 800 - 400,
+                Math.random() * 2000 - 1500
+            );
+            cloud.rotation.z = Math.random() * Math.PI;
+            scene.add(cloud);
+            // Added drift property for wind
+            cloudParticles.push({ 
+                mesh: cloud, 
+                speed: (Math.random() - 0.5) * 0.0005,
+                drift: (Math.random() * 0.2) + 0.1 
+            });
+        }
+
+        // Diamonds
+        const diamonds = [];
+        const diamondGeo = new THREE.OctahedronGeometry(15, 0);
+        const diamondMat = new THREE.MeshPhysicalMaterial({
+            color: 0xffffff, metalness: 0.1, roughness: 0.0, transmission: 0.9,
+            emissive: 0x00d2ff, emissiveIntensity: 0.1
+        });
+
+        for(let i=0; i<DIAMOND_COUNT; i++) {
+            const diamond = new THREE.Mesh(diamondGeo, diamondMat);
+            let xPos = (Math.random() * 800) + 600; 
+            if(Math.random() > 0.5) xPos *= -1; 
+            diamond.position.set(xPos, (Math.random() * 1000) - 500, (Math.random() * 800) - 200);
+            scene.add(diamond);
+            diamonds.push({
+                mesh: diamond,
+                rotSpeedX: (Math.random() - 0.5) * 0.01,
+                rotSpeedY: (Math.random() - 0.5) * 0.01,
+                driftSpeed: (Math.random() * 0.1) + 0.02,
+                baseX: xPos // Store original X for wind offset
+            });
+        }
+
+        // --- GEN-AI CUBE (MOVED TO SEPARATE CONTAINER) ---
+        const aiGroup = new THREE.Group();
+        // Positioned to the right side and larger as requested
+        // Moved right (~1cm equivalent shift)
+        aiGroup.position.set(550, 200, 100); 
+        // scene.add(aiGroup); // DISABLED - Moved to dedicated container script
+
+        const cubeGeo = new THREE.BoxGeometry(300, 300, 300); // Much Larger
+        const cubeMat = new THREE.MeshBasicMaterial({ 
+            color: 0x00d2ff, 
+            wireframe: true,
+            transparent: true,
+            opacity: 0.8 // Increased Visibility
+        });
+        const aiCube = new THREE.Mesh(cubeGeo, cubeMat);
+        aiGroup.add(aiCube);
+
+        // --- 3D INTERACTIVE MONITOR ---
+        function createMonitor() {
+            const monitorGroup = new THREE.Group();
+            
+            // 1. Hover Frame (Holographic Box)
+            const frameGeo = new THREE.BoxGeometry(400, 400, 400);
+            const frameEdges = new THREE.EdgesGeometry(frameGeo);
+            const frameMat = new THREE.LineBasicMaterial({
+                color: 0x00d2ff,
+                transparent: true,
+                opacity: 0.15,
+                blending: THREE.AdditiveBlending
+            });
+            const frame = new THREE.LineSegments(frameEdges, frameMat);
+            monitorGroup.add(frame);
+
+            // 2. Base Plate (Tech Grille)
+            const baseGeo = new THREE.PlaneGeometry(400, 400);
+            const baseMat = new THREE.MeshBasicMaterial({
+                color: 0x001122,
+                transparent: true,
+                opacity: 0.4,
+                side: THREE.DoubleSide
+            });
+            const base = new THREE.Mesh(baseGeo, baseMat);
+            base.rotation.x = Math.PI / 2;
+            base.position.y = -200;
+            monitorGroup.add(base);
+
+            // 3. Header Label "IONITY GUI"
+            const canvas = document.createElement('canvas');
+            canvas.width = 512;
+            canvas.height = 128;
+            const ctx = canvas.getContext('2d');
+            
+            // Background Strip
+            ctx.fillStyle = "rgba(0, 50, 80, 0.4)";
+            ctx.fillRect(0, 0, 512, 128);
+            
+            // Text
+            ctx.font = "800 60px Arial"; // Bold
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            ctx.fillStyle = "#888888"; // Darker text
+            ctx.shadowColor = "#004466"; // Darker shadow
+            ctx.shadowBlur = 5;
+            ctx.fillText("IONITY GUI", 256, 64);
+            
+            // Add grid/lines under text
+            ctx.strokeStyle = "#00d2ff";
+            ctx.lineWidth = 4;
+            ctx.beginPath();
+            ctx.moveTo(0, 120);
+            ctx.lineTo(512, 120);
+            ctx.stroke();
+
+            const labelTex = new THREE.CanvasTexture(canvas);
+            const labelGeo = new THREE.PlaneGeometry(300, 75);
+            const labelMat = new THREE.MeshBasicMaterial({
+                map: labelTex,
+                transparent: true,
+                side: THREE.DoubleSide,
+                blending: THREE.AdditiveBlending
+            });
+            const label = new THREE.Mesh(labelGeo, labelMat);
+            label.position.set(0, 240, 0); // Top
+            // Face the camera roughly (it's in a group that rotates with aiGroup? No aiGroup moves position, not rotates)
+            // But we want it visible from front.
+            monitorGroup.add(label);
+
+            // 4. Corner Markers (Techy bits)
+            const markerGeo = new THREE.BoxGeometry(20, 20, 20);
+            const markerMat = new THREE.MeshBasicMaterial({ color: 0x00d2ff });
+
+            const corners = [
+                {x: -200, y: 200, z: 200}, {x: 200, y: 200, z: 200},
+                {x: -200, y: -200, z: 200}, {x: 200, y: -200, z: 200} // Front corners only
+            ];
+            corners.forEach(pos => {
+                const m = new THREE.Mesh(markerGeo, markerMat);
+                m.position.set(pos.x, pos.y, pos.z);
+                monitorGroup.add(m);
+            });
+
+            return monitorGroup;
+        }
+
+        const monitor = createMonitor();
+        aiGroup.add(monitor);
+
+        // --- CUBE LIGHTNING FX ---
+        const lightningBolts = [];
+        const lightningMat = new THREE.LineBasicMaterial({
+            color: 0x2979ff, // Blue
+            transparent: true,
+            opacity: 0.9,
+            blending: THREE.AdditiveBlending
+        });
+
+        // Get unique vertices for endpoints
+        const cubeVertices = [];
+        {
+            const posAttr = cubeGeo.attributes.position;
+            const tempVec = new THREE.Vector3();
+            // BoxGeometry has 24 vertices (4 per face), we just want unique corners
+            // Simple way: push all, select random. Or define 8 corners manually.
+            // Let's define the 8 corners relative to size 300
+            const halfSize = 150;
+            const corners = [
+                [-1, -1, -1], [1, -1, -1], [1, 1, -1], [-1, 1, -1],
+                [-1, -1, 1], [1, -1, 1], [1, 1, 1], [-1, 1, 1]
+            ];
+            corners.forEach(c => cubeVertices.push(new THREE.Vector3(c[0]*halfSize, c[1]*halfSize, c[2]*halfSize)));
+        }
+
+        function createLightning() {
+            if(lightningBolts.length > 4) return; // Limit active bolts
+
+            const startIdx = Math.floor(Math.random() * cubeVertices.length);
+            let endIdx = Math.floor(Math.random() * cubeVertices.length);
+            while(startIdx === endIdx) endIdx = Math.floor(Math.random() * cubeVertices.length);
+
+            const start = cubeVertices[startIdx];
+            const end = cubeVertices[endIdx];
+            
+            const points = [];
+            points.push(start);
+            
+            // Jitter points between
+            const segments = 6;
+            for(let i=1; i<segments; i++) {
+                const t = i/segments;
+                const jitter = 15;
+                const pos = new THREE.Vector3().lerpVectors(start, end, t);
+                pos.x += (Math.random() - 0.5) * jitter;
+                pos.y += (Math.random() - 0.5) * jitter;
+                pos.z += (Math.random() - 0.5) * jitter;
+                points.push(pos);
+            }
+            points.push(end);
+
+            const geo = new THREE.BufferGeometry().setFromPoints(points);
+            const bolt = new THREE.Line(geo, lightningMat.clone()); // Clone mat to fade individually
+            aiGroup.add(bolt);
+            
+            lightningBolts.push({
+                mesh: bolt,
+                life: 1.0
+            });
+        }
+
+        const coreGeo = new THREE.IcosahedronGeometry(100, 1); // Larger Core
+        const coreMat = new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true, transparent:true, opacity: 0.8 });
+        const aiCore = new THREE.Mesh(coreGeo, coreMat);
+        aiGroup.add(aiCore);
+
+        // Tag Removed as requested
+
+        // Nodes & Debris (Antigravity System)
+        const nodes = []; 
+        const debris = []; // New Anti-Gravity Particles
+        const DEBRIS_COUNT = 200;
+
+        const sphereGeo = new THREE.SphereGeometry(3.5, 16, 16);
+        const sphereMat = new THREE.MeshPhysicalMaterial({
+            color: 0x00d2ff,
+            metalness: 0.1, roughness: 0.2, transmission: 0.6, 
+            emissive: 0x000033, emissiveIntensity: 0.2,
+            transparent: true, opacity: 0.8
+        });
+        const nodeMesh = new THREE.InstancedMesh(sphereGeo, sphereMat, NODE_COUNT);
+        nodeMesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
+        scene.add(nodeMesh);
+
+        const dummy = new THREE.Object3D();
+        const color = new THREE.Color();
+
+        for(let i=0; i<NODE_COUNT; i++) {
+            const x = Math.random() * 1800 - 900;
+            const y = Math.random() * 1000 - 500;
+            const z = Math.random() * 1200 - 600;
+            nodes.push({
+                x: x, y: y, z: z, 
+                currX: x, currY: y, currZ: z, 
+                // Reduced random velocity slightly to let "wind" dominate subtly
+                vx: (Math.random() - 0.5) * 0.1,
+                vy: (Math.random() - 0.5) * 0.1,
+                vz: (Math.random() - 0.5) * 0.1,
+                pulse: 0,
+                // Individual wind characteristics
+                windOffset: Math.random() * Math.PI * 2,
+                windSpeed: 0.2 + Math.random() * 0.3
+            });
+            dummy.position.set(x, y, z);
+            dummy.updateMatrix();
+            nodeMesh.setMatrixAt(i, dummy.matrix);
+            nodeMesh.setColorAt(i, new THREE.Color(0x00d2ff));
+        }
+
+        const lineGeo = new THREE.BufferGeometry();
+        // Slightly increased opacity for "More Mesh" visibility
+        const lineMat = new THREE.LineBasicMaterial({
+            vertexColors: true,
+            transparent: true,
+            opacity: 0.25, 
+            blending: THREE.AdditiveBlending
+        });
+        const linesMesh = new THREE.LineSegments(lineGeo, lineMat);
+        scene.add(linesMesh);
+
+        // --- DEBRIS (ANTIGRAVITY) SETUP ---
+        const debrisGeo = new THREE.TetrahedronGeometry(4, 0); // Visible Shards
+        const debrisMat = new THREE.MeshBasicMaterial({ 
+            color: 0x88ccff, 
+            wireframe: true,
+            transparent: true, 
+            opacity: 0.5 
+        });
+        const debrisMesh = new THREE.InstancedMesh(debrisGeo, debrisMat, DEBRIS_COUNT);
+        debrisMesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
+        scene.add(debrisMesh);
+
+        for(let i=0; i<DEBRIS_COUNT; i++) {
+             const x = Math.random() * 2500 - 1250;
+             const y = Math.random() * 1500 - 750;
+             const z = Math.random() * 1500 - 500;
+             debris.push({
+                 x, y, z,
+                 vx: (Math.random() - 0.5) * 0.2, // Drift velocity
+                 vy: (Math.random() - 0.5) * 0.2,
+                 vz: (Math.random() - 0.5) * 0.2,
+                 rotX: (Math.random() - 0.5) * 0.02,
+                 rotY: (Math.random() - 0.5) * 0.02,
+                 scale: 0.5 + Math.random() * 1.5
+             });
+             dummy.position.set(x,y,z);
+             dummy.updateMatrix();
+             debrisMesh.setMatrixAt(i, dummy.matrix);
+        }
+
+        // Interaction
+        const mouse = new THREE.Vector2();
+        const raycaster = new THREE.Raycaster();
+        
+        document.addEventListener('mousemove', (e) => {
+            mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+            mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+        });
+
+        // Animation
+        function animate() {
+            const time = Date.now() * 0.001; // Global time for wind
+
+            // Camera subtle movement (Parallax)
+            camera.position.x += (mouse.x * 20 - camera.position.x) * 0.01;
+            camera.position.y += (mouse.y * 20 - camera.position.y) * 0.01;
+            camera.lookAt(0,0,0);
+
+            // --- CUBE ANIMATION & INTERACTION ---
+            aiCube.rotation.x += 0.004;
+            aiCube.rotation.y += 0.008;
+            aiCore.rotation.y -= 0.01;
+            aiCore.rotation.z += 0.005;
+
+            // Float effect
+            aiGroup.position.y = 0 + Math.sin(time) * 10;
+
+            // --- ANIMATE LIGHTNING ---
+            if(Math.random() < 0.08) createLightning(); // Chance to spawn
+
+            for(let i = lightningBolts.length - 1; i >= 0; i--) {
+                const b = lightningBolts[i];
+                b.life -= 0.1; 
+                b.mesh.material.opacity = b.life;
+                if(b.life <= 0) {
+                    aiGroup.remove(b.mesh);
+                    b.mesh.geometry.dispose();
+                    b.mesh.material.dispose(); // important for cloned materials
+                    lightningBolts.splice(i, 1);
+                }
+            }
+
+            raycaster.setFromCamera(mouse, camera);
+            const intersects = raycaster.intersectObject(aiCube);
+
+            if(intersects.length > 0) {
+                 aiCube.rotation.x += 0.05; // Spin faster on hover
+                 aiCube.rotation.y += 0.05; 
+                 aiCube.material.color.setHex(0xffffff);
+                 aiCube.material.opacity = 0.9;
+                 document.body.style.cursor = "pointer";
+            } else {
+                 aiCube.material.color.setHex(0x00d2ff);
+                 aiCube.material.opacity = 0.8;
+                 document.body.style.cursor = "default";
+            }
+
+            // Clouds - Digital Wind
+            cloudParticles.forEach(c => {
+                c.mesh.rotation.z += c.speed;
+                // Drifting wind effect
+                c.mesh.position.x += Math.sin(time * 0.2 + c.mesh.position.y * 0.001) * c.drift;
+            });
+
+            // Diamonds - Floating in wind
+            diamonds.forEach(d => {
+                d.mesh.rotation.x += d.rotSpeedX;
+                d.mesh.rotation.y += d.rotSpeedY;
+                d.mesh.position.y += d.driftSpeed;
+                
+                // Wind sway
+                d.mesh.position.x = d.baseX + Math.sin(time * 0.5 + d.mesh.position.y * 0.005) * 20;
+
+                if(d.mesh.position.y > 600) d.mesh.position.y = -600;
+            });
+
+            // --- DEBRIS (ANTIGRAVITY) LOOP ---
+            for(let i=0; i<DEBRIS_COUNT; i++) {
+                const d = debris[i];
+                
+                // Mouse Interaction (Antigravity Pusher)
+                // Project mouse to World Plane roughly at z=0
+                const mx = mouse.x * 1200; 
+                const my = mouse.y * 800;
+                
+                const dx = d.x - mx;
+                const dy = d.y - my;
+                const dist = Math.sqrt(dx*dx + dy*dy);
+                
+                if(dist < 500) {
+                    const force = (500 - dist) / 500;
+                    // Push away
+                    d.vx += dx * force * 0.005; 
+                    d.vy += dy * force * 0.005;
+                }
+
+                // Apply Velocity
+                d.x += d.vx;
+                d.y += d.vy;
+                d.z += d.vz;
+                
+                // Rotate Debris
+                d.rotX += 0.01;
+                d.rotY += 0.01;
+
+                // Friction / Stability
+                d.vx *= 0.96;
+                d.vy *= 0.96;
+                // Gentle return force
+                d.vx -= d.x * 0.00001;
+                d.vy -= d.y * 0.00001;
+
+                // Update Dummy
+                dummy.position.set(d.x, d.y, d.z);
+                dummy.rotation.set(d.rotX + time, d.rotY + time, 0); 
+                dummy.scale.setScalar(d.scale);
+                dummy.updateMatrix();
+                debrisMesh.setMatrixAt(i, dummy.matrix);
+            }
+            debrisMesh.instanceMatrix.needsUpdate = true;
+
+
+            // Nodes & Lines
+            const linePositions = [];
+            const lineColors = [];
+
+            if(Math.random() < 0.02) {
+                const luckyNode = Math.floor(Math.random() * NODE_COUNT);
+                nodes[luckyNode].pulse = 1.0;
+            }
+
+            for(let i=0; i<NODE_COUNT; i++) {
+                const n = nodes[i];
+                n.pulse *= 0.95;
+
+                // --- DIGITAL WIND LOGIC ---
+                // We add a sine wave offset to the movement to create a "blowing" feel
+                const windX = Math.sin(time * 0.5 + n.currY * 0.002 + n.windOffset) * n.windSpeed;
+                const windY = Math.cos(time * 0.3 + n.currX * 0.002) * (n.windSpeed * 0.5);
+
+                n.currX += n.vx + windX;
+                n.currY += n.vy + windY;
+                n.currZ += n.vz;
+
+                // Bounds check (bounce with dampening)
+                if(Math.abs(n.currX) > 1000) { n.vx *= -1; n.currX = Math.sign(n.currX) * 999; }
+                if(Math.abs(n.currY) > 600) { n.vy *= -1; n.currY = Math.sign(n.currY) * 599; }
+                if(Math.abs(n.currZ) > 800) { n.vz *= -1; n.currZ = Math.sign(n.currZ) * 799; }
+
+                dummy.position.set(n.currX, n.currY, n.currZ);
+                const scale = 1 + n.pulse * 0.5;
+                dummy.scale.set(scale, scale, scale);
+                dummy.rotation.set(0,0,0); // IMPORTANT: Reset rotation so balls don't spin weirdly
+                dummy.updateMatrix();
+                nodeMesh.setMatrixAt(i, dummy.matrix);
+                
+                color.setHSL(0.55, 1.0, 0.5 + n.pulse * 0.5);
+                nodeMesh.setColorAt(i, color);
+
+                // Connections
+                for(let j=i+1; j<NODE_COUNT; j++) {
+                    const n2 = nodes[j];
+                    const distSq = (n.currX-n2.currX)**2 + (n.currY-n2.currY)**2 + (n.currZ-n2.currZ)**2;
+                    if(distSq < CONNECTION_DIST * CONNECTION_DIST) {
+                        linePositions.push(n.currX, n.currY, n.currZ);
+                        linePositions.push(n2.currX, n2.currY, n2.currZ);
+                        const intensity = Math.max(n.pulse, n2.pulse) * 0.8;
+                        const r = 0.1 + intensity;
+                        const g = 0.2 + intensity;
+                        const b = 0.5 + intensity;
+                        lineColors.push(r, g, b, r, g, b);
+                    }
+                }
+            }
+            
+            nodeMesh.instanceMatrix.needsUpdate = true;
+            nodeMesh.instanceColor.needsUpdate = true;
+            lineGeo.setAttribute('position', new THREE.Float32BufferAttribute(linePositions, 3));
+            lineGeo.setAttribute('color', new THREE.Float32BufferAttribute(lineColors, 3));
+
+            // Animate Glow (Deep ocean pulse)
+            const glowTime = Date.now() * 0.001;
+            deepGlow.intensity = 2.0 + Math.sin(glowTime) * 0.5;
+            deepGlow.position.y = -200 + Math.cos(glowTime * 0.5) * 50;
+
+            composer.render();
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            composer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        animate();
+    </script>
+    
+    <!-- UI Logic Script (Scroll Animation & Glitch Effect & Mobile Menu) -->
+    <script>
+        // 1. Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileDropdown');
+            menu.classList.toggle('open');
+        }
+
+        // 2. Scroll Reveal Animation
+        document.addEventListener("DOMContentLoaded", () => {
+            const cards = document.querySelectorAll('.card');
+            
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: "0px"
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        // Add staggering delay based on index for nicer effect
+                        setTimeout(() => {
+                            entry.target.classList.add('visible');
+                            // Trigger temporary flash glow
+                            const h3 = entry.target.querySelector('h3');
+                            if(h3) {
+                                h3.style.animation = "flashGlow 0.8s ease-out";
+                                setTimeout(() => h3.style.animation = "", 800);
+                            }
+                        }, index * 100); // 100ms delay per card in view
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            cards.forEach(card => observer.observe(card));
+        });
+
+        // 3. Glitch / Decode Text Effect
+        // CHANGED: Use block characters for "pixel" look to create structure
+        const letters = "██▓▓▒▒░░▖▗▘▙▚▛▜▝▞▟"; 
+
+        function runGlitch(element) {
+            // Cooldown Check
+            if (element.dataset.isCoolingDown === "true") return;
+
+            // Set Cooldown
+            element.dataset.isCoolingDown = "true";
+            setTimeout(() => {
+                element.dataset.isCoolingDown = "false";
+            }, 2000); // 2 second safety lock
+
+            let iteration = 0;
+            const originalText = element.dataset.value;
+            // Prevent multiple intervals running
+            if(element.interval) clearInterval(element.interval);
+
+            element.interval = setInterval(() => {
+                element.innerHTML = originalText 
+                    .split("")
+                    .map((letter, index) => {
+                        if(index < iteration) {
+                            return originalText[index];
+                        }
+                        // Keep spaces or line breaks intact
+                        if(originalText[index] === ' ' || originalText[index] === '<' || originalText[index] === '>') return originalText[index];
+                        
+                        // "Less chaos": The block characters creates a digital reconstruction look
+                        return letters[Math.floor(Math.random() * letters.length)];
+                    })
+                    .join("");
+
+                if(iteration >= originalText.length){
+                    clearInterval(element.interval);
+                    element.innerHTML = originalText; // Ensure clean final state
+                }
+
+                // Faster progress: 1 means immediate resolution per frame, making it snappier
+                iteration += 1; 
+            }, 30); // Faster frame rate (30ms) for quicker effect
+        }
+
+        // Apply Glitch listeners to H1, H3, Logo, and Sub-header
+        const glitchTargets = document.querySelectorAll('h1, h3, .logo, .hero-sub');
+        
+        glitchTargets.forEach(target => {
+            target.addEventListener('mouseover', () => runGlitch(target));
+            
+            // Optional: Run once on load for main header for effect
+            if(target.tagName === 'H1') {
+                setTimeout(() => runGlitch(target), 500);
+            }
+        });
+
+    </script>
+    <script src="assets/js/script.js" defer></script>
+    <script src="assets/js/audio-manager.js"></script>
+    <!-- Monitor & UI Logic -->
+    <script>
+        // --- 3D MONITOR DATA SIMULATION ---
+        function updateMonitorData() {
+            // CPU
+            const cpu = document.getElementById('mon-cpu');
+            if(cpu) cpu.innerText = Math.floor(Math.random() * (45 - 20) + 20) + "%";
+            
+            // NET
+            const net = document.getElementById('mon-net');
+            if(net) net.innerText = (1.0 + Math.random() * 0.5).toFixed(2) + " TB/s";
+
+            // LOG
+            const log = document.getElementById('mon-log');
+            if(log && Math.random() > 0.7) {
+                const logs = [
+                    "> PACKET RECEIVED ok",
+                    "> SYNCING NODE...",
+                    "> OPTIMIZING ROUTE",
+                    "> PING: 12ms",
+                    "> SECURE CHANNEL: ACTIVE"
+                ];
+                const newLog = logs[Math.floor(Math.random() * logs.length)];
+                log.innerHTML = `> ${newLog}<br>` + log.innerHTML;
+                if(log.innerHTML.length > 200) log.innerHTML = log.innerHTML.substring(0, 200);
+            }
+        }
+        setInterval(updateMonitorData, 2000); // Update every 2s
+
+        // Generate Bars
+        const barContainer = document.getElementById('mon-bars');
+        if(barContainer) {
+            for(let i=0; i<30; i++) {
+                const bar = document.createElement('div');
+                bar.className = 'mon-bar';
+                bar.style.height = Math.random() * 100 + "%";
+                bar.style.width = "4px";
+                bar.style.marginRight = "2px";
+                bar.style.animation = `barGraph ${1 + Math.random()}s infinite ease-in-out`;
+                // custom delay
+
+        // Generate Line Graph
+        const lineCanvas = document.getElementById('mon-line-canvas');
+        if(lineCanvas) {
+            const ctx = lineCanvas.getContext('2d');
+            const dataPoints = new Array(50).fill(0.5); // Start flat
+            
+            function drawLineGraph() {
+                // Update Data with noise
+                dataPoints.shift();
+                // Create erratic movement
+                let nextVal = dataPoints[dataPoints.length-1] + (Math.random() - 0.5) * 0.2;
+                // Clamp
+                if(nextVal > 0.9) nextVal = 0.9;
+                if(nextVal < 0.1) nextVal = 0.1;
+
+                dataPoints.push(nextVal);
+
+                ctx.clearRect(0, 0, lineCanvas.width, lineCanvas.height);
+                
+                ctx.beginPath();
+                ctx.strokeStyle = '#00d2ff';
+                ctx.lineWidth = 1.5;
+                ctx.shadowColor = '#00d2ff';
+                ctx.shadowBlur = 4;
+                
+                const stepX = lineCanvas.width / (dataPoints.length - 1);
+                
+                ctx.moveTo(0, lineCanvas.height - (dataPoints[0] * lineCanvas.height));
+                
+                for(let i=1; i<dataPoints.length; i++) {
+                    // Smooth curve
+                    // ctx.lineTo(i * stepX, lineCanvas.height - (dataPoints[i] * lineCanvas.height));
+                     const x = i * stepX;
+                     const y = lineCanvas.height - (dataPoints[i] * lineCanvas.height);
+                     ctx.lineTo(x, y);
+                }
+                ctx.stroke();
+
+                requestAnimationFrame(drawLineGraph);
+            }
+            drawLineGraph();
+        }
+                bar.style.animationDelay = Math.random() + 's';
+                barContainer.appendChild(bar);
+            }
+        }
+    </script>
+
+    <!-- 3D VIBRATION MONITOR / CAD SCRIPT -->
+    <script type="module">
+        import * as THREE from 'three';
+
+        // Wait for DOM
+        window.addEventListener('load', initCadMonitor);
+
+        function initCadMonitor() {
+            const container = document.getElementById('cad-container');
+            if(!container) return;
+
+            const width = container.clientWidth;
+            const height = container.clientHeight;
+
+            const scene = new THREE.Scene();
+            // No background so it blends with UI
+            
+            const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 100);
+            camera.position.z = 5;
+
+            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            renderer.setSize(width, height);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            container.appendChild(renderer.domElement);
+
+            // --- CAD OBJECT ---
+            // A complex wireframe shape to represent a component
+            const geometry = new THREE.IcosahedronGeometry(1.5, 1);
+            const material = new THREE.MeshBasicMaterial({ 
+                color: 0x00d2ff, 
+                wireframe: true,
+                transparent: true,
+                opacity: 0.6
+            });
+            const component = new THREE.Mesh(geometry, material);
+            scene.add(component);
+            
+            // Inner Core
+            const coreGeo = new THREE.OctahedronGeometry(0.8, 0);
+            const coreMat = new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true, transparent:true, opacity:0.8 });
+            const core = new THREE.Mesh(coreGeo, coreMat);
+            component.add(core);
+
+            // Orbits rings
+            const ringGeo = new THREE.TorusGeometry(2.2, 0.02, 16, 50);
+            const ringMat = new THREE.MeshBasicMaterial({ color: 0x00d2ff, transparent: true, opacity: 0.3 });
+            const ring1 = new THREE.Mesh(ringGeo, ringMat);
+            const ring2 = new THREE.Mesh(ringGeo, ringMat);
+            ring1.rotation.x = Math.PI / 2;
+            ring2.rotation.y = Math.PI / 2;
+            scene.add(ring1);
+            scene.add(ring2);
+
+            // Vibration Data Simulation
+            let time = 0;
+            const vibrationData = { x: 0, y: 0, z: 0 };
+
+            function animate() {
+                requestAnimationFrame(animate);
+
+                time += 0.05;
+                
+                // Normal Rotation
+                component.rotation.x += 0.005;
+                component.rotation.y += 0.01;
+                core.rotation.y -= 0.02;
+
+                ring1.rotation.x += 0.01;
+                ring1.rotation.y += 0.005;
+                ring2.rotation.x -= 0.005;
+                ring2.rotation.y += 0.01;
+
+                // Vibration Simulation (Random spikes representing machine health)
+                if(Math.random() > 0.92) {
+                    vibrationData.x = (Math.random() - 0.5) * 0.15;
+                    vibrationData.y = (Math.random() - 0.5) * 0.15;
+                    vibrationData.z = (Math.random() - 0.5) * 0.15;
+                    
+                    // Alert flash
+                    material.color.setHex(0xffffff);
+                    material.opacity = 1;
+                    setTimeout(() => {
+                        material.color.setHex(0x00d2ff);
+                        material.opacity = 0.6;
+                    }, 50);
+                } else {
+                    // Decay returns to center
+                    vibrationData.x *= 0.6;
+                    vibrationData.y *= 0.6;
+                    vibrationData.z *= 0.6;
+                }
+
+                // Apply vibration only to the central component
+                component.position.x = vibrationData.x;
+                component.position.y = vibrationData.y;
+                component.position.z = vibrationData.z;
+                
+                // Beat/Pulse (System "Heartbeat")
+                const pulse = 1 + Math.sin(time * 3) * 0.02;
+                component.scale.set(pulse, pulse, pulse);
+
+                renderer.render(scene, camera);
+            }
+
+            animate();
+
+            // Handle Resize
+            const resizeObs = new ResizeObserver(() => {
+                if(!container) return;
+                const w = container.clientWidth;
+                const h = container.clientHeight;
+                if(w && h) {
+                    renderer.setSize(w, h);
+                    camera.aspect = w / h;
+                    camera.updateProjectionMatrix();
+                }
+            });
+            resizeObs.observe(container);
+        }
+    </script>
+    <script type="module">
+        import * as THREE from 'three';
+        import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+        import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+        import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+
+        // Initialize IONITY GUI Cube
+        window.addEventListener('load', initGuiCube);
+
+        function initGuiCube() {
+            const container = document.getElementById('ionity-gui-cube-container');
+            if(!container) return;
+
+            const w = container.clientWidth;
+            const h = container.clientHeight;
+
+            const scene = new THREE.Scene();
+            
+            const camera = new THREE.PerspectiveCamera(45, w / h, 1, 1000);
+            camera.position.set(0, 0, 400);
+
+            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            renderer.setSize(w, h);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            renderer.toneMapping = THREE.ACESFilmicToneMapping;
+            renderer.toneMappingExposure = 1.5;
+            container.appendChild(renderer.domElement);
+
+            // Post-processing for Glow
+            const composer = new EffectComposer(renderer);
+            const renderPass = new RenderPass(scene, camera);
+            composer.addPass(renderPass);
+            const bloomPass = new UnrealBloomPass(new THREE.Vector2(w, h), 1.5, 0.4, 0.85);
+            bloomPass.threshold = 0;
+            bloomPass.strength = 1.2;
+            bloomPass.radius = 0.5;
+            composer.addPass(bloomPass);
+
+            // Lighting
+            const ambient = new THREE.AmbientLight(0xffffff, 0.5);
+            scene.add(ambient);
+            const pointLight = new THREE.PointLight(0x00d2ff, 2, 500);
+            pointLight.position.set(100, 100, 100);
+            scene.add(pointLight);
+
+            // GUI GROUP
+            const guiGroup = new THREE.Group();
+            scene.add(guiGroup);
+
+            // 1. Outer Wireframe (The "Cube" / Polyhedron)
+            // Using Icosahedron for that complex look in the image
+            const outerGeo = new THREE.IcosahedronGeometry(80, 0); 
+            const outerEdges = new THREE.EdgesGeometry(outerGeo);
+            const outerMat = new THREE.LineBasicMaterial({ color: 0x00d2ff, opacity: 0.5, transparent: true });
+            const outerWire = new THREE.LineSegments(outerEdges, outerMat);
+            guiGroup.add(outerWire);
+
+            // 2. Inner Sphere / Net
+            const innerGeo = new THREE.SphereGeometry(50, 16, 16);
+            const innerMat = new THREE.MeshBasicMaterial({ color: 0x00d2ff, wireframe: true, transparent: true, opacity: 0.3 });
+            const innerSphere = new THREE.Mesh(innerGeo, innerMat);
+            guiGroup.add(innerSphere);
+
+            // 3. Floating Label "IONITY GUI"
+             const canvas = document.createElement('canvas');
+            canvas.width = 512;
+            canvas.height = 128;
+            const ctx = canvas.getContext('2d');
+            
+            // Text config
+            ctx.fillStyle = "rgba(0, 20, 40, 0.6)"; 
+            ctx.fillRect(0, 20, 512, 88);
+            
+            ctx.font = "bold 60px Courier New, monospace";
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            ctx.fillStyle = "#888888"; // Darker text
+            ctx.shadowColor = "#004466"; // Darker shadow
+            ctx.shadowBlur = 5;
+            ctx.fillText("IONITY GUI", 256, 64);
+            
+            // Underlines
+            ctx.strokeStyle = "#00d2ff";
+            ctx.lineWidth = 4;
+            ctx.beginPath(); ctx.moveTo(50, 100); ctx.lineTo(462, 100); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(50, 28); ctx.lineTo(462, 28); ctx.stroke();
+
+            const tex = new THREE.CanvasTexture(canvas);
+            const labelGeo = new THREE.PlaneGeometry(160, 40);
+            const labelMat = new THREE.MeshBasicMaterial({ map: tex, side: THREE.DoubleSide, transparent: true, blending: THREE.AdditiveBlending });
+            const label = new THREE.Mesh(labelGeo, labelMat);
+            label.position.set(0, 110, 0);
+            guiGroup.add(label);
+
+            // 4. Connecting Lines (Lightning/Data)
+            const lightningMat = new THREE.LineBasicMaterial({ color: 0x2979ff, transparent: true, opacity: 0.8 });
+            
+            function addLightning() {
+                if(guiGroup.children.length > 8) return; // Limit
+                const pts = [];
+                pts.push(new THREE.Vector3(0,0,0)); // From center
+                // To random outer point
+                const vec = new THREE.Vector3(Math.random()-0.5, Math.random()-0.5, Math.random()-0.5).normalize().multiplyScalar(80);
+                
+                // Jitter
+                const mid = vec.clone().multiplyScalar(0.5);
+                mid.x += (Math.random()-0.5)*20;
+                mid.y += (Math.random()-0.5)*20;
+                mid.z += (Math.random()-0.5)*20;
+                
+                pts.push(mid);
+                pts.push(vec);
+                
+                const geo = new THREE.BufferGeometry().setFromPoints(pts);
+                const line = new THREE.Line(geo, lightningMat);
+                line.userData = { life: 1.0 };
+                guiGroup.add(line);
+            }
+
+            // Animation
+            const clock = new THREE.Clock();
+
+            function animate() {
+                requestAnimationFrame(animate);
+                
+                const t = clock.getElapsedTime();
+
+                // Rotate Group
+                guiGroup.rotation.y = t * 0.2;
+                outerWire.rotation.z = t * 0.1;
+                innerSphere.rotation.x = -t * 0.2;
+
+                // Bobbing
+                guiGroup.position.y = Math.sin(t) * 10;
+
+                // Label always face camera
+                label.lookAt(camera.position); 
+
+                // Lightning
+                if(Math.random() > 0.9) addLightning();
+
+                // Cleanup Lightning
+                for(let i=guiGroup.children.length-1; i>=0; i--) {
+                    const child = guiGroup.children[i];
+                    if(child.userData && child.userData.life) {
+                        child.userData.life -= 0.05;
+                        child.material.opacity = child.userData.life;
+                        if(child.userData.life <= 0) {
+                            guiGroup.remove(child);
+                            child.geometry.dispose();
+                        }
+                    }
+                }
+
+                composer.render();
+            }
+            animate();
+            
+            // Handle Resize inside container
+            new ResizeObserver(() => {
+                const nw = container.clientWidth;
+                const nh = container.clientHeight;
+                renderer.setSize(nw, nh);
+                composer.setSize(nw, nh);
+                camera.aspect = nw / nh;
+                camera.updateProjectionMatrix();
+            }).observe(container);
+        }
+    </script>
+
+    <!-- MOVED SCRIPT: SYSTEM ROOT CAM (2D) -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            initCADCamera();
+            initFactoryCam();
+            initMGraph();
+        });
+
+        function initCADCamera() {
+            const container = document.querySelector('.cad-view');
+            if(!container) return;
+            
+            let canvas = container.querySelector('canvas');
+            if(!canvas) {
+                canvas = document.createElement('canvas');
+                canvas.className = 'cad-canvas';
+                container.appendChild(canvas);
+            }
+            
+            const ctx = canvas.getContext('2d');
+            let width = container.clientWidth;
+            let height = container.clientHeight;
+            
+            // Resize handler
+            const resize = () => {
+                width = container.clientWidth;
+                height = container.clientHeight;
+                canvas.width = width;
+                canvas.height = height;
+            };
+            window.addEventListener('resize', resize);
+            resize(); // Initial
+
+            // Simulation State
+            let angleX = 0;
+            let angleY = 0;
+            const size = 50; 
+            
+            // Wireframe Cube Vertices
+            const vertices = [
+                {x:-1, y:-1, z:-1}, {x:1, y:-1, z:-1}, {x:1, y:1, z:-1}, {x:-1, y:1, z:-1},
+                {x:-1, y:-1, z:1}, {x:1, y:-1, z:1}, {x:1, y:1, z:1}, {x:-1, y:1, z:1}
+            ];
+
+            const edges = [
+                [0,1], [1,2], [2,3], [3,0], // Front Face relative
+                [4,5], [5,6], [6,7], [7,4], // Back Face relative
+                [0,4], [1,5], [2,6], [3,7]  // Connecting
+            ];
+
+            function loop() {
+                ctx.clearRect(0, 0, width, height);
+
+                // Grid Background (Perspective)
+                ctx.strokeStyle = "rgba(0, 210, 255, 0.1)";
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                for(let i=0; i<width; i+=40) { ctx.moveTo(i, 0); ctx.lineTo(i, height); }
+                for(let i=0; i<height; i+=40) { ctx.moveTo(0, i); ctx.lineTo(width, i); }
+                ctx.stroke();
+
+                // Rotation
+                angleX += 0.01;
+                angleY += 0.015;
+
+                const cx = width / 2;
+                const cy = height / 2;
+                
+                // Project and Draw
+                const projected = [];
+                
+                vertices.forEach(v => {
+                    // Rotate Y
+                    let x = v.x * Math.cos(angleY) - v.z * Math.sin(angleY);
+                    let z = v.x * Math.sin(angleY) + v.z * Math.cos(angleY);
+                    // Rotate X
+                    let y = v.y * Math.cos(angleX) - z * Math.sin(angleX);
+                    let z2 = v.y * Math.sin(angleX) + z * Math.cos(angleX);
+
+                    // Perspective
+                    const scale = 300 / (300 + z2 * 50); 
+                    const px = cx + x * size * scale;
+                    const py = cy + y * size * scale;
+                    
+                    projected.push({x: px, y: py});
+                    
+                    // Draw Vertex
+                    ctx.fillStyle = "#00d2ff";
+                    ctx.fillRect(px-1.5, py-1.5, 3, 3);
+                });
+
+                ctx.strokeStyle = "#00d2ff";
+                ctx.lineWidth = 1.5;
+                ctx.shadowBlur = 5;
+                ctx.shadowColor = "#00d2ff";
+
+                edges.forEach(e => {
+                    const p1 = projected[e[0]];
+                    const p2 = projected[e[1]];
+                    ctx.beginPath();
+                    ctx.moveTo(p1.x, p1.y);
+                    ctx.lineTo(p2.x, p2.y);
+                    ctx.stroke();
+                });
+                
+                // Crosshair
+                ctx.shadowBlur = 0;
+                ctx.strokeStyle = "rgba(255, 255, 255, 0.3)";
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.moveTo(cx - 10, cy); ctx.lineTo(cx + 10, cy);
+                ctx.moveTo(cx, cy - 10); ctx.lineTo(cx, cy + 10);
+                ctx.stroke();
+                
+                // Text
+                ctx.fillStyle = "#00d2ff";
+                ctx.font = "10px Courier New";
+                ctx.fillText("TGT: ALPHA-NODE", 10, 20);
+                ctx.fillText("DST: " + (Math.sin(angleX)*100).toFixed(2) + "m", 10, 35);
+
+                requestAnimationFrame(loop);
+            }
+            loop();
+        }
+
+        function initFactoryCam() {
+             const container = document.getElementById('mini-factory-cam');
+             if(!container) return;
+             const canvas = document.getElementById('factory-canvas');
+             if(!canvas) return;
+             const ctx = canvas.getContext('2d');
+
+             let w = container.clientWidth;
+             let h = container.clientHeight;
+             canvas.width = w; canvas.height = h;
+
+             // Window resize
+             window.addEventListener('resize', () => {
+                 w = container.clientWidth; h = container.clientHeight;
+                 canvas.width = w; canvas.height = h;
+             });
+
+             // Box objects
+             const boxes = [];
+             function spawnBox() {
+                 boxes.push({x: -40, y: h/2 + 30, w: 30, h: 20, color: '#00d2ff'});
+             }
+             setInterval(spawnBox, 1500);
+
+             function loop() {
+                 ctx.fillStyle = '#050510';
+                 ctx.fillRect(0, 0, w, h);
+                 
+                 // Draw Conveyor
+                 ctx.strokeStyle = '#333';
+                 ctx.lineWidth = 4;
+                 ctx.beginPath();
+                 ctx.moveTo(0, h/2 + 30);
+                 ctx.lineTo(w, h/2 + 30);
+                 ctx.stroke();
+
+                 // Update and Draw Boxes
+                 for(let i=0; i<boxes.length; i++) {
+                     const b = boxes[i];
+                     b.x += 1.5; // speed
+                     
+                     // Draw Box
+                     ctx.fillStyle = b.color;
+                     ctx.strokeStyle = '#fff';
+                     ctx.lineWidth = 1;
+                     ctx.fillRect(b.x, b.y - b.h, b.w, b.h);
+                     ctx.strokeRect(b.x, b.y - b.h, b.w, b.h);
+                     
+                     // Helper Logic: Crane
+                     if(Math.abs(b.x - w/2) < 2 && !b.processed) {
+                         b.color = '#fff'; // Flash logic
+                         b.processed = true;
+                     }
+                 }
+                 
+                 // Remove off-screen
+                 if(boxes.length > 0 && boxes[0].x > w + 50) boxes.shift();
+
+                 // Draw Overlay Text
+                 ctx.fillStyle = 'rgba(0, 210, 255, 0.5)';
+                 ctx.font = '10px Courier New';
+                 ctx.fillText("CONVEYOR_A [RUNNING]", 10, h - 10);
+
+                 requestAnimationFrame(loop);
+             }
+             loop();
+        }
+
+        function initMGraph() {
+            // Deprecated/Removed
+        }
+    </script>
+</body>
+</html>

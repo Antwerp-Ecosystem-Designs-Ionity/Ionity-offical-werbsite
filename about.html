@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ionity | About The Ecosystem</title>
+    <link rel="icon" type="image/png" href="assets/images/ionity-logo-edited.png">
+    <meta name="description" content="About Ionity (Pty) Ltd -  Architecting the living digital ecosystems of the future.">
+    
+    <style>
+        :root {
+            --bg-dark: #020204;
+            --bg-panel: rgba(10, 15, 20, 0.6);
+            --text-main: #ffffff;
+            --text-muted: rgba(255, 255, 255, 0.85); 
+            --accent-cyan: #00d2ff;
+            --accent-dim: rgba(0, 210, 255, 0.1);
+            --border: rgba(255, 255, 255, 0.15);
+            --border-active: rgba(0, 210, 255, 0.6);
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-dark);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            color: var(--text-main);
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        .team-list {
+            margin-top: 3rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            padding-left: 1rem;
+            border-left: 2px solid rgba(0, 210, 255, 0.2);
+            transition: border-color 0.3s ease;
+        }
+        
+        .team-list:hover {
+            border-color: var(--accent-cyan);
+        }
+
+        .team-list .hero-sub {
+            margin-top: 0;
+            font-size: 0.85rem;
+            letter-spacing: 0.1rem;
+            opacity: 0.8;
+            text-shadow: none;
+        }
+
+         .team-list .hero-sub:hover {
+            opacity: 1;
+            transform: translateX(10px);
+            color: #fff;
+            text-shadow: 0 0 10px var(--accent-cyan);
+        }
+        
+        .team-list .hero-sub::before {
+            display: none; /* Remove the line for list items to reduce clutter */
+        }
+        
+        /* --- 3D CANVAS BACKGROUND --- */
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0; 
+            pointer-events: none;
+        }
+
+        /* --- VISUAL FX --- */
+        .scanlines {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.2));
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 99;
+            opacity: 0.3;
+        }
+
+        /* --- GLOW ANIMATIONS --- */
+        @keyframes neonPulse {
+            0% { text-shadow: 0 0 5px rgba(255,255,255,0.8), 0 0 10px var(--accent-cyan); }
+            50% { text-shadow: 0 0 10px #fff, 0 0 20px var(--accent-cyan), 0 0 40px var(--accent-cyan); }
+            100% { text-shadow: 0 0 5px rgba(255,255,255,0.8), 0 0 10px var(--accent-cyan); }
+        }
+
+        @keyframes flashGlow {
+            0% { text-shadow: 0 0 0 transparent; }
+            50% { text-shadow: 0 0 20px #fff, 0 0 50px var(--accent-cyan); color: #fff; }
+            100% { text-shadow: 0 0 10px rgba(0,0,0,0.5); color: #fff; }
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            padding: 0 5vw;
+            height: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            background: rgba(2, 2, 4, 0.9);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-family: 'Courier New', monospace;
+            font-weight: 700;
+            letter-spacing: 0.2rem;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2rem;
+            position: relative;
+            text-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
+            transition: all 0.3s;
+        }
+        
+        .logo:hover {
+            animation: neonPulse 1.5s infinite alternate;
+        }
+
+        .nav-logo {
+            height: 80px;
+            width: auto;
+            vertical-align: middle;
+            transition: all 0.3s ease;
+        }
+        .nav-logo:hover {
+            filter: drop-shadow(0 0 8px var(--accent-cyan));
+        }
+
+        /* Desktop Nav */
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+            font-weight: 600;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+            animation: neonPulse 1s infinite alternate;
+        }
+
+        .nav-links a.active {
+            color: var(--accent-cyan);
+            text-shadow: 0 0 15px var(--accent-cyan); 
+            border-bottom: 1px solid var(--accent-cyan);
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; width: 0; height: 1px;
+            background: var(--accent-cyan);
+            transition: width 0.3s ease;
+            box-shadow: 0 0 10px var(--accent-cyan);
+        }
+
+        .nav-links a:hover::before { width: 100%; }
+
+        /* Mobile Menu Button - Hidden on Desktop */
+        .mobile-menu-btn {
+            display: none; /* Crucial: ensures it is gone on desktop */
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--accent-cyan);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem 0.8rem;
+            border-radius: 4px;
+            z-index: 101;
+        }
+
+        /* Mobile Dropdown */
+        .mobile-dropdown {
+            display: none;
+            position: fixed; /* Fixed to keep it on top when scrolling */
+            top: 80px;
+            right: 0; /* Align to right */
+            left: auto;
+            width: 280px; /* Limits width */
+            background: rgba(5, 10, 15, 0.95); /* Darker and cleaner */
+            border: 1px solid var(--accent-cyan);
+            border-top: none;
+            border-right: none;
+            flex-direction: column;
+            padding: 1rem 0;
+            box-shadow: -5px 5px 20px rgba(0, 0, 0, 0.8), 0 0 15px rgba(0, 210, 255, 0.2);
+            z-index: 99999; /* Ensure always on top */
+            backdrop-filter: blur(20px);
+        }
+
+        .mobile-dropdown.open {
+            display: flex;
+            animation: slideDown 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .mobile-dropdown a {
+            color: #fff;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            transition: background 0.2s;
+        }
+        
+        .mobile-dropdown a.active {
+            color: var(--accent-cyan);
+            background: rgba(0, 210, 255, 0.05);
+            text-shadow: 0 0 15px var(--accent-cyan); 
+            border-left: 3px solid var(--accent-cyan);
+        }
+
+        .mobile-dropdown a:hover {
+            background: rgba(0, 210, 255, 0.1);
+            color: var(--accent-cyan);
+        }
+
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- LAYOUT --- */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            min-height: 80vh;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* --- HERO HEADER --- */
+        .hero-section {
+            margin-bottom: 6rem;
+            animation: slideIn 1s ease-out;
+            background: radial-gradient(circle at center, rgba(0,0,0,0.6), transparent 70%);
+            padding: 2rem 0;
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 300;
+            margin: 0;
+            letter-spacing: -0.05rem;
+            color: #fff;
+            text-shadow: 0 0 30px rgba(255,255,255,0.5); /* Brightened */
+            cursor: default;
+            transition: text-shadow 0.3s;
+        }
+        
+        h1:hover {
+            animation: neonPulse 1.5s infinite alternate;
+        }
+
+        .hero-sub {
+            font-family: 'Courier New', monospace;
+            color: var(--accent-cyan);
+            margin-top: 1rem;
+            letter-spacing: 0.2rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-shadow: 0 0 10px var(--accent-cyan); /* Brightened */
+            transition: all 0.3s;
+        }
+
+        .hero-sub:hover {
+            text-shadow: 0 0 20px var(--accent-cyan);
+        }
+
+        .hero-sub::before {
+            content: '';
+            width: 40px; height: 1px;
+            background: var(--accent-cyan);
+            box-shadow: 0 0 5px var(--accent-cyan);
+        }
+
+        .hero-desc {
+            max-width: 600px; 
+            margin-top: 2rem; 
+            color: var(--text-muted); 
+            line-height: 1.8;
+            font-size: 1.1rem;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+        }
+
+        /* --- GRID SYSTEM --- */
+        .system-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: rgba(10, 15, 20, 0.8);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--border);
+            padding: 2.5rem;
+            position: relative;
+            transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            
+            /* Initial Scroll State */
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        
+        /* State for Scroll Animation */
+        .card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 2px; height: 0;
+            background: var(--accent-cyan);
+            transition: height 0.4s ease;
+            box-shadow: 0 0 10px var(--accent-cyan);
+        }
+
+        .card:hover {
+            transform: translateY(-5px) !important;
+            border-color: var(--border-active);
+            box-shadow: 0 10px 50px rgba(0, 210, 255, 0.15); /* Tinted shadow */
+            background: rgba(20, 25, 35, 0.95);
+        }
+
+        .card:hover::before { height: 100%; }
+
+        .card-icon {
+            font-size: 1.5rem;
+            color: var(--accent-cyan);
+            margin-bottom: 1.5rem;
+            opacity: 1;
+            text-shadow: 0 0 15px var(--accent-cyan);
+        }
+
+        .card h3 {
+            font-size: 1.4rem;
+            font-weight: 500;
+            margin: 0 0 1rem 0;
+            letter-spacing: 0.05rem;
+            color: #fff;
+            text-shadow: 0 0 15px rgba(0,0,0,0.5);
+            cursor: default;
+        }
+
+        .card h3:hover, .card:hover h3 {
+            animation: neonPulse 1.5s infinite alternate;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            line-height: 1.6;
+            font-size: 1rem;
+            flex-grow: 1;
+            text-shadow: 0 1px 1px rgba(0,0,0,1);
+        }
+
+        .card-meta {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+            font-family: 'Courier New', monospace;
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.6); /* Brighter */
+            display: flex;
+            justify-content: space-between;
+        }
+
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+        @keyframes slideIn { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
+
+        /* --- FEATURE SECTION --- */
+        .aedi-feature {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 4rem;
+            margin-bottom: 6rem;
+            animation: slideIn 1.2s ease-out;
+            background: linear-gradient(90deg, rgba(10,15,20,0) 0%, rgba(10,15,20,0.6) 50%, rgba(10,15,20,0) 100%);
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(0, 210, 255, 0.1);
+            border-bottom: 1px solid rgba(0, 210, 255, 0.1);
+            position: relative;
+        }
+
+        .feature-content {
+            flex: 1;
+        }
+
+        .feature-content h2 {
+            font-size: 3rem;
+            font-weight: 300;
+            color: #fff;
+            margin: 0 0 1rem 0;
+            text-shadow: 0 0 20px rgba(0, 210, 255, 0.3);
+            letter-spacing: -0.05rem;
+        }
+
+        .feature-line {
+            width: 80px;
+            height: 3px;
+            background: var(--accent-cyan);
+            box-shadow: 0 0 10px var(--accent-cyan);
+            margin-bottom: 2rem;
+        }
+
+        .feature-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+        
+        .feature-content strong {
+            color: #fff;
+            font-weight: 600;
+            text-shadow: 0 0 5px rgba(0, 210, 255, 0.5);
+        }
+
+        .feature-visual {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+
+        .image-frame {
+            position: relative;
+            padding: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+            max-width: 500px;
+        }
+
+        .image-frame::before, .image-frame::after {
+            content: '';
+            position: absolute;
+            width: 20px; height: 20px;
+            border: 2px solid var(--accent-cyan);
+            transition: all 0.3s ease;
+        }
+        .image-frame::before { top: -2px; left: -2px; border-right: none; border-bottom: none; }
+        .image-frame::after { bottom: -2px; right: -2px; border-left: none; border-top: none; }
+
+        .image-frame img {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: grayscale(60%) contrast(1.2) brightness(0.9);
+            transition: all 0.5s ease;
+        }
+
+        .image-frame:hover img {
+            filter: grayscale(0%) contrast(1.1) brightness(1.1);
+        }
+
+        .scanner-line {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 2px;
+            background: rgba(0, 210, 255, 0.8);
+            box-shadow: 0 0 15px var(--accent-cyan);
+            animation: scanImage 3s infinite linear;
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
+        @keyframes scanImage {
+            0% { top: 0; opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
+
+        @media (max-width: 900px) {
+            .aedi-feature { flex-direction: column-reverse; gap: 2rem; text-align: center; }
+            .feature-line { margin: 0 auto 2rem auto; }
+            .feature-content h2 { font-size: 2.2rem; }
+        }
+
+        footer {
+            margin-top: 8rem;
+            padding: 2rem 5vw;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.7rem;
+            position: relative;
+            z-index: 10;
+            background: rgba(2, 2, 4, 0.95);
+        }
+        
+        footer a { color: var(--text-muted); text-decoration: none; margin: 0 10px; transition: color 0.3s; }
+        footer a:hover { color: var(--accent-cyan); }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            nav { padding: 0 1.5rem; }
+            .nav-links { display: none; }
+            .mobile-menu-btn { display: block; }
+            .logo { font-size: 1rem; }
+            body { filter: brightness(1.3); } /* Even brighter on mobile */
+            h1 { animation: neonPulse 3s infinite alternate; }
+            .mobile-dropdown a.active { animation: neonPulse 2s infinite alternate; }
+        }
+
+        /* --- MISSION & VALUES SECTION --- */
+        .mission-values-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin: 6rem 0;
+            position: relative;
+        }
+
+        @media (min-width: 900px) {
+            .mission-values-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+            }
+            .mission-full {
+                grid-column: 1 / -1;
+            }
+        }
+
+        .mission-card {
+            background: rgba(10, 15, 20, 0.4);
+            border: 1px solid rgba(0, 210, 255, 0.15);
+            padding: 2.5rem;
+            position: relative;
+            backdrop-filter: blur(10px);
+            border-radius: 4px; /* Slightly sharper corners for tech feel */
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .mission-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 210, 255, 0.1);
+            border-color: rgba(0, 210, 255, 0.5);
+        }
+
+        .mission-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 3px; height: 0;
+            background: var(--accent-cyan);
+            transition: height 0.5s ease;
+            box-shadow: 0 0 10px var(--accent-cyan);
+        }
+
+        .mission-card:hover::before {
+            height: 100%;
+        }
+
+        .mission-title {
+            font-family: 'Courier New', monospace;
+            color: var(--accent-cyan);
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15rem;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            text-shadow: 0 0 5px rgba(0, 210, 255, 0.3);
+        }
+
+        .mission-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(0,210,255,0.5), transparent);
+            margin-left: 1rem;
+        }
+
+        .mission-text {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #d0d0d0;
+        }
+
+        .highlight-glow {
+            color: #fff;
+            font-weight: 500;
+            text-shadow: 0 0 8px rgba(0, 210, 255, 0.3);
+        }
+
+        .aim-tagline {
+            text-align: center;
+            font-size: 1.3rem;
+            color: #fff;
+            margin-top: 4rem;
+            font-weight: 300;
+            letter-spacing: 0.05rem;
+            position: relative;
+            padding: 3rem 1rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            background: linear-gradient(90deg, transparent, rgba(0, 210, 255, 0.03), transparent);
+        }
+
+        .aim-tagline span {
+            color: var(--accent-cyan);
+            font-weight: 600;
+            text-shadow: 0 0 10px var(--accent-cyan);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="canvas-container"></div>
+    <div class="scanlines"></div>
+
+    <nav>
+        <a href="index.html" class="logo">
+             <img src="assets/images/ionity-logo-edited.png" alt="IONITY" class="nav-logo">
+        </a>
+        
+        <!-- Desktop Menu -->
+        <div class="nav-links">
+            <a href="inner-Page.html">Systems</a>
+            <a href="services.html">Services</a>
+            <a href="products.html">Products</a>
+            <a href="ai-innovation.html">Ai Innovation</a>
+            <a href="roadmap.html">Roadmap</a>
+            <a href="license.html">License</a>
+            <a href="about.html" class="active">About</a>
+            <a href="aedi-online.html">AEDI Online</a>
+            <a href="contact.html">Contact</a>
+            <a href="firmware-development.html">Dev</a>
+            <a href="gateway.html">IO Way</a>
+        </div>
+
+        <!-- Mobile Button -->
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+    </nav>
+    
+    <!-- Mobile Dropdown -->
+    <div class="mobile-dropdown" id="mobileDropdown">
+        <a href="inner-Page.html">Systems</a>
+        <a href="services.html">Services</a>
+        <a href="products.html">Products</a>
+        <a href="ai-innovation.html">Ai Innovation</a>
+        <a href="roadmap.html">Roadmap</a>
+        <a href="license.html">License</a>
+        <a href="about.html" class="active">About</a>
+        <a href="aedi-online.html">AEDI Online</a>
+        <a href="contact.html">Contact</a>
+        <a href="firmware-development.html">Dev</a>
+        <a href="gateway.html">IO Way</a>
+    </div>
+
+    <div class="container">
+        
+        <div class="hero-section">
+            <h1 data-value="The Architects of Datastreams">The Architects<br>of Datastreams</h1>
+            <div class="team-list">
+                <div class="hero-sub" data-value="// Systems Architect & Integrator"> // Systems Architect & Integrator</div>
+                <div class="hero-sub" data-value="// Industrial Process & Design and Engineer"> // Industrial Process & Design and Engineer</div>
+                <div class="hero-sub" data-value="Darrell Culverwell // Business & Engineering Solution Expert">Darrell Culverwell // Business & Engineering Solution Expert</div>
+                <div class="hero-sub" data-value="Asman Bakhtiar // Embedded Engineer & Communication Encryption Engineer">Asman Bakhtiar // Embedded Engineer & Communication Encryption Engineer</div>
+                <div class="hero-sub" data-value="Richard Wood // Managing Member & Regulatory Enforcer">Richard Wood // Managing Member & Regulatory Enforcer</div>
+                <div class="hero-sub" data-value="Andrew Woods // Industrial Engineer & Marketing Relations Expert">Andrew Woods // Industrial Engineer & Marketing Relations Expert</div>
+                <div class="hero-sub" data-value="Dennis Grobler // Systems Technician and Network Relations">Dennis Grobler // Systems Technician and Network Relations</div>
+            </div>
+            <p class="hero-desc">
+                Ionity (Pty) Ltd is dissolving the barrier between industrial rigidity and digital adaptability. We architect <strong>Living Digital Ecosystems</strong> by fusing atoms with algorithms.
+                <br><br>
+                Our mission is to establish a seamless connection across all levels—merging <strong>IoT, Artificial Intelligence, and Human Insight</strong> into a unified, self regulating system. We don't just build networks; we cultivate intelligence that evolves.
+            </p>
+        </div>
+
+        <!-- FEATURE SECTION: AEDI ROBOT -->
+        <div class="aedi-feature">
+            <div class="feature-content">
+                <h2 data-value="AEDI: The Digital Architect">AEDI: The Digital<br>Architect</h2>
+                <div class="feature-line"></div>
+                <p>
+                    <strong>Automated Ecosystem Design Intelligence (AEDI)</strong> is the "robot" in the machine—an autonomous engine driving Ionity's Living Ecosystems. 
+                    It operates tirelessly, weaving 
+                    <strong>IoT, AI, DAQ, and PdM</strong> into a singular, self-healing fabric.
+                </p>
+                <p>
+                    From hardware integration (F-iT) to high-level CMS analytics, AEDI monitors, optimizes, and evolves the ecosystem in real-time. 
+                    It bridges the gap between raw data and human decision-making, ensuring that the system doesn't just function—it <strong>lives</strong>.
+                </p>
+            </div>
+            <div class="feature-visual">
+                <div class="image-frame">
+                    <img src="assets/images/AEDI-LOGo.jpeg" alt="AEDI Robot Intelligence">
+                    <div class="scanner-line"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- STRATEGIC CORE SECTION -->
+        <div class="mission-values-container">
+            
+            <div class="mission-values-grid">
+                <!-- Mission Part 1: Predictive -->
+                <div class="mission-card">
+                    <div class="mission-title">Predictive Insight</div>
+                    <div class="mission-text">
+                        We foresee <span class="highlight-glow">unknown events</span> before they become an anomaly and problematic. Known or unknown, we pinpoint anomalies—digital and physical—before they even exist, while pointing out current hidden losses of energy, labor, and finance. This is Ionity (Pty) Ltd: a <span class="highlight-glow">True Predictive, Self-Sustaining</span> system that grows with businesses.
+                    </div>
+                </div>
+
+                <!-- Mission Part 2: Cognitive -->
+                <div class="mission-card">
+                    <div class="mission-title">Cognitive Integration</div>
+                    <div class="mission-text">
+                        Our Mission is to bridge the gap between <span class="highlight-glow">non-cognitive and cognitive systems</span> to increase understanding, so that efficiency and effectiveness can be improved. This leads to savings on all fronts as a system becomes an <span class="highlight-glow">Integrated Ecosystem</span> of the modern world. Tomorrow, Today.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Value Statement -->
+            <div class="mission-card mission-full">
+                <div class="mission-title">Value Statement</div>
+                <div class="mission-text">
+                    Setting the standard for the most cost- and energy-saving advisory implementation products to enhance human decision-making for higher <span class="highlight-glow">Return on Investment (RoI)</span> across industries.
+                </div>
+            </div>
+
+            <!-- Tagline -->
+            <div class="aim-tagline">
+                We are bridging the missing link between the unknown and the needs of systems, hardware, assets, and equipment.<br><br>
+                <span>Ai-M</span> (Artificial Intelligence Mobility) gets the flow started.
+            </div>
+
+        </div>
+
+        <div class="system-grid">
+            <!-- Card 1 -->
+            <div class="card">
+                <div class="card-icon">◈</div>
+                <h3 data-value="Leadership & Vision">Leadership & Vision</h3>
+                <p>Founded in 2025 by Johan Wilhelm van Antwerp (IoT Solutionist & Mechanical Engineer within Africa's IoT market), with Ian Raven (Industrial Engineering background cross industry) and Darrell Culverwell (Mechanical Engineer and Successful Businessman). Born from 2019's groundwork and 2024's AI revolution up until now with Ai-M boards Q1 2026, we foresaw that static systems would fail a hyper-connected future. within Monitoring for Cost-saving, production enhancement and labor relations.</p>
+                <div class="card-meta">
+                    <span>ORIGIN</span>
+                    <span>VISIONARY</span>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="card">
+                <div class="card-icon">◉</div>
+                <h3 data-value="Active Realtime Ecosystems">Active Realtime Ecosystems</h3>
+                <p>We do not build software; we cultivate digital environments with Hardware and Integrate IoT with Ai. An Ionity ecosystem is a self regulating system that learns from its nodes (IoT), adapts to stress, and heals via updates remotely from disruption. It is the unseen layer of 0s and 1s, orchestrating Rx & Tx with bio digital fluidity.</p>
+                <div class="card-meta">
+                    <span>BIOMIMICRY</span>
+                    <span>AUTONOMOUS</span>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="card">
+                <div class="card-icon">❖</div>
+                <h3 data-value="Total Scope Integration">Total Scope Integration</h3>
+                <p>A unified fusion of IoT, AI, Data Acquisition (DAQ), and Predictive Maintenance (PdM). Our scope encompasses the entire spectrum: from hardware sensors to cloud-based/edge Computer Monitoring Systems (CMS), ensuring complete Hardware-Software Integration with Forensic Information Technology (F-iT).</p>
+                <div class="card-meta">
+                    <span>METHODOLOGY</span>
+                    <span>FULL-STACK</span>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="card">
+                <div class="card-icon">⎔</div>
+                <h3 data-value="Project Alpha: Cloud Encryption & Regulatory Standards">Project Alpha: Cloud Encryption & Regulatory Standards</h3>
+                <p>The genesis of our technology. Born from the urgent need to secure and automate critical infrastructure, Alpha represents the first successful deployment of a living, intelligent grid in South Africa, now fortified with advanced Cloud Encryption and strict Regulatory Standards.</p>
+                <div class="card-meta">
+                    <span>HISTORY</span>
+                    <span>GENESIS</span>
+                </div>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="card">
+                <div class="card-icon">⌬</div>
+                <h3 data-value="Global Interface">Global Interface</h3>
+                <p>AEDI Online provides a real-time window into the ecosystem. Data analysis from anywhere globally, offering Front-end User Interface control over industrial rigidity. We are scaling to redefine how the world interacts with data.</p>
+                <div class="card-meta">
+                    <span>SCALE</span>
+                    <span>CONTROL</span>
+                </div>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="card">
+                <div class="card-icon">⏣</div>
+                <h3 data-value="Human Centric Ai">Human Centric Ai</h3>
+                <p>Technology serves humanity. Our systems elevate human potential, allowing operators to become architects. AEDI enhances decision-making providing insights for improved maintenance intervals and operational efficiency.</p>
+                <div class="card-meta">
+                    <span>ETHICS</span>
+                    <span>ELEVATION</span>
+                </div>
+            </div>
+    </div>
+    </div>
+        
+    <footer>
+        <style>
+            @keyframes footerGlow {
+                0% { text-shadow: 0 0 2px rgba(255,255,255,0.1); }
+                100% { text-shadow: 0 0 8px rgba(0, 210, 255, 0.3); }
+            }
+            .footer-content {
+                animation: footerGlow 3s infinite alternate;
+            }
+            .footer-logo-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 2rem;
+                width: 100%;
+            }
+            .footer-logo {
+                height: 80px;
+                width: auto;
+                opacity: 0.9;
+                transition: all 0.3s ease;
+            }
+            .footer-logo:hover {
+                opacity: 1;
+                filter: drop-shadow(0 0 15px rgba(0, 210, 255, 0.4));
+            }
+        </style>
+        <div class="footer-logo-container">
+            <img src="assets/images/ionity-logo-edited.png" alt="Ionity Logo" class="footer-logo">
+        </div>
+        <div class="footer-content" style="line-height: 2;">
+            <div>Ionity™ (Pty) Ltd 2025-2026 | Creative Commons BY_NC_SA 4.0 | Made with AEDI™ | Author: Antwerp Designs</div>
+            <div>South Africa Centurion 0157 | Policy AED 986 AED | License AED 900 | Ionity™ IoT-Ai-DAQ-PdM-CMS-F-iT Hardware, Software Integrations, ALL RIGHTS RESERVED</div>
+            <div>
+                <a href="tel:+27646999877">+27 646 999 877</a> 
+                <a href="mailto:ai@ionity.today">ai@ionity.today</a> &nbsp;|&nbsp; 
+                Author Profile <a href="https://www.ionity.world" target="_blank">www.ionity.world</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- THREE JS ECOSYSTEM -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+        import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+        import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+        import { FilmPass } from 'three/addons/postprocessing/FilmPass.js';
+
+        // --- CONFIGURATION ---
+        // Increased node count significantly for "More Nodes"
+        const NODE_COUNT = 200; 
+        const CONNECTION_DIST = 260;
+        const DIAMOND_COUNT = 15;
+        const CLOUD_COUNT = 25;
+        
+        // WAVE CONFIG
+        const WAVE_CYCLE = 3000; // 3 seconds
+
+        // --- SCENE SETUP ---
+        const container = document.getElementById('canvas-container');
+        const scene = new THREE.Scene();
+        scene.fog = new THREE.FogExp2(0x020204, 0.0015);
+
+        const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 5000);
+        camera.position.z = 1000;
+
+        const renderer = new THREE.WebGLRenderer({ 
+            antialias: false, 
+            powerPreference: "high-performance",
+            alpha: true 
+        });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2.0));
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        renderer.toneMappingExposure = 1.25; 
+        
+        container.appendChild(renderer.domElement);
+
+        // --- POST PROCESSING ---
+        const renderScene = new RenderPass(scene, camera);
+        const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.5, 0.4, 0.85);
+        bloomPass.threshold = 0.2;
+        bloomPass.strength = 1.6; 
+        bloomPass.radius = 0.5;
+
+        const filmPass = new FilmPass(0.15, 0.025, 648, false);
+
+        const composer = new EffectComposer(renderer);
+        composer.addPass(renderScene);
+        composer.addPass(bloomPass);
+        composer.addPass(filmPass);
+
+        // --- LIGHTING ---
+        const ambient = new THREE.AmbientLight(0x333344, 1.5);
+        scene.add(ambient);
+
+        const bottomLight = new THREE.DirectionalLight(0x0044ff, 1.8);
+        bottomLight.position.set(0, -500, 200);
+        scene.add(bottomLight);
+
+        // --- INTERACTION ---
+        // Raycaster for Backend Interaction (Mouse Over)
+        const raycaster = new THREE.Raycaster();
+        const mousePlane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0); // Plane at Z=0
+        const mousePos3D = new THREE.Vector3();
+
+        // --- ASSETS ---
+        function createCloudTexture() {
+            const canvas = document.createElement('canvas');
+            canvas.width = 256; canvas.height = 256;
+            const ctx = canvas.getContext('2d');
+            const grad = ctx.createRadialGradient(128, 128, 0, 128, 128, 128);
+            grad.addColorStop(0, 'rgba(255, 255, 255, 0.5)');
+            grad.addColorStop(0.3, 'rgba(220, 230, 255, 0.2)');
+            grad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+            ctx.fillStyle = grad;
+            ctx.fillRect(0, 0, 256, 256);
+            return new THREE.CanvasTexture(canvas);
+        }
+
+        // Clouds
+        const cloudParticles = [];
+        const cloudGeo = new THREE.PlaneGeometry(800, 800);
+        const cloudMat = new THREE.MeshLambertMaterial({
+            map: createCloudTexture(),
+            transparent: true,
+            opacity: 0.15,
+            depthWrite: false,
+            blending: THREE.AdditiveBlending,
+            side: THREE.DoubleSide
+        });
+
+        for(let i=0; i<CLOUD_COUNT; i++) {
+            const cloud = new THREE.Mesh(cloudGeo, cloudMat);
+            cloud.position.set(
+                Math.random() * 2000 - 1000,
+                Math.random() * 800 - 400,
+                Math.random() * 2000 - 1500
+            );
+            cloud.rotation.z = Math.random() * Math.PI;
+            scene.add(cloud);
+            cloudParticles.push({ 
+                mesh: cloud, 
+                speed: (Math.random() - 0.5) * 0.0005,
+                drift: (Math.random() * 0.2) + 0.1 
+            });
+        }
+
+        // Diamonds
+        const diamonds = [];
+        const diamondGeo = new THREE.OctahedronGeometry(15, 0);
+        const diamondMat = new THREE.MeshPhysicalMaterial({
+            color: 0xffffff, metalness: 0.1, roughness: 0.0, transmission: 0.9,
+            emissive: 0x00d2ff, emissiveIntensity: 0.3
+        });
+
+        for(let i=0; i<DIAMOND_COUNT; i++) {
+            const diamond = new THREE.Mesh(diamondGeo, diamondMat);
+            let xPos = (Math.random() * 800) + 600; 
+            if(Math.random() > 0.5) xPos *= -1; 
+            diamond.position.set(xPos, (Math.random() * 1000) - 500, (Math.random() * 800) - 200);
+            scene.add(diamond);
+            diamonds.push({
+                mesh: diamond,
+                rotSpeedX: (Math.random() - 0.5) * 0.01,
+                rotSpeedY: (Math.random() - 0.5) * 0.01,
+                driftSpeed: (Math.random() * 0.1) + 0.02,
+                baseX: xPos 
+            });
+        }
+
+        // Nodes
+        const nodes = []; 
+        const sphereGeo = new THREE.SphereGeometry(3.5, 16, 16);
+        const sphereMat = new THREE.MeshPhysicalMaterial({
+            color: 0x00d2ff,
+            metalness: 0.1, roughness: 0.2, transmission: 0.6, 
+            emissive: 0x000033, emissiveIntensity: 0.5,
+            transparent: true, opacity: 0.9
+        });
+        const nodeMesh = new THREE.InstancedMesh(sphereGeo, sphereMat, NODE_COUNT);
+        nodeMesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
+        scene.add(nodeMesh);
+
+        const dummy = new THREE.Object3D();
+        const color = new THREE.Color();
+
+        for(let i=0; i<NODE_COUNT; i++) {
+            // New Lifecycle Properties
+            const x = Math.random() * 1800 - 900;
+            const y = Math.random() * 1000 - 500;
+            const z = Math.random() * 1200 - 600;
+            nodes.push({
+                x: x, y: y, z: z, 
+                currX: x, currY: y, currZ: z, 
+                vx: (Math.random() - 0.5) * 0.1,
+                vy: (Math.random() - 0.5) * 0.1,
+                vz: (Math.random() - 0.5) * 0.1,
+                pulse: 0,
+                windOffset: Math.random() * Math.PI * 2,
+                windSpeed: 0.2 + Math.random() * 0.3,
+                
+                // Lifecycle for "Fading in/out"
+                life: Math.random(), // 0.0 to 1.0 progress
+                lifeSpeed: 0.001 + Math.random() * 0.003, // Speed of life
+                maxScale: 0.5 + Math.random() * 1.0 // Varied sizes
+            });
+            dummy.position.set(x, y, z);
+            dummy.updateMatrix();
+            nodeMesh.setMatrixAt(i, dummy.matrix);
+            nodeMesh.setColorAt(i, new THREE.Color(0x00d2ff));
+        }
+
+        const lineGeo = new THREE.BufferGeometry();
+        const lineMat = new THREE.LineBasicMaterial({
+            vertexColors: true,
+            transparent: true,
+            opacity: 0.35, 
+            blending: THREE.AdditiveBlending
+        });
+        const linesMesh = new THREE.LineSegments(lineGeo, lineMat);
+        scene.add(linesMesh);
+
+        // Mouse Tracker
+        const mouse = new THREE.Vector2();
+        document.addEventListener('mousemove', (e) => {
+            mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+            mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+        });
+
+        // Animation
+        function animate() {
+            const now = Date.now();
+            const time = now * 0.001; 
+            
+            // --- RAYCASTER MOUSE INTERACTION ---
+            raycaster.setFromCamera(mouse, camera);
+            raycaster.ray.intersectPlane(mousePlane, mousePos3D);
+
+            // --- WAVE LOGIC ---
+            const waveTime = now % WAVE_CYCLE;
+            const waveProgress = waveTime / WAVE_CYCLE;
+            let waveRadius = 0;
+            let waveStrength = 0;
+
+            if(waveProgress < 0.6) {
+                const blastProgress = waveProgress / 0.6;
+                waveRadius = blastProgress * 1500; 
+                waveStrength = (1 - blastProgress) * 3.0;
+            }
+
+            // Camera subtle movement
+            camera.position.x += (mouse.x * 20 - camera.position.x) * 0.01;
+            camera.position.y += (mouse.y * 20 - camera.position.y) * 0.01;
+            camera.lookAt(0,0,0);
+
+            // Clouds
+            cloudParticles.forEach(c => {
+                c.mesh.rotation.z += c.speed;
+                c.mesh.position.x += Math.sin(time * 0.2 + c.mesh.position.y * 0.001) * c.drift;
+            });
+
+            // Diamonds
+            diamonds.forEach(d => {
+                d.mesh.rotation.x += d.rotSpeedX;
+                d.mesh.rotation.y += d.rotSpeedY;
+                d.mesh.position.y += d.driftSpeed;
+                d.mesh.position.x = d.baseX + Math.sin(time * 0.5 + d.mesh.position.y * 0.005) * 20;
+                if(d.mesh.position.y > 600) d.mesh.position.y = -600;
+            });
+
+            // Nodes & Lines
+            const linePositions = [];
+            const lineColors = [];
+
+            if(Math.random() < 0.02) {
+                const luckyNode = Math.floor(Math.random() * NODE_COUNT);
+                nodes[luckyNode].pulse = 1.0;
+            }
+
+            for(let i=0; i<NODE_COUNT; i++) {
+                const n = nodes[i];
+                n.pulse *= 0.95;
+
+                // --- LIFECYCLE LOGIC (Fade In/Out) ---
+                n.life += n.lifeSpeed;
+                if (n.life > 1.0) {
+                    // Rebirth: Fade out complete, respawn elsewhere
+                    n.life = 0;
+                    n.currX = (Math.random() * 1800 - 900);
+                    n.currY = (Math.random() * 1000 - 500);
+                    n.currZ = (Math.random() * 1200 - 600);
+                    n.pulse = 0; // Reset pulse
+                }
+
+                // Calculate Scale based on Life (Sine wave: Start 0 -> Mid 1 -> End 0)
+                // This creates the visual effect of spawning and fading away
+                const lifeScale = Math.sin(n.life * Math.PI) * n.maxScale;
+
+                // Wind Logic
+                const windX = Math.sin(time * 0.5 + n.currY * 0.002 + n.windOffset) * n.windSpeed;
+                const windY = Math.cos(time * 0.3 + n.currX * 0.002) * (n.windSpeed * 0.5);
+
+                n.currX += n.vx + windX;
+                n.currY += n.vy + windY;
+                n.currZ += n.vz;
+
+                // --- MOUSE REPULSION ---
+                // Calculate distance from 3D mouse position
+                const dx = n.currX - mousePos3D.x;
+                const dy = n.currY - mousePos3D.y;
+                // Z distance is less relevant for a "cursor", but we check full distance
+                const dz = n.currZ - mousePos3D.z;
+                // Focus mainly on XY plane for repulsion to feel like a cursor
+                const distMouse = Math.sqrt(dx*dx + dy*dy);
+
+                if (distMouse < 200) {
+                    const repulseForce = (1 - distMouse/200) * 4.0;
+                    n.currX += dx * 0.05 * repulseForce;
+                    n.currY += dy * 0.05 * repulseForce;
+                    // Slightly light up nodes near mouse
+                    n.pulse = Math.max(n.pulse, 0.5); 
+                }
+
+                // --- WAVE EFFECT ---
+                const distCenter = Math.sqrt(n.currX*n.currX + n.currY*n.currY + n.currZ*n.currZ);
+                if (waveStrength > 0.1 && Math.abs(distCenter - waveRadius) < 150) {
+                     const waveForce = waveStrength * 0.15;
+                     n.currX += (n.currX / distCenter) * waveForce * 4;
+                     n.currY += (n.currY / distCenter) * waveForce * 4;
+                     n.currZ += (n.currZ / distCenter) * waveForce * 4;
+                     n.pulse = 1.0;
+                }
+
+                // Update Dummy Object
+                dummy.position.set(n.currX, n.currY, n.currZ);
+                const finalScale = lifeScale + (n.pulse * 0.5); // Life scale + Pulse boost
+                dummy.scale.setScalar(Math.max(0.01, finalScale)); // Prevent 0 scale errors
+                dummy.updateMatrix();
+                nodeMesh.setMatrixAt(i, dummy.matrix);
+                
+                color.setHSL(0.55, 1.0, 0.5 + n.pulse * 0.5);
+                nodeMesh.setColorAt(i, color);
+
+                // Connections (Only draw lines if node is "alive" enough)
+                if (n.life > 0.1 && n.life < 0.9) {
+                    for(let j=i+1; j<NODE_COUNT; j++) {
+                        const n2 = nodes[j];
+                        // Also check if neighbor is alive
+                        if (n2.life > 0.1 && n2.life < 0.9) {
+                            const distSq = (n.currX-n2.currX)**2 + (n.currY-n2.currY)**2 + (n.currZ-n2.currZ)**2;
+                            if(distSq < CONNECTION_DIST * CONNECTION_DIST) {
+                                linePositions.push(n.currX, n.currY, n.currZ);
+                                linePositions.push(n2.currX, n2.currY, n2.currZ);
+                                
+                                // Scale line opacity by life cycle so lines fade too
+                                const lifeFactor = Math.min(Math.sin(n.life * Math.PI), Math.sin(n2.life * Math.PI));
+                                const intensity = Math.max(n.pulse, n2.pulse) * 0.8 * lifeFactor;
+                                
+                                const r = 0.1 + intensity;
+                                const g = 0.2 + intensity;
+                                const b = 0.5 + intensity;
+                                lineColors.push(r, g, b, r, g, b);
+                            }
+                        }
+                    }
+                }
+            }
+            
+            nodeMesh.instanceMatrix.needsUpdate = true;
+            nodeMesh.instanceColor.needsUpdate = true;
+            lineGeo.setAttribute('position', new THREE.Float32BufferAttribute(linePositions, 3));
+            lineGeo.setAttribute('color', new THREE.Float32BufferAttribute(lineColors, 3));
+
+            composer.render();
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            composer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        animate();
+    </script>
+    
+    <!-- UI Logic Script -->
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileDropdown');
+            menu.classList.toggle('open');
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const cards = document.querySelectorAll('.card');
+            
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: "0px"
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add('visible');
+                            const h3 = entry.target.querySelector('h3');
+                            if(h3) {
+                                h3.style.animation = "flashGlow 0.8s ease-out";
+                                setTimeout(() => h3.style.animation = "", 800);
+                            }
+                        }, index * 100); 
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            cards.forEach(card => observer.observe(card));
+        });
+
+        const letters = "██▓▓▒▒░░▖▗▘▙▚▛▜▝▞▟"; 
+
+        function runGlitch(element) {
+            if (element.dataset.isCoolingDown === "true") return;
+
+            element.dataset.isCoolingDown = "true";
+            setTimeout(() => {
+                element.dataset.isCoolingDown = "false";
+            }, 2000);
+
+            let iteration = 0;
+            const originalText = element.dataset.value;
+            if(element.interval) clearInterval(element.interval);
+
+            element.interval = setInterval(() => {
+                element.innerHTML = originalText 
+                    .split("")
+                    .map((letter, index) => {
+                        if(index < iteration) {
+                            return originalText[index];
+                        }
+                        if(originalText[index] === ' ' || originalText[index] === '<' || originalText[index] === '>') return originalText[index];
+                        
+                        return letters[Math.floor(Math.random() * letters.length)];
+                    })
+                    .join("");
+
+                if(iteration >= originalText.length){
+                    clearInterval(element.interval);
+                    element.innerHTML = originalText;
+                }
+
+                iteration += 1; 
+            }, 30); 
+        }
+
+        const glitchTargets = document.querySelectorAll('h1, h3, .logo, .hero-sub');
+        
+        glitchTargets.forEach(target => {
+            target.addEventListener('mouseover', () => runGlitch(target));
+            
+            if(target.tagName === 'H1') {
+                setTimeout(() => runGlitch(target), 500);
+            }
+        });
+
+    </script>
+    <script src="assets/js/script.js" defer></script>
+    <script src="assets/js/audio-manager.js"></script>
+</body>
+</html>

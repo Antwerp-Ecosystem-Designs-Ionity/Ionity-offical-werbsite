@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ionity | Legal & Protection Framework</title>
+    <meta name="description" content="Ionity Legal Framework - Protocol AED 986, AED 990 License, and Asset Sovereignty Standards.">
+    
+    <style>
+        :root {
+            --bg-dark: #020205;
+            --bg-panel: rgba(5, 10, 15, 0.8);
+            --text-main: #ffffff;
+            --text-muted: rgba(255, 255, 255, 0.7); 
+            --accent-cyan: #00d2ff;
+            --accent-blue-bright: #50e3c2;
+            --accent-white: #ffffff;
+            --accent-red: #ff3e3e;
+            --border: rgba(255, 255, 255, 0.1);
+            --border-active: rgba(0, 210, 255, 0.6);
+            --glow: 0 0 15px rgba(0, 210, 255, 0.4);
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-dark);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            color: var(--text-main);
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        /* --- ADVANCED NETWORK SPACE BACKGROUND --- */
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0; 
+            pointer-events: none;
+        }
+
+        .scanlines {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.3) 50%);
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 99;
+            opacity: 0.2;
+        }
+
+        /* --- ANIMATIONS --- */
+        @keyframes blueWhitePulse {
+            0% { box-shadow: 0 0 20px rgba(0, 210, 255, 0.4), inset 0 0 10px rgba(255, 255, 255, 0.2); border-color: rgba(255, 255, 255, 0.5); transform: scale(1); }
+            50% { box-shadow: 0 0 50px rgba(0, 210, 255, 0.8), 0 0 80px rgba(255, 255, 255, 0.3), inset 0 0 30px rgba(255, 255, 255, 0.4); border-color: var(--accent-white); transform: scale(1.08); }
+            100% { box-shadow: 0 0 20px rgba(0, 210, 255, 0.4), inset 0 0 10px rgba(255, 255, 255, 0.2); border-color: rgba(255, 255, 255, 0.5); transform: scale(1); }
+        }
+
+        @keyframes floatOrbitInner {
+            0% { transform: rotate(0deg) translateX(160px) rotate(0deg); }
+            100% { transform: rotate(360deg) translateX(160px) rotate(-360deg); }
+        }
+
+        @keyframes floatOrbitOuter {
+            0% { transform: rotate(360deg) translateX(240px) rotate(-360deg); }
+            100% { transform: rotate(0deg) translateX(240px) rotate(0deg); }
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            padding: 0 5vw;
+            height: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            background: rgba(2, 2, 5, 0.95);
+            backdrop-filter: blur(15px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-family: 'Courier New', monospace;
+            font-weight: 700;
+            letter-spacing: 0.2rem;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2rem;
+            text-shadow: 0 0 10px var(--accent-cyan);
+        }
+
+        .nav-logo {
+            height: 80px;
+            width: auto;
+            vertical-align: middle;
+            transition: all 0.3s ease;
+        }
+        .nav-logo:hover {
+            filter: drop-shadow(0 0 8px var(--accent-cyan));
+        }
+
+        .nav-links { display: flex; gap: 2rem; }
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1rem;
+            transition: 0.3s;
+            font-weight: 600;
+        }
+        .nav-links a:hover, .nav-links a.active { color: var(--accent-cyan); text-shadow: 0 0 10px var(--accent-cyan); }
+
+        /* --- LAYOUT --- */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero-section {
+            margin-bottom: 4rem;
+            animation: slideIn 1s ease-out;
+            background: radial-gradient(circle at center, rgba(0,0,0,0.5), transparent 80%);
+            padding: 2rem 0;
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 200;
+            letter-spacing: -0.1rem;
+            margin: 0 0 1rem 0;
+            color: #fff;
+        }
+
+        .hero-sub {
+            font-family: 'Courier New', monospace;
+            color: var(--accent-cyan);
+            margin-top: 1rem;
+            letter-spacing: 0.2rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .hero-desc {
+            max-width: 700px;
+            margin: 1.5rem 0 2rem;
+            line-height: 1.8;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        /* --- DOWNLOAD BUTTONS --- */
+        .download-actions {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-download {
+            position: relative;
+            padding: 1rem 2rem;
+            background: rgba(0, 210, 255, 0.05);
+            border: 1px solid var(--accent-cyan);
+            color: var(--accent-cyan);
+            text-decoration: none;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.15rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-download::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: 0.6s;
+        }
+
+        .btn-download:hover {
+            background: var(--accent-cyan);
+            color: #000;
+            box-shadow: 0 0 30px var(--accent-cyan);
+            transform: translateY(-5px);
+            border-color: #fff;
+        }
+
+        .btn-download:hover::before { left: 100%; }
+
+        .btn-download svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        /* --- ECOSYSTEM CORE --- */
+        .ecosystem-section {
+            position: relative;
+            height: 650px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 4rem 0 8rem;
+        }
+
+        .eco-orb-container {
+            position: relative;
+            width: 500px;
+            height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .eco-orb-core {
+            position: relative;
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            border: 4px solid var(--accent-white);
+            background: radial-gradient(circle, #ffffff 0%, #00d2ff 40%, #001a33 90%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            z-index: 10;
+            animation: blueWhitePulse 4s infinite ease-in-out;
+            text-shadow: 0 0 10px #000;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .core-text {
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 1rem;
+            font-weight: 900;
+            letter-spacing: 0.1rem;
+            text-transform: uppercase;
+        }
+
+        .core-id {
+            font-family: 'Courier New', monospace;
+            font-size: 0.55rem;
+            opacity: 0.8;
+            margin-top: 8px;
+        }
+
+        .eco-ring-outer {
+            position: absolute;
+            width: 520px;
+            height: 520px;
+            border-radius: 50%;
+            border: 1px dashed rgba(255, 255, 255, 0.15);
+            border-left: 2px solid var(--accent-cyan);
+            border-right: 2px solid var(--accent-cyan);
+            animation: spinLeft 40s linear infinite;
+        }
+
+        .eco-ring-inner {
+            position: absolute;
+            width: 340px;
+            height: 340px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 2px solid var(--accent-white);
+            border-bottom: 2px solid var(--accent-white);
+            animation: spinRight 25s linear infinite;
+        }
+
+        .eco-link {
+            position: absolute;
+            top: 50%; left: 50%;
+            width: 140px; height: 35px;
+            margin-top: -17px; margin-left: -70px; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: rgba(255,255,255,0.9);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.1rem;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: 0.3s;
+            text-shadow: 0 0 10px rgba(0, 210, 255, 0.8);
+            white-space: nowrap;
+        }
+
+        .eco-link:hover {
+            color: var(--accent-white);
+            text-shadow: 0 0 20px var(--accent-cyan);
+            transform: scale(1.2) !important;
+            z-index: 20;
+        }
+
+        /* --- GRID SYSTEM --- */
+        .policy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .card {
+            background: rgba(10, 15, 25, 0.85);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            padding: 3rem;
+            position: relative;
+            transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        .card.visible { opacity: 1; transform: translateY(0); }
+        .card:hover { border-color: var(--border-active); background: rgba(15, 25, 35, 0.98); box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
+
+        .card-tag {
+            font-family: 'Courier New', monospace;
+            font-size: 0.65rem;
+            color: var(--accent-cyan);
+            text-transform: uppercase;
+            letter-spacing: 0.25rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .card h2 { font-size: 1.6rem; font-weight: 400; margin: 0 0 1.2rem 0; color: #fff; }
+        .card p { font-size: 1rem; line-height: 1.8; color: var(--text-muted); margin-bottom: 1.8rem; }
+
+        .policy-list { list-style: none; padding: 0; margin: 0; }
+        .policy-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.9rem;
+            color: #fff;
+            display: flex;
+            gap: 12px;
+        }
+        .policy-list li::before { content: '>>'; color: var(--accent-cyan); font-family: monospace; }
+
+        .alert-card { border-left: 5px solid var(--accent-red); }
+        .alert-card .card-tag { color: var(--accent-red); }
+
+        .grid-header {
+            grid-column: 1 / -1;
+            margin: 5rem 0 2.5rem;
+            font-size: 2.2rem;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 0.3rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 1.5rem;
+        }
+
+        /* --- SUBSCRIPTIONS --- */
+        .subs-section {
+            margin-top: 8rem;
+            background: linear-gradient(180deg, rgba(0, 210, 255, 0.05) 0%, transparent 100%);
+            border: 1px solid var(--border);
+            padding: 5rem 3rem;
+            text-align: center;
+        }
+
+        .subs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .sub-plan {
+            background: rgba(0,0,0,0.3);
+            border: 1px solid var(--border);
+            padding: 2.5rem;
+            transition: 0.4s;
+            backdrop-filter: blur(10px);
+        }
+        .sub-plan:hover { border-color: var(--accent-cyan); background: rgba(0,210,255,0.08); transform: translateY(-10px); }
+        .sub-plan h3 { color: var(--accent-cyan); margin-bottom: 1rem; }
+
+        footer {
+            margin-top: 8rem;
+            padding: 5rem 5vw;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            background: rgba(2, 2, 5, 0.98);
+            position: relative;
+            z-index: 100;
+            line-height: 2.2;
+        }
+
+        @keyframes spinRight { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes spinLeft { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .eco-orb-container { width: 320px; height: 320px; }
+            .eco-ring-outer { width: 320px; height: 320px; }
+            .eco-ring-inner { width: 240px; height: 240px; }
+            .download-actions { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="canvas-container"></div>
+    <div class="scanlines"></div>
+
+    <nav>
+        <a href="index.html" class="logo">
+             <img src="assets/images/ionity-logo-edited.png" alt="IONITY" class="nav-logo">
+        </a>
+        
+        <!-- Desktop Menu -->
+        <div class="nav-links">
+            <a href="index.html">Mainframe</a>
+            <a href="services.html">Services</a>
+            <a href="products.html">Products</a>
+            <a href="inner-Page.html">Systems</a>
+            <a href="gateway.html">Gateway</a>
+            <a href="aedi-online.html">AEDI Online</a>
+            <a href="ai-innovation.html">Ai Innovation</a>
+            <a href="license.html" class="active">License</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Mobile Dropdown -->
+    <div class="mobile-dropdown" id="mobileDropdown">
+        <a href="index.html">Mainframe</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="products.html">Products</a>
+        <a href="inner-Page.html">Systems</a>
+        <a href="gateway.html">Gateway</a>
+        <a href="aedi-online.html">AEDI Online</a>
+        <a href="ai-innovation.html">Ai Innovation</a>
+        <a href="license.html" class="active">License</a>
+        <a href="contact.html">Contact</a>
+    </div>
+
+    <div class="container">
+        
+        <div class="hero-section">
+            <h1 id="glitch-header" data-value="Legal & Protection Framework">Legal & Protection Framework</h1>
+            <div class="hero-sub" data-value="Protocol AED 986 // Active Enforcement">Protocol AED 986 // Active Enforcement</div>
+            <p class="hero-desc">
+                Authorized framework governing Ionity (Pty) Ltd hardware, software, and integration schematics. Policy AED 986 overrules all intent and establishes absolute asset sovereignty as of 2024 Nov 25.
+            </p>
+
+            <div class="download-actions">
+                <a href="https://drive.google.com/file/d/1kG5A9kf3oNt0DYnIw0j_odVilasr7jyG/view?usp=drive_link" target="_blank" class="btn-download" data-value="AED 986 Policy">
+                    <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                    <span>AED 986 Policy</span>
+                </a>
+                <a href="https://drive.google.com/file/d/11LeTopJCYBQfFw1H0YbXR1ilmvUt3hko/view?usp=drive_link" target="_blank" class="btn-download" data-value="AED 990 License">
+                    <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                    <span>AED 990 License</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- ECO-SYSTEM CORE -->
+        <div class="ecosystem-section">
+            <div class="eco-orb-container">
+                <div class="eco-ring-outer"></div>
+                <div class="eco-ring-inner"></div>
+                
+                <div class="eco-orb-core">
+                    <div class="core-text" data-value="AED-986">AED-986</div>
+                    <div class="core-id">AD-URIEL v7.3 // ZAR</div>
+                </div>
+                
+                <a href="#" class="eco-link" style="animation: floatOrbitInner 20s linear infinite;">NDA Mandatory</a>
+                <a href="#" class="eco-link" style="animation: floatOrbitInner 20s linear infinite; animation-delay: -5s;">No-Share</a>
+                <a href="#" class="eco-link" style="animation: floatOrbitInner 20s linear infinite; animation-delay: -10s;">ISO Protocols</a>
+                <a href="#" class="eco-link" style="animation: floatOrbitInner 20s linear infinite; animation-delay: -15s;">Trade Secrets</a>
+
+                <a href="#" class="eco-link" style="animation: floatOrbitOuter 30s linear infinite;">Data Secure</a>
+                <a href="#" class="eco-link" style="animation: floatOrbitOuter 30s linear infinite; animation-delay: -10s;">Sovereignty</a>
+                <a href="#" class="eco-link" style="animation: floatOrbitOuter 30s linear infinite; animation-delay: -20s;">Compliance</a>
+            </div>
+        </div>
+
+        <div class="policy-grid">
+            
+            <div class="grid-header" data-value="AED 990 Standards">AED 990 Standards</div>
+
+            <div class="card">
+                <span class="card-tag">Hardware & Systems</span>
+                <h2>Ionity (Pty) Ltd License 900</h2>
+                <p>Establishing non-granted, restricted permissions for hardware and machine-executable code across the AEDI grid.</p>
+                <ul class="policy-list">
+                    <li>Hardware (SBC, MCU) remains the property of Ionity (Pty) Ltd.</li>
+                    <li>Software is lease-based via company/industry subscriptions.</li>
+                    <li>Repairs and maintenance restricted to Ionity or authorized partners.</li>
+                    <li>Strict compliance with the AEDI Living Mesh standards.</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <span class="card-tag">Work Relations</span>
+                <h2>Policy AED 986</h2>
+                <p>Governing work relations across all internal and external connections with zero-share default.</p>
+                <ul class="policy-list">
+                    <li>Trade Secrets remain such until disclosed by explicit Consent.</li>
+                    <li>All communications require Direct Intent verification.</li>
+                    <li>ISO Protocols for Data Management are strictly enforced.</li>
+                    <li>Digital fingerprints logged for all metadata interactions.</li>
+                </ul>
+            </div>
+
+            <div class="grid-header" data-value="Enforcement Protocols">Enforcement Protocols</div>
+
+            <div class="card alert-card">
+                <span class="card-tag">Asset Sovereignty</span>
+                <h2>Right of Removal</h2>
+                <p>Ionity maintains absolute authority to purge or reclaim hardware and data assets to prevent contamination.</p>
+                <ul class="policy-list">
+                    <li>Enforcement Window: After 5th Jan 2026 Midnight (ACTIVE).</li>
+                    <li>Auto-Deactivation if tampering or unauthorized editing is detected.</li>
+                    <li>Emergency Script Purge in "Alarm Principle" scenarios.</li>
+                    <li>$1/KB penalty for unauthorized data leaks.</li>
+                </ul>
+            </div>
+
+            <div class="card alert-card">
+                <span class="card-tag">ACTIVE MONITORING</span>
+                <h2>Policy 986 & License 900 AED</h2>
+                <p>Enforcement protocol utilizing online META-DATA tracing for all protected assets with auto-application to client requests.</p>
+                <ul class="policy-list">
+                    <li>Applies to IP, NDA, Trade & Non-disclosed data.</li>
+                    <li>Auto-application to client requests.</li>
+                    <li>Online META-DATA tracing active.</li>
+                    <li>Binding via AED 990 Enforcement.</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <span class="card-tag">Public Commons</span>
+                <h2>Creative Commons 4.0</h2>
+                <p>Work explicitly designated as shareable falls under the BY-NC-SA 4.0 license.</p>
+                <ul class="policy-list">
+                    <li>Applicable only to designated open-source scripts.</li>
+                    <li>STRICTLY overruled by Policy 986 for industrial core work.</li>
+                    <li>Effective globally as of 2024 Nov 25.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="subs-section">
+            <h2 data-value="SUBSCRIPTION TIERS">SUBSCRIPTION TIERS</h2>
+            <div class="subs-grid">
+                <div class="sub-plan">
+                    <h3>FREE TIER</h3>
+                    <p style="color: var(--accent-blue-bright); font-weight: bold;">FREE Usage of Policy 986 in full</p>
+                    <p>Standard protection and basic ecosystem telemetry.</p>
+                </div>
+
+                <div class="sub-plan">
+                    <h3>CLIENT FREE TIER</h3>
+                    <p style="color: var(--accent-blue-bright); font-weight: bold;">Self-Paid Cloud Resources</p>
+                    <p>Unlock full Cloud Service Potential for high-demand operations.</p>
+                    <ul class="policy-list" style="padding-left: 1rem; margin-top: 1rem;">
+                        <li>Client covers Cloud Costs directly</li>
+                        <li>Zero Service Fee on Compute</li>
+                        <li>Full Policy 986 AED Protection</li>
+                    </ul>
+                    <a href="contact.html" class="btn-download" style="margin-top: 1.5rem; justify-content: center; width: auto; font-size: 0.7rem; padding: 0.8rem;">
+                        Contact For More
+                    </a>
+                </div>
+                
+                <div class="sub-plan">
+                    <h3>Policy 986 Implementation</h3>
+                    <div style="font-size: 1.5rem; color: var(--accent-cyan); margin: 0.5rem 0;">$1.20 <span style="font-size: 0.8rem;">/ 10k Tokens</span></div>
+                    <ul class="policy-list" style="padding-left: 1rem; margin-top: 1rem;">
+                        <li>Per data cost overwriting meta data for tracking</li>
+                        <li>Includes data encryption tier</li>
+                        <li>High level compression for secure transfers</li>
+                        <li>Critical data protection</li>
+                    </ul>
+                    <a href="contact.html" class="btn-download" style="margin-top: 1.5rem; justify-content: center; width: auto; font-size: 0.7rem; padding: 0.8rem;">
+                        Contact For More
+                    </a>
+                </div>
+
+                <div class="sub-plan" style="border-color: var(--accent-cyan); background: rgba(0, 210, 255, 0.05);">
+                    <h3>Custom Enterprise</h3>
+                    <div style="font-size: 1.5rem; color: var(--accent-cyan); margin: 0.5rem 0;">From $630 <span style="font-size: 0.8rem;">/ 50GB</span></div>
+                    <ul class="policy-list" style="padding-left: 1rem; margin-top: 1rem;">
+                        <li>Custom policy/licenses & Encryption requirements</li>
+                        <li>Certificate and Secure Shell setups (up to 4 devices)</li>
+                        <li>50 GB data processes included</li>
+                        <li style="font-size: 0.8rem; opacity: 0.8; margin-top: 5px;">*Charges apply only to injected/armored data processing, not data transfer volume.</li>
+                    </ul>
+                    <a href="contact.html" class="btn-download" style="margin-top: 1.5rem; justify-content: center; width: auto; font-size: 0.7rem; padding: 0.8rem;">
+                        Contact For More
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer style="background-color: #081220; padding: 3rem 0; border-top: 1px solid rgba(0, 210, 255, 0.3);">
+        <style>
+            @keyframes footerGlow {
+                0% { text-shadow: 0 0 2px rgba(255,255,255,0.1); }
+                100% { text-shadow: 0 0 8px rgba(0, 210, 255, 0.3); }
+            }
+            .footer-content { animation: footerGlow 3s infinite alternate; }
+            
+            .footer-logo-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 2rem;
+                width: 100%;
+            }
+            .footer-logo {
+                height: 80px;
+                width: auto;
+                opacity: 0.9;
+                transition: all 0.3s ease;
+            }
+            .footer-logo:hover {
+                opacity: 1;
+                filter: drop-shadow(0 0 15px rgba(0, 210, 255, 0.4));
+            }
+        </style>
+        <div class="footer-logo-container">
+            <img src="assets/images/ionity-logo-edited.png" alt="Ionity Logo" class="footer-logo">
+        </div>
+        <div class="footer-content" style="opacity: 0.95; line-height: 2; color: #e0f7ff;">
+            <div>Ionity™ (Pty) Ltd 2025-2026 | Creative Commons BY_NC_SA 4.0 | Made with AEDI™ | Author: Antwerp Designs</div>
+            <div>South Africa Centurion 0157 | Policy AED 986 AED | License AED 900 | Ionity™ IoT-Ai-DAQ-PdM-CMS-F-iT Hardware, Software Integrations, ALL RIGHTS RESERVED</div>
+            <div>
+                <a href="tel:+27646999877">+27 646 999 877</a> 
+                <a href="mailto:ai@ionity.today">ai@ionity.today</a> &nbsp;|&nbsp; 
+                Author Profile <a href="https://www.ionity.world" target="_blank">www.ionity.world</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- THREE JS ADVANCED NETWORK SPACE -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+        import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+        import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+
+        const container = document.getElementById('canvas-container');
+        const scene = new THREE.Scene();
+        scene.fog = new THREE.FogExp2(0x020205, 0.0012);
+
+        const camera = new THREE.PerspectiveCamera(65, window.innerWidth / window.innerHeight, 1, 3000);
+        camera.position.z = 800;
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        container.appendChild(renderer.domElement);
+
+        const composer = new EffectComposer(renderer);
+        composer.addPass(new RenderPass(scene, camera));
+        composer.addPass(new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.0, 0.5, 0.8));
+
+        // Create Neural Network Space
+        const pointsCount = 200;
+        const positions = new Float32Array(pointsCount * 3);
+        const velocities = [];
+        
+        for (let i = 0; i < pointsCount; i++) {
+            positions[i * 3] = (Math.random() - 0.5) * 1500;
+            positions[i * 3 + 1] = (Math.random() - 0.5) * 1500;
+            positions[i * 3 + 2] = (Math.random() - 0.5) * 1500;
+            velocities.push({
+                x: (Math.random() - 0.5) * 0.5,
+                y: (Math.random() - 0.5) * 0.5,
+                z: (Math.random() - 0.5) * 0.5
+            });
+        }
+
+        const geometry = new THREE.BufferGeometry();
+        geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+        const material = new THREE.PointsMaterial({
+            color: 0x00d2ff,
+            size: 3,
+            transparent: true,
+            opacity: 0.8,
+            blending: THREE.AdditiveBlending
+        });
+
+        const points = new THREE.Points(geometry, material);
+        scene.add(points);
+
+        // Lines for the network
+        const lineMaterial = new THREE.LineBasicMaterial({
+            color: 0x00d2ff,
+            transparent: true,
+            opacity: 0.1,
+            blending: THREE.AdditiveBlending
+        });
+
+        let lineMesh;
+
+        function updateNetwork() {
+            const posAttr = geometry.getAttribute('position');
+            const linePositions = [];
+            const threshold = 250;
+
+            for (let i = 0; i < pointsCount; i++) {
+                // Update position
+                posAttr.setXYZ(
+                    i,
+                    posAttr.getX(i) + velocities[i].x,
+                    posAttr.getY(i) + velocities[i].y,
+                    posAttr.getZ(i) + velocities[i].z
+                );
+
+                // Boundary check
+                if (Math.abs(posAttr.getX(i)) > 750) velocities[i].x *= -1;
+                if (Math.abs(posAttr.getY(i)) > 750) velocities[i].y *= -1;
+                if (Math.abs(posAttr.getZ(i)) > 750) velocities[i].z *= -1;
+
+                // Find connections
+                for (let j = i + 1; j < pointsCount; j++) {
+                    const dx = posAttr.getX(i) - posAttr.getX(j);
+                    const dy = posAttr.getY(i) - posAttr.getY(j);
+                    const dz = posAttr.getZ(i) - posAttr.getZ(j);
+                    const dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
+
+                    if (dist < threshold) {
+                        linePositions.push(posAttr.getX(i), posAttr.getY(i), posAttr.getZ(i));
+                        linePositions.push(posAttr.getX(j), posAttr.getY(j), posAttr.getZ(j));
+                    }
+                }
+            }
+            posAttr.needsUpdate = true;
+
+            if (lineMesh) scene.remove(lineMesh);
+            const lineGeometry = new THREE.BufferGeometry();
+            lineGeometry.setAttribute('position', new THREE.Float32BufferAttribute(linePositions, 3));
+            lineMesh = new THREE.LineSegments(lineGeometry, lineMaterial);
+            scene.add(lineMesh);
+        }
+
+        // Mouse Parallax
+        let mouseX = 0, mouseY = 0;
+        document.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX - window.innerWidth / 2) * 0.05;
+            mouseY = (e.clientY - window.innerHeight / 2) * 0.05;
+        });
+
+        function animate() {
+            requestAnimationFrame(animate);
+            updateNetwork();
+            
+            camera.position.x += (mouseX - camera.position.x) * 0.05;
+            camera.position.y += (-mouseY - camera.position.y) * 0.05;
+            camera.lookAt(scene.position);
+            
+            points.rotation.y += 0.001;
+            if (lineMesh) lineMesh.rotation.y += 0.001;
+
+            composer.render();
+        }
+        animate();
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            composer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
+
+    <script>
+        const letters = "██▓▓▒▒░░▖▗▘▙▚▛▜▝▞▟";
+        function runGlitch(element) {
+            let iteration = 0;
+            const originalText = element.dataset.value;
+            if (!originalText) return;
+            
+            clearInterval(element.interval);
+            element.interval = setInterval(() => {
+                const target = element.querySelector('span') || element;
+                target.innerText = originalText.split("").map((letter, index) => {
+                    if(index < iteration) return originalText[index];
+                    return letters[Math.floor(Math.random() * letters.length)];
+                }).join("");
+                
+                if(iteration >= originalText.length) clearInterval(element.interval);
+                iteration += 1 / 3;
+            }, 30);
+        }
+
+        const glitchTargets = document.querySelectorAll('h1, .grid-header, .hero-sub, h2, .core-text, .btn-download');
+        glitchTargets.forEach(target => {
+            target.addEventListener('mouseover', () => runGlitch(target));
+            if(target.tagName === 'H1') setTimeout(() => runGlitch(target), 500);
+        });
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const cards = document.querySelectorAll('.card');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => entry.target.classList.add('visible'), index * 100);
+                    }
+                });
+            }, { threshold: 0.1 });
+            cards.forEach(card => observer.observe(card));
+        });
+    </script>
+    <script src="assets/js/script.js" defer></script>
+    <script src="assets/js/audio-manager.js"></script>
+</body>
+</html>

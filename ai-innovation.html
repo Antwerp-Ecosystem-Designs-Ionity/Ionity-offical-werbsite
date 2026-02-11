@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ionity | AI Innovation</title>
+    <link rel="icon" type="image/png" href="assets/images/ionity-logo-edited.png">
+    <meta name="description" content="Ionity AI Innovation - Beyond measure. The future of artificial intelligence in ecosystem design.">
+    
+    <style>
+        :root {
+            --bg-dark: #000000;
+            --accent-cyan: #00d2ff;
+            --accent-purple: #bb00ff;
+            --accent-gold: #ffd700;
+            --text-main: #ffffff;
+            --border: rgba(255, 255, 255, 0.15);
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-dark);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            color: var(--text-main);
+            overflow-x: hidden;
+            width: 100%;
+            min-height: 100%;
+            overflow-y: auto; /* Enable vertical scrolling */
+        }
+
+        /* --- 3D CANVAS BACKGROUND --- */
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1; /* Moved up to sit above matrix */
+        }
+        
+        #matrix-canvas {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 0;
+            opacity: 0.15; /* Subtle blend */
+        }
+
+        .scanlines {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.2));
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 99;
+            opacity: 0.3;
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            padding: 0 5vw;
+            height: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-family: 'Courier New', monospace;
+            font-weight: 700;
+            letter-spacing: 0.2rem;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2rem;
+            text-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
+        }
+        
+        .nav-logo {
+            height: 80px;
+            width: auto;
+            vertical-align: middle;
+            transition: all 0.3s ease;
+        }
+        .nav-logo:hover {
+            filter: drop-shadow(0 0 8px var(--accent-cyan));
+        }
+
+        .nav-links { display: flex; gap: 1.5rem; }
+        .nav-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+            font-weight: 600;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--accent-cyan);
+            text-shadow: 0 0 15px var(--accent-cyan); 
+            border-bottom: 1px solid var(--accent-cyan);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--accent-cyan);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem 0.8rem;
+            border-radius: 4px;
+            z-index: 101;
+        }
+
+        .mobile-dropdown {
+            display: none;
+            position: absolute;
+            top: 80px; left: 0; width: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            border-bottom: 1px solid var(--border);
+            flex-direction: column;
+            padding: 1rem 0;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.8);
+            z-index: 99;
+        }
+        .mobile-dropdown.open { display: flex; }
+        .mobile-dropdown a {
+            color: #fff; padding: 1rem 2rem; text-decoration: none;
+            text-transform: uppercase; letter-spacing: 0.1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        @media (max-width: 1100px) {
+            .nav-links { display: none; }
+            .mobile-menu-btn { display: block; }
+        }
+
+        /* --- CONTENT WRAPPER --- */
+        .hero-container {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-left: 5vw;
+            box-sizing: border-box;
+            z-index: 10;
+        }
+
+        .content-overlay {
+            text-align: left;
+            z-index: 10;
+            pointer-events: none;
+            width: 45vw; /* Limit width */
+        }
+
+        .details-section {
+            position: relative;
+            z-index: 10;
+            padding: 5rem 5vw;
+            background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.85) 20%, #000000 100%);
+            margin-top: -10vh; /* Overlap slightly or just flow */
+        }
+        
+        .details-content {
+            max-width: 900px;
+        }
+        
+        .details-title {
+            color: var(--accent-cyan);
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2rem;
+            border-left: 3px solid var(--accent-cyan);
+            padding-left: 1.5rem;
+        }
+
+        .details-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #dcdcdc;
+            text-shadow: 0 0 2px rgba(0,0,0,0.8);
+        }
+
+        .main-title {
+            font-size: 4rem; /* Adjusted for side layout */
+            font-weight: 800;
+            letter-spacing: 0.5rem;
+            color: #ffffff;
+            -webkit-text-stroke: 1px var(--accent-cyan);
+            text-transform: uppercase;
+            margin: 0;
+            mix-blend-mode: normal;
+            position: relative;
+            display: inline-block;
+            border-bottom: 2px solid var(--accent-cyan);
+            padding-bottom: 1rem;
+        }
+
+        .main-title::after {
+            content: '_';
+            animation: blink 1s infinite;
+            color: var(--accent-cyan);
+        }
+
+        .sub-title {
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+            color: var(--accent-cyan);
+            letter-spacing: 0.2rem;
+            margin-top: 2rem;
+            text-shadow: 0 0 10px var(--accent-cyan);
+            line-height: 1.6;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 1rem;
+            border-left: 2px solid var(--accent-cyan);
+        }
+
+        @keyframes blink { 50% { opacity: 0; } }
+        
+        @keyframes glitch {
+            0% { text-shadow: 2px 0 var(--accent-cyan), -2px 0 var(--accent-purple); }
+            2% { text-shadow: -2px 0 var(--accent-purple), 2px 0 var(--accent-cyan); }
+            4% { text-shadow: 2px 0 var(--accent-cyan), -2px 0 var(--accent-purple); }
+            5% { text-shadow: none; }
+            100% { text-shadow: none; }
+        }
+
+        /* Digital Data Decor */
+        .digital-decor {
+            position: absolute;
+            top: -20px; right: 0;
+            font-size: 0.6rem;
+            color: var(--accent-cyan);
+            -webkit-text-stroke: 0; /* Prevent inheritance */
+            background: rgba(0, 210, 255, 0.1);
+            padding: 2px 5px;
+            letter-spacing: 1px;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            position: relative;
+            width: 100%;
+            /* Removed fixed positioning to allow scrolling */
+            background: #000000;
+            padding: 3rem 5vw;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.7rem;
+            z-index: 10;
+            line-height: 2.2;
+            box-sizing: border-box;
+        }
+
+        footer a { color: var(--accent-cyan) !important; text-decoration: none; margin: 0 10px; transition: color 0.3s; font-weight: bold; text-shadow: 0 0 5px var(--accent-cyan); }
+        footer a:hover { color: #ffffff !important; text-shadow: 0 0 15px var(--accent-cyan); }
+        
+        .footer-logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 1rem;
+            width: 100%;
+        }
+        .footer-logo {
+            height: 60px;
+            width: auto;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="matrix-canvas"></canvas>
+    <div id="canvas-container"></div>
+    <div class="scanlines"></div>
+
+    <nav>
+        <a href="index.html" class="logo">
+             <img src="assets/images/ionity-logo-edited.png" alt="IONITY" class="nav-logo">
+        </a>
+        
+        <div class="nav-links">
+            <a href="inner-Page.html">Systems</a>
+            <a href="services.html">Services</a>
+            <a href="products.html">Products</a>
+            <a href="ai-innovation.html" class="active">Ai Innovation</a>
+            <a href="roadmap.html">Roadmap</a>
+            <a href="license.html">License</a>
+            <a href="about.html">About</a>
+            <a href="aedi-online.html">AEDI Online</a>
+            <a href="contact.html">Contact</a>
+            <a href="firmware-development.html">Dev</a>
+            <a href="gateway.html">IO Way</a>
+        </div>
+
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+    </nav>
+
+    <div class="mobile-dropdown" id="mobileDropdown">
+        <a href="inner-Page.html">Systems</a>
+        <a href="services.html">Services</a>
+        <a href="products.html">Products</a>
+        <a href="ai-innovation.html" class="active">Ai Innovation</a>
+        <a href="roadmap.html">Roadmap</a>
+        <a href="license.html">License</a>
+        <a href="about.html">About</a>
+        <a href="aedi-online.html">AEDI Online</a>
+        <a href="contact.html">Contact</a>
+        <a href="firmware-development.html">Dev</a>
+        <a href="gateway.html">IO Way</a>
+    </div>
+
+    <div class="hero-container">
+        <div class="content-overlay">
+            <h1 class="main-title">
+                <span class="digital-decor">SYS.ID: 994-ALPHA</span>
+                Ai F.IT Forensic IT
+            </h1>
+            <div class="sub-title">
+                Cross Platform, System, Operating systems, Hardware, Software, datacapturing over devices secure and stable Ai Edge/Cloud/Hybrid you choose. Tomorrow, Today
+            </div>
+        </div>
+    </div>
+
+    <section class="details-section">
+        <div class="details-content">
+            <h2 class="details-title">IoT - Ai - Data Management and Engineering</h2>
+            <div class="details-text">
+                Refine what is known into what can be possible. Making use of latest hardware and software for Gen-Ai to ensure the flow of Encrypted even edge data between devices is captured secure and safely. Data Management and Monitoring in detail and scope to enhance business flow daily and overtime.
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-logo-container">
+            <img src="assets/images/ionity-logo-edited.png" alt="Ionity Logo" class="footer-logo">
+        </div>
+        <div class="footer-content" style="line-height: 2;">
+            <div>Ionity™ (Pty) Ltd 2025-2026 | Creative Commons BY_NC_SA 4.0 | Made with AEDI™ | Author: Antwerp Designs</div>
+            <div>South Africa Centurion 0157 | Policy AED 986 AED | License AED 900 | Ionity™ IoT-Ai-DAQ-PdM-CMS-F-iT Hardware, Software Integrations, ALL RIGHTS RESERVED</div>
+            <div>
+                <a href="tel:+27646999877">+27 646 999 877</a> 
+                <a href="mailto:ai@ionity.today">ai@ionity.today</a> &nbsp;|&nbsp; 
+                Author Profile <a href="https://www.ionity.world" target="_blank">www.ionity.world</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Three.js Import -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+    <script>
+        // --- MATRIX DATA BACKDROP ---
+        (function() {
+            const canvas = document.getElementById('matrix-canvas');
+            const ctx = canvas.getContext('2d');
+            
+            let width = canvas.width = window.innerWidth;
+            let height = canvas.height = window.innerHeight;
+            
+            const cols = Math.floor(width / 20) + 1;
+            const ypos = Array(cols).fill(0);
+            
+            ctx.fillStyle = '#000';
+            ctx.fillRect(0, 0, width, height);
+
+            function matrix() {
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+                ctx.fillRect(0, 0, width, height);
+                
+                ctx.fillStyle = '#00d2ff'; // Cyan to match theme
+                ctx.font = '12pt monospace';
+                
+                ypos.forEach((y, ind) => {
+                    const text = String.fromCharCode(Math.random() * 128);
+                    const x = ind * 20;
+                    ctx.fillText(text, x, y);
+                    
+                    if (y > 100 + Math.random() * 10000) ypos[ind] = 0;
+                    else ypos[ind] = y + 20;
+                });
+            }
+            
+            window.addEventListener('resize', () => {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+            });
+
+            setInterval(matrix, 50);
+        })();
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileDropdown');
+            menu.classList.toggle('open');
+        }
+    </script>
+    <script src="assets/js/audio-manager.js"></script>
+    <script type="module">
+        import * as THREE from 'three';
+        import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+        import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+        import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+
+        const scene = new THREE.Scene();
+        scene.fog = new THREE.FogExp2(0x000000, 0.002);
+        
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.z = 30;
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        document.getElementById('canvas-container').appendChild(renderer.domElement);
+
+        // Group to offset the orb to the right
+        const mainGroup = new THREE.Group();
+        mainGroup.position.x = 20; // Moved left (about 3cm) for better visibility
+        scene.add(mainGroup);
+
+        // --- BRAIN / NEURAL NETWORK ---
+        const particleCount = 2000;
+        const geometry = new THREE.BufferGeometry();
+        const positions = new Float32Array(particleCount * 3);
+        const colors = new Float32Array(particleCount * 3);
+        const sizes = new Float32Array(particleCount);
+
+        const color1 = new THREE.Color(0x00d2ff);
+        const color2 = new THREE.Color(0xbb00ff);
+        const color3 = new THREE.Color(0xffd700);
+
+        for(let i=0; i<particleCount; i++) {
+            // Sphere distribution
+            const theta = Math.random() * Math.PI * 2;
+            const phi = Math.acos(2 * Math.random() - 1);
+            const radius = 10 + Math.random() * 5;
+
+            const x = radius * Math.sin(phi) * Math.cos(theta);
+            const y = radius * Math.sin(phi) * Math.sin(theta);
+            const z = radius * Math.cos(phi);
+
+            positions[i*3] = x;
+            positions[i*3+1] = y;
+            positions[i*3+2] = z;
+
+            const mixedColor = color1.clone().lerp(color2, Math.random());
+            if(Math.random() > 0.9) mixedColor.lerp(color3, 0.8); // Golden sparks
+
+            colors[i*3] = mixedColor.r;
+            colors[i*3+1] = mixedColor.g;
+            colors[i*3+2] = mixedColor.b;
+            
+            sizes[i] = Math.random() * 0.2;
+        }
+
+        geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+        geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
+
+        const material = new THREE.PointsMaterial({
+            size: 0.2,
+            vertexColors: true,
+            blending: THREE.AdditiveBlending,
+            depthWrite: false,
+            transparent: true,
+            opacity: 0.8
+        });
+
+        const particles = new THREE.Points(geometry, material);
+        mainGroup.add(particles);
+
+        // Connections Lines (Wireframe Sphere Layer)
+        const wireGeo = new THREE.IcosahedronGeometry(16, 2);
+        const wireMat = new THREE.MeshBasicMaterial({
+            color: 0x00d2ff,
+            wireframe: true,
+            transparent: true,
+            opacity: 0.03,
+            blending: THREE.AdditiveBlending
+        });
+        const wireMesh = new THREE.Mesh(wireGeo, wireMat);
+        mainGroup.add(wireMesh);
+
+        // Digital Ring 1
+        const torusGeo = new THREE.TorusGeometry(22, 0.1, 16, 100);
+        const torusMat = new THREE.MeshBasicMaterial({ color: 0x00d2ff, transparent: true, opacity: 0.3 });
+        const ring1 = new THREE.Mesh(torusGeo, torusMat);
+        ring1.rotation.x = Math.PI / 2;
+        mainGroup.add(ring1);
+
+        // Digital Ring 2 (Dotted look simulated via large segments or texture, keeping simple geo for now)
+        const torusGeo2 = new THREE.TorusGeometry(25, 0.05, 16, 100);
+        const torusMat2 = new THREE.MeshBasicMaterial({ color: 0xffd700, transparent: true, opacity: 0.2 });
+        const ring2 = new THREE.Mesh(torusGeo2, torusMat2);
+        ring2.rotation.y = Math.PI / 4;
+        mainGroup.add(ring2);
+
+        // Post Processing
+        const composer = new EffectComposer(renderer);
+        composer.addPass(new RenderPass(scene, camera));
+        
+        const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.5, 0.4, 0.85);
+        bloomPass.threshold = 0;
+        bloomPass.strength = 1.2;
+        bloomPass.radius = 0.5;
+        composer.addPass(bloomPass);
+
+        // Animation
+        const clock = new THREE.Clock();
+
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            const elapsedTime = clock.getElapsedTime();
+            
+            particles.rotation.y = elapsedTime * 0.1;
+            particles.rotation.z = elapsedTime * 0.05;
+            
+            wireMesh.rotation.y = -elapsedTime * 0.05;
+            wireMesh.rotation.z = elapsedTime * 0.02;
+
+            ring1.rotation.x = (Math.PI / 2) + Math.sin(elapsedTime * 0.5) * 0.2;
+            ring1.rotation.y = elapsedTime * 0.1;
+            
+            ring2.rotation.x = elapsedTime * 0.15;
+            ring2.rotation.y = (Math.PI / 4) + Math.cos(elapsedTime * 0.3) * 0.2;
+
+            // Pulse effect
+            const scale = 1 + Math.sin(elapsedTime * 2) * 0.05;
+            particles.scale.set(scale, scale, scale);
+
+            // Dynamic Camera Movement
+            // Keeping camera focus but moving it slightly to create depth
+            camera.position.x = Math.sin(elapsedTime * 0.1) * 5; 
+            camera.position.y = Math.cos(elapsedTime * 0.15) * 5;
+            
+            camera.lookAt(0, 0, 0); // Look at center, keeping orb to the right
+
+            composer.render();
+        }
+
+        animate();
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            composer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
+    <script src="assets/js/script.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ionity | Arsenal & Ecosystem</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <meta name="description" content="Ionity Products - Edge Computing, Custom Software, AI Ecosystems, and the AEDI-Shield Defense System.">
+    
+    <style>
+        :root {
+            --bg-dark: #020204;
+            --bg-panel: rgba(7, 12, 18, 0.92); 
+            --text-main: #ffffff;
+            --text-muted: rgba(255, 255, 255, 0.85); 
+            --accent-cyan: #00d2ff;
+            --accent-green: #00ff88;
+            --accent-gold: #ffae00;
+            --border: rgba(255, 255, 255, 0.12);
+            --border-active: rgba(0, 210, 255, 0.5);
+        }
+
+        body, html {
+            margin: 0; padding: 0;
+            background-color: var(--bg-dark);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            color: var(--text-main);
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        /* --- 3D CANVAS BACKGROUND --- */
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0; 
+            pointer-events: none;
+        }
+
+        /* --- VISUAL FX --- */
+        .scanlines {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.2));
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 99;
+            opacity: 0.3;
+        }
+
+        /* --- GLOW ANIMATIONS --- */
+        @keyframes neonPulse {
+            0% { text-shadow: 0 0 5px rgba(255,255,255,0.8), 0 0 10px var(--accent-cyan); }
+            50% { text-shadow: 0 0 10px #fff, 0 0 20px var(--accent-cyan), 0 0 40px var(--accent-cyan); }
+            100% { text-shadow: 0 0 5px rgba(255,255,255,0.8), 0 0 10px var(--accent-cyan); }
+        }
+
+        @keyframes flashGlow {
+            0% { text-shadow: 0 0 0 transparent; }
+            50% { text-shadow: 0 0 20px #fff, 0 0 50px var(--accent-cyan); color: #fff; }
+            100% { text-shadow: 0 0 10px rgba(0,0,0,0.5); color: #fff; }
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            padding: 0 5vw;
+            height: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            background: rgba(2, 2, 4, 0.9);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-family: 'Courier New', monospace;
+            font-weight: 700;
+            letter-spacing: 0.2rem;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2rem;
+            position: relative;
+            text-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
+            transition: all 0.3s;
+        }
+        
+        .logo:hover {
+            animation: neonPulse 1.5s infinite alternate;
+        }
+
+        .nav-logo {
+            height: 80px;
+            width: auto;
+            vertical-align: middle;
+            transition: all 0.3s ease;
+        }
+        .nav-logo:hover {
+            filter: drop-shadow(0 0 8px var(--accent-cyan));
+        }
+
+        /* Desktop Nav */
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+            font-weight: 600;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+            animation: neonPulse 1s infinite alternate;
+        }
+
+        .nav-links a.active {
+            color: var(--accent-cyan);
+            text-shadow: 0 0 15px var(--accent-cyan); 
+            border-bottom: 1px solid var(--accent-cyan);
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; width: 0; height: 1px;
+            background: var(--accent-cyan);
+            transition: width 0.3s ease;
+            box-shadow: 0 0 10px var(--accent-cyan);
+        }
+
+        .nav-links a:hover::before { width: 100%; }
+
+        /* Mobile Menu Button - Hidden on Desktop */
+        .mobile-menu-btn {
+            display: none; /* Crucial: ensures it is gone on desktop */
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--accent-cyan);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem 0.8rem;
+            border-radius: 4px;
+            z-index: 101;
+        }
+
+        /* Mobile Dropdown */
+        .mobile-dropdown {
+            display: none;
+            position: fixed; /* Fixed to keep it on top when scrolling */
+            top: 80px;
+            right: 0; /* Align to right */
+            left: auto;
+            width: 280px; /* Limits width */
+            background: rgba(5, 10, 15, 0.95); /* Darker and cleaner */
+            border: 1px solid var(--accent-cyan);
+            border-top: none;
+            border-right: none;
+            flex-direction: column;
+            padding: 1rem 0;
+            box-shadow: -5px 5px 20px rgba(0, 0, 0, 0.8), 0 0 15px rgba(0, 210, 255, 0.2);
+            z-index: 99999; /* Ensure always on top */
+            backdrop-filter: blur(20px);
+        }
+
+        .mobile-dropdown.open {
+            display: flex;
+            animation: slideDown 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .mobile-dropdown a {
+            color: #fff;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            transition: background 0.2s;
+        }
+        
+        .mobile-dropdown a.active {
+            color: var(--accent-cyan);
+            background: rgba(0, 210, 255, 0.05);
+            text-shadow: 0 0 15px var(--accent-cyan); 
+            border-left: 3px solid var(--accent-cyan);
+        }
+
+        .mobile-dropdown a:hover {
+            background: rgba(0, 210, 255, 0.1);
+            color: var(--accent-cyan);
+        }
+
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- LAYOUT --- */
+        .container { max-width: 100%; overflow-x: hidden; position: relative; z-index: 10; padding: 0; }
+        .inner-container { max-width: 1300px; margin: 0 auto; padding: 4rem 2rem; position: relative; }
+
+        .hero-section { margin-bottom: 5rem; text-align: center; margin-top: 4rem; }
+        h1 { font-size: 4rem; font-weight: 300; margin: 0; letter-spacing: -1px; text-shadow: 0 0 20px rgba(0, 210, 255, 0.3); }
+        .hero-sub { color: var(--accent-cyan); font-family: 'Courier New', monospace; letter-spacing: 0.2rem; font-size: 0.9rem; text-transform: uppercase; }
+
+        /* --- SECTION HEADERS --- */
+        .grid-header { 
+            grid-column: 1 / -1; 
+            margin: 6rem 0 2.5rem;
+            max-width: 1300px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 2rem;
+            font-size: 1.4rem; 
+            color: var(--accent-cyan); 
+            text-transform: uppercase; 
+            letter-spacing: 0.4rem; 
+            border-bottom: 1px solid var(--border); 
+            padding-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .grid-header span { font-size: 0.8rem; letter-spacing: 1px; color: var(--border); }
+
+        /* --- CAROUSEL --- */
+        .carousel-wrapper {
+            overflow: hidden;
+            width: 100%;
+            position: relative;
+            padding: 2rem 0;
+            mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+
+        .carousel-track {
+            display: flex;
+            gap: 2rem;
+            width: max-content;
+        }
+
+        .track-left {
+            animation: scroll-left 60s linear infinite;
+        }
+
+        .track-right {
+            animation: scroll-right 60s linear infinite;
+        }
+
+        .carousel-card {
+            min-width: 350px;
+            max-width: 350px;
+            flex-shrink: 0;
+            background: var(--bg-panel);
+            border: 1px solid var(--border); 
+            padding: 2rem; border-radius: 4px;
+            display: flex; flex-direction: column;
+            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .carousel-card::before {
+            content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
+            transform: translateX(-100%); transition: 0.5s;
+        }
+        .carousel-card:hover::before { transform: translateX(100%); }
+        .carousel-card:hover { border-color: var(--accent-cyan); transform: translateY(-4px); box-shadow: 0 10px 40px rgba(0,0,0,0.6); }
+
+        .carousel-card .card-icon { font-size: 1.8rem; margin-bottom: 1.2rem; color: var(--accent-cyan); }
+        .carousel-card h3 { font-size: 1.2rem; margin: 0 0 0.8rem; color: #fff; letter-spacing: 1px; }
+        .carousel-card p { font-size: 0.85rem; line-height: 1.7; color: var(--text-muted); margin-bottom: 1.5rem; flex-grow: 1; margin-top: 0; }
+        .carousel-card .card-tags { display: flex; gap: 0.8rem; margin-top: auto; border-top: 1px solid var(--border); padding-top: 1rem; }
+        .carousel-card .card-tag { font-family: 'Courier New', monospace; font-size: 0.65rem; color: var(--accent-green); text-transform: uppercase; font-weight: bold; }
+
+        @keyframes scroll-left {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); } 
+        }
+
+        @keyframes scroll-right {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(0); }
+        }
+
+        .carousel-wrapper:hover .carousel-track {
+            animation-play-state: paused;
+        }
+
+        /* --- BLUEPRINT / EDGE SECTION --- */
+        .blueprint-section {
+            background: rgba(10, 15, 25, 0.85);
+            border: 1px solid var(--accent-cyan);
+            border-radius: 4px;
+            padding: 2.5rem;
+            margin-bottom: 4rem;
+            backdrop-filter: blur(20px);
+            position: relative;
+            box-shadow: 0 0 40px rgba(0, 210, 255, 0.1);
+        }
+        .blueprint-header { border-bottom: 2px solid var(--accent-cyan); margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: flex-end; padding-bottom: 0.5rem; }
+        .blueprint-title { font-size: 2.2rem; margin: 0; }
+        .blueprint-title span { color: var(--accent-cyan); font-weight: 300; }
+        
+        .blueprint-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+        
+        .module { background: rgba(0,0,0,0.4); padding: 1.5rem; border-left: 2px solid var(--accent-cyan); }
+        .module-label { font-family: 'Courier New', monospace; font-size: 0.75rem; color: var(--accent-cyan); display: block; margin-bottom: 0.8rem; text-transform: uppercase; }
+        .module ul { padding-left: 1rem; margin: 0; color: var(--text-muted); font-size: 0.85rem; line-height: 1.6; }
+        .module li { margin-bottom: 0.5rem; }
+
+        .takeaway { grid-column: 1 / -1; background: rgba(0, 255, 136, 0.05); border: 1px dashed var(--accent-green); padding: 1.5rem; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 1rem; }
+        .takeaway-point { color: #fff; font-size: 1rem; font-weight: 600; }
+        .takeaway-point span { color: var(--accent-green); margin-right: 8px; }
+
+        /* --- MODULE GRID --- */
+        .system-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; }
+
+        .card {
+            background: var(--bg-panel);
+            border: 1px solid var(--border); 
+            padding: 2rem; border-radius: 4px;
+            display: flex; flex-direction: column;
+            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+        .card::before {
+            content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
+            transform: translateX(-100%); transition: 0.5s;
+        }
+        .card:hover::before { transform: translateX(100%); }
+        .card:hover { border-color: var(--accent-cyan); transform: translateY(-4px); box-shadow: 0 10px 40px rgba(0,0,0,0.6); }
+
+        .card-icon { font-size: 1.8rem; margin-bottom: 1.2rem; color: var(--accent-cyan); }
+        .card h3 { font-size: 1.2rem; margin: 0 0 0.8rem; color: #fff; letter-spacing: 1px; }
+        .card p { font-size: 0.85rem; line-height: 1.7; color: var(--text-muted); margin-bottom: 1.5rem; flex-grow: 1; }
+        
+        .card-tags { display: flex; gap: 0.8rem; margin-top: auto; border-top: 1px solid var(--border); padding-top: 1rem; }
+        .card-tag { font-family: 'Courier New', monospace; font-size: 0.65rem; color: var(--accent-green); text-transform: uppercase; font-weight: bold; }
+
+        .features { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--border); padding-top: 1rem; }
+        .features li { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.4rem; display: flex; align-items: center; }
+        .features li::before { content: '◈'; color: var(--accent-cyan); margin-right: 8px; font-size: 0.7rem; }
+
+        /* --- AEDI INTEGRATION SECTION --- */
+        .aedi-io-box {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, rgba(0, 210, 255, 0.05), rgba(0, 255, 136, 0.05));
+            border: 1px solid var(--accent-cyan);
+            padding: 3rem; border-radius: 8px; margin-top: 4rem;
+            display: grid; grid-template-columns: 1fr 2fr; gap: 3rem;
+            backdrop-filter: blur(15px);
+        }
+        .aedi-io-text h2 { font-size: 2.5rem; margin: 0 0 1rem; color: #fff; }
+        .aedi-io-text h2 span { color: var(--accent-cyan); }
+        .aedi-io-text p { color: var(--text-muted); line-height: 1.7; }
+        .io-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+        .io-item { background: rgba(255,255,255,0.03); padding: 1rem; border-radius: 4px; border: 1px solid rgba(255,255,255,0.05); }
+        .io-item strong { color: var(--accent-cyan); display: block; margin-bottom: 0.3rem; font-size: 0.85rem; text-transform: uppercase; }
+        .io-item span { font-size: 0.8rem; color: var(--text-muted); }
+
+        /* --- FOOTER --- */
+        footer {
+            margin-top: 8rem;
+            padding: 2rem 5vw;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.7rem;
+            position: relative;
+            z-index: 10;
+            background: rgba(2, 2, 4, 0.95);
+        }
+        
+        footer a { color: var(--text-muted); text-decoration: none; margin: 0 10px; transition: color 0.3s; }
+        footer a:hover { color: var(--accent-cyan); }
+
+        @media (max-width: 900px) {
+            .nav-links { display: none; }
+            h1 { font-size: 2.5rem; }
+            .aedi-io-box { grid-template-columns: 1fr; }
+        }
+
+        /* --- SCHEMATIC ILLUSTRATION --- */
+        .schematic-container {
+            margin: 2rem 0;
+            background: rgba(2, 2, 4, 0.6);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 1rem;
+            position: relative;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+            overflow: hidden;
+        }
+        .schematic-label {
+            position: absolute;
+            top: 10px; left: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.75rem;
+            color: var(--accent-cyan);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background: rgba(0,0,0,0.8);
+            padding: 2px 5px;
+            border: 1px solid var(--border);
+        }
+    
+
+</style>
+    <link rel="icon" type="image/png" href="assets/images/ionity-logo-edited.png">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+
+    <div id="canvas-container"></div>
+    <div class="scanlines"></div>
+    <div class="vignette"></div>
+
+    <nav>
+        <a href="index.html" class="logo">
+             <img src="assets/images/ionity-logo-edited.png" alt="IONITY" class="nav-logo">
+        </a>
+        
+        <!-- Desktop Menu -->
+        <div class="nav-links">
+            <a href="inner-Page.html">Systems</a>
+            <a href="services.html">Services</a>
+            <a href="products.html" class="active">Products</a>
+            <a href="ai-innovation.html">Ai Innovation</a>
+            <a href="roadmap.html">Roadmap</a>
+            <a href="license.html">License</a>
+            <a href="about.html">About</a>
+            <a href="aedi-online.html">AEDI Online</a>
+            <a href="contact.html">Contact</a>
+            <a href="firmware-development.html">Dev</a>
+            <a href="gateway.html">IO Way</a>
+        </div>
+
+        <!-- Mobile Button -->
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+    </nav>
+
+    <!-- Mobile Dropdown -->
+    <div class="mobile-dropdown" id="mobileDropdown">
+        <a href="inner-Page.html">Systems</a>
+        <a href="services.html">Services</a>
+        <a href="products.html" class="active">Products</a>
+        <a href="ai-innovation.html">Ai Innovation</a>
+        <a href="roadmap.html">Roadmap</a>
+        <a href="license.html">License</a>
+        <a href="about.html">About</a>
+        <a href="aedi-online.html">AEDI Online</a>
+        <a href="contact.html">Contact</a>
+        <a href="firmware-development.html">Dev</a>
+        <a href="gateway.html">IO Way</a>
+    </div>
+
+    <div class="container">
+        <div class="inner-container">
+        <div class="hero-section">
+            <h1>The Product Station</h1>
+            <div class="hero-sub">Next-Gen Hardware & Software Solutions</div>
+        </div>
+
+        <!-- NEW PRODUCT: Ai-M (Artificial Intelligence Motherboard) -->
+        <div class="blueprint-section" style="border-color: var(--accent-cyan); box-shadow: 0 0 40px rgba(0, 210, 255, 0.1);">
+            <div class="blueprint-header" style="border-bottom-color: var(--accent-cyan);">
+                <h2 class="blueprint-title">Ai-M <span>Motherboard</span></h2>
+                <div style="text-align: right">
+                    <span style="display:block; font-family:monospace; font-size:0.7rem; color:var(--accent-cyan)">POLICY_986_AED</span>
+                    <span style="font-family:monospace; font-size:0.7rem;">LICENSE_900_AED</span>
+                </div>
+            </div>
+
+            <p style="margin-bottom: 2rem; color: var(--text-muted); line-height: 1.6;">
+                <strong>The Product:</strong> Ai-M (Artificial Intelligence Motherboard). State of the Art Ai-IoT Communication powerhouse with integration into variant of systems even audio channels and industrial sensors. 
+                This is a product in-house developed by <strong>Ionity (Pty) Ltd</strong>.
+                <br><br>
+                The state of the art advancement for cost effective Machine learning, Edge, Remote, Low Power, even Fullstack LLM LOCAL offline and EDGE/Hybrid Capacity.
+                <br>
+                <strong>AEDI-Integrated.</strong>
+            </p>
+
+            <div class="schematic-container">
+                <div class="schematic-label">Ai-M IoT Controller Network</div>
+                <svg width="100%" height="300" viewBox="0 0 1100 300" preserveAspectRatio="xMidYMid meet">
+                    <defs>
+                        <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+                            <path d="M0,0 L0,6 L9,3 z" fill="#00d2ff" />
+                        </marker>
+                    </defs>
+                    
+                    <!-- Central Hub (Ai-M) -->
+                    <rect x="220" y="110" width="160" height="80" rx="5" stroke="#00d2ff" stroke-width="2" fill="rgba(0, 210, 255, 0.15)" />
+                    <text x="300" y="145" text-anchor="middle" fill="#fff" font-size="14" font-family="monospace" font-weight="bold">Ai-M IoT DEVICE</text>
+                    <text x="300" y="165" text-anchor="middle" fill="#00d2ff" font-size="10" font-family="monospace">CORE PROCESSOR</text>
+
+                    <!-- NEW: Flow to Right (EDGE -> CLOUD -> GUI) -->
+                    <!-- EDGE -->
+                    <line x1="380" y1="150" x2="580" y2="150" stroke="#00d2ff" stroke-width="2" marker-end="url(#arrow)" />
+                    <rect x="580" y="130" width="100" height="40" rx="3" stroke="#00d2ff" stroke-width="1" fill="rgba(0, 210, 255, 0.05)" />
+                    <text x="630" y="155" text-anchor="middle" fill="#00d2ff" font-size="10" font-family="monospace">EDGE</text>
+
+                    <!-- NEW: LOCAL AI (Linked to EDGE) -->
+                    <rect x="580" y="80" width="100" height="35" rx="3" stroke="#00ff88" stroke-width="1" fill="rgba(0, 255, 136, 0.05)" />
+                    <text x="630" y="102" text-anchor="middle" fill="#00ff88" font-size="9" font-family="monospace">LOCAL AI</text>
+                    <line x1="630" y1="130" x2="630" y2="115" stroke="#00d2ff" stroke-width="1" marker-end="url(#arrow)" />
+
+                    <!-- NEW: Local SPC (Linked to EDGE) -->
+                    <rect x="580" y="190" width="100" height="35" rx="3" stroke="#00ff88" stroke-width="1" fill="rgba(0, 255, 136, 0.05)" />
+                    <text x="630" y="212" text-anchor="middle" fill="#00ff88" font-size="9" font-family="monospace">Local SPC</text>
+                    <line x1="630" y1="170" x2="630" y2="190" stroke="#00d2ff" stroke-width="1" marker-end="url(#arrow)" />
+
+                    <!-- CLOUD -->
+                    <line x1="680" y1="150" x2="750" y2="150" stroke="#00d2ff" stroke-width="2" marker-end="url(#arrow)" />
+                    <rect x="750" y="130" width="100" height="40" rx="3" stroke="#00d2ff" stroke-width="1" fill="rgba(0, 210, 255, 0.05)" />
+                    <text x="800" y="155" text-anchor="middle" fill="#00d2ff" font-size="10" font-family="monospace">CLOUD</text>
+
+                    <!-- GUI Remote -->
+                    <line x1="850" y1="150" x2="920" y2="120" stroke="#00d2ff" stroke-width="1" marker-end="url(#arrow)" />
+                    <rect x="920" y="100" width="120" height="35" rx="3" stroke="#00ff88" stroke-width="1" fill="rgba(0, 255, 136, 0.05)" />
+                    <text x="980" y="122" text-anchor="middle" fill="#00ff88" font-size="9" font-family="monospace">GUI REMOTE</text>
+
+                    <!-- Local Data -->
+                    <line x1="850" y1="150" x2="920" y2="180" stroke="#00d2ff" stroke-width="1" marker-end="url(#arrow)" />
+                    <rect x="920" y="165" width="120" height="35" rx="3" stroke="#00ff88" stroke-width="1" fill="rgba(0, 255, 136, 0.05)" />
+                    <text x="980" y="187" text-anchor="middle" fill="#00ff88" font-size="9" font-family="monospace">Data UPLOAD</text>
+
+                    <!-- Nodes -->
+                    <!-- Top Left -->
+                    <rect x="40" y="40" width="100" height="40" rx="3" stroke="#00ff88" stroke-width="1" fill="rgba(0, 255, 136, 0.05)" />
+                    <text x="90" y="65" text-anchor="middle" fill="#00ff88" font-size="10" font-family="monospace">SENSOR A (BLE)</text>
+                    <line x1="140" y1="60" x2="220" y2="120" stroke="#00d2ff" stroke-width="1" stroke-dasharray="5,5" marker-end="url(#arrow)" />
+                    
+                    <!-- Bottom Left -->
+                    <rect x="40" y="220" width="100" height="40" rx="3" stroke="#00ff88" stroke-width="1" fill="rgba(0, 255, 136, 0.05)" />
+                    <text x="90" y="245" text-anchor="middle" fill="#00ff88" font-size="10" font-family="monospace">DAQ NODE</text>
+                    <line x1="140" y1="240" x2="220" y2="180" stroke="#00d2ff" stroke-width="1" stroke-dasharray="5,5" marker-end="url(#arrow)" />
+                    
+                    <!-- RIGHT INPUTS COLUMN (Sat, LoRa, Fibre) -->
+                    <!-- Top Right (SAT) -->
+                    <rect x="460" y="5" width="100" height="30" rx="3" stroke="#ffae00" stroke-width="1" fill="rgba(255, 174, 0, 0.05)" />
+                    <text x="510" y="24" text-anchor="middle" fill="#ffae00" font-size="9" font-family="monospace">SAT NODE</text>
+                    <line x1="460" y1="20" x2="360" y2="110" stroke="#ffae00" stroke-width="1" marker-end="url(#arrow)" />
+
+                    <!-- Top Right (LoRa 1) -->
+                    <rect x="460" y="45" width="100" height="40" rx="3" stroke="#ffae00" stroke-width="1" fill="rgba(255, 174, 0, 0.05)" />
+                    <text x="510" y="70" text-anchor="middle" fill="#ffae00" font-size="10" font-family="monospace">EXT NODE (LoRa)</text>
+                    <line x1="460" y1="65" x2="380" y2="120" stroke="#ffae00" stroke-width="1" marker-end="url(#arrow)" />
+                    
+                    <!-- Bottom Right (LoRa 2) -->
+                    <rect x="460" y="215" width="100" height="40" rx="3" stroke="#ffae00" stroke-width="1" fill="rgba(255, 174, 0, 0.05)" />
+                    <text x="510" y="240" text-anchor="middle" fill="#ffae00" font-size="10" font-family="monospace">EXT NODE (LoRa)</text>
+                    <line x1="460" y1="235" x2="380" y2="180" stroke="#ffae00" stroke-width="1" marker-end="url(#arrow)" />
+
+                    <!-- Bottom Right (FIBRE) -->
+                    <rect x="460" y="265" width="100" height="30" rx="3" stroke="#ffae00" stroke-width="1" fill="rgba(255, 174, 0, 0.05)" />
+                    <text x="510" y="284" text-anchor="middle" fill="#ffae00" font-size="9" font-family="monospace">FIBRE NODE</text>
+                    <line x1="460" y1="280" x2="360" y2="190" stroke="#ffae00" stroke-width="1" marker-end="url(#arrow)" />
+
+                     <!-- New Node: Top Center -->
+                     <rect x="250" y="20" width="100" height="35" rx="3" stroke="#00ff88" stroke-width="1" fill="rgba(0, 255, 136, 0.05)" />
+                     <text x="300" y="42" text-anchor="middle" fill="#00ff88" font-size="9" font-family="monospace">VISION CAM</text>
+                     <line x1="300" y1="55" x2="300" y2="110" stroke="#00d2ff" stroke-width="1" marker-end="url(#arrow)" />
+
+                     <!-- New Node: Bottom Center -->
+                     <rect x="250" y="250" width="100" height="35" rx="3" stroke="#00ff88" stroke-width="1" fill="rgba(0, 255, 136, 0.05)" />
+                     <text x="300" y="272" text-anchor="middle" fill="#00ff88" font-size="9" font-family="monospace">AUDIO IN</text>
+                     <line x1="300" y1="250" x2="300" y2="190" stroke="#00d2ff" stroke-width="1" marker-end="url(#arrow)" />
+
+                     <!-- New Node: Far Left Center -->
+                     <rect x="10" y="130" width="90" height="40" rx="3" stroke="#ffae00" stroke-width="1" fill="rgba(255, 174, 0, 0.05)" />
+                     <text x="55" y="155" text-anchor="middle" fill="#ffae00" font-size="9" font-family="monospace">CMS</text>
+                     <line x1="100" y1="150" x2="220" y2="150" stroke="#ffae00" stroke-width="1" stroke-dasharray="2,2" marker-end="url(#arrow)" />
+                </svg>
+            </div>
+
+            <div class="blueprint-grid">
+                <div class="module" style="border-left-color: var(--accent-cyan);">
+                    <span class="module-label" style="color: var(--accent-cyan);">Specs & Capacity</span>
+                    <ul>
+                        <li><strong>Memory:</strong> 24 GIG of RAM.</li>
+                        <li><strong>Power:</strong> Runs on 5V. Up to 100TB on 12V.</li>
+                        <li><strong>Stack:</strong> Fits in Hands. Performance multi CPU unparalleled even industrial for Gen-Ai at fraction of the Cost.</li>
+                        <li><strong>Performance:</strong> Performance TPU, CPU ARM 64 BIT, Multi stack layer CPU across Ai. Fits in Hands.</li>
+                        <li><strong>Price:</strong> From R14500.</li>
+                    </ul>
+                </div>
+                <div class="module" style="border-left-color: var(--accent-cyan);">
+                    <span class="module-label" style="color: var(--accent-cyan);">Application</span>
+                    <ul>
+                        <li>ALL industry with SCADA and or any IT infrastructure even Banking and Medical.</li>
+                        <li>Perfect for Education, Private, and Public sectors.</li>
+                        <li>Deployed across all work areas and barriers.</li>
+                        <li>Remote operation capability.</li>
+                        <li>Edge Computing powerhouse.</li>
+                    </ul>
+                </div>
+                <div class="module" style="border-left-color: var(--accent-cyan);">
+                    <span class="module-label" style="color: var(--accent-cyan);">Installation</span>
+                    <ul>
+                        <li>Plug and play.</li>
+                        <li>Presetup CI/CL.</li>
+                        <li>Remote or isolated.</li>
+                        <li>Hybrid or offline Ai.</li>
+                        <li>Machine learning.</li>
+                        <li>Data Capturing and acquisition.</li>
+                    </ul>
+                </div>
+                <div class="module" style="border-left-color: var(--accent-cyan);">
+                    <span class="module-label" style="color: var(--accent-cyan);">Availability</span>
+                    <ul>
+                        <li><strong>Release:</strong> End of Q1 2026.</li>
+                        <li><strong>Priority:</strong> Internal usages in other systems always.</li>
+                        <li><strong>Status:</strong> Pre-order Active.</li>
+                    </ul>
+                </div>
+                
+                <div class="takeaway" style="border-color: var(--accent-cyan); background: rgba(0, 210, 255, 0.05);">
+                    <div class="takeaway-point"><span style="color: var(--accent-cyan);">✓</span> Fullstack LLM LOCAL Offline</div>
+                    <div class="takeaway-point"><span style="color: var(--accent-cyan);">✓</span> Edge/Hybrid Capacity</div>
+                    <div class="takeaway-point"><span style="color: var(--accent-cyan);">✓</span> Cost Effective</div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 2.5rem;">
+                <a href="contact.html" style="
+                    display: inline-block;
+                    padding: 1rem 3rem;
+                    background: rgba(0, 210, 255, 0.15);
+                    border: 1px solid var(--accent-cyan);
+                    color: #fff;
+                    text-decoration: none;
+                    text-transform: uppercase;
+                    letter-spacing: 0.2rem;
+                    font-weight: bold;
+                    transition: all 0.3s ease;
+                    box-shadow: 0 0 20px rgba(0, 210, 255, 0.2);
+                " onmouseover="this.style.background='rgba(0, 210, 255, 0.35)'; this.style.boxShadow='0 0 40px rgba(0, 210, 255, 0.5)';" onmouseout="this.style.background='rgba(0, 210, 255, 0.15)'; this.style.boxShadow='0 0 20px rgba(0, 210, 255, 0.2)';">
+                    Pre-order Contact
+                </a>
+            </div>
+        </div>
+
+        <!-- DIGITAL SCROLL: EDGE COMPUTING SYSTEM -->
+        <div class="blueprint-section">
+            <div class="blueprint-header">
+                <h2 class="blueprint-title">Edge Computing <span>System</span></h2>
+                <div style="text-align: right">
+                    <span style="display:block; font-family:monospace; font-size:0.7rem; color:var(--accent-cyan)">SECURE_CHANNEL_ESTABLISHED</span>
+                    <span style="font-family:monospace; font-size:0.7rem;">HYBRID_AI_HOST_V2.1</span>
+                </div>
+            </div>
+
+            <p style="margin-bottom: 2rem; color: var(--text-muted); line-height: 1.6;">
+                <strong>The Product:</strong> A hand-sized unit performing standard PC functions with industrial-grade resilience. Acts as a standalone server, expands into modular data centers, and controls critical infrastructure (Medical, Banking, Aerospace).
+            </p>
+
+            <div class="blueprint-grid">
+                <div class="module">
+                    <span class="module-label">Logic & AI</span>
+                    <ul>
+                        <li><strong>Hybrid AI:</strong> Runs local neural models offline for security or connects for global updates.</li>
+                        <li><strong>Off-Cloud Data:</strong> Secure local handling for sensitive operations (No external leaks).</li>
+                        <li><strong>End-to-End:</strong> Client-specific encryption keys generated on-device.</li>
+                    </ul>
+                </div>
+                <div class="module">
+                    <span class="module-label">Value Proposition</span>
+                    <ul>
+                        <li>Reliable electronics without custom-build risk.</li>
+                        <li>Patented generic software; cross-component compatible.</li>
+                        <li>5V low-voltage design = zero installation safety risk.</li>
+                        <li>Interchangeable parts = zero downtime.</li>
+                    </ul>
+                </div>
+                <div class="module">
+                    <span class="module-label">Customer Segments</span>
+                    <ul>
+                        <li><strong>Mining & Industrial:</strong> Remote monitoring in harsh environments.</li>
+                        <li><strong>Aerospace:</strong> High-precision, low-latency data processing.</li>
+                        <li><strong>Medical:</strong> Secure, on-site device control and monitoring.</li>
+                        <li><strong>Security & Banking:</strong> Tamper-proof encryption nodes.</li>
+                    </ul>
+                </div>
+                <div class="module">
+                    <span class="module-label">Key Activities</span>
+                    <ul>
+                        <li><strong>Paid Pilots:</strong> Low-cost, high-reliability safety proofs.</li>
+                        <li><strong>Direct B2B:</strong> Founder-led site visits and engineering support.</li>
+                        <li><strong>Expansion:</strong> Weekly feedback cycles for quick improvement.</li>
+                    </ul>
+                </div>
+
+                <div class="takeaway">
+                    <div class="takeaway-point"><span>✓</span> Product Ready for field testing</div>
+                    <div class="takeaway-point"><span>✓</span> Customers Expand After Use</div>
+                    <div class="takeaway-point"><span>✓</span> Revenue Grows Faster Than Cost</div>
+                </div>
+            </div>
+        </div>
+
+        </div> <!-- Close initial inner-container -->
+
+        <!-- SECTION: SOFTWARE & DEVELOPMENT SERVICES -->
+        <div class="grid-header">
+            Software & Development Services
+            <span>V.8.0_STABLE</span>
+        </div>
+
+        <div class="carousel-wrapper">
+            <div class="carousel-track track-left">
+                <!-- Group 1 -->
+                <div class="carousel-card">
+                    <div class="card-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg></div>
+                    <h3>Custom Software Development</h3>
+                    <p>Tailored software solutions architected for specific business logic. We leverage diverse frameworks and high-performance databases to ensure robust, scalable, and efficient application lifecycles.</p>
+                    <div class="card-tags"><span class="card-tag">ARCHITECTURE</span><span class="card-tag">SCALABLE</span></div>
+                </div>
+                <div class="carousel-card">
+                    <div class="card-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M4 6h18V4H4c-1.1 0-2 .9-2 2v11H0v3h14v-3H4V6zm19 2h-6c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h6c.55 0 1-.45 1-1V9c0-.55-.45-1-1-1zm-1 9h-4v-7h4v7z"/></svg></div>
+                    <h3>Web & Mobile Development</h3>
+                    <p>Intuitive, user-centric interfaces. From responsive neural web designs to feature-rich native mobile applications, we ensure optimal performance across the entire hardware spectrum.</p>
+                    <div class="card-tags"><span class="card-tag">UX/UI</span><span class="card-tag">MULTI-PLATFORM</span></div>
+                </div>
+                <div class="carousel-card">
+                    <div class="card-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg></div>
+                    <h3>Cloud Computing Solutions</h3>
+                    <p>Harnessing AWS and distributed clusters to deploy cost-effective, high-availability environments. Specializing in cloud-native migration and elastic infrastructure scaling.</p>
+                    <div class="card-tags"><span class="card-tag">AWS</span><span class="card-tag">INFRASTRUCTURE</span></div>
+                </div>
+                <div class="carousel-card">
+                    <div class="card-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg></div>
+                    <h3>VPN Tunnels & Encryption</h3>
+                    <p>Secure, encrypted tunnels for private data transmission. Industry-standard protection protocols ensuring data integrity and confidentiality across all networks.</p>
+                    <div class="card-tags"><span class="card-tag">SECURE</span><span class="card-tag">ENCRYPTED</span></div>
+                </div>
+                <div class="carousel-card">
+                    <div class="card-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M21 15v4c0 1.1-.9 2-2 2H5c-1.1 0-2-.9-2-2v-4c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zm-2 1H5l.02-1.02C5.17 15.65 8.1 16 12 16s6.83-.35 6.98-1.02L19 16zM12 2C8.13 2 5 2.89 5 4v4c0 1.11 3.13 2 7 2s7-.89 7-2V4c0-1.11-3.13-2-7-2zm0 2c3.27 0 5 .45 5 1s-1.73 1-5 1-5-.45-5-1 1.73-1 5-1zm7 6v4c0 1.1-.9 2-2 2H5c-1.1 0-2-.9-2-2v-4c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zm-2 1H5l.02-1.02C5.17 9.65 8.1 10 12 10s6.83-.35 6.98-1.02L19 9z"/></svg></div>
+                    <h3>Data Management</h3>
+                    <p>Seamless data flow and integration across disparate systems. Unified data architecture for better visibility and actionable insights.</p>
+                    <div class="card-tags"><span class="card-tag">INTEGRATION</span><span class="card-tag">DATA FLOW</span></div>
+                </div>
+                <div class="carousel-card">
+                    <div class="card-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.38-1 1.72V7h4v2h-1.1c.06.33.1.66.1 1v8c0 2.21-1.79 4-4 4s-4-1.79-4-4v-8c0-.34.04-.67.1-1H8V7h4V5.72c-.6-.34-1-.98-1-1.72a2 2 0 0 1 2-2M7.5 12c.83 0 1.5.67 1.5 1.5S8.33 15 7.5 15 6 14.33 6 13.5 6.67 12 7.5 12m9 0c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5-1.5-.67-1.5-1.5.67-1.5 1.5-1.5z"/></svg></div>
+                    <h3>IoT-Ai CMS & PdM</h3>
+                    <p>Advanced Content Management Systems for IoT and Predictive Maintenance (PdM). Monitoring and Data Acquisition (DAQ) powered by our custom Ai-M hardware.</p>
+                    <div class="card-tags"><span class="card-tag">AI-M HARDWARE</span><span class="card-tag">PREDICTIVE</span></div>
+                </div>
+
+                <!-- Group 1 REPEAT -->
+                <div class="carousel-card">
+                    <div class="card-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg></div>
+                    <h3>Custom Software Development</h3>
+                    <p>Tailored software solutions architected for specific business logic. We leverage diverse frameworks and high-performance databases to ensure robust, scalable, and efficient application lifecycles.</p>
+                    <div class="card-tags"><span class="card-tag">ARCHITECTURE</span><span class="card-tag">SCALABLE</span></div>
+                </div>
+                <div class="carousel-card">
+                    <div class="card-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M4 6h18V4H4c-1.1 0-2 .9-2 2v11H0v3h14v-3H4V6zm19 2h-6c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h6c.55 0 1-.45 1-1V9c0-.55-.45-1-1-1zm-1 9h-4v-7h4v7z"/></svg></div>
+                    <h3>Web & Mobile Development</h3>
+                    <p>Intuitive, user-centric interfaces. From responsive neural web designs to feature-rich native mobile applications, we ensure optimal performance across the entire hardware spectrum.</p>
+                    <div class="card-tags"><span class="card-tag">UX/UI</span><span class="card-tag">MULTI-PLATFORM</span></div>
+                </div>
+                <div class="carousel-card">
+                    <div class="card-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg></div>
+                    <h3>Cloud Computing Solutions</h3>
+                    <p>Harnessing AWS and distributed clusters to deploy cost-effective, high-availability environments. Specializing in cloud-native migration and elastic infrastructure scaling.</p>
+                    <div class="card-tags"><span class="card-tag">AWS</span><span class="card-tag">INFRASTRUCTURE</span></div>
+                </div>
+                <div class="carousel-card">
+                    <div class="card-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg></div>
+                    <h3>VPN Tunnels & Encryption</h3>
+                    <p>Secure, encrypted tunnels for private data transmission. Industry-standard protection protocols ensuring data integrity and confidentiality across all networks.</p>
+                    <div class="card-tags"><span class="card-tag">SECURE</span><span class="card-tag">ENCRYPTED</span></div>
+                </div>
+                <div class="carousel-card">
+                    <div class="card-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M21 15v4c0 1.1-.9 2-2 2H5c-1.1 0-2-.9-2-2v-4c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zm-2 1H5l.02-1.02C5.17 15.65 8.1 16 12 16s6.83-.35 6.98-1.02L19 16zM12 2C8.13 2 5 2.89 5 4v4c0 1.11 3.13 2 7 2s7-.89 7-2V4c0-1.11-3.13-2-7-2zm0 2c3.27 0 5 .45 5 1s-1.73 1-5 1-5-.45-5-1 1.73-1 5-1zm7 6v4c0 1.1-.9 2-2 2H5c-1.1 0-2-.9-2-2v-4c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zm-2 1H5l.02-1.02C5.17 9.65 8.1 10 12 10s6.83-.35 6.98-1.02L19 9z"/></svg></div>
+                    <h3>Data Management</h3>
+                    <p>Seamless data flow and integration across disparate systems. Unified data architecture for better visibility and actionable insights.</p>
+                    <div class="card-tags"><span class="card-tag">INTEGRATION</span><span class="card-tag">DATA FLOW</span></div>
+                </div>
+                <div class="carousel-card">
+                    <div class="card-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.38-1 1.72V7h4v2h-1.1c.06.33.1.66.1 1v8c0 2.21-1.79 4-4 4s-4-1.79-4-4v-8c0-.34.04-.67.1-1H8V7h4V5.72c-.6-.34-1-.98-1-1.72a2 2 0 0 1 2-2M7.5 12c.83 0 1.5.67 1.5 1.5S8.33 15 7.5 15 6 14.33 6 13.5 6.67 12 7.5 12m9 0c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5-1.5-.67-1.5-1.5.67-1.5 1.5-1.5z"/></svg></div>
+                    <h3>IoT-Ai CMS & PdM</h3>
+                    <p>Advanced Content Management Systems for IoT and Predictive Maintenance (PdM). Monitoring and Data Acquisition (DAQ) powered by our custom Ai-M hardware.</p>
+                    <div class="card-tags"><span class="card-tag">AI-M HARDWARE</span><span class="card-tag">PREDICTIVE</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="inner-container" style="text-align: center; margin: 0; padding: 2rem 0;">
+            <a href="contact.html" style="
+                display: inline-block;
+                padding: 1rem 3rem;
+                background: rgba(0, 210, 255, 0.1);
+                border: 1px solid var(--accent-cyan);
+                color: #fff;
+                text-decoration: none;
+                text-transform: uppercase;
+                letter-spacing: 0.2rem;
+                font-weight: bold;
+                transition: all 0.3s ease;
+                box-shadow: 0 0 20px rgba(0, 210, 255, 0.2);
+            " onmouseover="this.style.background='rgba(0, 210, 255, 0.3)'; this.style.boxShadow='0 0 40px rgba(0, 210, 255, 0.5)';" onmouseout="this.style.background='rgba(0, 210, 255, 0.1)'; this.style.boxShadow='0 0 20px rgba(0, 210, 255, 0.2)';">
+                Enquire Now
+            </a>
+        </div>
+
+        <!-- SECTION: THE LIVING ECOSYSTEM -->
+        <div class="grid-header">
+            The Living Ecosystem (AEDI)
+            <span>SYNC_ESTABLISHED</span>
+        </div>
+
+        <div class="carousel-wrapper">
+             <div class="carousel-track track-right">
+                <!-- Group 2 -->
+                <div class="carousel-card">
+                    <div class="card-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 2c-1.93 0-3.5 1.57-3.5 3.5H8v6h10V5.5c0-1.93-1.57-3.5-3.5-3.5zM17 11h-2v4h2c2.21 0 4-1.79 4-4s-1.79-4-4-4zm-8 4v-4H7c-2.21 0-4 1.79-4 4s1.79 4 4 4h2zm2 2h2v4c1.93 0 3.5-1.57 3.5-3.5h-2v-2h-3.5V20H11v-3z"/></svg></div>
+                    <h3>AI & IoT Integration</h3>
+                    <p>Developing neural mesh networks where every sensor and node acts as a cognitive unit. Real-time data processing at the edge for hyper-aware industrial environments.</p>
+                    <div class="card-tags"><span class="card-tag">NEURAL MESH</span><span class="card-tag">IOT</span></div>
+                </div>
+                <div class="carousel-card">
+                    <div class="card-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.488.488 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.484.484 0 0 0-.48-.41h-3.84a.484.484 0 0 0-.48.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96a.488.488 0 0 0-.59.22L2.09 8.87a.49.49 0 0 0 .12.61l2.03 1.58c-.05.3-.07.62-.07.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.27.41.48.41h3.84c.24 0 .44-.17.48-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32a.49.49 0 0 0-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg></div>
+                    <h3>AEDI Core Systems</h3>
+                    <p>The Antwerp Ecosystem Designs Ionity (AEDI) methodology. Biological resilience meets silicon logic to create self-healing digital infrastructures.</p>
+                    <div class="card-tags"><span class="card-tag">CORE</span><span class="card-tag">LIVING GRID</span></div>
+                </div>
+                <div class="carousel-card">
+                    <div class="card-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M9 2H5v2H2v2h2v2H2v2h2v2H2v2h2v2h2v2h2v-2h2v2h2v-2h2v2h2v-2h2v2h2v-2h2v-2h-3v-2h3v-2h-3v-2h3V8h-3V6h3V4h-3V2h-4v2h-2V2H9zm10 14H5V8h14v8z"/></svg></div>
+                    <h3>Hardware Solutions</h3>
+                    <p>Ruggedized industrial hardware designed to survive the harshest conditions. From micro-controllers to custom enclosures, we build the physical bones of the digital world.</p>
+                    <div class="card-tags"><span class="card-tag">INDUSTRIAL</span><span class="card-tag">HARDWARE</span></div>
+                </div>
+                <div class="carousel-card">
+                    <div class="card-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg></div>
+                    <h3>GIS & Spatial Solutions</h3>
+                    <p>Advanced Geographic Information Systems. Visualizing complex data through spatial intelligence, mapping the future of infrastructure and logistics.</p>
+                    <div class="card-tags"><span class="card-tag">SPATIAL</span><span class="card-tag">MAPPING</span></div>
+                </div>
+                <div class="carousel-card">
+                    <div class="card-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></div>
+                    <h3>System Integrations</h3>
+                    <p>Streamlining technologies into a unified flow. We specialize in retrofitting legacy industrial protocols into modern, automated API-driven grids.</p>
+                    <div class="card-tags"><span class="card-tag">API</span><span class="card-tag">LEGACY BRIDGE</span></div>
+                </div>
+
+                <!-- Group 2 REPEAT -->
+                <div class="carousel-card">
+                    <div class="card-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 2c-1.93 0-3.5 1.57-3.5 3.5H8v6h10V5.5c0-1.93-1.57-3.5-3.5-3.5zM17 11h-2v4h2c2.21 0 4-1.79 4-4s-1.79-4-4-4zm-8 4v-4H7c-2.21 0-4 1.79-4 4s1.79 4 4 4h2zm2 2h2v4c1.93 0 3.5-1.57 3.5-3.5h-2v-2h-3.5V20H11v-3z"/></svg></div>
+                    <h3>AI & IoT Integration</h3>
+                    <p>Developing neural mesh networks where every sensor and node acts as a cognitive unit. Real-time data processing at the edge for hyper-aware industrial environments.</p>
+                    <div class="card-tags"><span class="card-tag">NEURAL MESH</span><span class="card-tag">IOT</span></div>
+                </div>
+                <div class="carousel-card">
+                    <div class="card-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.488.488 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.484.484 0 0 0-.48-.41h-3.84a.484.484 0 0 0-.48.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96a.488.488 0 0 0-.59.22L2.09 8.87a.49.49 0 0 0 .12.61l2.03 1.58c-.05.3-.07.62-.07.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.27.41.48.41h3.84c.24 0 .44-.17.48-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32a.49.49 0 0 0-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg></div>
+                    <h3>AEDI Core Systems</h3>
+                    <p>The Antwerp Ecosystem Designs Ionity (AEDI) methodology. Biological resilience meets silicon logic to create self-healing digital infrastructures.</p>
+                    <div class="card-tags"><span class="card-tag">CORE</span><span class="card-tag">LIVING GRID</span></div>
+                </div>
+                <div class="carousel-card">
+                    <div class="card-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M9 2H5v2H2v2h2v2H2v2h2v2H2v2h2v2h2v2h2v-2h2v2h2v-2h2v2h2v-2h2v2h2v-2h2v-2h-3v-2h3v-2h-3v-2h3V8h-3V6h3V4h-3V2h-4v2h-2V2H9zm10 14H5V8h14v8z"/></svg></div>
+                    <h3>Hardware Solutions</h3>
+                    <p>Ruggedized industrial hardware designed to survive the harshest conditions. From micro-controllers to custom enclosures, we build the physical bones of the digital world.</p>
+                    <div class="card-tags"><span class="card-tag">INDUSTRIAL</span><span class="card-tag">HARDWARE</span></div>
+                </div>
+                <div class="carousel-card">
+                    <div class="card-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg></div>
+                    <h3>GIS & Spatial Solutions</h3>
+                    <p>Advanced Geographic Information Systems. Visualizing complex data through spatial intelligence, mapping the future of infrastructure and logistics.</p>
+                    <div class="card-tags"><span class="card-tag">SPATIAL</span><span class="card-tag">MAPPING</span></div>
+                </div>
+                <div class="carousel-card">
+                    <div class="card-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></div>
+                    <h3>System Integrations</h3>
+                    <p>Streamlining technologies into a unified flow. We specialize in retrofitting legacy industrial protocols into modern, automated API-driven grids.</p>
+                    <div class="card-tags"><span class="card-tag">API</span><span class="card-tag">LEGACY BRIDGE</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION: INDUSTRIAL DEPLOYMENT -->
+        <div class="grid-header" style="margin-top: 5rem;">
+            Industrial Deployment
+            <span>HARD_LINK</span>
+        </div>
+
+        <div class="carousel-wrapper">
+             <div class="carousel-track track-left">
+                <!-- Group 3 -->
+                <div class="carousel-card">
+                    <div class="card-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M22 11h-2.06l1.39-3.23c.36-.83-.02-1.81-.85-2.16-.83-.36-1.81.02-2.16.85L17.21 9H13V4.79l2.46-1.11c.83-.36 1.21-1.34.85-2.16-.35-.84-1.34-1.21-2.16-.85L12 1.64 9.85.67c-.82-.36-1.81.01-2.16.85-.36.82.02 1.8.85 2.16L11 4.79V9H6.79L5.68 6.46c-.36-.83-1.34-1.21-2.16-.85-.84.35-1.21 1.34-.85 2.16L4.06 11H2c-.9 0-1.64.95-1.24 1.77.21.43.65.73 1.13.73h2.17l-1.39 3.23c-.36.83.02 1.81.85 2.16.83.36 1.81-.02 2.16-.85L6.79 15H11v4.21L8.54 20.32c-.83.36-1.21 1.34-.85 2.16.35.84 1.34 1.21 2.16.85L12 22.36l2.15.97c.82.36 1.81-.01 2.16-.85.36-.82-.02-1.8-.85-2.16L13 19.21V15h4.21l1.11 2.54c.36.83 1.34 1.21 2.16.85.84-.35 1.21-1.34.85-2.16L19.94 13H22c.9 0 1.64-.95 1.24-1.77-.21-.43-.65-.73-1.13-.73zM12 15c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/></svg></div>
+                    <h3>Smart AC Monitoring</h3>
+                    <p>Comprehensive HVAC monitoring platform for industrial facilities. Real-time electrical insights and predictive maintenance to stop failure before it happens.</p>
+                    <ul class="features"><li>Real-time track</li><li>Cloud storage</li><li>Anomaly alert</li><li>Remote control</li></ul>
+                    <div class="card-tags"><span class="card-tag">MONITORING</span><span class="card-tag">HVAC</span></div>
+                </div>
+                <div class="carousel-card">
+                    <div class="card-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c-5.33 4.55-8 8.48-8 11.8 0 4.98 3.8 8.2 8 8.2s8-3.22 8-8.2c0-3.32-2.67-7.25-8-11.8zm0 18c-3.35 0-6-2.57-6-6.2 0-2.34 1.95-5.44 6-9.14 4.05 3.7 6 6.8 6 9.14 0 3.63-2.65 6.2-6 6.2z"/></svg></div>
+                    <h3>Water ATM System</h3>
+                    <p>Automated, metered water dispensing for communities and industrial sites. Coin or RFID-based payment ensures fair access with remote usage tracking.</p>
+                    <ul class="features"><li>Coin & RFID</li><li>Precise flow</li><li>Remote auditing</li><li>Empty alerts</li></ul>
+                    <div class="card-tags"><span class="card-tag">WATER</span><span class="card-tag">PAYMENT</span></div>
+                </div>
+                <div class="carousel-card">
+                    <div class="card-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-1 16.95h2V19.5h-2v2.95zm-7.45-3.91l1.41 1.41 1.79-1.8-1.41-1.41-1.79 1.8z"/></svg></div>
+                    <h3>Smart Energy Meter</h3>
+                    <p>High-precision solar generation tracking. Optimized for businesses looking to maximize ROI on renewable infrastructure via real-time visibility.</p>
+                    <ul class="features"><li>CT sensor</li><li>Mobile App</li><li>Cloud Sync</li><li>ESP32 based</li></ul>
+                    <div class="card-tags"><span class="card-tag">ENERGY</span><span class="card-tag">SOLAR</span></div>
+                </div>
+                <div class="carousel-card">
+                    <div class="card-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg></div>
+                    <h3>Ground Water Level Detection</h3>
+                    <p>Advanced platform for dams and reservoirs. Solar-powered units designed for continuous operation in remote, off-grid locations.</p>
+                    <ul class="features"><li>Cellular LTE</li><li>ePaper display</li><li>Solar BMS</li><li>Tamper proof</li></ul>
+                    <div class="card-tags"><span class="card-tag">REMOTE</span><span class="card-tag">MONITORING</span></div>
+                </div>
+
+                <!-- Group 3 REPEAT -->
+                <div class="carousel-card">
+                    <div class="card-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M22 11h-2.06l1.39-3.23c.36-.83-.02-1.81-.85-2.16-.83-.36-1.81.02-2.16.85L17.21 9H13V4.79l2.46-1.11c.83-.36 1.21-1.34.85-2.16-.35-.84-1.34-1.21-2.16-.85L12 1.64 9.85.67c-.82-.36-1.81.01-2.16.85-.36.82.02 1.8.85 2.16L11 4.79V9H6.79L5.68 6.46c-.36-.83-1.34-1.21-2.16-.85-.84.35-1.21 1.34-.85 2.16L4.06 11H2c-.9 0-1.64.95-1.24 1.77.21.43.65.73 1.13.73h2.17l-1.39 3.23c-.36.83.02 1.81.85 2.16.83.36 1.81-.02 2.16-.85L6.79 15H11v4.21L8.54 20.32c-.83.36-1.21 1.34-.85 2.16.35.84 1.34 1.21 2.16.85L12 22.36l2.15.97c.82.36 1.81-.01 2.16-.85.36-.82-.02-1.8-.85-2.16L13 19.21V15h4.21l1.11 2.54c.36.83 1.34 1.21 2.16.85.84-.35 1.21-1.34.85-2.16L19.94 13H22c.9 0 1.64-.95 1.24-1.77-.21-.43-.65-.73-1.13-.73zM12 15c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/></svg></div>
+                    <h3>Smart AC Monitoring</h3>
+                    <p>Comprehensive HVAC monitoring platform for industrial facilities. Real-time electrical insights and predictive maintenance to stop failure before it happens.</p>
+                    <ul class="features"><li>Real-time track</li><li>Cloud storage</li><li>Anomaly alert</li><li>Remote control</li></ul>
+                    <div class="card-tags"><span class="card-tag">MONITORING</span><span class="card-tag">HVAC</span></div>
+                </div>
+                <div class="carousel-card">
+                    <div class="card-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c-5.33 4.55-8 8.48-8 11.8 0 4.98 3.8 8.2 8 8.2s8-3.22 8-8.2c0-3.32-2.67-7.25-8-11.8zm0 18c-3.35 0-6-2.57-6-6.2 0-2.34 1.95-5.44 6-9.14 4.05 3.7 6 6.8 6 9.14 0 3.63-2.65 6.2-6 6.2z"/></svg></div>
+                    <h3>Water ATM System</h3>
+                    <p>Automated, metered water dispensing for communities and industrial sites. Coin or RFID-based payment ensures fair access with remote usage tracking.</p>
+                    <ul class="features"><li>Coin & RFID</li><li>Precise flow</li><li>Remote auditing</li><li>Empty alerts</li></ul>
+                    <div class="card-tags"><span class="card-tag">WATER</span><span class="card-tag">PAYMENT</span></div>
+                </div>
+                <div class="carousel-card">
+                    <div class="card-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-1 16.95h2V19.5h-2v2.95zm-7.45-3.91l1.41 1.41 1.79-1.8-1.41-1.41-1.79 1.8z"/></svg></div>
+                    <h3>Smart Energy Meter</h3>
+                    <p>High-precision solar generation tracking. Optimized for businesses looking to maximize ROI on renewable infrastructure via real-time visibility.</p>
+                    <ul class="features"><li>CT sensor</li><li>Mobile App</li><li>Cloud Sync</li><li>ESP32 based</li></ul>
+                    <div class="card-tags"><span class="card-tag">ENERGY</span><span class="card-tag">SOLAR</span></div>
+                </div>
+                <div class="carousel-card">
+                    <div class="card-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg></div>
+                    <h3>Ground Water Level Detection</h3>
+                    <p>Advanced platform for dams and reservoirs. Solar-powered units designed for continuous operation in remote, off-grid locations.</p>
+                    <ul class="features"><li>Cellular LTE</li><li>ePaper display</li><li>Solar BMS</li><li>Tamper proof</li></ul>
+                    <div class="card-tags"><span class="card-tag">REMOTE</span><span class="card-tag">MONITORING</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="inner-container">
+            <div class="aedi-io-box">
+                <div class="aedi-io-text">
+                    <h2>AEDI <span>Integrations</span></h2>
+                    <p>Antwerp Ecosystem Designs Ionity. The "IO" of Integrations. We don't just build devices; we build the ecosystem that allows them to communicate, learn, and react.</p>
+                </div>
+                <div class="io-grid">
+                    <div class="io-item">
+                        <strong>Cross-Platform</strong>
+                        <span>Seamless operation across Linux, Windows, and Embedded RTOS.</span>
+                    </div>
+                    <div class="io-item">
+                        <strong>Machine Learning</strong>
+                        <span>Controlling ML models on the edge for real-time decisioning.</span>
+                    </div>
+                    <div class="io-item">
+                        <strong>Data Capturing</strong>
+                        <span>High-fidelity sensors capturing millions of points for analysis.</span>
+                    </div>
+                    <div class="io-item">
+                        <strong>Surveying</strong>
+                        <span>Automated environmental surveying and mapping systems.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <style>
+            @keyframes footerGlow {
+                0% { text-shadow: 0 0 2px rgba(255,255,255,0.1); }
+                100% { text-shadow: 0 0 8px rgba(0, 210, 255, 0.3); }
+            }
+            .footer-content {
+                animation: footerGlow 3s infinite alternate;
+            }
+            .footer-logo-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 2rem;
+                width: 100%;
+            }
+            .footer-logo {
+                height: 80px;
+                width: auto;
+                opacity: 0.9;
+                transition: all 0.3s ease;
+            }
+            .footer-logo:hover {
+                opacity: 1;
+                filter: drop-shadow(0 0 15px rgba(0, 210, 255, 0.4));
+            }
+        </style>
+        <div class="footer-logo-container">
+            <img src="assets/images/ionity-logo-edited.png" alt="Ionity Logo" class="footer-logo">
+        </div>
+        <div class="footer-content" style="line-height: 2;">
+            <div>Ionity™ (Pty) Ltd 2025-2026 | Creative Commons BY_NC_SA 4.0 | Made with AEDI™ | Author: Antwerp Designs</div>
+            <div>South Africa Centurion 0157 | Policy AED 986 AED | License AED 900 | Ionity™ IoT-Ai-DAQ-PdM-CMS-F-iT Hardware, Software Integrations, ALL RIGHTS RESERVED</div>
+            <div>
+                <a href="tel:+27646999877">+27 646 999 877</a> 
+                <a href="mailto:ai@ionity.today">ai@ionity.today</a> &nbsp;|&nbsp; 
+                Author Profile <a href="https://www.ionity.world" target="_blank">www.ionity.world</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        // Three.js Giant Solar System Implementation
+        let scene, camera, renderer, stars, sun;
+        let planets = [];
+        let mouseX = 0, mouseY = 0;
+        let windowHalfX = window.innerWidth / 2;
+        let windowHalfY = window.innerHeight / 2;
+        let speed = 1.0;
+
+        function init() {
+            const container = document.getElementById('canvas-container');
+            
+            // Scene
+            scene = new THREE.Scene();
+            scene.fog = new THREE.FogExp2(0x020204, 0.0005);
+
+            // Camera - Orbit View
+            camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 20000);
+            camera.position.set(0, 300, 900); // Elevated, further back
+            camera.lookAt(0, 0, 0);
+
+            // Renderer
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setPixelRatio(window.devicePixelRatio);
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            container.innerHTML = ''; 
+            container.appendChild(renderer.domElement);
+
+            // Lighting
+            const ambientLight = new THREE.AmbientLight(0x222222);
+            scene.add(ambientLight);
+            
+            const pointLight = new THREE.PointLight(0xffaa00, 2, 5000); // Sun light
+            pointLight.position.set(0, 0, 0);
+            scene.add(pointLight);
+
+            // --- STARFIELD ---
+            const starGeo = new THREE.BufferGeometry();
+            const starCount = 8000;
+            const starPos = new Float32Array(starCount * 3);
+            for(let i=0; i<starCount*3; i++) {
+                starPos[i] = (Math.random() - 0.5) * 10000;
+            }
+            starGeo.setAttribute('position', new THREE.BufferAttribute(starPos, 3));
+            const starMat = new THREE.PointsMaterial({color: 0xffffff, size: 2.0, transparent: true, opacity: 0.3});
+            stars = new THREE.Points(starGeo, starMat);
+            scene.add(stars);
+
+            // --- THE SUN ---
+            const sunGeo = new THREE.SphereGeometry(100, 32, 32);
+            const sunMat = new THREE.MeshBasicMaterial({ color: 0xffaa00, wireframe: true });
+            sun = new THREE.Mesh(sunGeo, sunMat);
+            // Sun Glow
+            const glowGeo = new THREE.SphereGeometry(110, 32, 32);
+            const glowMat = new THREE.MeshBasicMaterial({ color: 0xff6600, transparent: true, opacity: 0.15, side: THREE.BackSide, wireframe: true });
+            const sunGlow = new THREE.Mesh(glowGeo, glowMat);
+            sun.add(sunGlow);
+            scene.add(sun);
+
+            // --- PLANETS ---
+            // Simplified data: name, size, distance, color, speed
+            const planetData = [
+                { name: 'Mercury', size: 8, dist: 180, color: 0xaaaaaa, speed: 0.015 },
+                { name: 'Venus', size: 14, dist: 260, color: 0xffcc33, speed: 0.012 },
+                { name: 'Earth', size: 15, dist: 360, color: 0x2233ff, speed: 0.01 },
+                { name: 'Mars', size: 10, dist: 460, color: 0xff4422, speed: 0.008 },
+                { name: 'Jupiter', size: 40, dist: 700, color: 0xdcae7a, speed: 0.005 },
+                { name: 'Saturn', size: 35, dist: 950, color: 0xeedda0, speed: 0.003, ring: true },
+                { name: 'Uranus', size: 20, dist: 1200, color: 0x55ffff, speed: 0.002 },
+                { name: 'Neptune', size: 19, dist: 1450, color: 0x3366ff, speed: 0.001 }
+            ];
+
+            planetData.forEach((data, index) => {
+                // Orbit Path (Ring Line)
+                const orbitColor = (index % 2 === 0) ? 0x00d2ff : 0xffffff;
+                const pathGeo = new THREE.RingGeometry(data.dist - 1, data.dist + 1, 128);
+                const pathMat = new THREE.MeshBasicMaterial({ color: orbitColor, side: THREE.DoubleSide, transparent: true, opacity: 0.4 });
+                const path = new THREE.Mesh(pathGeo, pathMat);
+                path.rotation.x = Math.PI / 2;
+                scene.add(path);
+
+                // Planet Container (Pivot for rotation)
+                const pivot = new THREE.Object3D();
+                pivot.rotation.y = Math.random() * Math.PI * 2; // Random start pos
+                scene.add(pivot);
+
+                // Planet Mesh
+                const pGeo = new THREE.SphereGeometry(data.size, 16, 16);
+                const pMat = new THREE.MeshBasicMaterial({ 
+                    color: 0x00d2ff, 
+                    wireframe: true
+                });
+                const mesh = new THREE.Mesh(pGeo, pMat);
+                mesh.position.x = data.dist;
+                pivot.add(mesh);
+
+                // Saturn Ring
+                if (data.ring) {
+                    const rGeo = new THREE.RingGeometry(data.size * 1.4, data.size * 2.5, 64);
+                    const rMat = new THREE.MeshBasicMaterial({ color: 0xaa9966, side: THREE.DoubleSide, transparent: true, opacity: 0.6 });
+                    const ring = new THREE.Mesh(rGeo, rMat);
+                    ring.rotation.x = Math.PI/2.1; 
+                    mesh.add(ring);
+                }
+
+                planets.push({ mesh: mesh, pivot: pivot, speed: data.speed, selfSpeed: 0.01 + Math.random()*0.02 });
+            });
+
+            // Listeners
+            document.addEventListener('mousemove', onDocumentMouseMove, false);
+            window.addEventListener('resize', onWindowResize, false);
+            animate();
+        }
+
+        function onDocumentMouseMove(event) {
+            mouseX = (event.clientX - windowHalfX);
+            mouseY = (event.clientY - windowHalfY);
+        }
+
+        function onWindowResize() {
+            windowHalfX = window.innerWidth / 2;
+            windowHalfY = window.innerHeight / 2;
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+
+            // Rotate Sun
+            sun.rotation.y += 0.002;
+
+            // Rotate Planets around Sun
+            planets.forEach(p => {
+                p.pivot.rotation.y += p.speed;      // Orbit
+                p.mesh.rotation.y += p.selfSpeed;   // Self rotation
+            });
+
+            // Rotate Stars
+            stars.rotation.y -= 0.0001;
+
+            // Camera Interaction (Parallax)
+            // Move camera slightly based on mouse
+            camera.position.x += (mouseX * 0.3 - camera.position.x) * 0.05;
+            camera.position.y += (-mouseY * 0.3 + 300 - camera.position.y) * 0.05;
+            camera.lookAt(scene.position);
+
+            renderer.render(scene, camera);
+        }
+
+        window.onload = init;
+    </script>
+    <script src="assets/js/script.js" defer></script>
+</body>
+</html>
