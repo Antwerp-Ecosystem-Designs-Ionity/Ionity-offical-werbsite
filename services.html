@@ -78,7 +78,9 @@
             border-bottom: 1px solid var(--border);
             background: rgba(2, 2, 4, 0.9);
             backdrop-filter: blur(12px);
-            position: sticky;
+            position: fixed;
+            width: 100%;
+            box-sizing: border-box;
             top: 0;
             z-index: 1000;
         }
@@ -167,23 +169,25 @@
         /* Mobile Dropdown */
         .mobile-dropdown {
             display: none;
-            position: absolute;
+            position: fixed;
             top: 80px;
-            left: 0;
-            width: 100%;
-            background: rgba(2, 2, 4, 0.85);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border-bottom: 1px solid var(--border);
+            right: 0;
+            left: auto;
+            width: 280px;
+            background: rgba(5, 10, 15, 0.95);
+            border: 1px solid var(--accent-cyan);
+            border-top: none;
+            border-right: none;
             flex-direction: column;
             padding: 1rem 0;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.8);
-            z-index: 1001;
+            box-shadow: -5px 5px 20px rgba(0, 0, 0, 0.8), 0 0 15px rgba(0, 210, 255, 0.2);
+            z-index: 99999;
+            backdrop-filter: blur(20px);
         }
 
         .mobile-dropdown.open {
             display: flex;
-            animation: slideDown 0.3s ease-out;
+            animation: slideDown 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .mobile-dropdown a {
@@ -206,7 +210,6 @@
         .mobile-dropdown a:hover {
             background: rgba(0, 210, 255, 0.1);
             color: var(--accent-cyan);
-            padding-left: 2.5rem;
         }
 
         @keyframes slideDown {
@@ -374,11 +377,22 @@
         }
 
         @media (max-width: 768px) {
+            nav { padding: 0 1rem; height: 60px; }
+            nav.scrolled { height: 50px; }
+            .mobile-dropdown { top: 60px; }
+            nav.scrolled ~ .mobile-dropdown { top: 50px; }
+
             img { max-width: 100%; height: auto; }
             .nav-links { display: none; }
             .mobile-menu-btn { display: block; }
             h1 { font-size: 2.5rem; }
             .container { padding: 2rem 5vw; }
+            
+            /* Reduce side darkness / mask on mobile to prevent obscuring text */
+            .slider-viewport {
+                mask-image: linear-gradient(to right, transparent 0%, black 2%, black 98%, transparent 100%);
+                -webkit-mask-image: linear-gradient(to right, transparent 0%, black 2%, black 98%, transparent 100%);
+            }
         }
 
         /* --- SUBSCRIPTION TIER STYLES --- */

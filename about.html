@@ -104,12 +104,22 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid var(--border);
-            background: rgba(2, 2, 4, 0.9);
-            backdrop-filter: blur(12px);
-            position: sticky;
+            border-bottom: 1px solid transparent;
+            background: transparent;
+            backdrop-filter: blur(0px);
+            position: fixed;
+            width: 100%;
+            box-sizing: border-box;
             top: 0;
             z-index: 100;
+            transition: all 0.4s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(2, 2, 4, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
         }
 
         .logo {
@@ -243,7 +253,7 @@
         .container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 4rem 2rem;
+            padding: 120px 2rem 4rem;
             min-height: 80vh;
             position: relative;
             z-index: 10;
@@ -503,9 +513,23 @@
         }
 
         @media (max-width: 900px) {
-            .aedi-feature { flex-direction: column-reverse; gap: 2rem; text-align: center; }
+            .aedi-feature { flex-direction: column-reverse; gap: 3rem; text-align: center; }
             .feature-line { margin: 0 auto 2rem auto; }
             .feature-content h2 { font-size: 2.2rem; }
+            .system-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+        }
+
+        @media (max-width: 600px) {
+            .container { padding: 3rem 1.25rem; }
+            h1 { font-size: 2.2rem; line-height: 1.2; word-wrap: break-word; }
+            .hero-desc { font-size: 1rem; line-height: 1.8; margin-top: 1.5rem; }
+            .card { padding: 1.5rem; }
+            .mission-card { padding: 1.5rem; margin-bottom: 1.5rem; } 
+            .mission-text { font-size: 1rem; line-height: 1.8; }
+            .aim-tagline { font-size: 1.1rem; padding: 2rem 1rem; }
+            .team-list .hero-sub { font-size: 0.75rem; white-space: normal; line-height: 1.5; margin-bottom: 0.5rem; }
+            footer { padding: 3rem 1.5rem; }
+            .footer-content div { margin-bottom: 1rem; line-height: 1.6; }
         }
 
         footer {
@@ -525,11 +549,17 @@
 
         @media (max-width: 768px) {
             h1 { font-size: 2.5rem; }
-            nav { padding: 0 1.5rem; }
+            nav { padding: 0 1rem; height: 60px; }
+            nav.scrolled { height: 50px; }
+            .mobile-dropdown { top: 60px; }
+            nav.scrolled ~ .mobile-dropdown { top: 50px; }
+
             .nav-links { display: none; }
             .mobile-menu-btn { display: block; }
             .logo { font-size: 1rem; }
-            body { filter: brightness(1.3); } /* Even brighter on mobile */
+            /* filter on body breaks position:fixed */
+            /* body { filter: brightness(1.3); } */
+            .container { filter: brightness(1.3); } 
             h1 { animation: neonPulse 3s infinite alternate; }
             .mobile-dropdown a.active { animation: neonPulse 2s infinite alternate; }
         }
@@ -688,7 +718,7 @@
             <h1 data-value="The Architects of Datastreams">The Architects<br>of Datastreams</h1>
             <div class="team-list">
                 <div class="hero-sub" data-value="// Systems Architect & Integrator"> // Systems Architect & Integrator</div>
-                <div class="hero-sub" data-value="// Industrial Process & Design and Engineer"> // Industrial Process & Design and Engineer</div>
+                <div class="hero-sub" data-value="// Industrial Process & Design Engineer"> // Industrial Process & Design Engineer</div>
                 <div class="hero-sub" data-value="Darrell Culverwell // Business & Engineering Solution Expert">Darrell Culverwell // Business & Engineering Solution Expert</div>
                 <div class="hero-sub" data-value="Asman Bakhtiar // Embedded Engineer & Communication Encryption Engineer">Asman Bakhtiar // Embedded Engineer & Communication Encryption Engineer</div>
                 <div class="hero-sub" data-value="Richard Wood // Managing Member & Regulatory Enforcer">Richard Wood // Managing Member & Regulatory Enforcer</div>
@@ -767,7 +797,7 @@
             <div class="card">
                 <div class="card-icon">◈</div>
                 <h3 data-value="Leadership & Vision">Leadership & Vision</h3>
-                <p>Founded in 2025 by Johan Wilhelm van Antwerp (IoT Solutionist & Mechanical Engineer within Africa's IoT market), with Ian Raven (Industrial Engineering background cross industry) and Darrell Culverwell (Mechanical Engineer and Successful Businessman). Born from 2019's groundwork and 2024's AI revolution up until now with Ai-M boards Q1 2026, we foresaw that static systems would fail a hyper-connected future. within Monitoring for Cost-saving, production enhancement and labor relations.</p>
+                <p>Founded in 2025 by Johan Wilhelm van Antwerp (IoT Solutionist & Mechanical Engineer within Africa's IoT market), with Ian Raven (Industrial Engineering background cross industry) and Darrell Culverwell (Mechanical Engineer and Successful Businessman). Born from 2019's groundwork and 2024's AI revolution up until now with Ai-M boards Q1 2026, we foresaw that static systems would fail a hyper-connected future—specifically within Monitoring for Cost-saving, production enhancement, and labor relations.</p>
                 <div class="card-meta">
                     <span>ORIGIN</span>
                     <span>VISIONARY</span>
@@ -789,7 +819,7 @@
             <div class="card">
                 <div class="card-icon">❖</div>
                 <h3 data-value="Total Scope Integration">Total Scope Integration</h3>
-                <p>A unified fusion of IoT, AI, Data Acquisition (DAQ), and Predictive Maintenance (PdM). Our scope encompasses the entire spectrum: from hardware sensors to cloud-based/edge Computer Monitoring Systems (CMS), ensuring complete Hardware-Software Integration with Forensic Information Technology (F-iT).</p>
+                <p>A unified fusion of IoT, AI, Data Acquisition (DAQ), and Predictive Maintenance (PdM). Our scope encompasses the entire spectrum: from hardware sensors to cloud-based / edge Computer Monitoring Systems (CMS), ensuring complete Hardware-Software Integration with Forensic Information Technology (F-iT).</p>
                 <div class="card-meta">
                     <span>METHODOLOGY</span>
                     <span>FULL-STACK</span>
@@ -822,7 +852,7 @@
             <div class="card">
                 <div class="card-icon">⏣</div>
                 <h3 data-value="Human Centric Ai">Human Centric Ai</h3>
-                <p>Technology serves humanity. Our systems elevate human potential, allowing operators to become architects. AEDI enhances decision-making providing insights for improved maintenance intervals and operational efficiency.</p>
+                <p>Technology serves humanity. Our systems elevate human potential, allowing operators to become architects. AEDI enhances decision-making, providing insights for improved maintenance intervals and operational efficiency.</p>
                 <div class="card-meta">
                     <span>ETHICS</span>
                     <span>ELEVATION</span>

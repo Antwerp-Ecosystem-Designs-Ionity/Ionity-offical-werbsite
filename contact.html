@@ -68,9 +68,13 @@
             border-bottom: 1px solid var(--border);
             background: rgba(2, 2, 4, 0.9);
             backdrop-filter: blur(12px);
-            position: sticky;
+            position: fixed;
             top: 0;
+            left: 0;
+            right: 0;
             z-index: 100;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .logo {
@@ -161,7 +165,7 @@
             flex-wrap: wrap;
             align-items: flex-start;
             justify-content: center;
-            padding: 6rem 2rem;
+            padding: 10rem 2rem;
             gap: 4rem;
             max-width: 1400px;
             margin: 0 auto;
@@ -385,7 +389,7 @@
         .footer-content { line-height: 2; opacity: 0.7; }
 
         @media (max-width: 900px) {
-            .content-main { flex-direction: column; padding-top: 2rem; }
+            .content-main { flex-direction: column; padding-top: 8rem; }
             .terminal-box, .contact-info { width: 100%; max-width: 100%; }
         }
         

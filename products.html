@@ -64,6 +64,11 @@
             100% { text-shadow: 0 0 10px rgba(0,0,0,0.5); color: #fff; }
         }
 
+        @keyframes headerLineRun {
+            0% { background-position: -100% 0; }
+            100% { background-position: 200% 0; }
+        }
+
         /* --- NAVIGATION --- */
         nav {
             padding: 0 5vw;
@@ -74,9 +79,32 @@
             border-bottom: 1px solid var(--border);
             background: rgba(2, 2, 4, 0.9);
             backdrop-filter: blur(12px);
-            position: sticky;
+            position: fixed;
+            width: 100%;
             top: 0;
-            z-index: 100;
+            left: 0;
+            box-sizing: border-box;
+            z-index: 1000;
+        }
+        
+        /* Spacer for content below fixed nav */
+        nav + * { margin-top: 80px; }
+
+        /* Running Header Line Animation */
+        nav::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00d2ff, transparent);
+            background-size: 50% 100%;
+            background-repeat: no-repeat;
+            opacity: 0.8;
+            animation: headerLineRun 7s linear infinite;
+            pointer-events: none;
+            z-index: 1002;
         }
 
         .logo {
@@ -89,6 +117,8 @@
             position: relative;
             text-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
             transition: all 0.3s;
+            display: flex;
+            align-items: center;
         }
         
         .logo:hover {
@@ -145,9 +175,9 @@
 
         .nav-links a:hover::before { width: 100%; }
 
-        /* Mobile Menu Button - Hidden on Desktop */
+        /* Mobile Menu Button */
         .mobile-menu-btn {
-            display: none; /* Crucial: ensures it is gone on desktop */
+            display: none;
             background: transparent;
             border: 1px solid var(--border);
             color: var(--accent-cyan);
@@ -161,19 +191,19 @@
         /* Mobile Dropdown */
         .mobile-dropdown {
             display: none;
-            position: fixed; /* Fixed to keep it on top when scrolling */
+            position: fixed;
             top: 80px;
-            right: 0; /* Align to right */
+            right: 0;
             left: auto;
-            width: 280px; /* Limits width */
-            background: rgba(5, 10, 15, 0.95); /* Darker and cleaner */
+            width: 280px;
+            background: rgba(5, 10, 15, 0.95);
             border: 1px solid var(--accent-cyan);
             border-top: none;
             border-right: none;
             flex-direction: column;
             padding: 1rem 0;
             box-shadow: -5px 5px 20px rgba(0, 0, 0, 0.8), 0 0 15px rgba(0, 210, 255, 0.2);
-            z-index: 99999; /* Ensure always on top */
+            z-index: 99999;
             backdrop-filter: blur(20px);
         }
 
@@ -204,7 +234,12 @@
             color: var(--accent-cyan);
         }
 
-        @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .nav-link { display: none; }
+            .nav-links { display: none; }
+            .mobile-menu-btn { display: block; }
+        }
 
         /* --- LAYOUT --- */
         .container { max-width: 100%; overflow-x: hidden; position: relative; z-index: 10; padding: 0; }
@@ -300,6 +335,37 @@
             animation-play-state: paused;
         }
 
+        /* --- CAROUSEL NAVIGATION --- */
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(2, 2, 4, 0.8);
+            border: 1px solid var(--accent-cyan);
+            color: var(--accent-cyan);
+            width: 40px; 
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 20;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            opacity: 0; 
+        }
+        .carousel-wrapper:hover .slider-btn {
+            opacity: 1;
+        }
+        .slider-btn:hover {
+            background: var(--accent-cyan);
+            color: #000;
+            box-shadow: 0 0 15px var(--accent-cyan);
+        }
+        .prev-btn { left: 10px; }
+        .next-btn { right: 10px; }
+
         /* --- BLUEPRINT / EDGE SECTION --- */
         .blueprint-section {
             background: rgba(10, 15, 25, 0.85);
@@ -393,6 +459,7 @@
 
         @media (max-width: 900px) {
             .nav-links { display: none; }
+            .mobile-menu-btn { display: block; }
             h1 { font-size: 2.5rem; }
             .aedi-io-box { grid-template-columns: 1fr; }
         }
@@ -406,7 +473,26 @@
             padding: 1rem;
             position: relative;
             box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
-            overflow: hidden;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent-cyan) rgba(2,2,4,0.8);
+        }
+
+        /* Custom Scrollbar for uniqueness */
+        .schematic-container::-webkit-scrollbar { height: 4px; }
+        .schematic-container::-webkit-scrollbar-track { background: rgba(0,0,0,0.3); }
+        .schematic-container::-webkit-scrollbar-thumb { background: var(--accent-cyan); border-radius: 2px; }
+
+        @media (max-width: 768px) {
+            .schematic-container {
+                border: 1px solid var(--accent-cyan);
+                box-shadow: 0 0 15px rgba(0, 210, 255, 0.15), inset 0 0 20px rgba(0,0,0,0.8);
+            }
+            .schematic-container svg {
+                min-width: 900px; /* Force larger size for readability */
+                height: auto;
+            }
         }
         .schematic-label {
             position: absolute;
@@ -419,6 +505,81 @@
             background: rgba(0,0,0,0.8);
             padding: 2px 5px;
             border: 1px solid var(--border);
+        }
+
+        /* --- MOBILE FLOW CAROUSEL --- */
+        .mobile-flow_container {
+            display: none;
+            position: relative;
+            margin: 2rem 0;
+            border: 1px solid var(--accent-cyan);
+            background: rgba(0, 40, 60, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+        }
+
+        .mobile-flow_header {
+            color: var(--accent-cyan);
+            text-align: center;
+            font-family: monospace;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 0.9rem; letter-spacing: 1px;
+        }
+
+        .mobile-flow_track {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 1rem;
+            padding-bottom: 1rem;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            align-items: center;
+        }
+        .mobile-flow_track::-webkit-scrollbar { display: none; }
+
+        .flow-card {
+            min-width: 80%;
+            scroll-snap-align: center;
+            background: rgba(2, 2, 4, 0.85);
+            border: 1px solid var(--border);
+            padding: 1.5rem;
+            border-radius: 6px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+
+        .flow-card h4 { margin: 0 0 0.5rem 0; color: #fff; text-transform: uppercase; letter-spacing: 1px; font-size: 1rem; }
+        .flow-card span { color: var(--accent-green); font-family: monospace; font-size: 0.8rem; }
+        .flow-spacer { min-width: 20px; display: flex; align-items: center; justify-content: center; color: var(--accent-cyan); font-size: 1.5rem; }
+
+        .flow-arrow {
+            position: absolute;
+            top: 60%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.8);
+            border: 1px solid var(--accent-cyan);
+            color: var(--accent-cyan);
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; z-index: 10; font-size: 1.2rem;
+            user-select: none;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+        .flow-arrow:active { background: var(--accent-cyan); color: #000; }
+        .flow-arrow.left { left: -10px; }
+        .flow-arrow.right { right: -10px; }
+
+        @media (max-width: 768px) {
+            .schematic-container { display: none; }
+            .mobile-flow_container { display: block; }
         }
     
 
@@ -454,22 +615,22 @@
 
         <!-- Mobile Button -->
         <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+        
+        <!-- Mobile Dropdown -->
+        <div class="mobile-dropdown" id="mobileDropdown">
+            <a href="inner-Page.html">Systems</a>
+            <a href="services.html">Services</a>
+            <a href="products.html" class="active">Products</a>
+            <a href="ai-innovation.html">Ai Innovation</a>
+            <a href="roadmap.html">Roadmap</a>
+            <a href="license.html">License</a>
+            <a href="about.html">About</a>
+            <a href="aedi-online.html">AEDI Online</a>
+            <a href="contact.html">Contact</a>
+            <a href="firmware-development.html">Dev</a>
+            <a href="gateway.html">IO Way</a>
+        </div>
     </nav>
-
-    <!-- Mobile Dropdown -->
-    <div class="mobile-dropdown" id="mobileDropdown">
-        <a href="inner-Page.html">Systems</a>
-        <a href="services.html">Services</a>
-        <a href="products.html" class="active">Products</a>
-        <a href="ai-innovation.html">Ai Innovation</a>
-        <a href="roadmap.html">Roadmap</a>
-        <a href="license.html">License</a>
-        <a href="about.html">About</a>
-        <a href="aedi-online.html">AEDI Online</a>
-        <a href="contact.html">Contact</a>
-        <a href="firmware-development.html">Dev</a>
-        <a href="gateway.html">IO Way</a>
-    </div>
 
     <div class="container">
         <div class="inner-container">
@@ -589,6 +750,50 @@
                      <text x="55" y="155" text-anchor="middle" fill="#ffae00" font-size="9" font-family="monospace">CMS</text>
                      <line x1="100" y1="150" x2="220" y2="150" stroke="#ffae00" stroke-width="1" stroke-dasharray="2,2" marker-end="url(#arrow)" />
                 </svg>
+            </div>
+
+            <!-- Mobile Automation Carousel -->
+            <div class="mobile-flow_container">
+                <div class="mobile-flow_header">Automation on:<br>Ai-M IoT Controller Network</div>
+                
+                <div class="flow-arrow left" onclick="this.parentElement.querySelector('.mobile-flow_track').scrollBy({left: -280, behavior: 'smooth'})">&#8249;</div>
+                
+                <div class="mobile-flow_track">
+                    <!-- Step 1 -->
+                    <div class="flow-card" style="border-top: 2px solid var(--accent-cyan);">
+                        <h4>Ai-M IoT DEVICE</h4>
+                        <span style="color: var(--accent-cyan);">CORE PROCESSOR</span>
+                    </div>
+                    
+                    <div class="flow-spacer">&#8594;</div>
+
+                    <!-- Step 2 -->
+                    <div class="flow-card" style="border-top: 2px solid var(--accent-gold);">
+                         <h4>EDGE</h4>
+                         <div style="display:flex; flex-direction:column; gap:5px; margin-top:5px;">
+                            <span>LOCAL AI</span>
+                            <span>Local SPC</span>
+                         </div>
+                    </div>
+
+                    <div class="flow-spacer">&#8594;</div>
+
+                    <!-- Step 3 -->
+                    <div class="flow-card" style="border-top: 2px solid var(--accent-cyan);">
+                        <h4>CLOUD</h4>
+                    </div>
+
+                    <div class="flow-spacer">&#8594;</div>
+                    
+                    <!-- Step 4 -->
+                    <div class="flow-card" style="border-top: 2px solid var(--accent-green);">
+                        <h4>GUI REMOTE</h4>
+                        <span style="color: #fff; font-size: 0.8rem; margin: 5px 0;">&</span>
+                        <span>Data UPLOAD</span>
+                    </div>
+                </div>
+                
+                <div class="flow-arrow right" onclick="this.parentElement.querySelector('.mobile-flow_track').scrollBy({left: 280, behavior: 'smooth'})">&#8250;</div>
             </div>
 
             <div class="blueprint-grid">
@@ -725,7 +930,9 @@
         </div>
 
         <div class="carousel-wrapper">
-            <div class="carousel-track track-left">
+            <button class="slider-btn prev-btn" aria-label="Previous Slide">&#10094;</button>
+            <button class="slider-btn next-btn" aria-label="Next Slide">&#10095;</button>
+            <div class="carousel-track track-left" data-direction="left">
                 <!-- Group 1 -->
                 <div class="carousel-card">
                     <div class="card-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg></div>
@@ -827,7 +1034,9 @@
             The Living Ecosystem (AEDI)
             <span>SYNC_ESTABLISHED</span>
         </div>
-
+button class="slider-btn prev-btn" aria-label="Previous Slide">&#10094;</button>
+             <button class="slider-btn next-btn" aria-label="Next Slide">&#10095;</button>
+             <div class="carousel-track track-right" data-direction="
         <div class="carousel-wrapper">
              <div class="carousel-track track-right">
                 <!-- Group 2 -->
@@ -903,7 +1112,9 @@
         </div>
 
         <div class="carousel-wrapper">
-             <div class="carousel-track track-left">
+             <button class="slider-btn prev-btn" aria-label="Previous Slide">&#10094;</button>
+             <button class="slider-btn next-btn" aria-label="Next Slide">&#10095;</button>
+             <div class="carousel-track track-left" data-direction="left">
                 <!-- Group 3 -->
                 <div class="carousel-card">
                     <div class="card-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M22 11h-2.06l1.39-3.23c.36-.83-.02-1.81-.85-2.16-.83-.36-1.81.02-2.16.85L17.21 9H13V4.79l2.46-1.11c.83-.36 1.21-1.34.85-2.16-.35-.84-1.34-1.21-2.16-.85L12 1.64 9.85.67c-.82-.36-1.81.01-2.16.85-.36.82.02 1.8.85 2.16L11 4.79V9H6.79L5.68 6.46c-.36-.83-1.34-1.21-2.16-.85-.84.35-1.21 1.34-.85 2.16L4.06 11H2c-.9 0-1.64.95-1.24 1.77.21.43.65.73 1.13.73h2.17l-1.39 3.23c-.36.83.02 1.81.85 2.16.83.36 1.81-.02 2.16-.85L6.79 15H11v4.21L8.54 20.32c-.83.36-1.21 1.34-.85 2.16.35.84 1.34 1.21 2.16.85L12 22.36l2.15.97c.82.36 1.81-.01 2.16-.85.36-.82-.02-1.8-.85-2.16L13 19.21V15h4.21l1.11 2.54c.36.83 1.34 1.21 2.16.85.84-.35 1.21-1.34.85-2.16L19.94 13H22c.9 0 1.64-.95 1.24-1.77-.21-.43-.65-.73-1.13-.73zM12 15c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/></svg></div>
@@ -1189,6 +1400,139 @@
         }
 
         window.onload = init;
+    </script>
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileDropdown');
+            menu.classList.toggle('open');
+        }
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const wrappers = document.querySelectorAll('.carousel-wrapper');
+            
+            wrappers.forEach(wrapper => {
+                const track = wrapper.querySelector('.carousel-track');
+                const prevBtn = wrapper.querySelector('.prev-btn');
+                const nextBtn = wrapper.querySelector('.next-btn');
+                
+                if (!track || !prevBtn || !nextBtn) return;
+
+                // Stop CSS animation
+                track.style.animation = 'none';
+                
+                // Content is duplicated 1x (original + clone)
+                // We assume the duplication is already done in HTML as seen in the file
+                
+                // Measurements
+                // One card is 350px + 2rem gap (approx 32px)
+                // We can calculate exact stride from the first element
+                const firstCard = track.children[0];
+                const style = window.getComputedStyle(track);
+                const gap = parseFloat(style.gap) || 32;
+                const cardWidth = firstCard.offsetWidth + gap;
+                
+                // Total width of one set (half the track)
+                // Since HTML has manual duplication, children.length is total items
+                // Real set size is children.length / 2
+                const totalItems = track.children.length;
+                const setWidth = (totalItems / 2) * cardWidth;
+                
+                let isHovered = false;
+                let isAnimating = false;
+                
+                // Determine direction from class or attribute
+                // track-left means moving left (content goes left, new items appear from right)
+                // track-right means moving right
+                let autoDirection = track.classList.contains('track-right') ? 1 : -1;
+                
+                // Initialize Position for Right-Moving Tracks to ensure seamless loop
+                // They need to start 'shifted' so they can scroll into view
+                let currentX = (autoDirection === 1) ? -setWidth : 0;
+                track.style.transform = `translateX(${currentX}px)`;
+
+                const speed = 0.5; // Adjust for smoothness
+
+                // Auto Scroll Loop
+                function animate() {
+                    if (!isHovered && !isAnimating) {
+                        currentX += autoDirection * speed;
+                        handleWrap();
+                        track.style.transform = `translateX(${currentX}px)`;
+                    }
+                    requestAnimationFrame(animate);
+                }
+                
+                function handleWrap() {
+                    // If moving left (negative X)
+                    if (currentX <= -setWidth) {
+                        currentX += setWidth;
+                    }
+                    // If moving right (positive X)
+                    else if (currentX > 0) {
+                        currentX -= setWidth;
+                    }
+                }
+
+                // Snap/Step Logic for buttons
+                function move(dir) {
+                    isAnimating = true;
+                    // snap to nearest grid
+                    const remainder = Math.abs(currentX) % cardWidth;
+                    let targetX;
+                    
+                    if (dir === 'next') {
+                        // Move left (show next)
+                        // currentX is usually negative.
+                        // target is currentX - cardWidth, but snapped
+                         targetX = Math.round((currentX - cardWidth) / cardWidth) * cardWidth;
+                    } else {
+                        // Move right (show prev)
+                        targetX = Math.round((currentX + cardWidth) / cardWidth) * cardWidth;
+                    }
+                    
+                    // Animate to targetX
+                    const startX = currentX;
+                    const startTime = performance.now();
+                    const duration = 400; // ms
+
+                    function step(now) {
+                        const elapsed = now - startTime;
+                        const progress = Math.min(elapsed / duration, 1);
+                        // Ease out cubic
+                        const ease = 1 - Math.pow(1 - progress, 3);
+                        
+                        currentX = startX + (targetX - startX) * ease;
+                        handleWrap();
+                        track.style.transform = `translateX(${currentX}px)`;
+                        
+                        if (progress < 1) {
+                            requestAnimationFrame(step);
+                        } else {
+                            isAnimating = false;
+                        }
+                    }
+                    requestAnimationFrame(step);
+                }
+
+                // Event Listeners
+                wrapper.addEventListener('mouseenter', () => isHovered = true);
+                wrapper.addEventListener('mouseleave', () => isHovered = false);
+                
+                prevBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    move('prev');
+                });
+                
+                nextBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    move('next');
+                });
+
+                // Start
+                animate();
+            });
+        });
     </script>
     <script src="assets/js/script.js" defer></script>
 </body>

@@ -106,10 +106,16 @@
             border-bottom: 1px solid var(--border);
             background: rgba(2, 2, 4, 0.9);
             backdrop-filter: blur(12px);
-            position: sticky;
+            position: fixed;
+            width: 100%;
             top: 0;
-            z-index: 100;
+            left: 0;
+            box-sizing: border-box;
+            z-index: 1000;
+            transition: all 0.3s ease;
         }
+
+
 
         .logo {
             font-family: 'Courier New', monospace;
@@ -199,20 +205,28 @@
         /* Mobile Dropdown */
         .mobile-dropdown {
             display: none;
-            position: absolute;
+            position: fixed;
             top: 80px;
-            left: 0;
-            width: 100%;
-            background: rgba(2, 2, 4, 0.98);
-            border-bottom: 1px solid var(--border);
+            right: 0;
+            left: auto;
+            width: 280px;
+            background: rgba(5, 10, 15, 0.95);
+            border: 1px solid var(--accent-cyan);
+            border-top: none;
+            border-right: none;
             flex-direction: column;
             padding: 1rem 0;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.8);
+            box-shadow: -5px 5px 20px rgba(0, 0, 0, 0.8), 0 0 15px rgba(0, 210, 255, 0.2);
+            z-index: 99999;
+            backdrop-filter: blur(20px);
+            transition: top 0.3s ease;
         }
+
+
 
         .mobile-dropdown.open {
             display: flex;
-            animation: slideDown 0.3s ease-out;
+            animation: slideDown 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .mobile-dropdown a {
@@ -225,7 +239,6 @@
             transition: background 0.2s;
         }
         
-        /* Mobile Active State */
         .mobile-dropdown a.active {
             color: var(--accent-cyan);
             background: rgba(0, 210, 255, 0.05);
@@ -529,7 +542,11 @@
         /* Mobile Adjust */
         @media (max-width: 768px) {
             h1 { font-size: 2.5rem; }
-            nav { padding: 0 1.5rem; }
+            nav { padding: 0 1rem; height: 60px; }
+            nav.scrolled { height: 50px; }
+            .mobile-dropdown { top: 60px; }
+            nav.scrolled ~ .mobile-dropdown { top: 50px; }
+
             .nav-links { display: none; } /* Hide desktop links */
             .mobile-menu-btn { display: block; } /* Show hamburger */
             .logo { font-size: 1rem; }
@@ -579,7 +596,7 @@
             footer a { margin: 0 5px; display: inline-block; margin-bottom: 5px; }
 
             /* BRIGHTNESS BOOST FOR MOBILE */
-            body { filter: brightness(1.2); }
+            /* body { filter: brightness(1.2); } REMOVED TO FIX STICKY NAV */
 
             /* AUTO GLOW ON MOBILE */
             h1 { animation: neonPulse 3s infinite alternate; }
@@ -2608,6 +2625,16 @@
 
         // 2. Scroll Reveal Animation
         document.addEventListener("DOMContentLoaded", () => {
+            // Header Scroll Effect
+            const nav = document.querySelector('nav');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    nav.classList.add('scrolled');
+                } else {
+                    nav.classList.remove('scrolled');
+                }
+            });
+
             const cards = document.querySelectorAll('.card');
             
             const observerOptions = {

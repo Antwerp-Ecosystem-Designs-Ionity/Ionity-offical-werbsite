@@ -84,10 +84,16 @@
             border-bottom: 1px solid var(--border);
             background: rgba(2, 2, 5, 0.95);
             backdrop-filter: blur(15px);
-            position: sticky;
+            position: fixed;
+            width: 100%;
             top: 0;
+            left: 0;
+            box-sizing: border-box;
             z-index: 100;
         }
+
+        nav + * { margin-top: 80px; }
+
 
         .logo {
             font-family: 'Courier New', monospace;
@@ -120,6 +126,70 @@
             font-weight: 600;
         }
         .nav-links a:hover, .nav-links a.active { color: var(--accent-cyan); text-shadow: 0 0 10px var(--accent-cyan); }
+
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--accent-cyan);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem 0.8rem;
+            border-radius: 4px;
+            z-index: 101;
+        }
+
+        /* Mobile Dropdown */
+        .mobile-dropdown {
+            display: none;
+            position: fixed;
+            top: 80px;
+            right: 0;
+            left: auto;
+            width: 280px;
+            background: rgba(5, 10, 15, 0.95);
+            border: 1px solid var(--accent-cyan);
+            border-top: none;
+            border-right: none;
+            flex-direction: column;
+            padding: 1rem 0;
+            box-shadow: -5px 5px 20px rgba(0, 0, 0, 0.8), 0 0 15px rgba(0, 210, 255, 0.2);
+            z-index: 99999;
+            backdrop-filter: blur(20px);
+        }
+
+        .mobile-dropdown.open {
+            display: flex;
+            animation: slideDown 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .mobile-dropdown a {
+            color: #fff;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            transition: background 0.2s;
+        }
+        
+        .mobile-dropdown a.active {
+            color: var(--accent-cyan);
+            background: rgba(0, 210, 255, 0.05);
+            text-shadow: 0 0 15px var(--accent-cyan); 
+            border-left: 3px solid var(--accent-cyan);
+        }
+
+        .mobile-dropdown a:hover {
+            background: rgba(0, 210, 255, 0.1);
+            color: var(--accent-cyan);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .mobile-menu-btn { display: block; }
+        }
 
         /* --- LAYOUT --- */
         .container {
@@ -437,37 +507,39 @@
 
     <nav>
         <a href="index.html" class="logo">
-             <img src="assets/images/ionity-logo-edited.png" alt="IONITY" class="nav-logo">
+            <img src="assets/images/ionity-logo-edited.png" alt="IONITY" class="nav-logo">
         </a>
         
-        <!-- Desktop Menu -->
         <div class="nav-links">
-            <a href="index.html">Mainframe</a>
+            <a href="inner-Page.html">Systems</a>
             <a href="services.html">Services</a>
             <a href="products.html">Products</a>
-            <a href="inner-Page.html">Systems</a>
-            <a href="gateway.html">Gateway</a>
-            <a href="aedi-online.html">AEDI Online</a>
             <a href="ai-innovation.html">Ai Innovation</a>
+            <a href="roadmap.html">Roadmap</a>
             <a href="license.html" class="active">License</a>
             <a href="about.html">About</a>
+            <a href="aedi-online.html">AEDI Online</a>
             <a href="contact.html">Contact</a>
+            <a href="firmware-development.html">Dev</a>
+            <a href="gateway.html">IO Way</a>
+        </div>
+
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+        
+        <div class="mobile-dropdown" id="mobileDropdown">
+            <a href="inner-Page.html">Systems</a>
+            <a href="services.html">Services</a>
+            <a href="products.html">Products</a>
+            <a href="ai-innovation.html">Ai Innovation</a>
+            <a href="roadmap.html">Roadmap</a>
+            <a href="license.html" class="active">License</a>
+            <a href="about.html">About</a>
+            <a href="aedi-online.html">AEDI Online</a>
+            <a href="contact.html">Contact</a>
+            <a href="firmware-development.html">Dev</a>
+            <a href="gateway.html">IO Way</a>
         </div>
     </nav>
-
-    <!-- Mobile Dropdown -->
-    <div class="mobile-dropdown" id="mobileDropdown">
-        <a href="index.html">Mainframe</a>
-        <a href="about.html">About</a>
-        <a href="services.html">Services</a>
-        <a href="products.html">Products</a>
-        <a href="inner-Page.html">Systems</a>
-        <a href="gateway.html">Gateway</a>
-        <a href="aedi-online.html">AEDI Online</a>
-        <a href="ai-innovation.html">Ai Innovation</a>
-        <a href="license.html" class="active">License</a>
-        <a href="contact.html">Contact</a>
-    </div>
 
     <div class="container">
         
@@ -817,6 +889,11 @@
     </script>
 
     <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileDropdown');
+            menu.classList.toggle('open');
+        }
+
         const letters = "██▓▓▒▒░░▖▗▘▙▚▛▜▝▞▟";
         function runGlitch(element) {
             let iteration = 0;
