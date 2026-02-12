@@ -812,6 +812,47 @@
             #ionity-gui-cube-container {
                 height: 300px !important;
             }
+
+            /* ARCHITECTURE FLOW MOBILE SCROLLING */
+            .architecture-section {
+                padding: 2rem 0.5rem;
+                overflow: visible;
+            }
+            .flow-diagram {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                overflow-y: hidden;
+                justify-content: flex-start;
+                padding: 1rem 0.5rem;
+                gap: 1rem;
+                scroll-behavior: smooth;
+                -webkit-overflow-scrolling: touch;
+                cursor: grab;
+                user-select: none;
+            }
+            .flow-diagram:active {
+                cursor: grabbing;
+            }
+            .flow-diagram::-webkit-scrollbar {
+                height: 6px;
+            }
+            .flow-diagram::-webkit-scrollbar-track {
+                background: rgba(0, 0, 0, 0.3);
+                border-radius: 3px;
+            }
+            .flow-diagram::-webkit-scrollbar-thumb {
+                background: var(--accent-cyan);
+                border-radius: 3px;
+            }
+            .flow-step {
+                flex-shrink: 0;
+            }
+            .step-card {
+                min-width: 140px;
+            }
+            .arrow {
+                font-size: 1.5rem;
+            }
         }
 
         /* --- GEN-AI IMPACT SECTION --- */
