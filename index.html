@@ -398,8 +398,147 @@
         @media (max-width: 768px) {
             img { max-width: 100%; height: auto; }
             footer { padding: 2rem 1rem; font-size: 0.6rem; }
-            .logo-img { max-width: 120px; }
-            h1 { font-size: 1.8rem; }
+
+            /* Logo Sizing */
+            .logo-img {
+                max-width: 280px;
+                width: 90%;
+            }
+
+            /* Hero Title - Improved Readability */
+            h1 {
+                font-size: clamp(1.2rem, 5vw, 1.8rem) !important;
+                letter-spacing: 0.1rem;
+                line-height: 1.4;
+                text-align: center;
+                padding: 0 1rem;
+                max-width: 100%;
+                margin: 1rem auto;
+            }
+
+            /* Sub-brand Text */
+            .sub-brand {
+                font-size: 0.7rem;
+                letter-spacing: 0.2rem;
+                padding-top: 0.6rem;
+            }
+
+            /* Header Adjustments */
+            header {
+                padding: 2rem 1rem;
+            }
+
+            /* Center Action Area - Ensure Button is Visible */
+            .center-action {
+                padding-bottom: 8vh;
+                margin-top: 2rem;
+            }
+
+            /* Button Container - Larger Touch Target */
+            .btn-container {
+                width: 130px;
+                height: 130px;
+            }
+
+            /* Orbit Ring */
+            .orbit-ring {
+                border-width: 2px;
+            }
+
+            /* Enter Button Text - More Readable */
+            .enter-btn {
+                font-size: 0.6rem;
+                letter-spacing: 0.15rem;
+            }
+
+            /* Audio Hint Positioning */
+            #audio-hint {
+                bottom: 140px;
+                font-size: 0.45rem;
+                letter-spacing: 0.15rem;
+            }
+
+            /* Back to Top Button */
+            #cBackToTop {
+                width: 44px;
+                height: 44px;
+                font-size: 18px;
+                bottom: 20px;
+                right: 20px;
+            }
+
+            /* Fix Text Centering and Readability */
+            * {
+                text-align: center;
+            }
+
+            /* Improve visibility of all text */
+            body {
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
+        }
+
+        /* Extra Small Mobile */
+        @media (max-width: 480px) {
+            .logo-img {
+                max-width: 220px;
+                width: 85%;
+            }
+
+            h1 {
+                font-size: clamp(1rem, 4.5vw, 1.4rem) !important;
+                letter-spacing: 0.08rem;
+            }
+
+            .sub-brand {
+                font-size: 0.6rem;
+                letter-spacing: 0.15rem;
+            }
+
+            .btn-container {
+                width: 110px;
+                height: 110px;
+            }
+
+            .enter-btn {
+                font-size: 0.5rem;
+                letter-spacing: 0.12rem;
+            }
+
+            #audio-hint {
+                font-size: 0.4rem;
+                bottom: 130px;
+            }
+
+            #cBackToTop {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+                bottom: 15px;
+                right: 15px;
+            }
+        }
+
+        /* Landscape Mobile */
+        @media (max-width: 896px) and (orientation: landscape) {
+            header {
+                padding: 1rem;
+            }
+
+            .center-action {
+                padding-bottom: 4vh;
+                margin-top: 1rem;
+            }
+
+            h1 {
+                font-size: 1.2rem !important;
+            }
+
+            .btn-container {
+                width: 100px;
+                height: 100px;
+            }
         }
     </style>
 </head>

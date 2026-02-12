@@ -2,59 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    
-    <!-- Resource Hints for Performance -->
-    <link rel="preconnect" href="https://api.ionity.today">
-    <link rel="dns-prefetch" href="https://maps.googleapis.com">
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
-    
-    <!-- Primary Meta Tags -->
-    <title>Products | Johan Wilhelm van Antwerp | Ionity Arsenal & Ecosystem</title>
-    <meta name="title" content="IoT & AI Products | Ionity.world">
-    <meta name="description" content="Explore Ionity's product arsenal: Edge Computing solutions, Custom Software, AI Ecosystems, and the AEDI-Shield Defense System. Designed by Johan Wilhelm van Antwerp in Centurion, South Africa for global markets.">
-    <meta name="keywords" content="IoT Products, AI Ecosystems, Edge Computing, AEDI-Shield, Johan Wilhelm van Antwerp Products, Ionity Arsenal, Custom Software, Electronic Products">
-    <meta name="author" content="Johan Wilhelm van Antwerp">
-    <link rel="canonical" href="https://www.ionity.world/products.html" />
-    <link rel="icon" type="image/png" href="assets/images/ionity-logo-edited.png">
-    
-    <!-- Geo Location Meta -->
-    <meta name="geo.region" content="ZA-GP">
-    <meta name="geo.placename" content="Centurion">
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.ionity.world/products.html">
-    <meta property="og:title" content="Products | Johan Wilhelm van Antwerp | Ionity">
-    <meta property="og:description" content="Advanced IoT & AI products including edge computing, custom software, and defense systems.">
-    <meta property="og:image" content="https://www.ionity.world/assets/images/ionity-logo-edited.png">
-    <meta property="og:site_name" content="Ionity">
-    
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://www.ionity.world/products.html">
-    <meta property="twitter:title" content="Ionity Products | IoT & AI Arsenal">
-    <meta property="twitter:description" content="Edge Computing, AI Ecosystems, and innovative electronic products.">
-    <meta property="twitter:image" content="https://www.ionity.world/assets/images/ionity-logo-edited.png">
-    
-    <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "CollectionPage",
-      "name": "Ionity Products",
-      "description": "Edge Computing, Custom Software, AI Ecosystems, and the AEDI-Shield Defense System",
-      "provider": {
-        "@type": "Person",
-        "name": "Johan Wilhelm van Antwerp",
-        "email": "ai@ionity.today",
-        "url": "https://www.ionity.world"
-      }
-    }
-    </script>
-    
-    <!-- Cookie Consent Styles -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ionity | Arsenal & Ecosystem</title>
     <link rel="stylesheet" href="assets/css/style.css">
+    <meta name="description" content="Ionity Products - Edge Computing, Custom Software, AI Ecosystems, and the AEDI-Shield Defense System.">
     
     <style>
         :root {
@@ -87,40 +38,6 @@
             height: 100%;
             z-index: 0; 
             pointer-events: none;
-            animation: cosmicPulse 8s ease-in-out infinite;
-        }
-        
-        @keyframes cosmicPulse {
-            0%, 100% { 
-                filter: brightness(1) saturate(1);
-            }
-            50% { 
-                filter: brightness(1.1) saturate(1.2);
-            }
-        }
-        
-        /* Enhanced Chromatic Aberration Effect */
-        #canvas-container::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(
-                ellipse at center,
-                transparent 0%,
-                rgba(0, 210, 255, 0.03) 50%,
-                rgba(0, 210, 255, 0.05) 100%
-            );
-            mix-blend-mode: screen;
-            pointer-events: none;
-            animation: chromaticShift 10s ease-in-out infinite;
-        }
-        
-        @keyframes chromaticShift {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 0.6; }
         }
 
         /* --- VISUAL FX --- */
@@ -131,51 +48,7 @@
             background-size: 100% 4px;
             pointer-events: none;
             z-index: 99;
-            opacity: 0.2;
-            animation: scanlineMove 8s linear infinite;
-        }
-        
-        @keyframes scanlineMove {
-            0% { background-position: 0 0; }
-            100% { background-position: 0 40px; }
-        }
-        
-        /* Vignette Effect */
-        .vignette {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 98;
-            background: radial-gradient(
-                ellipse at center,
-                transparent 0%,
-                transparent 40%,
-                rgba(0, 0, 0, 0.4) 100%
-            );
-        }
-        
-        /* Subtle Bloom Overlay */
-        .bloom-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-            background: 
-                radial-gradient(circle at 20% 30%, rgba(0, 210, 255, 0.08) 0%, transparent 30%),
-                radial-gradient(circle at 80% 70%, rgba(0, 210, 255, 0.06) 0%, transparent 30%),
-                radial-gradient(circle at 50% 50%, rgba(0, 255, 136, 0.04) 0%, transparent 50%);
-            animation: bloomPulse 15s ease-in-out infinite;
-        }
-        
-        @keyframes bloomPulse {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 0.8; }
+            opacity: 0.3;
         }
 
         /* --- GLOW ANIMATIONS --- */
@@ -371,24 +244,6 @@
             .nav-link { display: none; }
             .nav-links { display: none; }
             .mobile-menu-btn { display: block; }
-            
-            .hero-section {
-                margin-top: 2rem;
-                margin-bottom: 3rem;
-                text-align: center;
-                padding: 0 1rem;
-            }
-            
-            h1 { 
-                font-size: 2.5rem; 
-                text-align: center;
-            }
-            
-            .hero-sub {
-                font-size: 0.75rem;
-                letter-spacing: 0.15rem;
-                text-align: center;
-            }
         }
 
         /* --- LAYOUT --- */
@@ -414,11 +269,8 @@
             border-bottom: 1px solid var(--border); 
             padding-bottom: 0.8rem;
             display: flex;
-            flex-direction: column;
             align-items: center;
-            justify-content: center;
-            text-align: center;
-            gap: 0.5rem;
+            justify-content: space-between;
         }
         .grid-header span { font-size: 0.8rem; letter-spacing: 1px; color: var(--border); }
 
@@ -544,16 +396,6 @@
                 text-align: center !important;
                 margin-top: 0.5rem;
             }
-            .grid-header {
-                padding: 0 1rem;
-                font-size: 1.2rem;
-                letter-spacing: 0.2rem;
-                text-align: center;
-            }
-            .blueprint-title {
-                font-size: 1.6rem;
-                text-align: center;
-            }
         }
         
         .blueprint-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
@@ -652,12 +494,6 @@
             overflow-y: hidden;
             scrollbar-width: thin;
             scrollbar-color: var(--accent-cyan) rgba(2,2,4,0.8);
-            max-width: 100%;
-        }
-        
-        .schematic-container svg {
-            max-width: 100%;
-            height: auto;
         }
 
         /* Custom Scrollbar for uniqueness */
@@ -771,7 +607,6 @@
 <body>
 
     <div id="canvas-container"></div>
-    <div class="bloom-overlay"></div>
     <div class="scanlines"></div>
     <div class="vignette"></div>
 
@@ -1026,7 +861,7 @@
                 </div>
             </div>
 
-            <div style="text-align: center; margin-top: 2.5rem; display: flex; justify-content: center; align-items: center; width: 100%;">
+            <div style="text-align: center; margin-top: 2.5rem;">
                 <a href="contact.html" style="
                     display: inline-block;
                     padding: 1rem 3rem;
@@ -1039,7 +874,6 @@
                     font-weight: bold;
                     transition: all 0.3s ease;
                     box-shadow: 0 0 20px rgba(0, 210, 255, 0.2);
-                    margin: 0 auto;
                 " onmouseover="this.style.background='rgba(0, 210, 255, 0.35)'; this.style.boxShadow='0 0 40px rgba(0, 210, 255, 0.5)';" onmouseout="this.style.background='rgba(0, 210, 255, 0.15)'; this.style.boxShadow='0 0 20px rgba(0, 210, 255, 0.2)';">
                     Pre-order Contact
                 </a>
@@ -1194,7 +1028,7 @@
             </div>
         </div>
 
-        <div class="inner-container" style="text-align: center; margin: 0 auto; padding: 2rem 0; width: 100%; display: flex; justify-content: center; align-items: center;">
+        <div class="inner-container" style="text-align: center; margin: 0; padding: 2rem 0;">
             <a href="contact.html" style="
                 display: inline-block;
                 padding: 1rem 3rem;
@@ -1207,7 +1041,6 @@
                 font-weight: bold;
                 transition: all 0.3s ease;
                 box-shadow: 0 0 20px rgba(0, 210, 255, 0.2);
-                margin: 0 auto;
             " onmouseover="this.style.background='rgba(0, 210, 255, 0.3)'; this.style.boxShadow='0 0 40px rgba(0, 210, 255, 0.5)';" onmouseout="this.style.background='rgba(0, 210, 255, 0.1)'; this.style.boxShadow='0 0 20px rgba(0, 210, 255, 0.2)';">
                 Enquire Now
             </a>
@@ -1433,190 +1266,62 @@ button class="slider-btn prev-btn" aria-label="Previous Slide">&#10094;</button>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
-        // ═══════════════════════════════════════════════════════════════
-        // ⚡ ULTRA-ENHANCED COSMIC SOLAR SYSTEM WITH PARTICLE EFFECTS ⚡
-        // ═══════════════════════════════════════════════════════════════
-        // 
-        // ENHANCEMENTS INCLUDE:
-        // ✨ Multi-layered starfield with 15,000+ stars (color variety)
-        // 🌟 Enhanced sun with corona particles & pulsating glows
-        // 🪐 Planets with glowing auras & rotating energy rings
-        // ☄️ Shooting stars with realistic trail effects
-        // 🌌 8 procedural nebula clouds with different colors
-        // 💫 Cosmic dust particles (5,000+)
-        // 🕳️ Wormhole portal effect in the distance
-        // 🔲 3D cosmic grid overlay for depth
-        // ⚡ Energy particle fields rotating in layers
-        // 🎨 Dynamic lighting with accent colors
-        // 🎭 Chromatic aberration & bloom effects (CSS)
-        // 👁️ Advanced camera parallax following mouse
-        // 🌊 Smooth animations with pulsating effects
-        // 🎯 Optimized rendering with tone mapping
-        // 
-        // ═══════════════════════════════════════════════════════════════
-        
+        // Three.js Giant Solar System Implementation
         let scene, camera, renderer, stars, sun;
         let planets = [];
         let mouseX = 0, mouseY = 0;
         let windowHalfX = window.innerWidth / 2;
         let windowHalfY = window.innerHeight / 2;
         let speed = 1.0;
-        
-        // Advanced FX Elements
-        let nebulaClouds = [];
-        let shootingStars = [];
-        let energyRings = [];
-        let particleFields = [];
-        let cosmicDust;
-        let wormhole;
-        let time = 0;
 
         function init() {
             const container = document.getElementById('canvas-container');
             
-            // Scene with dynamic fog
+            // Scene
             scene = new THREE.Scene();
-            scene.fog = new THREE.FogExp2(0x020204, 0.0003);
+            scene.fog = new THREE.FogExp2(0x020204, 0.0005);
 
-            // Camera - Orbit View with wider FOV
-            camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 25000);
-            camera.position.set(0, 400, 1100);
+            // Camera - Orbit View
+            camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 20000);
+            camera.position.set(0, 300, 900); // Elevated, further back
             camera.lookAt(0, 0, 0);
 
-            // Enhanced Renderer with better settings
-            renderer = new THREE.WebGLRenderer({ 
-                antialias: true, 
-                alpha: true,
-                powerPreference: 'high-performance'
-            });
-            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            // Renderer
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setPixelRatio(window.devicePixelRatio);
             renderer.setSize(window.innerWidth, window.innerHeight);
-            renderer.toneMapping = THREE.ACESFilmicToneMapping;
-            renderer.toneMappingExposure = 1.2;
             container.innerHTML = ''; 
             container.appendChild(renderer.domElement);
 
-            // Advanced Multi-Light Setup
-            const ambientLight = new THREE.AmbientLight(0x1a1a2e, 0.8);
+            // Lighting
+            const ambientLight = new THREE.AmbientLight(0x222222);
             scene.add(ambientLight);
             
-            // Primary sun light
-            const sunLight = new THREE.PointLight(0xffaa00, 3, 6000);
-            sunLight.position.set(0, 0, 0);
-            scene.add(sunLight);
-            
-            // Accent lights for depth
-            const accentLight1 = new THREE.PointLight(0x00d2ff, 1.5, 3000);
-            accentLight1.position.set(800, 400, -600);
-            scene.add(accentLight1);
-            
-            const accentLight2 = new THREE.PointLight(0x00d2ff, 1.2, 3000);
-            accentLight2.position.set(-800, -400, 600);
-            scene.add(accentLight2);
+            const pointLight = new THREE.PointLight(0xffaa00, 2, 5000); // Sun light
+            pointLight.position.set(0, 0, 0);
+            scene.add(pointLight);
 
-            // --- ENHANCED STARFIELD WITH MULTIPLE LAYERS ---
+            // --- STARFIELD ---
             const starGeo = new THREE.BufferGeometry();
-            const starCount = 15000;
+            const starCount = 8000;
             const starPos = new Float32Array(starCount * 3);
-            const starColors = new Float32Array(starCount * 3);
-            const starSizes = new Float32Array(starCount);
-            
-            for(let i = 0; i < starCount; i++) {
-                const i3 = i * 3;
-                // Position
-                starPos[i3] = (Math.random() - 0.5) * 15000;
-                starPos[i3 + 1] = (Math.random() - 0.5) * 15000;
-                starPos[i3 + 2] = (Math.random() - 0.5) * 15000;
-                
-                // Colors - mix white, cyan, blue
-                const colorChoice = Math.random();
-                if (colorChoice < 0.7) {
-                    starColors[i3] = 1;
-                    starColors[i3 + 1] = 1;
-                    starColors[i3 + 2] = 1;
-                } else if (colorChoice < 0.85) {
-                    starColors[i3] = 0;
-                    starColors[i3 + 1] = 0.8;
-                    starColors[i3 + 2] = 1;
-                } else {
-                    starColors[i3] = 1;
-                    starColors[i3 + 1] = 0.5;
-                    starColors[i3 + 2] = 0;
-                }
-                
-                // Size variation
-                starSizes[i] = Math.random() * 3 + 0.5;
+            for(let i=0; i<starCount*3; i++) {
+                starPos[i] = (Math.random() - 0.5) * 10000;
             }
-            
             starGeo.setAttribute('position', new THREE.BufferAttribute(starPos, 3));
-            starGeo.setAttribute('color', new THREE.BufferAttribute(starColors, 3));
-            starGeo.setAttribute('size', new THREE.BufferAttribute(starSizes, 1));
-            
-            const starMat = new THREE.PointsMaterial({
-                size: 2.5,
-                vertexColors: true,
-                transparent: true,
-                opacity: 0.8,
-                sizeAttenuation: true,
-                blending: THREE.AdditiveBlending
-            });
+            const starMat = new THREE.PointsMaterial({color: 0xffffff, size: 2.0, transparent: true, opacity: 0.3});
             stars = new THREE.Points(starGeo, starMat);
             scene.add(stars);
-            
-            // --- COSMIC DUST CLOUDS ---
-            createCosmicDust();
-            
-            // --- NEBULA CLOUDS ---
-            createNebulaClouds();
-            
-            // --- SHOOTING STARS ---
-            createShootingStars();
-            
-            // --- WORMHOLE EFFECT ---
-            createWormhole();
-            
-            // --- COSMIC GRID OVERLAY ---
-            createCosmicGrid();
-            
-            // --- FLOATING ENERGY PARTICLES ---
-            createEnergyParticles();
 
-            // --- ULTRA-ENHANCED SUN ---
-            const sunGeo = new THREE.SphereGeometry(100, 64, 64);
-            const sunMat = new THREE.MeshBasicMaterial({ 
-                color: 0xffaa00, 
-                wireframe: true
-            });
+            // --- THE SUN ---
+            const sunGeo = new THREE.SphereGeometry(100, 32, 32);
+            const sunMat = new THREE.MeshBasicMaterial({ color: 0xffaa00, wireframe: true });
             sun = new THREE.Mesh(sunGeo, sunMat);
-            
-            // Inner glow
-            const innerGlowGeo = new THREE.SphereGeometry(110, 32, 32);
-            const innerGlowMat = new THREE.MeshBasicMaterial({ 
-                color: 0xff6600, 
-                transparent: true, 
-                opacity: 0.25, 
-                side: THREE.BackSide, 
-                wireframe: true 
-            });
-            const innerGlow = new THREE.Mesh(innerGlowGeo, innerGlowMat);
-            sun.add(innerGlow);
-            
-            // Outer corona
-            const coronaGeo = new THREE.SphereGeometry(140, 32, 32);
-            const coronaMat = new THREE.MeshBasicMaterial({ 
-                color: 0xffdd00, 
-                transparent: true, 
-                opacity: 0.1, 
-                side: THREE.BackSide,
-                blending: THREE.AdditiveBlending
-            });
-            const corona = new THREE.Mesh(coronaGeo, coronaMat);
-            sun.add(corona);
-            
-            // Particle corona
-            const coronaParticles = createSunCorona();
-            sun.add(coronaParticles);
-            
+            // Sun Glow
+            const glowGeo = new THREE.SphereGeometry(110, 32, 32);
+            const glowMat = new THREE.MeshBasicMaterial({ color: 0xff6600, transparent: true, opacity: 0.15, side: THREE.BackSide, wireframe: true });
+            const sunGlow = new THREE.Mesh(glowGeo, glowMat);
+            sun.add(sunGlow);
             scene.add(sun);
 
             // --- PLANETS ---
@@ -1633,398 +1338,45 @@ button class="slider-btn prev-btn" aria-label="Previous Slide">&#10094;</button>
             ];
 
             planetData.forEach((data, index) => {
-                // Enhanced Orbit Path
-                const orbitColor = (index % 2 === 0) ? 0x00d2ff : 0x00ff88;
-                const pathGeo = new THREE.RingGeometry(data.dist - 1, data.dist + 1, 256);
-                const pathMat = new THREE.MeshBasicMaterial({ 
-                    color: orbitColor, 
-                    side: THREE.DoubleSide, 
-                    transparent: true, 
-                    opacity: 0.3,
-                    blending: THREE.AdditiveBlending
-                });
+                // Orbit Path (Ring Line)
+                const orbitColor = (index % 2 === 0) ? 0x00d2ff : 0xffffff;
+                const pathGeo = new THREE.RingGeometry(data.dist - 1, data.dist + 1, 128);
+                const pathMat = new THREE.MeshBasicMaterial({ color: orbitColor, side: THREE.DoubleSide, transparent: true, opacity: 0.4 });
                 const path = new THREE.Mesh(pathGeo, pathMat);
                 path.rotation.x = Math.PI / 2;
                 scene.add(path);
 
                 // Planet Container (Pivot for rotation)
                 const pivot = new THREE.Object3D();
-                pivot.rotation.y = Math.random() * Math.PI * 2;
+                pivot.rotation.y = Math.random() * Math.PI * 2; // Random start pos
                 scene.add(pivot);
 
-                // Enhanced Planet Mesh with glow
-                const pGeo = new THREE.SphereGeometry(data.size, 32, 32);
+                // Planet Mesh
+                const pGeo = new THREE.SphereGeometry(data.size, 16, 16);
                 const pMat = new THREE.MeshBasicMaterial({ 
-                    color: orbitColor, 
+                    color: 0x00d2ff, 
                     wireframe: true
                 });
                 const mesh = new THREE.Mesh(pGeo, pMat);
                 mesh.position.x = data.dist;
-                
-                // Planet glow aura
-                const auraGeo = new THREE.SphereGeometry(data.size * 1.15, 16, 16);
-                const auraMat = new THREE.MeshBasicMaterial({
-                    color: orbitColor,
-                    transparent: true,
-                    opacity: 0.15,
-                    side: THREE.BackSide,
-                    blending: THREE.AdditiveBlending
-                });
-                const aura = new THREE.Mesh(auraGeo, auraMat);
-                mesh.add(aura);
-                
                 pivot.add(mesh);
 
-                // Saturn Ring Enhancement
+                // Saturn Ring
                 if (data.ring) {
-                    const rGeo = new THREE.RingGeometry(data.size * 1.4, data.size * 2.5, 128);
-                    const rMat = new THREE.MeshBasicMaterial({ 
-                        color: 0xffaa66, 
-                        side: THREE.DoubleSide, 
-                        transparent: true, 
-                        opacity: 0.7,
-                        blending: THREE.AdditiveBlending
-                    });
+                    const rGeo = new THREE.RingGeometry(data.size * 1.4, data.size * 2.5, 64);
+                    const rMat = new THREE.MeshBasicMaterial({ color: 0xaa9966, side: THREE.DoubleSide, transparent: true, opacity: 0.6 });
                     const ring = new THREE.Mesh(rGeo, rMat);
                     ring.rotation.x = Math.PI/2.1; 
                     mesh.add(ring);
                 }
-                
-                // Add energy ring around planet
-                const energyRing = createEnergyRing(data.size * 1.8, orbitColor);
-                mesh.add(energyRing);
-                energyRings.push(energyRing);
 
-                planets.push({ 
-                    mesh: mesh, 
-                    pivot: pivot, 
-                    speed: data.speed, 
-                    selfSpeed: 0.01 + Math.random()*0.02,
-                    orbitPath: path,
-                    color: orbitColor
-                });
+                planets.push({ mesh: mesh, pivot: pivot, speed: data.speed, selfSpeed: 0.01 + Math.random()*0.02 });
             });
 
             // Listeners
             document.addEventListener('mousemove', onDocumentMouseMove, false);
             window.addEventListener('resize', onWindowResize, false);
             animate();
-        }
-        
-        // ═══════════════════════════════════════════════════════════════
-        // 🌌 ADVANCED EFFECT CREATION FUNCTIONS
-        // ═══════════════════════════════════════════════════════════════
-        
-        function createSunCorona() {
-            const particles = new THREE.BufferGeometry();
-            const count = 1000;
-            const positions = new Float32Array(count * 3);
-            const colors = new Float32Array(count * 3);
-            
-            for(let i = 0; i < count; i++) {
-                const i3 = i * 3;
-                const theta = Math.random() * Math.PI * 2;
-                const phi = Math.random() * Math.PI;
-                const radius = 120 + Math.random() * 50;
-                
-                positions[i3] = radius * Math.sin(phi) * Math.cos(theta);
-                positions[i3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
-                positions[i3 + 2] = radius * Math.cos(phi);
-                
-                colors[i3] = 1;
-                colors[i3 + 1] = 0.6 + Math.random() * 0.4;
-                colors[i3 + 2] = 0;
-            }
-            
-            particles.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-            particles.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-            
-            const material = new THREE.PointsMaterial({
-                size: 4,
-                vertexColors: true,
-                transparent: true,
-                opacity: 0.6,
-                blending: THREE.AdditiveBlending
-            });
-            
-            return new THREE.Points(particles, material);
-        }
-        
-        function createCosmicDust() {
-            const geometry = new THREE.BufferGeometry();
-            const count = 5000;
-            const positions = new Float32Array(count * 3);
-            const colors = new Float32Array(count * 3);
-            
-            for(let i = 0; i < count; i++) {
-                const i3 = i * 3;
-                positions[i3] = (Math.random() - 0.5) * 8000;
-                positions[i3 + 1] = (Math.random() - 0.5) * 8000;
-                positions[i3 + 2] = (Math.random() - 0.5) * 8000;
-                
-                const colorVal = Math.random();
-                colors[i3] = 0.2 + colorVal * 0.3;
-                colors[i3 + 1] = 0.4 + colorVal * 0.4;
-                colors[i3 + 2] = 0.8 + colorVal * 0.2;
-            }
-            
-            geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-            geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-            
-            const material = new THREE.PointsMaterial({
-                size: 1.5,
-                vertexColors: true,
-                transparent: true,
-                opacity: 0.4,
-                blending: THREE.AdditiveBlending
-            });
-            
-            cosmicDust = new THREE.Points(geometry, material);
-            scene.add(cosmicDust);
-        }
-        
-        function createNebulaClouds() {
-            const cloudCount = 8;
-            for(let i = 0; i < cloudCount; i++) {
-                const geometry = new THREE.BufferGeometry();
-                const count = 800;
-                const positions = new Float32Array(count * 3);
-                const colors = new Float32Array(count * 3);
-                
-                const centerX = (Math.random() - 0.5) * 4000;
-                const centerY = (Math.random() - 0.5) * 2000;
-                const centerZ = (Math.random() - 0.5) * 4000;
-                
-                const colorType = i % 3;
-                let r, g, b;
-                if (colorType === 0) { // Cyan nebula
-                    r = 0; g = 0.8; b = 1;
-                } else if (colorType === 1) { // Purple nebula
-                    r = 0.8; g = 0; b = 1;
-                } else { // Gold nebula
-                    r = 1; g = 0.7; b = 0;
-                }
-                
-                for(let j = 0; j < count; j++) {
-                    const j3 = j * 3;
-                    const radius = Math.random() * 500;
-                    const theta = Math.random() * Math.PI * 2;
-                    const phi = Math.random() * Math.PI;
-                    
-                    positions[j3] = centerX + radius * Math.sin(phi) * Math.cos(theta);
-                    positions[j3 + 1] = centerY + radius * Math.sin(phi) * Math.sin(theta);
-                    positions[j3 + 2] = centerZ + radius * Math.cos(phi);
-                    
-                    const variation = 0.3 + Math.random() * 0.7;
-                    colors[j3] = r * variation;
-                    colors[j3 + 1] = g * variation;
-                    colors[j3 + 2] = b * variation;
-                }
-                
-                geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-                geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-                
-                const material = new THREE.PointsMaterial({
-                    size: 8,
-                    vertexColors: true,
-                    transparent: true,
-                    opacity: 0.3,
-                    blending: THREE.AdditiveBlending
-                });
-                
-                const cloud = new THREE.Points(geometry, material);
-                scene.add(cloud);
-                nebulaClouds.push({
-                    mesh: cloud,
-                    rotationSpeed: (Math.random() - 0.5) * 0.0005
-                });
-            }
-        }
-        
-        function createShootingStars() {
-            for(let i = 0; i < 10; i++) {
-                const geometry = new THREE.BufferGeometry();
-                const positions = new Float32Array(60); // 20 points * 3
-                
-                // Initial random position
-                const startX = (Math.random() - 0.5) * 10000;
-                const startY = (Math.random() - 0.5) * 5000;
-                const startZ = (Math.random() - 0.5) * 10000;
-                
-                for(let j = 0; j < 20; j++) {
-                    positions[j * 3] = startX;
-                    positions[j * 3 + 1] = startY;
-                    positions[j * 3 + 2] = startZ;
-                }
-                
-                geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-                
-                const material = new THREE.LineBasicMaterial({
-                    color: 0xffffff,
-                    transparent: true,
-                    opacity: 0.8,
-                    blending: THREE.AdditiveBlending
-                });
-                
-                const line = new THREE.Line(geometry, material);
-                scene.add(line);
-                
-                shootingStars.push({
-                    line: line,
-                    velocity: {
-                        x: (Math.random() - 0.5) * 20,
-                        y: -(Math.random() * 10 + 5),
-                        z: (Math.random() - 0.5) * 20
-                    },
-                    life: Math.random() * 100,
-                    maxLife: 100
-                });
-            }
-        }
-        
-        function createEnergyRing(radius, color) {
-            const geometry = new THREE.RingGeometry(radius, radius + 2, 64);
-            const material = new THREE.MeshBasicMaterial({
-                color: color,
-                side: THREE.DoubleSide,
-                transparent: true,
-                opacity: 0.4,
-                blending: THREE.AdditiveBlending
-            });
-            const ring = new THREE.Mesh(geometry, material);
-            ring.rotation.x = Math.PI / 2;
-            return ring;
-        }
-        
-        function createWormhole() {
-            const geometry = new THREE.TorusGeometry(2000, 100, 32, 100);
-            const material = new THREE.MeshBasicMaterial({
-                color: 0x00d2ff,
-                wireframe: true,
-                transparent: true,
-                opacity: 0.15,
-                blending: THREE.AdditiveBlending
-            });
-            wormhole = new THREE.Mesh(geometry, material);
-            wormhole.position.set(3000, 0, -2000);
-            wormhole.rotation.y = Math.PI / 4;
-            scene.add(wormhole);
-        }
-        
-        function createCosmicGrid() {
-            const gridSize = 8000;
-            const divisions = 80;
-            const step = gridSize / divisions;
-            
-            // Horizontal grid
-            const gridGeometry1 = new THREE.BufferGeometry();
-            const gridPositions1 = [];
-            
-            for(let i = -divisions/2; i <= divisions/2; i++) {
-                gridPositions1.push(-gridSize/2, -1000, i * step);
-                gridPositions1.push(gridSize/2, -1000, i * step);
-                gridPositions1.push(i * step, -1000, -gridSize/2);
-                gridPositions1.push(i * step, -1000, gridSize/2);
-            }
-            
-            gridGeometry1.setAttribute('position', 
-                new THREE.Float32BufferAttribute(gridPositions1, 3));
-            
-            const gridMaterial1 = new THREE.LineBasicMaterial({
-                color: 0x00d2ff,
-                transparent: true,
-                opacity: 0.08,
-                blending: THREE.AdditiveBlending
-            });
-            
-            const grid1 = new THREE.LineSegments(gridGeometry1, gridMaterial1);
-            scene.add(grid1);
-            
-            // Vertical grid (walls)
-            const gridGeometry2 = new THREE.BufferGeometry();
-            const gridPositions2 = [];
-            
-            for(let i = -divisions/2; i <= divisions/2; i++) {
-                gridPositions2.push(-gridSize/2, i * step, -gridSize/2);
-                gridPositions2.push(-gridSize/2, i * step, gridSize/2);
-                gridPositions2.push(-gridSize/2, -gridSize/2, i * step);
-                gridPositions2.push(-gridSize/2, gridSize/2, i * step);
-            }
-            
-            gridGeometry2.setAttribute('position', 
-                new THREE.Float32BufferAttribute(gridPositions2, 3));
-            
-            const gridMaterial2 = new THREE.LineBasicMaterial({
-                color: 0x00d2ff,
-                transparent: true,
-                opacity: 0.05,
-                blending: THREE.AdditiveBlending
-            });
-            
-            const grid2 = new THREE.LineSegments(gridGeometry2, gridMaterial2);
-            scene.add(grid2);
-        }
-        
-        function createEnergyParticles() {
-            const count = 3;
-            
-            for(let i = 0; i < count; i++) {
-                const geometry = new THREE.BufferGeometry();
-                const particleCount = 600;
-                const positions = new Float32Array(particleCount * 3);
-                const colors = new Float32Array(particleCount * 3);
-                const sizes = new Float32Array(particleCount);
-                
-                const colorChoice = i % 3;
-                let r, g, b;
-                if(colorChoice === 0) {
-                    r = 0; g = 0.8; b = 1; // Cyan
-                } else if(colorChoice === 1) {
-                    r = 0; g = 1; b = 0.5; // Green
-                } else {
-                    r = 1; g = 0.68; b = 0; // Gold
-                }
-                
-                for(let j = 0; j < particleCount; j++) {
-                    const j3 = j * 3;
-                    const radius = 1500 + i * 500;
-                    const theta = Math.random() * Math.PI * 2;
-                    const y = (Math.random() - 0.5) * 1000;
-                    
-                    positions[j3] = Math.cos(theta) * radius;
-                    positions[j3 + 1] = y;
-                    positions[j3 + 2] = Math.sin(theta) * radius;
-                    
-                    const brightness = 0.5 + Math.random() * 0.5;
-                    colors[j3] = r * brightness;
-                    colors[j3 + 1] = g * brightness;
-                    colors[j3 + 2] = b * brightness;
-                    
-                    sizes[j] = Math.random() * 6 + 2;
-                }
-                
-                geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-                geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-                geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
-                
-                const material = new THREE.PointsMaterial({
-                    size: 4,
-                    vertexColors: true,
-                    transparent: true,
-                    opacity: 0.7,
-                    sizeAttenuation: true,
-                    blending: THREE.AdditiveBlending
-                });
-                
-                const particles = new THREE.Points(geometry, material);
-                scene.add(particles);
-                
-                particleFields.push({
-                    mesh: particles,
-                    rotationSpeed: 0.0002 + i * 0.0001,
-                    index: i
-                });
-            }
         }
 
         function onDocumentMouseMove(event) {
@@ -2042,141 +1394,24 @@ button class="slider-btn prev-btn" aria-label="Previous Slide">&#10094;</button>
 
         function animate() {
             requestAnimationFrame(animate);
-            time += 0.01;
 
-            // Enhanced Sun Rotation with wobble
-            sun.rotation.y += 0.003;
-            sun.rotation.x = Math.sin(time * 0.1) * 0.1;
-            
-            // Pulsating sun glow effect
-            if (sun.children[0]) {
-                sun.children[0].scale.set(
-                    1 + Math.sin(time * 2) * 0.05,
-                    1 + Math.sin(time * 2) * 0.05,
-                    1 + Math.sin(time * 2) * 0.05
-                );
-            }
+            // Rotate Sun
+            sun.rotation.y += 0.002;
 
-            // Rotate Planets around Sun with enhanced effects
-            planets.forEach((p, index) => {
-                p.pivot.rotation.y += p.speed;
-                p.mesh.rotation.y += p.selfSpeed;
-                
-                // Pulsating orbit paths
-                if (p.orbitPath) {
-                    p.orbitPath.material.opacity = 0.3 + Math.sin(time * 2 + index) * 0.15;
-                }
-                
-                // Wobble planet auras
-                if (p.mesh.children[0]) {
-                    p.mesh.children[0].scale.set(
-                        1 + Math.sin(time * 3 + index) * 0.1,
-                        1 + Math.sin(time * 3 + index) * 0.1,
-                        1 + Math.sin(time * 3 + index) * 0.1
-                    );
-                }
-            });
-            
-            // Rotate energy rings
-            energyRings.forEach((ring, index) => {
-                ring.rotation.z += 0.01 + index * 0.002;
-                ring.material.opacity = 0.4 + Math.sin(time * 2 + index) * 0.2;
+            // Rotate Planets around Sun
+            planets.forEach(p => {
+                p.pivot.rotation.y += p.speed;      // Orbit
+                p.mesh.rotation.y += p.selfSpeed;   // Self rotation
             });
 
-            // Rotate Stars with parallax layers
-            stars.rotation.y -= 0.0002;
-            stars.rotation.x += 0.00005;
-            
-            // Animate Cosmic Dust
-            if (cosmicDust) {
-                cosmicDust.rotation.y += 0.0001;
-                cosmicDust.rotation.x -= 0.00005;
-            }
-            
-            // Animate Nebula Clouds
-            nebulaClouds.forEach(cloud => {
-                cloud.mesh.rotation.y += cloud.rotationSpeed;
-                cloud.mesh.rotation.x += cloud.rotationSpeed * 0.5;
-            });
-            
-            // Animate Shooting Stars
-            shootingStars.forEach(star => {
-                star.life--;
-                
-                if (star.life <= 0) {
-                    // Reset shooting star
-                    star.life = star.maxLife;
-                    const positions = star.line.geometry.attributes.position.array;
-                    const startX = (Math.random() - 0.5) * 10000;
-                    const startY = 2000 + Math.random() * 3000;
-                    const startZ = (Math.random() - 0.5) * 10000;
-                    
-                    for(let i = 0; i < 20; i++) {
-                        positions[i * 3] = startX;
-                        positions[i * 3 + 1] = startY;
-                        positions[i * 3 + 2] = startZ;
-                    }
-                    star.line.geometry.attributes.position.needsUpdate = true;
-                } else {
-                    // Move shooting star
-                    const positions = star.line.geometry.attributes.position.array;
-                    for(let i = 19; i > 0; i--) {
-                        positions[i * 3] = positions[(i - 1) * 3];
-                        positions[i * 3 + 1] = positions[(i - 1) * 3 + 1];
-                        positions[i * 3 + 2] = positions[(i - 1) * 3 + 2];
-                    }
-                    positions[0] += star.velocity.x;
-                    positions[1] += star.velocity.y;
-                    positions[2] += star.velocity.z;
-                    
-                    star.line.geometry.attributes.position.needsUpdate = true;
-                    star.line.material.opacity = Math.min(1, star.life / 20);
-                }
-            });
-            
-            // Animate Wormhole
-            if (wormhole) {
-                wormhole.rotation.x += 0.002;
-                wormhole.rotation.y += 0.001;
-                wormhole.material.opacity = 0.15 + Math.sin(time) * 0.05;
-            }
-            
-            // Animate Energy Particle Fields
-            particleFields.forEach(field => {
-                field.mesh.rotation.y += field.rotationSpeed;
-                
-                // Vertical wave motion
-                const positions = field.mesh.geometry.attributes.position.array;
-                for(let i = 0; i < positions.length / 3; i++) {
-                    const i3 = i * 3;
-                    const originalY = positions[i3 + 1];
-                    positions[i3 + 1] = originalY + Math.sin(time + i * 0.1 + field.index) * 0.5;
-                }
-                field.mesh.geometry.attributes.position.needsUpdate = true;
-                
-                // Pulsating opacity
-                field.mesh.material.opacity = 0.5 + Math.sin(time * 2 + field.index) * 0.2;
-            });
+            // Rotate Stars
+            stars.rotation.y -= 0.0001;
 
-            // Enhanced Camera Interaction with smooth parallax
-            const targetX = mouseX * 0.5;
-            const targetY = -mouseY * 0.3 + 400;
-            
-            camera.position.x += (targetX - camera.position.x) * 0.03;
-            camera.position.y += (targetY - camera.position.y) * 0.03;
-            
-            // Dynamic camera rotation based on mouse
-            const lookAtX = mouseX * 0.1;
-            const lookAtY = -mouseY * 0.1;
-            camera.lookAt(lookAtX, lookAtY, 0);
-            
-            // Scroll-based depth effect
-            const scrollY = window.scrollY || window.pageYOffset;
-            const scrollFactor = scrollY * 0.0005;
-            camera.position.z = 1100 + scrollFactor * 200;
-            
-            // Color shift based on time and scroll
-            scene.fog.density = 0.0003 + Math.sin(time * 0.5) * 0.00005 + scrollFactor * 0.00001;
+            // Camera Interaction (Parallax)
+            // Move camera slightly based on mouse
+            camera.position.x += (mouseX * 0.3 - camera.position.x) * 0.05;
+            camera.position.y += (-mouseY * 0.3 + 300 - camera.position.y) * 0.05;
+            camera.lookAt(scene.position);
 
             renderer.render(scene, camera);
         }
@@ -2202,7 +1437,6 @@ button class="slider-btn prev-btn" aria-label="Previous Slide">&#10094;</button>
 
                 // Stop CSS animation
                 track.style.animation = 'none';
-                track.style.cursor = 'grab';
                 
                 // Content is duplicated 1x (original + clone)
                 // We assume the duplication is already done in HTML as seen in the file
@@ -2223,11 +1457,6 @@ button class="slider-btn prev-btn" aria-label="Previous Slide">&#10094;</button>
                 
                 let isHovered = false;
                 let isAnimating = false;
-                let isDragging = false;
-                let startPos = 0;
-                let currentTranslate = 0;
-                let prevTranslate = 0;
-                let animationID = 0;
                 
                 // Determine direction from class or attribute
                 // track-left means moving left (content goes left, new items appear from right)
@@ -2243,7 +1472,7 @@ button class="slider-btn prev-btn" aria-label="Previous Slide">&#10094;</button>
 
                 // Auto Scroll Loop
                 function animate() {
-                    if (!isHovered && !isAnimating && !isDragging) {
+                    if (!isHovered && !isAnimating) {
                         currentX += autoDirection * speed;
                         handleWrap();
                         track.style.transform = `translateX(${currentX}px)`;
@@ -2303,87 +1532,6 @@ button class="slider-btn prev-btn" aria-label="Previous Slide">&#10094;</button>
                     requestAnimationFrame(step);
                 }
 
-                // Drag & Swipe Functionality
-                function touchStart(index) {
-                    return function(event) {
-                        isDragging = true;
-                        startPos = getPositionX(event);
-                        prevTranslate = currentX;
-                        track.style.cursor = 'grabbing';
-                        track.style.transition = 'none';
-                    }
-                }
-
-                function touchMove(event) {
-                    if (isDragging) {
-                        const currentPosition = getPositionX(event);
-                        currentTranslate = prevTranslate + currentPosition - startPos;
-                        currentX = currentTranslate;
-                        handleWrap();
-                        track.style.transform = `translateX(${currentX}px)`;
-                    }
-                }
-
-                function touchEnd() {
-                    isDragging = false;
-                    track.style.cursor = 'grab';
-                    
-                    // Optional: Add momentum/snap to nearest card
-                    const movedBy = currentX - prevTranslate;
-                    
-                    // If dragged enough, snap to nearest card
-                    if (Math.abs(movedBy) > 50) {
-                        // Determine snap direction based on drag
-                        const snapDirection = movedBy > 0 ? 1 : -1;
-                        const targetX = Math.round(currentX / cardWidth) * cardWidth;
-                        
-                        // Smooth animation to snap position
-                        isAnimating = true;
-                        const startX = currentX;
-                        const startTime = performance.now();
-                        const duration = 300;
-
-                        function snapStep(now) {
-                            const elapsed = now - startTime;
-                            const progress = Math.min(elapsed / duration, 1);
-                            const ease = 1 - Math.pow(1 - progress, 3);
-                            
-                            currentX = startX + (targetX - startX) * ease;
-                            handleWrap();
-                            track.style.transform = `translateX(${currentX}px)`;
-                            
-                            if (progress < 1) {
-                                requestAnimationFrame(snapStep);
-                            } else {
-                                isAnimating = false;
-                            }
-                        }
-                        requestAnimationFrame(snapStep);
-                    }
-                }
-
-                function getPositionX(event) {
-                    return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
-                }
-
-                // Mouse Events
-                track.addEventListener('mousedown', touchStart(0));
-                track.addEventListener('mousemove', touchMove);
-                track.addEventListener('mouseup', touchEnd);
-                track.addEventListener('mouseleave', () => {
-                    if (isDragging) {
-                        touchEnd();
-                    }
-                });
-
-                // Touch Events
-                track.addEventListener('touchstart', touchStart(0), { passive: true });
-                track.addEventListener('touchmove', touchMove, { passive: true });
-                track.addEventListener('touchend', touchEnd);
-
-                // Prevent default link/image dragging
-                track.addEventListener('dragstart', (e) => e.preventDefault());
-
                 // Event Listeners
                 wrapper.addEventListener('mouseenter', () => isHovered = true);
                 wrapper.addEventListener('mouseleave', () => isHovered = false);
@@ -2404,11 +1552,5 @@ button class="slider-btn prev-btn" aria-label="Previous Slide">&#10094;</button>
         });
     </script>
     <script src="assets/js/script.js" defer></script>
-    
-    <!-- Cookie Consent System -->
-    <script src="assets/js/cookie-manager.js"></script>
-    
-    <!-- Cookie Banner -->
-    <div id="cookie-banner"><div class="cookie-banner-content"><div class="cookie-banner-text"><h3>🍪 We Value Your Privacy</h3><p>We use cookies to enhance your experience. <a href="#" onclick="event.preventDefault(); cookieManager?.openSettings();">Settings</a></p></div><div class="cookie-banner-actions"><button class="cookie-btn cookie-btn-necessary" onclick="cookieManager?.acceptNecessary();">Necessary Only</button><button class="cookie-btn cookie-btn-settings" onclick="cookieManager?.openSettings();">Settings</button><button class="cookie-btn cookie-btn-accept" onclick="cookieManager?.acceptAll();">Accept All</button></div></div></div><div id="cookie-settings-modal"><div class="cookie-modal-content"><div class="cookie-modal-header"><h2>Cookie Preferences</h2><button class="cookie-modal-close" onclick="cookieManager?.closeSettings();">×</button></div><div class="cookie-modal-body"><div class="cookie-category"><div class="cookie-category-header"><h3>Necessary Cookies</h3><label class="cookie-toggle"><input type="checkbox" checked disabled><span class="cookie-toggle-slider"></span></label></div><p>Essential cookies required for the website to function properly.</p></div><div class="cookie-category"><div class="cookie-category-header"><h3>Analytics Cookies</h3><label class="cookie-toggle"><input type="checkbox" id="cookie-analytics"><span class="cookie-toggle-slider"></span></label></div><p>Help us understand visitor interactions.</p></div><div class="cookie-category"><div class="cookie-category-header"><h3>Marketing Cookies</h3><label class="cookie-toggle"><input type="checkbox" id="cookie-marketing"><span class="cookie-toggle-slider"></span></label></div><p>Track visitors for relevant ads.</p></div><div class="cookie-category"><div class="cookie-category-header"><h3>Preference Cookies</h3><label class="cookie-toggle"><input type="checkbox" id="cookie-preferences"><span class="cookie-toggle-slider"></span></label></div><p>Remember your settings.</p></div></div><div class="cookie-modal-footer"><button class="cookie-btn cookie-btn-necessary" onclick="cookieManager?.acceptNecessary();">Save Necessary Only</button><button class="cookie-btn cookie-btn-accept" onclick="cookieManager?.saveCustomPreferences();">Save Preferences</button></div></div></div>
 </body>
 </html>

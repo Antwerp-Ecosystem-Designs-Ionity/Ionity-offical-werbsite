@@ -164,5 +164,100 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // --- ENHANCED MOBILE TOUCH/SWIPE SUPPORT FOR ALL SLIDERS ---
+    const allSliderViewports = document.querySelectorAll('.slider-viewport');
+
+    allSliderViewports.forEach(viewport => {
+        const track = viewport.querySelector('.slider-track');
+        if (!track) return;
+
+        let isDragging = false;
+        let startX = 0;
+        let currentX = 0;
+        let translateX = 0;
+        let startTranslateX = 0;
+
+        // Touch Start
+        const handleTouchStart = (e) => {
+            isDragging = true;
+            startX = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
+
+            // Get current transform value
+            const style = window.getComputedStyle(track);
+            const matrix = new DOMMatrix(style.transform);
+            startTranslateX = matrix.m41;
+            translateX = startTranslateX;
+
+            track.style.transition = 'none';
+            viewport.style.cursor = 'grabbing';
+        };
+
+        // Touch Move
+        const handleTouchMove = (e) => {
+            if (!isDragging) return;
+
+            e.preventDefault();
+            currentX = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
+            const diff = currentX - startX;
+            translateX = startTranslateX + diff;
+
+            track.style.transform = `translateX(${translateX}px)`;
+        };
+
+        // Touch End
+        const handleTouchEnd = (e) => {
+            if (!isDragging) return;
+
+            isDragging = false;
+            viewport.style.cursor = 'grab';
+
+            const diff = currentX - startX;
+            const swipeThreshold = 50;
+
+            // Restore smooth transition
+            track.style.transition = 'transform 0.6s cubic-bezier(0.23, 1, 0.32, 1)';
+
+            // Snap to nearest card if swipe was significant
+            if (Math.abs(diff) > swipeThreshold) {
+                const cards = track.querySelectorAll('.card, .card-3d-scene, .tier-card');
+                if (cards.length === 0) return;
+
+                const cardWidth = cards[0].offsetWidth + 24; // Include gap
+                const viewportWidth = viewport.clientWidth;
+                const maxTranslate = -(track.scrollWidth - viewportWidth);
+
+                if (diff > 0) {
+                    // Swiped right - go previous
+                    translateX = Math.min(translateX + cardWidth, 0);
+                } else {
+                    // Swiped left - go next
+                    translateX = Math.max(translateX - cardWidth, maxTranslate);
+                }
+
+                track.style.transform = `translateX(${translateX}px)`;
+            } else {
+                // Revert to last position if swipe wasn't significant
+                track.style.transform = `translateX(${startTranslateX}px)`;
+            }
+        };
+
+        // Add event listeners for both touch and mouse
+        viewport.addEventListener('touchstart', handleTouchStart, { passive: false });
+        viewport.addEventListener('touchmove', handleTouchMove, { passive: false });
+        viewport.addEventListener('touchend', handleTouchEnd, { passive: true });
+
+        // Mouse events for desktop dragging
+        viewport.addEventListener('mousedown', handleTouchStart);
+        viewport.addEventListener('mousemove', handleTouchMove);
+        viewport.addEventListener('mouseup', handleTouchEnd);
+        viewport.addEventListener('mouseleave', handleTouchEnd);
+
+        // Prevent default drag behavior on images and links
+        viewport.addEventListener('dragstart', (e) => e.preventDefault());
+
+        // Set initial cursor
+        viewport.style.cursor = 'grab';
+    });
+
     toggleBtn(); // Initial check
 });
