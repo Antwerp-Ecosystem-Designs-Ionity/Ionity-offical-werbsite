@@ -84,6 +84,9 @@
             top: 0;
             z-index: 1000;
         }
+        
+        /* Spacer for content below fixed nav */
+        nav + * { margin-top: 80px; }
 
         .logo {
             font-family: 'Courier New', monospace;
@@ -223,7 +226,7 @@
             z-index: 1; 
             max-width: 1400px;
             margin: 0 auto;
-            padding: 4rem 5vw;
+            padding: 2rem 5vw 4rem 5vw;
         }
 
         .hero-section {
@@ -385,13 +388,215 @@
             img { max-width: 100%; height: auto; }
             .nav-links { display: none; }
             .mobile-menu-btn { display: block; }
-            h1 { font-size: 2.5rem; }
-            .container { padding: 2rem 5vw; }
-            
+            h1 { font-size: 2rem; }
+            .container { padding: 6rem 3vw 2rem 3vw; }
+
+            /* Mobile Hero Section */
+            .hero-section {
+                padding-left: 1rem;
+                border-left: 3px solid var(--accent-cyan);
+                margin-bottom: 3rem;
+            }
+
+            .hero-section h1 {
+                font-size: 2rem !important;
+                line-height: 1.2;
+            }
+
+            .hero-sub {
+                font-size: 0.85rem;
+            }
+
+            .hero-desc {
+                font-size: 1rem;
+                line-height: 1.8;
+                max-width: 100%;
+            }
+
             /* Reduce side darkness / mask on mobile to prevent obscuring text */
             .slider-viewport {
-                mask-image: linear-gradient(to right, transparent 0%, black 2%, black 98%, transparent 100%);
-                -webkit-mask-image: linear-gradient(to right, transparent 0%, black 2%, black 98%, transparent 100%);
+                mask-image: none;
+                -webkit-mask-image: none;
+                padding: 3rem 0;
+            }
+
+            /* Mobile Card Improvements */
+            .card, .card-3d-scene {
+                width: 75vw !important;
+                max-width: 350px;
+                min-height: auto;
+                padding: 2.5rem 2rem !important;
+                margin: 0 auto;
+            }
+
+            .card h3 {
+                font-size: 1.5rem !important;
+                margin-bottom: 1.5rem !important;
+                line-height: 1.3;
+            }
+
+            .card p {
+                font-size: 1.05rem !important;
+                line-height: 1.8 !important;
+                color: rgba(255, 255, 255, 0.95) !important;
+                margin-bottom: 1.5rem;
+            }
+
+            .card ul {
+                font-size: 0.95rem !important;
+                line-height: 1.8 !important;
+                margin: 1.5rem 0;
+                padding-left: 1.5rem;
+            }
+
+            .card ul li {
+                margin-bottom: 0.8rem;
+                color: rgba(255, 255, 255, 0.9) !important;
+            }
+
+            .card-meta {
+                font-size: 0.85rem !important;
+                margin-top: 2rem !important;
+                padding-top: 1.5rem !important;
+            }
+
+            .card-icon {
+                font-size: 2.5rem !important;
+                margin-bottom: 1.5rem;
+            }
+
+            /* Carousel wrapper mobile fix */
+            .carousel-wrapper {
+                position: relative;
+                margin: 0 -3vw;
+                padding: 0 3vw;
+            }
+
+            .slider-track {
+                gap: 1.5rem;
+                padding: 0 5vw;
+            }
+
+            /* Make carousel buttons more visible */
+            .carousel-btn {
+                width: 50px !important;
+                height: 50px !important;
+                font-size: 1.5rem !important;
+                background: rgba(0, 210, 255, 0.3) !important;
+                border: 2px solid var(--accent-cyan) !important;
+                backdrop-filter: blur(15px);
+                box-shadow: 0 0 20px rgba(0, 210, 255, 0.5);
+            }
+
+            .prev-btn {
+                left: 5px;
+            }
+
+            .next-btn {
+                right: 5px;
+            }
+
+            .carousel-controls {
+                padding: 0 0.5rem;
+            }
+
+            /* Tier cards mobile */
+            .tier-card {
+                padding: 2.5rem 2rem !important;
+            }
+
+            .tier-card h3 {
+                font-size: 1.4rem !important;
+            }
+
+            .tier-card p {
+                font-size: 1.05rem !important;
+                line-height: 1.8 !important;
+            }
+
+            .tier-btn {
+                padding: 1rem 1.5rem !important;
+                font-size: 0.95rem !important;
+            }
+        }
+
+        /* Small Mobile Devices Optimization */
+        @media (max-width: 480px) {
+            .container { padding: 6rem 2vw 2rem 2vw !important; }
+
+            .hero-section h1 {
+                font-size: 1.75rem !important;
+            }
+
+            .hero-sub {
+                font-size: 0.75rem;
+            }
+
+            .hero-desc {
+                font-size: 0.95rem;
+            }
+
+            .card, .card-3d-scene {
+                width: 80vw !important;
+                padding: 2rem 1.5rem !important;
+            }
+
+            .card h3 {
+                font-size: 1.3rem !important;
+            }
+
+            .card p {
+                font-size: 1rem !important;
+            }
+
+            .card ul {
+                font-size: 0.9rem !important;
+            }
+
+            .carousel-btn {
+                width: 45px !important;
+                height: 45px !important;
+                font-size: 1.3rem !important;
+            }
+
+            /* 3D Card adjustments for small screens */
+            .card-3d-scene {
+                height: 330px;
+            }
+
+            .card-3d-face {
+                padding: 1.5rem !important;
+            }
+
+            .holo-emitter {
+                width: 100px;
+                height: 100px;
+            }
+        }
+
+        /* Touch-friendly improvements */
+        @media (hover: none) and (pointer: coarse) {
+            /* This targets touch devices */
+            .card {
+                transition: all 0.3s ease;
+            }
+
+            .card:active {
+                transform: scale(0.98);
+                border-color: var(--accent-cyan);
+            }
+
+            .carousel-btn:active {
+                background: rgba(0, 210, 255, 0.5) !important;
+            }
+
+            /* Disable hover effects that don't work well on touch */
+            .card:hover {
+                transform: none;
+            }
+
+            .slider-track:hover {
+                animation-play-state: running;
             }
         }
 
@@ -400,7 +605,7 @@
             background: rgba(10, 20, 30, 0.7);
             border: 1px solid rgba(0, 210, 255, 0.3);
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-            display: flex; 
+            display: flex;
             flex-direction: column;
             justify-content: space-between;
         }
@@ -514,15 +719,15 @@
 
         /* Ensure cards in slider maintain width */
         .slider-track .card, .slider-track .card-3d-scene {
-            width: 320px;
+            width: 280px;
             flex-shrink: 0;
             /* Reset transform from grid hover if conflicts, but keep hover effect */
         }
 
         /* --- 3D DIGITAL CARDS --- */
         .card-3d-scene {
-            width: 320px; 
-            height: 400px;
+            width: 280px; 
+            height: 350px;
             perspective: 1200px;
             cursor: pointer;
         }
@@ -622,6 +827,45 @@
             0% { transform: translate(-50%, -50%) rotateX(70deg) scale(1); opacity: 0.5; }
             100% { transform: translate(-50%, -50%) rotateX(70deg) scale(1.2); opacity: 1; }
         }
+
+        /* --- SWIPE ARROWS INDICATOR --- */
+        .swipe-indicator {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            justify-content: center;
+            margin-top: 1.5rem;
+            opacity: 0.7;
+        }
+
+        .swipe-arrow {
+            font-size: 18px;
+            color: var(--accent-cyan);
+            animation: arrowBounce 1.5s ease-in-out infinite;
+            text-shadow: 0 0 8px var(--accent-cyan);
+        }
+
+        .swipe-arrow.left {
+            animation-delay: 0.3s;
+        }
+
+        .swipe-arrow.right {
+            animation-delay: 0s;
+        }
+
+        @keyframes arrowBounce {
+            0%, 100% { transform: translateX(0); opacity: 0.5; }
+            50% { transform: translateX(5px); opacity: 1; }
+        }
+
+        .swipe-arrow.left {
+            animation-name: arrowBounceLeft;
+        }
+
+        @keyframes arrowBounceLeft {
+            0%, 100% { transform: translateX(0); opacity: 0.5; }
+            50% { transform: translateX(-5px); opacity: 1; }
+        }
 </style>
     <link rel="icon" type="image/png" href="assets/images/ionity-logo-edited.png">
     <link rel="manifest" href="manifest.json">
@@ -688,7 +932,6 @@
 
         <!-- Services Content Grid -->
         <div class="carousel-wrapper">
-            <button class="carousel-btn prev-btn">&#10094;</button>
             <div class="slider-viewport">
                 <div class="slider-track" id="track-services">
 
@@ -702,6 +945,11 @@
                             </div>
                             <h3>IoT NODE</h3>
                             <p style="text-align:center; color: var(--accent-cyan); font-family: monospace; letter-spacing: 2px;">STATUS: ONLINE</p>
+                            <div class="swipe-indicator">
+                                <span class="swipe-arrow left">&#10094;</span>
+                                <span style="font-size: 10px; color: rgba(255,255,255,0.5); letter-spacing: 1px;">SWIPE</span>
+                                <span class="swipe-arrow right">&#10095;</span>
+                            </div>
                         </div>
                         <div class="card-3d-face card-3d-back">
                             <h3>IONITY CORE</h3>
@@ -880,12 +1128,12 @@
             </div>
             
         </div>
+        <div class="carousel-controls">
+            <button class="carousel-btn prev-btn">&#10094;</button>
+            <button class="carousel-btn next-btn">&#10095;</button>
         </div>
-        <button class="carousel-btn next-btn">&#10095;</button>
         </div>
-
-        <!-- Spacer -->
-        <div style="height: 6rem;"></div>
+        </div>
 
         <!-- Industrial Deployment Hero -->
         <div class="hero-section">
@@ -900,7 +1148,6 @@
 
         <!-- Industrial Grid -->
         <div class="carousel-wrapper">
-            <button class="carousel-btn prev-btn">&#10094;</button>
             <div class="slider-viewport">
                  <div class="slider-track" id="track-industrial">
              <!-- Smart AC -->
@@ -972,11 +1219,11 @@
             </div>
         </div>
         </div>
-        <button class="carousel-btn next-btn">&#10095;</button>
+        <div class="carousel-controls">
+            <button class="carousel-btn prev-btn">&#10094;</button>
+            <button class="carousel-btn next-btn">&#10095;</button>
         </div>
-
-        <!-- Spacer -->
-        <div style="height: 6rem;"></div>
+        </div>
 
         <!-- Industries Section -->
         <div class="hero-section">
@@ -990,7 +1237,6 @@
         </div>
 
         <div class="carousel-wrapper">
-            <button class="carousel-btn prev-btn">&#10094;</button>
             <div class="slider-viewport">
             <div class="slider-track" id="track-industries">
             <div class="card">
@@ -1103,11 +1349,11 @@
             </div>
         </div>
         </div>
-        <button class="carousel-btn next-btn">&#10095;</button>
+        <div class="carousel-controls">
+            <button class="carousel-btn prev-btn">&#10094;</button>
+            <button class="carousel-btn next-btn">&#10095;</button>
         </div>
-
-        <!-- Spacer -->
-        <div style="height: 6rem;"></div>
+        </div>
 
         <!-- AEDI Integrations Hero -->
         <div class="hero-section">
@@ -1122,7 +1368,6 @@
 
         <!-- Integrations Grid -->
         <div class="carousel-wrapper">
-            <button class="carousel-btn prev-btn">&#10094;</button>
             <div class="slider-viewport">
             <div class="slider-track" id="track-integrations">
             
@@ -1168,11 +1413,12 @@
 
             </div>
         </div>
-        <button class="carousel-btn next-btn">&#10095;</button>
         </div>
-
-        <!-- Spacer -->
-        <div style="height: 6rem;"></div>
+        <div class="carousel-controls">
+            <button class="carousel-btn prev-btn">&#10094;</button>
+            <button class="carousel-btn next-btn">&#10095;</button>
+        </div>
+        </div>
 
         <!-- Subscription Tiers -->
         <div class="hero-section">
@@ -1186,7 +1432,6 @@
         </div>
 
         <div class="carousel-wrapper">
-            <button class="carousel-btn prev-btn">&#10094;</button>
             <div class="slider-viewport">
             <div class="slider-track" id="track-subscriptions">
             
@@ -1234,7 +1479,10 @@
 
             </div>
         </div>
-        <button class="carousel-btn next-btn">&#10095;</button>
+        <div class="carousel-controls">
+            <button class="carousel-btn prev-btn">&#10094;</button>
+            <button class="carousel-btn next-btn">&#10095;</button>
+        </div>
         </div>
 
     </div>
@@ -1244,10 +1492,29 @@
         .carousel-wrapper {
             position: relative;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 1rem;
+            gap: 2rem;
             width: 100%;
-            margin: 0 auto;
+            margin: 6rem auto;
+        }
+
+        .carousel-controls {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            transform: translateY(-50%);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+            pointer-events: none;
+            z-index: 20;
+        }
+
+        .carousel-controls .carousel-btn {
+            pointer-events: all;
         }
 
         .slider-viewport {
@@ -1255,8 +1522,8 @@
             width: 100%;
             padding: 2rem 0;
             position: relative;
-            mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
-            -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+            mask-image: linear-gradient(to right, transparent 0%, black 2%, black 98%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to right, transparent 0%, black 2%, black 98%, transparent 100%);
         }
 
         .slider-track {
@@ -1267,28 +1534,28 @@
         }
 
         .carousel-btn {
-            background: rgba(2, 2, 4, 0.6);
-            border: 1px solid var(--accent-cyan);
+            background: rgba(2, 2, 4, 0.8);
+            border: 2px solid var(--accent-cyan);
             color: var(--accent-cyan);
-            width: 45px;
-            height: 45px;
-            min-width: 45px; /* Prevent shrinking */
+            width: 55px;
+            height: 55px;
+            min-width: 55px; /* Prevent shrinking */
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            f@mediao(max-width:n768px)t{
--           size: 1.2rem;
+            font-size: 1.5rem;
+            font-weight: bold;
             transition: all 0.3s ease;
             z-index: 10;
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 15px rgba(0, 210, 255, 0.3);
         }
 
         .carousel-btn:hover {
             background: var(--accent-cyan);
-            color: #00 !important;
-                -webkit-mask-image: none0;
+            color: #000 !important;
             box-shadow: 0 0 15px var(--accent-cyan);
             transform: scale(1.1);
         }
@@ -1297,45 +1564,134 @@
         .slider-auto-scroll {
             animation: none !important;
         }
+
+        /* Hide carousel buttons on mobile */
+        @media (max-width: 768px) {
+            .carousel-controls {
+                display: none;
+            }
+        }
     </style>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const carousels = document.querySelectorAll('.carousel-wrapper');
-            
+
             carousels.forEach(wrapper => {
                 const track = wrapper.querySelector('.slider-track');
+                const viewport = wrapper.querySelector('.slider-viewport');
                 const nextBtn = wrapper.querySelector('.next-btn');
                 const prevBtn = wrapper.querySelector('.prev-btn');
-                
+
                 let position = 0;
-                
+                let startX = 0;
+                let currentX = 0;
+                let isDragging = false;
+                let initialPosition = 0;
+
                 const moveSlide = (direction) => {
                     const cards = track.querySelectorAll('.card, .card-3d-scene');
                     if(cards.length === 0) return;
-                    
+
                     const cardStyle = window.getComputedStyle(cards[0]);
-                    const cardWidth = cards[0].offsetWidth + parseFloat(cardStyle.marginRight) + 32; // 32 is gap assumption from css
-                    
-                    // Total width of all content
+                    const cardWidth = cards[0].offsetWidth + parseFloat(cardStyle.marginRight) + 32;
+
                     const trackWidth = track.scrollWidth;
-                    // Visible width
-                    const viewportWidth = wrapper.querySelector('.slider-viewport').clientWidth;
-                    
+                    const viewportWidth = viewport.clientWidth;
                     const maxTranslate = -(trackWidth - viewportWidth);
 
                     if (direction === 'next') {
                         position -= cardWidth;
-                        if (position < maxTranslate) position = maxTranslate; // Stop at end
+                        if (position < maxTranslate) position = maxTranslate;
                     } else {
                         position += cardWidth;
-                        if (position > 0) position = 0; // Stop at start
+                        if (position > 0) position = 0;
                     }
-                    
+
+                    track.style.transition = 'transform 0.6s cubic-bezier(0.23, 1, 0.32, 1)';
                     track.style.transform = `translateX(${position}px)`;
                 };
 
-                nextBtn.addEventListener('click', () => moveSlide('next'));
-                prevBtn.addEventListener('click', () => moveSlide('prev'));
+                // Touch/Mouse events for swipe
+                const handleDragStart = (e) => {
+                    isDragging = true;
+                    startX = e.type.includes('mouse') ? e.pageX : e.touches[0].pageX;
+                    initialPosition = position;
+                    track.style.transition = 'none';
+                };
+
+                const handleDragMove = (e) => {
+                    if (!isDragging) return;
+                    e.preventDefault();
+
+                    currentX = e.type.includes('mouse') ? e.pageX : e.touches[0].pageX;
+                    const diff = currentX - startX;
+
+                    const trackWidth = track.scrollWidth;
+                    const viewportWidth = viewport.clientWidth;
+                    const maxTranslate = -(trackWidth - viewportWidth);
+
+                    let newPosition = initialPosition + diff;
+                    if (newPosition > 0) newPosition = 0;
+                    if (newPosition < maxTranslate) newPosition = maxTranslate;
+
+                    track.style.transform = `translateX(${newPosition}px)`;
+                };
+
+                const handleDragEnd = (e) => {
+                    if (!isDragging) return;
+                    isDragging = false;
+
+                    const diff = currentX - startX;
+                    const threshold = 50; // Minimum swipe distance
+
+                    track.style.transition = 'transform 0.6s cubic-bezier(0.23, 1, 0.32, 1)';
+
+                    if (Math.abs(diff) > threshold) {
+                        if (diff > 0) {
+                            moveSlide('prev');
+                        } else {
+                            moveSlide('next');
+                        }
+                    } else {
+                        // Snap back to current position
+                        track.style.transform = `translateX(${position}px)`;
+                    }
+                };
+
+                // Button events
+                if (nextBtn) nextBtn.addEventListener('click', () => moveSlide('next'));
+                if (prevBtn) prevBtn.addEventListener('click', () => moveSlide('prev'));
+
+                // Touch events
+                viewport.addEventListener('touchstart', handleDragStart, { passive: true });
+                viewport.addEventListener('touchmove', handleDragMove, { passive: false });
+                viewport.addEventListener('touchend', handleDragEnd, { passive: true });
+
+                // Mouse events for desktop
+                viewport.addEventListener('mousedown', handleDragStart);
+                viewport.addEventListener('mousemove', handleDragMove);
+                viewport.addEventListener('mouseup', handleDragEnd);
+                viewport.addEventListener('mouseleave', handleDragEnd);
+
+                // Tap-to-navigate on slides (mobile friendly)
+                const cards = track.querySelectorAll('.card, .card-3d-scene, .tier-card');
+                cards.forEach(card => {
+                    card.addEventListener('click', (e) => {
+                        // Only if not currently dragging
+                        if (Math.abs(currentX - startX) < 10) {
+                            const rect = viewport.getBoundingClientRect();
+                            const clickX = e.clientX - rect.left;
+                            const viewportCenter = rect.width / 2;
+                            
+                            // Tap left side: go previous, tap right side: go next
+                            if (clickX < viewportCenter) {
+                                moveSlide('prev');
+                            } else {
+                                moveSlide('next');
+                            }
+                        }
+                    });
+                });
             });
         });
     </script>
@@ -1483,7 +1839,7 @@
             roughness: 0.2, // Smoother for better reflections
             metalness: 0.9, // More metallic
             transparent: false, // Solid for realism
-            opacity: 1.0,
+            opacity: 2.0,
             side: THREE.DoubleSide
         });
 
@@ -1665,6 +2021,6 @@
     </script>
     <script src="assets/js/script.js" defer></script>
     <script src="assets/js/audio-manager.js"></script>
-    <script src="assets/js/cookies.js" defer></script>
+    <script src="assets/js/cookie-manager.js" defer></script>
 </body>
 </html>

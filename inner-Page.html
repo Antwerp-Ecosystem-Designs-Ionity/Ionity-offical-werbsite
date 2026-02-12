@@ -114,8 +114,9 @@
             z-index: 1000;
             transition: all 0.3s ease;
         }
-
-
+        
+        /* Spacer for content below fixed nav */
+        nav + * { margin-top: 80px; }
 
         .logo {
             font-family: 'Courier New', monospace;
@@ -553,11 +554,11 @@
 
             /* GLOBAL IMAGES RESIZE */
             img { max-width: 100%; height: auto; }
-            
+
             /* MONITOR MOBILE FIXES */
             .monitor-focus-segment {
                 height: auto;
-                min-height: 400px;
+                min-height: 250px;
                 perspective: none; /* Disable 3D on mobile */
                 margin-bottom: 2rem;
                 padding: 10px;
@@ -572,7 +573,7 @@
             }
             .monitor-frame:hover { transform: none; }
             .monitor-frame::after { display: none; } /* Hide stand */
-            
+
             .monitor-screen {
                position: relative;
                height: auto;
@@ -585,8 +586,16 @@
                 grid-template-columns: 1fr;
                 gap: 15px;
             }
-            
-            #cad-container { height: 180px !important; }
+
+            #cad-container { height: 120px !important; }
+
+            /* CARDS & CONTENT MOBILE */
+            .card { padding: 1.25rem; }
+            .info-card { padding: 1.25rem; margin-top: 1rem; }
+            .feature-list { gap: 0.5rem; }
+            .feature-list li { padding: 0.5rem; font-size: 0.85rem; }
+            .card h3 { font-size: 1.1rem; }
+            .card p { font-size: 0.9rem; }
 
             /* FOOTER MOBILE */
             footer {
@@ -1449,9 +1458,23 @@
                     </div>
                     <div class="arrow">→</div>
                 </div>
+                <div class="flow-step">
+                    <div class="step-card">
+                        <h3 data-value="Monolithic">Monolithic</h3>
+                        <p>Event-Driven (EDA)</p>
+                    </div>
+                    <div class="arrow">→</div>
+                </div>
+                <div class="flow-step">
+                    <div class="step-card">
+                        <h3 data-value="Microservices">Microservices</h3>
+                        <p>Scalability & Performance<br>Maintainability, Security</p>
+                    </div>
+                    <div class="arrow">→</div>
+                </div>
             </div>
             <div class="relations-text">
-                [ RELATIONS ESTABLISHED: ADA DEFINES > DAQ COLLECTS > MONITORING ANALYZES > PdM PREDICTS ]
+                [ RELATIONS ESTABLISHED: ADA DEFINES > DAQ COLLECTS > MONITORING ANALYZES > PdM PREDICTS > MONOLITHIC EVENTS > MICROSERVICES SCALE ]
             </div>
 
             <!-- CROSS-PLATFORM / REMOTE FEEDBACK -->
@@ -1563,15 +1586,16 @@
                 position: relative;
                 padding: 2rem 0;
                 mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+                touch-action: pan-y pinch-zoom; /* Enable better touch support */
             }
         
             .carousel-track {
                 display: flex;
                 gap: 2rem;
-                transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
-                /* Ensure all items stretch to the same height (usually determined by the tallest, i.e., Monitor) */
+                /* Removed transition here - now handled by JS for smoother control */
                 align-items: stretch; 
                 padding: 1rem;
+                will-change: transform; /* Optimize for animations */
             }
         
             .carousel-slide {
@@ -1580,14 +1604,15 @@
                 flex: 0 0 auto;
                 opacity: 0.5; 
                 transform: scale(0.9);
-                transition: all 0.6s ease;
-                display: flex; /* Make the slide a flex container so child card fills it */
+                transition: opacity 0.4s ease-out, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+                display: flex; 
                 flex-direction: column;
+                will-change: opacity, transform; /* Optimize animations */
             }
 
             /* Exceptions for the System Monitor slide (First one) */
             .carousel-slide:first-child {
-                min-width: 650px; /* Give the monitor more space */
+                min-width: 650px; 
                 max-width: 650px;
             }
             
@@ -1595,16 +1620,17 @@
             .carousel-slide .card {
                 opacity: 1 !important;
                 transform: none !important;
-                height: 100%; /* Fill the slide height */
+                height: 100%; 
                 width: 100%;
                 margin: 0;
                 display: flex;
                 flex-direction: column;
-                justify-content: space-between; /* Distribute content */
-                background: rgba(12, 18, 26, 0.9); /* Solid background */
+                justify-content: space-between; 
+                background: rgba(12, 18, 26, 0.9); 
                 border: 1px solid rgba(0, 210, 255, 0.3);
                 box-shadow: 0 10px 30px rgba(0,0,0,0.5);
                 padding: 1.25rem;
+                transition: all 0.3s ease; /* Smooth card transitions */
             }
             
             .carousel-slide.active {
@@ -1617,47 +1643,51 @@
             .carousel-slide.active .card {
                 border-color: var(--accent-cyan);
                 background: rgba(15, 22, 32, 0.95);
+                box-shadow: 0 15px 40px rgba(0,0,0,0.7), 0 0 20px rgba(0, 210, 255, 0.1);
             }
         
-            .carousel-btn {
-                background: rgba(0, 10, 20, 0.8);
-                border: 1px solid var(--accent-cyan);
-                color: var(--accent-cyan);
-                font-size: 1.5rem;
-                cursor: pointer;
-                width: 50px;
-                height: 50px;
-                border-radius: 50%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                transition: all 0.3s;
-                backdrop-filter: blur(5px);
-                z-index: 20;
-                position: absolute;
-                top: 85%;
-                transform: translateY(0);
-                box-shadow: 0 0 20px rgba(0,0,0,0.8);
-            }
-            
-            .carousel-btn:hover {
-                background: var(--accent-cyan);
-                color: #000;
-                box-shadow: 0 0 25px var(--accent-cyan);
-            }
-            
-            .carousel-btn.prev { left: 10px; }
-            .carousel-btn.next { right: 10px; }
-            
             @media (max-width: 768px) {
-                .carousel-slide { min-width: 85vw; max-width: 85vw; }
-                .carousel-slide:first-child { min-width: 85vw; max-width: 85vw; }
-                .carousel-container { width: 100%; mask-image: none; }
+                .carousel-slide { 
+                    min-width: 60vw; 
+                    max-width: 60vw; 
+                }
+                .carousel-slide:first-child { 
+                    min-width: 60vw; 
+                    max-width: 60vw; 
+                }
+                .carousel-container { 
+                    width: 100%; 
+                    mask-image: none; 
+                }
+                .carousel-slide .card { 
+                    padding: 1rem; 
+                    font-size: 0.9rem; 
+                }
+            }
+            
+            /* Smooth scrolling hint */
+            @media (hover: hover) {
+                .carousel-container::after {
+                    content: '';
+                    position: absolute;
+                    bottom: 0;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: 60px;
+                    height: 3px;
+                    background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
+                    opacity: 0.3;
+                    animation: slideHint 2s ease-in-out infinite;
+                }
+            }
+            
+            @keyframes slideHint {
+                0%, 100% { opacity: 0.2; }
+                50% { opacity: 0.5; }
             }
         </style>
 
         <div class="carousel-wrapper">
-            <button class="carousel-btn prev" onclick="moveCarousel(-1)">&#10094;</button>
             <div class="carousel-container">
                 <div class="carousel-track" id="systemCarouselTrack">
                     
@@ -1843,15 +1873,18 @@
 
                 </div>
             </div>
-            <button class="carousel-btn next" onclick="moveCarousel(1)">&#10095;</button>
         </div>
 
         <script>
             let currentIndex = 0;
+            let isDragging = false;
+            let startPos = 0;
+            let currentTranslate = 0;
+            let prevTranslate = 0;
+            let animationID = 0;
             
             function moveCarousel(direction) {
                 const track = document.getElementById('systemCarouselTrack');
-                // Use Array.from to get a real array
                 const slides = Array.from(document.querySelectorAll('.carousel-slide'));
                 const totalSlides = slides.length;
                 
@@ -1863,7 +1896,6 @@
                 if (currentIndex > totalSlides - 1) currentIndex = totalSlides - 1;
                 
                 // Calculate position based on the ACTUAL widths of previous slides
-                // This fixes the "broken" scroll when slides have different widths
                 let moveAmount = 0;
                 const gap = 32; // 2rem matches CSS
                 
@@ -1871,24 +1903,160 @@
                     moveAmount += slides[i].offsetWidth + gap;
                 }
                 
-                track.style.transform = `translateX(-${moveAmount}px)`;
+                // Smooth spring-based animation
+                animateToPosition(track, -moveAmount);
+                prevTranslate = -moveAmount;
+                currentTranslate = -moveAmount;
                 
                 // Update active class for scaling effect
+                updateActiveSlide();
+            }
+            
+            function animateToPosition(element, targetX) {
+                const duration = 800; // milliseconds
+                const startTime = performance.now();
+                const startX = currentTranslate;
+                
+                function animate(currentTime) {
+                    const elapsed = currentTime - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    
+                    // Smooth spring easing function
+                    const easeOutElastic = (t) => {
+                        const c4 = (2 * Math.PI) / 3;
+                        return t === 0 ? 0 : t === 1 ? 1 : 
+                            Math.pow(2, -10 * t) * Math.sin((t * 10 - 0.75) * c4) + 1;
+                    };
+                    
+                    // Natural deceleration curve
+                    const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
+                    
+                    const easedProgress = easeOutCubic(progress);
+                    const newX = startX + (targetX - startX) * easedProgress;
+                    
+                    element.style.transform = `translateX(${newX}px)`;
+                    
+                    if (progress < 1) {
+                        requestAnimationFrame(animate);
+                    }
+                }
+                
+                requestAnimationFrame(animate);
+            }
+            
+            function updateActiveSlide() {
+                const slides = Array.from(document.querySelectorAll('.carousel-slide'));
                 slides.forEach((slide, index) => {
+                    const distance = Math.abs(index - currentIndex);
                     if (index === currentIndex) {
                         slide.classList.add('active');
-                        // Ensure opacity is full for active
-                        slide.style.opacity = '1'; 
+                        slide.style.opacity = '1';
                     } else {
                         slide.classList.remove('active');
-                        slide.style.opacity = '0.5';
+                        // Fade based on distance
+                        slide.style.opacity = Math.max(0.3, 1 - distance * 0.2);
                     }
                 });
             }
             
-            // Initial call to set active
+            // Touch and mouse drag support
+            function setupCarouselInteractions() {
+                const track = document.getElementById('systemCarouselTrack');
+                const container = track.parentElement;
+                
+                // Touch events
+                container.addEventListener('touchstart', touchStart);
+                container.addEventListener('touchend', touchEnd);
+                container.addEventListener('touchmove', touchMove);
+                
+                // Mouse events for desktop drag
+                container.addEventListener('mousedown', touchStart);
+                container.addEventListener('mouseup', touchEnd);
+                container.addEventListener('mouseleave', touchEnd);
+                container.addEventListener('mousemove', touchMove);
+                
+                // Prevent context menu
+                container.addEventListener('contextmenu', e => e.preventDefault());
+                
+                function getPositionX(event) {
+                    return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
+                }
+                
+                function touchStart(event) {
+                    isDragging = true;
+                    startPos = getPositionX(event);
+                    container.style.cursor = 'grabbing';
+                    
+                    // Stop any ongoing animation
+                    cancelAnimationFrame(animationID);
+                }
+                
+                function touchMove(event) {
+                    if (!isDragging) return;
+                    
+                    const currentPosition = getPositionX(event);
+                    const diff = currentPosition - startPos;
+                    
+                    // Add resistance at boundaries
+                    const slides = Array.from(document.querySelectorAll('.carousel-slide'));
+                    let resistance = 1;
+                    
+                    if (currentIndex === 0 && diff > 0) {
+                        resistance = 0.3; // Resistance when at start
+                    } else if (currentIndex === slides.length - 1 && diff < 0) {
+                        resistance = 0.3; // Resistance when at end
+                    }
+                    
+                    currentTranslate = prevTranslate + diff * resistance;
+                    track.style.transform = `translateX(${currentTranslate}px)`;
+                }
+                
+                function touchEnd() {
+                    if (!isDragging) return;
+                    
+                    isDragging = false;
+                    container.style.cursor = 'grab';
+                    
+                    const movedBy = currentTranslate - prevTranslate;
+                    
+                    // Threshold for swipe (50px)
+                    if (movedBy < -50 && currentIndex < document.querySelectorAll('.carousel-slide').length - 1) {
+                        moveCarousel(1);
+                    } else if (movedBy > 50 && currentIndex > 0) {
+                        moveCarousel(-1);
+                    } else {
+                        // Snap back to current position
+                        moveCarousel(0);
+                    }
+                }
+            }
+            
+            // Keyboard navigation
+            function setupKeyboardNavigation() {
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'ArrowLeft') {
+                        e.preventDefault();
+                        if (currentIndex > 0) moveCarousel(-1);
+                    } else if (e.key === 'ArrowRight') {
+                        e.preventDefault();
+                        const slides = document.querySelectorAll('.carousel-slide');
+                        if (currentIndex < slides.length - 1) moveCarousel(1);
+                    }
+                });
+            }
+            
+            // Initialize
             window.addEventListener('load', () => {
                 moveCarousel(0);
+                setupCarouselInteractions();
+                setupKeyboardNavigation();
+                
+                // Set cursor style
+                const container = document.querySelector('.carousel-container');
+                if (container) {
+                    container.style.cursor = 'grab';
+                    container.style.userSelect = 'none';
+                }
             });
         </script>
 
