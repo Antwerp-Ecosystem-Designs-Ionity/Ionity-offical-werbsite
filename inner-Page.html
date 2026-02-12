@@ -9,14 +9,14 @@
     
     <style>
         :root {
-            --bg-dark: #ffffff;
-            --bg-panel: rgba(255, 255, 255, 0.95);
+            --bg-dark: #020204;
+            --bg-panel: rgba(10, 15, 20, 0.6);
             --text-main: #ffffff;
-            --text-muted: rgba(255, 255, 255, 0.85);
+            --text-muted: rgba(255, 255, 255, 0.85); 
             --accent-cyan: #00d2ff;
             --accent-blue: #2979ff;
             --accent-dim: rgba(0, 210, 255, 0.1);
-            --border: rgba(0, 0, 0, 0.15);
+            --border: rgba(255, 255, 255, 0.15);
             --border-active: rgba(0, 210, 255, 0.6);
         }
 
@@ -37,7 +37,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 0;
+            z-index: 0; 
             pointer-events: none;
         }
 
@@ -98,7 +98,7 @@
 
         /* --- NAVIGATION --- */
         nav {
-            padding: 0 2rem;
+            padding: 0 5vw;
             height: 80px;
             display: flex;
             justify-content: space-between;
@@ -107,15 +107,12 @@
             background: rgba(2, 2, 4, 0.9);
             backdrop-filter: blur(12px);
             position: fixed;
-            width: 100vw;
-            max-width: 100%;
+            width: 100%;
             top: 0;
             left: 0;
-            right: 0;
             box-sizing: border-box;
             z-index: 1000;
             transition: all 0.3s ease;
-            overflow-x: hidden;
         }
 
 
@@ -203,15 +200,6 @@
             padding: 0.5rem 0.8rem;
             border-radius: 4px;
             z-index: 101;
-            min-width: 44px;  /* Touch-friendly size */
-            min-height: 44px;
-            transition: all 0.3s ease;
-        }
-        
-        .mobile-menu-btn:hover,
-        .mobile-menu-btn:active {
-            background: rgba(0, 210, 255, 0.1);
-            border-color: var(--accent-cyan);
         }
 
         /* Mobile Dropdown */
@@ -221,9 +209,8 @@
             top: 80px;
             right: 0;
             left: auto;
-            width: 100%;
-            max-width: 280px;
-            background: rgba(5, 10, 15, 0.98);
+            width: 280px;
+            background: rgba(5, 10, 15, 0.95);
             border: 1px solid var(--accent-cyan);
             border-top: none;
             border-right: none;
@@ -233,7 +220,6 @@
             z-index: 99999;
             backdrop-filter: blur(20px);
             transition: top 0.3s ease;
-            box-sizing: border-box;
         }
 
 
@@ -251,9 +237,6 @@
             letter-spacing: 0.1rem;
             border-bottom: 1px solid rgba(255,255,255,0.05);
             transition: background 0.2s;
-            min-height: 48px; /* Touch-friendly */
-            display: flex;
-            align-items: center;
         }
         
         .mobile-dropdown a.active {
@@ -274,7 +257,6 @@
         .container {
             max-width: 1400px;
             margin: 0 auto;
-            margin-top: 80px; /* Account for fixed nav */
             padding: 4rem 2rem;
             min-height: 80vh;
             position: relative;
@@ -287,50 +269,6 @@
             animation: slideIn 1s ease-out;
             background: radial-gradient(circle at center, rgba(0,0,0,0.6), transparent 70%);
             padding: 2rem 0;
-        }
-
-        .hero-flex-container {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
-            gap: 4rem;
-        }
-
-        .hero-content-left {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        .hero-content-right {
-            display: flex;
-            flex-direction: column;
-            width: 400px;
-            gap: 15px;
-        }
-
-        #ionity-gui-cube-container {
-            width: 100%;
-            height: 400px;
-            position: relative;
-            border: 2px solid rgba(0, 210, 255, 0.8);
-            background: radial-gradient(circle at center, rgba(0, 60, 90, 0.5), transparent);
-            border-radius: 8px;
-            box-shadow: 0 0 30px rgba(0, 210, 255, 0.35);
-        }
-
-        .cube-label {
-            position: absolute;
-            bottom: 10px;
-            left: 0;
-            width: 100%;
-            text-align: center;
-            font-family: 'Courier New', monospace;
-            font-size: 0.7rem;
-            font-weight: bold;
-            color: var(--accent-cyan);
-            opacity: 1.0;
-            text-shadow: 0 0 8px var(--accent-cyan);
         }
 
         h1 {
@@ -427,8 +365,6 @@
             min-width: 150px;
             transition: all 0.3s ease;
             position: relative;
-            z-index: 1;
-            cursor: pointer;
         }
 
         .step-card::before {
@@ -440,28 +376,15 @@
             transition: all 0.3s;
         }
 
-        /* Enhanced Bring Forward on Hover */
         .step-card:hover {
-            transform: scale(1.1) translateY(-8px);
+            transform: scale(1.05);
             border-color: var(--accent-cyan);
-            box-shadow: 0 10px 40px rgba(0, 210, 255, 0.3), 0 0 25px rgba(0, 210, 255, 0.2);
-            background: rgba(10, 15, 20, 0.95);
-            z-index: 50;
+            box-shadow: 0 0 20px rgba(0, 210, 255, 0.2);
         }
         
         .step-card:hover::before {
              border-color: var(--accent-cyan);
              animation: spinBorder 10s linear infinite;
-        }
-
-        /* Active State for Click/Tap */
-        .step-card:active,
-        .step-card.clicked {
-            transform: scale(1.15) translateY(-12px);
-            border-color: var(--accent-cyan);
-            box-shadow: 0 15px 60px rgba(0, 210, 255, 0.5), 0 0 40px rgba(0, 210, 255, 0.3);
-            background: rgba(15, 20, 30, 1);
-            z-index: 100;
         }
 
         .step-card h3 {
@@ -495,7 +418,7 @@
         /* --- GRID SYSTEM --- */
         .system-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(min(350px, 100%), 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
         }
 
@@ -510,8 +433,6 @@
             display: flex;
             flex-direction: column;
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-            z-index: 1;
-            cursor: pointer;
             
             /* Initial Scroll State */
             opacity: 0;
@@ -533,23 +454,11 @@
             box-shadow: 0 0 10px var(--accent-cyan);
         }
 
-        /* Enhanced Bring Forward on Hover */
         .card:hover {
-            transform: translateY(-15px) scale(1.05) !important;
+            transform: translateY(-5px) !important;
             border-color: var(--border-active);
-            box-shadow: 0 20px 60px rgba(0, 210, 255, 0.4), 0 0 40px rgba(0, 210, 255, 0.2);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
             background: rgba(20, 25, 35, 0.95);
-            z-index: 100;
-        }
-
-        /* Active State for Click/Tap */
-        .card:active,
-        .card.clicked {
-            transform: translateY(-20px) scale(1.08) !important;
-            border-color: var(--accent-cyan);
-            box-shadow: 0 25px 80px rgba(0, 210, 255, 0.6), 0 0 60px rgba(0, 210, 255, 0.3);
-            background: rgba(25, 30, 40, 1);
-            z-index: 150;
         }
 
         .card:hover::before { height: 100%; }
@@ -632,162 +541,26 @@
 
         /* Mobile Adjust */
         @media (max-width: 768px) {
-            /* TYPOGRAPHY FIXES */
-            h1 { font-size: 1.8rem !important; line-height: 1.2; }
-            h2 { font-size: 1.5rem !important; }
-
-            /* NAVIGATION */
+            h1 { font-size: 2.5rem; }
             nav { padding: 0 1rem; height: 60px; }
             nav.scrolled { height: 50px; }
-            .mobile-dropdown { top: 60px; width: 100%; max-width: 100vw; border-right: 1px solid var(--accent-cyan); }
+            .mobile-dropdown { top: 60px; }
             nav.scrolled ~ .mobile-dropdown { top: 50px; }
+
             .nav-links { display: none; } /* Hide desktop links */
             .mobile-menu-btn { display: block; } /* Show hamburger */
-            .logo { font-size: 0.9rem; }
-            .nav-logo { height: 50px; }
-
-            /* CONTAINER & LAYOUT */
-            .container {
-                padding: 2rem 1rem;
-                margin-top: 60px;
-                padding-top: 10rem !important; /* Space for fixed hero title */
-            }
+            .logo { font-size: 1rem; }
 
             /* GLOBAL IMAGES RESIZE */
             img { max-width: 100%; height: auto; }
-
-            /* HERO SECTION MOBILE */
-            .hero-section {
-                margin-bottom: 2rem !important;
-                margin-top: 0 !important;
-                padding: 1.5rem 0 !important;
-            }
-
-            .hero-flex-container {
-                flex-direction: column !important;
-                gap: 2rem !important;
-                align-items: center !important;
-            }
-
-            .hero-content-left {
-                min-width: 100% !important;
-                width: 100% !important;
-            }
-
-            .hero-content-right {
-                min-width: 100% !important;
-                width: 100% !important;
-            }
-
-            #ionity-gui-cube-container {
-                height: 300px;
-            }
-
-            /* MOBILE TEXT READABILITY - HIGH CONTRAST */
-            h1, h2, h3 {
-                color: #ffffff !important;
-                text-shadow: 0 0 20px rgba(0, 210, 255, 0.8), 0 2px 8px rgba(0, 0, 0, 0.9) !important;
-                font-weight: 700 !important;
-            }
-
-            /* HERO TITLE - OVERLAY ON TOP OF EVERYTHING */
-            .hero-section h1 {
-                font-size: 2rem !important;
-                line-height: 1.3 !important;
-                color: #ffffff !important;
-                text-align: center;
-                margin: 0 !important;
-                padding: 1rem 1.5rem !important;
-                background: linear-gradient(135deg, rgba(0, 0, 0, 0.85), rgba(0, 20, 40, 0.9)) !important;
-                border: 3px solid var(--accent-cyan) !important;
-                border-radius: 12px;
-                position: fixed !important;
-                top: 80px !important;
-                left: 50% !important;
-                transform: translateX(-50%) !important;
-                z-index: 9999 !important;
-                width: 90% !important;
-                max-width: 500px !important;
-                box-shadow: 0 0 40px rgba(0, 210, 255, 0.6), 0 8px 20px rgba(0, 0, 0, 0.8) !important;
-                backdrop-filter: blur(10px);
-                animation: heroGlow 3s infinite alternate !important;
-            }
-
-            @keyframes heroGlow {
-                0% {
-                    box-shadow: 0 0 30px rgba(0, 210, 255, 0.4), 0 8px 20px rgba(0, 0, 0, 0.8);
-                    border-color: rgba(0, 210, 255, 0.6);
-                }
-                100% {
-                    box-shadow: 0 0 60px rgba(0, 210, 255, 0.8), 0 8px 30px rgba(0, 0, 0, 0.9);
-                    border-color: rgba(0, 210, 255, 1);
-                }
-            }
-
-            .hero-section > div {
-                min-width: 100% !important;
-            }
-
-            .hero-sub {
-                font-size: 0.85rem !important;
-                flex-wrap: wrap;
-                margin-bottom: 1rem;
-                color: #00d2ff !important;
-                text-shadow: 0 0 10px rgba(0, 210, 255, 0.8) !important;
-                font-weight: 600 !important;
-            }
-            .hero-sub::before { width: 20px; }
-
-            .hero-desc {
-                font-size: 1.05rem !important;
-                margin-top: 1rem;
-                color: #ffffff !important;
-                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9) !important;
-                line-height: 1.8 !important;
-            }
-
-            p, .card p, .hero-desc p, .info-card p {
-                color: #ffffff !important;
-                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9) !important;
-                line-height: 1.8 !important;
-                font-size: 1rem !important;
-            }
-
-            .card-meta, .card-meta span {
-                color: #00d2ff !important;
-                text-shadow: 0 0 10px rgba(0, 210, 255, 0.6) !important;
-                font-weight: 700 !important;
-            }
-
-            .info-card {
-                background: rgba(10, 15, 20, 0.98) !important;
-                border: 2px solid rgba(0, 210, 255, 0.8) !important;
-                box-shadow: 0 0 30px rgba(0, 210, 255, 0.3) !important;
-            }
-
-            .highlight-title {
-                color: #00d2ff !important;
-                text-shadow: 0 0 15px rgba(0, 210, 255, 0.8) !important;
-            }
-
-            .feature-list li {
-                color: #ffffff !important;
-                background: rgba(0, 0, 0, 0.5) !important;
-                border: 1px solid rgba(0, 210, 255, 0.4) !important;
-            }
-
-            .feature-list li span {
-                color: #ffffff !important;
-            }
-
-            /* MONITOR FRAME MOBILE */
+            
+            /* MONITOR MOBILE FIXES */
             .monitor-focus-segment {
                 height: auto;
-                min-height: 300px;
+                min-height: 400px;
                 perspective: none; /* Disable 3D on mobile */
                 margin-bottom: 2rem;
-                padding: 5px;
-                animation: none;
+                padding: 10px;
             }
             .monitor-frame {
                 width: 100%;
@@ -797,272 +570,37 @@
                 border-width: 2px;
                 margin-bottom: 20px;
             }
-            .monitor-frame:hover { transform: none !important; }
+            .monitor-frame:hover { transform: none; }
             .monitor-frame::after { display: none; } /* Hide stand */
             
             .monitor-screen {
                position: relative;
                height: auto;
-               min-height: 400px;
                top: 0; left: 0; right: 0; bottom: 0;
                margin: 5px;
-               padding: 10px;
                width: auto;
             }
 
             .mon-grid {
                 grid-template-columns: 1fr;
-                gap: 10px;
-            }
-            .mon-header { font-size: 0.7rem; padding: 8px; }
-            .mon-label { font-size: 0.65rem; }
-            .mon-val { font-size: 0.9rem; }
-            .mon-log { font-size: 0.5rem; height: 60px; }
-            
-            #cad-container { height: 150px !important; }
-            .mon-chart-container { height: 80px; }
-
-            /* SYSTEM GRID MOBILE FIX */
-            .system-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
+                gap: 15px;
             }
             
-            /* CARD ADJUSTMENTS */
-            .card {
-                padding: 1.5rem;
-            }
-            .card h3 { font-size: 1.2rem; }
-            .card p { font-size: 0.9rem; }
-            .card-meta { font-size: 0.65rem; flex-direction: column; gap: 0.5rem; }
-
-            /* ARCHITECTURE SECTION MOBILE */
-            .architecture-section {
-                padding: 1.5rem;
-                margin-bottom: 3rem;
-            }
-            .architecture-section h2 {
-                font-size: 1.5rem;
-                margin-bottom: 2rem;
-            }
-            .flow-diagram {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            .flow-step {
-                flex-direction: column;
-                gap: 1rem;
-                width: 100%;
-            }
-            .step-card {
-                width: 100%;
-                min-width: auto;
-                padding: 1rem;
-            }
-            .step-card h3 { font-size: 1rem; }
-            .step-card p { font-size: 0.75rem; }
-            .arrow {
-                transform: rotate(90deg);
-                font-size: 1.5rem;
-            }
-            .relations-text { font-size: 0.75rem; }
-
-            /* GEN-AI SECTION MOBILE */
-            .gen-ai-section {
-                margin-top: 4rem;
-                margin-bottom: 3rem;
-                padding: 2rem 1rem;
-            }
-            .gen-ai-section h2 {
-                font-size: 1.8rem !important;
-                letter-spacing: 0.2rem;
-                margin-bottom: 1rem;
-            }
-            .gen-ai-section h2::after {
-                font-size: 0.6rem;
-                letter-spacing: 0.3rem;
-            }
-            .gen-ai-content p {
-                font-size: 1rem;
-                line-height: 1.6;
-                margin-bottom: 1rem;
-            }
-            .cad-corner {
-                width: 20px;
-                height: 20px;
-            }
-            .cad-corner-tl, .cad-corner-tr { top: 10px; }
-            .cad-corner-bl, .cad-corner-br { bottom: 10px; }
-            .cad-corner-tl, .cad-corner-bl { left: 10px; }
-            .cad-corner-tr, .cad-corner-br { right: 10px; }
-
-            /* FACTORY SECTION MOBILE */
-            .factory-section {
-                margin-top: 4rem;
-                margin-bottom: 2rem;
-                padding: 2rem 0;
-                perspective: none;
-            }
-            .factory-header h2 {
-                font-size: 1.5rem;
-            }
-            .factory-track-container {
-                height: 250px;
-                transform: none;
-            }
-            .machine-unit {
-                width: 150px;
-                height: 180px;
-                padding: 0.5rem;
-                transform: skewX(0deg);
-            }
-            .machine-arm { height: 60px; }
-            .machine-head { height: 30px; }
-            .factory-overlay {
-                font-size: 0.65rem;
-                padding: 3px 8px;
-                top: 10px;
-                right: 10px;
-            }
-
-            /* INFO CARD MOBILE */
-            .info-card {
-                padding: 1rem;
-                margin-top: 1rem;
-            }
-            .highlight-title {
-                font-size: 1.1rem;
-                margin-bottom: 0.8rem;
-            }
-            .card-body p {
-                font-size: 0.9rem;
-                margin-bottom: 0.8rem;
-            }
-            .feature-list {
-                gap: 0.5rem;
-            }
-            .feature-list li {
-                padding: 0.6rem;
-                font-size: 0.85rem;
-            }
-            .feature-icon {
-                font-size: 1rem;
-                margin-right: 0.7rem;
-            }
-            .card-footer {
-                font-size: 0.8rem;
-                text-align: center;
-            }
-
-            /* CROSS-PLATFORM FEEDBACK */
-            .cross-platform-feedback {
-                margin-top: 2rem;
-                padding-top: 1rem;
-            }
-            .cp-node {
-                min-width: 80px;
-            }
-            .cp-icon { font-size: 1.5rem; }
-            .cp-label { font-size: 0.6rem; }
-            .cp-connection { width: 50px; }
-
-            /* GUI CORNERS MOBILE */
-            .gui-corner {
-                width: 8rem;
-                height: 8rem;
-            }
-            .gui-text {
-                font-size: 0.5rem;
-                padding: 0.5rem;
-                letter-spacing: 0.05rem;
-            }
-            .gui-tl, .gui-tr { top: 10px; }
-            .gui-bl, .gui-br { bottom: 10px; }
-            .gui-tl, .gui-bl { left: 10px; }
-            .gui-tr, .gui-br { right: 10px; }
+            #cad-container { height: 180px !important; }
 
             /* FOOTER MOBILE */
             footer {
-                margin-top: 4rem;
-                padding: 1.5rem 1rem;
-                font-size: 0.65rem;
+                padding: 2rem 1rem;
+                font-size: 0.6rem;
             }
             footer a { margin: 0 5px; display: inline-block; margin-bottom: 5px; }
+
+            /* BRIGHTNESS BOOST FOR MOBILE */
+            /* body { filter: brightness(1.2); } REMOVED TO FIX STICKY NAV */
 
             /* AUTO GLOW ON MOBILE */
             h1 { animation: neonPulse 3s infinite alternate; }
             .mobile-dropdown a.active { animation: neonPulse 2s infinite alternate; }
-            
-            /* PREVENT HORIZONTAL SCROLL */
-            body, html {
-                overflow-x: hidden;
-                max-width: 100vw;
-            }
-            
-            /* REDUCE SCANLINE OPACITY ON MOBILE */
-            .scanlines { opacity: 0.15; }
-        }
-
-        /* Extra Small Mobile Devices (320px - 480px) */
-        @media (max-width: 480px) {
-            h1 { font-size: 1.5rem !important; }
-            h2 { font-size: 1.2rem !important; }
-
-            .container {
-                padding: 1.5rem 0.75rem;
-                padding-top: 9rem !important; /* Adjusted for smaller fixed title */
-            }
-
-            /* HERO TITLE - SMALLER SCREENS */
-            .hero-section h1 {
-                font-size: 1.5rem !important;
-                padding: 0.8rem 1rem !important;
-                width: 95% !important;
-                top: 70px !important;
-            }
-
-            .hero-sub {
-                font-size: 0.65rem !important;
-            }
-
-            .nav-logo { height: 40px; }
-
-            .gen-ai-section h2 {
-                font-size: 1.4rem !important;
-                letter-spacing: 0.1rem;
-            }
-
-            .gen-ai-section h2::after {
-                font-size: 0.5rem;
-                letter-spacing: 0.2rem;
-            }
-
-            .gen-ai-content p {
-                font-size: 0.9rem;
-            }
-
-            .architecture-section h2 {
-                font-size: 1.2rem !important;
-            }
-
-            .factory-header h2 {
-                font-size: 1.2rem !important;
-            }
-
-            .machine-unit {
-                width: 120px;
-                height: 150px;
-            }
-
-            .gui-corner {
-                width: 6rem;
-                height: 6rem;
-            }
-
-            .gui-text {
-                font-size: 0.45rem;
-                padding: 0.3rem;
-            }
         }
 
         /* --- GEN-AI IMPACT SECTION --- */
@@ -1263,13 +801,10 @@
             animation: monitorFloat 6s ease-in-out infinite;
             z-index: 20; 
             position: relative;
-            width: 100%;
-            max-width: 100%;
         }
 
         .monitor-frame {
-            width: 100%;
-            max-width: 700px;
+            width: 700px;
             height: 400px;
             background: #050510;
             border: 4px solid #b0e2ff;
@@ -1280,7 +815,6 @@
             transform: rotateX(10deg);
             box-shadow: 0 50px 80px rgba(0,0,0,0.8), 0 0 30px rgba(0, 210, 255, 0.15);
             transition: transform 0.5s ease;
-            margin: 0 auto;
         }
 
         .monitor-frame:hover {
@@ -1420,7 +954,7 @@
             align-items: center;
             gap: 2rem;
             width: max-content;
-            animation: cpScroll 37.5s linear infinite; /* Reduced speed by 20% (30s * 1.25) */
+            animation: cpScroll 30s linear infinite;
         }
 
         /* Pause on hover/interaction */
@@ -1538,7 +1072,7 @@
         .factory-track {
             display: flex;
             gap: 15rem;
-            animation: moveFactory 18.75s linear infinite; /* Reduced speed by 20% (15s * 1.25) */
+            animation: moveFactory 15s linear infinite;
             position: absolute;
             left: 100%; /* Start from right */
             will-change: transform;
@@ -1848,8 +1382,8 @@
             </div>
         </div>
 
-        <div class="hero-section hero-flex-container">
-            <div class="hero-content-left">
+        <div class="hero-section" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4rem;">
+            <div style="flex: 1; min-width: 300px;">
                 <h1 data-value="Automated Ecosystem Designs Intelligence">Automated Ecosystem<br>Designs Intelligence</h1>
                 <div class="hero-sub" data-value="System Status: Active // Project Alpha">System Status: Active // Project Alpha</div>
                 <div class="info-card">
@@ -1871,10 +1405,10 @@
                     </div>
                 </div>
             </div>
-            <div class="hero-content-right">
-                <div id="ionity-gui-cube-container">
+            <div style="display: flex; flex-direction: column; width: 400px; gap: 15px;">
+                <div id="ionity-gui-cube-container" style="width: 100%; height: 400px; position: relative; border: 2px solid rgba(0, 210, 255, 0.8); background: radial-gradient(circle at center, rgba(0, 60, 90, 0.5), transparent); border-radius: 8px; box-shadow: 0 0 30px rgba(0, 210, 255, 0.35);">
                     <!-- 3D Cube will attach here -->
-                    <div class="cube-label">IONITY.GUI.SYS</div>
+                    <div style="position: absolute; bottom: 10px; right: 10px; font-family: 'Courier New'; font-size: 0.7rem; font-weight: bold; color: var(--accent-cyan); opacity: 1.0; text-shadow: 0 0 8px var(--accent-cyan);">IONITY.GUI.SYS</div>
                 </div>
 
 
@@ -2016,51 +1550,45 @@
             .carousel-wrapper {
                 position: relative;
                 width: 100%;
-                max-width: 100vw;
                 margin: 6rem 0;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 perspective: 1000px;
-                overflow: hidden;
             }
-
+            
             .carousel-container {
                 overflow: hidden;
-                width: 95%;
-                max-width: 100%;
+                width: 95%; /* Wider view */
                 position: relative;
                 padding: 2rem 0;
                 mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-                -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
             }
-
+        
             .carousel-track {
                 display: flex;
                 gap: 2rem;
                 transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
-                align-items: stretch;
+                /* Ensure all items stretch to the same height (usually determined by the tallest, i.e., Monitor) */
+                align-items: stretch; 
                 padding: 1rem;
-                will-change: transform;
             }
         
             .carousel-slide {
-                min-width: 280px;
-                max-width: 280px;
+                min-width: 200px; 
+                max-width: 200px; 
                 flex: 0 0 auto;
-                opacity: 0.5;
+                opacity: 0.5; 
                 transform: scale(0.9);
                 transition: all 0.6s ease;
                 display: flex; /* Make the slide a flex container so child card fills it */
                 flex-direction: column;
-                z-index: 1;
-                cursor: pointer;
             }
 
             /* Exceptions for the System Monitor slide (First one) */
             .carousel-slide:first-child {
-                min-width: 600px; /* Give the monitor more space */
-                max-width: 600px;
+                min-width: 650px; /* Give the monitor more space */
+                max-width: 650px;
             }
             
             /* Override .card initial state for carousel */
@@ -2076,26 +1604,7 @@
                 background: rgba(12, 18, 26, 0.9); /* Solid background */
                 border: 1px solid rgba(0, 210, 255, 0.3);
                 box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-                padding: 1.5rem;
-            }
-
-            .carousel-slide .card h3 {
-                font-size: 1.1rem;
-                margin-bottom: 0.8rem;
-                line-height: 1.2;
-            }
-
-            .carousel-slide .card p {
-                font-size: 0.85rem;
-                line-height: 1.5;
-                overflow-wrap: break-word;
-                word-wrap: break-word;
-            }
-
-            .carousel-slide .card-meta {
-                font-size: 0.7rem;
-                margin-top: auto;
-                padding-top: 1rem;
+                padding: 1.25rem;
             }
             
             .carousel-slide.active {
@@ -2109,199 +1618,47 @@
                 border-color: var(--accent-cyan);
                 background: rgba(15, 22, 32, 0.95);
             }
-
-            /* Enhanced Bring Forward on Hover */
-            .carousel-slide:hover {
-                opacity: 1;
-                transform: scale(1.1) translateY(-10px);
-                z-index: 50;
-                filter: drop-shadow(0 0 25px rgba(0, 210, 255, 0.4));
-            }
-
-            .carousel-slide:hover .card {
-                border-color: var(--accent-cyan);
-                background: rgba(20, 28, 40, 0.98);
-                box-shadow: 0 15px 50px rgba(0, 210, 255, 0.3), 0 0 30px rgba(0, 210, 255, 0.2);
-            }
-
-            /* Active State for Click/Tap */
-            .carousel-slide:active,
-            .carousel-slide.clicked {
-                opacity: 1;
-                transform: scale(1.15) translateY(-15px);
-                z-index: 100;
-                filter: drop-shadow(0 0 35px rgba(0, 210, 255, 0.6));
-            }
-
-            .carousel-slide:active .card,
-            .carousel-slide.clicked .card {
-                border-color: var(--accent-cyan);
-                background: rgba(25, 35, 50, 1);
-                box-shadow: 0 20px 70px rgba(0, 210, 255, 0.5), 0 0 50px rgba(0, 210, 255, 0.3);
-            }
         
-            /* Modern hover navigation zones - no buttons */
-            .carousel-hover-zone {
-                position: absolute;
-                top: 0;
-                bottom: 0;
-                width: 15%;
-                z-index: 20;
+            .carousel-btn {
+                background: rgba(0, 10, 20, 0.8);
+                border: 1px solid var(--accent-cyan);
+                color: var(--accent-cyan);
+                font-size: 1.5rem;
                 cursor: pointer;
-                opacity: 0;
-                transition: opacity 0.3s;
-                background: linear-gradient(to right, rgba(0, 210, 255, 0.1), transparent);
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                font-size: 3rem;
-                color: var(--accent-cyan);
-                text-shadow: 0 0 20px var(--accent-cyan);
-                pointer-events: all;
-            }
-            
-            /* Hint animation on page load */
-            @keyframes hintPulse {
-                0%, 100% { opacity: 0; }
-                50% { opacity: 0.6; }
-            }
-            
-            .carousel-hover-zone.hint {
-                animation: hintPulse 2s ease-in-out 3;
-            }
-            
-            .carousel-hover-zone.left {
-                left: 0;
-                background: linear-gradient(to right, rgba(0, 210, 255, 0.1), transparent);
-            }
-            
-            .carousel-hover-zone.right {
-                right: 0;
-                background: linear-gradient(to left, rgba(0, 210, 255, 0.1), transparent);
-            }
-            
-            .carousel-hover-zone:hover {
-                opacity: 1;
-                background: linear-gradient(to right, rgba(0, 210, 255, 0.2), transparent);
-            }
-            
-            .carousel-hover-zone.right:hover {
-                background: linear-gradient(to left, rgba(0, 210, 255, 0.2), transparent);
-            }
-            
-            /* Progress indicator */
-            .carousel-progress {
-                position: absolute;
-                bottom: 0;
-                left: 50%;
-                transform: translateX(-50%);
-                display: flex;
-                gap: 8px;
-                z-index: 25;
-                padding: 10px;
-            }
-            
-            .carousel-progress-dot {
-                width: 8px;
-                height: 8px;
-                border-radius: 50%;
-                background: rgba(255, 255, 255, 0.3);
-                cursor: pointer;
                 transition: all 0.3s;
+                backdrop-filter: blur(5px);
+                z-index: 20;
+                position: absolute;
+                top: 85%;
+                transform: translateY(0);
+                box-shadow: 0 0 20px rgba(0,0,0,0.8);
             }
             
-            .carousel-progress-dot:hover {
-                background: rgba(0, 210, 255, 0.6);
-                transform: scale(1.2);
-            }
-            
-            .carousel-progress-dot.active {
+            .carousel-btn:hover {
                 background: var(--accent-cyan);
-                box-shadow: 0 0 10px var(--accent-cyan);
-                width: 24px;
-                border-radius: 4px;
+                color: #000;
+                box-shadow: 0 0 25px var(--accent-cyan);
             }
             
-            /* Deprecated button styles - hidden */
-            .carousel-btn {
-                display: none !important;
-            }
+            .carousel-btn.prev { left: 10px; }
+            .carousel-btn.next { right: 10px; }
             
             @media (max-width: 768px) {
-                .carousel-slide { min-width: 90vw; max-width: 90vw; height: auto !important; }
-                .carousel-slide:first-child { min-width: 90vw; max-width: 90vw; }
-
-                .carousel-track {
-                    align-items: flex-start !important;
-                }
-
-                .carousel-wrapper {
-                    max-width: 100vw;
-                    overflow: hidden;
-                    padding-bottom: 35px;
-                }
-
-                .carousel-container {
-                    width: 100%;
-                    max-width: 100vw;
-                    mask-image: none;
-                    -webkit-mask-image: none;
-                    padding: 1rem 0;
-                    cursor: grab;
-                    touch-action: pan-x;
-                    overflow: hidden;
-                }
-
-                .carousel-container:active {
-                    cursor: grabbing;
-                }
-
-                /* Hide hover zones on mobile - touch only */
-                .carousel-hover-zone {
-                    display: none;
-                }
-
-                /* Show progress dots on mobile */
-                .carousel-progress {
-                    bottom: -5px;
-                }
-
-                /* Reduce block size & center content on mobile */
-                .carousel-slide .card {
-                    padding: 1rem !important;
-                    text-align: center;
-                    width: 100%;
-                    height: auto !important; /* Allow card to shrink to content */
-                    min-height: 0 !important;
-                }
-                .carousel-slide .card-icon {
-                    margin: 0 auto 0.5rem auto;
-                    width: 35px; height: 35px;
-                }
-                .carousel-slide .card h3 {
-                    font-size: 1.2rem;
-                    margin-bottom: 0.5rem;
-                }
-                .carousel-slide .card p {
-                    font-size: 0.95rem; /* Larger for readability */
-                    line-height: 1.4;
-                    margin-bottom: 0.5rem;
-                    white-space: normal;
-                }
-                .carousel-slide .card-meta {
-                    margin-top: 1rem;
-                    padding-top: 0.5rem;
-                    justify-content: center;
-                    gap: 0.8rem;
-                    flex-wrap: wrap;
-                    font-size: 0.75rem;
-                }
+                .carousel-slide { min-width: 85vw; max-width: 85vw; }
+                .carousel-slide:first-child { min-width: 85vw; max-width: 85vw; }
+                .carousel-container { width: 100%; mask-image: none; }
             }
         </style>
 
         <div class="carousel-wrapper">
-            <div class="carousel-hover-zone left" onmouseenter="startAutoScroll(-1)" onmouseleave="stopAutoScroll()">‹</div>
-            <div class="carousel-container" id="carouselContainer">
+            <button class="carousel-btn prev" onclick="moveCarousel(-1)">&#10094;</button>
+            <div class="carousel-container">
                 <div class="carousel-track" id="systemCarouselTrack">
                     
                     <!-- Slide 1: SYSTEM ROOT CAM -->
@@ -2486,87 +1843,18 @@
 
                 </div>
             </div>
-            <div class="carousel-hover-zone right" onmouseenter="startAutoScroll(1)" onmouseleave="stopAutoScroll()">›</div>
-            <div class="carousel-progress" id="carouselProgress"></div>
+            <button class="carousel-btn next" onclick="moveCarousel(1)">&#10095;</button>
         </div>
 
         <script>
-            // Modern Auto-Scroll on Hover
-            let autoScrollInterval = null;
-            
-            function startAutoScroll(direction) {
-                stopAutoScroll(); // Clear any existing
-                autoScrollInterval = setInterval(() => {
-                    moveCarousel(direction);
-                }, 800); // Smooth continuous scroll
-            }
-            
-            function stopAutoScroll() {
-                if (autoScrollInterval) {
-                    clearInterval(autoScrollInterval);
-                    autoScrollInterval = null;
-                }
-            }
-            
-            // Generate progress dots
-            function initProgressDots() {
-                const progressContainer = document.getElementById('carouselProgress');
-                if (!progressContainer) return;
-                
-                progressContainer.innerHTML = '';
-                const slides = document.querySelectorAll('.carousel-slide');
-                
-                slides.forEach((slide, index) => {
-                    const dot = document.createElement('div');
-                    dot.className = 'carousel-progress-dot';
-                    if (index === 0) dot.classList.add('active');
-                    dot.onclick = () => jumpToSlide(index);
-                    progressContainer.appendChild(dot);
-                });
-            }
-            
-            function jumpToSlide(index) {
-                currentIndex = index;
-                updateCarouselPosition();
-            }
-            
-            // Call after DOM loads
-            window.addEventListener('load', () => {
-                initProgressDots();
-                
-                // Show hint animation
-                const leftZone = document.querySelector('.carousel-hover-zone.left');
-                const rightZone = document.querySelector('.carousel-hover-zone.right');
-                
-                if (leftZone && rightZone) {
-                    setTimeout(() => {
-                        leftZone.classList.add('hint');
-                        rightZone.classList.add('hint');
-                        
-                        // Remove hint after animation completes
-                        setTimeout(() => {
-                            leftZone.classList.remove('hint');
-                            rightZone.classList.remove('hint');
-                        }, 6000); // 2s * 3 iterations
-                    }, 1000); // Delay 1s after page load
-                }
-            });
-        </script>
-        
-        <script>
             let currentIndex = 0;
-            const track = document.getElementById('systemCarouselTrack');
-            const slides = Array.from(document.querySelectorAll('.carousel-slide'));
-            const totalSlides = slides.length;
-            
-            // Touch/Swipe variables
-            let isDragging = false;
-            let startPos = 0;
-            let currentTranslate = 0;
-            let prevTranslate = 0;
-            let animationID = 0;
             
             function moveCarousel(direction) {
+                const track = document.getElementById('systemCarouselTrack');
+                // Use Array.from to get a real array
+                const slides = Array.from(document.querySelectorAll('.carousel-slide'));
+                const totalSlides = slides.length;
+                
                 // Calculate new index
                 currentIndex += direction;
                 
@@ -2574,11 +1862,8 @@
                 if (currentIndex < 0) currentIndex = 0;
                 if (currentIndex > totalSlides - 1) currentIndex = totalSlides - 1;
                 
-                updateCarouselPosition();
-            }
-            
-            function updateCarouselPosition() {
-                // Calculate position based on actual widths
+                // Calculate position based on the ACTUAL widths of previous slides
+                // This fixes the "broken" scroll when slides have different widths
                 let moveAmount = 0;
                 const gap = 32; // 2rem matches CSS
                 
@@ -2586,128 +1871,24 @@
                     moveAmount += slides[i].offsetWidth + gap;
                 }
                 
-                prevTranslate = -moveAmount;
-                currentTranslate = prevTranslate;
-                track.style.transform = `translateX(${prevTranslate}px)`;
+                track.style.transform = `translateX(-${moveAmount}px)`;
                 
-                // Update active class
+                // Update active class for scaling effect
                 slides.forEach((slide, index) => {
                     if (index === currentIndex) {
                         slide.classList.add('active');
+                        // Ensure opacity is full for active
                         slide.style.opacity = '1'; 
                     } else {
                         slide.classList.remove('active');
                         slide.style.opacity = '0.5';
                     }
                 });
-                
-                // Update progress dots
-                const dots = document.querySelectorAll('.carousel-progress-dot');
-                dots.forEach((dot, index) => {
-                    if (index === currentIndex) {
-                        dot.classList.add('active');
-                    } else {
-                        dot.classList.remove('active');
-                    }
-                });
-            }
-            
-            // Touch/Swipe functionality
-            const getPositionX = (event) => {
-                return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
-            };
-            
-            const touchStart = (event) => {
-                isDragging = true;
-                startPos = getPositionX(event);
-                animationID = requestAnimationFrame(animation);
-                track.style.transition = 'none';
-            };
-            
-            const touchMove = (event) => {
-                if (isDragging) {
-                    const currentPosition = getPositionX(event);
-                    currentTranslate = prevTranslate + currentPosition - startPos;
-                    // Visual feedback during drag
-                    track.style.transform = `translateX(${currentTranslate}px)`;
-                }
-            };
-            
-            const touchEnd = () => {
-                isDragging = false;
-                cancelAnimationFrame(animationID);
-                
-                const movedBy = currentTranslate - prevTranslate;
-                
-                // Smart swipe detection - lower threshold for better responsiveness
-                if (movedBy < -50) {
-                    // Swiped left, move next
-                    moveCarousel(1);
-                } else if (movedBy > 50) {
-                    // Swiped right, move prev
-                    moveCarousel(-1);
-                } else {
-                    // Snap back to current position
-                    updateCarouselPosition();
-                }
-                
-                // Smooth spring animation
-                track.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-            };
-            
-            const animation = () => {
-                if (isDragging) {
-                    track.style.transform = `translateX(${currentTranslate}px)`;
-                    requestAnimationFrame(animation);
-                }
-            };
-            
-            // Add touch event listeners
-            const container = document.querySelector('.carousel-container');
-            if (container) {
-                container.addEventListener('touchstart', touchStart);
-                container.addEventListener('touchmove', touchMove);
-                container.addEventListener('touchend', touchEnd);
-                
-                // Mouse events for desktop
-                container.addEventListener('mousedown', touchStart);
-                container.addEventListener('mousemove', touchMove);
-                container.addEventListener('mouseup', touchEnd);
-                container.addEventListener('mouseleave', () => {
-                    if (isDragging) touchEnd();
-                });
-                
-                // Prevent context menu
-                container.addEventListener('contextmenu', (e) => {
-                    if (isDragging) e.preventDefault();
-                });
-                
-                // Prevent text selection
-                container.style.userSelect = 'none';
-                container.style.webkitUserSelect = 'none';
-                container.style.cursor = 'grab';
-                container.addEventListener('mousedown', () => {
-                    container.style.cursor = 'grabbing';
-                });
-                container.addEventListener('mouseup', () => {
-                    container.style.cursor = 'grab';
-                });
             }
             
             // Initial call to set active
             window.addEventListener('load', () => {
                 moveCarousel(0);
-            });
-            
-            // Keyboard navigation (arrow keys)
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'ArrowLeft') {
-                    e.preventDefault();
-                    moveCarousel(-1);
-                } else if (e.key === 'ArrowRight') {
-                    e.preventDefault();
-                    moveCarousel(1);
-                }
             });
         </script>
 
@@ -2865,7 +2046,7 @@
         // --- SCENE SETUP ---
         const container = document.getElementById('canvas-container');
         const scene = new THREE.Scene();
-        scene.fog = new THREE.FogExp2(0x020204, 0.00165); // Increased density for 10% more fade
+        scene.fog = new THREE.FogExp2(0x020204, 0.0015);
 
         const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 5000);
         camera.position.z = 1000;
@@ -2882,299 +2063,6 @@
         renderer.toneMapping = THREE.ACESFilmicToneMapping;
         renderer.toneMappingExposure = 1.2; 
         container.appendChild(renderer.domElement);
-
-        // --- INTERACTIVE THREAD COMMUNICATION LAYER ---
-        const threadCanvas = document.createElement('canvas');
-        threadCanvas.style.position = 'fixed';
-        threadCanvas.style.top = '0';
-        threadCanvas.style.left = '0';
-        threadCanvas.style.width = '100%';
-        threadCanvas.style.height = '100%';
-        threadCanvas.style.pointerEvents = 'none';
-        threadCanvas.style.zIndex = '1';
-        container.appendChild(threadCanvas);
-        const threadCtx = threadCanvas.getContext('2d');
-        
-        // Thread System Variables
-        const threadNodes = [];
-        const threadConnections = [];
-        const particles = [];
-        let mouseX = window.innerWidth / 2;
-        let mouseY = window.innerHeight / 2;
-        let isTouching = false;
-        let showTouchHint = window.innerWidth < 768;
-        let hintFade = 1.0;
-
-        // Mobile touch hint - fades after first interaction
-        setTimeout(() => {
-            const fadeHint = setInterval(() => {
-                hintFade -= 0.01;
-                if(hintFade <= 0) {
-                    clearInterval(fadeHint);
-                    showTouchHint = false;
-                }
-            }, 50);
-        }, 3000);
-
-        // Mouse/Touch tracking
-        const updateMousePosition = (x, y) => {
-            mouseX = x;
-            mouseY = y;
-            isTouching = true;
-            if(showTouchHint && hintFade > 0) hintFade = 0; // Quick fade on first touch
-        };
-
-        window.addEventListener('mousemove', (e) => updateMousePosition(e.clientX, e.clientY));
-        window.addEventListener('touchmove', (e) => {
-            if(e.touches.length > 0) {
-                updateMousePosition(e.touches[0].clientX, e.touches[0].clientY);
-            }
-        }, { passive: true });
-        window.addEventListener('touchstart', (e) => {
-            if(e.touches.length > 0) {
-                updateMousePosition(e.touches[0].clientX, e.touches[0].clientY);
-            }
-        }, { passive: true });
-        window.addEventListener('touchend', () => isTouching = false, { passive: true });
-
-        // Create Thread Nodes
-        class ThreadNode {
-            constructor(x, y) {
-                this.x = x;
-                this.y = y;
-                this.baseX = x;
-                this.baseY = y;
-                this.vx = (Math.random() - 0.5) * 0.5;
-                this.vy = (Math.random() - 0.5) * 0.5;
-                this.radius = 3 + Math.random() * 3;
-                this.pulse = Math.random() * Math.PI * 2;
-                this.activity = 0;
-            }
-
-            update() {
-                // Drift slowly
-                this.x += this.vx;
-                this.y += this.vy;
-
-                // Return to base position
-                const dx = this.baseX - this.x;
-                const dy = this.baseY - this.y;
-                this.x += dx * 0.01;
-                this.y += dy * 0.01;
-
-                // Mouse attraction
-                const mouseDx = mouseX - this.x;
-                const mouseDy = mouseY - this.y;
-                const mouseDist = Math.sqrt(mouseDx * mouseDx + mouseDy * mouseDy);
-                
-                if(mouseDist < 200) {
-                    const force = (200 - mouseDist) / 200;
-                    this.x += (mouseDx / mouseDist) * force * 3;
-                    this.y += (mouseDy / mouseDist) * force * 3;
-                    this.activity = Math.min(1, this.activity + 0.1);
-                } else {
-                    this.activity *= 0.95;
-                }
-
-                // Boundaries
-                if(this.x < 0 || this.x > threadCanvas.width) this.vx *= -1;
-                if(this.y < 0 || this.y > threadCanvas.height) this.vy *= -1;
-
-                this.pulse += 0.05;
-            }
-
-            draw() {
-                const glowSize = this.radius + Math.sin(this.pulse) * 2 + this.activity * 5;
-                const alpha = 0.6 + this.activity * 0.4;
-                
-                // Outer glow
-                const gradient = threadCtx.createRadialGradient(this.x, this.y, 0, this.x, this.y, glowSize);
-                gradient.addColorStop(0, `rgba(0, 210, 255, ${alpha})`);
-                gradient.addColorStop(0.5, `rgba(0, 150, 255, ${alpha * 0.5})`);
-                gradient.addColorStop(1, 'rgba(0, 210, 255, 0)');
-                threadCtx.fillStyle = gradient;
-                threadCtx.beginPath();
-                threadCtx.arc(this.x, this.y, glowSize, 0, Math.PI * 2);
-                threadCtx.fill();
-
-                // Core
-                threadCtx.fillStyle = `rgba(255, 255, 255, ${0.8 + this.activity * 0.2})`;
-                threadCtx.beginPath();
-                threadCtx.arc(this.x, this.y, this.radius * 0.5, 0, Math.PI * 2);
-                threadCtx.fill();
-            }
-        }
-
-        // Communication Particle
-        class CommParticle {
-            constructor(from, to, connection) {
-                this.from = from;
-                this.to = to;
-                this.connection = connection;
-                this.progress = 0;
-                this.speed = 0.01 + Math.random() * 0.02;
-                this.size = 2 + Math.random() * 2;
-            }
-
-            update() {
-                this.progress += this.speed;
-                return this.progress >= 1;
-            }
-
-            draw() {
-                const x = this.from.x + (this.to.x - this.from.x) * this.progress;
-                const y = this.from.y + (this.to.y - this.from.y) * this.progress;
-                
-                // Trail effect
-                const gradient = threadCtx.createRadialGradient(x, y, 0, x, y, this.size * 3);
-                gradient.addColorStop(0, 'rgba(0, 255, 255, 0.9)');
-                gradient.addColorStop(0.5, 'rgba(0, 210, 255, 0.5)');
-                gradient.addColorStop(1, 'rgba(0, 210, 255, 0)');
-                threadCtx.fillStyle = gradient;
-                threadCtx.beginPath();
-                threadCtx.arc(x, y, this.size * 3, 0, Math.PI * 2);
-                threadCtx.fill();
-
-                // Core particle
-                threadCtx.fillStyle = 'rgba(255, 255, 255, 1)';
-                threadCtx.beginPath();
-                threadCtx.arc(x, y, this.size, 0, Math.PI * 2);
-                threadCtx.fill();
-            }
-        }
-
-        // Initialize Thread Nodes
-        const initThreadNodes = () => {
-            threadNodes.length = 0;
-            const nodeCount = window.innerWidth < 768 ? 8 : 12;
-            const padding = 100;
-            
-            for(let i = 0; i < nodeCount; i++) {
-                threadNodes.push(new ThreadNode(
-                    padding + Math.random() * (threadCanvas.width - padding * 2),
-                    padding + Math.random() * (threadCanvas.height - padding * 2)
-                ));
-            }
-
-            // Create connections
-            threadConnections.length = 0;
-            for(let i = 0; i < threadNodes.length; i++) {
-                for(let j = i + 1; j < threadNodes.length; j++) {
-                    const distance = Math.hypot(
-                        threadNodes[i].x - threadNodes[j].x,
-                        threadNodes[i].y - threadNodes[j].y
-                    );
-                    if(distance < 300 || Math.random() > 0.7) {
-                        threadConnections.push({
-                            from: threadNodes[i],
-                            to: threadNodes[j],
-                            baseDistance: distance,
-                            lastParticle: 0,
-                            pulse: 0
-                        });
-                    }
-                }
-            }
-        };
-
-        // Resize Thread Canvas
-        const resizeThreadCanvas = () => {
-            const dpr = Math.min(window.devicePixelRatio, 2);
-            threadCanvas.width = window.innerWidth * dpr;
-            threadCanvas.height = window.innerHeight * dpr;
-            threadCtx.scale(dpr, dpr);
-            threadCanvas.style.width = window.innerWidth + 'px';
-            threadCanvas.style.height = window.innerHeight + 'px';
-            
-            if(threadNodes.length === 0) initThreadNodes();
-        };
-
-        resizeThreadCanvas();
-        window.addEventListener('resize', resizeThreadCanvas);
-
-        // Animate Thread System
-        const animateThreads = () => {
-            threadCtx.clearRect(0, 0, threadCanvas.width, threadCanvas.height);
-
-            // Update and draw nodes
-            threadNodes.forEach(node => node.update());
-
-            // Draw connections
-            threadConnections.forEach(conn => {
-                const dx = conn.to.x - conn.from.x;
-                const dy = conn.to.y - conn.from.y;
-                const distance = Math.sqrt(dx * dx + dy * dy);
-                const activity = (conn.from.activity + conn.to.activity) / 2;
-                
-                // Thread line
-                const gradient = threadCtx.createLinearGradient(
-                    conn.from.x, conn.from.y, conn.to.x, conn.to.y
-                );
-                const alpha = 0.1 + activity * 0.4;
-                gradient.addColorStop(0, `rgba(0, 210, 255, ${alpha})`);
-                gradient.addColorStop(0.5, `rgba(0, 180, 255, ${alpha * 1.5})`);
-                gradient.addColorStop(1, `rgba(0, 210, 255, ${alpha})`);
-                
-                threadCtx.strokeStyle = gradient;
-                threadCtx.lineWidth = 1 + activity * 2;
-                threadCtx.shadowBlur = 10 + activity * 20;
-                threadCtx.shadowColor = '#00d2ff';
-                threadCtx.beginPath();
-                threadCtx.moveTo(conn.from.x, conn.from.y);
-                threadCtx.lineTo(conn.to.x, conn.to.y);
-                threadCtx.stroke();
-                threadCtx.shadowBlur = 0;
-
-                // Spawn particles on active connections
-                if(activity > 0.3 && Date.now() - conn.lastParticle > 500) {
-                    particles.push(new CommParticle(conn.from, conn.to, conn));
-                    conn.lastParticle = Date.now();
-                }
-
-                // Random communication bursts
-                if(Math.random() > 0.995) {
-                    particles.push(new CommParticle(conn.from, conn.to, conn));
-                }
-            });
-
-            // Draw nodes
-            threadNodes.forEach(node => node.draw());
-
-            // Update and draw particles
-            for(let i = particles.length - 1; i >= 0; i--) {
-                const particle = particles[i];
-                if(particle.update()) {
-                    particles.splice(i, 1);
-                } else {
-                    particle.draw();
-                }
-            }
-
-            // Mobile touch hint
-            if(showTouchHint && hintFade > 0) {
-                const time = Date.now() * 0.001;
-                const pulseSize = 30 + Math.sin(time * 2) * 10;
-                const hintX = window.innerWidth / 2;
-                const hintY = window.innerHeight / 2;
-                
-                // Pulsing ring
-                threadCtx.strokeStyle = `rgba(0, 210, 255, ${0.6 * hintFade})`;
-                threadCtx.lineWidth = 2;
-                threadCtx.shadowBlur = 15;
-                threadCtx.shadowColor = '#00d2ff';
-                threadCtx.beginPath();
-                threadCtx.arc(hintX, hintY, pulseSize, 0, Math.PI * 2);
-                threadCtx.stroke();
-                threadCtx.shadowBlur = 0;
-                
-                // Text hint
-                threadCtx.fillStyle = `rgba(0, 210, 255, ${0.8 * hintFade})`;
-                threadCtx.font = '14px "Courier New", monospace';
-                threadCtx.textAlign = 'center';
-                threadCtx.fillText('TOUCH TO INTERACT', hintX, hintY + 60);
-                threadCtx.textAlign = 'left';
-            }
-        };
 
         // --- POST PROCESSING ---
         const renderScene = new RenderPass(scene, camera);
@@ -3225,7 +2113,7 @@
         const cloudMat = new THREE.MeshLambertMaterial({
             map: createCloudTexture(),
             transparent: true,
-            opacity: 0.09, // Reduced opacity by 10% (0.1 * 0.9)
+            opacity: 0.1,
             depthWrite: false,
             blending: THREE.AdditiveBlending,
             side: THREE.DoubleSide
@@ -3587,19 +2475,19 @@
 
             // Clouds - Digital Wind
             cloudParticles.forEach(c => {
-                c.mesh.rotation.z += c.speed * 0.8; // Reduced speed by 20%
+                c.mesh.rotation.z += c.speed;
                 // Drifting wind effect
-                c.mesh.position.x += Math.sin(time * 0.16 + c.mesh.position.y * 0.001) * c.drift * 0.8; // Reduced speed by 20%
+                c.mesh.position.x += Math.sin(time * 0.2 + c.mesh.position.y * 0.001) * c.drift;
             });
 
             // Diamonds - Floating in wind
             diamonds.forEach(d => {
-                d.mesh.rotation.x += d.rotSpeedX * 0.8; // Reduced speed by 20%
-                d.mesh.rotation.y += d.rotSpeedY * 0.8; // Reduced speed by 20%
-                d.mesh.position.y += d.driftSpeed * 0.8; // Reduced speed by 20%
-
+                d.mesh.rotation.x += d.rotSpeedX;
+                d.mesh.rotation.y += d.rotSpeedY;
+                d.mesh.position.y += d.driftSpeed;
+                
                 // Wind sway
-                d.mesh.position.x = d.baseX + Math.sin(time * 0.4 + d.mesh.position.y * 0.005) * 20; // Reduced speed by 20%
+                d.mesh.position.x = d.baseX + Math.sin(time * 0.5 + d.mesh.position.y * 0.005) * 20;
 
                 if(d.mesh.position.y > 600) d.mesh.position.y = -600;
             });
@@ -3665,8 +2553,8 @@
 
                 // --- DIGITAL WIND LOGIC ---
                 // We add a sine wave offset to the movement to create a "blowing" feel
-                const windX = Math.sin(time * 0.4 + n.currY * 0.002 + n.windOffset) * n.windSpeed * 0.8; // Reduced speed by 20%
-                const windY = Math.cos(time * 0.24 + n.currX * 0.002) * (n.windSpeed * 0.5) * 0.8; // Reduced speed by 20%
+                const windX = Math.sin(time * 0.5 + n.currY * 0.002 + n.windOffset) * n.windSpeed;
+                const windY = Math.cos(time * 0.3 + n.currX * 0.002) * (n.windSpeed * 0.5);
 
                 n.currX += n.vx + windX;
                 n.currY += n.vy + windY;
@@ -3712,9 +2600,6 @@
             const glowTime = Date.now() * 0.001;
             deepGlow.intensity = 2.0 + Math.sin(glowTime) * 0.5;
             deepGlow.position.y = -200 + Math.cos(glowTime * 0.5) * 50;
-
-            // Animate thread system
-            animateThreads();
 
             composer.render();
             requestAnimationFrame(animate);
@@ -3776,40 +2661,6 @@
             }, observerOptions);
 
             cards.forEach(card => observer.observe(card));
-        });
-
-        // 2.5. Enhanced Click/Tap Interactivity
-        // Add clicked class on touch/click for better visual feedback
-        document.addEventListener("DOMContentLoaded", () => {
-            const interactiveElements = document.querySelectorAll('.card, .carousel-slide, .step-card');
-            
-            interactiveElements.forEach(element => {
-                // Mouse click
-                element.addEventListener('click', function(e) {
-                    // Add clicked class
-                    this.classList.add('clicked');
-                    
-                    // Remove after animation completes
-                    setTimeout(() => {
-                        this.classList.remove('clicked');
-                    }, 400);
-                });
-
-                // Touch events for mobile
-                element.addEventListener('touchstart', function(e) {
-                    this.classList.add('clicked');
-                }, { passive: true });
-
-                element.addEventListener('touchend', function(e) {
-                    setTimeout(() => {
-                        this.classList.remove('clicked');
-                    }, 400);
-                }, { passive: true });
-
-                element.addEventListener('touchcancel', function(e) {
-                    this.classList.remove('clicked');
-                }, { passive: true });
-            });
         });
 
         // 3. Glitch / Decode Text Effect
@@ -3910,17 +2761,14 @@
                 bar.style.width = "4px";
                 bar.style.marginRight = "2px";
                 bar.style.animation = `barGraph ${1 + Math.random()}s infinite ease-in-out`;
-                bar.style.animationDelay = Math.random() + 's';
-                barContainer.appendChild(bar);
-            }
-        }
+                // custom delay
 
         // Generate Line Graph
         const lineCanvas = document.getElementById('mon-line-canvas');
         if(lineCanvas) {
             const ctx = lineCanvas.getContext('2d');
             const dataPoints = new Array(50).fill(0.5); // Start flat
-
+            
             function drawLineGraph() {
                 // Update Data with noise
                 dataPoints.shift();
@@ -3933,27 +2781,33 @@
                 dataPoints.push(nextVal);
 
                 ctx.clearRect(0, 0, lineCanvas.width, lineCanvas.height);
-
+                
                 ctx.beginPath();
                 ctx.strokeStyle = '#00d2ff';
                 ctx.lineWidth = 1.5;
                 ctx.shadowColor = '#00d2ff';
                 ctx.shadowBlur = 4;
-
+                
                 const stepX = lineCanvas.width / (dataPoints.length - 1);
-
+                
                 ctx.moveTo(0, lineCanvas.height - (dataPoints[0] * lineCanvas.height));
-
+                
                 for(let i=1; i<dataPoints.length; i++) {
-                    const x = i * stepX;
-                    const y = lineCanvas.height - (dataPoints[i] * lineCanvas.height);
-                    ctx.lineTo(x, y);
+                    // Smooth curve
+                    // ctx.lineTo(i * stepX, lineCanvas.height - (dataPoints[i] * lineCanvas.height));
+                     const x = i * stepX;
+                     const y = lineCanvas.height - (dataPoints[i] * lineCanvas.height);
+                     ctx.lineTo(x, y);
                 }
                 ctx.stroke();
 
                 requestAnimationFrame(drawLineGraph);
             }
             drawLineGraph();
+        }
+                bar.style.animationDelay = Math.random() + 's';
+                barContainer.appendChild(bar);
+            }
         }
     </script>
 
@@ -4267,24 +3121,15 @@
             }
             
             const ctx = canvas.getContext('2d');
-            let width, height;
+            let width = container.clientWidth;
+            let height = container.clientHeight;
             
             // Resize handler
             const resize = () => {
-                const dpr = window.devicePixelRatio || 1;
-                const rect = container.getBoundingClientRect();
-                width = rect.width;
-                height = rect.height;
-                
-                // Set canvas size accounting for device pixel ratio
-                canvas.width = width * dpr;
-                canvas.height = height * dpr;
-                canvas.style.width = width + 'px';
-                canvas.style.height = height + 'px';
-                
-                // Reset transform and scale context to match device pixel ratio
-                ctx.setTransform(1, 0, 0, 1, 0, 0);
-                ctx.scale(dpr, dpr);
+                width = container.clientWidth;
+                height = container.clientHeight;
+                canvas.width = width;
+                canvas.height = height;
             };
             window.addEventListener('resize', resize);
             resize(); // Initial
@@ -4292,7 +3137,7 @@
             // Simulation State
             let angleX = 0;
             let angleY = 0;
-            const size = 80; // INCREASED SIZE for better visibility
+            const size = 50; 
             
             // Wireframe Cube Vertices
             const vertices = [
@@ -4335,9 +3180,8 @@
                     let y = v.y * Math.cos(angleX) - z * Math.sin(angleX);
                     let z2 = v.y * Math.sin(angleX) + z * Math.cos(angleX);
 
-                    // FIXED PERSPECTIVE - Added offset to keep box centered and visible
-                    const distance = 4; // Distance from camera (higher = smaller, lower = bigger)
-                    const scale = 1 / (distance + z2);
+                    // Perspective
+                    const scale = 300 / (300 + z2 * 50); 
                     const px = cx + x * size * scale;
                     const py = cy + y * size * scale;
                     
