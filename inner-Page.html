@@ -1420,7 +1420,7 @@
             align-items: center;
             gap: 2rem;
             width: max-content;
-            animation: cpScroll 30s linear infinite;
+            animation: cpScroll 37.5s linear infinite; /* Reduced speed by 20% (30s * 1.25) */
         }
 
         /* Pause on hover/interaction */
@@ -1538,7 +1538,7 @@
         .factory-track {
             display: flex;
             gap: 15rem;
-            animation: moveFactory 15s linear infinite;
+            animation: moveFactory 18.75s linear infinite; /* Reduced speed by 20% (15s * 1.25) */
             position: absolute;
             left: 100%; /* Start from right */
             will-change: transform;
@@ -2846,7 +2846,7 @@
         // --- SCENE SETUP ---
         const container = document.getElementById('canvas-container');
         const scene = new THREE.Scene();
-        scene.fog = new THREE.FogExp2(0x020204, 0.0015);
+        scene.fog = new THREE.FogExp2(0x020204, 0.00165); // Increased density for 10% more fade
 
         const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 5000);
         camera.position.z = 1000;
@@ -3206,7 +3206,7 @@
         const cloudMat = new THREE.MeshLambertMaterial({
             map: createCloudTexture(),
             transparent: true,
-            opacity: 0.1,
+            opacity: 0.09, // Reduced opacity by 10% (0.1 * 0.9)
             depthWrite: false,
             blending: THREE.AdditiveBlending,
             side: THREE.DoubleSide
@@ -3568,19 +3568,19 @@
 
             // Clouds - Digital Wind
             cloudParticles.forEach(c => {
-                c.mesh.rotation.z += c.speed;
+                c.mesh.rotation.z += c.speed * 0.8; // Reduced speed by 20%
                 // Drifting wind effect
-                c.mesh.position.x += Math.sin(time * 0.2 + c.mesh.position.y * 0.001) * c.drift;
+                c.mesh.position.x += Math.sin(time * 0.16 + c.mesh.position.y * 0.001) * c.drift * 0.8; // Reduced speed by 20%
             });
 
             // Diamonds - Floating in wind
             diamonds.forEach(d => {
-                d.mesh.rotation.x += d.rotSpeedX;
-                d.mesh.rotation.y += d.rotSpeedY;
-                d.mesh.position.y += d.driftSpeed;
-                
+                d.mesh.rotation.x += d.rotSpeedX * 0.8; // Reduced speed by 20%
+                d.mesh.rotation.y += d.rotSpeedY * 0.8; // Reduced speed by 20%
+                d.mesh.position.y += d.driftSpeed * 0.8; // Reduced speed by 20%
+
                 // Wind sway
-                d.mesh.position.x = d.baseX + Math.sin(time * 0.5 + d.mesh.position.y * 0.005) * 20;
+                d.mesh.position.x = d.baseX + Math.sin(time * 0.4 + d.mesh.position.y * 0.005) * 20; // Reduced speed by 20%
 
                 if(d.mesh.position.y > 600) d.mesh.position.y = -600;
             });
@@ -3646,8 +3646,8 @@
 
                 // --- DIGITAL WIND LOGIC ---
                 // We add a sine wave offset to the movement to create a "blowing" feel
-                const windX = Math.sin(time * 0.5 + n.currY * 0.002 + n.windOffset) * n.windSpeed;
-                const windY = Math.cos(time * 0.3 + n.currX * 0.002) * (n.windSpeed * 0.5);
+                const windX = Math.sin(time * 0.4 + n.currY * 0.002 + n.windOffset) * n.windSpeed * 0.8; // Reduced speed by 20%
+                const windY = Math.cos(time * 0.24 + n.currX * 0.002) * (n.windSpeed * 0.5) * 0.8; // Reduced speed by 20%
 
                 n.currX += n.vx + windX;
                 n.currY += n.vy + windY;
