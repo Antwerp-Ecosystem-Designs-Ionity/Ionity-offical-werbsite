@@ -3129,6 +3129,85 @@
         });
 
     </script>
+
+    <!-- Drag Scroll for Architecture Flow Diagram -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const flowDiagram = document.querySelector('.flow-diagram');
+            if (!flowDiagram) return;
+
+            let isDown = false;
+            let startX;
+            let scrollLeft;
+
+            flowDiagram.addEventListener('mousedown', (e) => {
+                isDown = true;
+                flowDiagram.style.cursor = 'grabbing';
+                startX = e.pageX - flowDiagram.offsetLeft;
+                scrollLeft = flowDiagram.scrollLeft;
+            });
+
+            flowDiagram.addEventListener('mouseleave', () => {
+                isDown = false;
+                flowDiagram.style.cursor = 'grab';
+            });
+
+            flowDiagram.addEventListener('mouseup', () => {
+                isDown = false;
+                flowDiagram.style.cursor = 'grab';
+            });
+
+            flowDiagram.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - flowDiagram.offsetLeft;
+                const walk = (x - startX) * 2; // Scroll speed multiplier
+                flowDiagram.scrollLeft = scrollLeft - walk;
+            });
+
+            // Touch support for mobile
+            flowDiagram.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].pageX - flowDiagram.offsetLeft;
+                scrollLeft = flowDiagram.scrollLeft;
+            });
+
+            flowDiagram.addEventListener('touchmove', (e) => {
+                const x = e.touches[0].pageX - flowDiagram.offsetLeft;
+                const walk = (x - startX) * 2;
+                flowDiagram.scrollLeft = scrollLeft - walk;
+            });
+
+            // Auto-scroll loop on mobile
+            if (window.innerWidth <= 768) {
+                let autoScrollInterval;
+                let direction = 1;
+                
+                const startAutoScroll = () => {
+                    autoScrollInterval = setInterval(() => {
+                        if (flowDiagram.scrollLeft >= flowDiagram.scrollWidth - flowDiagram.clientWidth - 10) {
+                            direction = -1; // Reverse direction
+                        } else if (flowDiagram.scrollLeft <= 10) {
+                            direction = 1; // Forward direction
+                        }
+                        flowDiagram.scrollLeft += direction * 1;
+                    }, 20);
+                };
+
+                // Start auto-scroll
+                startAutoScroll();
+
+                // Pause auto-scroll on user interaction
+                flowDiagram.addEventListener('touchstart', () => {
+                    clearInterval(autoScrollInterval);
+                });
+
+                flowDiagram.addEventListener('touchend', () => {
+                    setTimeout(startAutoScroll, 2000); // Resume after 2 seconds
+                });
+            }
+        });
+    </script>
+
     <script src="assets/js/script.js" defer></script>
     <script src="assets/js/audio-manager.js"></script>
     <!-- Monitor & UI Logic -->
