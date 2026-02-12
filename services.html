@@ -9,10 +9,55 @@
     <link rel="dns-prefetch" href="https://maps.googleapis.com">
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
     
-    <title>Ionity | High-Performance IoT Ai Tech Solutions, Cost Saving, Power Saving Johan Wilhelm van Antwerp</title>
-    <meta name="description" content="Ionity or Ionity (Pty) Ltd is the Ai center globally for Ai-EDGE-OFFLINE-development-hardware and software, technology owned by Johan Wilhelm van Antwerp Centurion South Africa yet USA EU and Global intent, Ai-M motherboards inhouse and Solutions hub, clean energy, and innovative cloud, web, hybrid and edge solutions with encryption and Highprofile Cloud usage to ensure OTA and Network stability using Google and Azure as market choice. Services are IoT net development and Designs , aircon ai, controllsystems new ai, news">
-    <meta property="og:title" content="Ionity.today | antwerp Designs">
-    <meta property="og:image" content="https://ionity.today/assets/ionity-today-logo-edited -policy986aed-johanwilhelmvanantwerp-ionity-today-world-global-iot-ai-network-it.png">
+    <!-- Primary Meta Tags -->
+    <title>Services | Johan Wilhelm van Antwerp | Ionity — IoT & AI Solutions</title>
+    <meta name="title" content="Professional IoT & AI Services | Ionity.world">
+    <meta name="description" content="Expert IoT development, AI integration, PCB design, and electronic product development services from Johan Wilhelm van Antwerp in Centurion, South Africa. Global solutions for edge computing, system architecture, and firmware development.">
+    <meta name="keywords" content="IoT Services, AI Integration, PCB Design, Johan Wilhelm van Antwerp, Ionity Services, Edge Computing, System Architecture, Firmware Development, Electronic Engineering, Centurion South Africa">
+    <meta name="author" content="Johan Wilhelm van Antwerp">
+    <link rel="canonical" href="https://www.ionity.world/services.html" />
+    <link rel="icon" type="image/png" href="assets/images/ionity-logo-edited.png">
+    
+    <!-- Geo Location Meta -->
+    <meta name="geo.region" content="ZA-GP">
+    <meta name="geo.placename" content="Centurion">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.ionity.world/services.html">
+    <meta property="og:title" content="IoT & AI Services | Johan Wilhelm van Antwerp | Ionity">
+    <meta property="og:description" content="High-performance IoT, AI integration, and electronic product development services for global markets.">
+    <meta property="og:image" content="https://www.ionity.world/assets/images/ionity-logo-edited.png">
+    <meta property="og:site_name" content="Ionity">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.ionity.world/services.html">
+    <meta property="twitter:title" content="IoT & AI Services | Ionity">
+    <meta property="twitter:description" content="Expert Electronic Product Design & AI Integration for Global Markets.">
+    <meta property="twitter:image" content="https://www.ionity.world/assets/images/ionity-logo-edited.png">
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "serviceType": "IoT & AI Solutions",
+      "provider": {
+        "@type": "Person",
+        "name": "Johan Wilhelm van Antwerp",
+        "email": "ai@ionity.today",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Centurion",
+          "addressRegion": "Gauteng",
+          "addressCountry": "ZA"
+        }
+      },
+      "areaServed": "Global",
+      "description": "Professional IoT development, AI integration, PCB design, and electronic product development services."
+    }
+    </script>
     
     <!-- Cookie Consent Styles -->
     <link rel="stylesheet" href="assets/css/style.css">
@@ -230,9 +275,9 @@
         .container {
             position: relative;
             z-index: 1; 
-            max-width: 1400px;
+            max-width: 100%; /* Full width instead of 1400px */
             margin: 0 auto;
-            padding: 4rem 5vw;
+            padding: 4rem 2vw; /* Reduced from 5vw to 2vw */
         }
 
         .hero-section {
@@ -540,17 +585,17 @@
         /* --- SLIDER / CAROUSEL STYLES --- */
         .slider-viewport {
             width: 100%;
-            overflow: hidden;
+            overflow: visible; /* Changed from hidden to allow hover effects */
             position: relative;
             padding: 2rem 0;
-            mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
-            -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+            /* NO MASK - removed dark shadows on sides */
         }
 
         .slider-track {
             display: flex;
-            gap: 2rem;
+            gap: 1.5rem; /* Reduced from 2rem */
             width: max-content;
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
             /* Animation duration will be set primarily via JS or default here, 
                but we need to duplicate content for the infinite effect */
         }
@@ -565,16 +610,25 @@
             100% { transform: translateX(-50%); }
         }
 
-        /* Ensure cards in slider maintain width */
+        /* Ensure cards in slider maintain width - LARGER for full potential */
         .slider-track .card, .slider-track .card-3d-scene {
-            width: 320px;
+            width: 380px; /* Increased from 280px */
             flex-shrink: 0;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
             /* Reset transform from grid hover if conflicts, but keep hover effect */
+        }
+        
+        /* Hover effect - bring card forward */
+        .slider-track .card:hover, .slider-track .card-3d-scene:hover {
+            transform: scale(1.15) translateY(-15px);
+            z-index: 100;
+            box-shadow: 0 20px 60px rgba(0, 210, 255, 0.4), 0 0 30px rgba(0, 210, 255, 0.2);
         }
 
         /* --- 3D DIGITAL CARDS --- */
         .card-3d-scene {
-            width: 320px; 
+            width: 380px; /* Increased from 320px */
             height: 400px;
             perspective: 1200px;
             cursor: pointer;
@@ -1298,9 +1352,10 @@
             position: relative;
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 0.5rem; /* Reduced from 1rem */
             width: 100%;
             margin: 0 auto;
+            padding: 2rem 0;
         }
 
         .slider-viewport {
@@ -1308,40 +1363,47 @@
             width: 100%;
             padding: 2rem 0;
             position: relative;
-            mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
-            -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+            /* NO MASK - removed dark shadows on sides */
         }
 
         .slider-track {
             display: flex;
-            gap: 2rem;
+            gap: 1.5rem; /* Reduced from 2rem */
             width: max-content;
             transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1); /* Ease-out cubic */
         }
 
         .carousel-btn {
-            background: rgba(2, 2, 4, 0.6);
+            background: rgba(2, 2, 4, 0.8);
             border: 1px solid var(--accent-cyan);
             color: var(--accent-cyan);
-            width: 45px;
-            height: 45px;
-            min-width: 45px; /* Prevent shrinking */
+            width: 50px;
+            height: 50px;
+            min-width: 50px; /* Prevent shrinking */
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             transition: all 0.3s ease;
             z-index: 10;
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(8px);
+            opacity: 0.7; /* Slightly transparent by default */
         }
 
         .carousel-btn:hover {
             background: var(--accent-cyan);
             color: #000;
-            box-shadow: 0 0 15px var(--accent-cyan);
-            transform: scale(1.1);
+            box-shadow: 0 0 20px var(--accent-cyan);
+            transform: scale(1.15);
+            opacity: 1;
+        }
+        
+        /* Optional: Hide buttons on keyboard/touch capable devices */
+        .carousel-btn.hide-optional {
+            opacity: 0;
+            pointer-events: none;
         }
         
         /* Disable automatic scrolling on tracks */
@@ -1350,10 +1412,9 @@
         }
 
         @media (max-width: 768px) {
-            /* Reduced darkness: 2% instead of 5% for better readability on sides */
+            /* NO MASK - clean edges */
             .slider-viewport {
-                mask-image: linear-gradient(to right, transparent 0%, black 2%, black 98%, transparent 100%) !important;
-                -webkit-mask-image: linear-gradient(to right, transparent 0%, black 2%, black 98%, transparent 100%) !important;
+                /* Removed mask gradient */
             }
             
             /* Center the 85vw card: (100vw - 85vw) / 2 = 7.5vw padding */
@@ -1367,12 +1428,15 @@
         document.addEventListener("DOMContentLoaded", () => {
             const carousels = document.querySelectorAll('.carousel-wrapper');
             
-            carousels.forEach(wrapper => {
+            carousels.forEach((wrapper, index) => {
                 const track = wrapper.querySelector('.slider-track');
                 const nextBtn = wrapper.querySelector('.next-btn');
                 const prevBtn = wrapper.querySelector('.prev-btn');
+                const viewport = wrapper.querySelector('.slider-viewport');
                 
                 let position = 0;
+                let touchStartX = 0;
+                let touchEndX = 0;
                 
                 const moveSlide = (direction) => {
                     const cards = track.querySelectorAll('.card, .card-3d-scene');
@@ -1384,7 +1448,7 @@
                     // Total width of all content
                     const trackWidth = track.scrollWidth;
                     // Visible width
-                    const viewportWidth = wrapper.querySelector('.slider-viewport').clientWidth;
+                    const viewportWidth = viewport.clientWidth;
                     
                     const maxTranslate = -(trackWidth - viewportWidth);
 
@@ -1399,8 +1463,63 @@
                     track.style.transform = `translateX(${position}px)`;
                 };
 
+                // Button click handlers
                 nextBtn.addEventListener('click', () => moveSlide('next'));
                 prevBtn.addEventListener('click', () => moveSlide('prev'));
+                
+                // Keyboard navigation (left/right arrow keys)
+                // Only activate keyboard when hovering over carousel
+                wrapper.addEventListener('mouseenter', () => {
+                    wrapper.dataset.focused = 'true';
+                });
+                
+                wrapper.addEventListener('mouseleave', () => {
+                    wrapper.dataset.focused = 'false';
+                });
+                
+                // Touch swipe support
+                viewport.addEventListener('touchstart', (e) => {
+                    touchStartX = e.changedTouches[0].screenX;
+                }, { passive: true });
+                
+                viewport.addEventListener('touchend', (e) => {
+                    touchEndX = e.changedTouches[0].screenX;
+                    handleSwipe();
+                }, { passive: true });
+                
+                const handleSwipe = () => {
+                    const swipeThreshold = 50; // Minimum swipe distance
+                    const diff = touchStartX - touchEndX;
+                    
+                    if (Math.abs(diff) > swipeThreshold) {
+                        if (diff > 0) {
+                            // Swiped left - go next
+                            moveSlide('next');
+                        } else {
+                            // Swiped right - go prev
+                            moveSlide('prev');
+                        }
+                    }
+                };
+                
+                // Store moveSlide function on wrapper for keyboard access
+                wrapper.moveSlide = moveSlide;
+            });
+            
+            // Global keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+                    // Find focused carousel
+                    const focusedCarousel = document.querySelector('.carousel-wrapper[data-focused="true"]');
+                    if (focusedCarousel && focusedCarousel.moveSlide) {
+                        e.preventDefault();
+                        if (e.key === 'ArrowLeft') {
+                            focusedCarousel.moveSlide('prev');
+                        } else {
+                            focusedCarousel.moveSlide('next');
+                        }
+                    }
+                }
             });
         });
     </script>

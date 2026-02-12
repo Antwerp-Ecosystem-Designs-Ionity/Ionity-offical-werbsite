@@ -9,9 +9,52 @@
     <link rel="dns-prefetch" href="https://maps.googleapis.com">
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
     
-    <title>Ionity | Arsenal & Ecosystem</title>
+    <!-- Primary Meta Tags -->
+    <title>Products | Johan Wilhelm van Antwerp | Ionity Arsenal & Ecosystem</title>
+    <meta name="title" content="IoT & AI Products | Ionity.world">
+    <meta name="description" content="Explore Ionity's product arsenal: Edge Computing solutions, Custom Software, AI Ecosystems, and the AEDI-Shield Defense System. Designed by Johan Wilhelm van Antwerp in Centurion, South Africa for global markets.">
+    <meta name="keywords" content="IoT Products, AI Ecosystems, Edge Computing, AEDI-Shield, Johan Wilhelm van Antwerp Products, Ionity Arsenal, Custom Software, Electronic Products">
+    <meta name="author" content="Johan Wilhelm van Antwerp">
+    <link rel="canonical" href="https://www.ionity.world/products.html" />
+    <link rel="icon" type="image/png" href="assets/images/ionity-logo-edited.png">
+    
+    <!-- Geo Location Meta -->
+    <meta name="geo.region" content="ZA-GP">
+    <meta name="geo.placename" content="Centurion">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.ionity.world/products.html">
+    <meta property="og:title" content="Products | Johan Wilhelm van Antwerp | Ionity">
+    <meta property="og:description" content="Advanced IoT & AI products including edge computing, custom software, and defense systems.">
+    <meta property="og:image" content="https://www.ionity.world/assets/images/ionity-logo-edited.png">
+    <meta property="og:site_name" content="Ionity">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.ionity.world/products.html">
+    <meta property="twitter:title" content="Ionity Products | IoT & AI Arsenal">
+    <meta property="twitter:description" content="Edge Computing, AI Ecosystems, and innovative electronic products.">
+    <meta property="twitter:image" content="https://www.ionity.world/assets/images/ionity-logo-edited.png">
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "Ionity Products",
+      "description": "Edge Computing, Custom Software, AI Ecosystems, and the AEDI-Shield Defense System",
+      "provider": {
+        "@type": "Person",
+        "name": "Johan Wilhelm van Antwerp",
+        "email": "ai@ionity.today",
+        "url": "https://www.ionity.world"
+      }
+    }
+    </script>
+    
+    <!-- Cookie Consent Styles -->
     <link rel="stylesheet" href="assets/css/style.css">
-    <meta name="description" content="Ionity Products - Edge Computing, Custom Software, AI Ecosystems, and the AEDI-Shield Defense System.">
     
     <style>
         :root {
@@ -44,6 +87,40 @@
             height: 100%;
             z-index: 0; 
             pointer-events: none;
+            animation: cosmicPulse 8s ease-in-out infinite;
+        }
+        
+        @keyframes cosmicPulse {
+            0%, 100% { 
+                filter: brightness(1) saturate(1);
+            }
+            50% { 
+                filter: brightness(1.1) saturate(1.2);
+            }
+        }
+        
+        /* Enhanced Chromatic Aberration Effect */
+        #canvas-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(
+                ellipse at center,
+                transparent 0%,
+                rgba(0, 210, 255, 0.03) 50%,
+                rgba(0, 210, 255, 0.05) 100%
+            );
+            mix-blend-mode: screen;
+            pointer-events: none;
+            animation: chromaticShift 10s ease-in-out infinite;
+        }
+        
+        @keyframes chromaticShift {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
         }
 
         /* --- VISUAL FX --- */
@@ -54,7 +131,51 @@
             background-size: 100% 4px;
             pointer-events: none;
             z-index: 99;
-            opacity: 0.3;
+            opacity: 0.2;
+            animation: scanlineMove 8s linear infinite;
+        }
+        
+        @keyframes scanlineMove {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 40px; }
+        }
+        
+        /* Vignette Effect */
+        .vignette {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 98;
+            background: radial-gradient(
+                ellipse at center,
+                transparent 0%,
+                transparent 40%,
+                rgba(0, 0, 0, 0.4) 100%
+            );
+        }
+        
+        /* Subtle Bloom Overlay */
+        .bloom-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(0, 210, 255, 0.08) 0%, transparent 30%),
+                radial-gradient(circle at 80% 70%, rgba(0, 210, 255, 0.06) 0%, transparent 30%),
+                radial-gradient(circle at 50% 50%, rgba(0, 255, 136, 0.04) 0%, transparent 50%);
+            animation: bloomPulse 15s ease-in-out infinite;
+        }
+        
+        @keyframes bloomPulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 0.8; }
         }
 
         /* --- GLOW ANIMATIONS --- */
@@ -531,6 +652,12 @@
             overflow-y: hidden;
             scrollbar-width: thin;
             scrollbar-color: var(--accent-cyan) rgba(2,2,4,0.8);
+            max-width: 100%;
+        }
+        
+        .schematic-container svg {
+            max-width: 100%;
+            height: auto;
         }
 
         /* Custom Scrollbar for uniqueness */
@@ -644,6 +771,7 @@
 <body>
 
     <div id="canvas-container"></div>
+    <div class="bloom-overlay"></div>
     <div class="scanlines"></div>
     <div class="vignette"></div>
 
@@ -1308,6 +1436,25 @@ button class="slider-btn prev-btn" aria-label="Previous Slide">&#10094;</button>
         // ═══════════════════════════════════════════════════════════════
         // ⚡ ULTRA-ENHANCED COSMIC SOLAR SYSTEM WITH PARTICLE EFFECTS ⚡
         // ═══════════════════════════════════════════════════════════════
+        // 
+        // ENHANCEMENTS INCLUDE:
+        // ✨ Multi-layered starfield with 15,000+ stars (color variety)
+        // 🌟 Enhanced sun with corona particles & pulsating glows
+        // 🪐 Planets with glowing auras & rotating energy rings
+        // ☄️ Shooting stars with realistic trail effects
+        // 🌌 8 procedural nebula clouds with different colors
+        // 💫 Cosmic dust particles (5,000+)
+        // 🕳️ Wormhole portal effect in the distance
+        // 🔲 3D cosmic grid overlay for depth
+        // ⚡ Energy particle fields rotating in layers
+        // 🎨 Dynamic lighting with accent colors
+        // 🎭 Chromatic aberration & bloom effects (CSS)
+        // 👁️ Advanced camera parallax following mouse
+        // 🌊 Smooth animations with pulsating effects
+        // 🎯 Optimized rendering with tone mapping
+        // 
+        // ═══════════════════════════════════════════════════════════════
+        
         let scene, camera, renderer, stars, sun;
         let planets = [];
         let mouseX = 0, mouseY = 0;
@@ -1363,7 +1510,7 @@ button class="slider-btn prev-btn" aria-label="Previous Slide">&#10094;</button>
             accentLight1.position.set(800, 400, -600);
             scene.add(accentLight1);
             
-            const accentLight2 = new THREE.PointLight(0xff00ff, 1.2, 3000);
+            const accentLight2 = new THREE.PointLight(0x00d2ff, 1.2, 3000);
             accentLight2.position.set(-800, -400, 600);
             scene.add(accentLight2);
 
@@ -1427,6 +1574,12 @@ button class="slider-btn prev-btn" aria-label="Previous Slide">&#10094;</button>
             
             // --- WORMHOLE EFFECT ---
             createWormhole();
+            
+            // --- COSMIC GRID OVERLAY ---
+            createCosmicGrid();
+            
+            // --- FLOATING ENERGY PARTICLES ---
+            createEnergyParticles();
 
             // --- ULTRA-ENHANCED SUN ---
             const sunGeo = new THREE.SphereGeometry(100, 64, 64);
@@ -1481,7 +1634,7 @@ button class="slider-btn prev-btn" aria-label="Previous Slide">&#10094;</button>
 
             planetData.forEach((data, index) => {
                 // Enhanced Orbit Path
-                const orbitColor = (index % 3 === 0) ? 0x00d2ff : (index % 3 === 1 ? 0xff00ff : 0x00ff88);
+                const orbitColor = (index % 2 === 0) ? 0x00d2ff : 0x00ff88;
                 const pathGeo = new THREE.RingGeometry(data.dist - 1, data.dist + 1, 256);
                 const pathMat = new THREE.MeshBasicMaterial({ 
                     color: orbitColor, 
@@ -1757,6 +1910,122 @@ button class="slider-btn prev-btn" aria-label="Previous Slide">&#10094;</button>
             wormhole.rotation.y = Math.PI / 4;
             scene.add(wormhole);
         }
+        
+        function createCosmicGrid() {
+            const gridSize = 8000;
+            const divisions = 80;
+            const step = gridSize / divisions;
+            
+            // Horizontal grid
+            const gridGeometry1 = new THREE.BufferGeometry();
+            const gridPositions1 = [];
+            
+            for(let i = -divisions/2; i <= divisions/2; i++) {
+                gridPositions1.push(-gridSize/2, -1000, i * step);
+                gridPositions1.push(gridSize/2, -1000, i * step);
+                gridPositions1.push(i * step, -1000, -gridSize/2);
+                gridPositions1.push(i * step, -1000, gridSize/2);
+            }
+            
+            gridGeometry1.setAttribute('position', 
+                new THREE.Float32BufferAttribute(gridPositions1, 3));
+            
+            const gridMaterial1 = new THREE.LineBasicMaterial({
+                color: 0x00d2ff,
+                transparent: true,
+                opacity: 0.08,
+                blending: THREE.AdditiveBlending
+            });
+            
+            const grid1 = new THREE.LineSegments(gridGeometry1, gridMaterial1);
+            scene.add(grid1);
+            
+            // Vertical grid (walls)
+            const gridGeometry2 = new THREE.BufferGeometry();
+            const gridPositions2 = [];
+            
+            for(let i = -divisions/2; i <= divisions/2; i++) {
+                gridPositions2.push(-gridSize/2, i * step, -gridSize/2);
+                gridPositions2.push(-gridSize/2, i * step, gridSize/2);
+                gridPositions2.push(-gridSize/2, -gridSize/2, i * step);
+                gridPositions2.push(-gridSize/2, gridSize/2, i * step);
+            }
+            
+            gridGeometry2.setAttribute('position', 
+                new THREE.Float32BufferAttribute(gridPositions2, 3));
+            
+            const gridMaterial2 = new THREE.LineBasicMaterial({
+                color: 0x00d2ff,
+                transparent: true,
+                opacity: 0.05,
+                blending: THREE.AdditiveBlending
+            });
+            
+            const grid2 = new THREE.LineSegments(gridGeometry2, gridMaterial2);
+            scene.add(grid2);
+        }
+        
+        function createEnergyParticles() {
+            const count = 3;
+            
+            for(let i = 0; i < count; i++) {
+                const geometry = new THREE.BufferGeometry();
+                const particleCount = 600;
+                const positions = new Float32Array(particleCount * 3);
+                const colors = new Float32Array(particleCount * 3);
+                const sizes = new Float32Array(particleCount);
+                
+                const colorChoice = i % 3;
+                let r, g, b;
+                if(colorChoice === 0) {
+                    r = 0; g = 0.8; b = 1; // Cyan
+                } else if(colorChoice === 1) {
+                    r = 0; g = 1; b = 0.5; // Green
+                } else {
+                    r = 1; g = 0.68; b = 0; // Gold
+                }
+                
+                for(let j = 0; j < particleCount; j++) {
+                    const j3 = j * 3;
+                    const radius = 1500 + i * 500;
+                    const theta = Math.random() * Math.PI * 2;
+                    const y = (Math.random() - 0.5) * 1000;
+                    
+                    positions[j3] = Math.cos(theta) * radius;
+                    positions[j3 + 1] = y;
+                    positions[j3 + 2] = Math.sin(theta) * radius;
+                    
+                    const brightness = 0.5 + Math.random() * 0.5;
+                    colors[j3] = r * brightness;
+                    colors[j3 + 1] = g * brightness;
+                    colors[j3 + 2] = b * brightness;
+                    
+                    sizes[j] = Math.random() * 6 + 2;
+                }
+                
+                geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+                geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+                geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
+                
+                const material = new THREE.PointsMaterial({
+                    size: 4,
+                    vertexColors: true,
+                    transparent: true,
+                    opacity: 0.7,
+                    sizeAttenuation: true,
+                    blending: THREE.AdditiveBlending
+                });
+                
+                const particles = new THREE.Points(geometry, material);
+                scene.add(particles);
+                
+                particleFields.push({
+                    mesh: particles,
+                    rotationSpeed: 0.0002 + i * 0.0001,
+                    index: i
+                });
+            }
+        }
 
         function onDocumentMouseMove(event) {
             mouseX = (event.clientX - windowHalfX);
@@ -1871,6 +2140,23 @@ button class="slider-btn prev-btn" aria-label="Previous Slide">&#10094;</button>
                 wormhole.rotation.y += 0.001;
                 wormhole.material.opacity = 0.15 + Math.sin(time) * 0.05;
             }
+            
+            // Animate Energy Particle Fields
+            particleFields.forEach(field => {
+                field.mesh.rotation.y += field.rotationSpeed;
+                
+                // Vertical wave motion
+                const positions = field.mesh.geometry.attributes.position.array;
+                for(let i = 0; i < positions.length / 3; i++) {
+                    const i3 = i * 3;
+                    const originalY = positions[i3 + 1];
+                    positions[i3 + 1] = originalY + Math.sin(time + i * 0.1 + field.index) * 0.5;
+                }
+                field.mesh.geometry.attributes.position.needsUpdate = true;
+                
+                // Pulsating opacity
+                field.mesh.material.opacity = 0.5 + Math.sin(time * 2 + field.index) * 0.2;
+            });
 
             // Enhanced Camera Interaction with smooth parallax
             const targetX = mouseX * 0.5;
@@ -1884,8 +2170,13 @@ button class="slider-btn prev-btn" aria-label="Previous Slide">&#10094;</button>
             const lookAtY = -mouseY * 0.1;
             camera.lookAt(lookAtX, lookAtY, 0);
             
-            // Color shift based on time
-            scene.fog.density = 0.0003 + Math.sin(time * 0.5) * 0.00005;
+            // Scroll-based depth effect
+            const scrollY = window.scrollY || window.pageYOffset;
+            const scrollFactor = scrollY * 0.0005;
+            camera.position.z = 1100 + scrollFactor * 200;
+            
+            // Color shift based on time and scroll
+            scene.fog.density = 0.0003 + Math.sin(time * 0.5) * 0.00005 + scrollFactor * 0.00001;
 
             renderer.render(scene, camera);
         }
