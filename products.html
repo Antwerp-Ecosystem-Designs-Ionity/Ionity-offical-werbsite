@@ -1773,24 +1773,119 @@ button class="slider-btn prev-btn" aria-label="Previous Slide">&#10094;</button>
 
         function animate() {
             requestAnimationFrame(animate);
+            time += 0.01;
 
-            // Rotate Sun
-            sun.rotation.y += 0.002;
+            // Enhanced Sun Rotation with wobble
+            sun.rotation.y += 0.003;
+            sun.rotation.x = Math.sin(time * 0.1) * 0.1;
+            
+            // Pulsating sun glow effect
+            if (sun.children[0]) {
+                sun.children[0].scale.set(
+                    1 + Math.sin(time * 2) * 0.05,
+                    1 + Math.sin(time * 2) * 0.05,
+                    1 + Math.sin(time * 2) * 0.05
+                );
+            }
 
-            // Rotate Planets around Sun
-            planets.forEach(p => {
-                p.pivot.rotation.y += p.speed;      // Orbit
-                p.mesh.rotation.y += p.selfSpeed;   // Self rotation
+            // Rotate Planets around Sun with enhanced effects
+            planets.forEach((p, index) => {
+                p.pivot.rotation.y += p.speed;
+                p.mesh.rotation.y += p.selfSpeed;
+                
+                // Pulsating orbit paths
+                if (p.orbitPath) {
+                    p.orbitPath.material.opacity = 0.3 + Math.sin(time * 2 + index) * 0.15;
+                }
+                
+                // Wobble planet auras
+                if (p.mesh.children[0]) {
+                    p.mesh.children[0].scale.set(
+                        1 + Math.sin(time * 3 + index) * 0.1,
+                        1 + Math.sin(time * 3 + index) * 0.1,
+                        1 + Math.sin(time * 3 + index) * 0.1
+                    );
+                }
+            });
+            
+            // Rotate energy rings
+            energyRings.forEach((ring, index) => {
+                ring.rotation.z += 0.01 + index * 0.002;
+                ring.material.opacity = 0.4 + Math.sin(time * 2 + index) * 0.2;
             });
 
-            // Rotate Stars
-            stars.rotation.y -= 0.0001;
+            // Rotate Stars with parallax layers
+            stars.rotation.y -= 0.0002;
+            stars.rotation.x += 0.00005;
+            
+            // Animate Cosmic Dust
+            if (cosmicDust) {
+                cosmicDust.rotation.y += 0.0001;
+                cosmicDust.rotation.x -= 0.00005;
+            }
+            
+            // Animate Nebula Clouds
+            nebulaClouds.forEach(cloud => {
+                cloud.mesh.rotation.y += cloud.rotationSpeed;
+                cloud.mesh.rotation.x += cloud.rotationSpeed * 0.5;
+            });
+            
+            // Animate Shooting Stars
+            shootingStars.forEach(star => {
+                star.life--;
+                
+                if (star.life <= 0) {
+                    // Reset shooting star
+                    star.life = star.maxLife;
+                    const positions = star.line.geometry.attributes.position.array;
+                    const startX = (Math.random() - 0.5) * 10000;
+                    const startY = 2000 + Math.random() * 3000;
+                    const startZ = (Math.random() - 0.5) * 10000;
+                    
+                    for(let i = 0; i < 20; i++) {
+                        positions[i * 3] = startX;
+                        positions[i * 3 + 1] = startY;
+                        positions[i * 3 + 2] = startZ;
+                    }
+                    star.line.geometry.attributes.position.needsUpdate = true;
+                } else {
+                    // Move shooting star
+                    const positions = star.line.geometry.attributes.position.array;
+                    for(let i = 19; i > 0; i--) {
+                        positions[i * 3] = positions[(i - 1) * 3];
+                        positions[i * 3 + 1] = positions[(i - 1) * 3 + 1];
+                        positions[i * 3 + 2] = positions[(i - 1) * 3 + 2];
+                    }
+                    positions[0] += star.velocity.x;
+                    positions[1] += star.velocity.y;
+                    positions[2] += star.velocity.z;
+                    
+                    star.line.geometry.attributes.position.needsUpdate = true;
+                    star.line.material.opacity = Math.min(1, star.life / 20);
+                }
+            });
+            
+            // Animate Wormhole
+            if (wormhole) {
+                wormhole.rotation.x += 0.002;
+                wormhole.rotation.y += 0.001;
+                wormhole.material.opacity = 0.15 + Math.sin(time) * 0.05;
+            }
 
-            // Camera Interaction (Parallax)
-            // Move camera slightly based on mouse
-            camera.position.x += (mouseX * 0.3 - camera.position.x) * 0.05;
-            camera.position.y += (-mouseY * 0.3 + 300 - camera.position.y) * 0.05;
-            camera.lookAt(scene.position);
+            // Enhanced Camera Interaction with smooth parallax
+            const targetX = mouseX * 0.5;
+            const targetY = -mouseY * 0.3 + 400;
+            
+            camera.position.x += (targetX - camera.position.x) * 0.03;
+            camera.position.y += (targetY - camera.position.y) * 0.03;
+            
+            // Dynamic camera rotation based on mouse
+            const lookAtX = mouseX * 0.1;
+            const lookAtY = -mouseY * 0.1;
+            camera.lookAt(lookAtX, lookAtY, 0);
+            
+            // Color shift based on time
+            scene.fog.density = 0.0003 + Math.sin(time * 0.5) * 0.00005;
 
             renderer.render(scene, camera);
         }
