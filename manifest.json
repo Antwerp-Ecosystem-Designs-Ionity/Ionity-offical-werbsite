@@ -1,7 +1,7 @@
 {
   "name": "Ionity - IoT & Firmware Development Solutions",
   "short_name": "Ionity",
-  "description": "Advanced IoT solutions, firmware development, and AI innovation for connected devices",
+  "description": "Advanced IoT solutions,Building Tomorrow, Today. Secure Industrial IoT, AI, and Hardware Solutions.", firmware development, and AI innovation for connected devices Edge and Cloud",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
@@ -80,6 +80,30 @@
       "description": "Explore our services",
       "url": "/services.html",
       "icons": [{ "src": "/assets/images/icon-96x96.png", "sizes": "96x96" }]
+    }
+{
+      "src": "/assets/images/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/images/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/assets/images/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/images/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ],
   "prefer_related_applications": false

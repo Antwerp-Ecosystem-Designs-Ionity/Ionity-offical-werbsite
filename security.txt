@@ -1,17 +1,13 @@
-# Security Contact Information
-# For Ionity (Pty) Ltd - www.ionity.world
+# Ionity / Antwerp Designs Security Policy
+# https://www.ionity.today/.well-known/security.txt
 
-Contact: mailto:ai@ionity.today
-Expires: 2027-02-12T12:00:00.000Z
+Contact: mailto:johan@ionity.today
+Contact: mailto:admin@ionity.today
+Expires: 2027-01-01T00:00:00.000Z
+Encryption: https://www.ionity.today/pgp-key.txt
 Preferred-Languages: en, af
-Canonical: https://www.ionity.world/security.txt
+Canonical: https://www.ionity.today/.well-known/security.txt
+Policy: https://www.ionity.today/security-policy
 
-# Security Policy
-# If you discover a security vulnerability, please report it responsibly.
-# We take all security reports seriously and will respond promptly.
-
-# Response Time
-# We aim to respond to security reports within 48 hours.
-
-# Acknowledgments
-# Thank you for helping keep Ionity and our users safe.
+# "Building Tomorrow, Today. Secure Industrial IoT."
+<

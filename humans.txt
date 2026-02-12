@@ -1,45 +1,45 @@
 /* TEAM */
+
+  Founder / Engineer: Johan Wilhelm van Antwerp (IO)
+
+  Role: Ecosystems Solutionist, IoT Engineer
+
+  Location: Pretoria, South Africa
+
   
-  Lead Designer & Developer: Johan Wilhelm van Antwerp
-  Contact: ai [at] ionity.today
-  LinkedIn: https://za.linkedin.com/in/johanvanantwerp
-  ORCID: https://orcid.org/0009-0005-7181-0347
-  Location: Centurion, Gauteng, South Africa
 
-/* SITE */
+  Contact: johan@ionity.today
 
-  Standards: HTML5, CSS3, JavaScript ES6+
-  Components: Three.js, WebGL, Responsive Design
-  Software: VS Code, Git, GitHub
-  Languages: English
-  Doctype: HTML5
-  IDE: Visual Studio Code
+  LinkedIn: https://www.linkedin.com/in/ionity
 
-/* COMPANY */
+  GitHub: https://github.com/AntwerpDesignsIonity
 
-  Company: Ionity (Pty) Ltd
-  Brand: Antwerp Ecosystem Designs - Ionity
-  Website: https://www.ionity.world
-  Alternative: https://www.ionity.today
-  Location: Centurion, South Africa
-  
-/* SPECIALIZATION */
+  Web: https://www.ionity.today/
 
-  - Internet of Things (IoT) Solutions
-  - Artificial Intelligence Integration
-  - PCB Design & Electronic Engineering
-  - Full-Stack Product Development
-  - Global Market Deployment
-  - Firmware Development
-  - System Architecture Design
+
 
 /* THANKS */
 
-  We appreciate all contributors to open-source projects
-  that make modern web development possible.
+  God: "Anything is Possible with God."
 
-/* META */
 
-  Last update: 2026/02/12
-  Version: 2.0
-  Site type: Professional Portfolio & Company Website
+
+/* SITE */
+
+  Standards: HTML5, CSS3, JSON-LD, PWA, Manifesto
+
+  Components: Ionity Cloud, Edge AI Integration, Power-Saving Hardware
+
+  Software: Custom Bash / Python / JS Stack
+
+  Doctype: HTML5
+
+  IDE: DeepThink v2.5 / VS Code
+
+  
+
+/* LEGAL */
+
+  Copyright: 2018-2026 Ionity (Pty) Ltd | Antwerp Designs
+
+  License: CC BY-NC-SA 4.0 | License 900 AED  |  POLICY 986 AED
