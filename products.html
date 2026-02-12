@@ -2,7 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    
+    <!-- Resource Hints for Performance -->
+    <link rel="preconnect" href="https://api.ionity.today">
+    <link rel="dns-prefetch" href="https://maps.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    
     <title>Ionity | Arsenal & Ecosystem</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <meta name="description" content="Ionity Products - Edge Computing, Custom Software, AI Ecosystems, and the AEDI-Shield Defense System.">
@@ -236,9 +242,32 @@
 
         /* Responsive Styles */
         @media (max-width: 768px) {
+            nav { padding: 0 1rem; height: 60px; }
+            nav.scrolled { height: 50px; }
+            .mobile-dropdown { top: 60px; }
+            nav.scrolled .mobile-dropdown { top: 50px; }
+
             .nav-link { display: none; }
             .nav-links { display: none; }
             .mobile-menu-btn { display: block; }
+            
+            .hero-section {
+                margin-top: 2rem;
+                margin-bottom: 3rem;
+                text-align: center;
+                padding: 0 1rem;
+            }
+            
+            h1 { 
+                font-size: 2.5rem; 
+                text-align: center;
+            }
+            
+            .hero-sub {
+                font-size: 0.75rem;
+                letter-spacing: 0.15rem;
+                text-align: center;
+            }
         }
 
         /* --- LAYOUT --- */
@@ -264,8 +293,11 @@
             border-bottom: 1px solid var(--border); 
             padding-bottom: 0.8rem;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: space-between;
+            justify-content: center;
+            text-align: center;
+            gap: 0.5rem;
         }
         .grid-header span { font-size: 0.8rem; letter-spacing: 1px; color: var(--border); }
 
@@ -380,6 +412,28 @@
         .blueprint-header { border-bottom: 2px solid var(--accent-cyan); margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: flex-end; padding-bottom: 0.5rem; }
         .blueprint-title { font-size: 2.2rem; margin: 0; }
         .blueprint-title span { color: var(--accent-cyan); font-weight: 300; }
+
+        @media (max-width: 768px) {
+            .blueprint-header {
+                flex-direction: column;
+                align-items: center; 
+                gap: 0.5rem;
+            }
+            .blueprint-header > div {
+                text-align: center !important;
+                margin-top: 0.5rem;
+            }
+            .grid-header {
+                padding: 0 1rem;
+                font-size: 1.2rem;
+                letter-spacing: 0.2rem;
+                text-align: center;
+            }
+            .blueprint-title {
+                font-size: 1.6rem;
+                text-align: center;
+            }
+        }
         
         .blueprint-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
         
@@ -844,7 +898,7 @@
                 </div>
             </div>
 
-            <div style="text-align: center; margin-top: 2.5rem;">
+            <div style="text-align: center; margin-top: 2.5rem; display: flex; justify-content: center; align-items: center; width: 100%;">
                 <a href="contact.html" style="
                     display: inline-block;
                     padding: 1rem 3rem;
@@ -857,6 +911,7 @@
                     font-weight: bold;
                     transition: all 0.3s ease;
                     box-shadow: 0 0 20px rgba(0, 210, 255, 0.2);
+                    margin: 0 auto;
                 " onmouseover="this.style.background='rgba(0, 210, 255, 0.35)'; this.style.boxShadow='0 0 40px rgba(0, 210, 255, 0.5)';" onmouseout="this.style.background='rgba(0, 210, 255, 0.15)'; this.style.boxShadow='0 0 20px rgba(0, 210, 255, 0.2)';">
                     Pre-order Contact
                 </a>
@@ -1011,7 +1066,7 @@
             </div>
         </div>
 
-        <div class="inner-container" style="text-align: center; margin: 0; padding: 2rem 0;">
+        <div class="inner-container" style="text-align: center; margin: 0 auto; padding: 2rem 0; width: 100%; display: flex; justify-content: center; align-items: center;">
             <a href="contact.html" style="
                 display: inline-block;
                 padding: 1rem 3rem;
@@ -1024,6 +1079,7 @@
                 font-weight: bold;
                 transition: all 0.3s ease;
                 box-shadow: 0 0 20px rgba(0, 210, 255, 0.2);
+                margin: 0 auto;
             " onmouseover="this.style.background='rgba(0, 210, 255, 0.3)'; this.style.boxShadow='0 0 40px rgba(0, 210, 255, 0.5)';" onmouseout="this.style.background='rgba(0, 210, 255, 0.1)'; this.style.boxShadow='0 0 20px rgba(0, 210, 255, 0.2)';">
                 Enquire Now
             </a>
@@ -1249,62 +1305,165 @@ button class="slider-btn prev-btn" aria-label="Previous Slide">&#10094;</button>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
-        // Three.js Giant Solar System Implementation
+        // ═══════════════════════════════════════════════════════════════
+        // ⚡ ULTRA-ENHANCED COSMIC SOLAR SYSTEM WITH PARTICLE EFFECTS ⚡
+        // ═══════════════════════════════════════════════════════════════
         let scene, camera, renderer, stars, sun;
         let planets = [];
         let mouseX = 0, mouseY = 0;
         let windowHalfX = window.innerWidth / 2;
         let windowHalfY = window.innerHeight / 2;
         let speed = 1.0;
+        
+        // Advanced FX Elements
+        let nebulaClouds = [];
+        let shootingStars = [];
+        let energyRings = [];
+        let particleFields = [];
+        let cosmicDust;
+        let wormhole;
+        let time = 0;
 
         function init() {
             const container = document.getElementById('canvas-container');
             
-            // Scene
+            // Scene with dynamic fog
             scene = new THREE.Scene();
-            scene.fog = new THREE.FogExp2(0x020204, 0.0005);
+            scene.fog = new THREE.FogExp2(0x020204, 0.0003);
 
-            // Camera - Orbit View
-            camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 20000);
-            camera.position.set(0, 300, 900); // Elevated, further back
+            // Camera - Orbit View with wider FOV
+            camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 25000);
+            camera.position.set(0, 400, 1100);
             camera.lookAt(0, 0, 0);
 
-            // Renderer
-            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-            renderer.setPixelRatio(window.devicePixelRatio);
+            // Enhanced Renderer with better settings
+            renderer = new THREE.WebGLRenderer({ 
+                antialias: true, 
+                alpha: true,
+                powerPreference: 'high-performance'
+            });
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
             renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.toneMapping = THREE.ACESFilmicToneMapping;
+            renderer.toneMappingExposure = 1.2;
             container.innerHTML = ''; 
             container.appendChild(renderer.domElement);
 
-            // Lighting
-            const ambientLight = new THREE.AmbientLight(0x222222);
+            // Advanced Multi-Light Setup
+            const ambientLight = new THREE.AmbientLight(0x1a1a2e, 0.8);
             scene.add(ambientLight);
             
-            const pointLight = new THREE.PointLight(0xffaa00, 2, 5000); // Sun light
-            pointLight.position.set(0, 0, 0);
-            scene.add(pointLight);
+            // Primary sun light
+            const sunLight = new THREE.PointLight(0xffaa00, 3, 6000);
+            sunLight.position.set(0, 0, 0);
+            scene.add(sunLight);
+            
+            // Accent lights for depth
+            const accentLight1 = new THREE.PointLight(0x00d2ff, 1.5, 3000);
+            accentLight1.position.set(800, 400, -600);
+            scene.add(accentLight1);
+            
+            const accentLight2 = new THREE.PointLight(0xff00ff, 1.2, 3000);
+            accentLight2.position.set(-800, -400, 600);
+            scene.add(accentLight2);
 
-            // --- STARFIELD ---
+            // --- ENHANCED STARFIELD WITH MULTIPLE LAYERS ---
             const starGeo = new THREE.BufferGeometry();
-            const starCount = 8000;
+            const starCount = 15000;
             const starPos = new Float32Array(starCount * 3);
-            for(let i=0; i<starCount*3; i++) {
-                starPos[i] = (Math.random() - 0.5) * 10000;
+            const starColors = new Float32Array(starCount * 3);
+            const starSizes = new Float32Array(starCount);
+            
+            for(let i = 0; i < starCount; i++) {
+                const i3 = i * 3;
+                // Position
+                starPos[i3] = (Math.random() - 0.5) * 15000;
+                starPos[i3 + 1] = (Math.random() - 0.5) * 15000;
+                starPos[i3 + 2] = (Math.random() - 0.5) * 15000;
+                
+                // Colors - mix white, cyan, blue
+                const colorChoice = Math.random();
+                if (colorChoice < 0.7) {
+                    starColors[i3] = 1;
+                    starColors[i3 + 1] = 1;
+                    starColors[i3 + 2] = 1;
+                } else if (colorChoice < 0.85) {
+                    starColors[i3] = 0;
+                    starColors[i3 + 1] = 0.8;
+                    starColors[i3 + 2] = 1;
+                } else {
+                    starColors[i3] = 1;
+                    starColors[i3 + 1] = 0.5;
+                    starColors[i3 + 2] = 0;
+                }
+                
+                // Size variation
+                starSizes[i] = Math.random() * 3 + 0.5;
             }
+            
             starGeo.setAttribute('position', new THREE.BufferAttribute(starPos, 3));
-            const starMat = new THREE.PointsMaterial({color: 0xffffff, size: 2.0, transparent: true, opacity: 0.3});
+            starGeo.setAttribute('color', new THREE.BufferAttribute(starColors, 3));
+            starGeo.setAttribute('size', new THREE.BufferAttribute(starSizes, 1));
+            
+            const starMat = new THREE.PointsMaterial({
+                size: 2.5,
+                vertexColors: true,
+                transparent: true,
+                opacity: 0.8,
+                sizeAttenuation: true,
+                blending: THREE.AdditiveBlending
+            });
             stars = new THREE.Points(starGeo, starMat);
             scene.add(stars);
+            
+            // --- COSMIC DUST CLOUDS ---
+            createCosmicDust();
+            
+            // --- NEBULA CLOUDS ---
+            createNebulaClouds();
+            
+            // --- SHOOTING STARS ---
+            createShootingStars();
+            
+            // --- WORMHOLE EFFECT ---
+            createWormhole();
 
-            // --- THE SUN ---
-            const sunGeo = new THREE.SphereGeometry(100, 32, 32);
-            const sunMat = new THREE.MeshBasicMaterial({ color: 0xffaa00, wireframe: true });
+            // --- ULTRA-ENHANCED SUN ---
+            const sunGeo = new THREE.SphereGeometry(100, 64, 64);
+            const sunMat = new THREE.MeshBasicMaterial({ 
+                color: 0xffaa00, 
+                wireframe: true
+            });
             sun = new THREE.Mesh(sunGeo, sunMat);
-            // Sun Glow
-            const glowGeo = new THREE.SphereGeometry(110, 32, 32);
-            const glowMat = new THREE.MeshBasicMaterial({ color: 0xff6600, transparent: true, opacity: 0.15, side: THREE.BackSide, wireframe: true });
-            const sunGlow = new THREE.Mesh(glowGeo, glowMat);
-            sun.add(sunGlow);
+            
+            // Inner glow
+            const innerGlowGeo = new THREE.SphereGeometry(110, 32, 32);
+            const innerGlowMat = new THREE.MeshBasicMaterial({ 
+                color: 0xff6600, 
+                transparent: true, 
+                opacity: 0.25, 
+                side: THREE.BackSide, 
+                wireframe: true 
+            });
+            const innerGlow = new THREE.Mesh(innerGlowGeo, innerGlowMat);
+            sun.add(innerGlow);
+            
+            // Outer corona
+            const coronaGeo = new THREE.SphereGeometry(140, 32, 32);
+            const coronaMat = new THREE.MeshBasicMaterial({ 
+                color: 0xffdd00, 
+                transparent: true, 
+                opacity: 0.1, 
+                side: THREE.BackSide,
+                blending: THREE.AdditiveBlending
+            });
+            const corona = new THREE.Mesh(coronaGeo, coronaMat);
+            sun.add(corona);
+            
+            // Particle corona
+            const coronaParticles = createSunCorona();
+            sun.add(coronaParticles);
+            
             scene.add(sun);
 
             // --- PLANETS ---
@@ -1321,45 +1480,282 @@ button class="slider-btn prev-btn" aria-label="Previous Slide">&#10094;</button>
             ];
 
             planetData.forEach((data, index) => {
-                // Orbit Path (Ring Line)
-                const orbitColor = (index % 2 === 0) ? 0x00d2ff : 0xffffff;
-                const pathGeo = new THREE.RingGeometry(data.dist - 1, data.dist + 1, 128);
-                const pathMat = new THREE.MeshBasicMaterial({ color: orbitColor, side: THREE.DoubleSide, transparent: true, opacity: 0.4 });
+                // Enhanced Orbit Path
+                const orbitColor = (index % 3 === 0) ? 0x00d2ff : (index % 3 === 1 ? 0xff00ff : 0x00ff88);
+                const pathGeo = new THREE.RingGeometry(data.dist - 1, data.dist + 1, 256);
+                const pathMat = new THREE.MeshBasicMaterial({ 
+                    color: orbitColor, 
+                    side: THREE.DoubleSide, 
+                    transparent: true, 
+                    opacity: 0.3,
+                    blending: THREE.AdditiveBlending
+                });
                 const path = new THREE.Mesh(pathGeo, pathMat);
                 path.rotation.x = Math.PI / 2;
                 scene.add(path);
 
                 // Planet Container (Pivot for rotation)
                 const pivot = new THREE.Object3D();
-                pivot.rotation.y = Math.random() * Math.PI * 2; // Random start pos
+                pivot.rotation.y = Math.random() * Math.PI * 2;
                 scene.add(pivot);
 
-                // Planet Mesh
-                const pGeo = new THREE.SphereGeometry(data.size, 16, 16);
+                // Enhanced Planet Mesh with glow
+                const pGeo = new THREE.SphereGeometry(data.size, 32, 32);
                 const pMat = new THREE.MeshBasicMaterial({ 
-                    color: 0x00d2ff, 
+                    color: orbitColor, 
                     wireframe: true
                 });
                 const mesh = new THREE.Mesh(pGeo, pMat);
                 mesh.position.x = data.dist;
+                
+                // Planet glow aura
+                const auraGeo = new THREE.SphereGeometry(data.size * 1.15, 16, 16);
+                const auraMat = new THREE.MeshBasicMaterial({
+                    color: orbitColor,
+                    transparent: true,
+                    opacity: 0.15,
+                    side: THREE.BackSide,
+                    blending: THREE.AdditiveBlending
+                });
+                const aura = new THREE.Mesh(auraGeo, auraMat);
+                mesh.add(aura);
+                
                 pivot.add(mesh);
 
-                // Saturn Ring
+                // Saturn Ring Enhancement
                 if (data.ring) {
-                    const rGeo = new THREE.RingGeometry(data.size * 1.4, data.size * 2.5, 64);
-                    const rMat = new THREE.MeshBasicMaterial({ color: 0xaa9966, side: THREE.DoubleSide, transparent: true, opacity: 0.6 });
+                    const rGeo = new THREE.RingGeometry(data.size * 1.4, data.size * 2.5, 128);
+                    const rMat = new THREE.MeshBasicMaterial({ 
+                        color: 0xffaa66, 
+                        side: THREE.DoubleSide, 
+                        transparent: true, 
+                        opacity: 0.7,
+                        blending: THREE.AdditiveBlending
+                    });
                     const ring = new THREE.Mesh(rGeo, rMat);
                     ring.rotation.x = Math.PI/2.1; 
                     mesh.add(ring);
                 }
+                
+                // Add energy ring around planet
+                const energyRing = createEnergyRing(data.size * 1.8, orbitColor);
+                mesh.add(energyRing);
+                energyRings.push(energyRing);
 
-                planets.push({ mesh: mesh, pivot: pivot, speed: data.speed, selfSpeed: 0.01 + Math.random()*0.02 });
+                planets.push({ 
+                    mesh: mesh, 
+                    pivot: pivot, 
+                    speed: data.speed, 
+                    selfSpeed: 0.01 + Math.random()*0.02,
+                    orbitPath: path,
+                    color: orbitColor
+                });
             });
 
             // Listeners
             document.addEventListener('mousemove', onDocumentMouseMove, false);
             window.addEventListener('resize', onWindowResize, false);
             animate();
+        }
+        
+        // ═══════════════════════════════════════════════════════════════
+        // 🌌 ADVANCED EFFECT CREATION FUNCTIONS
+        // ═══════════════════════════════════════════════════════════════
+        
+        function createSunCorona() {
+            const particles = new THREE.BufferGeometry();
+            const count = 1000;
+            const positions = new Float32Array(count * 3);
+            const colors = new Float32Array(count * 3);
+            
+            for(let i = 0; i < count; i++) {
+                const i3 = i * 3;
+                const theta = Math.random() * Math.PI * 2;
+                const phi = Math.random() * Math.PI;
+                const radius = 120 + Math.random() * 50;
+                
+                positions[i3] = radius * Math.sin(phi) * Math.cos(theta);
+                positions[i3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
+                positions[i3 + 2] = radius * Math.cos(phi);
+                
+                colors[i3] = 1;
+                colors[i3 + 1] = 0.6 + Math.random() * 0.4;
+                colors[i3 + 2] = 0;
+            }
+            
+            particles.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            particles.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+            
+            const material = new THREE.PointsMaterial({
+                size: 4,
+                vertexColors: true,
+                transparent: true,
+                opacity: 0.6,
+                blending: THREE.AdditiveBlending
+            });
+            
+            return new THREE.Points(particles, material);
+        }
+        
+        function createCosmicDust() {
+            const geometry = new THREE.BufferGeometry();
+            const count = 5000;
+            const positions = new Float32Array(count * 3);
+            const colors = new Float32Array(count * 3);
+            
+            for(let i = 0; i < count; i++) {
+                const i3 = i * 3;
+                positions[i3] = (Math.random() - 0.5) * 8000;
+                positions[i3 + 1] = (Math.random() - 0.5) * 8000;
+                positions[i3 + 2] = (Math.random() - 0.5) * 8000;
+                
+                const colorVal = Math.random();
+                colors[i3] = 0.2 + colorVal * 0.3;
+                colors[i3 + 1] = 0.4 + colorVal * 0.4;
+                colors[i3 + 2] = 0.8 + colorVal * 0.2;
+            }
+            
+            geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+            
+            const material = new THREE.PointsMaterial({
+                size: 1.5,
+                vertexColors: true,
+                transparent: true,
+                opacity: 0.4,
+                blending: THREE.AdditiveBlending
+            });
+            
+            cosmicDust = new THREE.Points(geometry, material);
+            scene.add(cosmicDust);
+        }
+        
+        function createNebulaClouds() {
+            const cloudCount = 8;
+            for(let i = 0; i < cloudCount; i++) {
+                const geometry = new THREE.BufferGeometry();
+                const count = 800;
+                const positions = new Float32Array(count * 3);
+                const colors = new Float32Array(count * 3);
+                
+                const centerX = (Math.random() - 0.5) * 4000;
+                const centerY = (Math.random() - 0.5) * 2000;
+                const centerZ = (Math.random() - 0.5) * 4000;
+                
+                const colorType = i % 3;
+                let r, g, b;
+                if (colorType === 0) { // Cyan nebula
+                    r = 0; g = 0.8; b = 1;
+                } else if (colorType === 1) { // Purple nebula
+                    r = 0.8; g = 0; b = 1;
+                } else { // Gold nebula
+                    r = 1; g = 0.7; b = 0;
+                }
+                
+                for(let j = 0; j < count; j++) {
+                    const j3 = j * 3;
+                    const radius = Math.random() * 500;
+                    const theta = Math.random() * Math.PI * 2;
+                    const phi = Math.random() * Math.PI;
+                    
+                    positions[j3] = centerX + radius * Math.sin(phi) * Math.cos(theta);
+                    positions[j3 + 1] = centerY + radius * Math.sin(phi) * Math.sin(theta);
+                    positions[j3 + 2] = centerZ + radius * Math.cos(phi);
+                    
+                    const variation = 0.3 + Math.random() * 0.7;
+                    colors[j3] = r * variation;
+                    colors[j3 + 1] = g * variation;
+                    colors[j3 + 2] = b * variation;
+                }
+                
+                geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+                geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+                
+                const material = new THREE.PointsMaterial({
+                    size: 8,
+                    vertexColors: true,
+                    transparent: true,
+                    opacity: 0.3,
+                    blending: THREE.AdditiveBlending
+                });
+                
+                const cloud = new THREE.Points(geometry, material);
+                scene.add(cloud);
+                nebulaClouds.push({
+                    mesh: cloud,
+                    rotationSpeed: (Math.random() - 0.5) * 0.0005
+                });
+            }
+        }
+        
+        function createShootingStars() {
+            for(let i = 0; i < 10; i++) {
+                const geometry = new THREE.BufferGeometry();
+                const positions = new Float32Array(60); // 20 points * 3
+                
+                // Initial random position
+                const startX = (Math.random() - 0.5) * 10000;
+                const startY = (Math.random() - 0.5) * 5000;
+                const startZ = (Math.random() - 0.5) * 10000;
+                
+                for(let j = 0; j < 20; j++) {
+                    positions[j * 3] = startX;
+                    positions[j * 3 + 1] = startY;
+                    positions[j * 3 + 2] = startZ;
+                }
+                
+                geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+                
+                const material = new THREE.LineBasicMaterial({
+                    color: 0xffffff,
+                    transparent: true,
+                    opacity: 0.8,
+                    blending: THREE.AdditiveBlending
+                });
+                
+                const line = new THREE.Line(geometry, material);
+                scene.add(line);
+                
+                shootingStars.push({
+                    line: line,
+                    velocity: {
+                        x: (Math.random() - 0.5) * 20,
+                        y: -(Math.random() * 10 + 5),
+                        z: (Math.random() - 0.5) * 20
+                    },
+                    life: Math.random() * 100,
+                    maxLife: 100
+                });
+            }
+        }
+        
+        function createEnergyRing(radius, color) {
+            const geometry = new THREE.RingGeometry(radius, radius + 2, 64);
+            const material = new THREE.MeshBasicMaterial({
+                color: color,
+                side: THREE.DoubleSide,
+                transparent: true,
+                opacity: 0.4,
+                blending: THREE.AdditiveBlending
+            });
+            const ring = new THREE.Mesh(geometry, material);
+            ring.rotation.x = Math.PI / 2;
+            return ring;
+        }
+        
+        function createWormhole() {
+            const geometry = new THREE.TorusGeometry(2000, 100, 32, 100);
+            const material = new THREE.MeshBasicMaterial({
+                color: 0x00d2ff,
+                wireframe: true,
+                transparent: true,
+                opacity: 0.15,
+                blending: THREE.AdditiveBlending
+            });
+            wormhole = new THREE.Mesh(geometry, material);
+            wormhole.position.set(3000, 0, -2000);
+            wormhole.rotation.y = Math.PI / 4;
+            scene.add(wormhole);
         }
 
         function onDocumentMouseMove(event) {
@@ -1420,6 +1816,7 @@ button class="slider-btn prev-btn" aria-label="Previous Slide">&#10094;</button>
 
                 // Stop CSS animation
                 track.style.animation = 'none';
+                track.style.cursor = 'grab';
                 
                 // Content is duplicated 1x (original + clone)
                 // We assume the duplication is already done in HTML as seen in the file
@@ -1440,6 +1837,11 @@ button class="slider-btn prev-btn" aria-label="Previous Slide">&#10094;</button>
                 
                 let isHovered = false;
                 let isAnimating = false;
+                let isDragging = false;
+                let startPos = 0;
+                let currentTranslate = 0;
+                let prevTranslate = 0;
+                let animationID = 0;
                 
                 // Determine direction from class or attribute
                 // track-left means moving left (content goes left, new items appear from right)
@@ -1455,7 +1857,7 @@ button class="slider-btn prev-btn" aria-label="Previous Slide">&#10094;</button>
 
                 // Auto Scroll Loop
                 function animate() {
-                    if (!isHovered && !isAnimating) {
+                    if (!isHovered && !isAnimating && !isDragging) {
                         currentX += autoDirection * speed;
                         handleWrap();
                         track.style.transform = `translateX(${currentX}px)`;
@@ -1515,6 +1917,87 @@ button class="slider-btn prev-btn" aria-label="Previous Slide">&#10094;</button>
                     requestAnimationFrame(step);
                 }
 
+                // Drag & Swipe Functionality
+                function touchStart(index) {
+                    return function(event) {
+                        isDragging = true;
+                        startPos = getPositionX(event);
+                        prevTranslate = currentX;
+                        track.style.cursor = 'grabbing';
+                        track.style.transition = 'none';
+                    }
+                }
+
+                function touchMove(event) {
+                    if (isDragging) {
+                        const currentPosition = getPositionX(event);
+                        currentTranslate = prevTranslate + currentPosition - startPos;
+                        currentX = currentTranslate;
+                        handleWrap();
+                        track.style.transform = `translateX(${currentX}px)`;
+                    }
+                }
+
+                function touchEnd() {
+                    isDragging = false;
+                    track.style.cursor = 'grab';
+                    
+                    // Optional: Add momentum/snap to nearest card
+                    const movedBy = currentX - prevTranslate;
+                    
+                    // If dragged enough, snap to nearest card
+                    if (Math.abs(movedBy) > 50) {
+                        // Determine snap direction based on drag
+                        const snapDirection = movedBy > 0 ? 1 : -1;
+                        const targetX = Math.round(currentX / cardWidth) * cardWidth;
+                        
+                        // Smooth animation to snap position
+                        isAnimating = true;
+                        const startX = currentX;
+                        const startTime = performance.now();
+                        const duration = 300;
+
+                        function snapStep(now) {
+                            const elapsed = now - startTime;
+                            const progress = Math.min(elapsed / duration, 1);
+                            const ease = 1 - Math.pow(1 - progress, 3);
+                            
+                            currentX = startX + (targetX - startX) * ease;
+                            handleWrap();
+                            track.style.transform = `translateX(${currentX}px)`;
+                            
+                            if (progress < 1) {
+                                requestAnimationFrame(snapStep);
+                            } else {
+                                isAnimating = false;
+                            }
+                        }
+                        requestAnimationFrame(snapStep);
+                    }
+                }
+
+                function getPositionX(event) {
+                    return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
+                }
+
+                // Mouse Events
+                track.addEventListener('mousedown', touchStart(0));
+                track.addEventListener('mousemove', touchMove);
+                track.addEventListener('mouseup', touchEnd);
+                track.addEventListener('mouseleave', () => {
+                    if (isDragging) {
+                        touchEnd();
+                    }
+                });
+
+                // Touch Events
+                track.addEventListener('touchstart', touchStart(0), { passive: true });
+                track.addEventListener('touchmove', touchMove, { passive: true });
+                track.addEventListener('touchend', touchEnd);
+
+                // Prevent default link/image dragging
+                track.addEventListener('dragstart', (e) => e.preventDefault());
+
                 // Event Listeners
                 wrapper.addEventListener('mouseenter', () => isHovered = true);
                 wrapper.addEventListener('mouseleave', () => isHovered = false);
@@ -1535,5 +2018,11 @@ button class="slider-btn prev-btn" aria-label="Previous Slide">&#10094;</button>
         });
     </script>
     <script src="assets/js/script.js" defer></script>
+    
+    <!-- Cookie Consent System -->
+    <script src="assets/js/cookie-manager.js"></script>
+    
+    <!-- Cookie Banner -->
+    <div id="cookie-banner"><div class="cookie-banner-content"><div class="cookie-banner-text"><h3>🍪 We Value Your Privacy</h3><p>We use cookies to enhance your experience. <a href="#" onclick="event.preventDefault(); cookieManager?.openSettings();">Settings</a></p></div><div class="cookie-banner-actions"><button class="cookie-btn cookie-btn-necessary" onclick="cookieManager?.acceptNecessary();">Necessary Only</button><button class="cookie-btn cookie-btn-settings" onclick="cookieManager?.openSettings();">Settings</button><button class="cookie-btn cookie-btn-accept" onclick="cookieManager?.acceptAll();">Accept All</button></div></div></div><div id="cookie-settings-modal"><div class="cookie-modal-content"><div class="cookie-modal-header"><h2>Cookie Preferences</h2><button class="cookie-modal-close" onclick="cookieManager?.closeSettings();">×</button></div><div class="cookie-modal-body"><div class="cookie-category"><div class="cookie-category-header"><h3>Necessary Cookies</h3><label class="cookie-toggle"><input type="checkbox" checked disabled><span class="cookie-toggle-slider"></span></label></div><p>Essential cookies required for the website to function properly.</p></div><div class="cookie-category"><div class="cookie-category-header"><h3>Analytics Cookies</h3><label class="cookie-toggle"><input type="checkbox" id="cookie-analytics"><span class="cookie-toggle-slider"></span></label></div><p>Help us understand visitor interactions.</p></div><div class="cookie-category"><div class="cookie-category-header"><h3>Marketing Cookies</h3><label class="cookie-toggle"><input type="checkbox" id="cookie-marketing"><span class="cookie-toggle-slider"></span></label></div><p>Track visitors for relevant ads.</p></div><div class="cookie-category"><div class="cookie-category-header"><h3>Preference Cookies</h3><label class="cookie-toggle"><input type="checkbox" id="cookie-preferences"><span class="cookie-toggle-slider"></span></label></div><p>Remember your settings.</p></div></div><div class="cookie-modal-footer"><button class="cookie-btn cookie-btn-necessary" onclick="cookieManager?.acceptNecessary();">Save Necessary Only</button><button class="cookie-btn cookie-btn-accept" onclick="cookieManager?.saveCustomPreferences();">Save Preferences</button></div></div></div>
 </body>
 </html>

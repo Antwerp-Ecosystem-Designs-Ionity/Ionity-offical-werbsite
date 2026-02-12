@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    
+    <!-- Resource Hints for Performance -->
+    <link rel="preconnect" href="https://api.ionity.today">
+    <link rel="dns-prefetch" href="https://maps.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    
+    <title>System Architecture | Ionity</title>
+    <link rel="icon" type="image/png" href="assets/images/ionity-logo-edited.png">
+    
+    <!-- Cookie Consent Styles -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        :root {
+            --primary: #000000;
+            --accent: #00d2ff;
+            --accent-glow: rgba(0, 210, 255, 0.3);
+            --bg: #ffffff;
+            --glass: rgba(0, 0, 0, 0.03);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: var(--primary);
+            padding: 2rem;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 4rem;
+            font-size: 1.2rem;
+        }
+
+        .option-section {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .option-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        /* ============================================
+           OPTION 1: ANIMATED FLOW PIPELINE
+        ============================================ */
+        .flow-pipeline {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .flow-node {
+            flex: 1;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .node-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            padding: 2rem 1.5rem;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .node-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(0, 210, 255, 0.4);
+        }
+
+        .node-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .node-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+        }
+
+        .node-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .node-subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .flow-connector {
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent) 0%, #667eea 100%);
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .flow-connector::after {
+            content: '→';
+            position: absolute;
+            right: -15px;
+            top: -12px;
+            font-size: 2rem;
+            color: var(--accent);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.2); }
+        }
+
+        /* Particle animation */
+        .particle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            top: 50%;
+            animation: flowParticle 4s linear infinite;
+            box-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        @keyframes flowParticle {
+            0% { left: 0%; opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { left: 100%; opacity: 0; }
+        }
+
+        /* ============================================
+           OPTION 2: ORBITAL SYSTEM
+        ============================================ */
+        .orbital-system {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .core-system {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, var(--accent) 0%, #667eea 100%);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.5rem;
+            box-shadow: 0 0 60px var(--accent-glow), 0 0 100px var(--accent-glow);
+            animation: coreGlow 3s ease-in-out infinite;
+            z-index: 5;
+        }
+
+        @keyframes coreGlow {
+            0%, 100% { box-shadow: 0 0 60px var(--accent-glow), 0 0 100px var(--accent-glow); }
+            50% { box-shadow: 0 0 80px var(--accent-glow), 0 0 140px var(--accent-glow); }
+        }
+
+        .core-status {
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+            padding: 0.3rem 0.8rem;
+            background: rgba(0, 255, 0, 0.3);
+            border-radius: 20px;
+            animation: blink 2s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .orbit {
+            position: absolute;
+            border: 2px dashed rgba(0, 210, 255, 0.3);
+            border-radius: 50%;
+            animation: rotate 20s linear infinite;
+        }
+
+        .orbit-1 { width: 300px; height: 300px; animation-duration: 15s; }
+        .orbit-2 { width: 400px; height: 400px; animation-duration: 20s; }
+        .orbit-3 { width: 500px; height: 500px; animation-duration: 25s; }
+        .orbit-4 { width: 600px; height: 600px; animation-duration: 30s; }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .orbital-node {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            background: white;
+            border: 3px solid var(--accent);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            animation: rotateReverse 20s linear infinite;
+        }
+
+        .orbital-node:hover {
+            transform: scale(1.2);
+            box-shadow: 0 15px 40px var(--accent-glow);
+            z-index: 10;
+        }
+
+        @keyframes rotateReverse {
+            from { transform: rotate(360deg); }
+            to { transform: rotate(0deg); }
+        }
+
+        .orbit-1 .orbital-node { top: -60px; left: 50%; margin-left: -60px; }
+        .orbit-2 .orbital-node { top: 50%; right: -60px; margin-top: -60px; }
+        .orbit-3 .orbital-node { bottom: -60px; left: 50%; margin-left: -60px; }
+        .orbit-4 .orbital-node { top: 50%; left: -60px; margin-top: -60px; }
+
+        .orbital-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .orbital-title {
+            font-size: 0.75rem;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* ============================================
+           OPTION 3: NEURAL NETWORK STYLE
+        ============================================ */
+        .neural-network {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            background: radial-gradient(circle at center, rgba(0, 210, 255, 0.05) 0%, transparent 70%);
+        }
+
+        .neural-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .neural-node {
+            position: absolute;
+            width: 140px;
+            height: 140px;
+            background: white;
+            border: 3px solid var(--accent);
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            z-index: 2;
+        }
+
+        .neural-node:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px var(--accent-glow);
+            border-color: #667eea;
+        }
+
+        .neural-node-1 { top: 20%; left: 10%; }
+        .neural-node-2 { top: 20%; left: 40%; }
+        .neural-node-3 { top: 60%; left: 25%; }
+        .neural-node-4 { top: 40%; left: 70%; }
+
+        .connection-line {
+            position: absolute;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent) 0%, #667eea 100%);
+            transform-origin: left center;
+            z-index: 1;
+            animation: dataFlow 2s linear infinite;
+        }
+
+        @keyframes dataFlow {
+            0% { opacity: 0.3; }
+            50% { opacity: 1; }
+            100% { opacity: 0.3; }
+        }
+
+        /* ============================================
+           OPTION 4: VERTICAL TIMELINE CARDS
+        ============================================ */
+        .timeline-vertical {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, var(--accent) 0%, #667eea 100%);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 4rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .timeline-item:nth-child(odd) {
+            flex-direction: row;
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            flex: 1;
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin: 0 2rem;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px var(--accent-glow);
+            border-color: var(--accent);
+        }
+
+        .timeline-dot {
+            width: 30px;
+            height: 30px;
+            background: var(--accent);
+            border: 5px solid white;
+            border-radius: 50%;
+            box-shadow: 0 0 0 4px var(--accent);
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            animation: dotPulse 2s infinite;
+        }
+
+        @keyframes dotPulse {
+            0%, 100% { transform: translateX(-50%) scale(1); }
+            50% { transform: translateX(-50%) scale(1.2); }
+        }
+
+        .timeline-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--accent);
+            opacity: 0.2;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .timeline-subtitle {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-icon {
+            font-size: 3rem;
+            margin-top: 1rem;
+        }
+
+        /* Status Badge */
+        .status-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: linear-gradient(135deg, #00ff00 0%, #00cc00 100%);
+            color: white;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-top: 1rem;
+            animation: statusPulse 2s infinite;
+        }
+
+        @keyframes statusPulse {
+            0%, 100% { box-shadow: 0 0 10px rgba(0, 255, 0, 0.5); }
+            50% { box-shadow: 0 0 20px rgba(0, 255, 0, 0.8); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .flow-pipeline {
+                flex-direction: column;
+            }
+            
+            .flow-connector {
+                width: 4px;
+                height: 60px;
+            }
+            
+            .flow-connector::after {
+                content: '↓';
+                top: auto;
+                bottom: -15px;
+                right: -8px;
+            }
+
+            .timeline-item,
+            .timeline-item:nth-child(even) {
+                flex-direction: column !important;
+            }
+
+            .timeline-line {
+                left: 2rem;
+            }
+
+            .timeline-dot {
+                left: 2rem;
+            }
+
+            .orbital-system {
+                height: 400px;
+            }
+
+            .orbit-1, .orbit-2, .orbit-3, .orbit-4 {
+                width: 250px;
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>System Architecture Visualization</h1>
+        <p class="subtitle">Choose your preferred visual style</p>
+
+        <!-- OPTION 1: Animated Flow Pipeline -->
+        <section class="option-section">
+            <h2 class="option-title">
+                <span>🌊</span> Option 1: Animated Flow Pipeline
+            </h2>
+            <div class="flow-pipeline">
+                <div class="particle" style="animation-delay: 0s;"></div>
+                <div class="particle" style="animation-delay: 1s;"></div>
+                <div class="particle" style="animation-delay: 2s;"></div>
+                <div class="particle" style="animation-delay: 3s;"></div>
+                
+                <div class="flow-node">
+                    <div class="node-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                        <div class="node-icon">🎨</div>
+                        <div class="node-title">ADA</div>
+                        <div class="node-subtitle">Automated Design</div>
+                    </div>
+                </div>
+
+                <div class="flow-connector"></div>
+
+                <div class="flow-node">
+                    <div class="node-card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                        <div class="node-icon">📊</div>
+                        <div class="node-title">DAQ</div>
+                        <div class="node-subtitle">Data Acquisition</div>
+                    </div>
+                </div>
+
+                <div class="flow-connector"></div>
+
+                <div class="flow-node">
+                    <div class="node-card" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                        <div class="node-icon">📈</div>
+                        <div class="node-title">Monitoring</div>
+                        <div class="node-subtitle">Real-time Analytics</div>
+                    </div>
+                </div>
+
+                <div class="flow-connector"></div>
+
+                <div class="flow-node">
+                    <div class="node-card" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+                        <div class="node-icon">🔮</div>
+                        <div class="node-title">PdM</div>
+                        <div class="node-subtitle">Predictive Maintenance</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- OPTION 2: Orbital System -->
+        <section class="option-section">
+            <h2 class="option-title">
+                <span>🌐</span> Option 2: Orbital System
+            </h2>
+            <div class="orbital-system">
+                <div class="core-system">
+                    <div>CORE</div>
+                    <div>SYSTEM</div>
+                    <div class="core-status">● ONLINE</div>
+                </div>
+
+                <div class="orbit orbit-1">
+                    <div class="orbital-node">
+                        <div class="orbital-icon">🎨</div>
+                        <div class="orbital-title">ADA<br>Automated Design</div>
+                    </div>
+                </div>
+
+                <div class="orbit orbit-2">
+                    <div class="orbital-node">
+                        <div class="orbital-icon">📊</div>
+                        <div class="orbital-title">DAQ<br>Data Acquisition</div>
+                    </div>
+                </div>
+
+                <div class="orbit orbit-3">
+                    <div class="orbital-node">
+                        <div class="orbital-icon">📈</div>
+                        <div class="orbital-title">Monitoring<br>Real-time Analytics</div>
+                    </div>
+                </div>
+
+                <div class="orbit orbit-4">
+                    <div class="orbital-node">
+                        <div class="orbital-icon">🔮</div>
+                        <div class="orbital-title">PdM<br>Predictive Maint.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- OPTION 3: Neural Network Style -->
+        <section class="option-section">
+            <h2 class="option-title">
+                <span>🧠</span> Option 3: Neural Network Style
+            </h2>
+            <div class="neural-network">
+                <svg class="neural-canvas" viewBox="0 0 1000 500">
+                    <!-- Connections -->
+                    <line x1="150" y1="150" x2="450" y2="150" stroke="url(#grad1)" stroke-width="3" class="connection-line" />
+                    <line x1="450" y1="150" x2="350" y2="350" stroke="url(#grad1)" stroke-width="3" class="connection-line" />
+                    <line x1="350" y1="350" x2="750" y2="300" stroke="url(#grad1)" stroke-width="3" class="connection-line" />
+                    <line x1="150" y1="150" x2="750" y2="300" stroke="url(#grad2)" stroke-width="2" stroke-dasharray="5,5" opacity="0.3" />
+                    
+                    <defs>
+                        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color:#00d2ff;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#667eea;stop-opacity:1" />
+                        </linearGradient>
+                        <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color:#667eea;stop-opacity:0.5" />
+                            <stop offset="100%" style="stop-color:#00d2ff;stop-opacity:0.5" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+
+                <div class="neural-node neural-node-1">
+                    <div class="orbital-icon">🎨</div>
+                    <div style="font-weight: bold;">ADA</div>
+                    <div style="font-size: 0.75rem; color: #666;">Design</div>
+                </div>
+
+                <div class="neural-node neural-node-2">
+                    <div class="orbital-icon">📊</div>
+                    <div style="font-weight: bold;">DAQ</div>
+                    <div style="font-size: 0.75rem; color: #666;">Acquisition</div>
+                </div>
+
+                <div class="neural-node neural-node-3">
+                    <div class="orbital-icon">📈</div>
+                    <div style="font-weight: bold;">Monitoring</div>
+                    <div style="font-size: 0.75rem; color: #666;">Analytics</div>
+                </div>
+
+                <div class="neural-node neural-node-4">
+                    <div class="orbital-icon">🔮</div>
+                    <div style="font-weight: bold;">PdM</div>
+                    <div style="font-size: 0.75rem; color: #666;">Predictive</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- OPTION 4: Vertical Timeline -->
+        <section class="option-section">
+            <h2 class="option-title">
+                <span>📊</span> Option 4: Vertical Timeline Cards
+            </h2>
+            <div class="timeline-vertical">
+                <div class="timeline-line"></div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-number">01</div>
+                        <div class="timeline-title">ADA • Automated Design</div>
+                        <div class="timeline-subtitle">Intelligent design automation and system architecture generation</div>
+                        <div class="timeline-icon">🎨</div>
+                    </div>
+                    <div style="flex: 1;"></div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div style="flex: 1;"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-number">02</div>
+                        <div class="timeline-title">DAQ • Data Acquisition</div>
+                        <div class="timeline-subtitle">Real-time data collection and processing pipeline</div>
+                        <div class="timeline-icon">📊</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-number">03</div>
+                        <div class="timeline-title">Monitoring • Real-time Analytics</div>
+                        <div class="timeline-subtitle">Advanced analytics and performance tracking</div>
+                        <div class="timeline-icon">📈</div>
+                    </div>
+                    <div style="flex: 1;"></div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div style="flex: 1;"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-number">04</div>
+                        <div class="timeline-title">PdM • Predictive Maintenance</div>
+                        <div class="timeline-subtitle">AI-powered predictive analytics and maintenance optimization</div>
+                        <div class="timeline-icon">🔮</div>
+                        <div class="status-badge">🟢 CORE SYSTEM ONLINE</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        // Add smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add intersection observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.option-section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'all 0.6s ease-out';
+            observer.observe(section);
+        });
+    </script>
+    <script src="assets/js/cookie-manager.js"></script>
+    <div id="cookie-banner"><div class="cookie-banner-content"><div class="cookie-banner-text"><h3>🍪 Privacy</h3><p>We use cookies. <a href="#" onclick="event.preventDefault(); cookieManager?.openSettings();">Settings</a></p></div><div class="cookie-banner-actions"><button class="cookie-btn cookie-btn-necessary" onclick="cookieManager?.acceptNecessary();">Necessary</button><button class="cookie-btn cookie-btn-accept" onclick="cookieManager?.acceptAll();">Accept All</button></div></div></div><div id="cookie-settings-modal"><div class="cookie-modal-content"><div class="cookie-modal-header"><h2>Cookie Preferences</h2><button class="cookie-modal-close" onclick="cookieManager?.closeSettings();">×</button></div><div class="cookie-modal-body"><div class="cookie-category"><div class="cookie-category-header"><h3>Necessary</h3><label class="cookie-toggle"><input type="checkbox" checked disabled><span class="cookie-toggle-slider"></span></label></div></div><div class="cookie-category"><div class="cookie-category-header"><h3>Analytics</h3><label class="cookie-toggle"><input type="checkbox" id="cookie-analytics"><span class="cookie-toggle-slider"></span></label></div></div><div class="cookie-category"><div class="cookie-category-header"><h3>Marketing</h3><label class="cookie-toggle"><input type="checkbox" id="cookie-marketing"><span class="cookie-toggle-slider"></span></label></div></div><div class="cookie-category"><div class="cookie-category-header"><h3>Preferences</h3><label class="cookie-toggle"><input type="checkbox" id="cookie-preferences"><span class="cookie-toggle-slider"></span></label></div></div></div><div class="cookie-modal-footer"><button class="cookie-btn cookie-btn-necessary" onclick="cookieManager?.acceptNecessary();">Necessary</button><button class="cookie-btn cookie-btn-accept" onclick="cookieManager?.saveCustomPreferences();">Save</button></div></div></div>
+</body>
+</html>

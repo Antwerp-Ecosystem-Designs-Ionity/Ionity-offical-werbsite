@@ -2,11 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    
+    <!-- Resource Hints for Performance -->
+    <link rel="preconnect" href="https://api.ionity.today">
+    <link rel="dns-prefetch" href="https://maps.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    
     <title>Ionity | High-Performance IoT Ai Tech Solutions, Cost Saving, Power Saving Johan Wilhelm van Antwerp</title>
     <meta name="description" content="Ionity or Ionity (Pty) Ltd is the Ai center globally for Ai-EDGE-OFFLINE-development-hardware and software, technology owned by Johan Wilhelm van Antwerp Centurion South Africa yet USA EU and Global intent, Ai-M motherboards inhouse and Solutions hub, clean energy, and innovative cloud, web, hybrid and edge solutions with encryption and Highprofile Cloud usage to ensure OTA and Network stability using Google and Azure as market choice. Services are IoT net development and Designs , aircon ai, controllsystems new ai, news">
     <meta property="og:title" content="Ionity.today | antwerp Designs">
     <meta property="og:image" content="https://ionity.today/assets/ionity-today-logo-edited -policy986aed-johanwilhelmvanantwerp-ionity-today-world-global-iot-ai-network-it.png">
+    
+    <!-- Cookie Consent Styles -->
+    <link rel="stylesheet" href="assets/css/style.css">
     
     <!-- Use same styles as template, but we will add specific overrides for Services if needed -->
     <style>
@@ -380,18 +389,62 @@
             nav { padding: 0 1rem; height: 60px; }
             nav.scrolled { height: 50px; }
             .mobile-dropdown { top: 60px; }
-            nav.scrolled ~ .mobile-dropdown { top: 50px; }
+            nav.scrolled .mobile-dropdown { top: 50px; }
 
             img { max-width: 100%; height: auto; }
             .nav-links { display: none; }
             .mobile-menu-btn { display: block; }
-            h1 { font-size: 2.5rem; }
+            
+            /* Enhanced Mobile Typography */
+            h1 { font-size: 2.2rem; line-height: 1.2; }
+            .hero-desc { font-size: 1.1rem; line-height: 1.5; color: #fff; }
+            
             .container { padding: 2rem 5vw; }
             
+            /* Improved Mobile Visibility */
+            /* Lighten cards on mobile to combat "darkness" - higher opacity and slightly lighter bg */
+            .card, .tier-card, .mobile-dropdown {
+                background: rgba(18, 25, 35, 0.92) !important; 
+                border: 1px solid rgba(255, 255, 255, 0.15);
+                box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+            }
+            
+            /* Text readability boost */
+            .card p, .tier-card p {
+                color: rgba(255, 255, 255, 0.95);
+                font-size: 1.05rem; /* Larger text for mobile */
+                line-height: 1.6;
+            }
+
+            .card h3 {
+                font-size: 1.4rem;
+                color: #fff;
+            }
+
+            /* Fix Carousel Item Sizing for Mobile */
+            .slider-track .card, .slider-track .card-3d-scene {
+                width: 85vw !important; /* Responsive width */
+                max-width: 340px;
+                min-height: 300px; /* Ensure content fits */
+            }
+
             /* Reduce side darkness / mask on mobile to prevent obscuring text */
             .slider-viewport {
-                mask-image: linear-gradient(to right, transparent 0%, black 2%, black 98%, transparent 100%);
-                -webkit-mask-image: linear-gradient(to right, transparent 0%, black 2%, black 98%, transparent 100%);
+                mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+                -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+                padding: 1rem 0; /* Tighter padding */
+            }
+
+            /* Improve meta data and footer readability */
+            .card-meta {
+                color: rgba(255, 255, 255, 0.8) !important;
+                font-weight: 600;
+                font-size: 0.85rem;
+            }
+            
+            footer {
+                padding: 3rem 1rem;
+                color: rgba(255, 255, 255, 0.9);
             }
         }
 
@@ -1295,6 +1348,20 @@
         .slider-auto-scroll {
             animation: none !important;
         }
+
+        @media (max-width: 768px) {
+            /* Reduced darkness: 2% instead of 5% for better readability on sides */
+            .slider-viewport {
+                mask-image: linear-gradient(to right, transparent 0%, black 2%, black 98%, transparent 100%) !important;
+                -webkit-mask-image: linear-gradient(to right, transparent 0%, black 2%, black 98%, transparent 100%) !important;
+            }
+            
+            /* Center the 85vw card: (100vw - 85vw) / 2 = 7.5vw padding */
+            .slider-track {
+                padding-left: 7.5vw;
+                padding-right: 7.5vw;
+            }
+        }
     </style>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
@@ -1663,6 +1730,11 @@
     </script>
     <script src="assets/js/script.js" defer></script>
     <script src="assets/js/audio-manager.js"></script>
-    <script src="assets/js/cookies.js" defer></script>
+    
+    <!-- Cookie Consent System (replaces old cookies.js) -->
+    <script src="assets/js/cookie-manager.js"></script>
+    
+    <!-- Cookie Banner -->
+    <div id="cookie-banner"><div class="cookie-banner-content"><div class="cookie-banner-text"><h3>🍪 We Value Your Privacy</h3><p>We use cookies to enhance your experience. <a href="#" onclick="event.preventDefault(); cookieManager?.openSettings();">Settings</a></p></div><div class="cookie-banner-actions"><button class="cookie-btn cookie-btn-necessary" onclick="cookieManager?.acceptNecessary();">Necessary Only</button><button class="cookie-btn cookie-btn-settings" onclick="cookieManager?.openSettings();">Settings</button><button class="cookie-btn cookie-btn-accept" onclick="cookieManager?.acceptAll();">Accept All</button></div></div></div><div id="cookie-settings-modal"><div class="cookie-modal-content"><div class="cookie-modal-header"><h2>Cookie Preferences</h2><button class="cookie-modal-close" onclick="cookieManager?.closeSettings();">×</button></div><div class="cookie-modal-body"><div class="cookie-category"><div class="cookie-category-header"><h3>Necessary Cookies</h3><label class="cookie-toggle"><input type="checkbox" checked disabled><span class="cookie-toggle-slider"></span></label></div><p>Essential cookies required for the website to function properly.</p></div><div class="cookie-category"><div class="cookie-category-header"><h3>Analytics Cookies</h3><label class="cookie-toggle"><input type="checkbox" id="cookie-analytics"><span class="cookie-toggle-slider"></span></label></div><p>Help us understand visitor interactions.</p></div><div class="cookie-category"><div class="cookie-category-header"><h3>Marketing Cookies</h3><label class="cookie-toggle"><input type="checkbox" id="cookie-marketing"><span class="cookie-toggle-slider"></span></label></div><p>Track visitors for relevant ads.</p></div><div class="cookie-category"><div class="cookie-category-header"><h3>Preference Cookies</h3><label class="cookie-toggle"><input type="checkbox" id="cookie-preferences"><span class="cookie-toggle-slider"></span></label></div><p>Remember your settings.</p></div></div><div class="cookie-modal-footer"><button class="cookie-btn cookie-btn-necessary" onclick="cookieManager?.acceptNecessary();">Save Necessary Only</button><button class="cookie-btn cookie-btn-accept" onclick="cookieManager?.saveCustomPreferences();">Save Preferences</button></div></div></div>
 </body>
 </html>

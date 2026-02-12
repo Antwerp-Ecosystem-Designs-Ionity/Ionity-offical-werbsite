@@ -2,10 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    
+    <!-- Resource Hints for Performance -->
+    <link rel="preconnect" href="https://api.ionity.today">
+    <link rel="dns-prefetch" href="https://maps.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    
     <link rel="manifest" href="manifest.json">
     <title>Ionity | Firmware Development & Integrations</title>
     <meta name="description" content="Ionity Firmware Development and Integrations. Connecting inhouse hardware with external requirements for IoT, AI, and IT ecosystems.">
+    
+    <!-- Cookie Consent Styles -->
+    <link rel="stylesheet" href="assets/css/style.css">
     
     <style>
         :root {
@@ -469,7 +478,7 @@
             nav { padding: 0 1rem; height: 60px; }
             nav.scrolled { height: 50px; }
             .mobile-dropdown { top: 60px; }
-            nav.scrolled ~ .mobile-dropdown { top: 50px; }
+            nav.scrolled .mobile-dropdown { top: 50px; }
 
             .nav-links { display: none; }
             .mobile-menu-btn { display: block; }
@@ -729,8 +738,8 @@
         </div>
 
         <!-- SDK SECTION -->
-        <h2 style="text-align: center; font-weight: 300; font-size: 2.5rem; margin: 5rem 0 3rem; color: #fff; text-shadow: 0 0 20px rgba(255,255,255,0.3); animation: slideIn 1s ease-out forwards;">
-            <span style="border-bottom: 1px solid var(--accent-cyan); padding-bottom: 10px; letter-spacing: 0.2rem;">SDK & AGENTIC CORE</span>
+        <h2 style="text-align: center; font-weight: 300; font-size: 2.5rem; line-height: 1.4; margin: 5rem 0 3rem; color: #fff; text-shadow: 0 0 20px rgba(255,255,255,0.3); animation: slideIn 1s ease-out forwards;">
+            <span style="border-bottom: 1px solid var(--accent-cyan); padding-bottom: 5px; letter-spacing: 0.2rem;">SDK & AGENTIC CORE</span>
         </h2>
 
         <div class="system-grid">
@@ -777,15 +786,6 @@
             </div>
         </div>
 
-        <!-- Signature / Encryption Note -->
-        <div class="signature-section">
-            <p style="max-width: 800px; margin: 0 auto; line-height: 1.6; margin-bottom: 2rem;">
-                With the Best Encryption channels possible, AEG is just the start of handshake and certificates.
-            </p>
-            <h2>Ionity™</h2>
-            <p>Tomorrow, Today.</p>
-        </div>
-
     </div>
 
     <footer>
@@ -796,6 +796,23 @@
             }
             .footer-content {
                 animation: footerGlow 3s infinite alternate;
+            }
+            .footer-logo-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 2rem;
+                width: 100%;
+            }
+            .footer-logo {
+                height: 80px;
+                width: auto;
+                opacity: 0.9;
+                transition: all 0.3s ease;
+            }
+            .footer-logo:hover {
+                opacity: 1;
+                filter: drop-shadow(0 0 15px rgba(0, 210, 255, 0.4));
             }
         </style>
         <div class="footer-logo-container">
@@ -1329,6 +1346,7 @@
     </script>
     <script src="assets/js/script.js" defer></script>
     <script src="assets/js/audio-manager.js"></script>
-    <script src="assets/js/cookies.js" defer></script>
+    <script src="assets/js/cookie-manager.js"></script>
+    <div id="cookie-banner"><div class="cookie-banner-content"><div class="cookie-banner-text"><h3>🍪 Privacy</h3><p>We use cookies. <a href="#" onclick="event.preventDefault(); cookieManager?.openSettings();">Settings</a></p></div><div class="cookie-banner-actions"><button class="cookie-btn cookie-btn-necessary" onclick="cookieManager?.acceptNecessary();">Necessary</button><button class="cookie-btn cookie-btn-accept" onclick="cookieManager?.acceptAll();">Accept All</button></div></div></div><div id="cookie-settings-modal"><div class="cookie-modal-content"><div class="cookie-modal-header"><h2>Cookies</h2><button class="cookie-modal-close" onclick="cookieManager?.closeSettings();">×</button></div><div class="cookie-modal-body"><div class="cookie-category"><div class="cookie-category-header"><h3>Necessary</h3><label class="cookie-toggle"><input type="checkbox" checked disabled><span class="cookie-toggle-slider"></span></label></div></div><div class="cookie-category"><div class="cookie-category-header"><h3>Analytics</h3><label class="cookie-toggle"><input type="checkbox" id="cookie-analytics"><span class="cookie-toggle-slider"></span></label></div></div><div class="cookie-category"><div class="cookie-category-header"><h3>Marketing</h3><label class="cookie-toggle"><input type="checkbox" id="cookie-marketing"><span class="cookie-toggle-slider"></span></label></div></div><div class="cookie-category"><div class="cookie-category-header"><h3>Preferences</h3><label class="cookie-toggle"><input type="checkbox" id="cookie-preferences"><span class="cookie-toggle-slider"></span></label></div></div></div><div class="cookie-modal-footer"><button class="cookie-btn cookie-btn-necessary" onclick="cookieManager?.acceptNecessary();">Necessary</button><button class="cookie-btn cookie-btn-accept" onclick="cookieManager?.saveCustomPreferences();">Save</button></div></div></div>
 </body>
 </html>

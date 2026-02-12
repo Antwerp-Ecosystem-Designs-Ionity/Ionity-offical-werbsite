@@ -28,6 +28,7 @@
             color: var(--text-main);
             overflow-x: hidden;
             width: 100%;
+            box-sizing: border-box;
         }
 
         /* --- 3D CANVAS BACKGROUND --- */
@@ -111,10 +112,10 @@
             top: 0;
             left: 0;
             box-sizing: border-box;
-            z-index: 1000;
-            transition: all 0.3s ease;
+            z-index: 100;
         }
 
+        nav + * { margin-top: 80px; }
 
 
         .logo {
@@ -219,10 +220,7 @@
             box-shadow: -5px 5px 20px rgba(0, 0, 0, 0.8), 0 0 15px rgba(0, 210, 255, 0.2);
             z-index: 99999;
             backdrop-filter: blur(20px);
-            transition: top 0.3s ease;
         }
-
-
 
         .mobile-dropdown.open {
             display: flex;
@@ -257,15 +255,18 @@
         .container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 4rem 2rem;
+            padding: 2rem 2rem;
             min-height: 80vh;
             position: relative;
             z-index: 10;
+            width: 100%;
+            box-sizing: border-box;
+            overflow-x: hidden;
         }
 
         /* --- HERO HEADER --- */
         .hero-section {
-            margin-bottom: 6rem;
+            margin-bottom: 4rem;
             animation: slideIn 1s ease-out;
             background: radial-gradient(circle at center, rgba(0,0,0,0.6), transparent 70%);
             padding: 2rem 0;
@@ -322,7 +323,8 @@
 
         /* --- ARCHITECTURE FLOW --- */
         .architecture-section {
-            margin-bottom: 6rem;
+            margin-top: 4rem;
+            margin-bottom: 4rem;
             padding: 3rem;
             background: rgba(10, 15, 20, 0.4);
             border: 1px solid var(--border);
@@ -525,7 +527,7 @@
 
         /* --- FOOTER --- */
         footer {
-            margin-top: 8rem;
+            margin-top: 4rem;
             padding: 2rem 5vw;
             border-top: 1px solid var(--border);
             text-align: center;
@@ -539,14 +541,31 @@
         footer a { color: var(--text-muted); text-decoration: none; margin: 0 10px; transition: color 0.3s; }
         footer a:hover { color: var(--accent-cyan); }
 
+        /* Tablet Adjust (769px - 1024px) */
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .container {
+                padding: 3rem 2rem;
+            }
+            
+            .monitor-frame {
+                max-width: 600px;
+                height: 350px;
+            }
+            
+            .monitor-focus-segment {
+                height: 400px;
+                padding: 0 2rem;
+            }
+            
+            .system-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+        }
+
         /* Mobile Adjust */
         @media (max-width: 768px) {
             h1 { font-size: 2.5rem; }
-            nav { padding: 0 1rem; height: 60px; }
-            nav.scrolled { height: 50px; }
-            .mobile-dropdown { top: 60px; }
-            nav.scrolled ~ .mobile-dropdown { top: 50px; }
-
+            nav { padding: 0 1.5rem; }
             .nav-links { display: none; } /* Hide desktop links */
             .mobile-menu-btn { display: block; } /* Show hamburger */
             .logo { font-size: 1rem; }
@@ -587,6 +606,29 @@
             }
             
             #cad-container { height: 180px !important; }
+            
+            /* INFO CARD MOBILE */
+            .info-card {
+                padding: 1.5rem !important;
+                margin-top: 1.5rem !important;
+            }
+            
+            .highlight-title {
+                font-size: 1.2rem !important;
+            }
+            
+            .card-body p {
+                font-size: 0.95rem !important;
+            }
+            
+            .feature-list {
+                gap: 0.6rem !important;
+            }
+            
+            .feature-list li {
+                padding: 0.6rem !important;
+                font-size: 0.9rem !important;
+            }
 
             /* FOOTER MOBILE */
             footer {
@@ -596,7 +638,7 @@
             footer a { margin: 0 5px; display: inline-block; margin-bottom: 5px; }
 
             /* BRIGHTNESS BOOST FOR MOBILE */
-            /* body { filter: brightness(1.2); } REMOVED TO FIX STICKY NAV */
+            body { filter: brightness(1.2); }
 
             /* AUTO GLOW ON MOBILE */
             h1 { animation: neonPulse 3s infinite alternate; }
@@ -605,9 +647,9 @@
 
         /* --- GEN-AI IMPACT SECTION --- */
         .gen-ai-section {
-            margin-top: 8rem;
-            margin-bottom: 6rem;
-            padding: 5rem 3rem;
+            margin-top: 4rem;
+            margin-bottom: 4rem;
+            padding: 4rem 3rem;
             border: 1px solid rgba(0, 210, 255, 0.3);
             border-top: 4px solid var(--accent-cyan);
             border-bottom: 4px solid var(--accent-cyan);
@@ -794,17 +836,22 @@
         .monitor-focus-segment {
             perspective: 1200px;
             height: 450px; 
-            margin-bottom: 2rem;
+            margin-bottom: 4rem;
+            margin-top: 2rem;
             display: flex;
             justify-content: center;
             align-items: center;
             animation: monitorFloat 6s ease-in-out infinite;
             z-index: 20; 
             position: relative;
+            width: 100%;
+            max-width: 100%;
+            padding: 0 1rem;
         }
 
         .monitor-frame {
-            width: 700px;
+            width: 100%;
+            max-width: 700px;
             height: 400px;
             background: #050510;
             border: 4px solid #b0e2ff;
@@ -815,6 +862,7 @@
             transform: rotateX(10deg);
             box-shadow: 0 50px 80px rgba(0,0,0,0.8), 0 0 30px rgba(0, 210, 255, 0.15);
             transition: transform 0.5s ease;
+            margin: 0 auto;
         }
 
         .monitor-frame:hover {
@@ -941,9 +989,9 @@
             position: relative;
             width: 100%;
             overflow: hidden;
-            margin-top: 3rem;
+            margin-top: 2rem;
             border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 2rem;
+            padding-top: 1.5rem;
             /* Fade edges for carousel effect */
             mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
             -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
@@ -1028,7 +1076,7 @@
 
         /* --- FACTORY SECTION --- */
         .factory-section {
-            margin-top: 8rem;
+            margin-top: 4rem;
             margin-bottom: 4rem;
             border-top: 1px solid var(--border);
             border-bottom: 1px solid var(--border);
@@ -1212,7 +1260,7 @@
             box-shadow: 0 0 40px rgba(0, 210, 255, 0.1);
             overflow: hidden;
             backdrop-filter: blur(10px);
-            margin-top: 2rem;
+            margin-top: 1.5rem;
         }
 
         .info-card::before {
@@ -1550,7 +1598,7 @@
             .carousel-wrapper {
                 position: relative;
                 width: 100%;
-                margin: 6rem 0;
+                margin: 4rem 0;
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -2063,6 +2111,174 @@
         renderer.toneMapping = THREE.ACESFilmicToneMapping;
         renderer.toneMappingExposure = 1.2; 
         container.appendChild(renderer.domElement);
+
+        // --- INTERACTIVE THREAD COMMUNICATION LAYER ---
+        const threadCanvas = document.createElement('canvas');
+        threadCanvas.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1;';
+        container.appendChild(threadCanvas);
+        const threadCtx = threadCanvas.getContext('2d');
+        
+        const threadNodes = [], threadConnections = [], particles = [];
+        let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
+        let showHint = window.innerWidth < 768, hintFade = 1.0;
+        
+        setTimeout(() => {
+            const fade = setInterval(() => {
+                hintFade -= 0.01;
+                if(hintFade <= 0) { clearInterval(fade); showHint = false; }
+            }, 50);
+        }, 3000);
+
+        const updateMouse = (x, y) => { mouseX = x; mouseY = y; if(showHint && hintFade > 0) hintFade = 0; };
+        window.addEventListener('mousemove', e => updateMouse(e.clientX, e.clientY));
+        window.addEventListener('touchmove', e => { if(e.touches[0]) updateMouse(e.touches[0].clientX, e.touches[0].clientY); }, {passive: true});
+        window.addEventListener('touchstart', e => { if(e.touches[0]) updateMouse(e.touches[0].clientX, e.touches[0].clientY); }, {passive: true});
+
+        class ThreadNode {
+            constructor(x, y) {
+                this.x = this.baseX = x; this.y = this.baseY = y;
+                this.vx = (Math.random() - 0.5) * 0.5; this.vy = (Math.random() - 0.5) * 0.5;
+                this.radius = 3 + Math.random() * 3; this.pulse = Math.random() * Math.PI * 2; this.activity = 0;
+            }
+            update() {
+                this.x += this.vx; this.y += this.vy;
+                const dx = this.baseX - this.x, dy = this.baseY - this.y;
+                this.x += dx * 0.01; this.y += dy * 0.01;
+                const mdx = mouseX - this.x, mdy = mouseY - this.y, mdist = Math.sqrt(mdx*mdx + mdy*mdy);
+                if(mdist < 200) {
+                    const force = (200 - mdist) / 200;
+                    this.x += (mdx / mdist) * force * 3; this.y += (mdy / mdist) * force * 3;
+                    this.activity = Math.min(1, this.activity + 0.1);
+                } else this.activity *= 0.95;
+                if(this.x < 0 || this.x > threadCanvas.width) this.vx *= -1;
+                if(this.y < 0 || this.y > threadCanvas.height) this.vy *= -1;
+                this.pulse += 0.05;
+            }
+            draw() {
+                const size = this.radius + Math.sin(this.pulse) * 2 + this.activity * 5;
+                const alpha = 0.6 + this.activity * 0.4;
+                const grad = threadCtx.createRadialGradient(this.x, this.y, 0, this.x, this.y, size);
+                grad.addColorStop(0, `rgba(0,210,255,${alpha})`);
+                grad.addColorStop(0.5, `rgba(0,150,255,${alpha*0.5})`);
+                grad.addColorStop(1, 'rgba(0,210,255,0)');
+                threadCtx.fillStyle = grad;
+                threadCtx.beginPath();
+                threadCtx.arc(this.x, this.y, size, 0, Math.PI * 2);
+                threadCtx.fill();
+                threadCtx.fillStyle = `rgba(255,255,255,${0.8+this.activity*0.2})`;
+                threadCtx.beginPath();
+                threadCtx.arc(this.x, this.y, this.radius * 0.5, 0, Math.PI * 2);
+                threadCtx.fill();
+            }
+        }
+
+        class CommParticle {
+            constructor(from, to, conn) {
+                this.from = from; this.to = to; this.conn = conn;
+                this.progress = 0; this.speed = 0.01 + Math.random() * 0.02;
+                this.size = 2 + Math.random() * 2;
+            }
+            update() { this.progress += this.speed; return this.progress >= 1; }
+            draw() {
+                const x = this.from.x + (this.to.x - this.from.x) * this.progress;
+                const y = this.from.y + (this.to.y - this.from.y) * this.progress;
+                const grad = threadCtx.createRadialGradient(x, y, 0, x, y, this.size * 3);
+                grad.addColorStop(0, 'rgba(0,255,255,0.9)');
+                grad.addColorStop(0.5, 'rgba(0,210,255,0.5)');
+                grad.addColorStop(1, 'rgba(0,210,255,0)');
+                threadCtx.fillStyle = grad;
+                threadCtx.beginPath();
+                threadCtx.arc(x, y, this.size * 3, 0, Math.PI * 2);
+                threadCtx.fill();
+                threadCtx.fillStyle = 'rgba(255,255,255,1)';
+                threadCtx.beginPath();
+                threadCtx.arc(x, y, this.size, 0, Math.PI * 2);
+                threadCtx.fill();
+            }
+        }
+
+        const initThreads = () => {
+            threadNodes.length = 0;
+            const cnt = window.innerWidth < 768 ? 8 : 12, pad = 100;
+            for(let i = 0; i < cnt; i++) {
+                threadNodes.push(new ThreadNode(
+                    pad + Math.random() * (threadCanvas.width - pad * 2),
+                    pad + Math.random() * (threadCanvas.height - pad * 2)
+                ));
+            }
+            threadConnections.length = 0;
+            for(let i = 0; i < threadNodes.length; i++) {
+                for(let j = i + 1; j < threadNodes.length; j++) {
+                    const dist = Math.hypot(threadNodes[i].x - threadNodes[j].x, threadNodes[i].y - threadNodes[j].y);
+                    if(dist < 300 || Math.random() > 0.7) {
+                        threadConnections.push({ from: threadNodes[i], to: threadNodes[j], lastP: 0, pulse: 0 });
+                    }
+                }
+            }
+        };
+
+        const resizeThreads = () => {
+            const dpr = Math.min(window.devicePixelRatio, 2);
+            threadCanvas.width = window.innerWidth * dpr;
+            threadCanvas.height = window.innerHeight * dpr;
+            threadCtx.scale(dpr, dpr);
+            threadCanvas.style.width = window.innerWidth + 'px';
+            threadCanvas.style.height = window.innerHeight + 'px';
+            if(threadNodes.length === 0) initThreads();
+        };
+        
+        resizeThreads();
+        window.addEventListener('resize', resizeThreads);
+
+        const animateThreads = () => {
+            threadCtx.clearRect(0, 0, threadCanvas.width, threadCanvas.height);
+            threadNodes.forEach(n => n.update());
+            threadConnections.forEach(c => {
+                const activity = (c.from.activity + c.to.activity) / 2;
+                if(c.pulse > 0) c.pulse -= 0.05;
+                const grad = threadCtx.createLinearGradient(c.from.x, c.from.y, c.to.x, c.to.y);
+                const a = 0.1 + activity * 0.4 + c.pulse * 0.3;
+                grad.addColorStop(0, `rgba(0,210,255,${a})`);
+                grad.addColorStop(0.5, `rgba(0,180,255,${a*1.5})`);
+                grad.addColorStop(1, `rgba(0,210,255,${a})`);
+                threadCtx.strokeStyle = grad;
+                threadCtx.lineWidth = 1 + activity * 2 + c.pulse * 1.5;
+                threadCtx.shadowBlur = 10 + activity * 20 + c.pulse * 10;
+                threadCtx.shadowColor = '#00d2ff';
+                threadCtx.beginPath();
+                threadCtx.moveTo(c.from.x, c.from.y);
+                threadCtx.lineTo(c.to.x, c.to.y);
+                threadCtx.stroke();
+                threadCtx.shadowBlur = 0;
+                if(activity > 0.3 && Date.now() - c.lastP > 500) {
+                    particles.push(new CommParticle(c.from, c.to, c));
+                    c.lastP = Date.now(); c.pulse = 1.0;
+                }
+                if(Math.random() > 0.995) { particles.push(new CommParticle(c.from, c.to, c)); c.pulse = 1.0; }
+            });
+            threadNodes.forEach(n => n.draw());
+            for(let i = particles.length - 1; i >= 0; i--) {
+                if(particles[i].update()) particles.splice(i, 1);
+                else particles[i].draw();
+            }
+            if(showHint && hintFade > 0) {
+                const t = Date.now() * 0.001, ps = 30 + Math.sin(t * 2) * 10;
+                const hx = window.innerWidth / 2, hy = window.innerHeight / 2;
+                threadCtx.strokeStyle = `rgba(0,210,255,${0.6*hintFade})`;
+                threadCtx.lineWidth = 2;
+                threadCtx.shadowBlur = 15;
+                threadCtx.shadowColor = '#00d2ff';
+                threadCtx.beginPath();
+                threadCtx.arc(hx, hy, ps, 0, Math.PI * 2);
+                threadCtx.stroke();
+                threadCtx.shadowBlur = 0;
+                threadCtx.fillStyle = `rgba(0,210,255,${0.8*hintFade})`;
+                threadCtx.font = '14px "Courier New", monospace';
+                threadCtx.textAlign = 'center';
+                threadCtx.fillText('TOUCH TO INTERACT', hx, hy + 60);
+                threadCtx.textAlign = 'left';
+            }
+        };
 
         // --- POST PROCESSING ---
         const renderScene = new RenderPass(scene, camera);
@@ -2601,6 +2817,9 @@
             deepGlow.intensity = 2.0 + Math.sin(glowTime) * 0.5;
             deepGlow.position.y = -200 + Math.cos(glowTime * 0.5) * 50;
 
+            // Animate interactive threads
+            animateThreads();
+
             composer.render();
             requestAnimationFrame(animate);
         }
@@ -2625,16 +2844,6 @@
 
         // 2. Scroll Reveal Animation
         document.addEventListener("DOMContentLoaded", () => {
-            // Header Scroll Effect
-            const nav = document.querySelector('nav');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    nav.classList.add('scrolled');
-                } else {
-                    nav.classList.remove('scrolled');
-                }
-            });
-
             const cards = document.querySelectorAll('.card');
             
             const observerOptions = {

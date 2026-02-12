@@ -1,0 +1,52 @@
+# robots.txt for Ionity.world
+# Johan Wilhelm van Antwerp - Ionity (Pty) Ltd
+
+User-agent: *
+Allow: /
+
+# Disallow sensitive or unnecessary paths
+Disallow: /assets/js/
+Disallow: /assets/css/
+Disallow: /*.json$
+
+# Crawl-delay for respectful indexing
+Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://www.ionity.world/sitemap.xml
+Sitemap: https://www.ionity.today/sitemap.xml
+
+# Popular Search Engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /assets/images/
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+# Block AI scrapers (optional - uncomment if desired)
+# User-agent: GPTBot
+# Disallow: /
+# User-agent: ChatGPT-User
+# Disallow: /
+# User-agent: CCBot
+# Disallow: /
+# User-agent: anthropic-ai
+# Disallow: /
+# User-agent: Claude-Web
+# Disallow: /
+
+# Social Media Bots
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
