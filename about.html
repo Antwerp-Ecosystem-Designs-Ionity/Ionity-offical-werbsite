@@ -178,7 +178,7 @@
             width: 100%;
             box-sizing: border-box;
             top: 0;
-            z-index: 100;
+            z-index: 1001;
             transition: all 0.4s ease;
         }
 
@@ -278,12 +278,11 @@
             width: 280px; /* Limits width */
             background: rgba(5, 10, 15, 0.95); /* Darker and cleaner */
             border: 1px solid var(--accent-cyan);
-            border-top: none;
             border-right: none;
             flex-direction: column;
             padding: 1rem 0;
             box-shadow: -5px 5px 20px rgba(0, 0, 0, 0.8), 0 0 15px rgba(0, 210, 255, 0.2);
-            z-index: 99999; /* Ensure always on top */
+            z-index: 1000; /* Below nav, above other content */
             backdrop-filter: blur(20px);
         }
 
@@ -958,6 +957,7 @@
             <img src="assets/images/ionity-logo-edited.png" alt="Ionity Logo" class="footer-logo">
         </div>
         <div class="footer-content" style="line-height: 2;">
+            <div style="color: var(--accent-cyan); font-weight: 500; margin-bottom: 0.5rem;">Serving Global Markets | Based in Pretoria, Gauteng | GMT +2 Timezone</div>
             <div>Ionity™ (Pty) Ltd 2025-2026 | Creative Commons BY_NC_SA 4.0 | Made with AEDI™ | Author: Antwerp Designs</div>
             <div>South Africa Centurion 0157 | Policy AED 986 AED | License AED 900 | Ionity™ IoT-Ai-DAQ-PdM-CMS-F-iT Hardware, Software Integrations, ALL RIGHTS RESERVED</div>
             <div>

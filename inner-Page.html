@@ -111,12 +111,19 @@
             top: 0;
             left: 0;
             box-sizing: border-box;
-            z-index: 1000;
+            z-index: 1001;
             transition: all 0.3s ease;
         }
         
         /* Spacer for content below fixed nav */
         nav + * { margin-top: 80px; }
+        
+        /* Desktop: Add 3 extra lines of spacing for web only */
+        @media (min-width: 769px) {
+            .container {
+                margin-top: 4.5rem;
+            }
+        }
 
         .logo {
             font-family: 'Courier New', monospace;
@@ -213,12 +220,11 @@
             width: 280px;
             background: rgba(5, 10, 15, 0.95);
             border: 1px solid var(--accent-cyan);
-            border-top: none;
             border-right: none;
             flex-direction: column;
             padding: 1rem 0;
             box-shadow: -5px 5px 20px rgba(0, 0, 0, 0.8), 0 0 15px rgba(0, 210, 255, 0.2);
-            z-index: 99999;
+            z-index: 1000;
             backdrop-filter: blur(20px);
         }
 
@@ -1301,10 +1307,9 @@
 
     <nav>
         <a href="index.html" class="logo">
-             <img src="assets/images/ionity-logo-edited.png" alt="IONITY" class="nav-logo">
+            <img src="assets/images/ionity-logo-edited.png" alt="IONITY" class="nav-logo">
         </a>
         
-        <!-- Desktop Menu -->
         <div class="nav-links">
             <a href="inner-Page.html" class="active">Systems</a>
             <a href="services.html">Services</a>
@@ -1319,12 +1324,9 @@
             <a href="gateway.html">IO Way</a>
         </div>
 
-        <!-- Mobile Button -->
         <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
-    </nav>
-    
-    <!-- Mobile Dropdown -->
-    <div class="mobile-dropdown" id="mobileDropdown">
+        
+        <div class="mobile-dropdown" id="mobileDropdown">
         <a href="inner-Page.html" class="active">Systems</a>
         <a href="services.html">Services</a>
         <a href="products.html">Products</a>
@@ -1337,6 +1339,7 @@
         <a href="firmware-development.html">Dev</a>
         <a href="gateway.html">IO Way</a>
     </div>
+    </nav>
 
     <div class="container">
         

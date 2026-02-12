@@ -10,6 +10,7 @@ class CookieManager {
         this.consentGiven = false;
         this.preferences = {
             necessary: true, // Always true
+            security: true, // Always true - essential for site protection
             analytics: false,
             marketing: false,
             preferences: false
@@ -49,6 +50,7 @@ class CookieManager {
     acceptAll() {
         this.preferences = {
             necessary: true,
+            security: true,
             analytics: true,
             marketing: true,
             preferences: true
@@ -61,6 +63,7 @@ class CookieManager {
     acceptNecessary() {
         this.preferences = {
             necessary: true,
+            security: true,
             analytics: false,
             marketing: false,
             preferences: false
@@ -88,6 +91,11 @@ class CookieManager {
     }
 
     applyPreferences() {
+        // Apply security cookies (always enabled)
+        if (this.preferences.security) {
+            this.enableSecurity();
+        }
+
         // Apply analytics cookies
         if (this.preferences.analytics) {
             this.enableAnalytics();
@@ -108,6 +116,20 @@ class CookieManager {
             detail: this.preferences
         });
         document.dispatchEvent(event);
+    }
+
+    enableSecurity() {
+        // Enable security cookies for CSRF protection, session security, etc.
+        console.log('Security cookies enabled');
+        
+        // Set CSRF token cookie
+        this.setSecurityCookie('ionity_csrf_token', this.generateToken(), 1);
+        
+        // Set security headers flag
+        this.setSecurityCookie('ionity_security_enabled', 'true', 365);
+        
+        // Set session security cookie
+        this.setSecurityCookie('ionity_session_secure', 'true', 1);
     }
 
     enableAnalytics() {
@@ -165,6 +187,22 @@ class CookieManager {
         date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
         const expires = "expires=" + date.toUTCString();
         document.cookie = name + "=" + value + ";" + expires + ";path=/;SameSite=Lax;Secure";
+    }
+
+    setSecurityCookie(name, value, days) {
+        // Security cookies with stricter settings
+        const date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        const expires = "expires=" + date.toUTCString();
+        // Use SameSite=Strict and Secure for enhanced security
+        document.cookie = name + "=" + value + ";" + expires + ";path=/;SameSite=Strict;Secure;HttpOnly";
+    }
+
+    generateToken() {
+        // Generate a random token for CSRF protection
+        const array = new Uint8Array(32);
+        crypto.getRandomValues(array);
+        return Array.from(array, byte => byte.toString(16).padStart(2, '0')).join('');
     }
 
     getCookie(name) {

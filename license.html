@@ -89,7 +89,7 @@
             top: 0;
             left: 0;
             box-sizing: border-box;
-            z-index: 100;
+            z-index: 1001;
         }
 
         nav + * { margin-top: 80px; }
@@ -150,12 +150,11 @@
             width: 280px;
             background: rgba(5, 10, 15, 0.95);
             border: 1px solid var(--accent-cyan);
-            border-top: none;
             border-right: none;
             flex-direction: column;
             padding: 1rem 0;
             box-shadow: -5px 5px 20px rgba(0, 0, 0, 0.8), 0 0 15px rgba(0, 210, 255, 0.2);
-            z-index: 99999;
+            z-index: 1000;
             backdrop-filter: blur(20px);
         }
 
@@ -705,7 +704,7 @@
 
     </div>
 
-    <footer style="background-color: #081220; padding: 3rem 0; border-top: 1px solid rgba(0, 210, 255, 0.3);">
+    <footer style="background-color: #1a5577; padding: 3rem 0; border-top: 1px solid rgba(0, 210, 255, 0.3);">
         <style>
             @keyframes footerGlow {
                 0% { text-shadow: 0 0 2px rgba(255,255,255,0.1); }

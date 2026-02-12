@@ -127,7 +127,7 @@
             width: 100%;
             box-sizing: border-box;
             top: 0;
-            z-index: 100;
+            z-index: 1001;
         }
         
         /* Spacer for content below fixed nav */
@@ -224,12 +224,11 @@
             width: 280px;
             background: rgba(5, 10, 15, 0.95);
             border: 1px solid var(--accent-cyan);
-            border-top: none;
             border-right: none;
             flex-direction: column;
             padding: 1rem 0;
             box-shadow: -5px 5px 20px rgba(0, 0, 0, 0.8), 0 0 15px rgba(0, 210, 255, 0.2);
-            z-index: 99999;
+            z-index: 1000;
             backdrop-filter: blur(20px);
         }
 
@@ -474,47 +473,130 @@
                 </p>
             </div>
 
+            <!-- 0. AI Multimedia & Creative Tools -->
+            <div>
+                <h3 style="color: #fff; border-left: 3px solid var(--accent-cyan); padding-left: 1rem; margin-bottom: 2rem; font-size: 1.5rem; letter-spacing: 0.1rem;">AI Multimedia & Creative Tools</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem;">
+                    <!-- Video & Animation -->
+                    <a href="https://runwayml.com/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Runway ML</a>
+                    <a href="https://www.synthesia.io/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Synthesia</a>
+                    <a href="https://www.d-id.com/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">D-ID Avatar</a>
+                    <a href="https://www.descript.com/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Descript</a>
+                    <a href="https://www.flexclip.com/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">FlexClip</a>
+                    <a href="https://www.fliki.ai/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Fliki</a>
+                    <a href="https://www.vidnoz.com/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Vidnoz</a>
+                    <a href="https://www.create.vista.com/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Vista Create</a>
+                    
+                    <!-- Music & Audio -->
+                    <a href="https://suno.com/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Suno Music</a>
+                    <a href="https://www.udio.com/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Udio Music</a>
+                    <a href="https://www.soundraw.io/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Soundraw</a>
+                    <a href="https://www.amper.ai/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Amper Music</a>
+                    <a href="https://www.loudly.com/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Loudly</a>
+                    <a href="https://melodrive.com/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Melodrive</a>
+                    <a href="https://www.jukebox.ai/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Jukebox</a>
+                    <a href="https://www.splice.com/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Splice</a>
+                    
+                    <!-- Image & Graphics -->
+                    <a href="https://www.canva.com/ai/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Canva AI</a>
+                    <a href="https://www.midjourney.com/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Midjourney</a>
+                    <a href="https://www.dall-e.com/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">DALL-E</a>
+                    <a href="https://www.adobe.com/firefly/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Adobe Firefly</a>
+                    <a href="https://www.getimg.ai/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">GetImg.ai</a>
+                    <a href="https://www.remove.bg/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Remove.bg</a>
+                    <a href="https://www.photoai.com/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">PhotoAI</a>
+                    <a href="https://www.pixlr.com/express/?ref=ai" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Pixlr AI</a>
+                    
+                    <!-- Design & UI -->
+                    <a href="https://www.figma.com/ai/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Figma AI</a>
+                    <a href="https://www.framer.com/ai" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Framer AI</a>
+                    <a href="https://www.uizard.io/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Uizard</a>
+                    <a href="https://designer.microsoft.com/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">MS Designer</a>
+                    <a href="https://www.layout.so/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Layout</a>
+                    <a href="https://kittl.com/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Kittl</a>
+                    
+                    <!-- 3D & Modeling -->
+                    <a href="https://www.meshmixer.com/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Meshmixer</a>
+                    <a href="https://www.chaosgroup.com/vray" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">V-Ray</a>
+                    <a href="https://www.nvidia.com/en-us/studio/canvas/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">NVIDIA Canvas</a>
+                    <a href="https://www.triposr.ai/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Tripod SR</a>
+                    <a href="https://www.instant-ngp.com/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Instant NeRF</a>
+                    
+                    <!-- Content & Writing -->
+                    <a href="https://www.copy.ai/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Copy.ai</a>
+                    <a href="https://www.jasperai.com/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Jasper</a>
+                    <a href="https://www.writefull.com/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Writefull</a>
+                    <a href="https://www.grammarly.com/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Grammarly AI</a>
+                    <a href="https://www.typeform.com/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Typeform</a>
+                    
+                    <!-- Presentation & Slides -->
+                    <a href="https://gamma.app/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Gamma</a>
+                    <a href="https://www.beautiful.ai/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Beautiful.ai</a>
+                    <a href="https://www.slidesai.io/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">SlidesAI</a>
+                    <a href="https://www.decktopus.com/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Decktopus</a>
+                    
+                    <!-- Voice & Speech -->
+                    <a href="https://elevenlabs.io/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">ElevenLabs</a>
+                    <a href="https://www.google.com/intl/en/chrome/demos/speech.html" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Google Speech</a>
+                    <a href="https://murf.ai/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Murf.ai</a>
+                    <a href="https://www.naturalreader.com/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Natural Reader</a>
+                    <a href="https://play.ht/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Play.ht</a>
+                    
+                    <!-- Animation & Motion -->
+                    <a href="https://www.animaker.com/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Animaker</a>
+                    <a href="https://powtoon.com/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Powtoon</a>
+                    <a href="https://www.renderforest.com/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Renderforest</a>
+                    <a href="https://www.typingmind.com/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Typing Mind</a>
+                    
+                    <!-- Image Upscaling & Enhancement -->
+                    <a href="https://upscayl.github.io/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Upscayl</a>
+                    <a href="https://www.topazlabs.com/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Topaz Labs</a>
+                    <a href="https://clipdrop.co/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Clipdrop</a>
+                    <a href="https://www.icons8.com/upscaler" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Icons8 Upscaler</a>
+                </div>
+            </div>
+
             <!-- 1. Global Tech Leaders -->
             <div>
                 <h3 style="color: #fff; border-left: 3px solid var(--accent-cyan); padding-left: 1rem; margin-bottom: 2rem; font-size: 1.5rem; letter-spacing: 0.1rem;">Official Tech Giants & Ecosystems</h3>
                 <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem;">
-                    <a href="https://cloud.google.com/vertex-ai" target="_blank" class="resource-card">Google Cloud AI</a>
-                    <a href="https://www.microsoft.com/en-us/ai" target="_blank" class="resource-card">Microsoft AI</a>
-                    <a href="https://www.ibm.com/watson" target="_blank" class="resource-card">IBM Watson</a>
-                    <a href="https://github.com/features/copilot" target="_blank" class="resource-card">GitHub</a>
-                    <a href="https://www.iotsecurityfoundation.org/" target="_blank" class="resource-card">Security IoT</a>
-                    <a href="https://aws.amazon.com/bedrock/nova/" target="_blank" class="resource-card">Amazon Nova</a>
-                    <a href="https://www.nvidia.com/en-us/ai-data-science/" target="_blank" class="resource-card">NVIDIA AI</a>
-                    <a href="https://ai.meta.com/" target="_blank" class="resource-card">Meta AI</a>
-                    <a href="https://machinelearning.apple.com/" target="_blank" class="resource-card">Apple ML</a>
-                    <a href="https://huggingface.co/docs/transformers/index" target="_blank" class="resource-card">Hugging Face Ecosystem</a>
+                    <a href="https://cloud.google.com/vertex-ai" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Google Cloud AI</a>
+                    <a href="https://www.microsoft.com/en-us/ai" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Microsoft AI</a>
+                    <a href="https://www.ibm.com/watson" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">IBM Watson</a>
+                    <a href="https://github.com/features/copilot" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">GitHub Copilot</a>
+                    <a href="https://www.iotsecurityfoundation.org/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">IoT Security</a>
+                    <a href="https://aws.amazon.com/bedrock/nova/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Amazon Nova</a>
+                    <a href="https://www.nvidia.com/en-us/ai-data-science/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">NVIDIA AI</a>
+                    <a href="https://ai.meta.com/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Meta AI</a>
+                    <a href="https://machinelearning.apple.com/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Apple ML</a>
+                    <a href="https://huggingface.co/docs/transformers/index" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Hugging Face</a>
                 </div>
             </div>
 
             <!-- 2. Generative Models & Tools -->
             <div>
-                <h3 style="color: #fff; border-left: 3px solid var(--accent-cyan); padding-left: 1rem; margin-bottom: 2rem; font-size: 1.5rem; letter-spacing: 0.1rem;">Generative Models & Ai Tools</h3>
+                <h3 style="color: #fff; border-left: 3px solid var(--accent-cyan); padding-left: 1rem; margin-bottom: 2rem; font-size: 1.5rem; letter-spacing: 0.1rem;">Generative Models & AI Tools</h3>
                 <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem;">
-                    <a href="https://chat.deepseek.com/" target="_blank" class="resource-card">DeepSeek</a>
-                    <a href="https://gemini.google.com/" target="_blank" class="resource-card">Google Gemini</a>
-                    <a href="https://copilot.microsoft.com/" target="_blank" class="resource-card">Microsoft Copilot</a>
-                    <a href="https://claude.ai/" target="_blank" class="resource-card">Anthropic Claude</a>
-                    <a href="https://grok.x.ai/" target="_blank" class="resource-card">xAI Grok</a>
-                    <a href="https://www.slidesai.io/" target="_blank" class="resource-card">SlidesAI</a>
-                    <a href="https://openai.com/chatgpt" target="_blank" class="resource-card">ChatGPT</a>
-                    <a href="https://huggingface.co/" target="_blank" class="resource-card">Hugging Face</a>
-                    <a href="https://www.midjourney.com/" target="_blank" class="resource-card">Midjourney</a>
-                    <a href="https://runwayml.com/" target="_blank" class="resource-card">Runway ML</a>
-                    <a href="https://chatglm.cn/" target="_blank" class="resource-card">GLM (Zhipu)</a>
-                    <a href="#" class="resource-card">Apriel Ai</a>
-                    <a href="https://openai.com/gpt-4" target="_blank" class="resource-card">GPT-4</a>
-                    <a href="https://www.perplexity.ai/" target="_blank" class="resource-card">Perplexity AI</a>
-                    <a href="https://elevenlabs.io/" target="_blank" class="resource-card">ElevenLabs</a>
-                    <a href="https://leonardo.ai/" target="_blank" class="resource-card">Leonardo.ai</a>
-                    <a href="https://suno.com/" target="_blank" class="resource-card">Suno</a>
-                    <a href="https://www.krea.ai/" target="_blank" class="resource-card">Krea AI</a>
-                    <a href="https://ideogram.ai/" target="_blank" class="resource-card">Ideogram</a>
-                    <a href="https://gamma.app/" target="_blank" class="resource-card">Gamma</a>
+                    <a href="https://chat.deepseek.com/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">DeepSeek</a>
+                    <a href="https://gemini.google.com/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Google Gemini</a>
+                    <a href="https://copilot.microsoft.com/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Copilot</a>
+                    <a href="https://claude.ai/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Claude AI</a>
+                    <a href="https://grok.x.ai/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">xAI Grok</a>
+                    <a href="https://www.slidesai.io/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">SlidesAI</a>
+                    <a href="https://openai.com/chatgpt" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">ChatGPT</a>
+                    <a href="https://huggingface.co/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Hugging Face</a>
+                    <a href="https://www.midjourney.com/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Midjourney</a>
+                    <a href="https://runwayml.com/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Runway ML</a>
+                    <a href="https://chatglm.cn/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">GLM (Zhipu)</a>
+                    <a href="#" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Apriel Ai</a>
+                    <a href="https://openai.com/gpt-4" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">GPT-4</a>
+                    <a href="https://www.perplexity.ai/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Perplexity AI</a>
+                    <a href="https://elevenlabs.io/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">ElevenLabs</a>
+                    <a href="https://leonardo.ai/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Leonardo.ai</a>
+                    <a href="https://suno.com/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Suno</a>
+                    <a href="https://www.krea.ai/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Krea AI</a>
+                    <a href="https://ideogram.ai/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Ideogram</a>
+                    <a href="https://gamma.app/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Gamma</a>
                     <a href="https://cohere.com/" target="_blank" class="resource-card">Cohere</a>
                     <a href="https://stability.ai/" target="_blank" class="resource-card">Stability AI</a>
                     <a href="https://poe.com/" target="_blank" class="resource-card">Quora Poe</a>
@@ -628,14 +710,14 @@
             <div>
                 <h3 style="color: #fff; border-left: 3px solid var(--accent-cyan); padding-left: 1rem; margin-bottom: 2rem; font-size: 1.5rem; letter-spacing: 0.1rem;">Global Tech News</h3>
                 <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem;">
-                    <a href="https://techcrunch.com/" target="_blank" class="resource-card">TechCrunch</a>
-                    <a href="https://www.theverge.com/tech" target="_blank" class="resource-card">The Verge</a>
-                    <a href="https://www.wired.com/" target="_blank" class="resource-card">Wired</a>
-                    <a href="https://arstechnica.com/" target="_blank" class="resource-card">Ars Technica</a>
-                    <a href="https://venturebeat.com/category/ai/" target="_blank" class="resource-card">VentureBeat</a>
-                    <a href="https://www.technologyreview.com/topic/artificial-intelligence/" target="_blank" class="resource-card">MIT Tech Review</a>
-                    <a href="https://humanloop.com/blog" target="_blank" class="resource-card">Humanloop Blog</a>
-                    <a href="https://the-decoder.com/" target="_blank" class="resource-card">The Decoder</a>
+                    <a href="https://techcrunch.com/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">TechCrunch</a>
+                    <a href="https://www.theverge.com/tech" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">The Verge</a>
+                    <a href="https://www.wired.com/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Wired</a>
+                    <a href="https://arstechnica.com/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Ars Technica</a>
+                    <a href="https://venturebeat.com/category/ai/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">VentureBeat</a>
+                    <a href="https://www.technologyreview.com/topic/artificial-intelligence/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">MIT Tech Review</a>
+                    <a href="https://humanloop.com/blog" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Humanloop Blog</a>
+                    <a href="https://the-decoder.com/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">The Decoder</a>
                 </div>
             </div>
 
@@ -643,14 +725,16 @@
             <div>
                 <h3 style="color: #fff; border-left: 3px solid var(--accent-cyan); padding-left: 1rem; margin-bottom: 2rem; font-size: 1.5rem; letter-spacing: 0.1rem;">Regulations & Global Governance</h3>
                 <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem;">
-                    <a href="https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai" target="_blank" class="resource-card">EU AI Act</a>
-                    <a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" class="resource-card">NIST AI RMF</a>
-                    <a href="https://www.iso.org/committee/6794475.html" target="_blank" class="resource-card">ISO/IEC AI Standards</a>
-                    <a href="https://oecd.ai/en/" target="_blank" class="resource-card">OECD.AI Policy</a>
-                    <a href="https://futureoflife.org/cause/artificial-intelligence/" target="_blank" class="resource-card">Future of Life Inst.</a>
-                    <a href="https://www.unesco.org/en/artificial-intelligence/recommendation-ethics" target="_blank" class="resource-card">UNESCO AI Ethics</a>
-                    <a href="https://www.aisi.gov.uk/" target="_blank" class="resource-card">UK AI Safety Inst.</a>
-                    <a href="https://www.nist.gov/isi/ai-safety-institute" target="_blank" class="resource-card">US AI Safety Inst.</a>
+                    <a href="https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">EU AI Act</a>
+                    <a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">NIST AI RMF</a>
+                    <a href="https://www.iso.org/committee/6794475.html" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">ISO/IEC Standards</a>
+                    <a href="https://oecd.ai/en/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">OECD.AI Policy</a>
+                    <a href="https://futureoflife.org/cause/artificial-intelligence/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">Future of Life</a>
+                    <a href="https://www.unesco.org/en/artificial-intelligence/recommendation-ethics" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">UNESCO AI Ethics</a>
+                    <a href="https://www.aisi.gov.uk/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">UK AI Safety</a>
+                    <a href="https://www.nist.gov/isi/ai-safety-institute" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">US AI Safety</a>
+                    <a href="https://www.w3.org/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">W3C Standards</a>
+                    <a href="https://www.woip.org/" target="_blank" class="resource-card" style="color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.4);">WOIP Framework</a>
                 </div>
             </div>
 

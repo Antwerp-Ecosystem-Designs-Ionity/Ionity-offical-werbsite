@@ -82,7 +82,7 @@
             width: 100%;
             box-sizing: border-box;
             top: 0;
-            z-index: 1000;
+            z-index: 1001;
         }
         
         /* Spacer for content below fixed nav */
@@ -179,12 +179,11 @@
             width: 280px;
             background: rgba(5, 10, 15, 0.95);
             border: 1px solid var(--accent-cyan);
-            border-top: none;
             border-right: none;
             flex-direction: column;
             padding: 1rem 0;
             box-shadow: -5px 5px 20px rgba(0, 0, 0, 0.8), 0 0 15px rgba(0, 210, 255, 0.2);
-            z-index: 99999;
+            z-index: 1010;
             backdrop-filter: blur(20px);
         }
 
@@ -226,7 +225,8 @@
             z-index: 1; 
             max-width: 1400px;
             margin: 0 auto;
-            padding: 2rem 5vw 4rem 5vw;
+            padding: 8rem 5vw 4rem 5vw;
+            margin-top: 80px;
         }
 
         .hero-section {
@@ -389,7 +389,7 @@
             .nav-links { display: none; }
             .mobile-menu-btn { display: block; }
             h1 { font-size: 2rem; }
-            .container { padding: 6rem 3vw 2rem 3vw; }
+            .container { padding: 6rem 3vw 2rem 3vw; margin-top: 80px; }
 
             /* Mobile Hero Section */
             .hero-section {
@@ -522,7 +522,7 @@
 
         /* Small Mobile Devices Optimization */
         @media (max-width: 480px) {
-            .container { padding: 6rem 2vw 2rem 2vw !important; }
+            .container { padding: 6rem 2vw 2rem 2vw !important; margin-top: 80px !important; }
 
             .hero-section h1 {
                 font-size: 1.75rem !important;
@@ -719,15 +719,15 @@
 
         /* Ensure cards in slider maintain width */
         .slider-track .card, .slider-track .card-3d-scene {
-            width: 280px;
+            width: 210px;
             flex-shrink: 0;
             /* Reset transform from grid hover if conflicts, but keep hover effect */
         }
 
         /* --- 3D DIGITAL CARDS --- */
         .card-3d-scene {
-            width: 280px; 
-            height: 350px;
+            width: 210px; 
+            height: 280px;
             perspective: 1200px;
             cursor: pointer;
         }
@@ -866,6 +866,41 @@
             0%, 100% { transform: translateX(0); opacity: 0.5; }
             50% { transform: translateX(-5px); opacity: 1; }
         }
+
+        /* --- SLIDE INDICATOR LINE --- */
+        .slide-indicator {
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(to right, 
+                transparent 0%, 
+                var(--accent-cyan) 10%, 
+                var(--accent-cyan) 90%, 
+                transparent 100%);
+            margin: 2rem 0 1rem 0;
+            position: relative;
+            opacity: 0.6;
+        }
+
+        .slide-indicator::before {
+            content: '';
+            position: absolute;
+            height: 100%;
+            width: 60px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                var(--accent-cyan), 
+                transparent);
+            animation: slideGlide 3s ease-in-out infinite;
+            left: 0;
+        }
+
+        @keyframes slideGlide {
+            0% { left: -60px; opacity: 0; }
+            20% { opacity: 1; }
+            50% { left: calc(50% - 30px); opacity: 1; }
+            80% { opacity: 1; }
+            100% { left: calc(100%); opacity: 0; }
+        }
 </style>
     <link rel="icon" type="image/png" href="assets/images/ionity-logo-edited.png">
     <link rel="manifest" href="manifest.json">
@@ -945,11 +980,6 @@
                             </div>
                             <h3>IoT NODE</h3>
                             <p style="text-align:center; color: var(--accent-cyan); font-family: monospace; letter-spacing: 2px;">STATUS: ONLINE</p>
-                            <div class="swipe-indicator">
-                                <span class="swipe-arrow left">&#10094;</span>
-                                <span style="font-size: 10px; color: rgba(255,255,255,0.5); letter-spacing: 1px;">SWIPE</span>
-                                <span class="swipe-arrow right">&#10095;</span>
-                            </div>
                         </div>
                         <div class="card-3d-face card-3d-back">
                             <h3>IONITY CORE</h3>
@@ -1128,11 +1158,8 @@
             </div>
             
         </div>
-        <div class="carousel-controls">
-            <button class="carousel-btn prev-btn">&#10094;</button>
-            <button class="carousel-btn next-btn">&#10095;</button>
         </div>
-        </div>
+        <div class="slide-indicator"></div>
         </div>
 
         <!-- Industrial Deployment Hero -->
@@ -1219,10 +1246,7 @@
             </div>
         </div>
         </div>
-        <div class="carousel-controls">
-            <button class="carousel-btn prev-btn">&#10094;</button>
-            <button class="carousel-btn next-btn">&#10095;</button>
-        </div>
+        <div class="slide-indicator"></div>
         </div>
 
         <!-- Industries Section -->
@@ -1349,10 +1373,7 @@
             </div>
         </div>
         </div>
-        <div class="carousel-controls">
-            <button class="carousel-btn prev-btn">&#10094;</button>
-            <button class="carousel-btn next-btn">&#10095;</button>
-        </div>
+        <div class="slide-indicator"></div>
         </div>
 
         <!-- AEDI Integrations Hero -->
@@ -1414,10 +1435,6 @@
             </div>
         </div>
         </div>
-        <div class="carousel-controls">
-            <button class="carousel-btn prev-btn">&#10094;</button>
-            <button class="carousel-btn next-btn">&#10095;</button>
-        </div>
         </div>
 
         <!-- Subscription Tiers -->
@@ -1478,10 +1495,6 @@
             </div>
 
             </div>
-        </div>
-        <div class="carousel-controls">
-            <button class="carousel-btn prev-btn">&#10094;</button>
-            <button class="carousel-btn next-btn">&#10095;</button>
         </div>
         </div>
 

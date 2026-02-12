@@ -134,7 +134,7 @@
             top: 0;
             left: 0;
             right: 0;
-            z-index: 100;
+            z-index: 1001;
             width: 100%;
             box-sizing: border-box;
         }
@@ -201,12 +201,11 @@
             width: 280px;
             background: rgba(5, 10, 15, 0.95);
             border: 1px solid var(--accent-cyan);
-            border-top: none;
             border-right: none;
             flex-direction: column;
             padding: 1rem 0;
             box-shadow: -5px 5px 20px rgba(0, 0, 0, 0.8), 0 0 15px rgba(0, 210, 255, 0.2);
-            z-index: 99999;
+            z-index: 1000;
             backdrop-filter: blur(20px);
         }
 
@@ -466,10 +465,106 @@
             }
         }
         
+        /* Globe Styles */
+        #globe-container {
+            background: radial-gradient(ellipse at center, rgba(0, 50, 100, 0.3) 0%, rgba(2, 2, 4, 0.8) 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .globe-wrapper {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            perspective: 1000px;
+        }
+
+        .globe-sphere {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #00d2ff, #002244);
+            box-shadow: 
+                inset -5px -5px 15px rgba(0, 0, 0, 0.5),
+                0 0 30px rgba(0, 210, 255, 0.4),
+                0 0 60px rgba(0, 210, 255, 0.2);
+            position: relative;
+            animation: globeRotate 20s linear infinite;
+        }
+
+        @keyframes globeRotate {
+            from { transform: rotateY(0deg); }
+            to { transform: rotateY(360deg); }
+        }
+
+        .globe-pin {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #00ff88;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #00ff88, inset 0 0 5px rgba(255, 255, 255, 0.3);
+            animation: pinPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pinPulse {
+            0%, 100% { box-shadow: 0 0 10px #00ff88, inset 0 0 5px rgba(255, 255, 255, 0.3); transform: scale(1); }
+            50% { box-shadow: 0 0 20px #00ff88, inset 0 0 8px rgba(255, 255, 255, 0.6); transform: scale(1.3); }
+        }
+
+        .globe-label {
+            position: absolute;
+            font-size: 0.65rem;
+            color: #00d2ff;
+            text-transform: uppercase;
+            letter-spacing: 0.1rem;
+            font-weight: 600;
+            white-space: nowrap;
+            pointer-events: none;
+            text-shadow: 0 0 8px rgba(0, 210, 255, 0.6);
+            display: none;
+        }
+
+        /* South Africa Map Styles */
+        #sa-map-svg {
+            filter: drop-shadow(0 0 20px rgba(0, 210, 255, 0.3));
+        }
+
+        .sa-point {
+            filter: drop-shadow(0 0 12px rgba(0, 255, 136, 0.6));
+        }
+
+        .sa-point-core {
+            filter: drop-shadow(0 0 8px rgba(0, 255, 136, 0.8));
+        }
+
+        .sa-point-alt {
+            filter: drop-shadow(0 0 10px rgba(0, 210, 255, 0.5));
+        }
+
+        .sa-label {
+            font-family: 'Courier New', monospace;
+            text-shadow: 0 0 8px rgba(0, 210, 255, 0.4);
+        }
+
+        #sa-map-svg path {
+            transition: all 0.3s ease;
+            filter: drop-shadow(0 0 8px rgba(0, 210, 255, 0.2));
+        }
+
+        #sa-map-svg:hover path {
+            filter: drop-shadow(0 0 20px rgba(0, 210, 255, 0.6));
+        }
+
         @media (max-width: 768px) {
             .nav-links { display: none; }
             .mobile-menu-btn { display: block; }
             .contact-info h1 { font-size: 2.5rem; }
+            #globe-container { height: 350px; }
+            .globe-wrapper { width: 200px; height: 200px; }
         }
     </style>
 </head>
@@ -524,10 +619,59 @@
         <a href="gateway.html">IO Way</a>
     </div>
 
+    <!-- GLOBE CONTAINER FOR PINNING LOCATIONS -->
+    <div id="globe-container" style="position: relative; width: 100%; height: 500px; margin-top: 80px; border-bottom: 1px solid rgba(0, 210, 255, 0.3);"></div>
+
+    <!-- SOUTH AFRICA MAP SECTION -->
+    <div id="sa-map-container" style="position: relative; width: 100%; padding: 3rem 5vw; background: linear-gradient(135deg, rgba(0, 50, 100, 0.15) 0%, rgba(2, 2, 4, 0.6) 100%); border-bottom: 1px solid rgba(0, 210, 255, 0.3);">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h2 style="text-align: center; color: var(--accent-cyan); margin-bottom: 2rem; font-size: 1.5rem; text-transform: uppercase; letter-spacing: 0.2rem; text-shadow: 0 0 15px rgba(0, 210, 255, 0.4);">South Africa Operations</h2>
+            <svg id="sa-map-svg" viewBox="0 0 400 600" style="width: 100%; max-width: 280px; display: block; margin: 0 auto; filter: drop-shadow(0 0 20px rgba(0, 210, 255, 0.3));">
+                <!-- Simplified SA Map Outline -->
+                <path d="M 200 50 L 250 80 L 280 120 L 290 180 L 280 250 L 270 300 L 250 330 L 200 350 L 150 340 L 120 300 L 100 250 L 90 180 L 100 120 L 140 80 Z" 
+                      fill="rgba(0, 210, 255, 0.1)" stroke="#00d2ff" stroke-width="2" opacity="0.8"/>
+                
+                <!-- Pretoria (Headquarters) -->
+                <circle cx="200" cy="140" r="8" fill="#00ff88" opacity="0" class="sa-point">
+                    <animate attributeName="r" values="8;15;8" dur="2s" repeatCount="indefinite"/>
+                    <animate attributeName="opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite"/>
+                </circle>
+                <circle cx="200" cy="140" r="6" fill="#00ff88" class="sa-point-core"/>
+                <text x="200" y="120" text-anchor="middle" fill="#00ff88" font-size="11" font-weight="bold" text-shadow="0 0 8px rgba(0, 255, 136, 0.6)" class="sa-label">PRETORIA</text>
+                
+
+                
+                <!-- Johannesburg -->
+                <circle cx="210" cy="160" r="6" fill="#00d2ff" opacity="0" class="sa-point-alt">
+                    <animate attributeName="r" values="6;12;6" dur="2.5s" repeatCount="indefinite" begin="0.6s"/>
+                    <animate attributeName="opacity" values="1;0.3;1" dur="2.5s" repeatCount="indefinite" begin="0.6s"/>
+                </circle>
+                <circle cx="210" cy="160" r="4" fill="#00d2ff" class="sa-point-core"/>
+                <text x="235" y="165" text-anchor="start" fill="#00d2ff" font-size="10" font-weight="bold" class="sa-label">JNB</text>
+                
+
+            </svg>
+            <div style="text-align: center; margin-top: 2rem; color: rgba(255, 255, 255, 0.6); font-size: 0.85rem; letter-spacing: 0.1rem;">
+                <p>🌍 Serving Global Markets | 🏢 Based in Pretoria, Gauteng</p>
+                <p style="margin-top: 0.5rem; color: var(--accent-cyan);">GMT +2 Timezone</p>
+            </div>
+        </div>
+    </div>
+
     <div class="content-main">
         <div class="contact-info">
             <h1>Contact Us:</h1>
             
+            <div class="info-item">
+                <span class="info-label">Support Services</span>
+                <a href="mailto:services@ionity.world" class="info-value">services@ionity.world</a>
+            </div>
+
+            <div class="info-item">
+                <span class="info-label">General Enquire</span>
+                <a href="mailto:johan@ionity.today" class="info-value">johan@ionity.today</a>
+            </div>
+
             <div class="info-item">
                 <span class="info-label">Quotes | Global Relations | Enquiries</span>
                 <a href="mailto:ai@ionity.today" class="info-value">ai@ionity.today</a>
@@ -538,11 +682,16 @@
                 <a href="mailto:tech@ionity.live" class="info-value">tech@ionity.live</a>
             </div>
 
-                <div class="info-item">
-                    <span class="info-label">Direct phonecall and Whatsapp</span>
-                    <a href="tel:+27646999877" class="info-value">+27 646 999 877</a>
-                    <a href="https://wa.me/27646999877" class="info-value" target="_blank" style="margin-top:0.5rem; display:inline-block; font-size:0.9rem; opacity:0.8;">&gt; Open WhatsApp</a>
-                </div>
+            <div class="info-item">
+                <span class="info-label">Direct phonecall and Whatsapp</span>
+                <a href="tel:+27646999877" class="info-value">+27 646 999 877</a>
+                <a href="https://wa.me/27646999877" class="info-value" target="_blank" style="margin-top:0.5rem; display:inline-block; font-size:0.9rem; opacity:0.8;">&gt; Open WhatsApp</a>
+            </div>
+
+            <div class="info-item">
+                <span class="info-label">Location & Timezone</span>
+                <span class="info-value">GMT +2 | South Africa | Pretoria (Gauteng)</span>
+            </div>
             </div>
 
             <div class="terminal-box">
@@ -613,7 +762,90 @@
             }
         });
     </script>
+    <!-- GLOBE INITIALIZATION SCRIPT WITH LIVE PINGS -->
+    <script>
+        function initGlobe() {
+            const globeContainer = document.getElementById('globe-container');
+            if (!globeContainer) return;
 
+            const wrapper = document.createElement('div');
+            wrapper.className = 'globe-wrapper';
+            
+            const sphere = document.createElement('div');
+            sphere.className = 'globe-sphere';
+            
+            // Create beacon ping container
+            const beaconContainer = document.createElement('div');
+            beaconContainer.style.position = 'absolute';
+            beaconContainer.style.width = '100%';
+            beaconContainer.style.height = '100%';
+            beaconContainer.style.top = '0';
+            beaconContainer.style.left = '0';
+
+            // Initial ping beacons - will animate to new positions
+            const pingCount = 8;
+            const pings = [];
+
+            for (let i = 0; i < pingCount; i++) {
+                const ping = document.createElement('div');
+                ping.className = 'globe-pin';
+                ping.style.position = 'absolute';
+                ping.style.animationDelay = (i * 0.2) + 's';
+                beaconContainer.appendChild(ping);
+                
+                pings.push({
+                    element: ping,
+                    top: Math.random() * 100,
+                    left: Math.random() * 100,
+                    nextTop: Math.random() * 100,
+                    nextLeft: Math.random() * 100,
+                    progress: 0
+                });
+            }
+
+            // Animate pings to new locations
+            function animatePings() {
+                pings.forEach((ping, idx) => {
+                    ping.progress += 0.005;
+                    
+                    if (ping.progress >= 1) {
+                        ping.progress = 0;
+                        ping.top = ping.nextTop;
+                        ping.left = ping.nextLeft;
+                        ping.nextTop = Math.random() * 100;
+                        ping.nextLeft = Math.random() * 100;
+                    }
+
+                    // Smooth interpolation to new position
+                    const easeProgress = ping.progress < 0.5 
+                        ? 2 * ping.progress * ping.progress 
+                        : -1 + (4 - 2 * ping.progress) * ping.progress;
+
+                    const currentTop = ping.top + (ping.nextTop - ping.top) * easeProgress;
+                    const currentLeft = ping.left + (ping.nextLeft - ping.left) * easeProgress;
+
+                    ping.element.style.top = currentTop + '%';
+                    ping.element.style.left = currentLeft + '%';
+                    ping.element.style.transform = 'translate(-50%, -50%)';
+                });
+
+                requestAnimationFrame(animatePings);
+            }
+
+            sphere.appendChild(beaconContainer);
+            wrapper.appendChild(sphere);
+            globeContainer.appendChild(wrapper);
+            
+            animatePings();
+        }
+
+        // Initialize globe when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initGlobe);
+        } else {
+            initGlobe();
+        }
+    </script>
     <script type="module">
         import * as THREE from 'three';
         import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
