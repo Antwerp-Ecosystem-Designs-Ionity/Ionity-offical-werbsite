@@ -1,0 +1,129 @@
+{
+  "version": "1.0.0",
+  "name": "Ionity API & Documentation",
+  "description": "Ionity (Antwerp Designs) - IoT, AI, and Hardware Ecosystems API Documentation",
+  "author": {
+    "name": "Johan Wilhelm van Antwerp",
+    "id": "9003135105083",
+    "orcid": "0009-0005-7181-0347",
+    "email": "johan@ionity.today",
+    "phone": "+27 64 699 9877",
+    "linkedIn": "https://www.linkedin.com/in/ionity",
+    "github": "AntwerpDesignsIonity"
+  },
+  "organization": {
+    "name": "Ionity",
+    "alternateNames": ["Antwerp Designs", "AEDI", "Antwerp Ecosystems Designs Ionity", "Ionity (Pty) Ltd"],
+    "founded": "2018",
+    "tagline": "Building Tomorrow, Today. Anything is Possible with God.",
+    "philosophy": "Precision, Performance, and Long-term Stability",
+    "type": "Ecosystems Solutionist"
+  },
+  "location": {
+    "city": "Pretoria",
+    "region": "Gauteng",
+    "country": "South Africa",
+    "countryCode": "ZA",
+    "coordinates": {
+      "latitude": "-25.7479",
+      "longitude": "28.2293"
+    }
+  },
+  "websites": {
+    "primary": "https://www.ionity.today/",
+    "profile": "https://www.ionity.world/",
+    "linkedIn": "https://www.linkedin.com/in/ionity",
+    "facebook": "https://www.facebook.com/people/Ionity/61587016452256/",
+    "github": "https://github.com/Antwerp-Ecosystem-Designs-Ionity",
+    "githubDesigns": "https://github.com/AntwerpDesignsIonity"
+  },
+  "contactDetails": {
+    "emails": {
+      "primary": "johan@ionity.today",
+      "ai": "ai@ionity.today",
+      "services": "services@ionity.world",
+      "admin": "admin@ionity.today",
+      "personal": "johanvanantwerp@gmail.com"
+    },
+    "phone": "+27 64 699 9877",
+    "location": "Pretoria, Gauteng, South Africa"
+  },
+  "legal": {
+    "signature": "Antwerp Designs | Ionity | Ionity (Pty) Ltd",
+    "copyright": "© 2018–2026 Antwerp Designs | Ionity (Pty) Ltd",
+    "policy": "AED 986",
+    "license": "AED 900",
+    "rights": "All rights reserved | TM² | CC BY-NC-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+  },
+  "technologies": {
+    "core": ["IoT", "AI", "Machine Learning", "Cloud Computing", "Edge Computing"],
+    "industrial": ["PdM (Predictive Maintenance)", "CMS (Content Management Systems)", "DAQ (Data Acquisition)", "F-iT (Field Information Technology)"],
+    "specialization": ["Hardware Design", "Power-Saving Units", "Embedded Systems", "SCADA Systems", "Cyber Security"],
+    "software": ["HTML5", "CSS3", "JavaScript", "Progressive Web Apps"]
+  },
+  "capabilities": [
+    "AI/ML Integration",
+    "AI Expert Systems",
+    "Cloud Software Solutions",
+    "Cloud-to-Edge Orchestration",
+    "IoT Device Management",
+    "Real-time Analytics",
+    "Secure Communications",
+    "Firmware Development",
+    "Remote Monitoring",
+    "Automated Controls"
+  ],
+  "roles": [
+    "Ecosystems Solutionist",
+    "IoT Engineer",
+    "AI Integration Specialist",
+    "Cloud Solutions Expert",
+    "Firmware Developer",
+    "Edge Computing Specialist",
+    "Hardware Integration Specialist",
+    "Toolmaker & Product Developer"
+  ],
+  "documentation": {
+    "markdown": "/ionity-api.md",
+    "wiki": "https://github.com/AntwerpDesignsIonity/Metadata/wiki/Ionity-Meta%E2%80%90data",
+    "repository": "https://github.com/Antwerp-Ecosystem-Designs-Ionity/Ionity-offical-werbsite"
+  },
+  "endpoints": {
+    "status": "https://www.ionity.today/",
+    "dashboard": "https://www.ionity.today/index.html",
+    "products": "https://www.ionity.today/products.html",
+    "services": "https://www.ionity.today/services.html",
+    "about": "https://www.ionity.today/about.html",
+    "ai_innovation": "https://www.ionity.today/ai-innovation.html",
+    "gateway": "https://www.ionity.today/gateway.html",
+    "firmware": "https://www.ionity.today/firmware-development.html"
+  },
+  "metadata": {
+    "keywords": "Ionity, Antwerp Designs, AEDI, IoT, AI, Cloud Systems, Edge Computing, Hardware Design, Power Saving Units, SCADA, PdM, CMS, DAQ, F-iT, Cyber Security, Industrial Automation",
+    "description": "Ionity designs secure Cloud, Edge, AI, and IoT ecosystems. We build power-saving hardware units, SCADA systems, and custom software for global automation.",
+    "og:type": "business.business",
+    "og:site_name": "Ionity | Antwerp Designs",
+    "og:title": "Ionity | Building Tomorrow, Today",
+    "og:description": "Ecosystems Solutionist. Connecting Cloud, Edge, AI, and Hardware. Creator of power-saving units and secure automation systems."
+  },
+  "assets": {
+    "logo": "/assets/images/ionity-logo-edited.png",
+    "icons": [
+      "/assets/images/icon-192.png",
+      "/assets/images/icon-512.png",
+      "/assets/images/apple-touch-icon.png"
+    ],
+    "branding": [
+      "/assets/images/AEDI-LOGo.jpeg",
+      "/assets/images/logo-white.png",
+      "/assets/images/Ionity_GUI.jpeg",
+      "/assets/images/ionity-social-card.png"
+    ]
+  },
+  "manifest": "/manifest.json",
+  "favicon": "/assets/images/ionity-logo-edited.png",
+  "lastUpdated": "2026-02-13",
+  "status": "Active",
+  "maintenance": false
+}

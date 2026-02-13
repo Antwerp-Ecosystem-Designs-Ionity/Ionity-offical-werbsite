@@ -1,7 +1,7 @@
 {
-  "name": "Ionity - IoT & Firmware Development Solutions",
+  "name": "Ionity - AI & IoT Cloud Solutions | Firmware Development | Expert AI Integration",
   "short_name": "Ionity",
-  "description": "Advanced IoT solutions,Building Tomorrow, Today. Secure Industrial IoT, AI, and Hardware Solutions.", firmware development, and AI innovation for connected devices Edge and Cloud",
+  "description": "Ionity - Advanced IoT solutions with AI Integration, Building Tomorrow, Today. Expert AI systems, Secure Industrial IoT, AI-powered Hardware Solutions, firmware development, Cloud Software, and AI innovation for connected devices at Edge and Cloud. AI Integration Specialist | Cloud Solutions | IoT Expert Systems",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
@@ -10,100 +10,146 @@
   "orientation": "any",
   "icons": [
     {
-      "src": "/assets/images/icon-72x72.png",
-      "sizes": "72x72",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/assets/images/icon-96x96.png",
-      "sizes": "96x96",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/assets/images/icon-128x128.png",
-      "sizes": "128x128",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/assets/images/icon-144x144.png",
-      "sizes": "144x144",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/assets/images/icon-152x152.png",
-      "sizes": "152x152",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/assets/images/icon-192x192.png",
+      "src": "/assets/images/ionity-logo-edited.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/assets/images/icon-384x384.png",
-      "sizes": "384x384",
+      "src": "/assets/images/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/images/icon-192.png",
+      "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/assets/images/icon-512x512.png",
+      "src": "/assets/images/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/images/AEDI-LOGo.jpeg",
+      "sizes": "256x256",
+      "type": "image/jpeg",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/images/logo-white.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/images/Ionity_GUI.jpeg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any"
     }
   ],
   "categories": ["productivity", "utilities", "business"],
+  "technologies": [
+    "IoT (Internet of Things)",
+    "AI (Artificial Intelligence)",
+    "Machine Learning",
+    "Cloud Computing",
+    "Edge Computing",
+    "Firmware Development",
+    "Hardware Integration",
+    "SCADA Systems",
+    "Data Acquisition",
+    "Predictive Maintenance",
+    "Cyber Security",
+    "Industrial Automation"
+  ],
+  "capabilities": [
+    "AI/ML Integration",
+    "AI Expert Systems",
+    "Cloud Software Solutions",
+    "Cloud-to-Edge Orchestration",
+    "IoT Device Management",
+    "Real-time Analytics",
+    "Secure Communications",
+    "Firmware Updates",
+    "Remote Monitoring",
+    "Automated Controls"
+  ],
+  "features": [
+    "Advanced AI Integration",
+    "Cloud-Native Architecture",
+    "IoT Ecosystem",
+    "Expert AI Systems",
+    "Cloud Software Platform",
+    "Hardware-Software Integration",
+    "Edge Intelligence",
+    "Secure Cloud Integration",
+    "Custom AI Solutions",
+    "Enterprise Cloud Services"
+  ],
+  "expertise": [
+    "AI Integration Specialist",
+    "Cloud Solutions Expert",
+    "IoT Systems Engineer",
+    "Firmware Developer",
+    "Edge Computing Expert",
+    "Cloud Software Architect",
+    "AI/ML Engineer",
+    "Hardware Integration Specialist"
+  ],
   "shortcuts": [
     {
       "name": "Dashboard",
       "short_name": "Dashboard",
-      "description": "Access IoT Dashboard",
+      "description": "Access Ionity Dashboard",
       "url": "/index.html",
-      "icons": [{ "src": "/assets/images/icon-96x96.png", "sizes": "96x96" }]
+      "icons": [{ "src": "/assets/images/ionity-logo-edited.png", "sizes": "192x192", "type": "image/png" }]
     },
     {
       "name": "Products",
       "short_name": "Products",
-      "description": "View our products",
+      "description": "View Ionity Products",
       "url": "/products.html",
-      "icons": [{ "src": "/assets/images/icon-96x96.png", "sizes": "96x96" }]
+      "icons": [{ "src": "/assets/images/AEDI-LOGo.jpeg", "sizes": "192x192", "type": "image/jpeg" }]
     },
     {
       "name": "Services",
       "short_name": "Services",
-      "description": "Explore our services",
+      "description": "Explore Ionity Services",
       "url": "/services.html",
-      "icons": [{ "src": "/assets/images/icon-96x96.png", "sizes": "96x96" }]
-    }
-{
-      "src": "/assets/images/icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any"
+      "icons": [{ "src": "/assets/images/icon-192.png", "sizes": "192x192", "type": "image/png" }]
     },
     {
-      "src": "/assets/images/icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "maskable"
+      "name": "About",
+      "short_name": "About",
+      "description": "Learn About Ionity",
+      "url": "/about.html",
+      "icons": [{ "src": "/assets/images/logo-white.png", "sizes": "192x192", "type": "image/png" }]
     },
     {
-      "src": "/assets/images/icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any"
+      "name": "AI Innovation",
+      "short_name": "AI",
+      "description": "AI & Machine Learning Solutions",
+      "url": "/ai-innovation.html",
+      "icons": [{ "src": "/assets/images/Edge%20intelegence%20eidi.png", "sizes": "192x192", "type": "image/png" }]
     },
     {
-      "src": "/assets/images/icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "maskable"
+      "name": "Gateway & Edge",
+      "short_name": "Gateway",
+      "description": "Edge Computing & Gateway Solutions",
+      "url": "/gateway.html",
+      "icons": [{ "src": "/assets/images/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    },
+    {
+      "name": "Firmware",
+      "short_name": "Firmware",
+      "description": "Firmware Development Services",
+      "url": "/firmware-development.html",
+      "icons": [{ "src": "/assets/images/AEDI-LOGo.jpeg", "sizes": "192x192", "type": "image/jpeg" }]
     }
   ],
   "prefer_related_applications": false
