@@ -1507,6 +1507,137 @@
         loadGTM();
       }
     </script>
+
+    <!-- Mobile Responsive Enhancements -->
+    <style>
+        /* Ultra-small devices (320px and below) */
+        @media (max-width: 320px) {
+            body {
+                font-size: 14px;
+            }
+            
+            .hero-section {
+                gap: 2rem !important;
+            }
+            
+            .hero-section > div {
+                min-width: 100% !important;
+            }
+            
+            #ionity-gui-cube-container {
+                width: 100% !important;
+                height: 280px !important;
+            }
+            
+            .carousel-slide,
+            .carousel-slide:first-child {
+                min-width: 85vw !important;
+                max-width: 85vw !important;
+            }
+        }
+        
+        /* Small mobile devices (481px - 600px) */
+        @media (max-width: 600px) {
+            .hero-section > div[style*="min-width: 300px"] {
+                min-width: 100% !important;
+            }
+            
+            .hero-section > div[style*="width: 400px"] {
+                width: 100% !important;
+            }
+            
+            #ionity-gui-cube-container {
+                height: 320px !important;
+            }
+            
+            .carousel-slide {
+                min-width: 75vw !important;
+                max-width: 75vw !important;
+            }
+            
+            .carousel-slide:first-child {
+                min-width: 85vw !important;
+                max-width: 85vw !important;
+            }
+        }
+        
+        /* Mobile portrait and landscape */
+        @media (max-width: 768px) {
+            /* Fix hero section flex items */
+            .hero-section {
+                flex-direction: column !important;
+            }
+            
+            .hero-section > div {
+                width: 100% !important;
+                max-width: 100% !important;
+            }
+            
+            /* Ensure proper spacing on mobile */
+            nav + * {
+                margin-top: 60px !important;
+            }
+            
+            /* Better touch targets */
+            button, a.button, .btn {
+                min-height: 44px;
+                min-width: 44px;
+            }
+            
+            /* Optimize text sizes */
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            h3 {
+                font-size: 1.2rem;
+            }
+            
+            /* Better card padding on mobile */
+            .card, .info-card {
+                padding: 1rem !important;
+            }
+            
+            /* Responsive images */
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+            
+            /* Hide or adapt desktop-only elements */
+            .desktop-only {
+                display: none;
+            }
+        }
+        
+        /* Landscape mobile devices */
+        @media (max-width: 896px) and (orientation: landscape) {
+            .hero-section {
+                padding: 1rem 0;
+            }
+            
+            #ionity-gui-cube-container {
+                height: 280px !important;
+            }
+        }
+        
+        /* Ensure touch-friendly interactions */
+        @media (hover: none) and (pointer: coarse) {
+            /* Remove hover effects on touch devices */
+            *:hover {
+                transition: none !important;
+            }
+            
+            /* Larger tap targets */
+            a, button, input, select, textarea {
+                min-height: 44px;
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -3116,6 +3247,7 @@
     </script>
     <script src="assets/js/script.js" defer></script>
     <script src="assets/js/audio-manager.js"></script>
+    <script src="assets/js/cookie-manager.js" defer></script>
     <!-- Monitor & UI Logic -->
     <script>
         // --- 3D MONITOR DATA SIMULATION ---
@@ -3693,8 +3825,125 @@
         }
     </script>
 
-    <!-- ionity.yumyum SuperCookie -->
-    <script>window.ionity=window.ionity||{};window.$yum=window.ionity.yumyum={set:function(n,v,d,p){let e="";if(d){const t=new Date();t.setTime(t.getTime()+(d*864e5));e="; expires="+t.toUTCString()}document.cookie=n+"="+(v||"")+e+"; path="+(p||"/")+"; SameSite=Lax"},get:function(n){const nEQ=n+"=";const ca=document.cookie.split(';');for(let i=0;i<ca.length;i++){let c=ca[i].trim();if(c.indexOf(nEQ)===0)return c.substring(nEQ.length,c.length)}return null},check:function(n){return this.get(n)!==null},create:function(n,j,d,p){this.set(n,JSON.stringify(j),d||30,p||"/")},readJSON:function(n){const v=this.get(n);return v?JSON.parse(v):null},readValue:function(n,k){const j=this.readJSON(n);return j?j[k]:null},addValue:function(n,k,v,d,p){let j=this.readJSON(n)||{};j[k]=v;this.create(n,j,d||30,p||"/")}}</script>
+    <!-- Cookie Consent Banner -->
+    <div id="cookie-banner">
+        <div class="cookie-banner-content">
+            <div class="cookie-banner-text">
+                <h3>🍪 We Value Your Privacy</h3>
+                <p>
+                    We use cookies to enhance your experience, analyze site traffic, and personalize content. 
+                    By clicking "Accept All", you consent to our use of cookies. 
+                    <a href="#" onclick="event.preventDefault(); cookieManager?.openSettings();">Customize Settings</a>
+                </p>
+            </div>
+            <div class="cookie-banner-actions">
+                <button class="cookie-btn cookie-btn-necessary" onclick="cookieManager?.acceptNecessary();">
+                    Necessary Only
+                </button>
+                <button class="cookie-btn cookie-btn-settings" onclick="cookieManager?.openSettings();">
+                    Settings
+                </button>
+                <button class="cookie-btn cookie-btn-accept" onclick="cookieManager?.acceptAll();">
+                    Accept All
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cookie Settings Modal -->
+    <div id="cookie-settings-modal">
+        <div class="cookie-modal-content">
+            <div class="cookie-modal-header">
+                <h2>Cookie Preferences</h2>
+                <button class="cookie-modal-close" onclick="cookieManager?.closeSettings();" aria-label="Close">
+                    ×
+                </button>
+            </div>
+            <div class="cookie-modal-body">
+                <div class="cookie-category">
+                    <div class="cookie-category-header">
+                        <h3>Necessary Cookies</h3>
+                        <label class="cookie-toggle">
+                            <input type="checkbox" checked disabled>
+                            <span class="cookie-toggle-slider"></span>
+                        </label>
+                    </div>
+                    <p>
+                        Essential cookies required for the website to function properly. 
+                        These cannot be disabled as they are necessary for core functionality, 
+                        security, and accessibility features.
+                    </p>
+                </div>
+
+                <div class="cookie-category">
+                    <div class="cookie-category-header">
+                        <h3>🔒 Security Cookies</h3>
+                        <label class="cookie-toggle">
+                            <input type="checkbox" checked disabled>
+                            <span class="cookie-toggle-slider"></span>
+                        </label>
+                    </div>
+                    <p>
+                        Critical security cookies that protect your data and prevent attacks such as 
+                        Cross-Site Request Forgery (CSRF), session hijacking, and unauthorized access. 
+                        These cookies ensure secure authentication and maintain session integrity. 
+                        <strong>Always enabled for your protection.</strong>
+                    </p>
+                </div>
+
+                <div class="cookie-category">
+                    <div class="cookie-category-header">
+                        <h3>Analytics Cookies</h3>
+                        <label class="cookie-toggle">
+                            <input type="checkbox" id="cookie-analytics">
+                            <span class="cookie-toggle-slider"></span>
+                        </label>
+                    </div>
+                    <p>
+                        Help us understand how visitors interact with our website by collecting 
+                        and reporting anonymous usage statistics. This helps us improve the 
+                        user experience and site performance.
+                    </p>
+                </div>
+
+                <div class="cookie-category">
+                    <div class="cookie-category-header">
+                        <h3>Marketing Cookies</h3>
+                        <label class="cookie-toggle">
+                            <input type="checkbox" id="cookie-marketing">
+                            <span class="cookie-toggle-slider"></span>
+                        </label>
+                    </div>
+                    <p>
+                        Used to track visitors across websites to display relevant advertisements 
+                        and measure campaign effectiveness. These cookies enable personalized content and ads.
+                    </p>
+                </div>
+
+                <div class="cookie-category">
+                    <div class="cookie-category-header">
+                        <h3>Preference Cookies</h3>
+                        <label class="cookie-toggle">
+                            <input type="checkbox" id="cookie-preferences">
+                            <span class="cookie-toggle-slider"></span>
+                        </label>
+                    </div>
+                    <p>
+                        Remember your settings and preferences such as language, region, 
+                        and display options to provide a personalized experience on future visits.
+                    </p>
+                </div>
+            </div>
+            <div class="cookie-modal-footer">
+                <button class="cookie-btn cookie-btn-necessary" onclick="cookieManager?.acceptNecessary();">
+                    Save Necessary Only
+                </button>
+                <button class="cookie-btn cookie-btn-accept" onclick="cookieManager?.saveCustomPreferences();">
+                    Save Preferences
+                </button>
+            </div>
+        </div>
+    </div>
 
     <!-- Identity Modules -->
     <div class="identity-modules">
