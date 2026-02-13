@@ -2,19 +2,19 @@
 
   Founder / Engineer: Johan Wilhelm van Antwerp (IO)
 
-  Role: Ecosystems Solutionist, IoT Engineer
+Site: https://www.ionity.world
 
-  Location: Pretoria, South Africa
+Location: Pretoria, South Africa
 
-  
+Role: Ecosystems Solutionist, IoT Engineer
 
-  Contact: johan@ionity.today
+Contact: johan@ionity.today
 
-  LinkedIn: https://www.linkedin.com/in/ionity
+LinkedIn: https://www.linkedin.com/in/ionity
 
-  GitHub: https://github.com/AntwerpDesignsIonity
+GitHub: https://github.com/AntwerpDesignsIonity
 
-  Web: https://www.ionity.today/
+Web: https://www.ionity.today
 
 
 
@@ -26,15 +26,11 @@
 
 /* SITE */
 
-  Standards: HTML5, CSS3, JSON-LD, PWA, Manifesto
+Standards: HTML5, CSS3, JSON-LD
 
-  Components: Ionity Cloud, Edge AI Integration, Power-Saving Hardware
+Software: Next.js / Astro / Jekyll
 
-  Software: Custom Bash / Python / JS Stack
-
-  Doctype: HTML5
-
-  IDE: DeepThink v2.5 / VS Code
+Components: Ionity Cloud, Edge AI Integration, Power-Saving Hardware
 
   
 

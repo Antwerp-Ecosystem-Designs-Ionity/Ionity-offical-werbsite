@@ -90,6 +90,7 @@
           "url": "https://www.ionity.today/",
           "logo": "https://www.ionity.today/assets/images/logo.png",
           "foundingDate": "2018",
+          "founder": { "@id": "https://www.ionity.today/#author" },
           "slogan": "Building Tomorrow, Today. Anything is Possible with God.",
           "description": "Designers and builders of secure systems connecting devices, automating operations, and unlocking real-time intelligence. Specialists in edge computing, embedded hardware, and power-saving units.",
           "email": [
@@ -99,6 +100,16 @@
             "admin@ionity.today"
           ],
           "telephone": "+27-64-699-9877",
+          "location": {
+            "@type": "Place",
+            "name": "Pretoria, Gauteng",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Pretoria",
+              "addressRegion": "Gauteng",
+              "addressCountry": "ZA"
+            }
+          },
           "address": {
             "@type": "PostalAddress",
             "addressLocality": "Pretoria",
@@ -106,6 +117,12 @@
             "addressCountry": "ZA"
           },
           "areaServed": "Global",
+          "knowsAbout": [
+            { "@type": "Thing", "name": "IoT", "sameAs": "https://www.wikidata.org/wiki/Q11030" },
+            { "@type": "Thing", "name": "Edge AI", "sameAs": "https://en.wikipedia.org/wiki/Edge_computing" },
+            { "@type": "Thing", "name": "Artificial Intelligence", "sameAs": "https://www.wikidata.org/wiki/Q11019" },
+            { "@type": "Thing", "name": "Hardware Design", "sameAs": "https://en.wikipedia.org/wiki/Hardware_design" }
+          ],
           "sameAs": [
             "https://www.linkedin.com/in/ionity",
             "https://www.facebook.com/people/Ionity/61587016452256/",
@@ -170,6 +187,7 @@
             "DAQ",
             "F-iT"
           ],
+          "knowsLanguage": ["English", "Afrikaans"],
           "email": "johanvanantwerp@gmail.com"
         },
         {
@@ -187,6 +205,381 @@
           "copyrightYear": "2026",
           "license": "https://creativecommons.org/licenses/by-nc-sa/4.0/"
         }
+      ]
+    }
+    </script>
+
+    <!-- TechArticle Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.ionity.today"
+      },
+      "headline": "Ionity: Advanced IoT and AI Hardware Ecosystems",
+      "description": "Specialized hardware design including power-saving units and edge AI integration by Johan Wilhelm van Antwerp.",
+      "image": "https://www.ionity.today/assets/images/hardware-design.jpg",
+      "author": {
+        "@type": "Person",
+        "name": "Johan Wilhelm van Antwerp",
+        "url": "https://www.ionity.world",
+        "sameAs": [
+           "https://orcid.org/0009-0005-7181-0347",
+           "https://www.linkedin.com/in/ionity"
+        ]
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Ionity",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.ionity.today/assets/images/logo.png"
+        }
+      },
+      "keywords": "IoT, AI, Hardware, Power-Saving Units, Edge Computing, South Africa",
+      "datePublished": "2026-02-12",
+      "about": [
+        {
+          "@type": "Thing",
+          "name": "Internet of Things",
+          "sameAs": [
+            "https://en.wikipedia.org/wiki/Internet_of_things",
+            "https://www.wikidata.org/wiki/Q11030"
+          ]
+        },
+        {
+          "@type": "Thing",
+          "name": "Artificial Intelligence",
+          "sameAs": [
+            "https://en.wikipedia.org/wiki/Artificial_intelligence",
+            "https://www.wikidata.org/wiki/Q11660"
+          ]
+        }
+      ]
+    }
+    </script>
+
+    <!-- Products and Services Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Product",
+          "name": "Ionity Power-Saving Units",
+          "description": "Custom engineered hardware units designed for ultra-low power consumption in industrial IoT environments.",
+          "brand": {
+            "@type": "Brand",
+            "name": "Ionity"
+          },
+          "manufacturer": {
+            "@type": "Organization",
+            "name": "Ionity"
+          },
+          "category": "Hardware > Industrial Automation",
+          "additionalProperty": [
+            {
+              "@type": "PropertyValue",
+              "name": "Energy Efficiency",
+              "value": "Ultra-Low Power / Sleep Mode Optimized"
+            },
+            {
+              "@type": "PropertyValue",
+              "name": "Application",
+              "value": "Industrial IoT, Edge Computing, SCADA Systems"
+            }
+          ]
+        },
+        {
+          "@type": "Service",
+          "name": "AI Cloud & Edge Integration",
+          "provider": {
+            "@type": "Organization",
+            "name": "Ionity"
+          },
+          "serviceType": "Industrial AI Systems",
+          "areaServed": "Global",
+          "description": "End-to-end AI integration services connecting cloud infrastructure with edge devices for real-time intelligence and automation."
+        },
+        {
+          "@type": "Service",
+          "name": "IoT Ecosystem Design",
+          "provider": {
+            "@type": "Organization",
+            "name": "Ionity"
+          },
+          "serviceType": "IoT Solutions",
+          "areaServed": "Global",
+          "description": "Custom IoT ecosystem design and implementation for industrial automation, predictive maintenance, and data acquisition."
+        },
+        {
+          "@type": "Service",
+          "name": "SCADA Systems Development",
+          "provider": {
+            "@type": "Organization",
+            "name": "Ionity"
+          },
+          "serviceType": "Industrial Control Systems",
+          "areaServed": "Global",
+          "description": "Design and deployment of Supervisory Control and Data Acquisition (SCADA) systems for industrial monitoring and control."
+        }
+      ]
+    }
+    </script>
+
+    <!-- LocalBusiness Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Ionity",
+      "description": "IoT and AI hardware ecosystems design and development company specializing in power-saving units and industrial automation.",
+      "image": "https://www.ionity.today/assets/images/ionity-logo-edited.png",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Pretoria",
+        "addressRegion": "Gauteng",
+        "postalCode": "0157",
+        "addressCountry": "ZA"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "-25.7479",
+        "longitude": "28.2293"
+      },
+      "url": "https://www.ionity.today/",
+      "telephone": "+27-64-699-9877",
+      "email": "johan@ionity.today",
+      "priceRange": "$$",
+      "openingHours": "Mo-Fr 08:00-17:00",
+      "sameAs": [
+        "https://github.com/AntwerpDesignsIonity",
+        "https://www.linkedin.com/in/ionity",
+        "https://www.facebook.com/people/Ionity/61587016452256/"
+      ]
+    }
+    </script>
+
+    <!-- ProfessionalService Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "Ionity Ecosystem Solutions",
+      "alternateName": "Antwerp Designs",
+      "description": "Professional IoT, AI, and hardware engineering services for industrial automation and edge computing solutions.",
+      "url": "https://www.ionity.today/",
+      "logo": "https://www.ionity.today/assets/images/logo.png",
+      "image": "https://www.ionity.today/assets/images/ionity-social-card.png",
+      "telephone": "+27-64-699-9877",
+      "email": "services@ionity.world",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Pretoria",
+        "addressRegion": "Gauteng",
+        "addressCountry": "ZA"
+      },
+      "priceRange": "$$",
+      "areaServed": {
+        "@type": "GeoCircle",
+        "geoMidpoint": {
+          "@type": "GeoCoordinates",
+          "latitude": "-25.7479",
+          "longitude": "28.2293"
+        },
+        "geoRadius": "Global"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Ionity Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Hardware Design & Engineering",
+              "description": "Custom hardware design for IoT and industrial applications"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Software Development",
+              "description": "Cloud, edge, and embedded software solutions"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "System Integration",
+              "description": "End-to-end ecosystem integration and deployment"
+            }
+          }
+        ]
+      }
+    }
+    </script>
+
+    <!-- SoftwareApplication Schemas -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "AEDI Platform",
+      "applicationCategory": "BusinessApplication",
+      "applicationSubCategory": "Industrial Automation Software",
+      "description": "Automated Ecosystems Designs Intelligence platform for IoT device management, data acquisition, and predictive maintenance.",
+      "operatingSystem": "Cross-platform",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "Ionity"
+      },
+      "featureList": [
+        "Real-time data acquisition",
+        "Predictive maintenance",
+        "Cloud and edge integration",
+        "SCADA system integration",
+        "IoT device management"
+      ]
+    }
+    </script>
+
+    <!-- BreadcrumbList Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.ionity.today/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Products",
+          "item": "https://www.ionity.today/products.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Services",
+          "item": "https://www.ionity.today/services.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "About",
+          "item": "https://www.ionity.today/about.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "name": "Contact",
+          "item": "https://www.ionity.today/contact.html"
+        }
+      ]
+    }
+    </script>
+
+    <!-- ItemList for Technologies -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "Ionity Technology Stack",
+      "description": "Core technologies and competencies of Ionity ecosystem solutions",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "item": {
+            "@type": "Thing",
+            "name": "Internet of Things (IoT)",
+            "sameAs": "https://en.wikipedia.org/wiki/Internet_of_things"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "item": {
+            "@type": "Thing",
+            "name": "Artificial Intelligence (AI)",
+            "sameAs": "https://en.wikipedia.org/wiki/Artificial_intelligence"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "item": {
+            "@type": "Thing",
+            "name": "Edge Computing",
+            "sameAs": "https://en.wikipedia.org/wiki/Edge_computing"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "item": {
+            "@type": "Thing",
+            "name": "SCADA Systems",
+            "sameAs": "https://en.wikipedia.org/wiki/SCADA"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "item": {
+            "@type": "Thing",
+            "name": "Embedded Systems",
+            "sameAs": "https://en.wikipedia.org/wiki/Embedded_system"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 6,
+          "item": {
+            "@type": "Thing",
+            "name": "Cloud Computing",
+            "sameAs": "https://en.wikipedia.org/wiki/Cloud_computing"
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- ResearchProject Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ResearchProject",
+      "name": "Power-Saving Units for Industrial IoT",
+      "description": "Research and development of ultra-low power hardware units for industrial IoT applications with advanced sleep mode optimization.",
+      "founder": {
+        "@type": "Person",
+        "name": "Johan Wilhelm van Antwerp",
+        "identifier": "0009-0005-7181-0347"
+      },
+      "parentOrganization": {
+        "@type": "Organization",
+        "name": "Ionity"
+      },
+      "knowsAbout": [
+        "Power optimization",
+        "Hardware design",
+        "Industrial IoT",
+        "Embedded systems"
       ]
     }
     </script>

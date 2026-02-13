@@ -1,0 +1,144 @@
+# Hugo Configuration for Ionity
+# Place this as hugo.toml in your Hugo root
+
+baseURL = "https://www.ionity.today/"
+languageCode = "en-us"
+title = "Ionity | AI, IoT & Power-Saving Hardware Ecosystems | Antwerp Designs"
+defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = false
+
+# Pagination
+paginate = 10
+paginatePath = "page"
+
+# Outputs
+[outputs]
+  home = ["HTML", "JSON", "RSS"]
+  page = ["HTML"]
+  section = ["HTML", "RSS"]
+
+# Taxonomies
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+  service = "services"
+  product = "products"
+
+# Site Parameters
+[params]
+  description = "Ionity designs secure Cloud, Edge, AI, and IoT ecosystems. We build power-saving hardware units, SCADA systems, and custom software for global automation."
+  author = "Johan Wilhelm van Antwerp"
+  author_url = "https://www.ionity.world"
+  author_email = "johan@ionity.today"
+  
+  organization = "Ionity (Pty) Ltd"
+  organization_url = "https://www.ionity.today"
+  
+  copyright = "© 2018–2026 Antwerp Designs | Ionity (Pty) Ltd"
+  license = "CC BY-NC-SA 4.0"
+  license_url = "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+  
+  logo = "/assets/images/logo.png"
+  logo_width = 500
+  logo_height = 500
+  
+  favicon = "/assets/images/favicon.ico"
+  apple_touch_icon = "/assets/images/apple-touch-icon.png"
+  
+  # Keywords
+  keywords = [
+    "IoT",
+    "Internet of Things",
+    "AI",
+    "Artificial Intelligence",
+    "Hardware Design",
+    "Power Saving Units",
+    "Edge Computing",
+    "Cloud Integration",
+    "SCADA Systems",
+    "Industrial Automation",
+    "South Africa",
+    "Antwerp Designs"
+  ]
+  
+  # Geo Targeting
+  [params.geo]
+    region = "ZA-GT"
+    placename = "Pretoria"
+    position = "-25.7479;28.2293"
+  
+  # Social Media
+  [params.social]
+    twitter = "AntwerpDesigns"
+    twitter_domain = "twitter.com"
+    linkedin = "ionity"
+    github = "AntwerpDesignsIonity"
+    facebook = "Ionity"
+    website = "https://www.ionity.today"
+  
+  # Contact
+  [params.contact]
+    email = "johan@ionity.today"
+    phone = "+27-64-699-9877"
+    address = "Pretoria, Gauteng, South Africa"
+  
+  # OpenGraph Images
+  [params.images]
+    default = "/assets/images/ionity-social-card.png"
+    width = 1200
+    height = 630
+  
+  # JSON-LD Configuration
+  [params.jsonld]
+    enabled = true
+    "@context" = "https://schema.org"
+
+# Language Configuration (for multilingual support)
+[languages]
+  [languages.en]
+    languageName = "English"
+    weight = 1
+    
+    [languages.en.params]
+      description = "Ionity designs secure Cloud, Edge, AI, and IoT ecosystems."
+  
+  [languages.af]
+    languageName = "Afrikaans"
+    weight = 2
+    
+    [languages.af.params]
+      description = "Ionity ontwerp veilige Wolk-, Rand-, AI-, en IoT-ekosisteme."
+
+# Markup Configuration
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = false
+      hardWraps = true
+  [markup.highlight]
+    codeFences = true
+    lineNos = false
+    lineNumbersInTable = false
+    noClasses = true
+    style = "monokai"
+
+# Module Configuration (if using Hugo Modules)
+[module]
+  [module.hugoVersion]
+    extended = false
+    min = "0.100.0"
+
+# Security settings
+[security]
+  [security.exec]
+    allow = [""]
+  [security.funcs]
+    getenv = ["HUGO_", "CI"]
+  [security.http]
+    methods = ["GET", "POST"]
+    urls = [".*"]
+
+# Caching
+[caches]
+  [caches.getjson]
+    maxAge = "30m"

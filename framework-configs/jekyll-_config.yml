@@ -1,0 +1,129 @@
+# Jekyll Configuration for Ionity
+# Place this as _config.yml in your Jekyll root
+
+title: "Ionity | AI, IoT & Power-Saving Hardware Ecosystems"
+description: >-
+  Ionity designs secure Cloud, Edge, AI, and IoT ecosystems. We build power-saving hardware units,
+  SCADA systems, and custom software for global automation. Precision, performance, and long-term stability.
+
+# Author Information
+author: "Johan Wilhelm van Antwerp"
+author_url: "https://www.ionity.world"
+author_email: "johan@ionity.today"
+
+# Site Configuration
+url: "https://www.ionity.today"
+baseurl: ""
+locale: en_US
+timezone: Africa/Johannesburg
+
+# Organization Details
+organization: "Ionity (Pty) Ltd"
+organization_url: "https://www.ionity.today"
+logo: "/assets/images/logo.png"
+logo_width: 500
+logo_height: 500
+
+# Social Media
+twitter:
+  username: AntwerpDesigns
+
+facebook:
+  app_id: ""
+  publisher: "Ionity"
+
+social:
+  name: "Ionity | Antwerp Designs"
+  links:
+    - https://www.linkedin.com/in/ionity
+    - https://github.com/AntwerpDesignsIonity
+    - https://www.facebook.com/people/Ionity/61587016452256/
+    - https://www.ionity.world
+
+# SEO and Metadata
+keywords:
+  - IoT
+  - AI
+  - Hardware Design
+  - Power Saving Units
+  - Edge Computing
+  - Cloud Integration
+  - SCADA Systems
+  - Industrial Automation
+  - South Africa
+
+# Geo Information
+geo:
+  region: ZA-GT
+  placename: Pretoria
+  position: "-25.7479;28.2293"
+
+# Copyright
+copyright: "© 2018–2026 Antwerp Designs | Ionity (Pty) Ltd"
+license: "CC BY-NC-SA 4.0"
+license_url: "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+
+# Plugins
+plugins:
+  - jekyll-seo-tag
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-redirect-from
+  - jekyll-mentions
+  - jekyll-relative-links
+  - jemoji
+
+# Jekyll SEO Tag Configuration
+title_separator: " | "
+logo: "/assets/images/logo.png"
+
+# Exclude files
+exclude:
+  - .github
+  - .gitignore
+  - vendor
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - CHANGELOG.md
+  - node_modules
+
+# Include files
+include:
+  - .well-known
+
+# Markdown
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+
+# Output
+permalink: /:year/:month/:day/:title/
+paginate: 10
+paginate_path: /blog/page:num
+
+# Collections
+collections:
+  products:
+    output: true
+    permalink: /products/:name/
+  services:
+    output: true
+    permalink: /services/:name/
+
+# Build settings
+lsi: false
+safe: true
+incremental: true
+limit_posts: 0
+future: false
+unpublished: false
+
+# Sass/SCSS
+sass:
+  style: compressed
+  sass_dir: assets/css
+
+# Watch settings
+watch: true

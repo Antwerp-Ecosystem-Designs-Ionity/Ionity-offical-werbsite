@@ -1,0 +1,121 @@
+---
+/**
+ * Astro - components/BaseHead.astro
+ * Comprehensive SEO head component for Ionity using astro-seo
+ */
+
+import { SEO } from "astro-seo";
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  url?: string;
+  type?: 'website' | 'article' | 'product' | 'service';
+}
+
+const { 
+  title = "Ionity | AI, IoT & Power-Saving Hardware Ecosystems",
+  description = "Ionity designs secure Cloud, Edge, AI, and IoT ecosystems. We build power-saving hardware units and custom software for global automation.",
+  image = "https://www.ionity.today/assets/images/ionity-social-card.png",
+  url = "https://www.ionity.today/",
+  type = 'website'
+} = Astro.props;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.ionity.today/#organization",
+      "name": "Ionity",
+      "alternateName": ["Antwerp Designs", "AEDI"],
+      "url": "https://www.ionity.today/",
+      "logo": "https://www.ionity.today/assets/images/logo.png",
+      "foundingDate": "2018",
+      "founder": { "@id": "https://www.ionity.today/#author" },
+      "description": "Designers and builders of secure systems connecting devices, automating operations, and unlocking real-time intelligence.",
+      "email": "johan@ionity.today",
+      "telephone": "+27-64-699-9877",
+      "location": {
+        "@type": "Place",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Pretoria",
+          "addressRegion": "Gauteng",
+          "addressCountry": "ZA"
+        }
+      },
+      "sameAs": [
+        "https://www.linkedin.com/in/ionity",
+        "https://github.com/AntwerpDesignsIonity",
+        "https://www.ionity.world"
+      ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.ionity.today/#author",
+      "name": "Johan Wilhelm van Antwerp",
+      "jobTitle": "Ecosystems Solutionist & IoT Engineer",
+      "url": "https://www.ionity.world",
+      "affiliation": { "@id": "https://www.ionity.today/#organization" }
+    }
+  ]
+};
+---
+
+<SEO
+  title={title}
+  description={description}
+  canonical={url}
+  openGraph={{
+    basic: {
+      title: "Ionity | Building Tomorrow, Today",
+      type: type,
+      image: image,
+      url: url
+    },
+    optional: {
+      locale: "en_US",
+      siteName: "Ionity | Antwerp Designs"
+    },
+    image: {
+      url: image,
+      width: 1200,
+      height: 630,
+      alt: "Ionity Ecosystems"
+    }
+  }}
+  twitter={{
+    creator: "@AntwerpDesigns",
+    card: "summary_large_image",
+    image: image,
+    title: "Ionity | IoT & AI Hardware Systems",
+    description: description
+  }}
+  extend={{
+    meta: [
+      { name: "author", content: "Johan Wilhelm van Antwerp" },
+      { name: "keywords", content: "IoT, AI, Hardware, Power-Saving Units, Edge Computing, South Africa, Antwerp Designs" },
+      { name: "geo.region", content: "ZA-GT" },
+      { name: "geo.placename", content: "Pretoria" },
+      { name: "geo.position", content: "-25.7479;28.2293" },
+      { name: "ICBM", content: "-25.7479, 28.2293" },
+      { name: "copyright", content: "© 2018–2026 Antwerp Designs | Ionity (Pty) Ltd" },
+      { name: "rights", content: "All rights reserved. TM². Policy AED 986. License AED 900." },
+      { name: "revisit-after", content: "7 days" },
+      { name: "robots", content: "index, follow, max-image-preview:large" }
+    ]
+  }}
+/>
+
+<link rel="manifest" href="/manifest.json" />
+<link rel="icon" href="/assets/images/favicon.ico" />
+<link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png" />
+<link rel="alternate" hreflang="en" href="https://www.ionity.today/" />
+<link rel="alternate" hreflang="af" href="https://www.ionity.today/af/" />
+
+<meta name="theme-color" content="#FFFFFF" />
+<meta name="format-detection" content="telephone=yes, email=yes" />
+
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
