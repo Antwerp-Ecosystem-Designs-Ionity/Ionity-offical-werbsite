@@ -857,5 +857,23 @@
     <script src="assets/js/script.js" defer></script>
     <script src="assets/js/cookie-manager.js"></script>
     <div id="cookie-banner"><div class="cookie-banner-content"><div class="cookie-banner-text"><h3>🍪 We Value Your Privacy</h3><p>We use cookies to enhance your experience. <a href="#" onclick="event.preventDefault(); cookieManager?.openSettings();">Settings</a></p></div><div class="cookie-banner-actions"><button class="cookie-btn cookie-btn-necessary" onclick="cookieManager?.acceptNecessary();">Necessary Only</button><button class="cookie-btn cookie-btn-settings" onclick="cookieManager?.openSettings();">Settings</button><button class="cookie-btn cookie-btn-accept" onclick="cookieManager?.acceptAll();">Accept All</button></div></div></div><div id="cookie-settings-modal"><div class="cookie-modal-content"><div class="cookie-modal-header"><h2>Cookie Preferences</h2><button class="cookie-modal-close" onclick="cookieManager?.closeSettings();">×</button></div><div class="cookie-modal-body"><div class="cookie-category"><div class="cookie-category-header"><h3>Necessary Cookies</h3><label class="cookie-toggle"><input type="checkbox" checked disabled><span class="cookie-toggle-slider"></span></label></div><p>Essential cookies required for the website to function properly.</p></div><div class="cookie-category"><div class="cookie-category-header"><h3>Analytics Cookies</h3><label class="cookie-toggle"><input type="checkbox" id="cookie-analytics"><span class="cookie-toggle-slider"></span></label></div><p>Help us understand visitor interactions.</p></div><div class="cookie-category"><div class="cookie-category-header"><h3>Marketing Cookies</h3><label class="cookie-toggle"><input type="checkbox" id="cookie-marketing"><span class="cookie-toggle-slider"></span></label></div><p>Track visitors for relevant ads.</p></div><div class="cookie-category"><div class="cookie-category-header"><h3>Preference Cookies</h3><label class="cookie-toggle"><input type="checkbox" id="cookie-preferences"><span class="cookie-toggle-slider"></span></label></div><p>Remember your settings.</p></div></div><div class="cookie-modal-footer"><button class="cookie-btn cookie-btn-necessary" onclick="cookieManager?.acceptNecessary();">Save Necessary Only</button><button class="cookie-btn cookie-btn-accept" onclick="cookieManager?.saveCustomPreferences();">Save Preferences</button></div></div></div>
+
+    <!-- Identity Modules -->
+    <div class="identity-modules">
+        <a href="https://gravatar.com/antwerpdesigns" target="_blank" rel="noopener noreferrer" class="module-link" title="Global Identity Node">
+            <img src="assets/images/gravatar-icon.svg" alt="Gravatar" class="module-icon">
+            <span class="module-label">ID_NODE</span>
+        </a>
+
+        <a href="https://github.com/AntwerpDesignsIonity" target="_blank" rel="noopener noreferrer" class="module-link" title="Hardware/Software Architecture">
+            <img src="assets/images/github-icon.svg" alt="GitHub" class="module-icon">
+            <span class="module-label">CORE_REPO</span>
+        </a>
+
+        <a href="https://www.linkedin.com/in/ionity" target="_blank" rel="noopener noreferrer" class="module-link" title="Ecosystem Solutionist Connection">
+            <img src="assets/images/linkedin-icon.svg" alt="LinkedIn" class="module-icon">
+            <span class="module-label">SOL_CONNECT</span>
+        </a>
+    </div>
 </body>
 </html>

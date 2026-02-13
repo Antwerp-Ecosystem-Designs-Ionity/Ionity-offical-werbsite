@@ -670,3 +670,125 @@ img[loading="lazy"].loaded {
     }
 }
 
+/* ===================================
+   IDENTITY MODULES - SOCIAL LINKS
+   =================================== */
+
+.identity-modules {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    z-index: 9999;
+    flex-direction: column;
+}
+
+.module-link {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 210, 255, 0.3);
+    border-radius: 12px;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    box-shadow: 0 4px 15px rgba(0, 210, 255, 0.1);
+    overflow: hidden;
+}
+
+.module-link:hover {
+    transform: translateY(-5px) scale(1.05);
+    border-color: rgba(0, 210, 255, 0.8);
+    box-shadow: 0 8px 25px rgba(0, 210, 255, 0.3);
+    background: rgba(0, 210, 255, 0.1);
+}
+
+.module-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 210, 255, 0.3), transparent);
+    transition: left 0.5s;
+}
+
+.module-link:hover::before {
+    left: 100%;
+}
+
+.module-icon {
+    width: 24px;
+    height: 24px;
+    filter: drop-shadow(0 0 8px rgba(0, 210, 255, 0.5));
+    transition: all 0.3s ease;
+    color: #00d2ff;
+    fill: #00d2ff;
+}
+
+.module-link:hover .module-icon {
+    transform: scale(1.15);
+    filter: drop-shadow(0 0 12px rgba(0, 210, 255, 0.8));
+}
+
+.module-label {
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 4px;
+    text-transform: uppercase;
+    font-family: 'Courier New', monospace;
+    transition: color 0.3s ease;
+}
+
+.module-link:hover .module-label {
+    color: #00d2ff;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .identity-modules {
+        bottom: 80px;
+        right: 15px;
+        gap: 10px;
+    }
+
+    .module-link {
+        width: 50px;
+        height: 50px;
+    }
+
+    .module-icon {
+        width: 20px;
+        height: 20px;
+    }
+
+    .module-label {
+        font-size: 7px;
+    }
+}
+
+/* Landscape Mobile */
+@media (max-width: 896px) and (orientation: landscape) {
+    .identity-modules {
+        bottom: 15px;
+        right: 15px;
+        flex-direction: row;
+    }
+
+    .module-link {
+        width: 48px;
+        height: 48px;
+    }
+}
+

@@ -1,3 +1,17 @@
+# Ionity (AEDI) Global Node
+
+## Mission
+Automated Ecosystems Designs for IoT, AI, and Power-Saving Hardware.
+
+## Key Standards
+- Policy AED 986: Global Identity and Hardware Verification.
+- License AED 900: Industrial Power Optimization.
+
+## Official Resources
+- Homepage: https://ionity.today
+- Repository: https://github.com/AntwerpDesignsIonity
+- Engineering Lead: Johan Wilhelm van Antwerp
+
 /* TEAM */
 
   Founder & Lead Engineer: Johan Wilhelm van Antwerp
@@ -8,8 +22,8 @@
   Contact: johan@ionity.today
   GitHub: https://github.com/AntwerpDesignsIonity
   LinkedIn: https://www.linkedin.com/in/ionity
-  Website: https://www.ionity.today
-  Gravatar Profile: https://gravatar.com/antwerpdesigns
+  Website: https://www.ionity.world
+  Gravatar Profile: https://gravatar.com/johanvanantwerp007
   ORCID: https://orcid.org/0009-0005-7181-0347
 
   Repository: Antwerp-Ecosystem-Designs-Ionity/Ionity-offical-werbsite
