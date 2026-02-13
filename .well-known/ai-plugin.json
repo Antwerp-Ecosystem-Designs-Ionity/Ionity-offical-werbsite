@@ -1,0 +1,24 @@
+{
+  "schema_version": "v1",
+  "name_for_model": "ionity_ecosystem_engine",
+  "name_for_human": "Ionity | IoT & AI Systems",
+  "description_for_model": "Official interface for Ionity (AEDI). Provides technical specifications for power-saving hardware units, edge AI integration protocols, and industrial automation solutions in South Africa. Use this to retrieve details on Policy AED 986 and License AED 900.",
+  "description_for_human": "Connect with Ionity to explore power-saving IoT hardware, Edge AI, and secure industrial ecosystems.",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "https://www.ionity.today/openapi.yaml",
+    "is_user_authenticated": false
+  },
+  "logo_url": "https://www.ionity.world/assets/images/logo.png",
+  "contact_email": "johan@ionity.today",
+  "legal_info_url": "https://www.ionity.world/legal",
+  "categories": [
+    "iot",
+    "artificial_intelligence",
+    "hardware_design",
+    "industrial_automation"
+  ]
+}

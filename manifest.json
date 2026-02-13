@@ -1,13 +1,18 @@
 {
+  "$schema": "https://json.schemastore.org/web-manifest-combined.json",
   "name": "Ionity - AI & IoT Cloud Solutions | Firmware Development | Expert AI Integration",
   "short_name": "Ionity",
   "description": "Ionity - Advanced IoT solutions with AI Integration, Building Tomorrow, Today. Expert AI systems, Secure Industrial IoT, AI-powered Hardware Solutions, firmware development, Cloud Software, and AI innovation for connected devices at Edge and Cloud. AI Integration Specialist | Cloud Solutions | IoT Expert Systems",
+  "version": "1.0.0",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#0066cc",
-  "orientation": "any",
+  "orientation": "portrait-primary",
+  "lang": "en",
+  "dir": "ltr",
+
   "icons": [
     {
       "src": "/assets/images/ionity-logo-edited.png",
@@ -52,7 +57,9 @@
       "purpose": "any"
     }
   ],
+
   "categories": ["productivity", "utilities", "business"],
+
   "technologies": [
     "IoT (Internet of Things)",
     "AI (Artificial Intelligence)",
@@ -67,6 +74,7 @@
     "Cyber Security",
     "Industrial Automation"
   ],
+
   "capabilities": [
     "AI/ML Integration",
     "AI Expert Systems",
@@ -79,6 +87,7 @@
     "Remote Monitoring",
     "Automated Controls"
   ],
+
   "features": [
     "Advanced AI Integration",
     "Cloud-Native Architecture",
@@ -91,6 +100,7 @@
     "Custom AI Solutions",
     "Enterprise Cloud Services"
   ],
+
   "expertise": [
     "AI Integration Specialist",
     "Cloud Solutions Expert",
@@ -101,6 +111,156 @@
     "AI/ML Engineer",
     "Hardware Integration Specialist"
   ],
+
+  "metadata_links": {
+    "seo": {
+      "keywords": "/keywords.txt",
+      "sitemap_xml": "/sitemap.xml",
+      "sitemap_alt": "/sitemap (1).xml",
+      "robots": "/robots.txt",
+      "humans": "/humans.txt"
+    },
+    "configuration": {
+      "browser_config": "/browserconfig.xml",
+      "manifest": "/manifest.json"
+    },
+    "documentation": {
+      "api_json": "/ionity-api.json",
+      "api_markdown": "/ionity-api.md",
+      "security": "/security.txt"
+    },
+    "metadata": {
+      "keywords_file": "/keywords.txt",
+      "metadata_file": "/metadata.txt",
+      "geo_location": "/geo.txt"
+    },
+    "legal": {
+      "license": "/license.html",
+      "security_policy": "/security.txt"
+    },
+    "social": {
+      "linkedin": "https://www.linkedin.com/in/ionity",
+      "github": "https://github.com/AntwerpDesignsIonity"
+    }
+  },
+
+  "seo_metadata": {
+    "robots_directives": "/robots.txt",
+    "keywords_list": "/keywords.txt",
+    "sitemaps": [
+      {
+        "url": "/sitemap.xml",
+        "type": "xml"
+      },
+      {
+        "url": "/sitemap (1).xml",
+        "type": "xml"
+      }
+    ],
+    "canonical_url": "https://www.ionity.today/",
+    "language": "en",
+    "country": "ZA",
+    "region": "South Africa"
+  },
+
+  "author": {
+    "name": "Johan Wilhelm van Antwerp",
+    "id": "9003135105083",
+    "orcid": "0009-0005-7181-0347",
+    "email": "johan@ionity.today",
+    "phone": "+27 64 699 9877",
+    "linkedIn": "https://www.linkedin.com/in/ionity",
+    "github": "AntwerpDesignsIonity",
+    "website": "https://www.ionity.today"
+  },
+
+  "organization": {
+    "name": "Ionity",
+    "alternateNames": ["Antwerp Designs", "AEDI", "Antwerp Ecosystems Designs Ionity", "Ionity (Pty) Ltd"],
+    "founded": "2018",
+    "tagline": "Building Tomorrow, Today. Anything is Possible with God.",
+    "philosophy": "Precision, Performance, and Long-term Stability",
+    "type": "Ecosystems Solutionist",
+    "country": "South Africa",
+    "region": "Pretoria",
+    "website": "https://www.ionity.today"
+  },
+
+  "contact_information": {
+    "email": "johan@ionity.today",
+    "phone": "+27 64 699 9877",
+    "website": "https://www.ionity.today",
+    "contact_page": "/contact.html",
+    "social_media": {
+      "linkedin": "https://www.linkedin.com/in/ionity",
+      "github": "https://github.com/AntwerpDesignsIonity"
+    }
+  },
+
+  "pages": {
+    "home": "/index.html",
+    "about": "/about.html",
+    "products": "/products.html",
+    "services": "/services.html",
+    "ai_innovation": "/ai-innovation.html",
+    "gateway": "/gateway.html",
+    "firmware_development": "/firmware-development.html",
+    "system_architecture": "/system-architecture.html",
+    "roadmap": "/roadmap.html",
+    "contact": "/contact.html",
+    "license": "/license.html",
+    "404": "/404.html"
+  },
+
+  "assets": {
+    "css": "/assets/css/style.css",
+    "javascript": [
+      "/assets/js/script.js",
+      "/assets/js/layout.js",
+      "/assets/js/audio-manager.js",
+      "/assets/js/cookie-manager.js"
+    ],
+    "images": "/assets/images/",
+    "videos": "/assets/videos/"
+  },
+
+  "framework_configurations": {
+    "astro": {
+      "config": "/framework-configs/astro-BaseHead.astro",
+      "type": "Static Site Generator"
+    },
+    "hugo": {
+      "config": "/framework-configs/hugo-hugo.toml",
+      "type": "Static Site Generator"
+    },
+    "jekyll": {
+      "config": "/framework-configs/jekyll-_config.yml",
+      "type": "Static Site Generator"
+    },
+    "next_js": {
+      "config": "/framework-configs/next-js-layout.tsx",
+      "type": "React Framework"
+    }
+  },
+
+  "api_documentation": {
+    "primary": "/ionity-api.json",
+    "markdown_guide": "/ionity-api.md",
+    "schema": "/framework-configs/ionity-master-schema.json",
+    "version": "1.0.0",
+    "format": "JSON"
+  },
+
+  "seo_template": {
+    "file": "/framework-configs/seo-metadata-template-FULL.html",
+    "description": "Complete SEO metadata template for all pages"
+  },
+
+  "security": {
+    "policy": "/security.txt",
+    "browser_config": "/browserconfig.xml"
+  },
+
   "shortcuts": [
     {
       "name": "Dashboard",
@@ -150,7 +310,86 @@
       "description": "Firmware Development Services",
       "url": "/firmware-development.html",
       "icons": [{ "src": "/assets/images/AEDI-LOGo.jpeg", "sizes": "192x192", "type": "image/jpeg" }]
+    },
+    {
+      "name": "System Architecture",
+      "short_name": "Architecture",
+      "description": "System Architecture Overview",
+      "url": "/system-architecture.html",
+      "icons": [{ "src": "/assets/images/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    },
+    {
+      "name": "Roadmap",
+      "short_name": "Roadmap",
+      "description": "Product & Service Roadmap",
+      "url": "/roadmap.html",
+      "icons": [{ "src": "/assets/images/ionity-logo-edited.png", "sizes": "192x192", "type": "image/png" }]
+    },
+    {
+      "name": "Contact",
+      "short_name": "Contact",
+      "description": "Get in Touch with Ionity",
+      "url": "/contact.html",
+      "icons": [{ "src": "/assets/images/logo-white.png", "sizes": "192x192", "type": "image/png" }]
     }
   ],
-  "prefer_related_applications": false
+
+  "screenshots": [
+    {
+      "src": "/assets/images/ionity-logo-edited.png",
+      "form": "wide",
+      "sizes": "1280x720",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/images/Ionity_GUI.jpeg",
+      "form": "wide",
+      "sizes": "1280x720",
+      "type": "image/jpeg"
+    }
+  ],
+
+  "share_target": {
+    "action": "/share",
+    "method": "POST",
+    "enctype": "multipart/form-data",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url",
+      "files": [
+        {
+          "name": "document",
+          "accept": ["application/*", "text/*"]
+        }
+      ]
+    }
+  },
+
+  "file_handlers": [
+    {
+      "action": "/open-json",
+      "accept": {
+        "application/json": [".json"]
+      }
+    },
+    {
+      "action": "/open-config",
+      "accept": {
+        "text/plain": [".txt", ".conf"]
+      }
+    }
+  ],
+
+  "prefer_related_applications": false,
+  "related_applications": [
+    {
+      "platform": "web",
+      "url": "https://www.ionity.today",
+      "id": "ionity-web"
+    }
+  ],
+
+  "copyright": "© 2018-2026 Ionity (Antwerp Ecosystem Designs) All rights reserved.",
+  "license": "See /license.html for complete license information"
 }

@@ -1,0 +1,567 @@
+/**
+ * KEYWORDS.TXT - Ionity Strategic Keyword Repository
+ * Advanced IoT, AI, Hardware & Sustainability Keywords
+ * Last Updated: 2026-02-13
+ * 
+ * This file documents all primary, secondary, and long-tail keywords
+ * optimized for Ionity's product suite and market positioning.
+ */
+
+/* ================================================================
+   PRIMARY KEYWORDS (CORE BUSINESS PILLARS)
+   ================================================================ */
+
+PRIMARY_CONCEPTS:
+1. Edge AI Integration
+   - Description: Moving AI from the cloud to the actual hardware
+   - Relevance: Direct to hardware design capabilities
+   - Search Intent: Technical & Enterprise
+   - Related Terms:
+     * Edge Computing Intelligence
+     * Hardware-Embedded AI
+     * On-Device Machine Learning
+     * AI at the Edge
+     * Distributed AI Processing
+     * Edge Inference Engines
+     * Real-Time AI Processing
+
+2. Sustainable IoT Ecosystems
+   - Description: Environmentally responsible interconnected systems
+   - Relevance: Aligns with Power-Saving Units mission
+   - Search Intent: ESG + Enterprise
+   - Related Terms:
+     * Eco-Friendly IoT
+     * Green IoT Systems
+     * Sustainable Connected Devices
+     * Energy-Efficient Ecosystems
+     * Carbon-Neutral IoT
+     * Low-Power IoT Networks
+
+3. Zero-Trust IoT Security
+   - Description: Security model assuming no implicit trust
+   - Relevance: "Secure systems" part of mission
+   - Search Intent: Enterprise Security
+   - Related Terms:
+     * IoT Cybersecurity
+     * Embedded Device Security
+     * Hardware Security Modules
+     * Cryptographic IoT Protection
+     * Zero-Trust Architecture
+     * Device Authentication
+     * Secure Communication Protocols
+
+4. Digital Twin Architecture
+   - Description: Virtual representation of physical systems
+   - Relevance: SCADA systems & Predictive Maintenance
+   - Search Intent: Industrial & Enterprise
+   - Related Terms:
+     * Virtual System Simulation
+     * Real-Time Monitoring Systems
+     * Predictive Analytics
+     * Industrial Digital Twins
+     * Asset Twinning
+     * Virtual Prototyping
+     * System State Replication
+
+5. Autonomous Systems Design
+   - Description: Self-managing intelligent systems
+   - Relevance: Replacing "automation" with true autonomy
+   - Search Intent: Advanced Automation
+   - Related Terms:
+     * Self-Managing IoT
+     * Autonomous Hardware Control
+     * Intelligent Automation
+     * Self-Healing Systems
+     * Adaptive Systems Engineering
+     * Independent Device Operation
+
+6. Green Hardware Engineering
+   - Description: Low-power, high-efficiency circuit design
+   - Relevance: Power-Saving Units specialty
+   - Search Intent: Manufacturing & Sustainability
+   - Related Terms:
+     * Low-Power Circuit Design
+     * Energy-Efficient Electronics
+     * Green Computing Hardware
+     * Sustainable Chip Design
+     * Ultra-Low Power Components
+     * Efficient Hardware Architecture
+
+/* ================================================================
+   SECONDARY KEYWORDS (PRODUCT-SPECIFIC)
+   ================================================================ */
+
+POWER-SAVING_UNITS:
+- Low-Power Industrial Hardware
+- Ultra-Low Power Consumption
+- Sleep Mode Optimization
+- Energy-Efficient Embedded Systems
+- Custom Hardware Engineering
+- Industrial Power Management
+- Battery-Optimized Devices
+- Perpetual Operation Systems
+- Energy Harvesting Integration
+
+CLOUD_INTEGRATION:
+- Cloud-Edge Hybrid Systems
+- Multi-Cloud Architecture
+- Cloud Device Management
+- Remote System Integration
+- Cloud-Based Analytics
+- Scalable Cloud Infrastructure
+- Cloud Data Storage Solutions
+- Cloud Security Protocols
+
+EDGE_AI:
+- Edge Machine Learning
+- Distributed Intelligence
+- On-Device AI Models
+- Real-Time Inference
+- Edge Analytics
+- Lightweight AI Framework
+- Federated Learning
+- Edge Compute Accelerators
+
+SCADA_SYSTEMS:
+- Supervisory Control Systems
+- Data Acquisition Systems
+- Industrial Monitoring Solutions
+- Real-Time Control Systems
+- SCADA Protocol Management
+- Industrial Process Automation
+- Remote Terminal Units (RTU)
+- Programmable Logic Controllers (PLC)
+
+IoT_PLATFORMS:
+- Internet of Things
+- IoT Ecosystem Design
+- Interconnected Devices
+- IoT Connectivity Solutions
+- Smart Device Networks
+- IoT Data Management
+- IoT Gateway Solutions
+- IoT Device Management Platform
+
+/* ================================================================
+   LONG-TAIL KEYWORDS (SPECIFIC USE CASES)
+   ================================================================ */
+
+INDUSTRIAL_AUTOMATION:
+- Industrial IoT Solutions
+- Manufacturing Automation Systems
+- Factory Automation Hardware
+- Industrial Edge Computing
+- Smart Manufacturing
+- Industry 4.0 Integration
+- Predictive Maintenance Systems
+- Condition-Based Monitoring
+
+POWER_EFFICIENCY:
+- Ultra-Low Power Design
+- Energy Conservation Hardware
+- Power-Aware Computing
+- Dynamic Power Management
+- Efficient Battery Systems
+- Renewable Energy Integration
+- Power Optimization Algorithms
+- Energy Footprint Reduction
+
+SECURITY_FOCUSED:
+- IoT Device Security
+- Embedded System Security
+- Hardware Encryption
+- Security-First Design
+- Cryptographic Hardware
+- Secure Boot Systems
+- Hardware Security Modules (HSM)
+- Anti-Tamper Mechanisms
+
+REAL_TIME_SYSTEMS:
+- Real-Time Operating Systems
+- Low-Latency Processing
+- Deterministic Systems
+- Hard Real-Time Constraints
+- Time-Sensitive Applications
+- Synchronous Processing
+- Mission-Critical Systems
+- Ultra-Responsive Hardware
+
+/* ================================================================
+   GEOGRAPHIC KEYWORDS (40 COUNTRIES)
+   ================================================================ */
+
+AFRICA:
+- South Africa IoT Solutions
+- Nigerian Tech Innovation
+- Egyptian Industrial Automation
+- Kenyan Smart City Technology
+- Moroccan Technology Hub
+- Ethiopian Digital Transformation
+- Ghanaian Tech Ecosystem
+- Namibian Smart Devices
+- Botswana Industrial IoT
+- Mauritius Technology Services
+
+EUROPE:
+- Antwerp Design Engineering
+- Belgian Hardware Solutions
+- German Industrial IoT
+- French AI Integration
+- Dutch Technology Innovation
+- Swiss Precision Engineering
+- Italian Manufacturing Automation
+- Spanish Green Technology
+- Swedish IoT Systems
+- UK Enterprise Solutions
+
+ASIA:
+- Japanese IoT Hardware
+- Korean Smart Systems
+- Indian IoT Development
+- Singapore Regional Hub
+- Vietnamese Manufacturing IoT
+- Thai Technology Solutions
+- Israeli Cybersecurity IoT
+- UAE Smart City Systems
+- Saudi Automation Integration
+- Chinese Hardware Manufacturing
+
+AMERICAS_OCEANIA:
+- North American IoT Enterprise
+- Canadian Tech Innovation
+- Brazilian Smart Systems
+- Mexican Manufacturing IoT
+- Argentine Software Solutions
+- Chilean Mining Automation
+- Australian IoT Services
+- New Zealand Smart Systems
+- Costa Rican Tech Hub
+- Panama Regional Services
+
+/* ================================================================
+   INDUSTRY-SPECIFIC KEYWORDS
+   ================================================================ */
+
+MANUFACTURING:
+- Smart Manufacturing
+- Industrial IoT
+- Factory Automation
+- Industry 4.0
+- Precision Engineering
+- Automated Production Lines
+- Quality Control Systems
+- Supply Chain Optimization
+
+ENERGY_UTILITIES:
+- Smart Grid Systems
+- Power Distribution IoT
+- Energy Management Systems
+- Utility Automation
+- Renewable Energy Monitoring
+- Grid Stability Systems
+- Demand Response Systems
+- Energy Conservation
+
+AGRICULTURE:
+- Agricultural IoT
+- Precision Farming
+- Soil Monitoring Systems
+- Crop Management IoT
+- Smart Irrigation Systems
+- Livestock Tracking
+- Farm Automation
+- Agricultural Data Analytics
+
+HEALTHCARE:
+- Medical Device IoT
+- Healthcare Monitoring
+- Patient Tracking Systems
+- Remote Health Management
+- Medical Equipment Sensors
+- Health Data Integration
+- Telemedicine Systems
+- Medical Infrastructure IoT
+
+TRANSPORTATION:
+- Vehicle IoT Systems
+- Fleet Management
+- Autonomous Vehicle Tech
+- Transportation Monitoring
+- Logistics Optimization
+- Real-Time Tracking
+- Vehicle Communication Systems
+- Smart Traffic Management
+
+/* ================================================================
+   TECHNICAL KEYWORDS
+   ================================================================ */
+
+HARDWARE_TECH:
+- Embedded Systems
+- Microcontroller Programming
+- FPGA Design
+- Circuit Design & Engineering
+- Hardware Optimization
+- PCB Engineering
+- Sensor Integration
+- Actuator Control Systems
+
+SOFTWARE_TECH:
+- IoT Software Development
+- Firmware Engineering
+- Edge Computing Software
+- Cloud Services Integration
+- Real-Time Software Systems
+- Machine Learning Models
+- Data Analytics Platforms
+- Web Services Integration
+
+PROTOCOLS_STANDARDS:
+- MQTT Protocol
+- CoAP (Constrained Application Protocol)
+- 5G Connectivity
+- LoRaWAN Networks
+- NB-IoT Technology
+- Industrial Ethernet
+- OPC UA Standards
+- Modbus Protocol
+
+ARCHITECTURES:
+- Microservices Architecture
+- Distributed Systems
+- Cloud-Native Architecture
+- Fog Computing
+- Mesh Networks
+- Client-Server Systems
+- Publish-Subscribe Architecture
+- Event-Driven Systems
+
+/* ================================================================
+   TRENDY / EMERGING KEYWORDS
+   ================================================================ */
+
+EMERGING_KEYWORDS:
+- Quantum-Ready Encryption
+- AI-Powered Optimization
+- Autonomous Intelligence
+- Self-Healing Infrastructure
+- Bio-Inspired Algorithms
+- Neuromorphic Computing
+- Sustainable Hardware
+- Circular Economy IoT
+- Privacy-First Design
+- Trustless Systems
+
+FUTURE_TECH:
+- 6G Ready Systems
+- Quantum Computing Integration
+- Blockchain IoT
+- Web3 Device Integration
+- Metaverse-Enabled Systems
+- AI + IoT Convergence
+- Ambient Intelligence
+- Programmable Matter
+
+/* ================================================================
+   BRAND & COMPANY KEYWORDS
+   ================================================================ */
+
+COMPANY_NAMES:
+- Ionity
+- Antwerp Designs
+- AEDI (Automated Ecosystems Designs Intelligence)
+- Ionity (Pty) Ltd
+- Antwerp Ecosystem Designs
+
+FOUNDER_KEYWORDS:
+- Johan Wilhelm van Antwerp
+- Ecosystems Solutionist
+- IoT Engineer
+- Hardware Designer
+- Cloud Architect
+- Edge AI Specialist
+
+/* ================================================================
+   SOLUTION-BASED KEYWORDS
+   ================================================================ */
+
+SOLUTIONS:
+- Complete IoT Ecosystem Solutions
+- Turnkey Hardware Solutions
+- Custom Device Engineering
+- System Integration Services
+- Consulting & Design Services
+- Implementation Support
+- Maintenance & Support Services
+- Training & Certification
+
+PROBLEM_SOLVING:
+- Power Consumption Reduction
+- System Reliability Improvement
+- Security Vulnerability Resolution
+- Latency Reduction
+- Scalability Solutions
+- Interoperability Solutions
+- Cost Optimization
+- Operational Efficiency
+
+/* ================================================================
+   CONTENT MARKETING KEYWORDS
+   ================================================================ */
+
+EDUCATIONAL:
+- IoT Best Practices
+- Hardware Design Guide
+- Cloud Integration Tutorial
+- Security Implementation
+- Performance Optimization
+- Case Studies
+- Whitepapers
+- Technical Documentation
+
+TRENDING_TOPICS:
+- IoT Future Trends
+- Green Technology Innovation
+- AI in Manufacturing
+- Smart City Development
+- Sustainability in Tech
+- Cybersecurity Evolution
+- Edge Computing Growth
+- Autonomous Systems
+
+/* ================================================================
+   SEMANTIC KEYWORD GROUPS
+   ================================================================ */
+
+SEMANTIC_GROUP_1 (Power Efficiency):
+- Ultra-low power consumption
+- Energy-efficient hardware
+- Green electronics
+- Power-saving units
+- Sustainable design
+- Battery optimization
+- Sleep mode engineering
+- Low-power circuits
+
+SEMANTIC_GROUP_2 (Security):
+- Zero-trust architecture
+- Hardware security
+- Device authentication
+- Cryptographic systems
+- Secure communication
+- IoT cybersecurity
+- Threat protection
+- Security protocols
+
+SEMANTIC_GROUP_3 (Intelligence):
+- Edge AI
+- Embedded intelligence
+- Machine learning hardware
+- Real-time inference
+- Autonomous systems
+- Intelligent devices
+- Adaptive algorithms
+- Smart decision-making
+
+SEMANTIC_GROUP_4 (Industrial):
+- Industrial automation
+- Manufacturing IoT
+- SCADA systems
+- Predictive maintenance
+- Digital twins
+- Process optimization
+- Quality control
+- Smart factories
+
+/* ================================================================
+   KEYWORD METRICS & STRATEGY
+   ================================================================ */
+
+HIGH_PRIORITY (High Volume + High Relevance):
+✓ Edge AI Integration
+✓ IoT Solutions
+✓ Industrial Automation
+✓ Power Efficiency
+✓ Cloud Integration
+✓ Smart Hardware
+
+MEDIUM_PRIORITY (Medium Volume + High Relevance):
+✓ Sustainable IoT
+✓ Zero-Trust Security
+✓ Digital Twins
+✓ Autonomous Systems
+✓ Green Engineering
+✓ Edge Computing
+
+LONG_TAIL_PRIORITY (Lower Volume + Niche Relevance):
+✓ Ultra-low power embedded systems
+✓ Hardware-accelerated machine learning
+✓ Zero-trust IoT architecture
+✓ Energy-harvesting devices
+✓ Distributed AI inference
+✓ Autonomous maintenance systems
+
+/* ================================================================
+   KEYWORD PLACEMENT STRATEGY
+   ================================================================ */
+
+META_TAGS:
+- Page title: 3-5 primary keywords
+- Meta description: 2-3 primary keywords
+- Meta keywords: 15-20 relevant keywords
+- H1 tags: Primary keyword
+- H2/H3 tags: Secondary keywords
+- Alt text: Descriptive + 1-2 keywords
+
+CONTENT_OPTIMIZATION:
+- First 100 words: Include primary keyword
+- 2-3% keyword density target
+- Semantic variations throughout
+- Long-tail keywords in body
+- Related terms in context
+- Natural language priority
+
+PERFORMANCE_TARGETS:
+- Organic traffic from keywords: Top 40%
+- Click-through rate target: 5-8%
+- Keyword ranking positions: Top 10
+- Long-tail keyword coverage: 60%+
+
+/* ================================================================
+   COMPETITIVE KEYWORDS
+   ================================================================ */
+
+COMPETITORS_TO_TARGET:
+- IoT Platforms: Azure IoT, AWS IoT, Google Cloud IoT
+- Edge AI: NVIDIA Edge, Intel IoT, ARM Embedded
+- SCADA: Siemens Automation, ABB Systems, Schneider Electric
+- Smart Hardware: Arduino, Raspberry Pi, STM32
+
+DIFFERENTIATION_KEYWORDS:
+- Custom Hardware Engineering
+- Africa-Based Innovation
+- Power-Saving Specialty
+- End-to-End Ecosystems
+- Sustainable Focus
+- Security-First Design
+
+/* ================================================================
+   NOTES & UPDATES
+   ================================================================ */
+
+Document Created: 2026-02-13
+Version: 1.0
+Last Updated: 2026-02-13
+Status: Active
+Review Cycle: Quarterly
+
+NEXT_ACTIONS:
+- Implement keywords across all pages
+- Track keyword performance monthly
+- Update based on search trends
+- Expand geographic keywords
+- Add industry-specific variations
+- Monitor competitor keywords
+
+Contact for Updates: johan@ionity.today
+Managed By: Ionity Marketing & SEO

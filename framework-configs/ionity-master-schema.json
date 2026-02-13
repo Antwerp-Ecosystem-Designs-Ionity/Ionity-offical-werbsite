@@ -1,0 +1,38 @@
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.ionity.today"
+  },
+  "headline": "Ionity: Advanced IoT and AI Hardware Ecosystems",
+  "description": "Specialized hardware design including power-saving units and edge AI integration by Johan Wilhelm van Antwerp.",
+  "image": "https://www.ionity.today/assets/images/hardware-design.jpg",
+  "author": {
+    "@type": "Person",
+    "name": "Johan Wilhelm van Antwerp",
+    "url": "https://www.ionity.world"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Ionity",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.ionity.today/assets/images/logo.png"
+    }
+  },
+  "keywords": "IoT, AI, Hardware, Power-Saving Units, Edge Computing, South Africa",
+  "datePublished": "2026-02-12",
+  "about": [
+    {
+      "@type": "Thing",
+      "name": "Internet of Things",
+      "sameAs": "https://en.wikipedia.org/wiki/Internet_of_things"
+    },
+    {
+      "@type": "Thing",
+      "name": "Artificial Intelligence",
+      "sameAs": "https://en.wikipedia.org/wiki/Artificial_intelligence"
+    }
+  ]
+}

@@ -1,0 +1,168 @@
+IONITY SEO 2026: TRENDING KEYWORDS REFERENCE
+=============================================
+Last Updated: February 2026
+
+PRIMARY TRENDING KEYWORDS (Include in all pages as variations):
+=============================================================
+• Edge AI Integration
+• Sustainable IoT Ecosystems
+• Zero-Trust IoT Security
+• Digital Twin Architecture
+• Autonomous Systems Design
+• Green Hardware Engineering
+• On-device Intelligence
+• Energy-Efficient Computing
+• Predictive Maintenance (PdM)
+• Cloud-to-Edge Continuity
+• Ultra-Low Power Edge Hardware
+• On-device AI Orchestration
+• Resilient Hardware Prototyping
+• Generative AI for Hardware Design
+
+IONITY-SPECIFIC GOLDEN PHRASES (Use in headers/titles):
+======================================================
+
+HOMEPAGE:
+------------------------
+"Energy-Efficient Edge AI Systems"
+"Secure Industrial IoT Cloud Integration"
+
+PRODUCTS:
+------------------------
+"Ultra-Low Power Edge Hardware for Autonomous Systems"
+"AI-Ready Hardware Ecosystems"
+"Resilient Hardware Prototyping"
+
+SERVICES:
+------------------------
+"On-device AI Orchestration for Industrial IoT"
+"Zero-Trust IoT Security Solutions"
+"Cloud-to-Edge Continuity Platform"
+
+AI INNOVATION:
+------------------------
+"Generative AI for Hardware Design Optimization"
+"On-device AI Intelligence Systems"
+
+FIRMWARE/HARDWARE:
+------------------------
+"Green Hardware Engineering for Sustainable IoT"
+"Digital Twin Architecture for Predictive Maintenance"
+
+SECURITY FOCUS:
+------------------------
+"Zero-Trust Architecture for IoT"
+"Enterprise-Grade IoT Security"
+
+METRICS KEYWORDS (For product/performance pages):
+======================================================
+Low-power consumption
+High-efficiency edge processing
+Minimal cloud dependency
+Real-time analytics
+Autonomous error detection
+Predictive capabilities
+Energy sustainability
+Scalable architecture
+
+COMBINED KEYWORD PHRASES (Meta keywords):
+==========================================
+Full phrase to insert into <meta name="keywords">:
+
+Edge AI Integration, On-device Intelligence, Sustainable IoT Ecosystems, Zero-Trust IoT Security, Digital Twin Architecture, Autonomous Systems Design, Green Hardware Engineering, Ultra-Low Power Edge Hardware, On-device AI Orchestration, Cloud-to-Edge Continuity, Energy-Efficient Computing, Predictive Maintenance Systems, Resilient Hardware Prototyping, Generative AI for Hardware Design, Industrial IoT Platforms, SCADA Systems, Edge Computing Solutions, IoT Hardware Design, Power Saving Units, Ionity, Antwerp Designs, AEDI, South Africa, Pretoria
+
+PAGE-SPECIFIC KEYWORD PRIORITIES:
+================================
+
+INDEX.HTML:
+- Primary: Edge AI Integration, Sustainable IoT
+- Secondary: Digital Twin, Cloud-to-Edge
+- Tertiary: Zero-Trust Security, Autonomous Systems
+
+PRODUCTS.HTML:
+- Primary: Ultra-Low Power Hardware, AI-Ready Systems
+- Secondary: Resilient Hardware, Energy-Efficient
+- Tertiary: Green Engineering, Sustainable Design
+
+SERVICES.HTML:
+- Primary: On-device AI, Zero-Trust Security
+- Secondary: Cloud-to-Edge, IoT Orchestration
+- Tertiary: Autonomous Systems, Digital Twin
+
+AI-INNOVATION.HTML:
+- Primary: Generative AI, On-device Intelligence
+- Secondary: Hardware Design Optimization
+- Tertiary: Autonomous Systems, Edge AI
+
+FIRMWARE-DEVELOPMENT.HTML:
+- Primary: Green Hardware, Digital Twin
+- Secondary: Predictive Maintenance, Low-power
+- Tertiary: Sustainable IoT, Edge Computing
+
+GATEWAY.HTML:
+- Primary: Cloud-to-Edge, IoT Integration
+- Secondary: Edge Computing, Data Continuity
+- Tertiary: Autonomous Systems, Zero-Trust
+
+SYSTEM-ARCHITECTURE.HTML:
+- Primary: Sustainable IoT Ecosystems, Digital Twin
+- Secondary: Edge Computing Architecture, Zero-Trust
+- Tertiary: Autonomous Design, Energy-Efficient
+
+LONG-TAIL KEYWORD OPPORTUNITIES:
+================================
+"sustainable IoT ecosystems for manufacturing"
+"zero-trust security for industrial IoT devices"
+"edge AI integration in legacy systems"
+"digital twin architecture SCADA"
+"ultra-low power hardware engineers"
+"on-device AI for remote monitoring"
+"green hardware design principles"
+"predictive maintenance with IoT sensors"
+"autonomous systems design patterns"
+"cloud-to-edge data continuity"
+"energy-efficient edge computing"
+"resilient hardware for harsh environments"
+
+KEYWORD DENSITY GUIDELINES:
+==========================
+Primary Keywords: 1-2% of page content
+Secondary Keywords: 0.5-1% of page content
+Long-tail variations: Use naturally throughout
+
+SEARCH INTENT MAPPING:
+====================
+INFORMATIONAL:
+- "What is Edge AI Integration?"
+- "How does Digital Twin Architecture work?"
+- "Zero-Trust IoT Security explained"
+
+COMMERCIAL:
+- "Best Edge AI hardware solutions"
+- "Industrial IoT security platforms"
+- "Ultra-low power edge devices"
+
+TRANSACTIONAL:
+- "Buy edge AI hardware"
+- "IoT security software"
+- Contact/Quote pages
+
+TRACKING & MONITORING:
+====================
+Tool: Google Search Console
+- Track position for each primary keyword
+- Monitor impressions and CTR
+- Identify new keyword opportunities
+
+Tool: Google Analytics 4
+- Segment traffic by keyword cluster
+- Track conversion by keyword
+- Monitor user behavior
+
+Monthly Review:
+- Top 20 keyword positions
+- Trending keyword insights
+- Competitor analysis
+- Content optimization recommendations
+
+END OF DOCUMENT

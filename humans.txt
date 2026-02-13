@@ -1,41 +1,47 @@
 /* TEAM */
 
-  Founder / Engineer: Johan Wilhelm van Antwerp (IO)
+  Founder & Lead Engineer: Johan Wilhelm van Antwerp
+  Title: Ecosystems Solutionist, IoT Engineer, Full-Stack Developer
+  Organization: Ionity (Pty) Ltd | Antwerp Ecosystem Designs
+  Location: Pretoria, South Africa
 
-Site: https://www.ionity.world
+  Contact: johan@ionity.today
+  GitHub: https://github.com/AntwerpDesignsIonity
+  LinkedIn: https://www.linkedin.com/in/ionity
+  Website: https://www.ionity.world
 
-Location: Pretoria, South Africa
-
-Role: Ecosystems Solutionist, IoT Engineer
-
-Contact: johan@ionity.today
-
-LinkedIn: https://www.linkedin.com/in/ionity
-
-GitHub: https://github.com/AntwerpDesignsIonity
-
-Web: https://www.ionity.today
-
+  Repository: Antwerp-Ecosystem-Designs-Ionity/Ionity-offical-werbsite
+  Project: Ionity Official Website & Ecosystem Platform
 
 
 /* THANKS */
 
   God: "Anything is Possible with God."
-
+  Special Thanks: Community Contributors, Open Source Community
 
 
 /* SITE */
 
-Standards: HTML5, CSS3, JSON-LD
+  Standards: HTML5, CSS3, JSON-LD, Semantic Web
+  Frameworks: Next.js, Astro, Jekyll, Hugo
+  Technologies: Edge AI, IoT Integration, Cloud Infrastructure
+  Components: Ionity Cloud Platform, Edge AI Integration, Power-Saving Hardware Architecture
+  Build Date: 2018-2026 (Continuous Development)
 
-Software: Next.js / Astro / Jekyll
 
-Components: Ionity Cloud, Edge AI Integration, Power-Saving Hardware
+/* CREATORS & CREDITS */
 
+  Design & Architecture: Johan Wilhelm van Antwerp
+  Development: Johan Wilhelm van Antwerp
+  Ecosystem Strategy: Antwerp Ecosystem Designs Team
   
 
 /* LEGAL */
 
-  Copyright: 2018-2026 Ionity (Pty) Ltd | Antwerp Designs
-
-  License: CC BY-NC-SA 4.0 | License 900 AED  |  POLICY 986 AED
+  Copyright: 2018-2026 Ionity (Pty) Ltd | Antwerp Ecosystem Designs
+  License: CC BY-NC-SA 4.0 (Creative Commons)
+  Commercial License: 900 AED
+  Policy Agreement: POLICY 986 AED
+  Jurisdiction: South African Law
+  
+  For queries regarding usage rights and licensing: johan@ionity.today

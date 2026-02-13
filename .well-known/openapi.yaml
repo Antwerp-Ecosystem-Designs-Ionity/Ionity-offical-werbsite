@@ -1,0 +1,294 @@
+openapi: 3.1.0
+info:
+  title: Ionity AEDI Platform API
+  description: |
+    Official REST API for Ionity (AEDI) - Advanced IoT Ecosystems and Edge AI Integration.
+    
+    This API provides access to technical specifications, hardware capabilities, edge AI protocols,
+    and industrial automation solutions for power-saving IoT systems designed and maintained by
+    Ionity (Pty) Ltd in South Africa.
+    
+    **Creator:** Johan Wilhelm van Antwerp  
+    **Organization:** Ionity (Pty) Ltd | Antwerp Designs  
+    **Location:** Pretoria, Gauteng, South Africa  
+    **License:** CC BY-NC-SA 4.0 (Commercial licensing available)  
+    **Commercial Contact:** johan@ionity.today  
+    
+  version: 1.0.0
+  contact:
+    name: Ionity Support Team
+    email: johan@ionity.today
+    url: https://www.ionity.world
+  license:
+    name: CC BY-NC-SA 4.0
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/
+  x-logo:
+    url: https://www.ionity.world/assets/images/logo.png
+    altText: Ionity Logo
+
+servers:
+  - url: https://api.ionity.world
+    description: Production API
+  - url: https://dev-api.ionity.world
+    description: Development API
+  - url: https://www.ionity.world
+    description: Primary Web Interface
+
+tags:
+  - name: Hardware Specifications
+    description: Power-saving hardware units and technical specs
+  - name: Edge AI
+    description: Edge AI integration and inference protocols
+  - name: Industrial Automation
+    description: SCADA, automation, and control systems
+  - name: Security
+    description: Zero-trust security and encryption endpoints
+  - name: Documentation
+    description: API documentation and reference materials
+  - name: Licensing
+    description: License AED 900 and Policy AED 986 information
+
+paths:
+  /v1/hardware-specs:
+    get:
+      operationId: getHardwareSpecs
+      tags:
+        - Hardware Specifications
+      summary: Get Power-Saving Hardware Specifications
+      description: Retrieve technical specifications for Ionity power-saving hardware units
+      responses:
+        '200':
+          description: Hardware specifications retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hardware:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        name:
+                          type: string
+                        power_consumption_mw:
+                          type: number
+                        capabilities:
+                          type: array
+                          items:
+                            type: string
+                        pricing_aed:
+                          type: number
+                        license:
+                          type: string
+                          example: "AED 900"
+
+  /v1/edge-ai:
+    get:
+      operationId: getEdgeAICapabilities
+      tags:
+        - Edge AI
+      summary: Get Edge AI Integration Capabilities
+      description: Retrieve edge AI inference protocols and real-time processing capabilities
+      responses:
+        '200':
+          description: Edge AI capabilities retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  capabilities:
+                    type: array
+                    items:
+                      type: string
+                      example: "Real-time inference without cloud latency"
+                  frameworks:
+                    type: array
+                    items:
+                      type: string
+                  privacy_preserving:
+                    type: boolean
+
+  /v1/automation:
+    get:
+      operationId: getAutomationSystems
+      tags:
+        - Industrial Automation
+      summary: Get Industrial Automation Systems
+      description: Retrieve SCADA integration and automation system information
+      responses:
+        '200':
+          description: Automation systems information
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  scada_capabilities:
+                    type: array
+                    items:
+                      type: string
+                  predictive_maintenance:
+                    type: boolean
+                  digital_twin:
+                    type: boolean
+
+  /v1/security:
+    get:
+      operationId: getSecurityInfo
+      tags:
+        - Security
+      summary: Get Zero-Trust Security Information
+      description: Retrieve security architecture and encryption protocols
+      responses:
+        '200':
+          description: Security information
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  zero_trust_enabled:
+                    type: boolean
+                  encryption_standard:
+                    type: string
+                    example: "TLS 1.3+"
+                  security_contact:
+                    type: string
+                    example: "security@ionity.today"
+
+  /v1/licensing:
+    get:
+      operationId: getLicensingInfo
+      tags:
+        - Licensing
+      summary: Get License and Policy Information
+      description: Retrieve License AED 900 and Policy AED 986 details
+      responses:
+        '200':
+          description: Licensing information
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  license_aed:
+                    type: number
+                    example: 900
+                  policy_aed:
+                    type: number
+                    example: 986
+                  license_type:
+                    type: string
+                    example: "CC BY-NC-SA 4.0"
+                  commercial_contact:
+                    type: string
+                    example: "johan@ionity.today"
+
+  /v1/organization:
+    get:
+      operationId: getOrganizationInfo
+      tags:
+        - Documentation
+      summary: Get Organization Information
+      description: Retrieve Ionity organization details and founder information
+      responses:
+        '200':
+          description: Organization information
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    example: "Ionity (Pty) Ltd"
+                  founder:
+                    type: string
+                    example: "Johan Wilhelm van Antwerp"
+                  orcid:
+                    type: string
+                    example: "0009-0005-7181-0347"
+                  location:
+                    type: string
+                    example: "Pretoria, South Africa"
+                  established:
+                    type: integer
+                    example: 2018
+                  philosophy:
+                    type: string
+                    example: "Building Tomorrow, Today. Anything is Possible with God."
+                  contact:
+                    type: string
+                    example: "johan@ionity.today"
+
+  /v1/repository:
+    get:
+      operationId: getRepositoryInfo
+      tags:
+        - Documentation
+      summary: Get Repository Information
+      description: Retrieve GitHub repository and source code information
+      responses:
+        '200':
+          description: Repository information
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  organization:
+                    type: string
+                    example: "Antwerp-Ecosystem-Designs-Ionity"
+                  repository:
+                    type: string
+                    example: "Ionity-offical-werbsite"
+                  url:
+                    type: string
+                    format: uri
+                  branch:
+                    type: string
+                    example: "master"
+                  type:
+                    type: string
+                    example: "github"
+
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+    HardwareUnit:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        specifications:
+          type: object
+        pricing:
+          type: number
+        license_required:
+          type: boolean
+
+security:
+  - api_key: []
+
+x-metadata:
+  version: 1.0.0
+  last_updated: "2026-02-13"
+  creator: "Johan Wilhelm van Antwerp"
+  organization: "Ionity (Pty) Ltd"
+  locations:
+    - "Pretoria, South Africa"
+  repositories:
+    - "https://github.com/AntwerpDesignsIonity/Ionity-offical-werbsite"
+  philosophy: "Building Tomorrow, Today. Anything is Possible with God."

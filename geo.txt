@@ -1,0 +1,463 @@
+/**
+ * GEO.TXT - Geographic Service & Distribution Information
+ * Ionity Global Ecosystem Coverage
+ * Last Updated: 2026-02-13
+ * 
+ * This file documents all countries and regions where Ionity services
+ * are available or actively targeting for expansion.
+ */
+
+/* IONITY GLOBAL PRESENCE & SERVICE COVERAGE */
+
+PRIMARY LOCATION: South Africa
+- Country: South Africa (ZA)
+- Region: Gauteng (GT)
+- City: Pretoria
+- Coordinates: -25.7479, 28.2293
+- Time Zone: SAST (UTC+2)
+- Languages: English, Afrikaans
+- Status: Headquarters, Product Development, Active Services
+
+/* ================================================================
+   AFRICA - 10 Countries
+   ================================================================ */
+
+TIER 1 - PRIMARY MARKETS:
+
+1. South Africa (ZA)
+   - Pretoria, Gauteng (Headquarters)
+   - Status: Active Operations
+   - Services: Full Suite (Hardware, Cloud, Edge AI)
+   - Contact: johan@ionity.today
+
+2. Nigeria (NG)
+   - Target Market: Lagos, Abuja
+   - Status: Target Expansion
+   - Potential: Industrial Automation Hub
+
+TIER 2 - STRATEGIC MARKETS:
+
+3. Egypt (EG)
+   - Target Cities: Cairo, Alexandria
+   - Status: Growth Opportunity
+   - Focus: SCADA Systems, Power Management
+
+4. Kenya (KE)
+   - Target: Nairobi
+   - Status: Emerging Market
+   - IoT: Agricultural Technology Integration
+
+5. Morocco (MA)
+   - Target: Casablanca, Rabat
+   - Status: Expansion Potential
+   - Gateway to Europe
+
+6. Ethiopia (ET)
+   - Target: Addis Ababa
+   - Status: Development Opportunity
+   - Infrastructure: Growing IoT Demand
+
+7. Ghana (GH)
+   - Target: Accra
+   - Status: Technology Hub
+   - Focus: Digital Transformation
+
+8. Namibia (NA)
+   - Status: Regional Support
+   - Proximity: Near South Africa
+
+9. Botswana (BW)
+   - Status: Regional Support
+   - Infrastructure: Mining & Industrial
+
+10. Mauritius (MU)
+    - Status: Indian Ocean Hub
+    - Financial Services Integration
+
+/* ================================================================
+   EUROPE - 10 Countries
+   ================================================================ */
+
+TIER 1 - BRAND ORIGIN:
+
+1. Belgium (BE)
+   - Antwerp (Brand Heritage)
+   - Status: Cultural & Brand Significance
+   - Related: Company Name Origin (Antwerp Designs)
+   - Expansion: Technology Transfer Center
+
+TIER 2 - STRATEGIC EUROPEAN MARKETS:
+
+2. Germany (DE)
+   - Target: Berlin, Munich, Stuttgart
+   - Status: Industrial Technology Leader
+   - Focus: Manufacturing IoT, Industry 4.0
+   - Potential: €10B+ Market
+
+3. France (FR)
+   - Target: Paris, Lyon
+   - Status: European Gateway
+   - AI Research Hub
+
+4. Netherlands (NL)
+   - Target: Amsterdam, Rotterdam
+   - Status: Tech Innovation Hub
+   - Logistics & Port Automation
+
+5. Switzerland (CH)
+   - Target: Zurich, Basel
+   - Status: High-End Engineering Market
+   - Precision Hardware Demand
+
+6. Italy (IT)
+   - Target: Milan, Turin
+   - Status: Manufacturing Excellence
+   - Automation Innovation
+
+7. Spain (ES)
+   - Target: Madrid, Barcelona
+   - Status: Technology Growth Market
+   - Green Energy Focus
+
+8. Sweden (SE)
+   - Target: Stockholm, Gothenburg
+   - Status: Innovation & Sustainability
+   - IoT Leadership
+
+9. Norway (NO)
+   - Target: Oslo
+   - Status: Energy & Sustainability Focus
+   - Renewable Integration
+
+10. United Kingdom (GB)
+    - Target: London, Manchester
+    - Status: Global Financial Center
+    - Enterprise Solutions Market
+
+/* ================================================================
+   ASIA - 10 Countries
+   ================================================================ */
+
+TIER 1 - TECHNOLOGY CENTERS:
+
+1. Japan (JP)
+   - Target: Tokyo, Osaka, Kyoto
+   - Status: Critical Market
+   - Focus: IoT Hardware Excellence, Robotics
+   - Potential: Technology Partnership Hub
+   - ORCID & Research Integration
+
+2. South Korea (KR)
+   - Target: Seoul, Busan
+   - Status: Electronics & Semiconductors Leader
+   - Hardware Manufacturing Partnerships
+
+3. Singapore (SG)
+   - Target: Singapore (City-State)
+   - Status: Asian Hub for Innovation
+   - Regional Distribution Center
+
+TIER 2 - EMERGING MARKETS:
+
+4. India (IN)
+   - Target: Bangalore, Hyderabad, Mumbai
+   - Status: Software & Hardware Development
+   - Cost-Effective Solutions
+   - AI & Cloud Services
+
+5. Vietnam (VN)
+   - Target: Ho Chi Minh City, Hanoi
+   - Status: Manufacturing Hub
+   - Hardware Assembly & Testing
+
+6. Thailand (TH)
+   - Target: Bangkok
+   - Status: Regional Tech Hub
+   - Supply Chain Optimization
+
+7. Israel (IL)
+   - Target: Tel Aviv, Jerusalem
+   - Status: Cybersecurity & Innovation
+   - AI Research Collaboration
+
+8. United Arab Emirates (AE)
+   - Target: Dubai, Abu Dhabi
+   - Status: Smart City Integration
+   - Middle East Hub
+
+9. Saudi Arabia (SA)
+   - Target: Riyadh, Jeddah
+   - Status: Vision 2030 Technology Initiative
+   - Automation & Smart Infrastructure
+
+10. China (CN)
+    - Target: Beijing, Shanghai, Shenzhen
+    - Status: Manufacturing & Tech Leader
+    - Hardware Supply Chain Integration
+
+/* ================================================================
+   THE AMERICAS & OCEANIA - 10 Countries
+   ================================================================ */
+
+TIER 1 - NORTH AMERICAN MARKETS:
+
+1. United States (US)
+   - Target: Silicon Valley, Austin, Seattle, New York
+   - Status: Primary Global Market
+   - Focus: Enterprise Solutions, Cloud Integration
+   - Tech Hub Integration
+
+2. Canada (CA)
+   - Target: Toronto, Vancouver, Montreal
+   - Status: Technology & Manufacturing Leader
+   - North American Distribution
+
+TIER 2 - LATIN AMERICAN GROWTH:
+
+3. Brazil (BR)
+   - Target: São Paulo, Rio de Janeiro
+   - Status: Latin American Tech Hub
+   - Industrial Automation Growth
+
+4. Mexico (MX)
+   - Target: Mexico City, Monterrey
+   - Status: Manufacturing & Electronics
+   - North America Integration
+
+5. Argentina (AR)
+   - Target: Buenos Aires
+   - Status: Technology Innovation Center
+   - Software Development Hub
+
+6. Chile (CL)
+   - Target: Santiago
+   - Status: Mining & Automation Leader
+   - Predictive Maintenance Focus
+
+TIER 3 - CENTRAL AMERICA & CARIBBEAN:
+
+7. Costa Rica (CR)
+   - Target: San José
+   - Status: Technology & Software Hub
+   - Regional Services
+
+8. Panama (PA)
+   - Target: Panama City
+   - Status: Logistics & Distribution Hub
+   - Global Connectivity
+
+TIER 4 - SOUTHERN HEMISPHERE:
+
+9. Australia (AU)
+   - Target: Sydney, Melbourne, Brisbane
+   - Status: Technology Leader
+   - Remote Operations & Monitoring
+   - Regional H.Q. Potential
+
+10. New Zealand (NZ)
+    - Target: Auckland, Wellington
+    - Status: Innovation & Sustainability
+    - Pacific Region Services
+
+/* ================================================================
+   REGIONAL HEADQUARTERS & DISTRIBUTION CENTERS
+   ================================================================ */
+
+AFRICA REGION:
+- Headquarters: Pretoria, South Africa
+- Regional Hub 1: Lagos, Nigeria (West Africa)
+- Regional Hub 2: Cairo, Egypt (North Africa)
+- Regional Hub 3: Nairobi, Kenya (East Africa)
+
+EUROPE REGION:
+- Regional Hub: Antwerp, Belgium (Brand Heritage + Distribution)
+- Secondary Hub: Berlin, Germany (Technology Center)
+- Support: Amsterdam, Netherlands (Logistics)
+
+ASIA-PACIFIC REGION:
+- Primary Hub: Tokyo, Japan (Technology & Innovation)
+- Secondary Hub: Singapore (ASEAN Distribution)
+- Tertiary Hub: Shanghai, China (Manufacturing)
+- Support: Bangalore, India (Development)
+
+AMERICAS REGION:
+- Primary Hub: Silicon Valley / San Francisco, USA
+- Secondary Hub: Toronto, Canada
+- Tertiary Hub: São Paulo, Brazil
+- Support: Mexico City, Mexico
+
+/* ================================================================
+   SERVICE AVAILABILITY BY REGION
+   ================================================================ */
+
+GLOBAL SERVICES (All Countries):
+- Cloud Connectivity & Integration
+- Remote Device Management
+- Firmware Updates & Support
+- 24/7 Technical Support (Multi-language)
+- Documentation & Knowledge Base
+
+REGIONAL SERVICES (Selection):
+
+AFRICA:
+- Hardware Distribution & Installation
+- Local Training & Certification
+- Spare Parts Availability
+- On-Site Support (South Africa, Nigeria, Kenya)
+
+EUROPE:
+- Full Operations & R&D
+- Enterprise Solutions Consulting
+- Certification & Standards Compliance
+- EU Data Residency Options
+
+ASIA:
+- Manufacturing Partnerships
+- Hardware Assembly & Testing
+- Regional Sales & Support
+- Logistics & Distribution
+
+AMERICAS:
+- Enterprise Support
+- Integration Services
+- Custom Development (USA, Canada)
+- North/Latin America Logistics
+
+/* ================================================================
+   MARKET CLASSIFICATIONS
+   ================================================================ */
+
+TIER 1 - HIGH PRIORITY (Primary Service & Development)
+✓ South Africa (Headquarters)
+✓ United States (Primary Market)
+✓ Germany (European Tech Hub)
+✓ Japan (IoT Technology Leader)
+✓ United Kingdom (Enterprise Services)
+✓ France (AI Research)
+
+TIER 2 - STRATEGIC FOCUS (Active Expansion)
+✓ Belgium (Brand Heritage)
+✓ Netherlands (Tech Innovation)
+✓ Australia (Regional H.Q.)
+✓ Canada (North America)
+✓ India (Development)
+✓ Singapore (ASEAN Hub)
+
+TIER 3 - GROWTH MARKETS (Partnership Development)
+✓ Nigeria (West Africa)
+✓ Egypt (North Africa)
+✓ Brazil (Latin America)
+✓ Mexico (Manufacturing)
+✓ South Korea (Tech Innovation)
+✓ China (Manufacturing Scale)
+✓ UAE (Middle East services)
+
+TIER 4 - EMERGING OPPORTUNITIES (Future Potential)
+✓ Kenya, Ghana, Namibia (SubSaharan Africa)
+✓ Sweden, Norway, Switzerland (Northern Europe)
+✓ Israel, Saudi Arabia (Middle East & Innovation)
+✓ Vietnam, Thailand (Southeast Asia Manufacturing)
+✓ Argentina, Chile, Costa Rica (Latin America)
+✓ New Zealand (Southern Hemisphere)
+
+/* ================================================================
+   LANGUAGE SUPPORT BY REGION
+   ================================================================ */
+
+PRIMARY LANGUAGES:
+- English (Global)
+- Afrikaans (South Africa, Namibia)
+
+SECONDARY LANGUAGES (Available):
+- German (Germany, Austria, Switzerland)
+- French (Belgium, France)
+- Spanish (Spain, Latin America)
+- Japanese (Japan)
+- Mandarin (China)
+- Hindi (India)
+
+/* ================================================================
+   COMPLIANCE & STANDARDS BY REGION
+   ================================================================ */
+
+SOUTH AFRICA:
+- ICASA Regulations
+- BEE Compliance
+- POPIA (Protection of Personal Information Act)
+- SABS Standards
+
+EUROPE (EU):
+- GDPR (General Data Protection Regulation)
+- CE Marking Requirements
+- RoHS Directive
+- EN Standards
+
+USA & NORTH AMERICA:
+- FCC Compliance
+- NIST Cybersecurity Framework
+- HIPAA (Healthcare)
+- State Regulations
+
+ASIA:
+- China: CCC Certification, GDPR-equivalent
+- Japan: METI Standards
+- India: BIS Standards
+- Singapore: PDPA
+
+/* ================================================================
+   EXPANSION ROADMAP 2026-2028
+   ================================================================ */
+
+Q1-Q2 2026:
+- Consolidate South Africa operations
+- Launch Belgium/Antwerp Center
+- Establish USA Tech Partnerships
+
+Q3-Q4 2026:
+- Expand to 5 African countries
+- 3 European tech hubs operational
+- Japan partnership agreements
+
+2027:
+- 15+ countries operational
+- Regional headquarters running
+- Global distribution network established
+
+2028+:
+- Presence in 40+ countries
+- Multiple autonomous regional centers
+- 24/7 global support infrastructure
+
+/* ================================================================
+   CONTACT INFORMATION BY REGION
+   ================================================================ */
+
+GLOBAL HEADQUARTERS:
+Email: johan@ionity.today
+Phone: +27 64 699 9877
+Website: https://www.ionity.today
+AI Services: ai@ionity.today
+Business Services: services@ionity.world
+
+REGIONAL CONTACTS:
+Africa: africa@ionity.today
+Europe: europe@ionity.today
+Asia-Pacific: asia@ionity.today
+Americas: americas@ionity.today
+
+/* ================================================================
+   NOTES
+   ================================================================ */
+
+- All services comply with local regulations and data protection laws
+- Regional support teams available during local business hours
+- 24/7 emergency support for critical systems (All regions)
+- Multilingual documentation and support available
+- Continuous expansion based on market demand and partnerships
+- Geographic redundancy for critical cloud services
+- Commitment to local community engagement and development
+
+Document Created: 2026-02-13
+Version: 1.0
+Status: Active
+Next Review: 2026-06-13

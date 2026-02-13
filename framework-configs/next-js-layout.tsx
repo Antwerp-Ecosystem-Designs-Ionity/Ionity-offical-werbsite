@@ -25,7 +25,25 @@ export const metadata: Metadata = {
     "Antwerp Designs",
     "AEDI",
     "Ionity",
-    "Johan Wilhelm van Antwerp"
+    "Johan Wilhelm van Antwerp",
+    "Edge AI Integration",
+    "Sustainable IoT Ecosystems",
+    "Zero-Trust IoT Security",
+    "Digital Twin Architecture",
+    "Autonomous Systems Design",
+    "Green Hardware Engineering",
+    "Ultra-Low Power Electronics",
+    "Hardware Security",
+    "Real-Time Systems",
+    "Custom Device Engineering",
+    "Embedded Systems",
+    "Smart Hardware",
+    "Energy Efficiency",
+    "Cybersecurity",
+    "Cloud Services",
+    "Industrial IoT Solutions",
+    "Smart Manufacturing",
+    "Edge Intelligence"
   ],
   authors: [
     {
