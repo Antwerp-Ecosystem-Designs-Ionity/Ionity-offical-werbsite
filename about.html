@@ -843,6 +843,40 @@
             text-shadow: 0 0 10px var(--accent-cyan);
         }
     </style>
+
+    <!-- Google Tag Manager with Consent Mode v2 | ionity.yumyum -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      
+      gtag('consent', 'default', {
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'analytics_storage': 'denied',
+        'wait_for_update': 500
+      });
+
+      const GTM_ID = 'GTM-XXXXXX';
+      
+      function loadGTM() {
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer', GTM_ID);
+      }
+
+      if (localStorage.getItem('ionity_cookie_consent') === 'granted') {
+        gtag('consent', 'update', {
+          'ad_storage': 'granted',
+          'ad_user_data': 'granted',
+          'ad_personalization': 'granted',
+          'analytics_storage': 'granted'
+        });
+        loadGTM();
+      }
+    </script>
 </head>
 <body>
 
@@ -1637,6 +1671,240 @@
             </div>
         </div>
     </div>
+
+    <!-- ========================================
+         ionity.yumyum Cookie Management System
+         SuperCookie + SEO Tracking + Consent Mode v2
+         ======================================== -->
+    <script>
+    // ============================================
+    // IONITY.YUMYUM - SuperCookie Manager (Vanilla JS)
+    // Based on jquery-SuperCookie by tantau-horia
+    // ============================================
+    window.ionity = window.ionity || {};
+    window.ionity.yumyum = {
+        // Set a cookie with expiration (days) and path
+        set: function(name, value, days, path) {
+            let expires = "";
+            if (days) {
+                const date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "") + expires + "; path=" + (path || "/") + "; SameSite=Lax";
+        },
+
+        get: function(name) {
+            const nameEQ = name + "=";
+            const ca = document.cookie.split(';');
+            for(let i = 0; i < ca.length; i++) {
+                let c = ca[i].trim();
+                if (c.indexOf(nameEQ) === 0) 
+                    return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        },
+
+        delete: function(name) {
+            document.cookie = name + '=; Max-Age=0; path=/';
+        },
+
+        check: function(name) {
+            return this.get(name) !== null;
+        },
+
+        create: function(name, jsonData, days, path) {
+            this.set(name, JSON.stringify(jsonData), days || 30, path || "/");
+        },
+
+        readJSON: function(name) {
+            const value = this.get(name);
+            return value ? JSON.parse(value) : null;
+        },
+
+        readValue: function(name, key) {
+            const json = this.readJSON(name);
+            return json ? json[key] : null;
+        },
+
+        addValue: function(name, key, value, days, path) {
+            let json = this.readJSON(name) || {};
+            json[key] = value;
+            this.create(name, json, days || 30, path || "/");
+        },
+
+        replaceValue: function(name, key, newValue, days, path) {
+            this.addValue(name, key, newValue, days, path);
+        },
+
+        removeValue: function(name, key, days, path) {
+            let json = this.readJSON(name);
+            if (json && json.hasOwnProperty(key)) {
+                delete json[key];
+                this.create(name, json, days || 30, path || "/");
+            }
+        }
+    };
+
+    window.$yum = window.ionity.yumyum;
+
+    window.ionity.seoTracker = {
+        initScrollDepth: function() {
+            let maxScroll = 0;
+            const checkpoints = [25, 50, 75, 90, 100];
+            const tracked = new Set();
+
+            window.addEventListener('scroll', function() {
+                const scrollPercent = Math.round(
+                    (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100
+                );
+                
+                if (scrollPercent > maxScroll) {
+                    maxScroll = scrollPercent;
+                    $yum.addValue('ionity_analytics', 'maxScrollDepth', maxScroll, 1);
+                }
+
+                checkpoints.forEach(checkpoint => {
+                    if (scrollPercent >= checkpoint && !tracked.has(checkpoint)) {
+                        tracked.add(checkpoint);
+                        if (window.dataLayer) {
+                            dataLayer.push({
+                                'event': 'scroll_depth',
+                                'scroll_percentage': checkpoint,
+                                'page_path': window.location.pathname
+                            });
+                        }
+                    }
+                });
+            });
+        },
+
+        initTimeTracking: function() {
+            const startTime = Date.now();
+            const updateTime = () => {
+                const totalTime = Math.round((Date.now() - startTime) / 1000);
+                $yum.addValue('ionity_analytics', 'timeOnPage', totalTime, 1);
+            };
+
+            setInterval(updateTime, 5000);
+            window.addEventListener('beforeunload', updateTime);
+        },
+
+        initExternalLinks: function() {
+            document.addEventListener('click', function(e) {
+                const link = e.target.closest('a');
+                if (link && link.hostname !== window.location.hostname) {
+                    if (window.dataLayer) {
+                        dataLayer.push({
+                            'event': 'external_link_click',
+                            'link_url': link.href,
+                            'link_domain': link.hostname
+                        });
+                    }
+                }
+            });
+        },
+
+        trackPerformance: function() {
+            window.addEventListener('load', () => {
+                setTimeout(() => {
+                    const perfData = performance.timing;
+                    const pageLoadTime = perfData.loadEventEnd - perfData.navigationStart;
+                    $yum.addValue('ionity_analytics', 'pageLoadTime', pageLoadTime, 7);
+                    
+                    if (window.dataLayer) {
+                        dataLayer.push({
+                            'event': 'page_performance',
+                            'page_load_time': pageLoadTime
+                        });
+                    }
+                }, 0);
+            });
+        },
+
+        init: function() {
+            if (localStorage.getItem('ionity_cookie_consent') === 'granted') {
+                this.initScrollDepth();
+                this.initTimeTracking();
+                this.initExternalLinks();
+                this.trackPerformance();
+            }
+        }
+    };
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => ionity.seoTracker.init());
+    } else {
+        ionity.seoTracker.init();
+    }
+
+    (function() {
+        const consentKey = 'ionity_cookie_consent';
+        
+        if (!document.getElementById('ionity-cookie-banner')) {
+            const bannerHTML = `
+            <div id="ionity-cookie-banner" style="display:none; position:fixed; bottom:0; left:0; width:100%; background:linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%); color:#fff; padding:20px; box-shadow:0 -4px 20px rgba(0,255,255,0.2); z-index:99999; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,sans-serif; border-top:2px solid rgba(0,255,255,0.3);">
+                <div style="max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap;">
+                    <div style="flex:1; min-width:280px; font-size:14px; line-height:1.6;">
+                        <strong style="color:#00ffff; font-size:16px; display:block; margin-bottom:8px;">🍪 ionity.yumyum Cookie System</strong>
+                        We use cookies to enhance your experience on <strong style="color:#00ffff;">ionity.today</strong>. 
+                        <a href="/license.html" style="color:#aaaaaa; text-decoration:underline; margin-left:8px;">Privacy Policy</a>
+                    </div>
+                    <div style="display:flex; gap:12px; flex-wrap:wrap;">
+                        <button id="ionity-cookie-reject" style="background:transparent; border:1px solid #666; color:#fff; padding:12px 24px; cursor:pointer; border-radius:6px; font-size:14px; font-weight:500;">Reject All</button>
+                        <button id="ionity-cookie-accept" style="background:linear-gradient(135deg, #00ffff 0%, #00cccc 100%); border:none; color:#000; padding:12px 28px; font-weight:600; cursor:pointer; border-radius:6px; font-size:14px; box-shadow:0 4px 12px rgba(0,255,255,0.4);">Accept All</button>
+                    </div>
+                </div>
+            </div>`;
+            
+            document.body.insertAdjacentHTML('beforeend', bannerHTML);
+        }
+
+        const banner = document.getElementById('ionity-cookie-banner');
+        const acceptBtn = document.getElementById('ionity-cookie-accept');
+        const rejectBtn = document.getElementById('ionity-cookie-reject');
+
+        if (!localStorage.getItem(consentKey)) {
+            banner.style.display = 'block';
+        }
+
+        acceptBtn?.addEventListener('click', function() {
+            localStorage.setItem(consentKey, 'granted');
+            banner.style.display = 'none';
+            
+            if (typeof gtag !== 'undefined') {
+                gtag('consent', 'update', {
+                    'ad_storage': 'granted',
+                    'ad_user_data': 'granted',
+                    'ad_personalization': 'granted',
+                    'analytics_storage': 'granted'
+                });
+            }
+            
+            if (typeof loadGTM === 'function') loadGTM();
+            if (window.ionity?.seoTracker) ionity.seoTracker.init();
+
+            $yum.create('ionity_consent', {
+                analytics: true,
+                marketing: true,
+                preferences: true,
+                timestamp: new Date().toISOString()
+            }, 365);
+        });
+
+        rejectBtn?.addEventListener('click', function() {
+            localStorage.setItem(consentKey, 'denied');
+            banner.style.display = 'none';
+            
+            $yum.create('ionity_consent', {
+                analytics: false,
+                marketing: false,
+                preferences: false,
+                timestamp: new Date().toISOString()
+            }, 365);
+        });
+    })();
+    </script>
 
     <!-- Identity Modules -->
     <div class="identity-modules">

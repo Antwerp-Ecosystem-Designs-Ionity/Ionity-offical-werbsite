@@ -1138,6 +1138,40 @@
             }
         }
     </style>
+
+    <!-- Google Tag Manager with Consent Mode v2 | ionity.yumyum -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      
+      gtag('consent', 'default', {
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'analytics_storage': 'denied',
+        'wait_for_update': 500
+      });
+
+      const GTM_ID = 'GTM-XXXXXX';
+      
+      function loadGTM() {
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer', GTM_ID);
+      }
+
+      if (localStorage.getItem('ionity_cookie_consent') === 'granted') {
+        gtag('consent', 'update', {
+          'ad_storage': 'granted',
+          'ad_user_data': 'granted',
+          'ad_personalization': 'granted',
+          'analytics_storage': 'granted'
+        });
+        loadGTM();
+      }
+    </script>
 </head>
 <body>
 
@@ -1758,6 +1792,386 @@
     </script>
     <script src="assets/js/script.js" defer></script>
     
+    <!-- ========================================
+         ionity.yumyum Cookie Management System
+         SuperCookie + SEO Tracking + Consent Mode v2
+         ======================================== -->
+    <script>
+    // ============================================
+    // IONITY.YUMYUM - SuperCookie Manager (Vanilla JS)
+    // Based on jquery-SuperCookie by tantau-horia
+    // ============================================
+    window.ionity = window.ionity || {};
+    window.ionity.yumyum = {
+        // Set a cookie with expiration (days) and path
+        set: function(name, value, days, path) {
+            let expires = "";
+            if (days) {
+                const date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "") + expires + "; path=" + (path || "/") + "; SameSite=Lax";
+        },
+
+        // Get a cookie by name
+        get: function(name) {
+            const nameEQ = name + "=";
+            const ca = document.cookie.split(';');
+            for(let i = 0; i < ca.length; i++) {
+                let c = ca[i].trim();
+                if (c.indexOf(nameEQ) === 0) 
+                    return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        },
+
+        // Delete a cookie
+        delete: function(name) {
+            document.cookie = name + '=; Max-Age=0; path=/';
+        },
+
+        // Check if cookie exists
+        check: function(name) {
+            return this.get(name) !== null;
+        },
+
+        // Create JSON cookie (SuperCookie style)
+        create: function(name, jsonData, days, path) {
+            this.set(name, JSON.stringify(jsonData), days || 30, path || "/");
+        },
+
+        // Read entire JSON cookie
+        readJSON: function(name) {
+            const value = this.get(name);
+            return value ? JSON.parse(value) : null;
+        },
+
+        // Read specific value from JSON cookie
+        readValue: function(name, key) {
+            const json = this.readJSON(name);
+            return json ? json[key] : null;
+        },
+
+        // Add value to existing JSON cookie
+        addValue: function(name, key, value, days, path) {
+            let json = this.readJSON(name) || {};
+            json[key] = value;
+            this.create(name, json, days || 30, path || "/");
+        },
+
+        // Replace value in JSON cookie
+        replaceValue: function(name, key, newValue, days, path) {
+            this.addValue(name, key, newValue, days, path);
+        },
+
+        // Remove specific key from JSON cookie
+        removeValue: function(name, key, days, path) {
+            let json = this.readJSON(name);
+            if (json && json.hasOwnProperty(key)) {
+                delete json[key];
+                this.create(name, json, days || 30, path || "/");
+            }
+        }
+    };
+
+    // Shorthand alias
+    window.$yum = window.ionity.yumyum;
+
+    // ============================================
+    // SEO TRACKING & ANALYTICS HELPERS
+    // ============================================
+    window.ionity.seoTracker = {
+        // Track scroll depth for engagement metrics
+        initScrollDepth: function() {
+            let maxScroll = 0;
+            const checkpoints = [25, 50, 75, 90, 100];
+            const tracked = new Set();
+
+            window.addEventListener('scroll', function() {
+                const scrollPercent = Math.round(
+                    (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100
+                );
+                
+                if (scrollPercent > maxScroll) {
+                    maxScroll = scrollPercent;
+                    $yum.addValue('ionity_analytics', 'maxScrollDepth', maxScroll, 1);
+                }
+
+                checkpoints.forEach(checkpoint => {
+                    if (scrollPercent >= checkpoint && !tracked.has(checkpoint)) {
+                        tracked.add(checkpoint);
+                        if (window.dataLayer) {
+                            dataLayer.push({
+                                'event': 'scroll_depth',
+                                'scroll_percentage': checkpoint,
+                                'page_path': window.location.pathname
+                            });
+                        }
+                    }
+                });
+            });
+        },
+
+        // Track time on page
+        initTimeTracking: function() {
+            const startTime = Date.now();
+            let lastActivity = startTime;
+            
+            const updateTime = () => {
+                const totalTime = Math.round((Date.now() - startTime) / 1000);
+                $yum.addValue('ionity_analytics', 'timeOnPage', totalTime, 1);
+            };
+
+            ['click', 'scroll', 'mousemove', 'keypress'].forEach(evt => {
+                document.addEventListener(evt, () => {
+                    lastActivity = Date.now();
+                }, { passive: true });
+            });
+
+            setInterval(updateTime, 5000);
+            window.addEventListener('beforeunload', updateTime);
+        },
+
+        // Track external link clicks
+        initExternalLinks: function() {
+            document.addEventListener('click', function(e) {
+                const link = e.target.closest('a');
+                if (link && link.hostname !== window.location.hostname) {
+                    if (window.dataLayer) {
+                        dataLayer.push({
+                            'event': 'external_link_click',
+                            'link_url': link.href,
+                            'link_text': link.textContent.trim().substring(0, 100),
+                            'link_domain': link.hostname
+                        });
+                    }
+                }
+            });
+        },
+
+        // Track page performance
+        trackPerformance: function() {
+            if ('PerformanceObserver' in window) {
+                const observer = new PerformanceObserver((list) => {
+                    for (const entry of list.getEntries()) {
+                        if (entry.entryType === 'largest-contentful-paint') {
+                            $yum.addValue('ionity_analytics', 'lcp', Math.round(entry.startTime), 7);
+                        }
+                    }
+                });
+                observer.observe({ entryTypes: ['largest-contentful-paint'] });
+            }
+
+            window.addEventListener('load', () => {
+                setTimeout(() => {
+                    const perfData = performance.timing;
+                    const pageLoadTime = perfData.loadEventEnd - perfData.navigationStart;
+                    $yum.addValue('ionity_analytics', 'pageLoadTime', pageLoadTime, 7);
+                    
+                    if (window.dataLayer) {
+                        dataLayer.push({
+                            'event': 'page_performance',
+                            'page_load_time': pageLoadTime,
+                            'dom_ready': perfData.domContentLoadedEventEnd - perfData.navigationStart
+                        });
+                    }
+                }, 0);
+            });
+        },
+
+        // Track form interactions
+        initFormTracking: function() {
+            document.querySelectorAll('form').forEach(form => {
+                form.addEventListener('submit', function(e) {
+                    if (window.dataLayer) {
+                        dataLayer.push({
+                            'event': 'form_submission',
+                            'form_id': form.id || 'unknown',
+                            'form_name': form.name || 'unknown',
+                            'page_path': window.location.pathname
+                        });
+                    }
+                });
+
+                form.querySelectorAll('input, textarea, select').forEach(field => {
+                    let interacted = false;
+                    field.addEventListener('focus', function() {
+                        if (!interacted && window.dataLayer) {
+                            interacted = true;
+                            dataLayer.push({
+                                'event': 'form_interaction_start',
+                                'form_id': form.id || 'unknown'
+                            });
+                        }
+                    }, { once: true });
+                });
+            });
+        },
+
+        // Initialize all tracking
+        init: function() {
+            if (localStorage.getItem('ionity_cookie_consent') === 'granted') {
+                this.initScrollDepth();
+                this.initTimeTracking();
+                this.initExternalLinks();
+                this.trackPerformance();
+                this.initFormTracking();
+            }
+        }
+    };
+
+    // Initialize SEO tracking on load
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => ionity.seoTracker.init());
+    } else {
+        ionity.seoTracker.init();
+    }
+
+    // ============================================
+    // COOKIE CONSENT BANNER MANAGER
+    // ============================================
+    (function() {
+        const consentKey = 'ionity_cookie_consent';
+        
+        // Create and inject banner HTML if not exists
+        if (!document.getElementById('ionity-cookie-banner')) {
+            const bannerHTML = `
+            <div id="ionity-cookie-banner" style="display:none; position:fixed; bottom:0; left:0; width:100%; background:linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%); color:#fff; padding:20px; box-shadow:0 -4px 20px rgba(0,255,255,0.2); z-index:99999; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,sans-serif; border-top:2px solid rgba(0,255,255,0.3);">
+                <div style="max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap;">
+                    <div style="flex:1; min-width:280px; font-size:14px; line-height:1.6;">
+                        <strong style="color:#00ffff; font-size:16px; display:block; margin-bottom:8px;">🍪 ionity.yumyum Cookie System</strong>
+                        We use cookies to enhance your experience on <strong style="color:#00ffff;">ionity.today</strong>. 
+                        This includes analytics, preferences, and performance optimization.
+                        <a href="/license.html" style="color:#aaaaaa; text-decoration:underline; margin-left:8px;">Privacy Policy</a>
+                    </div>
+                    <div style="display:flex; gap:12px; flex-wrap:wrap;">
+                        <button id="ionity-cookie-reject" style="background:transparent; border:1px solid #666; color:#fff; padding:12px 24px; cursor:pointer; border-radius:6px; font-size:14px; font-weight:500; transition:all 0.3s ease;">Reject All</button>
+                        <button id="ionity-cookie-accept" style="background:linear-gradient(135deg, #00ffff 0%, #00cccc 100%); border:none; color:#000; padding:12px 28px; font-weight:600; cursor:pointer; border-radius:6px; font-size:14px; box-shadow:0 4px 12px rgba(0,255,255,0.4); transition:all 0.3s ease;">Accept All</button>
+                    </div>
+                </div>
+            </div>`;
+            
+            document.body.insertAdjacentHTML('beforeend', bannerHTML);
+        }
+
+        const banner = document.getElementById('ionity-cookie-banner');
+        const acceptBtn = document.getElementById('ionity-cookie-accept');
+        const rejectBtn = document.getElementById('ionity-cookie-reject');
+
+        // Show banner if no consent stored
+        if (!localStorage.getItem(consentKey)) {
+            banner.style.display = 'block';
+        }
+
+        // Accept handler
+        acceptBtn?.addEventListener('click', function() {
+            localStorage.setItem(consentKey, 'granted');
+            banner.style.display = 'none';
+            
+            // Update Google Consent
+            if (typeof gtag !== 'undefined') {
+                gtag('consent', 'update', {
+                    'ad_storage': 'granted',
+                    'ad_user_data': 'granted',
+                    'ad_personalization': 'granted',
+                    'analytics_storage': 'granted'
+                });
+            }
+            
+            // Load GTM
+            if (typeof loadGTM === 'function') {
+                loadGTM();
+            }
+
+            // Initialize SEO tracking
+            if (window.ionity?.seoTracker) {
+                ionity.seoTracker.init();
+            }
+
+            // Store consent in cookie
+            $yum.create('ionity_consent', {
+                analytics: true,
+                marketing: true,
+                preferences: true,
+                timestamp: new Date().toISOString()
+            }, 365);
+        });
+
+        // Reject handler
+        rejectBtn?.addEventListener('click', function() {
+            localStorage.setItem(consentKey, 'denied');
+            banner.style.display = 'none';
+            
+            $yum.create('ionity_consent', {
+                analytics: false,
+                marketing: false,
+                preferences: false,
+                timestamp: new Date().toISOString()
+            }, 365);
+        });
+
+        // Hover effects
+        acceptBtn?.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-2px)';
+            this.style.boxShadow = '0 6px 16px rgba(0,255,255,0.6)';
+        });
+        acceptBtn?.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+            this.style.boxShadow = '0 4px 12px rgba(0,255,255,0.4)';
+        });
+
+        rejectBtn?.addEventListener('mouseenter', function() {
+            this.style.borderColor = '#888';
+            this.style.background = 'rgba(255,255,255,0.05)';
+        });
+        rejectBtn?.addEventListener('mouseleave', function() {
+            this.style.borderColor = '#666';
+            this.style.background = 'transparent';
+        });
+    })();
+
+    // ============================================
+    // USAGE EXAMPLES (for developers)
+    // ============================================
+    /*
+    // Create a JSON cookie
+    $yum.create("user_prefs", {
+        theme: "dark",
+        language: "en",
+        notifications: true
+    }, 30); // expires in 30 days
+
+    // Read a specific value
+    const theme = $yum.readValue("user_prefs", "theme"); // "dark"
+
+    // Add/update a value
+    $yum.addValue("user_prefs", "fontSize", "16px");
+
+    // Replace a value
+    $yum.replaceValue("user_prefs", "theme", "light");
+
+    // Read entire JSON
+    const allPrefs = $yum.readJSON("user_prefs");
+
+    // Check if cookie exists
+    if ($yum.check("user_prefs")) {
+        console.log("Preferences found!");
+    }
+
+    // Delete cookie
+    $yum.delete("user_prefs");
+
+    // Access analytics data
+    const analytics = $yum.readJSON("ionity_analytics");
+    console.log("Max scroll:", analytics?.maxScrollDepth);
+    console.log("Time on page:", analytics?.timeOnPage, "seconds");
+    */
+    </script>
+
+    <!-- IndexNow SEO Integration -->
+    <script src="assets/js/indexnow-manager.js"></script>
+
     <!-- Identity Modules -->
     <div class="identity-modules">
         <a href="https://gravatar.com/antwerpdesigns" target="_blank" rel="noopener noreferrer" class="module-link" title="Global Identity Node">

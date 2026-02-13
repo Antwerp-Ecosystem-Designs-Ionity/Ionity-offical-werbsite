@@ -1080,6 +1080,40 @@
 </style>
     <link rel="icon" type="image/png" href="assets/images/ionity-logo-edited.png">
     <link rel="manifest" href="manifest.json">
+
+    <!-- Google Tag Manager with Consent Mode v2 | ionity.yumyum -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      
+      gtag('consent', 'default', {
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'analytics_storage': 'denied',
+        'wait_for_update': 500
+      });
+
+      const GTM_ID = 'GTM-XXXXXX';
+      
+      function loadGTM() {
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer', GTM_ID);
+      }
+
+      if (localStorage.getItem('ionity_cookie_consent') === 'granted') {
+        gtag('consent', 'update', {
+          'ad_storage': 'granted',
+          'ad_user_data': 'granted',
+          'ad_personalization': 'granted',
+          'analytics_storage': 'granted'
+        });
+        loadGTM();
+      }
+    </script>
 </head>
 <body>
 
@@ -2240,6 +2274,11 @@
     <script src="assets/js/script.js" defer></script>
     <script src="assets/js/audio-manager.js"></script>
     <script src="assets/js/cookie-manager.js" defer></script>
+
+    <!-- ionity.yumyum Cookie System -->
+    <script>
+    window.ionity=window.ionity||{};window.ionity.yumyum={set:function(n,v,d,p){let e="";if(d){const t=new Date();t.setTime(t.getTime()+(d*864e5));e="; expires="+t.toUTCString()}document.cookie=n+"="+(v||"")+e+"; path="+(p||"/")+"; SameSite=Lax"},get:function(n){const nEQ=n+"=";const ca=document.cookie.split(';');for(let i=0;i<ca.length;i++){let c=ca[i].trim();if(c.indexOf(nEQ)===0)return c.substring(nEQ.length,c.length)}return null},delete:function(n){document.cookie=n+'=; Max-Age=0; path=/'},check:function(n){return this.get(n)!==null},create:function(n,j,d,p){this.set(n,JSON.stringify(j),d||30,p||"/")},readJSON:function(n){const v=this.get(n);return v?JSON.parse(v):null},readValue:function(n,k){const j=this.readJSON(n);return j?j[k]:null},addValue:function(n,k,v,d,p){let j=this.readJSON(n)||{};j[k]=v;this.create(n,j,d||30,p||"/")},replaceValue:function(n,k,nv,d,p){this.addValue(n,k,nv,d,p)},removeValue:function(n,k,d,p){let j=this.readJSON(n);if(j&&j.hasOwnProperty(k)){delete j[k];this.create(n,j,d||30,p||"/")}}};window.$yum=window.ionity.yumyum;window.ionity.seoTracker={initScrollDepth:function(){let m=0;const c=[25,50,75,90,100];const t=new Set();window.addEventListener('scroll',function(){const s=Math.round((window.scrollY/(document.documentElement.scrollHeight-window.innerHeight))*100);if(s>m){m=s;$yum.addValue('ionity_analytics','maxScrollDepth',m,1)}c.forEach(cp=>{if(s>=cp&&!t.has(cp)){t.add(cp);if(window.dataLayer)dataLayer.push({'event':'scroll_depth','scroll_percentage':cp,'page_path':window.location.pathname})}})})},initTimeTracking:function(){const st=Date.now();const ut=()=>{const tt=Math.round((Date.now()-st)/1000);$yum.addValue('ionity_analytics','timeOnPage',tt,1)};setInterval(ut,5000);window.addEventListener('beforeunload',ut)},initExternalLinks:function(){document.addEventListener('click',function(e){const l=e.target.closest('a');if(l&&l.hostname!==window.location.hostname){if(window.dataLayer)dataLayer.push({'event':'external_link_click','link_url':l.href,'link_domain':l.hostname})}})},trackPerformance:function(){window.addEventListener('load',()=>{setTimeout(()=>{const pd=performance.timing;const plt=pd.loadEventEnd-pd.navigationStart;$yum.addValue('ionity_analytics','pageLoadTime',plt,7);if(window.dataLayer)dataLayer.push({'event':'page_performance','page_load_time':plt})},0)})},init:function(){if(localStorage.getItem('ionity_cookie_consent')==='granted'){this.initScrollDepth();this.initTimeTracking();this.initExternalLinks();this.trackPerformance()}}};if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',()=>ionity.seoTracker.init())}else{ionity.seoTracker.init()}(function(){const ck='ionity_cookie_consent';if(!document.getElementById('ionity-cookie-banner')){const bHTML=`<div id="ionity-cookie-banner" style="display:none; position:fixed; bottom:0; left:0; width:100%; background:linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%); color:#fff; padding:20px; box-shadow:0 -4px 20px rgba(0,255,255,0.2); z-index:99999; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,sans-serif; border-top:2px solid rgba(0,255,255,0.3);"><div style="max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap;"><div style="flex:1; min-width:280px; font-size:14px; line-height:1.6;"><strong style="color:#00ffff; font-size:16px; display:block; margin-bottom:8px;">🍪 ionity.yumyum</strong>We use cookies to enhance your experience. <a href="/license.html" style="color:#aaa; text-decoration:underline;">Privacy</a></div><div style="display:flex; gap:12px;"><button id="ionity-cookie-reject" style="background:transparent; border:1px solid #666; color:#fff; padding:12px 24px; cursor:pointer; border-radius:6px;">Reject</button><button id="ionity-cookie-accept" style="background:linear-gradient(135deg, #00ffff 0%, #00cccc 100%); border:none; color:#000; padding:12px 28px; font-weight:600; cursor:pointer; border-radius:6px; box-shadow:0 4px 12px rgba(0,255,255,0.4);">Accept</button></div></div></div>`;document.body.insertAdjacentHTML('beforeend',bHTML)}const bn=document.getElementById('ionity-cookie-banner');const ab=document.getElementById('ionity-cookie-accept');const rb=document.getElementById('ionity-cookie-reject');if(!localStorage.getItem(ck))bn.style.display='block';ab?.addEventListener('click',function(){localStorage.setItem(ck,'granted');bn.style.display='none';if(typeof gtag!=='undefined')gtag('consent','update',{'ad_storage':'granted','ad_user_data':'granted','ad_personalization':'granted','analytics_storage':'granted'});if(typeof loadGTM==='function')loadGTM();if(window.ionity?.seoTracker)ionity.seoTracker.init();$yum.create('ionity_consent',{analytics:true,marketing:true,preferences:true,timestamp:new Date().toISOString()},365)});rb?.addEventListener('click',function(){localStorage.setItem(ck,'denied');bn.style.display='none';$yum.create('ionity_consent',{analytics:false,marketing:false,preferences:false,timestamp:new Date().toISOString()},365)})})();
+    </script>
 
     <!-- Identity Modules -->
     <div class="identity-modules">
