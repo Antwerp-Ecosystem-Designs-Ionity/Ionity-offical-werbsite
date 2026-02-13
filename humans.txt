@@ -8,8 +8,8 @@
   Contact: johan@ionity.today
   GitHub: https://github.com/AntwerpDesignsIonity
   LinkedIn: https://www.linkedin.com/in/ionity
-  Website: https://www.ionity.world
-  Gravatar Profile: https://gravatar.com/johanvanantwerp007
+  Website: https://www.ionity.today
+  Gravatar Profile: https://gravatar.com/antwerpdesigns
   ORCID: https://orcid.org/0009-0005-7181-0347
 
   Repository: Antwerp-Ecosystem-Designs-Ionity/Ionity-offical-werbsite
