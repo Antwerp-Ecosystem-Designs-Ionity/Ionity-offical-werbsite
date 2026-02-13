@@ -1,0 +1,14 @@
+POST /IndexNow HTTP/1.1
+Content-Type: application/json; charset=utf-8
+Host: api.indexnow.org
+
+{
+  "host": "ionity.today",
+  "key": "dcc8ebecce0040c284b6fecf0447cb17",
+  "keyLocation": "https://ionity.today/dcc8ebecce0040c284b6fecf0447cb17.txt",
+  "urlList": [
+      "https://ionity.today/",
+      "https://ionity.today/index.html",
+      "https://ionity.today/inner-Page.html"
+  ]
+}
