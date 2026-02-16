@@ -1114,6 +1114,133 @@
         loadGTM();
       }
     </script>
+
+    <!-- Mobile Responsive Enhancements -->
+    <style>
+        /* Ultra-small devices (320px and below) */
+        @media (max-width: 320px) {
+            body {
+                font-size: 14px;
+            }
+            
+            .services-grid,
+            .feature-grid {
+                grid-template-columns: 1fr !important;
+                gap: 1rem !important;
+            }
+            
+            .service-card,
+            .feature-card {
+                padding: 1rem !important;
+            }
+            
+            h1 {
+                font-size: 1.5rem !important;
+            }
+            
+            h2 {
+                font-size: 1.3rem !important;
+            }
+        }
+        
+        /* Small mobile devices (481px - 600px) */
+        @media (max-width: 600px) {
+            .services-grid,
+            .feature-grid {
+                grid-template-columns: 1fr !important;
+            }
+            
+            .carousel-btn {
+                width: 44px !important;
+                height: 44px !important;
+            }
+            
+            .container {
+                padding: 1rem !important;
+            }
+        }
+        
+        /* Mobile portrait and landscape */
+        @media (max-width: 768px) {
+            /* Better grid layouts */
+            .services-grid,
+            .feature-grid {
+                grid-template-columns: 1fr !important;
+                gap: 1.5rem;
+            }
+            
+            /* Optimize text sizes */
+            h1 {
+                font-size: 1.8rem;
+                line-height: 1.2;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+                line-height: 1.3;
+            }
+            
+            h3 {
+                font-size: 1.2rem;
+            }
+            
+            /* Better card padding */
+            .card, .service-card, .feature-card {
+                padding: 1.25rem !important;
+            }
+            
+            /* Responsive images */
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+            
+            /* Better spacing */
+            section {
+                padding: 2rem 1rem !important;
+            }
+            
+            /* Stack flex items */
+            .flex-row {
+                flex-direction: column !important;
+            }
+            
+            /* Hide desktop-only elements */
+            .desktop-only {
+                display: none;
+            }
+            
+            /* Improve carousel navigation */
+            .carousel-controls {
+                bottom: -50px;
+            }
+        }
+        
+        /* Landscape mobile devices */
+        @media (max-width: 896px) and (orientation: landscape) {
+            section {
+                padding: 1.5rem 1rem !important;
+            }
+            
+            h1 {
+                font-size: 1.6rem;
+            }
+        }
+        
+        /* Ensure touch-friendly interactions */
+        @media (hover: none) and (pointer: coarse) {
+            /* Larger tap targets */
+            a, button, input, select, textarea {
+                min-height: 44px;
+            }
+            
+            /* Improve button spacing */
+            .button-group button,
+            .button-group a {
+                margin: 0.5rem 0;
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -2275,13 +2402,261 @@
     <script src="assets/js/audio-manager.js"></script>
     <script src="assets/js/cookie-manager.js" defer></script>
 
-    <!-- ionity.yumyum Cookie System -->
+    <!-- ionity.yumyum Cookie Utilities & SEO Tracker -->
     <script>
-    window.ionity=window.ionity||{};window.ionity.yumyum={set:function(n,v,d,p){let e="";if(d){const t=new Date();t.setTime(t.getTime()+(d*864e5));e="; expires="+t.toUTCString()}document.cookie=n+"="+(v||"")+e+"; path="+(p||"/")+"; SameSite=Lax"},get:function(n){const nEQ=n+"=";const ca=document.cookie.split(';');for(let i=0;i<ca.length;i++){let c=ca[i].trim();if(c.indexOf(nEQ)===0)return c.substring(nEQ.length,c.length)}return null},delete:function(n){document.cookie=n+'=; Max-Age=0; path=/'},check:function(n){return this.get(n)!==null},create:function(n,j,d,p){this.set(n,JSON.stringify(j),d||30,p||"/")},readJSON:function(n){const v=this.get(n);return v?JSON.parse(v):null},readValue:function(n,k){const j=this.readJSON(n);return j?j[k]:null},addValue:function(n,k,v,d,p){let j=this.readJSON(n)||{};j[k]=v;this.create(n,j,d||30,p||"/")},replaceValue:function(n,k,nv,d,p){this.addValue(n,k,nv,d,p)},removeValue:function(n,k,d,p){let j=this.readJSON(n);if(j&&j.hasOwnProperty(k)){delete j[k];this.create(n,j,d||30,p||"/")}}};window.$yum=window.ionity.yumyum;window.ionity.seoTracker={initScrollDepth:function(){let m=0;const c=[25,50,75,90,100];const t=new Set();window.addEventListener('scroll',function(){const s=Math.round((window.scrollY/(document.documentElement.scrollHeight-window.innerHeight))*100);if(s>m){m=s;$yum.addValue('ionity_analytics','maxScrollDepth',m,1)}c.forEach(cp=>{if(s>=cp&&!t.has(cp)){t.add(cp);if(window.dataLayer)dataLayer.push({'event':'scroll_depth','scroll_percentage':cp,'page_path':window.location.pathname})}})})},initTimeTracking:function(){const st=Date.now();const ut=()=>{const tt=Math.round((Date.now()-st)/1000);$yum.addValue('ionity_analytics','timeOnPage',tt,1)};setInterval(ut,5000);window.addEventListener('beforeunload',ut)},initExternalLinks:function(){document.addEventListener('click',function(e){const l=e.target.closest('a');if(l&&l.hostname!==window.location.hostname){if(window.dataLayer)dataLayer.push({'event':'external_link_click','link_url':l.href,'link_domain':l.hostname})}})},trackPerformance:function(){window.addEventListener('load',()=>{setTimeout(()=>{const pd=performance.timing;const plt=pd.loadEventEnd-pd.navigationStart;$yum.addValue('ionity_analytics','pageLoadTime',plt,7);if(window.dataLayer)dataLayer.push({'event':'page_performance','page_load_time':plt})},0)})},init:function(){if(localStorage.getItem('ionity_cookie_consent')==='granted'){this.initScrollDepth();this.initTimeTracking();this.initExternalLinks();this.trackPerformance()}}};if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',()=>ionity.seoTracker.init())}else{ionity.seoTracker.init()}(function(){const ck='ionity_cookie_consent';if(!document.getElementById('ionity-cookie-banner')){const bHTML=`<div id="ionity-cookie-banner" style="display:none; position:fixed; bottom:0; left:0; width:100%; background:linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%); color:#fff; padding:20px; box-shadow:0 -4px 20px rgba(0,255,255,0.2); z-index:99999; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,sans-serif; border-top:2px solid rgba(0,255,255,0.3);"><div style="max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap;"><div style="flex:1; min-width:280px; font-size:14px; line-height:1.6;"><strong style="color:#00ffff; font-size:16px; display:block; margin-bottom:8px;">🍪 ionity.yumyum</strong>We use cookies to enhance your experience. <a href="/license.html" style="color:#aaa; text-decoration:underline;">Privacy</a></div><div style="display:flex; gap:12px;"><button id="ionity-cookie-reject" style="background:transparent; border:1px solid #666; color:#fff; padding:12px 24px; cursor:pointer; border-radius:6px;">Reject</button><button id="ionity-cookie-accept" style="background:linear-gradient(135deg, #00ffff 0%, #00cccc 100%); border:none; color:#000; padding:12px 28px; font-weight:600; cursor:pointer; border-radius:6px; box-shadow:0 4px 12px rgba(0,255,255,0.4);">Accept</button></div></div></div>`;document.body.insertAdjacentHTML('beforeend',bHTML)}const bn=document.getElementById('ionity-cookie-banner');const ab=document.getElementById('ionity-cookie-accept');const rb=document.getElementById('ionity-cookie-reject');if(!localStorage.getItem(ck))bn.style.display='block';ab?.addEventListener('click',function(){localStorage.setItem(ck,'granted');bn.style.display='none';if(typeof gtag!=='undefined')gtag('consent','update',{'ad_storage':'granted','ad_user_data':'granted','ad_personalization':'granted','analytics_storage':'granted'});if(typeof loadGTM==='function')loadGTM();if(window.ionity?.seoTracker)ionity.seoTracker.init();$yum.create('ionity_consent',{analytics:true,marketing:true,preferences:true,timestamp:new Date().toISOString()},365)});rb?.addEventListener('click',function(){localStorage.setItem(ck,'denied');bn.style.display='none';$yum.create('ionity_consent',{analytics:false,marketing:false,preferences:false,timestamp:new Date().toISOString()},365)})})();
+    // Utility functions for cookie management and SEO tracking
+    window.ionity=window.ionity||{};
+    window.$yum=window.ionity.yumyum={
+        set:function(n,v,d,p){
+            let e="";
+            if(d){
+                const t=new Date();
+                t.setTime(t.getTime()+(d*864e5));
+                e="; expires="+t.toUTCString()
+            }
+            document.cookie=n+"="+(v||"")+e+"; path="+(p||"/")+"; SameSite=Lax"
+        },
+        get:function(n){
+            const nEQ=n+"=";
+            const ca=document.cookie.split(';');
+            for(let i=0;i<ca.length;i++){
+                let c=ca[i].trim();
+                if(c.indexOf(nEQ)===0)return c.substring(nEQ.length,c.length)
+            }
+            return null
+        },
+        delete:function(n){
+            document.cookie=n+'=; Max-Age=0; path=/'
+        },
+        check:function(n){
+            return this.get(n)!==null
+        },
+        create:function(n,j,d,p){
+            this.set(n,JSON.stringify(j),d||30,p||"/")
+        },
+        readJSON:function(n){
+            const v=this.get(n);
+            return v?JSON.parse(v):null
+        },
+        readValue:function(n,k){
+            const j=this.readJSON(n);
+            return j?j[k]:null
+        },
+        addValue:function(n,k,v,d,p){
+            let j=this.readJSON(n)||{};
+            j[k]=v;
+            this.create(n,j,d||30,p||"/")
+        },
+        replaceValue:function(n,k,nv,d,p){
+            this.addValue(n,k,nv,d,p)
+        },
+        removeValue:function(n,k,d,p){
+            let j=this.readJSON(n);
+            if(j&&j.hasOwnProperty(k)){
+                delete j[k];
+                this.create(n,j,d||30,p||"/")
+            }
+        }
+    };
+    
+    // SEO and Analytics Tracker
+    window.ionity.seoTracker={
+        initScrollDepth:function(){
+            let m=0;
+            const c=[25,50,75,90,100];
+            const t=new Set();
+            window.addEventListener('scroll',function(){
+                const s=Math.round((window.scrollY/(document.documentElement.scrollHeight-window.innerHeight))*100);
+                if(s>m){
+                    m=s;
+                    $yum.addValue('ionity_analytics','maxScrollDepth',m,1)
+                }
+                c.forEach(cp=>{
+                    if(s>=cp&&!t.has(cp)){
+                        t.add(cp);
+                        if(window.dataLayer)dataLayer.push({
+                            'event':'scroll_depth',
+                            'scroll_percentage':cp,
+                            'page_path':window.location.pathname
+                        })
+                    }
+                })
+            })
+        },
+        initTimeTracking:function(){
+            const st=Date.now();
+            const ut=()=>{
+                const tt=Math.round((Date.now()-st)/1000);
+                $yum.addValue('ionity_analytics','timeOnPage',tt,1)
+            };
+            setInterval(ut,5000);
+            window.addEventListener('beforeunload',ut)
+        },
+        initExternalLinks:function(){
+            document.addEventListener('click',function(e){
+                const l=e.target.closest('a');
+                if(l&&l.hostname!==window.location.hostname){
+                    if(window.dataLayer)dataLayer.push({
+                        'event':'external_link_click',
+                        'link_url':l.href,
+                        'link_domain':l.hostname
+                    })
+                }
+            })
+        },
+        trackPerformance:function(){
+            window.addEventListener('load',()=>{
+                setTimeout(()=>{
+                    const pd=performance.timing;
+                    const plt=pd.loadEventEnd-pd.navigationStart;
+                    $yum.addValue('ionity_analytics','pageLoadTime',plt,7);
+                    if(window.dataLayer)dataLayer.push({
+                        'event':'page_performance',
+                        'page_load_time':plt
+                    })
+                },0)
+            })
+        },
+        init:function(){
+            if(localStorage.getItem('ionity_cookie_consent')==='granted'){
+                this.initScrollDepth();
+                this.initTimeTracking();
+                this.initExternalLinks();
+                this.trackPerformance()
+            }
+        }
+    };
+    
+    // Initialize SEO tracker
+    if(document.readyState==='loading'){
+        document.addEventListener('DOMContentLoaded',()=>ionity.seoTracker.init())
+    }else{
+        ionity.seoTracker.init()
+    }
     </script>
 
     <!-- IndexNow SEO -->
     <script src="assets/js/indexnow-manager.js"></script>
+
+    <!-- Cookie Consent Banner -->
+    <div id="cookie-banner">
+        <div class="cookie-banner-content">
+            <div class="cookie-banner-text">
+                <h3>🍪 We Value Your Privacy</h3>
+                <p>
+                    We use cookies to enhance your experience, analyze site traffic, and personalize content. 
+                    By clicking "Accept All", you consent to our use of cookies. 
+                    <a href="#" onclick="event.preventDefault(); cookieManager?.openSettings();">Customize Settings</a>
+                </p>
+            </div>
+            <div class="cookie-banner-actions">
+                <button class="cookie-btn cookie-btn-necessary" onclick="cookieManager?.acceptNecessary();">
+                    Necessary Only
+                </button>
+                <button class="cookie-btn cookie-btn-settings" onclick="cookieManager?.openSettings();">
+                    Settings
+                </button>
+                <button class="cookie-btn cookie-btn-accept" onclick="cookieManager?.acceptAll();">
+                    Accept All
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cookie Settings Modal -->
+    <div id="cookie-settings-modal">
+        <div class="cookie-modal-content">
+            <div class="cookie-modal-header">
+                <h2>Cookie Preferences</h2>
+                <button class="cookie-modal-close" onclick="cookieManager?.closeSettings();" aria-label="Close">
+                    ×
+                </button>
+            </div>
+            <div class="cookie-modal-body">
+                <div class="cookie-category">
+                    <div class="cookie-category-header">
+                        <h3>Necessary Cookies</h3>
+                        <label class="cookie-toggle">
+                            <input type="checkbox" checked disabled>
+                            <span class="cookie-toggle-slider"></span>
+                        </label>
+                    </div>
+                    <p>
+                        Essential cookies required for the website to function properly. 
+                        These cannot be disabled as they are necessary for core functionality, 
+                        security, and accessibility features.
+                    </p>
+                </div>
+
+                <div class="cookie-category">
+                    <div class="cookie-category-header">
+                        <h3>🔒 Security Cookies</h3>
+                        <label class="cookie-toggle">
+                            <input type="checkbox" checked disabled>
+                            <span class="cookie-toggle-slider"></span>
+                        </label>
+                    </div>
+                    <p>
+                        Critical security cookies that protect your data and prevent attacks such as 
+                        Cross-Site Request Forgery (CSRF), session hijacking, and unauthorized access. 
+                        These cookies ensure secure authentication and maintain session integrity. 
+                        <strong>Always enabled for your protection.</strong>
+                    </p>
+                </div>
+
+                <div class="cookie-category">
+                    <div class="cookie-category-header">
+                        <h3>Analytics Cookies</h3>
+                        <label class="cookie-toggle">
+                            <input type="checkbox" id="cookie-analytics">
+                            <span class="cookie-toggle-slider"></span>
+                        </label>
+                    </div>
+                    <p>
+                        Help us understand how visitors interact with our website by collecting 
+                        and reporting anonymous usage statistics. This helps us improve the 
+                        user experience and site performance.
+                    </p>
+                </div>
+
+                <div class="cookie-category">
+                    <div class="cookie-category-header">
+                        <h3>Marketing Cookies</h3>
+                        <label class="cookie-toggle">
+                            <input type="checkbox" id="cookie-marketing">
+                            <span class="cookie-toggle-slider"></span>
+                        </label>
+                    </div>
+                    <p>
+                        Used to track visitors across websites to display relevant advertisements 
+                        and measure campaign effectiveness. These cookies enable personalized content and ads.
+                    </p>
+                </div>
+
+                <div class="cookie-category">
+                    <div class="cookie-category-header">
+                        <h3>Preference Cookies</h3>
+                        <label class="cookie-toggle">
+                            <input type="checkbox" id="cookie-preferences">
+                            <span class="cookie-toggle-slider"></span>
+                        </label>
+                    </div>
+                    <p>
+                        Remember your settings and preferences such as language, region, 
+                        and display options to provide a personalized experience on future visits.
+                    </p>
+                </div>
+            </div>
+            <div class="cookie-modal-footer">
+                <button class="cookie-btn cookie-btn-necessary" onclick="cookieManager?.acceptNecessary();">
+                    Save Necessary Only
+                </button>
+                <button class="cookie-btn cookie-btn-accept" onclick="cookieManager?.saveCustomPreferences();">
+                    Save Preferences
+                </button>
+            </div>
+        </div>
+    </div>
 
     <!-- Identity Modules -->
     <div class="identity-modules">
