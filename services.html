@@ -507,8 +507,8 @@
 
         /* Visible class for IntersectionObserver */
         .card {
-            opacity: 0;
-            transform: translateY(20px);
+            opacity: 1;
+            transform: translateY(0);
             transition: opacity 0.6s ease, transform 0.6s ease, border-color 0.4s;
         }
         .card.visible {
@@ -557,7 +557,7 @@
             .nav-links { display: none; }
             .mobile-menu-btn { display: block; }
             h1 { font-size: 2rem; }
-            .container { padding: 6rem 3vw 2rem 3vw; margin-top: 80px; }
+            .container { padding: 6rem 1.5rem 2rem 1.5rem; margin-top: 80px; }
 
             /* Mobile Hero Section */
             .hero-section {
@@ -690,7 +690,7 @@
 
         /* Small Mobile Devices Optimization */
         @media (max-width: 480px) {
-            .container { padding: 6rem 2vw 2rem 2vw !important; margin-top: 80px !important; }
+            .container { padding: 6rem 1.5rem 2rem 1.5rem !important; margin-top: 80px !important; }
 
             .hero-section h1 {
                 font-size: 1.75rem !important;
@@ -1148,7 +1148,7 @@
             }
             
             .container {
-                padding: 1rem !important;
+                padding: 6rem 1.5rem 2rem 1.5rem !important;
             }
         }
         
@@ -2089,9 +2089,7 @@
                 <a href="https://www.ionity.world" target="_blank">www.ionity.world</a>
             </div>
             <div style="margin-top: 1rem;">
-                <a href="https://antwerpdesignsionity.github.io/Metadata" target="_blank" rel="noopener noreferrer">Metadata</a> &nbsp;|&nbsp;
-                <a href="https://antwerpdesignsionity.github.io/Metadata/README.md" target="_blank" rel="noopener noreferrer">Metadata README</a> &nbsp;|&nbsp;
-                <a href="https://antwerpdesignsionity.github.io/Metadata/index.html" target="_blank" rel="noopener noreferrer">Metadata Index</a>
+                <a href="https://antwerpdesignsionity.github.io/Metadata" target="_blank" rel="noopener noreferrer">Metadata</a>
             </div>
         </div>
     </footer>
@@ -2327,7 +2325,7 @@
             
             const observerOptions = {
                 threshold: 0.1,
-                rootMargin: "0px"
+                rootMargin: "500px"
             };
 
             const observer = new IntersectionObserver((entries) => {
