@@ -758,7 +758,7 @@ img[loading="lazy"].loaded {
 /* Mobile Responsive */
 @media (max-width: 768px) {
     .identity-modules {
-        bottom: 80px;
+        bottom: 20px;
         right: 15px;
         gap: 10px;
     }
