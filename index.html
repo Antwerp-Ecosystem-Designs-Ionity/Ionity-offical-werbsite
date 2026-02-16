@@ -886,20 +886,6 @@
         @keyframes fadeInCanvas { to { opacity: 1; } }
         @keyframes load { 0% { transform: translateX(-100%); } 50% { transform: translateX(0); } 100% { transform: translateX(100%); } }
 
-        footer {
-            padding: 3rem 5vw;
-            border-top: 1px solid rgba(255, 255, 255, 0.15);
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 0.7rem;
-            background: rgba(2, 2, 4, 0.95);
-            position: relative;
-            z-index: 10;
-            line-height: 2.2;
-        }
-        footer a { color: var(--accent); text-decoration: none; margin: 0 10px; transition: color 0.3s; }
-        footer a:hover { color: #fff; text-shadow: 0 0 10px var(--accent); }
-
         #loader {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: #020203; z-index: 100;
@@ -982,7 +968,6 @@
         /* Mobile / Tablet Adjustments */
         @media (max-width: 768px) {
             img { max-width: 100%; height: auto; }
-            footer { padding: 2rem 1rem; font-size: 0.6rem; }
 
             /* Logo Sizing */
             .logo-img {
