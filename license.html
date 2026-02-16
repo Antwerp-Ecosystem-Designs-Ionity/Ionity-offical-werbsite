@@ -91,14 +91,6 @@
         "addressCountry": "ZA"
       },
       "areaServed": "Global",
-      "sameAs": [
-        "https://www.linkedin.com/in/ionity",
-        "https://www.facebook.com/people/Ionity/61587016452256/",
-        "https://www.facebook.com/vanantwerpdesign",
-        "https://github.com/AntwerpDesignsIonity",
-        "https://github.com/Antwerp-Ecosystem-Designs-Ionity",
-        "https://www.ionity.world"
-      ],
       "contactPoint": [
         {
           "@type": "ContactPoint",
@@ -651,14 +643,14 @@
 
         footer {
             margin-top: 8rem;
-            padding: 5rem 5vw;
+            padding: 3rem 5vw 3rem 5vw;
             border-top: 1px solid var(--border);
             text-align: center;
             color: var(--text-muted);
-            font-size: 0.8rem;
-            background: rgba(2, 2, 5, 0.98);
+            font-size: 0.7rem;
+            background: rgba(2, 2, 4, 0.95);
             position: relative;
-            z-index: 100;
+            z-index: 10;
             line-height: 2.2;
         }
 
@@ -913,7 +905,32 @@
 
     </div>
 
-    <footer style="background: rgba(2, 2, 4, 0.95); padding: 3rem 0; border-top: 1px solid rgba(255, 255, 255, 0.15);">
+    <!-- Metadata Card Section -->
+    <div style="background: rgba(2, 2, 4, 0.95); padding: 3rem 0; border-top: 1px solid rgba(255, 255, 255, 0.15);">
+        <div class="container">
+            <div class="policy-grid" style="margin-top: 0;">
+                <div class="grid-header" data-value="Legal Documents & Metadata">Legal Documents & Metadata</div>
+                
+                <div class="card">
+                    <span class="card-tag">Documentation</span>
+                    <h2>Metadata Repository</h2>
+                    <p>Access the comprehensive metadata documentation, technical specifications, and digital asset registry for all Ionity systems and protocols.</p>
+                    <ul class="policy-list">
+                        <li>Complete asset metadata and digital fingerprints</li>
+                        <li>Technical specifications and system documentation</li>
+                        <li>Protocol AED 986 compliance tracking</li>
+                        <li>Digital identity and verification records</li>
+                    </ul>
+                    <a href="https://antwerpdesignsionity.github.io/Metadata/index.html" target="_blank" rel="noopener noreferrer" class="btn-download" style="margin-top: 1.5rem; justify-content: center; width: auto; font-size: 0.7rem; padding: 0.8rem;">
+                        <svg viewBox="0 0 24 24" style="width: 16px; height: 16px; margin-right: 8px;"><path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z" fill="currentColor"/></svg>
+                        <span>Visit Metadata Repository</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
         <style>
             @keyframes footerGlow {
                 0% { text-shadow: 0 0 2px rgba(255,255,255,0.1); }
@@ -961,6 +978,9 @@
                 <a href="tel:+27646999877">+27 646 999 877</a> &nbsp;|&nbsp;
                 <a href="mailto:ai@ionity.today">ai@ionity.today</a> &nbsp;|&nbsp; 
                 <a href="https://www.ionity.world" target="_blank">www.ionity.world</a>
+            </div>
+            <div style="margin-top: 1rem;">
+                <a href="https://antwerpdesignsionity.github.io/Metadata" target="_blank" rel="noopener noreferrer">Metadata</a>
             </div>
         </div>
     </footer>
@@ -1167,15 +1187,138 @@
             <span class="module-label">ID_NODE</span>
         </a>
 
-        <a href="https://github.com/AntwerpDesignsIonity" target="_blank" rel="noopener noreferrer" class="module-link" title="Hardware/Software Architecture">
+        <a href="https://github.com/AntwerpDesignsIonity" target="_blank" rel="noopener noreferrer" class="module-link" title="Hardware/Software Architecture" style="display: none;">
             <img src="assets/images/github-icon.svg" alt="GitHub" class="module-icon">
             <span class="module-label">CORE_REPO</span>
         </a>
 
-        <a href="https://www.linkedin.com/in/ionity" target="_blank" rel="noopener noreferrer" class="module-link" title="Ecosystem Solutionist Connection">
+        <a href="https://www.linkedin.com/in/ionity" target="_blank" rel="noopener noreferrer" class="module-link" title="Ecosystem Solutionist Connection" style="display: none;">
             <img src="assets/images/linkedin-icon.svg" alt="LinkedIn" class="module-icon">
             <span class="module-label">SOL_CONNECT</span>
         </a>
+    </div>
+
+    <!-- Cookie Consent System -->
+    <script src="assets/js/cookie-manager.js"></script>
+    
+    <!-- Cookie Banner -->
+    <div id="cookie-banner">
+        <div class="cookie-banner-content">
+            <div class="cookie-banner-text">
+                <h3>🍪 We Value Your Privacy</h3>
+                <p>
+                    We use cookies to enhance your experience, analyze site traffic, and personalize content. 
+                    By clicking "Accept All", you consent to our use of cookies. 
+                    <a href="#" onclick="event.preventDefault(); cookieManager?.openSettings();">Customize Settings</a>
+                </p>
+            </div>
+            <div class="cookie-banner-actions">
+                <button class="cookie-btn cookie-btn-necessary" onclick="cookieManager?.acceptNecessary();">
+                    Necessary Only
+                </button>
+                <button class="cookie-btn cookie-btn-settings" onclick="cookieManager?.openSettings();">
+                    Settings
+                </button>
+                <button class="cookie-btn cookie-btn-accept" onclick="cookieManager?.acceptAll();">
+                    Accept All
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cookie Settings Modal -->
+    <div id="cookie-settings-modal">
+        <div class="cookie-modal-content">
+            <div class="cookie-modal-header">
+                <h2>Cookie Preferences</h2>
+                <button class="cookie-modal-close" onclick="cookieManager?.closeSettings();" aria-label="Close">
+                    ×
+                </button>
+            </div>
+            <div class="cookie-modal-body">
+                <div class="cookie-category">
+                    <div class="cookie-category-header">
+                        <h3>Necessary Cookies</h3>
+                        <label class="cookie-toggle">
+                            <input type="checkbox" checked disabled>
+                            <span class="cookie-toggle-slider"></span>
+                        </label>
+                    </div>
+                    <p>
+                        Essential cookies required for the website to function properly. 
+                        These cannot be disabled as they are necessary for core functionality, 
+                        security, and accessibility features.
+                    </p>
+                </div>
+
+                <div class="cookie-category">
+                    <div class="cookie-category-header">
+                        <h3>🔒 Security Cookies</h3>
+                        <label class="cookie-toggle">
+                            <input type="checkbox" checked disabled>
+                            <span class="cookie-toggle-slider"></span>
+                        </label>
+                    </div>
+                    <p>
+                        Critical security cookies that protect your data and prevent attacks such as 
+                        Cross-Site Request Forgery (CSRF), session hijacking, and unauthorized access. 
+                        These cookies ensure secure authentication and maintain session integrity. 
+                        <strong>Always enabled for your protection.</strong>
+                    </p>
+                </div>
+
+                <div class="cookie-category">
+                    <div class="cookie-category-header">
+                        <h3>Analytics Cookies</h3>
+                        <label class="cookie-toggle">
+                            <input type="checkbox" id="cookie-analytics">
+                            <span class="cookie-toggle-slider"></span>
+                        </label>
+                    </div>
+                    <p>
+                        Help us understand how visitors interact with our website by collecting 
+                        and reporting anonymous usage statistics. This helps us improve the 
+                        user experience and site performance.
+                    </p>
+                </div>
+
+                <div class="cookie-category">
+                    <div class="cookie-category-header">
+                        <h3>Marketing Cookies</h3>
+                        <label class="cookie-toggle">
+                            <input type="checkbox" id="cookie-marketing">
+                            <span class="cookie-toggle-slider"></span>
+                        </label>
+                    </div>
+                    <p>
+                        Used to track visitors across websites to display relevant advertisements 
+                        and measure campaign effectiveness. These cookies enable personalized content and ads.
+                    </p>
+                </div>
+
+                <div class="cookie-category">
+                    <div class="cookie-category-header">
+                        <h3>Preference Cookies</h3>
+                        <label class="cookie-toggle">
+                            <input type="checkbox" id="cookie-preferences">
+                            <span class="cookie-toggle-slider"></span>
+                        </label>
+                    </div>
+                    <p>
+                        Remember your settings and preferences such as language, region, 
+                        and display options to provide a personalized experience on future visits.
+                    </p>
+                </div>
+            </div>
+            <div class="cookie-modal-footer">
+                <button class="cookie-btn cookie-btn-necessary" onclick="cookieManager?.acceptNecessary();">
+                    Save Necessary Only
+                </button>
+                <button class="cookie-btn cookie-btn-accept" onclick="cookieManager?.saveCustomPreferences();">
+                    Save Preferences
+                </button>
+            </div>
+        </div>
     </div>
 </body>
 </html>

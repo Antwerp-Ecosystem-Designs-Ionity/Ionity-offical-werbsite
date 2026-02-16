@@ -67,7 +67,7 @@
     <meta name="DC.publisher" content="Ionity (Pty) Ltd">
     <meta name="DC.date" content="2026-02-12">
     <meta name="DC.language" content="en">
-    <meta name="asset-names" content="ionity-logo-edited.png, AEDI-LOGo.jpeg, ionity-social-card.png, Ionity_GUI.jpeg, IONITY_REPO.jpeg, logo-white.png, logo-dark-ionity, apple-touch-icon.png, icon-192.png, icon-512.png, LOGO_CLOUDS.png">
+    <meta name="asset-names" content="ionity-logo-edited.png, AEDI-LOGo.jpeg, ionity-social-card.png, Ionity_GUI.jpeg, IONITY_REPO.jpeg, logo-white.png, logo-dark-ionity, apple-touch-icon.png, icon-192.png, icon-512.png, LOGO_CLOUDS.png, gravatar-icon.svg, linkedin-icon.svg, github-icon.svg">
     <meta name="technologies" content="html5, css3, javascript, web-design, responsive-design, iot-platform, ai-systems, edge-computing, cloud-integration">
     <meta name="resources" content="audio-manager.js, cookie-manager.js, script.js, style.css">
     <meta name="asset-types" content="logos, icons, branding, user-interface, repository-images, social-media-cards, product-visuals">
@@ -116,13 +116,6 @@
           "License AED 900"
         ]
       },
-      "sameAs": [
-        "https://gravatar.com/johanvanantwerp007",
-        "https://github.com/AntwerpDesignsIonity",
-        "https://www.linkedin.com/in/ionity",
-        "https://www.ionity.today",
-        "https://www.ionity.world"
-      ],
       "foundedOrganization": {
         "@type": "Organization",
         "name": "Ionity (Pty) Ltd)",
@@ -435,12 +428,7 @@
       "telephone": "+27-64-699-9877",
       "email": "johan@ionity.today",
       "priceRange": "$$",
-      "openingHours": "Mo-Fr 08:00-17:00",
-      "sameAs": [
-        "https://github.com/AntwerpDesignsIonity",
-        "https://www.linkedin.com/in/ionity",
-        "https://www.facebook.com/people/Ionity/61587016452256/"
-      ]
+      "openingHours": "Mo-Fr 08:00-17:00"
     }
     </script>
 
@@ -899,7 +887,7 @@
         @keyframes load { 0% { transform: translateX(-100%); } 50% { transform: translateX(0); } 100% { transform: translateX(100%); } }
 
         footer {
-            padding: 3rem 5vw;
+            padding: 3rem 5vw 0 5vw;
             border-top: 1px solid rgba(255, 255, 255, 0.15);
             text-align: center;
             color: var(--text-muted);
@@ -994,7 +982,7 @@
         /* Mobile / Tablet Adjustments */
         @media (max-width: 768px) {
             img { max-width: 100%; height: auto; }
-            footer { padding: 2rem 1rem; font-size: 0.6rem; }
+            footer { padding: 2rem 1rem 0 1rem; font-size: 0.6rem; }
 
             /* Logo Sizing */
             .logo-img {
@@ -1027,7 +1015,7 @@
 
             /* Center Action Area - Ensure Button is Visible */
             .center-action {
-                padding-bottom: 8vh;
+                padding-bottom: 3vh;
                 margin-top: 2rem;
             }
 
@@ -1344,7 +1332,7 @@
         const LIGHTNING_CHANCE = 0.005; 
         const LIGHTHOUSE_INTERVAL = 10000; 
         const DIAMOND_COUNT = 25; 
-        const TARGET_URL = "/inner-Page.html";
+        const TARGET_URL = "inner-Page.html";
 
         // --- STATE ---
         let isEntering = false;
@@ -2174,17 +2162,17 @@
 
     <!-- Identity Modules -->
     <div class="identity-modules">
-        <a href="https://gravatar.com/antwerpdesigns" target="_blank" rel="noopener noreferrer" class="module-link" title="Global Identity Node">
+        <a href="https://gravatar.com/antwerpdesigns" target="_blank" rel="noopener noreferrer" class="module-link" title="Global Identity Node" style="display: none;">
             <img src="assets/images/gravatar-icon.svg" alt="Gravatar" class="module-icon">
             <span class="module-label">ID_NODE</span>
         </a>
 
-        <a href="https://github.com/AntwerpDesignsIonity" target="_blank" rel="noopener noreferrer" class="module-link" title="Hardware/Software Architecture">
+        <a href="https://github.com/AntwerpDesignsIonity" target="_blank" rel="noopener noreferrer" class="module-link" title="Hardware/Software Architecture" style="display: none;">
             <img src="assets/images/github-icon.svg" alt="GitHub" class="module-icon">
             <span class="module-label">CORE_REPO</span>
         </a>
 
-        <a href="https://www.linkedin.com/in/ionity" target="_blank" rel="noopener noreferrer" class="module-link" title="Ecosystem Solutionist Connection">
+        <a href="https://www.linkedin.com/in/ionity" target="_blank" rel="noopener noreferrer" class="module-link" title="Ecosystem Solutionist Connection" style="display: none;">
             <img src="assets/images/linkedin-icon.svg" alt="LinkedIn" class="module-icon">
             <span class="module-label">SOL_CONNECT</span>
         </a>
@@ -2240,6 +2228,22 @@
                         Essential cookies required for the website to function properly. 
                         These cannot be disabled as they are necessary for core functionality, 
                         security, and accessibility features.
+                    </p>
+                </div>
+
+                <div class="cookie-category">
+                    <div class="cookie-category-header">
+                        <h3>🔒 Security Cookies</h3>
+                        <label class="cookie-toggle">
+                            <input type="checkbox" checked disabled>
+                            <span class="cookie-toggle-slider"></span>
+                        </label>
+                    </div>
+                    <p>
+                        Critical security cookies that protect your data and prevent attacks such as 
+                        Cross-Site Request Forgery (CSRF), session hijacking, and unauthorized access. 
+                        These cookies ensure secure authentication and maintain session integrity. 
+                        <strong>Always enabled for your protection.</strong>
                     </p>
                 </div>
 

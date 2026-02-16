@@ -91,14 +91,6 @@
         "addressCountry": "ZA"
       },
       "areaServed": "Global",
-      "sameAs": [
-        "https://www.linkedin.com/in/ionity",
-        "https://www.facebook.com/people/Ionity/61587016452256/",
-        "https://www.facebook.com/vanantwerpdesign",
-        "https://github.com/AntwerpDesignsIonity",
-        "https://github.com/Antwerp-Ecosystem-Designs-Ionity",
-        "https://www.ionity.world"
-      ],
       "contactPoint": [
         {
           "@type": "ContactPoint",
@@ -449,14 +441,13 @@
 
         /* --- FOOTER --- */
         footer {
-            margin-top: auto;
+            margin-top: 8rem;
             border-top: 1px solid var(--border);
-            padding: 3rem 5vw;
-            background: rgba(2, 5, 12, 0.95);
+            padding: 3rem 5vw 0 5vw;
+            background: rgba(2, 2, 4, 0.95);
             text-align: center;
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             color: var(--text-muted);
-            backdrop-filter: blur(10px);
             position: relative;
             z-index: 10;
         }
@@ -545,6 +536,78 @@
 
         h1 {
             position: relative;
+        }
+
+        /* Enhanced Section Animations */
+        @keyframes sectionFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes borderGlow {
+            0%, 100% {
+                border-color: var(--border);
+            }
+            50% {
+                border-color: var(--accent-cyan);
+                box-shadow: 0 0 20px rgba(0, 210, 255, 0.2);
+            }
+        }
+
+        main > div {
+            animation: sectionFadeIn 0.6s ease-out forwards;
+            animation-delay: calc(var(--section-index, 0) * 0.1s);
+        }
+
+        /* Color-coded section headers */
+        h3[style*="#ff6b9d"] {
+            text-shadow: 0 0 10px rgba(255, 107, 157, 0.3);
+        }
+        
+        h3[style*="#ffd93d"] {
+            text-shadow: 0 0 10px rgba(255, 217, 61, 0.3);
+        }
+        
+        h3[style*="#a78bfa"] {
+            text-shadow: 0 0 10px rgba(167, 139, 250, 0.3);
+        }
+        
+        h3[style*="#4ade80"] {
+            text-shadow: 0 0 10px rgba(74, 222, 128, 0.3);
+        }
+
+        /* Card category indicators */
+        .resource-card[href*="suno"],
+        .resource-card[href*="udio"],
+        .resource-card[href*="soundraw"],
+        .resource-card[href*="aiva"] {
+            border-left: 3px solid #ff6b9d;
+        }
+
+        .resource-card[href*="elevenlabs"],
+        .resource-card[href*="play.ht"],
+        .resource-card[href*="murf"],
+        .resource-card[href*="speechify"] {
+            border-left: 3px solid #ffd93d;
+        }
+
+        .resource-card[href*="midjourney"],
+        .resource-card[href*="stability"],
+        .resource-card[href*="dall-e"],
+        .resource-card[href*="firefly"] {
+            border-left: 3px solid #a78bfa;
+        }
+
+        .resource-card[href*="github.com/features/copilot"],
+        .resource-card[href*="cursor"],
+        .resource-card[href*="codeium"] {
+            border-left: 3px solid #4ade80;
         }
 
     </style>
@@ -832,6 +895,84 @@
                 </div>
             </div>
 
+            <!-- 9. Music AI & Audio Generation -->
+            <div style="position: relative;">
+                <div style="position: absolute; top: -10px; right: 20px; background: var(--bg-dark); padding: 0 10px; color: var(--accent-cyan); font-size: 0.6rem; border: 1px solid var(--border); opacity: 0.7;">NEW SECTION</div>
+                <h3 style="color: #fff; border-left: 3px solid #ff6b9d; padding-left: 1rem; margin-bottom: 2rem; font-size: 1.5rem; letter-spacing: 0.1rem;">🎵 Music AI & Audio Generation</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem;">
+                    <a href="https://suno.com/" target="_blank" class="resource-card">Suno AI</a>
+                    <a href="https://www.udio.com/" target="_blank" class="resource-card">Udio</a>
+                    <a href="https://www.soundraw.io/" target="_blank" class="resource-card">Soundraw</a>
+                    <a href="https://www.aiva.ai/" target="_blank" class="resource-card">AIVA</a>
+                    <a href="https://boomy.com/" target="_blank" class="resource-card">Boomy</a>
+                    <a href="https://www.loudly.com/" target="_blank" class="resource-card">Loudly</a>
+                    <a href="https://www.mubert.com/" target="_blank" class="resource-card">Mubert</a>
+                    <a href="https://ecrett.com/" target="_blank" class="resource-card">Ecrett Music</a>
+                    <a href="https://www.ampermusic.com/" target="_blank" class="resource-card">Amper Music</a>
+                    <a href="https://soundful.com/" target="_blank" class="resource-card">Soundful</a>
+                    <a href="https://beatoven.ai/" target="_blank" class="resource-card">Beatoven.ai</a>
+                    <a href="https://www.harmonai.org/" target="_blank" class="resource-card">Harmonai</a>
+                </div>
+            </div>
+
+            <!-- 10. Text-to-Speech & Voice AI -->
+            <div style="position: relative;">
+                <div style="position: absolute; top: -10px; right: 20px; background: var(--bg-dark); padding: 0 10px; color: var(--accent-cyan); font-size: 0.6rem; border: 1px solid var(--border); opacity: 0.7;">EXPANDED</div>
+                <h3 style="color: #fff; border-left: 3px solid #ffd93d; padding-left: 1rem; margin-bottom: 2rem; font-size: 1.5rem; letter-spacing: 0.1rem;">🗣️ Text-to-Speech & Voice AI</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem;">
+                    <a href="https://elevenlabs.io/" target="_blank" class="resource-card">ElevenLabs</a>
+                    <a href="https://play.ht/" target="_blank" class="resource-card">Play.ht</a>
+                    <a href="https://murf.ai/" target="_blank" class="resource-card">Murf.ai</a>
+                    <a href="https://speechify.com/" target="_blank" class="resource-card">Speechify</a>
+                    <a href="https://www.descript.com/" target="_blank" class="resource-card">Descript</a>
+                    <a href="https://www.resemble.ai/" target="_blank" class="resource-card">Resemble AI</a>
+                    <a href="https://www.naturalreaders.com/" target="_blank" class="resource-card">NaturalReader</a>
+                    <a href="https://wellsaidlabs.com/" target="_blank" class="resource-card">WellSaid Labs</a>
+                    <a href="https://lovo.ai/" target="_blank" class="resource-card">LOVO.ai</a>
+                    <a href="https://www.synthesis.io/" target="_blank" class="resource-card">Synthesis</a>
+                    <a href="https://narakeet.com/" target="_blank" class="resource-card">Narakeet</a>
+                    <a href="https://voicemaker.in/" target="_blank" class="resource-card">Voicemaker</a>
+                </div>
+            </div>
+
+            <!-- 11. Creative AI & Art Generation -->
+            <div style="position: relative;">
+                <div style="position: absolute; top: -10px; right: 20px; background: var(--bg-dark); padding: 0 10px; color: var(--accent-cyan); font-size: 0.6rem; border: 1px solid var(--border); opacity: 0.7;">NEW SECTION</div>
+                <h3 style="color: #fff; border-left: 3px solid #a78bfa; padding-left: 1rem; margin-bottom: 2rem; font-size: 1.5rem; letter-spacing: 0.1rem;">🎨 Creative AI & Art Generation</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem;">
+                    <a href="https://www.midjourney.com/" target="_blank" class="resource-card">Midjourney</a>
+                    <a href="https://stability.ai/" target="_blank" class="resource-card">Stable Diffusion</a>
+                    <a href="https://openai.com/dall-e-3" target="_blank" class="resource-card">DALL·E 3</a>
+                    <a href="https://www.adobe.com/products/firefly.html" target="_blank" class="resource-card">Adobe Firefly</a>
+                    <a href="https://www.artbreeder.com/" target="_blank" class="resource-card">Artbreeder</a>
+                    <a href="https://deepdreamgenerator.com/" target="_blank" class="resource-card">DeepDream</a>
+                    <a href="https://www.craiyon.com/" target="_blank" class="resource-card">Craiyon</a>
+                    <a href="https://playgroundai.com/" target="_blank" class="resource-card">Playground AI</a>
+                    <a href="https://www.nightcafe.studio/" target="_blank" class="resource-card">NightCafe</a>
+                    <a href="https://www.jasper.ai/art" target="_blank" class="resource-card">Jasper Art</a>
+                    <a href="https://www.starryai.com/" target="_blank" class="resource-card">Starry AI</a>
+                    <a href="https://photosonic.ai/" target="_blank" class="resource-card">Photosonic</a>
+                </div>
+            </div>
+
+            <!-- 12. Code AI Assistants -->
+            <div style="position: relative;">
+                <div style="position: absolute; top: -10px; right: 20px; background: var(--bg-dark); padding: 0 10px; color: var(--accent-cyan); font-size: 0.6rem; border: 1px solid var(--border); opacity: 0.7;">NEW SECTION</div>
+                <h3 style="color: #fff; border-left: 3px solid #4ade80; padding-left: 1rem; margin-bottom: 2rem; font-size: 1.5rem; letter-spacing: 0.1rem;">💻 Code AI Assistants</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem;">
+                    <a href="https://github.com/features/copilot" target="_blank" class="resource-card">GitHub Copilot</a>
+                    <a href="https://www.cursor.com/" target="_blank" class="resource-card">Cursor</a>
+                    <a href="https://codeium.com/" target="_blank" class="resource-card">Codeium</a>
+                    <a href="https://www.tabnine.com/" target="_blank" class="resource-card">Tabnine</a>
+                    <a href="https://aws.amazon.com/codewhisperer/" target="_blank" class="resource-card">CodeWhisperer</a>
+                    <a href="https://www.replit.com/ai" target="_blank" class="resource-card">Replit AI</a>
+                    <a href="https://sourcegraph.com/cody" target="_blank" class="resource-card">Cody</a>
+                    <a href="https://aider.chat/" target="_blank" class="resource-card">Aider</a>
+                    <a href="https://www.codiga.io/" target="_blank" class="resource-card">Codiga</a>
+                    <a href="https://www.mintlify.com/" target="_blank" class="resource-card">Mintlify</a>
+                </div>
+            </div>
+
         </main>
 
     </div>
@@ -885,6 +1026,9 @@
                 <a href="tel:+27646999877">+27 646 999 877</a> &nbsp;|&nbsp;
                 <a href="mailto:ai@ionity.today">ai@ionity.today</a> &nbsp;|&nbsp; 
                 <a href="https://www.ionity.world" target="_blank">www.ionity.world</a>
+            </div>
+            <div style="margin-top: 1rem;">
+                <a href="https://antwerpdesignsionity.github.io/Metadata" target="_blank" rel="noopener noreferrer">Metadata</a>
             </div>
         </div>
     </footer>
@@ -1060,12 +1204,12 @@
             <span class="module-label">ID_NODE</span>
         </a>
 
-        <a href="https://github.com/AntwerpDesignsIonity" target="_blank" rel="noopener noreferrer" class="module-link" title="Hardware/Software Architecture">
+        <a href="https://github.com/AntwerpDesignsIonity" target="_blank" rel="noopener noreferrer" class="module-link" title="Hardware/Software Architecture" style="display: none;">
             <img src="assets/images/github-icon.svg" alt="GitHub" class="module-icon">
             <span class="module-label">CORE_REPO</span>
         </a>
 
-        <a href="https://www.linkedin.com/in/ionity" target="_blank" rel="noopener noreferrer" class="module-link" title="Ecosystem Solutionist Connection">
+        <a href="https://www.linkedin.com/in/ionity" target="_blank" rel="noopener noreferrer" class="module-link" title="Ecosystem Solutionist Connection" style="display: none;">
             <img src="assets/images/linkedin-icon.svg" alt="LinkedIn" class="module-icon">
             <span class="module-label">SOL_CONNECT</span>
         </a>

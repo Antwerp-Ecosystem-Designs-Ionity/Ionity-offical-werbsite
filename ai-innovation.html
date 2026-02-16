@@ -91,14 +91,6 @@
         "addressCountry": "ZA"
       },
       "areaServed": "Global",
-      "sameAs": [
-        "https://www.linkedin.com/in/ionity",
-        "https://www.facebook.com/people/Ionity/61587016452256/",
-        "https://www.facebook.com/vanantwerpdesign",
-        "https://github.com/AntwerpDesignsIonity",
-        "https://github.com/Antwerp-Ecosystem-Designs-Ionity",
-        "https://www.ionity.world"
-      ],
       "contactPoint": [
         {
           "@type": "ContactPoint",
@@ -502,20 +494,19 @@
         footer {
             position: relative;
             width: 100%;
-            /* Removed fixed positioning to allow scrolling */
-            background: #000000;
-            padding: 3rem 5vw;
-            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            background: rgba(2, 2, 4, 0.95);
+            padding: 3rem 5vw 0 5vw;
+            border-top: 1px solid var(--border);
             text-align: center;
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--text-muted);
             font-size: 0.7rem;
             z-index: 10;
             line-height: 2.2;
             box-sizing: border-box;
         }
 
-        footer a { color: var(--accent-cyan) !important; text-decoration: none; margin: 0 10px; transition: color 0.3s; font-weight: bold; text-shadow: 0 0 5px var(--accent-cyan); }
-        footer a:hover { color: #ffffff !important; text-shadow: 0 0 15px var(--accent-cyan); }
+        footer a { color: var(--accent-cyan); text-decoration: none; margin: 0 10px; transition: color 0.3s; font-weight: 600; text-shadow: 0 0 5px var(--accent-cyan); }
+        footer a:hover { color: #ffffff; text-shadow: 0 0 15px var(--accent-cyan); }
         
         .footer-logo-container {
             display: flex;
@@ -677,6 +668,9 @@
                 <a href="tel:+27646999877">+27 646 999 877</a> &nbsp;|&nbsp;
                 <a href="mailto:ai@ionity.today">ai@ionity.today</a> &nbsp;|&nbsp; 
                 <a href="https://www.ionity.world" target="_blank">www.ionity.world</a>
+            </div>
+            <div style="margin-top: 1rem;">
+                <a href="https://antwerpdesignsionity.github.io/Metadata" target="_blank" rel="noopener noreferrer">Metadata</a>
             </div>
         </div>
     </footer>
@@ -906,12 +900,12 @@
             <span class="module-label">ID_NODE</span>
         </a>
 
-        <a href="https://github.com/AntwerpDesignsIonity" target="_blank" rel="noopener noreferrer" class="module-link" title="Hardware/Software Architecture">
+        <a href="https://github.com/AntwerpDesignsIonity" target="_blank" rel="noopener noreferrer" class="module-link" title="Hardware/Software Architecture" style="display: none;">
             <img src="assets/images/github-icon.svg" alt="GitHub" class="module-icon">
             <span class="module-label">CORE_REPO</span>
         </a>
 
-        <a href="https://www.linkedin.com/in/ionity" target="_blank" rel="noopener noreferrer" class="module-link" title="Ecosystem Solutionist Connection">
+        <a href="https://www.linkedin.com/in/ionity" target="_blank" rel="noopener noreferrer" class="module-link" title="Ecosystem Solutionist Connection" style="display: none;">
             <img src="assets/images/linkedin-icon.svg" alt="LinkedIn" class="module-icon">
             <span class="module-label">SOL_CONNECT</span>
         </a>

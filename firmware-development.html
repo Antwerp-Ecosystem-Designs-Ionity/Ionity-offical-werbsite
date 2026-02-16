@@ -91,14 +91,6 @@
         "addressCountry": "ZA"
       },
       "areaServed": "Global",
-      "sameAs": [
-        "https://www.linkedin.com/in/ionity",
-        "https://www.facebook.com/people/Ionity/61587016452256/",
-        "https://www.facebook.com/vanantwerpdesign",
-        "https://github.com/AntwerpDesignsIonity",
-        "https://github.com/Antwerp-Ecosystem-Designs-Ionity",
-        "https://www.ionity.world"
-      ],
       "contactPoint": [
         {
           "@type": "ContactPoint",
@@ -611,7 +603,7 @@
         /* Footer */
         footer {
             margin-top: 8rem;
-            padding: 3rem 5vw;
+            padding: 3rem 5vw 0 5vw;
             border-top: 1px solid var(--border);
             text-align: center;
             color: var(--text-muted);
@@ -658,6 +650,8 @@
             .container, footer, #canvas-container, .scanlines, #floating-components { filter: brightness(1.3); }
             h1 { animation: neonPulse 3s infinite alternate; }
             .mobile-dropdown a.active { animation: neonPulse 2s infinite alternate; }
+            footer { padding: 2rem 1rem 0 1rem; font-size: 0.6rem; }
+            .footer-logo { height: 50px; }
         }
     
         /* --- RUNNING HEADER LINE ANIMATION --- */
@@ -1042,6 +1036,9 @@
                 <a href="tel:+27646999877">+27 646 999 877</a> &nbsp;|&nbsp;
                 <a href="mailto:ai@ionity.today">ai@ionity.today</a> &nbsp;|&nbsp; 
                 <a href="https://www.ionity.world" target="_blank">www.ionity.world</a>
+            </div>
+            <div style="margin-top: 1rem;">
+                <a href="https://antwerpdesignsionity.github.io/Metadata" target="_blank" rel="noopener noreferrer">Metadata</a>
             </div>
         </div>
     </footer>
@@ -1580,12 +1577,12 @@
             <span class="module-label">ID_NODE</span>
         </a>
 
-        <a href="https://github.com/AntwerpDesignsIonity" target="_blank" rel="noopener noreferrer" class="module-link" title="Hardware/Software Architecture">
+        <a href="https://github.com/AntwerpDesignsIonity" target="_blank" rel="noopener noreferrer" class="module-link" title="Hardware/Software Architecture" style="display: none;">
             <img src="assets/images/github-icon.svg" alt="GitHub" class="module-icon">
             <span class="module-label">CORE_REPO</span>
         </a>
 
-        <a href="https://www.linkedin.com/in/ionity" target="_blank" rel="noopener noreferrer" class="module-link" title="Ecosystem Solutionist Connection">
+        <a href="https://www.linkedin.com/in/ionity" target="_blank" rel="noopener noreferrer" class="module-link" title="Ecosystem Solutionist Connection" style="display: none;">
             <img src="assets/images/linkedin-icon.svg" alt="LinkedIn" class="module-icon">
             <span class="module-label">SOL_CONNECT</span>
         </a>

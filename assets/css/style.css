@@ -83,7 +83,7 @@ input, textarea, select {
     margin: 0;
     font-size: 0.9rem;
     line-height: 1.6;
-    color: rgba(255, 255, 255, 0.85);
+    color: rgba(255, 255, 255, 0.95);
 }
 
 .cookie-banner-text a {
@@ -741,7 +741,7 @@ img[loading="lazy"].loaded {
 }
 
 .module-label {
-    font-size: 8px;
+    font-size: 10px;
     font-weight: 600;
     letter-spacing: 0.5px;
     color: rgba(255, 255, 255, 0.7);
@@ -758,7 +758,7 @@ img[loading="lazy"].loaded {
 /* Mobile Responsive */
 @media (max-width: 768px) {
     .identity-modules {
-        bottom: 80px;
+        bottom: 20px;
         right: 15px;
         gap: 10px;
     }
@@ -774,7 +774,7 @@ img[loading="lazy"].loaded {
     }
 
     .module-label {
-        font-size: 7px;
+        font-size: 9px;
     }
 }
 
