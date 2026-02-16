@@ -494,20 +494,19 @@
         footer {
             position: relative;
             width: 100%;
-            /* Removed fixed positioning to allow scrolling */
-            background: #000000;
+            background: rgba(2, 2, 4, 0.95);
             padding: 3rem 5vw;
-            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            border-top: 1px solid var(--border);
             text-align: center;
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--text-muted);
             font-size: 0.7rem;
             z-index: 10;
             line-height: 2.2;
             box-sizing: border-box;
         }
 
-        footer a { color: var(--accent-cyan) !important; text-decoration: none; margin: 0 10px; transition: color 0.3s; font-weight: bold; text-shadow: 0 0 5px var(--accent-cyan); }
-        footer a:hover { color: #ffffff !important; text-shadow: 0 0 15px var(--accent-cyan); }
+        footer a { color: var(--accent-cyan); text-decoration: none; margin: 0 10px; transition: color 0.3s; font-weight: 600; text-shadow: 0 0 5px var(--accent-cyan); }
+        footer a:hover { color: #ffffff; text-shadow: 0 0 15px var(--accent-cyan); }
         
         .footer-logo-container {
             display: flex;

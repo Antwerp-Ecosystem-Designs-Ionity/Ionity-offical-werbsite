@@ -698,6 +698,42 @@
             0% { background-position: 150% 0; }
             100% { background-position: -50% 0; }
         }
+
+        /* Footer */
+        footer {
+            margin-top: 8rem;
+            padding: 3rem 5vw;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.7rem;
+            position: relative;
+            z-index: 10;
+            background: rgba(2, 2, 4, 0.95);
+        }
+        footer a { color: var(--text-muted); text-decoration: none; margin: 0 10px; transition: color 0.3s; }
+        footer a:hover { color: var(--accent-cyan); }
+        .footer-logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 2rem;
+            width: 100%;
+        }
+        .footer-logo {
+            height: 80px;
+            width: auto;
+            opacity: 0.9;
+            transition: all 0.3s ease;
+        }
+        .footer-logo:hover {
+            opacity: 1;
+            filter: drop-shadow(0 0 15px rgba(0, 210, 255, 0.4));
+        }
+        @media (max-width: 768px) {
+            footer { padding: 2rem 1rem; font-size: 0.6rem; }
+            .footer-logo { height: 50px; }
+        }
 </style>
     <link rel="icon" type="image/png" href="assets/images/ionity-logo-edited.png">
     <link rel="manifest" href="manifest.json">
