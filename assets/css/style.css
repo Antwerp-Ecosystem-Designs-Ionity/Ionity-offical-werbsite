@@ -641,22 +641,21 @@ img[loading="lazy"].loaded {
 
     h1 {
         font-size: 1.6rem !important;
-        text-align: center !important;
+        text-align: center;
     }
 
     h2 {
         font-size: 1.3rem !important;
-        text-align: center !important;
+        text-align: center;
     }
 
     h3 {
         font-size: 1.1rem !important;
-        text-align: center !important;
+        text-align: center;
     }
 
     p {
         font-size: 0.95rem !important;
-        text-align: center !important;
     }
     
     /* Ensure minimum readability for all text */
