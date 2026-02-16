@@ -533,9 +533,10 @@ img[loading="lazy"].loaded {
     /* Card Meta Text */
     .card-meta,
     .card-meta span {
-        font-size: clamp(0.75rem, 2.5vw, 0.9rem) !important;
+        font-size: clamp(0.85rem, 2.5vw, 0.95rem) !important;
         color: rgba(255, 255, 255, 0.85) !important;
         font-weight: 600 !important;
+        text-align: center;
     }
 
     /* Hero Section Mobile Centering */
@@ -640,18 +641,33 @@ img[loading="lazy"].loaded {
 
     h1 {
         font-size: 1.6rem !important;
+        text-align: center !important;
     }
 
     h2 {
         font-size: 1.3rem !important;
+        text-align: center !important;
     }
 
     h3 {
         font-size: 1.1rem !important;
+        text-align: center !important;
     }
 
     p {
-        font-size: 0.9rem !important;
+        font-size: 0.95rem !important;
+        text-align: center !important;
+    }
+    
+    /* Ensure minimum readability for all text */
+    body {
+        font-size: 0.95rem !important;
+    }
+    
+    /* Better padding for mobile content */
+    section, article, main {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
     }
 }
 
