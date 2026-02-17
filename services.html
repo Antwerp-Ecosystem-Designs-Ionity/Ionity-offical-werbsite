@@ -764,7 +764,7 @@
             }
 
             .slider-track:hover {
-                animation-play-state: running;
+                animation: none !important;
             }
         }
 
@@ -871,18 +871,7 @@
             display: flex;
             gap: 2rem;
             width: max-content;
-            /* Animation duration will be set primarily via JS or default here, 
-               but we need to duplicate content for the infinite effect */
-        }
-        
-        /* Stop animation on hover for readability */
-        .slider-track:hover {
-            animation-play-state: paused;
-        }
-
-        @keyframes slide-left {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+            animation: none !important;
         }
 
         /* Ensure cards in slider maintain width */
@@ -2263,8 +2252,9 @@
             transform: scale(1.1);
         }
         
-        /* Disable automatic scrolling on tracks */
-        .slider-auto-scroll {
+        /* All slider animation is controlled by JS touch/drag only */
+        .slider-auto-scroll,
+        .slider-track {
             animation: none !important;
         }
 
@@ -2318,19 +2308,16 @@
                     return Math.min(b.max, Math.max(b.min, val));
                 };
 
-                // Set initial position — center first card
+                // Set initial position — start from left for wide tracks, center for small tracks
                 const initPosition = () => {
                     const vw = viewport.clientWidth;
                     const tw = track.scrollWidth;
                     if (tw <= vw) {
+                        // Everything fits — center the whole track
                         currentOffset = (vw - tw) / 2;
                     } else {
-                        const cards = getCards();
-                        if (cards.length > 0) {
-                            const first = cards[0];
-                            currentOffset = -(first.offsetLeft + first.offsetWidth / 2 - vw / 2);
-                            currentOffset = clamp(currentOffset);
-                        }
+                        // Track wider than viewport — start from left edge, no auto-centering
+                        currentOffset = 0;
                     }
                     track.style.transition = 'none';
                     track.style.transform = `translateX(${currentOffset}px)`;
