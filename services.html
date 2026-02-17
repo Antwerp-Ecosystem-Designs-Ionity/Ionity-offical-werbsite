@@ -1488,7 +1488,10 @@
             
         </div>
         </div>
-        <div class="slide-indicator"></div>
+        <div class="carousel-dots">
+            <div class="carousel-dot dot-prev" title="Previous"></div>
+            <div class="carousel-dot dot-next" title="Next"></div>
+        </div>
         </div>
 
         <!-- Industrial Deployment Hero -->
@@ -1505,7 +1508,7 @@
         <!-- Industrial Grid -->
         <div class="carousel-wrapper">
             <div class="slider-viewport">
-                 <div class="slider-track" id="track-industrial">
+                <div class="slider-track" id="track-industrial">
              <!-- Smart AC -->
              <div class="card">
                 <div class="card-icon">✳</div>
@@ -1575,7 +1578,10 @@
             </div>
         </div>
         </div>
-        <div class="slide-indicator"></div>
+        <div class="carousel-dots">
+            <div class="carousel-dot dot-prev" title="Previous"></div>
+            <div class="carousel-dot dot-next" title="Next"></div>
+        </div>
         </div>
 
         <!-- Industries Section -->
@@ -1592,6 +1598,7 @@
         <div class="carousel-wrapper">
             <div class="slider-viewport">
             <div class="slider-track" id="track-industries">
+
             <div class="card">
                 <div class="card-icon">⛟</div>
                 <h3>TRANSPORTATION</h3>
@@ -1830,33 +1837,15 @@
     </div>
 
     <style>
-        /* Carousel Controls */
+        /* Carousel Controls - Centered Single Card */
         .carousel-wrapper {
             position: relative;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 2rem;
+            gap: 1.5rem;
             width: 100%;
-            margin: 6rem auto;
-        }
-
-        .carousel-controls {
-            position: absolute;
-            top: 50%;
-            left: 0;
-            right: 0;
-            transform: translateY(-50%);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
-            pointer-events: none;
-            z-index: 20;
-        }
-
-        .carousel-controls .carousel-btn {
-            pointer-events: all;
+            margin: 4rem auto;
         }
 
         .slider-viewport {
@@ -1864,54 +1853,86 @@
             width: 100%;
             padding: 2rem 0;
             position: relative;
-            mask-image: linear-gradient(to right, transparent 0%, black 2%, black 98%, transparent 100%);
-            -webkit-mask-image: linear-gradient(to right, transparent 0%, black 2%, black 98%, transparent 100%);
         }
 
         .slider-track {
             display: flex;
-            gap: 2rem;
-            width: max-content;
-            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1); /* Ease-out cubic */
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            will-change: transform;
         }
 
-        .carousel-btn {
-            background: rgba(2, 2, 4, 0.8);
-            border: 2px solid var(--accent-cyan);
-            color: var(--accent-cyan);
-            width: 55px;
-            height: 55px;
-            min-width: 55px; /* Prevent shrinking */
-            border-radius: 50%;
+        .slider-track .card,
+        .slider-track .card-3d-scene,
+        .slider-track .tier-card {
+            flex: 0 0 100%;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            box-sizing: border-box;
+        }
+
+        /* Each slide container centers the card */
+        .slider-track > * {
+            flex: 0 0 100%;
             display: flex;
-            align-items: center;
             justify-content: center;
-            cursor: pointer;
-            font-size: 1.5rem;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            z-index: 10;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 0 15px rgba(0, 210, 255, 0.3);
+            align-items: stretch;
         }
 
-        .carousel-btn:hover {
-            background: var(--accent-cyan);
-            color: #000 !important;
-            box-shadow: 0 0 15px var(--accent-cyan);
-            transform: scale(1.1);
+        /* Dot Navigation */
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.2rem;
+            padding: 0.5rem 0;
         }
-        
+
+        .carousel-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            border: 2px solid var(--accent-cyan);
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            backdrop-filter: blur(5px);
+        }
+
+        .carousel-dot:hover {
+            background: rgba(0, 210, 255, 0.3);
+            box-shadow: 0 0 10px rgba(0, 210, 255, 0.4);
+        }
+
+        .carousel-dot::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 0.6rem;
+            color: var(--accent-cyan);
+            font-weight: bold;
+            letter-spacing: 0;
+        }
+
+        .carousel-dot.dot-prev::after {
+            content: '◀';
+        }
+
+        .carousel-dot.dot-next::after {
+            content: '▶';
+        }
+
+        .carousel-dot:active {
+            background: var(--accent-cyan);
+            transform: scale(0.9);
+        }
+
         /* Disable automatic scrolling on tracks */
         .slider-auto-scroll {
             animation: none !important;
-        }
-
-        /* Hide carousel buttons on mobile */
-        @media (max-width: 768px) {
-            .carousel-controls {
-                display: none;
-            }
         }
     </style>
     <script>
