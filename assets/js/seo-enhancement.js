@@ -119,7 +119,7 @@
                 "name": "Ionity",
                 "logo": {
                     "@type": "ImageObject",
-                    "url": window.location.origin + "/assets/images/logo.png"
+                    "url": window.location.origin + "/assets/images/ionity-logo-edited.png"
                 }
             },
             "keywords": "AIoT, Edge AI, Industrial IoT, Digital Twin, Zero-Trust Security"
@@ -210,7 +210,7 @@
     init();
 
     // Expose utilities for manual use if needed
-    window.IonitySeO = {
+    window.IonitySEO = {
         generateBreadcrumbSchema,
         generateArticleSchema,
         validateStructuredData

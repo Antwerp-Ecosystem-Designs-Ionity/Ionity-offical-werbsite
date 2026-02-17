@@ -292,13 +292,13 @@ FAQPage schema enables better voice search results for queries like:
 ### Validation Commands:
 ```bash
 # Test structured data locally (if seo-enhancement.js is loaded)
-window.IonitySeO.validateStructuredData();
+window.IonitySEO.validateStructuredData();
 
 # Generate breadcrumb schema
-window.IonitySeO.generateBreadcrumbSchema();
+window.IonitySEO.generateBreadcrumbSchema();
 
 # Generate article schema
-window.IonitySeO.generateArticleSchema();
+window.IonitySEO.generateArticleSchema();
 ```
 
 ---
