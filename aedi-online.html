@@ -318,6 +318,78 @@
 
         .nav-links a:hover::before { width: 100%; }
 
+        /* Search Bar */
+        .nav-search {
+            display: flex;
+            align-items: center;
+            position: relative;
+            margin-left: 1.5rem;
+        }
+
+        .nav-search input {
+            background: rgba(0, 210, 255, 0.05);
+            border: 1px solid var(--border);
+            color: #fff;
+            padding: 0.45rem 0.8rem 0.45rem 2.2rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 0.05rem;
+            width: 200px;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .nav-search input::placeholder {
+            color: rgba(200, 230, 255, 0.4);
+            font-size: 0.7rem;
+        }
+
+        .nav-search input:focus {
+            border-color: var(--accent-cyan);
+            background: rgba(0, 210, 255, 0.1);
+            box-shadow: 0 0 15px rgba(0, 210, 255, 0.15);
+            width: 260px;
+        }
+
+        .nav-search-icon {
+            position: absolute;
+            left: 0.7rem;
+            color: var(--accent-cyan);
+            font-size: 0.8rem;
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
+        .search-count {
+            position: absolute;
+            right: 0.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.6rem;
+            color: var(--accent-cyan);
+            font-family: 'Courier New', monospace;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .search-count.visible {
+            opacity: 1;
+        }
+
+        .resource-card.search-hidden {
+            display: none !important;
+        }
+
+        .section-hidden {
+            display: none !important;
+        }
+
+        .resource-card.search-highlight {
+            border-color: var(--accent-cyan) !important;
+            box-shadow: 0 0 15px rgba(0, 210, 255, 0.25);
+        }
+
         /* Mobile Menu Button */
         .mobile-menu-btn {
             display: none;
@@ -424,6 +496,10 @@
         @media (max-width: 768px) {
             .nav-links { display: none; }
             .mobile-menu-btn { display: block; }
+            .nav-search { margin-left: 0; margin-right: 0.5rem; }
+            .nav-search input { width: 120px; font-size: 0.65rem; padding: 0.35rem 0.6rem 0.35rem 1.8rem; }
+            .nav-search input:focus { width: 160px; }
+            .nav-search-icon { font-size: 0.7rem; left: 0.5rem; }
             /* Mobile adjustments for header */
             h1 {
                 font-size: 2.5rem;
@@ -434,7 +510,7 @@
                 font-size: 0.7rem;
             }
             .page-container {
-                padding-top: 120px; /* Ensure mobile padding is also correct */
+                padding-top: 120px;
                 text-align: center;
             }
         }
@@ -671,6 +747,13 @@
             <a href="contact.html">Contact</a>
             <a href="firmware-development.html">Dev</a>
             <a href="gateway.html">IO Way</a>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="nav-search">
+            <span class="nav-search-icon">⌕</span>
+            <input type="text" id="portalSearch" placeholder="Search AI tools..." autocomplete="off">
+            <span class="search-count" id="searchCount"></span>
         </div>
 
         <!-- Mobile Button -->
@@ -973,6 +1056,120 @@
                 </div>
             </div>
 
+            <!-- 13. Video AI & Generation -->
+            <div style="position: relative;">
+                <div style="position: absolute; top: -10px; right: 20px; background: var(--bg-dark); padding: 0 10px; color: var(--accent-cyan); font-size: 0.6rem; border: 1px solid var(--border); opacity: 0.7;">NEW SECTION</div>
+                <h3 style="color: #fff; border-left: 3px solid #f472b6; padding-left: 1rem; margin-bottom: 2rem; font-size: 1.5rem; letter-spacing: 0.1rem;">🎬 Video AI & Generation</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem;">
+                    <a href="https://www.synthesia.io/" target="_blank" class="resource-card">Synthesia</a>
+                    <a href="https://www.heygen.com/" target="_blank" class="resource-card">HeyGen</a>
+                    <a href="https://pika.art/" target="_blank" class="resource-card">Pika</a>
+                    <a href="https://runwayml.com/" target="_blank" class="resource-card">Runway Gen-2</a>
+                    <a href="https://www.d-id.com/" target="_blank" class="resource-card">D-ID</a>
+                    <a href="https://invideo.io/" target="_blank" class="resource-card">InVideo AI</a>
+                    <a href="https://www.kapwing.com/" target="_blank" class="resource-card">Kapwing</a>
+                    <a href="https://www.descript.com/" target="_blank" class="resource-card">Descript</a>
+                    <a href="https://www.colossyan.com/" target="_blank" class="resource-card">Colossyan</a>
+                    <a href="https://www.veed.io/" target="_blank" class="resource-card">VEED.IO</a>
+                    <a href="https://lumalabs.ai/dream-machine" target="_blank" class="resource-card">Luma Dream Machine</a>
+                    <a href="https://www.fliki.ai/" target="_blank" class="resource-card">Fliki</a>
+                </div>
+            </div>
+
+            <!-- 14. Productivity & Writing AI -->
+            <div style="position: relative;">
+                <div style="position: absolute; top: -10px; right: 20px; background: var(--bg-dark); padding: 0 10px; color: var(--accent-cyan); font-size: 0.6rem; border: 1px solid var(--border); opacity: 0.7;">NEW SECTION</div>
+                <h3 style="color: #fff; border-left: 3px solid #38bdf8; padding-left: 1rem; margin-bottom: 2rem; font-size: 1.5rem; letter-spacing: 0.1rem;">✍️ Productivity & Writing AI</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem;">
+                    <a href="https://www.jasper.ai/" target="_blank" class="resource-card">Jasper AI</a>
+                    <a href="https://www.copy.ai/" target="_blank" class="resource-card">Copy.ai</a>
+                    <a href="https://writesonic.com/" target="_blank" class="resource-card">Writesonic</a>
+                    <a href="https://www.grammarly.com/" target="_blank" class="resource-card">Grammarly AI</a>
+                    <a href="https://www.notion.so/product/ai" target="_blank" class="resource-card">Notion AI</a>
+                    <a href="https://hyperwriteai.com/" target="_blank" class="resource-card">HyperWrite</a>
+                    <a href="https://rytr.me/" target="_blank" class="resource-card">Rytr</a>
+                    <a href="https://www.wordtune.com/" target="_blank" class="resource-card">Wordtune</a>
+                    <a href="https://quillbot.com/" target="_blank" class="resource-card">QuillBot</a>
+                    <a href="https://www.sudowrite.com/" target="_blank" class="resource-card">Sudowrite</a>
+                    <a href="https://tome.app/" target="_blank" class="resource-card">Tome</a>
+                    <a href="https://www.anyword.com/" target="_blank" class="resource-card">Anyword</a>
+                </div>
+            </div>
+
+            <!-- 15. Data Science & Analytics AI -->
+            <div style="position: relative;">
+                <div style="position: absolute; top: -10px; right: 20px; background: var(--bg-dark); padding: 0 10px; color: var(--accent-cyan); font-size: 0.6rem; border: 1px solid var(--border); opacity: 0.7;">NEW SECTION</div>
+                <h3 style="color: #fff; border-left: 3px solid #fb923c; padding-left: 1rem; margin-bottom: 2rem; font-size: 1.5rem; letter-spacing: 0.1rem;">📊 Data Science & Analytics AI</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem;">
+                    <a href="https://www.databricks.com/" target="_blank" class="resource-card">Databricks</a>
+                    <a href="https://www.datarobot.com/" target="_blank" class="resource-card">DataRobot</a>
+                    <a href="https://www.h2o.ai/" target="_blank" class="resource-card">H2O.ai</a>
+                    <a href="https://www.rapidminer.com/" target="_blank" class="resource-card">RapidMiner</a>
+                    <a href="https://www.kaggle.com/" target="_blank" class="resource-card">Kaggle</a>
+                    <a href="https://www.knime.com/" target="_blank" class="resource-card">KNIME</a>
+                    <a href="https://mlflow.org/" target="_blank" class="resource-card">MLflow</a>
+                    <a href="https://wandb.ai/" target="_blank" class="resource-card">Weights & Biases</a>
+                    <a href="https://neptune.ai/" target="_blank" class="resource-card">Neptune.ai</a>
+                    <a href="https://www.tableau.com/" target="_blank" class="resource-card">Tableau AI</a>
+                </div>
+            </div>
+
+            <!-- 16. Cybersecurity AI -->
+            <div style="position: relative;">
+                <div style="position: absolute; top: -10px; right: 20px; background: var(--bg-dark); padding: 0 10px; color: var(--accent-cyan); font-size: 0.6rem; border: 1px solid var(--border); opacity: 0.7;">NEW SECTION</div>
+                <h3 style="color: #fff; border-left: 3px solid #ef4444; padding-left: 1rem; margin-bottom: 2rem; font-size: 1.5rem; letter-spacing: 0.1rem;">🛡️ Cybersecurity AI</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem;">
+                    <a href="https://www.crowdstrike.com/" target="_blank" class="resource-card">CrowdStrike</a>
+                    <a href="https://www.darktrace.com/" target="_blank" class="resource-card">Darktrace</a>
+                    <a href="https://www.sentinelone.com/" target="_blank" class="resource-card">SentinelOne</a>
+                    <a href="https://www.vectra.ai/" target="_blank" class="resource-card">Vectra AI</a>
+                    <a href="https://www.cybereason.com/" target="_blank" class="resource-card">Cybereason</a>
+                    <a href="https://www.snyk.io/" target="_blank" class="resource-card">Snyk</a>
+                    <a href="https://www.paloaltonetworks.com/cortex" target="_blank" class="resource-card">Palo Alto Cortex</a>
+                    <a href="https://security.microsoft.com/" target="_blank" class="resource-card">MS Defender AI</a>
+                    <a href="https://www.recordedfuture.com/" target="_blank" class="resource-card">Recorded Future</a>
+                    <a href="https://www.tenable.com/" target="_blank" class="resource-card">Tenable AI</a>
+                </div>
+            </div>
+
+            <!-- 17. 3D, Game & Spatial AI -->
+            <div style="position: relative;">
+                <div style="position: absolute; top: -10px; right: 20px; background: var(--bg-dark); padding: 0 10px; color: var(--accent-cyan); font-size: 0.6rem; border: 1px solid var(--border); opacity: 0.7;">NEW SECTION</div>
+                <h3 style="color: #fff; border-left: 3px solid #c084fc; padding-left: 1rem; margin-bottom: 2rem; font-size: 1.5rem; letter-spacing: 0.1rem;">🎮 3D, Game & Spatial AI</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem;">
+                    <a href="https://www.unrealengine.com/en-US/blog/unreal-engine-5-2" target="_blank" class="resource-card">Unreal Engine AI</a>
+                    <a href="https://unity.com/products/machine-learning-agents" target="_blank" class="resource-card">Unity ML-Agents</a>
+                    <a href="https://www.nvidia.com/en-us/omniverse/" target="_blank" class="resource-card">NVIDIA Omniverse</a>
+                    <a href="https://spline.design/" target="_blank" class="resource-card">Spline 3D AI</a>
+                    <a href="https://meshy.ai/" target="_blank" class="resource-card">Meshy</a>
+                    <a href="https://www.kaedim3d.com/" target="_blank" class="resource-card">Kaedim</a>
+                    <a href="https://www.luma-ai.com/" target="_blank" class="resource-card">Luma AI (3D)</a>
+                    <a href="https://skybox.blockadelabs.com/" target="_blank" class="resource-card">Blockade Skybox</a>
+                    <a href="https://polycam.ai/" target="_blank" class="resource-card">Polycam</a>
+                    <a href="https://www.scenario.com/" target="_blank" class="resource-card">Scenario (Game)</a>
+                </div>
+            </div>
+
+            <!-- 18. Education & Learning AI -->
+            <div style="position: relative;">
+                <div style="position: absolute; top: -10px; right: 20px; background: var(--bg-dark); padding: 0 10px; color: var(--accent-cyan); font-size: 0.6rem; border: 1px solid var(--border); opacity: 0.7;">NEW SECTION</div>
+                <h3 style="color: #fff; border-left: 3px solid #34d399; padding-left: 1rem; margin-bottom: 2rem; font-size: 1.5rem; letter-spacing: 0.1rem;">📚 Education & Learning AI</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem;">
+                    <a href="https://www.khanacademy.org/khan-labs" target="_blank" class="resource-card">Khan Academy (Khanmigo)</a>
+                    <a href="https://www.duolingo.com/" target="_blank" class="resource-card">Duolingo AI</a>
+                    <a href="https://www.coursera.org/" target="_blank" class="resource-card">Coursera</a>
+                    <a href="https://www.edx.org/" target="_blank" class="resource-card">edX</a>
+                    <a href="https://brilliant.org/" target="_blank" class="resource-card">Brilliant</a>
+                    <a href="https://www.quizlet.com/" target="_blank" class="resource-card">Quizlet AI</a>
+                    <a href="https://www.socratic.org/" target="_blank" class="resource-card">Socratic (Google)</a>
+                    <a href="https://www.elsa.com/" target="_blank" class="resource-card">ELSA Speak</a>
+                    <a href="https://consensus.app/" target="_blank" class="resource-card">Consensus</a>
+                    <a href="https://scholarai.io/" target="_blank" class="resource-card">Scholar AI</a>
+                    <a href="https://www.semanticscholar.org/" target="_blank" class="resource-card">Semantic Scholar</a>
+                    <a href="https://www.connected-papers.com/" target="_blank" class="resource-card">Connected Papers</a>
+                </div>
+            </div>
+
         </main>
 
     </div>
@@ -1148,6 +1345,75 @@
             const menu = document.getElementById('mobileDropdown');
             menu.classList.toggle('open');
         }
+
+        // --- SEARCH FILTER ---
+        const searchInput = document.getElementById('portalSearch');
+        const searchCount = document.getElementById('searchCount');
+
+        searchInput.addEventListener('input', function() {
+            const query = this.value.toLowerCase().trim();
+            const allCards = document.querySelectorAll('.resource-card');
+            const allSections = document.querySelectorAll('main > div');
+
+            if (!query) {
+                // Reset everything
+                allCards.forEach(card => {
+                    card.classList.remove('search-hidden', 'search-highlight');
+                });
+                allSections.forEach(section => {
+                    section.classList.remove('section-hidden');
+                });
+                searchCount.classList.remove('visible');
+                searchCount.textContent = '';
+                return;
+            }
+
+            let matchCount = 0;
+
+            allCards.forEach(card => {
+                const text = card.textContent.toLowerCase();
+                const href = (card.getAttribute('href') || '').toLowerCase();
+                if (text.includes(query) || href.includes(query)) {
+                    card.classList.remove('search-hidden');
+                    card.classList.add('search-highlight');
+                    matchCount++;
+                } else {
+                    card.classList.add('search-hidden');
+                    card.classList.remove('search-highlight');
+                }
+            });
+
+            // Hide sections where ALL cards are hidden
+            allSections.forEach(section => {
+                const cards = section.querySelectorAll('.resource-card');
+                if (cards.length === 0) {
+                    // Intro section or non-card section stays visible
+                    return;
+                }
+                const visibleCards = section.querySelectorAll('.resource-card:not(.search-hidden)');
+                if (visibleCards.length === 0) {
+                    section.classList.add('section-hidden');
+                } else {
+                    section.classList.remove('section-hidden');
+                }
+            });
+
+            searchCount.textContent = matchCount + ' found';
+            searchCount.classList.add('visible');
+        });
+
+        // Keyboard shortcut: Ctrl+K or / to focus search
+        document.addEventListener('keydown', function(e) {
+            if ((e.ctrlKey && e.key === 'k') || (e.key === '/' && document.activeElement.tagName !== 'INPUT')) {
+                e.preventDefault();
+                searchInput.focus();
+            }
+            if (e.key === 'Escape' && document.activeElement === searchInput) {
+                searchInput.value = '';
+                searchInput.dispatchEvent(new Event('input'));
+                searchInput.blur();
+            }
+        });
 
         // --- GLITCH EFFECT ---
         const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&";
