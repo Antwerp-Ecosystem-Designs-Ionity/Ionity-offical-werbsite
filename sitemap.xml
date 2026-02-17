@@ -7,7 +7,7 @@
     <!-- Homepage -->
     <url>
         <loc>https://www.ionity.today/</loc>
-        <lastmod>2026-02-13T12:00:00+02:00</lastmod>
+        <lastmod>2026-02-17T22:44:00+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
@@ -15,7 +15,7 @@
     <!-- About Page -->
     <url>
         <loc>https://www.ionity.today/about.html</loc>
-        <lastmod>2026-02-13T12:00:00+02:00</lastmod>
+        <lastmod>2026-02-17T22:44:00+00:00</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
@@ -23,57 +23,57 @@
     <!-- AEDI Online -->
     <url>
         <loc>https://www.ionity.today/aedi-online.html</loc>
-        <lastmod>2026-02-13T12:00:00+02:00</lastmod>
+        <lastmod>2026-02-17T22:44:00+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     
-    <!-- AI Innovation -->
+    <!-- AI Innovation - AIoT Focus -->
     <url>
         <loc>https://www.ionity.today/ai-innovation.html</loc>
-        <lastmod>2026-02-13T12:00:00+02:00</lastmod>
+        <lastmod>2026-02-17T22:44:00+00:00</lastmod>
         <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
+        <priority>0.9</priority>
     </url>
     
-    <!-- Firmware Development -->
+    <!-- Firmware Development - AIoT -->
     <url>
         <loc>https://www.ionity.today/firmware-development.html</loc>
-        <lastmod>2026-02-13T12:00:00+02:00</lastmod>
+        <lastmod>2026-02-17T22:44:00+00:00</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     
-    <!-- Gateway -->
+    <!-- Gateway - AIoT Integration -->
     <url>
         <loc>https://www.ionity.today/gateway.html</loc>
-        <lastmod>2026-02-13T12:00:00+02:00</lastmod>
+        <lastmod>2026-02-17T22:44:00+00:00</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     
-    <!-- Products -->
+    <!-- Products - AIoT Solutions -->
     <url>
         <loc>https://www.ionity.today/products.html</loc>
-        <lastmod>2026-02-13T12:00:00+02:00</lastmod>
+        <lastmod>2026-02-17T22:44:00+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     
-    <!-- Services -->
+    <!-- Services - AIoT Services -->
     <url>
         <loc>https://www.ionity.today/services.html</loc>
-        <lastmod>2026-02-13T12:00:00+02:00</lastmod>
+        <lastmod>2026-02-17T22:44:00+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     
-    <!-- System Architecture -->
+    <!-- System Architecture - AIoT Architecture -->
     <url>
         <loc>https://www.ionity.today/system-architecture.html</loc>
-        <lastmod>2026-02-13T12:00:00+02:00</lastmod>
+        <lastmod>2026-02-17T22:44:00+00:00</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
+        <priority>0.8</priority>
     </url>
     
     <!-- Roadmap -->
