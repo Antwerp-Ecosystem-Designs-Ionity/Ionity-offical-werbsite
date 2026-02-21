@@ -195,7 +195,8 @@ class CookieManager {
         date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
         const expires = "expires=" + date.toUTCString();
         // Use SameSite=Strict and Secure for enhanced security
-        document.cookie = name + "=" + value + ";" + expires + ";path=/;SameSite=Strict;Secure;HttpOnly";
+        // Note: HttpOnly cannot be set from JavaScript, only from server-side
+        document.cookie = name + "=" + value + ";" + expires + ";path=/;SameSite=Strict;Secure";
     }
 
     generateToken() {
