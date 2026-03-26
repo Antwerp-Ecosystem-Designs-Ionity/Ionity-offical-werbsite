@@ -596,12 +596,13 @@
         <br>
     </footer>
 
+    <!-- Node Network Animation -->
     <script>
+        // Mobile Menu
         function toggleMobileMenu() {
             const dropdown = document.getElementById('mobileDropdown');
             dropdown.classList.toggle('open');
         }
-
         document.addEventListener('click', function(e) {
             const dropdown = document.getElementById('mobileDropdown');
             const btn = document.querySelector('.mobile-menu-btn');
@@ -609,6 +610,227 @@
                 dropdown.classList.remove('open');
             }
         });
+
+        // NODE NETWORK - Privacy Shield Visualization
+        (function() {
+            const container = document.getElementById('canvas-container');
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            container.appendChild(canvas);
+
+            let W, H, nodes = [], mouse = { x: -999, y: -999 }, packets = [];
+            const NODE_COUNT = 80;
+            const CONNECTION_DIST = 180;
+            const MOUSE_RADIUS = 200;
+
+            function resize() {
+                W = canvas.width = window.innerWidth;
+                H = canvas.height = window.innerHeight;
+            }
+            resize();
+            window.addEventListener('resize', resize);
+
+            document.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
+            document.addEventListener('mouseleave', () => { mouse.x = -999; mouse.y = -999; });
+
+            // Node class
+            class Node {
+                constructor() {
+                    this.x = Math.random() * W;
+                    this.y = Math.random() * H;
+                    this.vx = (Math.random() - 0.5) * 0.4;
+                    this.vy = (Math.random() - 0.5) * 0.4;
+                    this.radius = Math.random() * 2.5 + 1.5;
+                    this.pulsePhase = Math.random() * Math.PI * 2;
+                    this.pulseSpeed = 0.01 + Math.random() * 0.02;
+                    this.isLocked = Math.random() < 0.15; // 15% are "locked" nodes
+                    this.lockAngle = 0;
+                }
+
+                update() {
+                    this.pulsePhase += this.pulseSpeed;
+
+                    // Mouse interaction
+                    const dx = mouse.x - this.x;
+                    const dy = mouse.y - this.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < MOUSE_RADIUS && dist > 0) {
+                        const force = (MOUSE_RADIUS - dist) / MOUSE_RADIUS * 0.02;
+                        this.vx += dx / dist * force;
+                        this.vy += dy / dist * force;
+                    }
+
+                    this.vx *= 0.99;
+                    this.vy *= 0.99;
+                    this.x += this.vx;
+                    this.y += this.vy;
+
+                    // Wrap around
+                    if (this.x < -20) this.x = W + 20;
+                    if (this.x > W + 20) this.x = -20;
+                    if (this.y < -20) this.y = H + 20;
+                    if (this.y > H + 20) this.y = -20;
+
+                    if (this.isLocked) this.lockAngle += 0.03;
+                }
+
+                draw() {
+                    const pulse = Math.sin(this.pulsePhase) * 0.5 + 0.5;
+                    const r = this.radius + pulse * 1.5;
+
+                    // Outer glow
+                    const grad = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, r * 6);
+                    grad.addColorStop(0, this.isLocked ? 'rgba(0, 255, 180, 0.15)' : 'rgba(0, 210, 255, 0.12)');
+                    grad.addColorStop(1, 'transparent');
+                    ctx.fillStyle = grad;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, r * 6, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    // Core dot
+                    ctx.fillStyle = this.isLocked ? `rgba(0, 255, 180, ${0.7 + pulse * 0.3})` : `rgba(0, 210, 255, ${0.6 + pulse * 0.4})`;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, r, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    // Lock icon ring for locked nodes
+                    if (this.isLocked) {
+                        ctx.strokeStyle = `rgba(0, 255, 180, ${0.3 + pulse * 0.4})`;
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.arc(this.x, this.y, r + 6, this.lockAngle, this.lockAngle + Math.PI * 1.5);
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            // Data packet - travels between nodes
+            class Packet {
+                constructor(from, to) {
+                    this.from = from;
+                    this.to = to;
+                    this.t = 0;
+                    this.speed = 0.008 + Math.random() * 0.012;
+                    this.alive = true;
+                }
+
+                update() {
+                    this.t += this.speed;
+                    if (this.t >= 1) this.alive = false;
+                }
+
+                draw() {
+                    const x = this.from.x + (this.to.x - this.from.x) * this.t;
+                    const y = this.from.y + (this.to.y - this.from.y) * this.t;
+                    
+                    const grad = ctx.createRadialGradient(x, y, 0, x, y, 5);
+                    grad.addColorStop(0, 'rgba(255, 255, 255, 0.9)');
+                    grad.addColorStop(0.5, 'rgba(0, 210, 255, 0.6)');
+                    grad.addColorStop(1, 'transparent');
+                    ctx.fillStyle = grad;
+                    ctx.beginPath();
+                    ctx.arc(x, y, 5, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+
+            // Initialize nodes
+            for (let i = 0; i < NODE_COUNT; i++) {
+                nodes.push(new Node());
+            }
+
+            // Draw shield in center
+            function drawShield(time) {
+                const cx = W / 2, cy = H / 2;
+                const pulse = Math.sin(time * 0.001) * 0.15 + 0.85;
+                const size = 60 * pulse;
+
+                // Shield glow
+                const glow = ctx.createRadialGradient(cx, cy, 0, cx, cy, size * 3);
+                glow.addColorStop(0, 'rgba(0, 210, 255, 0.06)');
+                glow.addColorStop(0.5, 'rgba(0, 210, 255, 0.02)');
+                glow.addColorStop(1, 'transparent');
+                ctx.fillStyle = glow;
+                ctx.beginPath();
+                ctx.arc(cx, cy, size * 3, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Shield shape
+                ctx.beginPath();
+                ctx.moveTo(cx, cy - size);
+                ctx.quadraticCurveTo(cx + size * 1.2, cy - size * 0.6, cx + size, cy + size * 0.1);
+                ctx.quadraticCurveTo(cx + size * 0.5, cy + size * 0.9, cx, cy + size * 1.1);
+                ctx.quadraticCurveTo(cx - size * 0.5, cy + size * 0.9, cx - size, cy + size * 0.1);
+                ctx.quadraticCurveTo(cx - size * 1.2, cy - size * 0.6, cx, cy - size);
+                ctx.closePath();
+                ctx.strokeStyle = `rgba(0, 210, 255, ${0.2 + pulse * 0.15})`;
+                ctx.lineWidth = 1.5;
+                ctx.stroke();
+
+                // Lock keyhole
+                ctx.fillStyle = `rgba(0, 210, 255, ${0.15 + pulse * 0.1})`;
+                ctx.beginPath();
+                ctx.arc(cx, cy - 5, 10, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.fillRect(cx - 5, cy + 2, 10, 16);
+            }
+
+            let lastPacketTime = 0;
+
+            function animate(time) {
+                ctx.clearRect(0, 0, W, H);
+
+                // Spawn packets periodically
+                if (time - lastPacketTime > 300) {
+                    const i = Math.floor(Math.random() * nodes.length);
+                    let closest = null, closestDist = Infinity;
+                    for (let j = 0; j < nodes.length; j++) {
+                        if (j === i) continue;
+                        const dx = nodes[i].x - nodes[j].x;
+                        const dy = nodes[i].y - nodes[j].y;
+                        const d = Math.sqrt(dx * dx + dy * dy);
+                        if (d < CONNECTION_DIST && d < closestDist) {
+                            closestDist = d;
+                            closest = nodes[j];
+                        }
+                    }
+                    if (closest) packets.push(new Packet(nodes[i], closest));
+                    lastPacketTime = time;
+                }
+
+                // Draw connections
+                for (let i = 0; i < nodes.length; i++) {
+                    for (let j = i + 1; j < nodes.length; j++) {
+                        const dx = nodes[i].x - nodes[j].x;
+                        const dy = nodes[i].y - nodes[j].y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < CONNECTION_DIST) {
+                            const alpha = (1 - dist / CONNECTION_DIST) * 0.2;
+                            ctx.strokeStyle = `rgba(0, 210, 255, ${alpha})`;
+                            ctx.lineWidth = 0.5;
+                            ctx.beginPath();
+                            ctx.moveTo(nodes[i].x, nodes[i].y);
+                            ctx.lineTo(nodes[j].x, nodes[j].y);
+                            ctx.stroke();
+                        }
+                    }
+                }
+
+                // Draw shield
+                drawShield(time);
+
+                // Update & draw nodes
+                nodes.forEach(n => { n.update(); n.draw(); });
+
+                // Update & draw packets
+                packets = packets.filter(p => p.alive);
+                packets.forEach(p => { p.update(); p.draw(); });
+
+                requestAnimationFrame(animate);
+            }
+
+            requestAnimationFrame(animate);
+        })();
     </script>
 </body>
 </html>

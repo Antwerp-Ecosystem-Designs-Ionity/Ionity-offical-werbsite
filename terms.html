@@ -356,7 +356,9 @@
         <br>
     </footer>
 
+    <!-- Book Hallway Animation -->
     <script>
+        // Mobile Menu
         function toggleMobileMenu() {
             const dropdown = document.getElementById('mobileDropdown');
             dropdown.classList.toggle('open');
@@ -368,6 +370,297 @@
                 dropdown.classList.remove('open');
             }
         });
+
+        // INFINITE BOOK HALLWAY - Library Corridor Visualization
+        (function() {
+            const container = document.getElementById('canvas-container');
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            container.appendChild(canvas);
+
+            let W, H, mouse = { x: 0.5, y: 0.5 };
+            const particles = [];
+            const PARTICLE_COUNT = 60;
+
+            function resize() {
+                W = canvas.width = window.innerWidth;
+                H = canvas.height = window.innerHeight;
+            }
+            resize();
+            window.addEventListener('resize', resize);
+
+            document.addEventListener('mousemove', e => {
+                mouse.x = e.clientX / W;
+                mouse.y = e.clientY / H;
+            });
+
+            // Book colors - warm amber/leather tones with occasional cyan highlights
+            const bookColors = [
+                'rgba(60, 30, 15, A)',    // Dark leather
+                'rgba(80, 40, 20, A)',    // Warm brown
+                'rgba(45, 25, 12, A)',    // Deep mahogany
+                'rgba(100, 50, 25, A)',   // Tan leather
+                'rgba(35, 20, 10, A)',    // Almost black
+                'rgba(70, 35, 18, A)',    // Chestnut
+                'rgba(55, 28, 14, A)',    // Espresso
+                'rgba(90, 45, 22, A)',    // Cognac
+                'rgba(20, 50, 60, A)',    // Teal accent
+                'rgba(0, 60, 80, A)',     // Dark cyan accent
+            ];
+
+            // Seeded random for consistent shelves
+            function seededRandom(seed) {
+                let x = Math.sin(seed) * 10000;
+                return x - Math.floor(x);
+            }
+
+            // Draw a bookshelf at given perspective position
+            function drawShelf(side, depth, offsetY, time) {
+                const vanishX = W * (0.5 + (mouse.x - 0.5) * 0.1);
+                const vanishY = H * (0.5 + (mouse.y - 0.5) * 0.05);
+
+                // Perspective scaling
+                const scale = 1 / (depth * 0.8 + 1);
+                const fadeAlpha = Math.max(0, 1 - depth * 0.15);
+
+                if (fadeAlpha <= 0) return;
+
+                const shelfWidth = 180 * scale;
+                const shelfHeight = 120 * scale;
+                const bookAreaHeight = shelfHeight * 0.85;
+
+                // Position shelf using perspective
+                const spreadX = (side === 'left' ? -1 : 1) * (W * 0.35 + 50) * scale;
+                const shelfX = vanishX + spreadX - (side === 'left' ? shelfWidth : 0);
+                const shelfY = vanishY + offsetY * scale - shelfHeight / 2;
+
+                // Shelf backing
+                ctx.fillStyle = `rgba(15, 8, 4, ${fadeAlpha * 0.6})`;
+                ctx.fillRect(shelfX, shelfY, shelfWidth, shelfHeight);
+
+                // Shelf wood (top & bottom edges)
+                ctx.fillStyle = `rgba(50, 28, 14, ${fadeAlpha * 0.8})`;
+                ctx.fillRect(shelfX, shelfY, shelfWidth, 2 * scale);
+                ctx.fillRect(shelfX, shelfY + shelfHeight - 3 * scale, shelfWidth, 3 * scale);
+
+                // Draw books on this shelf
+                let bookX = shelfX + 3 * scale;
+                const maxBookX = shelfX + shelfWidth - 3 * scale;
+                let bookSeed = depth * 100 + offsetY * 10 + (side === 'left' ? 0 : 500);
+                let bookIndex = 0;
+
+                while (bookX < maxBookX) {
+                    const rand = seededRandom(bookSeed + bookIndex);
+                    const bookWidth = (4 + rand * 12) * scale;
+                    const bookHeight = (bookAreaHeight * 0.55 + rand * bookAreaHeight * 0.4);
+                    const colorIdx = Math.floor(seededRandom(bookSeed + bookIndex + 77) * bookColors.length);
+                    const bookAlpha = fadeAlpha * (0.6 + seededRandom(bookSeed + bookIndex + 33) * 0.4);
+
+                    if (bookX + bookWidth > maxBookX) break;
+
+                    const bookY = shelfY + shelfHeight - 3 * scale - bookHeight;
+
+                    // Book body
+                    const color = bookColors[colorIdx].replace('A', bookAlpha.toFixed(2));
+                    ctx.fillStyle = color;
+                    ctx.fillRect(bookX, bookY, bookWidth, bookHeight);
+
+                    // Book spine highlight
+                    const highlight = `rgba(255, 220, 180, ${bookAlpha * 0.08})`;
+                    ctx.fillStyle = highlight;
+                    ctx.fillRect(bookX, bookY, 1 * scale, bookHeight);
+
+                    // Occasional gold text on spine
+                    if (seededRandom(bookSeed + bookIndex + 55) > 0.6) {
+                        const textY = bookY + bookHeight * 0.3 + seededRandom(bookSeed + bookIndex + 88) * bookHeight * 0.3;
+                        ctx.fillStyle = `rgba(200, 170, 100, ${bookAlpha * 0.3})`;
+                        ctx.fillRect(bookX + 1 * scale, textY, bookWidth - 2 * scale, 1 * scale);
+                    }
+
+                    // Gap between books
+                    bookX += bookWidth + (0.5 + seededRandom(bookSeed + bookIndex + 22) * 1.5) * scale;
+                    bookIndex++;
+                }
+
+                // Side panel (depth illusion)
+                if (side === 'left') {
+                    ctx.fillStyle = `rgba(30, 16, 8, ${fadeAlpha * 0.4})`;
+                    ctx.beginPath();
+                    ctx.moveTo(shelfX + shelfWidth, shelfY);
+                    ctx.lineTo(shelfX + shelfWidth + 8 * scale, shelfY - 4 * scale);
+                    ctx.lineTo(shelfX + shelfWidth + 8 * scale, shelfY + shelfHeight + 4 * scale);
+                    ctx.lineTo(shelfX + shelfWidth, shelfY + shelfHeight);
+                    ctx.fill();
+                } else {
+                    ctx.fillStyle = `rgba(30, 16, 8, ${fadeAlpha * 0.4})`;
+                    ctx.beginPath();
+                    ctx.moveTo(shelfX, shelfY);
+                    ctx.lineTo(shelfX - 8 * scale, shelfY - 4 * scale);
+                    ctx.lineTo(shelfX - 8 * scale, shelfY + shelfHeight + 4 * scale);
+                    ctx.lineTo(shelfX, shelfY + shelfHeight);
+                    ctx.fill();
+                }
+            }
+
+            // Light ray from vanishing point
+            function drawLightRays(time) {
+                const vanishX = W * (0.5 + (mouse.x - 0.5) * 0.1);
+                const vanishY = H * (0.5 + (mouse.y - 0.5) * 0.05);
+
+                const rayCount = 8;
+                for (let i = 0; i < rayCount; i++) {
+                    const angle = (i / rayCount) * Math.PI * 2 + time * 0.0001;
+                    const length = Math.max(W, H) * 0.8;
+                    const endX = vanishX + Math.cos(angle) * length;
+                    const endY = vanishY + Math.sin(angle) * length;
+
+                    const grad = ctx.createLinearGradient(vanishX, vanishY, endX, endY);
+                    const pulse = Math.sin(time * 0.0008 + i * 0.7) * 0.5 + 0.5;
+                    grad.addColorStop(0, `rgba(255, 200, 100, ${0.02 + pulse * 0.015})`);
+                    grad.addColorStop(0.3, `rgba(200, 160, 80, ${0.008 + pulse * 0.005})`);
+                    grad.addColorStop(1, 'transparent');
+
+                    ctx.beginPath();
+                    ctx.moveTo(vanishX, vanishY);
+                    const spread = 30 + pulse * 15;
+                    ctx.lineTo(endX + Math.cos(angle + 0.1) * spread, endY + Math.sin(angle + 0.1) * spread);
+                    ctx.lineTo(endX + Math.cos(angle - 0.1) * spread, endY + Math.sin(angle - 0.1) * spread);
+                    ctx.closePath();
+                    ctx.fillStyle = grad;
+                    ctx.fill();
+                }
+
+                // Central warm glow
+                const glowGrad = ctx.createRadialGradient(vanishX, vanishY, 0, vanishX, vanishY, 250);
+                glowGrad.addColorStop(0, 'rgba(255, 200, 120, 0.06)');
+                glowGrad.addColorStop(0.5, 'rgba(200, 150, 80, 0.02)');
+                glowGrad.addColorStop(1, 'transparent');
+                ctx.fillStyle = glowGrad;
+                ctx.beginPath();
+                ctx.arc(vanishX, vanishY, 250, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
+            // Dust particle class
+            class DustParticle {
+                constructor() {
+                    this.reset();
+                }
+
+                reset() {
+                    this.x = Math.random() * W;
+                    this.y = Math.random() * H;
+                    this.size = Math.random() * 2 + 0.5;
+                    this.speedX = (Math.random() - 0.5) * 0.2;
+                    this.speedY = -0.1 - Math.random() * 0.15;
+                    this.alpha = Math.random() * 0.4 + 0.1;
+                    this.drift = Math.random() * Math.PI * 2;
+                    this.driftSpeed = 0.005 + Math.random() * 0.01;
+                    this.warmth = Math.random(); // 0 = cool/cyan, 1 = warm/amber
+                }
+
+                update() {
+                    this.drift += this.driftSpeed;
+                    this.x += this.speedX + Math.sin(this.drift) * 0.3;
+                    this.y += this.speedY;
+                    this.alpha -= 0.0005;
+
+                    if (this.alpha <= 0 || this.y < -10 || this.x < -10 || this.x > W + 10) {
+                        this.reset();
+                        this.y = H + 10;
+                    }
+                }
+
+                draw() {
+                    let r, g, b;
+                    if (this.warmth > 0.7) {
+                        r = 255; g = 200; b = 120; // Amber
+                    } else if (this.warmth < 0.15) {
+                        r = 0; g = 210; b = 255; // Cyan accent
+                    } else {
+                        r = 200; g = 180; b = 140; // Neutral warm
+                    }
+
+                    const grad = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size * 3);
+                    grad.addColorStop(0, `rgba(${r}, ${g}, ${b}, ${this.alpha})`);
+                    grad.addColorStop(1, 'transparent');
+                    ctx.fillStyle = grad;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size * 3, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+
+            // Initialize particles
+            for (let i = 0; i < PARTICLE_COUNT; i++) {
+                particles.push(new DustParticle());
+            }
+
+            // Floor perspective grid
+            function drawFloor(time) {
+                const vanishX = W * (0.5 + (mouse.x - 0.5) * 0.1);
+                const vanishY = H * (0.5 + (mouse.y - 0.5) * 0.05);
+                const floorY = H * 0.72;
+
+                // Floor plane
+                const floorGrad = ctx.createLinearGradient(0, floorY, 0, H);
+                floorGrad.addColorStop(0, 'rgba(20, 12, 6, 0)');
+                floorGrad.addColorStop(0.3, 'rgba(20, 12, 6, 0.15)');
+                floorGrad.addColorStop(1, 'rgba(10, 5, 2, 0.3)');
+                ctx.fillStyle = floorGrad;
+                ctx.fillRect(0, floorY, W, H - floorY);
+
+                // Perspective floor lines
+                for (let i = 0; i < 12; i++) {
+                    const lineY = floorY + (H - floorY) * (i / 12);
+                    const shrink = 1 - ((lineY - floorY) / (H - floorY)) * 0.6;
+                    const lineWidth = W * shrink;
+                    const lineX = (W - lineWidth) / 2;
+
+                    ctx.strokeStyle = `rgba(50, 30, 15, ${0.1 * (1 - i / 12)})`;
+                    ctx.lineWidth = 0.5;
+                    ctx.beginPath();
+                    ctx.moveTo(lineX, lineY);
+                    ctx.lineTo(lineX + lineWidth, lineY);
+                    ctx.stroke();
+                }
+            }
+
+            function animate(time) {
+                // Clear with dark warm background
+                ctx.fillStyle = 'rgba(2, 2, 5, 0.95)';
+                ctx.fillRect(0, 0, W, H);
+
+                // Draw light rays first (behind everything)
+                drawLightRays(time);
+
+                // Draw floor
+                drawFloor(time);
+
+                // Draw bookshelves from far to near
+                const shelfRows = [-200, -80, 30, 140, 250, -320, 380];
+                for (let d = 7; d >= 0; d--) {
+                    for (const offsetY of shelfRows) {
+                        drawShelf('left', d, offsetY, time);
+                        drawShelf('right', d, offsetY, time);
+                    }
+                }
+
+                // Dark vignette overlay
+                const vignetteGrad = ctx.createRadialGradient(W / 2, H / 2, W * 0.2, W / 2, H / 2, W * 0.7);
+                vignetteGrad.addColorStop(0, 'transparent');
+                vignetteGrad.addColorStop(1, 'rgba(2, 2, 5, 0.6)');
+                ctx.fillStyle = vignetteGrad;
+                ctx.fillRect(0, 0, W, H);
+
+                // Draw particles on top
+                particles.forEach(p => { p.update(); p.draw(); });
+
+                requestAnimationFrame(animate);
+            }
+
+            requestAnimationFrame(animate);
+        })();
     </script>
 </body>
 </html>
