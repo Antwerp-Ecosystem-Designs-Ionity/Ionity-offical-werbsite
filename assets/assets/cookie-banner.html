@@ -1,0 +1,119 @@
+<!-- Cookie Consent Banner -->
+<div id="cookie-banner">
+    <div class="cookie-banner-content">
+        <div class="cookie-banner-text">
+            <h3>🍪 We Value Your Privacy</h3>
+            <p>
+                We use cookies to enhance your experience, analyze site traffic, and personalize content. 
+                By clicking "Accept All", you consent to our use of cookies. 
+                <a href="#" onclick="event.preventDefault(); cookieManager?.openSettings();">Customize Settings</a>
+            </p>
+        </div>
+        <div class="cookie-banner-actions">
+            <button class="cookie-btn cookie-btn-necessary" onclick="cookieManager?.acceptNecessary();">
+                Necessary Only
+            </button>
+            <button class="cookie-btn cookie-btn-settings" onclick="cookieManager?.openSettings();">
+                Settings
+            </button>
+            <button class="cookie-btn cookie-btn-accept" onclick="cookieManager?.acceptAll();">
+                Accept All
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Cookie Settings Modal -->
+<div id="cookie-settings-modal">
+    <div class="cookie-modal-content">
+        <div class="cookie-modal-header">
+            <h2>Cookie Preferences</h2>
+            <button class="cookie-modal-close" onclick="cookieManager?.closeSettings();" aria-label="Close">
+                ×
+            </button>
+        </div>
+        <div class="cookie-modal-body">
+            <div class="cookie-category">
+                <div class="cookie-category-header">
+                    <h3>Necessary Cookies</h3>
+                    <label class="cookie-toggle">
+                        <input type="checkbox" checked disabled>
+                        <span class="cookie-toggle-slider"></span>
+                    </label>
+                </div>
+                <p>
+                    Essential cookies required for the website to function properly. 
+                    These cannot be disabled as they are necessary for core functionality, 
+                    security, and accessibility features.
+                </p>
+            </div>
+
+            <div class="cookie-category">
+                <div class="cookie-category-header">
+                    <h3>🔒 Security Cookies</h3>
+                    <label class="cookie-toggle">
+                        <input type="checkbox" checked disabled>
+                        <span class="cookie-toggle-slider"></span>
+                    </label>
+                </div>
+                <p>
+                    Critical security cookies that protect your data and prevent attacks such as 
+                    Cross-Site Request Forgery (CSRF), session hijacking, and unauthorized access. 
+                    These cookies ensure secure authentication and maintain session integrity. 
+                    <strong>Always enabled for your protection.</strong>
+                </p>
+            </div>
+
+            <div class="cookie-category">
+                <div class="cookie-category-header">
+                    <h3>Analytics Cookies</h3>
+                    <label class="cookie-toggle">
+                        <input type="checkbox" id="cookie-analytics">
+                        <span class="cookie-toggle-slider"></span>
+                    </label>
+                </div>
+                <p>
+                    Help us understand how visitors interact with our website by collecting 
+                    and reporting anonymous usage statistics. This helps us improve the 
+                    user experience and site performance.
+                </p>
+            </div>
+
+            <div class="cookie-category">
+                <div class="cookie-category-header">
+                    <h3>Marketing Cookies</h3>
+                    <label class="cookie-toggle">
+                        <input type="checkbox" id="cookie-marketing">
+                        <span class="cookie-toggle-slider"></span>
+                    </label>
+                </div>
+                <p>
+                    Used to track visitors across websites to display relevant advertisements 
+                    and measure campaign effectiveness. These cookies enable personalized content and ads.
+                </p>
+            </div>
+
+            <div class="cookie-category">
+                <div class="cookie-category-header">
+                    <h3>Preference Cookies</h3>
+                    <label class="cookie-toggle">
+                        <input type="checkbox" id="cookie-preferences">
+                        <span class="cookie-toggle-slider"></span>
+                    </label>
+                </div>
+                <p>
+                    Remember your settings and preferences such as language, region, 
+                    and display options to provide a personalized experience on future visits.
+                </p>
+            </div>
+        </div>
+        <div class="cookie-modal-footer">
+            <button class="cookie-btn cookie-btn-necessary" onclick="cookieManager?.acceptNecessary();">
+                Save Necessary Only
+            </button>
+            <button class="cookie-btn cookie-btn-accept" onclick="cookieManager?.saveCustomPreferences();">
+                Save Preferences
+            </button>
+        </div>
+    </div>
+</div>
