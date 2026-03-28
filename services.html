@@ -1656,6 +1656,438 @@
 
         </div>
 
+        <!-- ===== PROXIMITY SERVICES & RTLS ===== -->
+        <style>
+            .prox-section { margin-bottom: 7rem; }
+            .prox-header  { margin-bottom: 2.5rem; }
+            .prox-eyebrow {
+                font-family: 'Courier New', monospace;
+                font-size: 0.7rem;
+                letter-spacing: 0.4rem;
+                text-transform: uppercase;
+                color: #50e3c2;
+                opacity: 0.8;
+                margin-bottom: 0.6rem;
+            }
+            .prox-title {
+                font-size: 2.2rem;
+                font-weight: 800;
+                letter-spacing: -1px;
+                color: #fff;
+                margin: 0 0 0.5rem 0;
+                text-transform: uppercase;
+            }
+            .prox-title span { color: #50e3c2; }
+            .prox-subtitle {
+                font-size: 0.95rem;
+                color: rgba(255,255,255,0.6);
+                max-width: 720px;
+                line-height: 1.7;
+                margin: 0;
+            }
+            .prox-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 1.5rem;
+            }
+            .prox-card {
+                background: rgba(10,15,20,0.6);
+                border: 1px solid rgba(80,227,194,0.15);
+                border-top: 3px solid #50e3c2;
+                padding: 2rem;
+                position: relative;
+                overflow: hidden;
+                -webkit-backdrop-filter: blur(8px);
+                backdrop-filter: blur(8px);
+                transition: all 0.4s cubic-bezier(0.19,1,0.22,1);
+            }
+            .prox-card:hover {
+                transform: translateY(-4px);
+                border-color: rgba(80,227,194,0.5);
+                box-shadow: 0 16px 40px rgba(0,0,0,0.5), 0 0 20px rgba(80,227,194,0.07);
+            }
+            .prox-card::before {
+                content: '';
+                position: absolute;
+                bottom: 0; left: 0;
+                width: 0; height: 2px;
+                background: #50e3c2;
+                transition: width 0.4s ease;
+            }
+            .prox-card:hover::before { width: 100%; }
+            .prox-card-icon {
+                font-size: 2rem;
+                color: #50e3c2;
+                text-shadow: 0 0 12px rgba(80,227,194,0.4);
+                margin-bottom: 1rem;
+            }
+            .prox-card-label {
+                font-family: 'Courier New', monospace;
+                font-size: 0.62rem;
+                letter-spacing: 0.25rem;
+                text-transform: uppercase;
+                color: rgba(80,227,194,0.7);
+                margin-bottom: 0.4rem;
+            }
+            .prox-card h3 {
+                font-size: 1.1rem;
+                font-weight: 700;
+                color: #fff;
+                margin: 0 0 0.8rem 0;
+            }
+            .prox-card p {
+                font-size: 0.88rem;
+                line-height: 1.65;
+                color: rgba(255,255,255,0.65);
+                margin: 0 0 1.2rem 0;
+            }
+            .prox-tags {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+            .prox-tag {
+                font-family: 'Courier New', monospace;
+                font-size: 0.6rem;
+                letter-spacing: 0.1rem;
+                text-transform: uppercase;
+                padding: 0.2rem 0.6rem;
+                border: 1px solid rgba(80,227,194,0.3);
+                color: rgba(80,227,194,0.8);
+            }
+            /* Full-width RTLS banner */
+            .rtls-banner {
+                margin-top: 1.5rem;
+                display: grid;
+                grid-template-columns: auto 1fr;
+                gap: 2rem;
+                align-items: center;
+                padding: 2rem 2.5rem;
+                background: linear-gradient(90deg, rgba(80,227,194,0.06), transparent);
+                border: 1px solid rgba(80,227,194,0.15);
+                border-left: 4px solid #50e3c2;
+            }
+            .rtls-banner-icon {
+                font-size: 2.5rem;
+                color: #50e3c2;
+                text-shadow: 0 0 18px rgba(80,227,194,0.5);
+            }
+            .rtls-banner-text strong {
+                display: block;
+                font-size: 1.1rem;
+                color: #fff;
+                margin-bottom: 0.4rem;
+            }
+            .rtls-banner-text p {
+                font-size: 0.9rem;
+                color: rgba(255,255,255,0.65);
+                line-height: 1.65;
+                margin: 0;
+            }
+            /* DATA SERVICES */
+            .data-section { margin-bottom: 7rem; }
+            .data-eyebrow {
+                font-family: 'Courier New', monospace;
+                font-size: 0.7rem;
+                letter-spacing: 0.4rem;
+                text-transform: uppercase;
+                color: var(--accent-gold, #ffd700);
+                opacity: 0.8;
+                margin-bottom: 0.6rem;
+            }
+            .data-title {
+                font-size: 2.2rem;
+                font-weight: 800;
+                letter-spacing: -1px;
+                color: #fff;
+                margin: 0 0 0.5rem 0;
+                text-transform: uppercase;
+            }
+            .data-title span { color: var(--accent-gold, #ffd700); }
+            .data-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 1.5rem;
+                margin-top: 2.5rem;
+            }
+            .data-card {
+                background: rgba(10,15,20,0.6);
+                border: 1px solid rgba(255,215,0,0.12);
+                border-top: 3px solid var(--accent-gold, #ffd700);
+                padding: 2rem;
+                position: relative;
+                overflow: hidden;
+                -webkit-backdrop-filter: blur(8px);
+                backdrop-filter: blur(8px);
+                transition: all 0.4s cubic-bezier(0.19,1,0.22,1);
+            }
+            .data-card:hover {
+                transform: translateY(-4px);
+                border-color: rgba(255,215,0,0.45);
+                box-shadow: 0 16px 40px rgba(0,0,0,0.5), 0 0 20px rgba(255,215,0,0.06);
+            }
+            .data-card::before {
+                content: '';
+                position: absolute;
+                bottom: 0; left: 0;
+                width: 0; height: 2px;
+                background: var(--accent-gold, #ffd700);
+                transition: width 0.4s ease;
+            }
+            .data-card:hover::before { width: 100%; }
+            .data-card-icon {
+                font-size: 1.8rem;
+                color: var(--accent-gold, #ffd700);
+                text-shadow: 0 0 10px rgba(255,215,0,0.35);
+                margin-bottom: 0.8rem;
+            }
+            .data-card-label {
+                font-family: 'Courier New', monospace;
+                font-size: 0.62rem;
+                letter-spacing: 0.25rem;
+                text-transform: uppercase;
+                color: rgba(255,215,0,0.6);
+                margin-bottom: 0.4rem;
+            }
+            .data-card h3 {
+                font-size: 1.05rem;
+                font-weight: 700;
+                color: #fff;
+                margin: 0 0 0.7rem 0;
+            }
+            .data-card p {
+                font-size: 0.88rem;
+                line-height: 1.65;
+                color: rgba(255,255,255,0.65);
+                margin: 0 0 1rem 0;
+            }
+            .data-tags {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+            .data-tag {
+                font-family: 'Courier New', monospace;
+                font-size: 0.6rem;
+                letter-spacing: 0.1rem;
+                text-transform: uppercase;
+                padding: 0.2rem 0.6rem;
+                border: 1px solid rgba(255,215,0,0.3);
+                color: rgba(255,215,0,0.75);
+            }
+            /* Data manifesto bar */
+            .data-manifesto {
+                margin-top: 2rem;
+                padding: 2rem 2.5rem;
+                background: linear-gradient(90deg, rgba(255,215,0,0.05), transparent);
+                border-left: 4px solid var(--accent-gold, #ffd700);
+                font-size: 0.95rem;
+                line-height: 1.8;
+                color: rgba(255,255,255,0.75);
+                font-style: italic;
+            }
+            .data-manifesto strong { color: #fff; font-style: normal; }
+        </style>
+
+        <div class="prox-section">
+            <div class="prox-header">
+                <div class="prox-eyebrow">Location Intelligence &amp; Proximity</div>
+                <h2 class="prox-title">PROXIMITY SERVICES<br>&amp; <span>RTLS</span></h2>
+                <p class="prox-subtitle">
+                    Real-Time Location Systems (RTLS) and proximity intelligence are the backbone of the connected industrial floor. Ionity engineers complete indoor and outdoor tracking ecosystems — from BLE beacons to UWB anchors — delivering centimetre-accurate asset location, zone-based automation, and spatial analytics directly into your cloud dashboard.
+                </p>
+            </div>
+
+            <div class="prox-grid">
+
+                <!-- Card 1: RTLS -->
+                <div class="prox-card">
+                    <div class="prox-card-icon">⌖</div>
+                    <div class="prox-card-label">Core Infrastructure</div>
+                    <h3>Real-Time Location Systems (RTLS)</h3>
+                    <p>Full deployment of UWB, BLE, Wi-Fi, and RFID-based RTLS infrastructure for indoor and outdoor environments. Track assets, personnel, and vehicles with centimetre-to-metre precision, mapped into live 2D/3D digital twin overlays.</p>
+                    <div class="prox-tags">
+                        <span class="prox-tag">UWB</span>
+                        <span class="prox-tag">BLE 5.x</span>
+                        <span class="prox-tag">RFID</span>
+                        <span class="prox-tag">Wi-Fi 6</span>
+                    </div>
+                </div>
+
+                <!-- Card 2: Proximity Triggers -->
+                <div class="prox-card">
+                    <div class="prox-card-icon">◉</div>
+                    <div class="prox-card-label">Automation Layer</div>
+                    <h3>Proximity-Triggered Automation</h3>
+                    <p>Zone-based rules that automatically trigger actions when assets or personnel enter, exit, or dwell within defined proximity zones — from access control and equipment lockouts to automated alerts, lighting, and HVAC control changes.</p>
+                    <div class="prox-tags">
+                        <span class="prox-tag">Geofencing</span>
+                        <span class="prox-tag">Zone Rules</span>
+                        <span class="prox-tag">Edge Events</span>
+                    </div>
+                </div>
+
+                <!-- Card 3: Asset Tracking -->
+                <div class="prox-card">
+                    <div class="prox-card-icon">⬡</div>
+                    <div class="prox-card-label">Asset Intelligence</div>
+                    <h3>Asset &amp; Fleet Tracking</h3>
+                    <p>Cloud-unified tracking of movable assets, tooling, and mobile equipment across facilities. Historical path replay, utilisation heatmaps, dwell-time analytics, and predictive loss-prevention alerts delivered into the AEDI CMS.</p>
+                    <div class="prox-tags">
+                        <span class="prox-tag">Live Map</span>
+                        <span class="prox-tag">Heatmap</span>
+                        <span class="prox-tag">Path Replay</span>
+                    </div>
+                </div>
+
+                <!-- Card 4: Spatial Analytics -->
+                <div class="prox-card">
+                    <div class="prox-card-icon">⊹</div>
+                    <div class="prox-card-label">GIS &amp; Spatial Data</div>
+                    <h3>GIS-Integrated Spatial Analytics</h3>
+                    <p>Fusing RTLS data with Geographic Information Systems (GIS) layers for multi-site spatial intelligence. Campus flow modelling, outdoor asset GIS pinning, logistics corridor optimisation, and integration with global mapping platforms.</p>
+                    <div class="prox-tags">
+                        <span class="prox-tag">GIS</span>
+                        <span class="prox-tag">Multi-Site</span>
+                        <span class="prox-tag">Flow Model</span>
+                    </div>
+                </div>
+
+                <!-- Card 5: Personnel Safety -->
+                <div class="prox-card">
+                    <div class="prox-card-icon">⬟</div>
+                    <div class="prox-card-label">Safety &amp; Compliance</div>
+                    <h3>Personnel Safety &amp; Mustering</h3>
+                    <p>Emergency mustering, lone worker monitoring, and proximity-enforced social / safety distancing systems. Real-time personnel accountability dashboards for compliance, with automated audit logs for regulatory reporting.</p>
+                    <div class="prox-tags">
+                        <span class="prox-tag">Mustering</span>
+                        <span class="prox-tag">Lone Worker</span>
+                        <span class="prox-tag">Compliance</span>
+                    </div>
+                </div>
+
+                <!-- Card 6: Indoor Navigation -->
+                <div class="prox-card">
+                    <div class="prox-card-icon">⟁</div>
+                    <div class="prox-card-label">Wayfinding</div>
+                    <h3>Indoor Navigation &amp; Wayfinding</h3>
+                    <p>Turn-by-turn indoor navigation for large facilities, hospitals, manufacturing plants, and warehouses. Delivered via web, native app, or embedded kiosk — integrated with RTLS anchors for live self-localisation.</p>
+                    <div class="prox-tags">
+                        <span class="prox-tag">Indoor Nav</span>
+                        <span class="prox-tag">Kiosk</span>
+                        <span class="prox-tag">App SDK</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- RTLS tech bar -->
+            <div class="rtls-banner">
+                <div class="rtls-banner-icon">⌖</div>
+                <div class="rtls-banner-text">
+                    <strong>Infrastructure-to-Cloud RTLS Pipeline</strong>
+                    <p>From anchor hardware deployment and firmware to cloud ingestion, AEDI CMS dashboards, and GIS overlays — Ionity delivers the full RTLS stack. Every location datapoint flows in real-time into your digital twin, enabling spatial AI inference at the edge.</p>
+                </div>
+            </div>
+        </div>
+        <!-- END PROXIMITY & RTLS -->
+
+        <!-- ===== DATA SERVICES & CLOUD STORAGE ===== -->
+        <div class="data-section">
+            <div class="data-eyebrow">Cloud Data Intelligence</div>
+            <h2 class="data-title">DATA SERVICES &amp;<br><span>CLOUD STORAGE</span></h2>
+            <p class="prox-subtitle" style="color: rgba(255,255,255,0.6); font-size: 0.95rem; max-width: 720px; line-height: 1.7;">
+                From raw telemetry ingestion to long-term archival and real-time analytics pipelines, Ionity provides the full spectrum of industrial cloud data services — built for scale, security, and actionable intelligence.
+            </p>
+
+            <div class="data-grid">
+
+                <!-- Card 1: Time-Series Storage -->
+                <div class="data-card">
+                    <div class="data-card-icon">⏱</div>
+                    <div class="data-card-label">Telemetry Backbone</div>
+                    <h3>Time-Series Data Storage</h3>
+                    <p>High-throughput ingestion and cloud storage for IoT telemetry, sensor readings, and event streams. Purpose-built for industrial scale — millions of data points per second, retained and queryable in real-time.</p>
+                    <div class="data-tags">
+                        <span class="data-tag">InfluxDB</span>
+                        <span class="data-tag">MQTT</span>
+                        <span class="data-tag">REST API</span>
+                    </div>
+                </div>
+
+                <!-- Card 2: Data Lakes -->
+                <div class="data-card">
+                    <div class="data-card-icon">⫴</div>
+                    <div class="data-card-label">Long-Term Archival</div>
+                    <h3>Data Lakes &amp; Cold Storage</h3>
+                    <p>Scalable cloud data lake architecture for multi-year historical retention of operational data. Automated tiering between hot, warm, and cold storage — keeping costs optimised while data remains queryable on demand.</p>
+                    <div class="data-tags">
+                        <span class="data-tag">Data Lake</span>
+                        <span class="data-tag">Tiered Storage</span>
+                        <span class="data-tag">Archive</span>
+                    </div>
+                </div>
+
+                <!-- Card 3: Real-Time Pipelines -->
+                <div class="data-card">
+                    <div class="data-card-icon">⟶</div>
+                    <div class="data-card-label">Stream Processing</div>
+                    <h3>Real-Time Data Pipelines</h3>
+                    <p>End-to-end streaming pipelines that transform raw edge data into structured, enriched events in milliseconds. Kafka, MQTT bridge, and custom Ionity middleware ensure zero-latency delivery from hardware to dashboard.</p>
+                    <div class="data-tags">
+                        <span class="data-tag">Kafka</span>
+                        <span class="data-tag">Stream ETL</span>
+                        <span class="data-tag">Zero-Latency</span>
+                    </div>
+                </div>
+
+                <!-- Card 4: Analytics & BI -->
+                <div class="data-card">
+                    <div class="data-card-icon">⫶</div>
+                    <div class="data-card-label">Business Intelligence</div>
+                    <h3>Analytics &amp; Reporting Dashboards</h3>
+                    <p>Interactive cloud dashboards with drill-down analytics, KPI trend visualisation, ESG reporting, and automated scheduled reports — turning raw operational data into executive-grade business intelligence.</p>
+                    <div class="data-tags">
+                        <span class="data-tag">BI Dashboards</span>
+                        <span class="data-tag">ESG</span>
+                        <span class="data-tag">Reports</span>
+                    </div>
+                </div>
+
+                <!-- Card 5: Cloud Backup & DR -->
+                <div class="data-card">
+                    <div class="data-card-icon">⊛</div>
+                    <div class="data-card-label">Resilience</div>
+                    <h3>Cloud Backup &amp; Disaster Recovery</h3>
+                    <p>Automated multi-region backup schedules, encrypted snapshots, and tested disaster recovery runbooks. RPO and RTO objectives aligned to your operational criticality — from minutes to near-zero downtime failover.</p>
+                    <div class="data-tags">
+                        <span class="data-tag">Multi-Region</span>
+                        <span class="data-tag">Encrypted</span>
+                        <span class="data-tag">RPO/RTO</span>
+                    </div>
+                </div>
+
+                <!-- Card 6: Data Governance -->
+                <div class="data-card">
+                    <div class="data-card-icon">⬡</div>
+                    <div class="data-card-label">Governance &amp; Compliance</div>
+                    <h3>Data Governance &amp; Security</h3>
+                    <p>Role-based access control, data lineage tracking, POPIA/GDPR-aligned retention policies, and end-to-end encryption at rest and in transit. Full audit trails for every read, write, and export event across your data estate.</p>
+                    <div class="data-tags">
+                        <span class="data-tag">RBAC</span>
+                        <span class="data-tag">POPIA</span>
+                        <span class="data-tag">Audit Trail</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="data-manifesto">
+                Every byte matters. Ionity's data infrastructure is designed from the ground up for <strong>industrial-grade reliability</strong> — ingesting raw physical-world events, enriching them through AI pipelines, and surfacing them as <strong>scalable, governed, actionable cloud intelligence</strong> across your entire operational ecosystem.
+            </div>
+        </div>
+        <!-- END DATA SERVICES -->
+
         <!-- Service Segments -->
         <div class="segments-section" style="margin-bottom: 6rem;">
             <h2 style="font-size: 2rem; font-weight: 300; letter-spacing: 0.2rem; margin-bottom: 3rem; color: #fff; border-left: 2px solid var(--accent-cyan); padding-left: 1rem;">ECOSYSTEM <span style="color: var(--accent-cyan);">SEGMENTS</span></h2>
