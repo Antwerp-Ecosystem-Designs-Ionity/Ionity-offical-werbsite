@@ -1658,7 +1658,7 @@
             <a href="ai-innovation.html">Ai Innovation</a>
             <a href="roadmap.html">Roadmap</a>
             <a href="license.html">License</a>
-            <a href="about.html">About</a>
+            <a href="about.html">About Us</a>
             <a href="aedi-online.html">AEDI Online</a>
             <a href="contact.html">Contact</a>
             <a href="firmware-development.html">Dev</a>
@@ -1674,7 +1674,7 @@
         <a href="ai-innovation.html">Ai Innovation</a>
         <a href="roadmap.html">Roadmap</a>
         <a href="license.html">License</a>
-        <a href="about.html">About</a>
+        <a href="about.html">About Us</a>
         <a href="aedi-online.html">AEDI Online</a>
         <a href="contact.html">Contact</a>
         <a href="firmware-development.html">Dev</a>
@@ -1686,7 +1686,172 @@
     <script src="https://consent.secureprivacy.ai/script/ionity-today.js"></script>
 
     <div class="container">
-        
+
+        <!-- ===== HOMEPAGE HERO ===== -->
+        <style>
+            .home-hero {
+                min-height: calc(100vh - 80px);
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                padding: 6rem 0 4rem;
+                position: relative;
+            }
+            .home-hero-eyebrow {
+                font-family: 'Courier New', monospace;
+                font-size: 0.7rem;
+                letter-spacing: 0.5rem;
+                text-transform: uppercase;
+                color: var(--accent-cyan);
+                opacity: 0.75;
+                margin-bottom: 1.5rem;
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+            }
+            .home-hero-eyebrow::before {
+                content: '';
+                width: 30px;
+                height: 1px;
+                background: var(--accent-cyan);
+                box-shadow: 0 0 6px var(--accent-cyan);
+            }
+            .home-hero h1 {
+                font-size: clamp(2.8rem, 7vw, 6rem);
+                font-weight: 800;
+                line-height: 1.05;
+                letter-spacing: -2px;
+                color: #fff;
+                margin: 0 0 1.5rem 0;
+                text-shadow: 0 0 60px rgba(0,210,255,0.15);
+            }
+            .home-hero h1 em {
+                font-style: normal;
+                color: var(--accent-cyan);
+                text-shadow: 0 0 30px rgba(0,210,255,0.5), 0 0 60px rgba(0,210,255,0.2);
+            }
+            .home-hero h2 {
+                font-size: clamp(1rem, 2.5vw, 1.35rem);
+                font-weight: 300;
+                color: rgba(255,255,255,0.7);
+                margin: 0 0 3rem 0;
+                max-width: 680px;
+                line-height: 1.7;
+                letter-spacing: 0;
+            }
+            .home-hero h2 strong {
+                color: #fff;
+                font-weight: 600;
+            }
+            .hero-cta-row {
+                display: flex;
+                gap: 1.2rem;
+                flex-wrap: wrap;
+                align-items: center;
+            }
+            .hero-btn {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.6rem;
+                padding: 0.9rem 2.2rem;
+                font-family: 'Courier New', monospace;
+                font-size: 0.8rem;
+                font-weight: 700;
+                letter-spacing: 0.2rem;
+                text-transform: uppercase;
+                text-decoration: none;
+                position: relative;
+                transition: all 0.35s cubic-bezier(0.19,1,0.22,1);
+                cursor: pointer;
+                border: none;
+                overflow: hidden;
+            }
+            .hero-btn::after {
+                content: '';
+                position: absolute;
+                inset: 0;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
+            /* Primary CTA */
+            .hero-btn-primary {
+                background: var(--accent-cyan);
+                color: #020204;
+                box-shadow: 0 0 0 rgba(0,210,255,0);
+            }
+            .hero-btn-primary:hover {
+                background: #fff;
+                color: #020204;
+                box-shadow: 0 0 30px rgba(0,210,255,0.5), 0 0 60px rgba(0,210,255,0.2);
+                transform: translateY(-2px);
+            }
+            /* Secondary CTA */
+            .hero-btn-secondary {
+                background: transparent;
+                color: #fff;
+                border: 1px solid rgba(255,255,255,0.3);
+            }
+            .hero-btn-secondary:hover {
+                border-color: var(--accent-cyan);
+                color: var(--accent-cyan);
+                box-shadow: 0 0 20px rgba(0,210,255,0.15);
+                transform: translateY(-2px);
+            }
+            /* Divider below hero */
+            .home-hero-divider {
+                margin-top: 5rem;
+                display: flex;
+                align-items: center;
+                gap: 1.5rem;
+                opacity: 0.35;
+            }
+            .home-hero-divider span {
+                font-family: 'Courier New', monospace;
+                font-size: 0.65rem;
+                letter-spacing: 0.3rem;
+                text-transform: uppercase;
+                color: var(--accent-cyan);
+                white-space: nowrap;
+            }
+            .home-hero-divider::before,
+            .home-hero-divider::after {
+                content: '';
+                flex: 1;
+                height: 1px;
+                background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
+            }
+            @media (max-width: 600px) {
+                .home-hero { padding: 4rem 0 3rem; min-height: 0; }
+                .home-hero h1 { letter-spacing: -1px; }
+                .hero-btn { padding: 0.8rem 1.5rem; font-size: 0.7rem; }
+            }
+        </style>
+
+        <div class="home-hero">
+            <div class="home-hero-eyebrow">Ionity &mdash; Antwerp Designs &mdash; AEDI Platform</div>
+
+            <h1>Offline and Online.<br><em>Finally Unified.</em></h1>
+
+            <h2>
+                From <strong>mechanical innovation</strong> to <strong>intelligent cloud integration</strong>,
+                Ionity engineers the exact point where hardware and software meet.
+            </h2>
+
+            <div class="hero-cta-row">
+                <a href="aedi-online.html" class="hero-btn hero-btn-primary" id="cta-enter-digiverse">
+                    &#9654;&nbsp; Enter the Digiverse
+                </a>
+                <a href="contact.html" class="hero-btn hero-btn-secondary" id="cta-lets-build">
+                    Let's Build &nbsp;&#8594;
+                </a>
+            </div>
+
+            <div class="home-hero-divider">
+                <span>Systems &bull; AI &bull; Cloud &bull; Edge</span>
+            </div>
+        </div>
+        <!-- END HOMEPAGE HERO -->
+
         <!-- 3D MONITOR FOCUS POINT -->
         <div class="monitor-focus-segment">
             <div class="monitor-frame">
