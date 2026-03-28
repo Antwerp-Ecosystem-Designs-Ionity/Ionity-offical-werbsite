@@ -1275,6 +1275,338 @@
 
     </div>
 
+    <!-- ===== SCROLLABLE CONTENT SECTIONS ===== -->
+    <style>
+        .idx-content {
+            position: relative;
+            z-index: 10;
+            background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.95) 5%, #0a0a12 8%);
+            padding: 0 5vw;
+        }
+        .idx-section { max-width: 1100px; margin: 0 auto; padding: 5rem 0; }
+        .idx-section + .idx-section { border-top: 1px solid rgba(255,255,255,0.05); }
+
+        /* Status badge */
+        .idx-status {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            font-family: 'Courier New', monospace; font-size: 0.7rem;
+            letter-spacing: 0.25rem; text-transform: uppercase;
+            color: #4ade80; margin-bottom: 1.5rem;
+        }
+        .idx-status-dot {
+            width: 8px; height: 8px; border-radius: 50%; background: #4ade80;
+            box-shadow: 0 0 8px #4ade80; animation: statusPulse 2s ease-in-out infinite;
+        }
+        @keyframes statusPulse { 0%,100% { opacity:1; } 50% { opacity:0.4; } }
+
+        .idx-hero-title {
+            font-size: 3rem; font-weight: 800; color: #fff;
+            line-height: 1.2; margin: 0 0 1.5rem 0;
+            text-align: left;
+        }
+        .idx-hero-title span { color: var(--accent-cyan, #00d2ff); }
+        .idx-hero-sub {
+            font-size: 1.15rem; line-height: 1.7; color: rgba(255,255,255,0.75);
+            max-width: 700px; margin-bottom: 2.5rem; text-align: left;
+        }
+
+        /* Buttons */
+        .idx-btn-row { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .idx-btn {
+            display: inline-block; padding: 0.9rem 2rem;
+            font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12rem;
+            text-transform: uppercase; text-decoration: none; border-radius: 2px;
+            transition: all 0.3s ease; cursor: pointer;
+        }
+        .idx-btn-primary {
+            background: var(--accent-cyan, #00d2ff); color: #000;
+            border: 1px solid var(--accent-cyan, #00d2ff);
+            box-shadow: 0 0 15px rgba(0,210,255,0.25);
+        }
+        .idx-btn-primary:hover {
+            box-shadow: 0 0 30px rgba(0,210,255,0.5);
+            transform: translateY(-2px);
+        }
+        .idx-btn-outline {
+            background: transparent; color: #fff;
+            border: 1px solid rgba(255,255,255,0.25);
+        }
+        .idx-btn-outline:hover {
+            border-color: var(--accent-cyan, #00d2ff);
+            color: var(--accent-cyan, #00d2ff);
+            box-shadow: 0 0 15px rgba(0,210,255,0.15);
+        }
+
+        /* Section titles */
+        .idx-label {
+            font-family: 'Courier New', monospace; font-size: 0.7rem;
+            letter-spacing: 0.3rem; text-transform: uppercase;
+            color: var(--accent-cyan, #00d2ff); opacity: 0.7;
+            margin-bottom: 0.5rem; text-align: left;
+        }
+        .idx-stitle {
+            font-size: 2rem; font-weight: 800; color: #fff;
+            margin: 0 0 1rem 0; letter-spacing: -0.5px; text-align: left;
+        }
+        .idx-stitle span { color: var(--accent-cyan, #00d2ff); }
+        .idx-sdesc {
+            font-size: 1.05rem; line-height: 1.7; color: rgba(255,255,255,0.7);
+            max-width: 750px; margin-bottom: 2.5rem; text-align: left;
+        }
+
+        /* Cards grid */
+        .idx-card-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        .idx-card {
+            background: rgba(10,15,20,0.6); border: 1px solid rgba(255,255,255,0.08);
+            padding: 2.2rem; position: relative; overflow: hidden;
+            transition: all 0.4s ease; backdrop-filter: blur(8px);
+        }
+        .idx-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(0,210,255,0.4);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.5), 0 0 20px rgba(0,210,255,0.08);
+        }
+        .idx-card::before {
+            content: ''; position: absolute; top: 0; left: 0;
+            width: 3px; height: 0; background: var(--accent-cyan, #00d2ff);
+            transition: height 0.5s ease; box-shadow: 0 0 10px var(--accent-cyan, #00d2ff);
+        }
+        .idx-card:hover::before { height: 100%; }
+        .idx-card-num {
+            font-family: 'Courier New', monospace; font-size: 0.65rem;
+            color: var(--accent-cyan, #00d2ff); letter-spacing: 0.2rem;
+            margin-bottom: 0.8rem; opacity: 0.7;
+        }
+        .idx-card h3 {
+            font-size: 1.05rem; font-weight: 700; color: #fff;
+            margin: 0 0 0.8rem 0; text-align: left;
+        }
+        .idx-card p {
+            font-size: 0.92rem; line-height: 1.7; color: rgba(255,255,255,0.7);
+            margin: 0; text-align: left;
+        }
+        .idx-card-icon {
+            color: var(--accent-cyan, #00d2ff); margin-bottom: 1rem;
+            filter: drop-shadow(0 0 8px var(--accent-cyan, #00d2ff));
+        }
+
+        /* Capabilities list */
+        .idx-caps {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 0.6rem; margin-top: 2rem;
+        }
+        .idx-cap-item {
+            display: flex; align-items: center; gap: 0.8rem;
+            font-size: 0.9rem; color: rgba(255,255,255,0.8); padding: 0.6rem 0;
+            text-align: left;
+        }
+        .idx-cap-dot {
+            width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0;
+            background: var(--accent-cyan, #00d2ff);
+            box-shadow: 0 0 6px var(--accent-cyan, #00d2ff);
+        }
+
+        /* Leader card */
+        .idx-leader {
+            display: flex; gap: 2rem; align-items: flex-start;
+            background: rgba(10,15,20,0.5); border: 1px solid rgba(255,255,255,0.08);
+            padding: 2.5rem; backdrop-filter: blur(8px);
+            transition: all 0.4s ease;
+        }
+        .idx-leader:hover {
+            border-color: rgba(0,210,255,0.3);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+        }
+        .idx-leader-avatar {
+            width: 100px; height: 100px; border-radius: 50%; flex-shrink: 0;
+            border: 2px solid var(--accent-cyan, #00d2ff); overflow: hidden;
+            box-shadow: 0 0 20px rgba(0,210,255,0.2);
+        }
+        .idx-leader-avatar img {
+            width: 100%; height: 100%; object-fit: cover;
+            filter: grayscale(30%) contrast(1.1);
+        }
+        .idx-leader-name {
+            font-size: 1.2rem; font-weight: 700; color: #fff;
+            margin: 0 0 0.3rem 0; text-align: left;
+        }
+        .idx-leader-role {
+            font-family: 'Courier New', monospace; font-size: 0.75rem;
+            color: var(--accent-cyan, #00d2ff); letter-spacing: 0.15rem;
+            text-transform: uppercase; margin-bottom: 0.8rem;
+        }
+        .idx-leader-desc {
+            font-size: 0.95rem; line-height: 1.7; color: rgba(255,255,255,0.75);
+            margin-bottom: 1rem; text-align: left;
+        }
+        .idx-leader-link {
+            font-size: 0.8rem; color: var(--accent-cyan, #00d2ff);
+            text-decoration: none; transition: all 0.3s ease;
+        }
+        .idx-leader-link:hover { color: #fff; text-shadow: 0 0 10px var(--accent-cyan, #00d2ff); }
+
+        /* CTA */
+        .idx-cta-box {
+            text-align: center; padding: 4rem 2rem;
+            background: linear-gradient(135deg, rgba(0,210,255,0.04) 0%, rgba(41,121,255,0.03) 100%);
+            border: 1px solid rgba(0,210,255,0.15);
+        }
+        .idx-cta-title {
+            font-size: 2rem; font-weight: 800; color: #fff; margin: 0 0 1rem 0;
+        }
+        .idx-cta-desc {
+            font-size: 1.05rem; line-height: 1.7; color: rgba(255,255,255,0.7);
+            max-width: 650px; margin: 0 auto 2rem;
+        }
+        .idx-cta-contact {
+            font-family: 'Courier New', monospace; font-size: 0.85rem;
+            color: var(--accent-cyan, #00d2ff); margin-top: 1.5rem;
+            letter-spacing: 0.1rem;
+        }
+        .idx-cta-contact a { color: var(--accent-cyan, #00d2ff); text-decoration: none; transition: color 0.3s; }
+        .idx-cta-contact a:hover { color: #fff; }
+
+        /* Footer */
+        .idx-footer {
+            padding: 3rem 0 0; border-top: 1px solid rgba(255,255,255,0.08);
+            text-align: center; font-size: 0.7rem;
+            color: rgba(255,255,255,0.5); line-height: 2.2;
+        }
+        .idx-footer a { color: var(--accent-cyan, #00d2ff); text-decoration: none; margin: 0 10px; transition: color 0.3s; font-weight: 600; }
+        .idx-footer a:hover { color: #fff; text-shadow: 0 0 10px var(--accent-cyan, #00d2ff); }
+
+        @media (max-width: 768px) {
+            .idx-hero-title { font-size: 2rem; text-align: center; }
+            .idx-hero-sub, .idx-label, .idx-stitle, .idx-sdesc { text-align: center; }
+            .idx-btn-row { justify-content: center; }
+            .idx-card-grid { grid-template-columns: 1fr; }
+            .idx-leader { flex-direction: column; align-items: center; text-align: center; }
+            .idx-leader-name, .idx-leader-desc { text-align: center; }
+            .idx-caps { grid-template-columns: 1fr; }
+        }
+    </style>
+
+    <div class="idx-content">
+
+        <!-- HERO: SYSTEM OPERATIONAL -->
+        <div class="idx-section">
+            <div class="idx-status"><div class="idx-status-dot"></div> System Operational</div>
+            <h2 class="idx-hero-title">Secure Edge AI &amp;<br><span>Cloud Solutions</span></h2>
+            <p class="idx-hero-sub">
+                We build automated, energy-efficient ecosystems that connect edge hardware with powerful Cloud AI to optimise industrial IoT operations.
+            </p>
+            <div class="idx-btn-row">
+                <a href="inner-Page.html" class="idx-btn idx-btn-primary">Explore Platform</a>
+                <a href="contact.html" class="idx-btn idx-btn-outline">Partner With Us</a>
+            </div>
+        </div>
+
+        <!-- CORE TECHNOLOGY STACK -->
+        <div class="idx-section">
+            <div class="idx-label">Architecture // Stack</div>
+            <h2 class="idx-stitle">Core <span>Technology Stack</span></h2>
+            <p class="idx-sdesc">
+                A fully digital-native architecture bridging the gap between local hardware and cloud intelligence. Cloud solutions that work for you, integrated into the Edge for secure data and private privacy.
+            </p>
+            <div class="idx-card-grid">
+                <div class="idx-card">
+                    <div class="idx-card-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z"/></svg></div>
+                    <div class="idx-card-num">01 // IoT Edge</div>
+                    <h3>IoT Edge Sensors with Cloud Storage &amp; AI/ML</h3>
+                    <p>We deploy secure, energy-efficient edge-based devices to capture real-time operational data with zero-trust security protocols.</p>
+                </div>
+                <div class="idx-card">
+                    <div class="idx-card-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg></div>
+                    <div class="idx-card-num">02 // Cloud</div>
+                    <h3>Cloud Infrastructure</h3>
+                    <p>Data is securely routed to our scalable cloud environments, ensuring high availability, rapid processing, and unified data lakes.</p>
+                </div>
+                <div class="idx-card">
+                    <div class="idx-card-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M13 1.07V9h7c0-4.08-3.05-7.44-7-7.93zM4 15c0 4.42 3.58 8 8 8s8-3.58 8-8v-4H4v4zm7-13.93C7.05 1.56 4 4.92 4 9h7V1.07z"/></svg></div>
+                    <div class="idx-card-num">03 // AI</div>
+                    <h3>AI-Driven Automation</h3>
+                    <p>Proprietary machine learning models analyse your data stream to automate processes, predict maintenance, and optimise energy.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- BUILT FOR HEAVY INDUSTRY -->
+        <div class="idx-section">
+            <div class="idx-label">Sector // Industrial</div>
+            <h2 class="idx-stitle">Built for <span>Heavy Industry</span></h2>
+            <p class="idx-sdesc">
+                Ionity's architecture is specifically engineered for manufacturing, logistics, and industrial sectors that demand high-security, low-latency AI processing at the edge. We bridge the gap between heavy machinery, devices, office space, and smart cloud intelligence &mdash; enabling scalable digital transformation.
+            </p>
+            <div class="idx-caps">
+                <div class="idx-cap-item"><div class="idx-cap-dot"></div> Scalable Autonomous Cloud Solutions</div>
+                <div class="idx-cap-item"><div class="idx-cap-dot"></div> Predictive Maintenance Automation</div>
+                <div class="idx-cap-item"><div class="idx-cap-dot"></div> Data Handling &amp; Machine Learning</div>
+                <div class="idx-cap-item"><div class="idx-cap-dot"></div> Pipelines in the Digital Realm</div>
+                <div class="idx-cap-item"><div class="idx-cap-dot"></div> Energy Optimisation Models</div>
+                <div class="idx-cap-item"><div class="idx-cap-dot"></div> Secure Industrial IoT Networks</div>
+                <div class="idx-cap-item"><div class="idx-cap-dot"></div> System Analytics &amp; Telemetry</div>
+                <div class="idx-cap-item"><div class="idx-cap-dot"></div> Leadership in IoT Application Implementation</div>
+            </div>
+        </div>
+
+        <!-- LEADERSHIP -->
+        <div class="idx-section">
+            <div class="idx-label">Leadership // Founder</div>
+            <h2 class="idx-stitle">Founded by <span>Experts</span></h2>
+            <p class="idx-sdesc">
+                Founded by experts in industrial automation, edge computing, and artificial intelligence.
+            </p>
+            <div class="idx-leader">
+                <div class="idx-leader-avatar">
+                    <img src="assets/images/johan-portrait.jpg" alt="Johan Wilhelm van Antwerp — Founder & CEO">
+                </div>
+                <div>
+                    <h3 class="idx-leader-name">Johan Wilhelm van Antwerp</h3>
+                    <div class="idx-leader-role">Founder &amp; CEO</div>
+                    <p class="idx-leader-desc">
+                        System architect specialising in edge deployment and AI modelling for industrial ecosystems. Leading Ionity's technical vision and business growth.
+                    </p>
+                    <a href="https://www.linkedin.com/in/ionity" target="_blank" rel="noopener noreferrer" class="idx-leader-link">Verify on LinkedIn &rarr;</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="idx-section">
+            <div class="idx-cta-box">
+                <h2 class="idx-cta-title">Ready to Automate?</h2>
+                <p class="idx-cta-desc">
+                    Ionity is currently in active development. If you are interested in pilot programmes, integration, or want to view our full system documentation, reach out below.
+                </p>
+                <div class="idx-btn-row" style="justify-content: center;">
+                    <a href="contact.html" class="idx-btn idx-btn-primary">Get in Touch</a>
+                    <a href="services.html" class="idx-btn idx-btn-outline">View Services</a>
+                </div>
+                <div class="idx-cta-contact">
+                    <a href="mailto:founder@ionity.today">founder@ionity.today</a> &nbsp;|&nbsp; Pretoria, South Africa
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="idx-section" style="padding-bottom: 2rem;">
+            <div class="idx-footer">
+                <div>Ionity&trade; (Pty) Ltd 2025&ndash;2026 | Creative Commons BY-NC-SA 4.0 | Made with AEDI&trade; | Author: Antwerp Designs</div>
+                <div>South Africa Centurion 0157 | Policy AED 986 | License AED 900 | Ionity&trade; IoT-AI-DAQ-PdM-CMS-F-iT Hardware, Software Integrations, ALL RIGHTS RESERVED</div>
+                <div>
+                    <a href="tel:+27646999877">+27 646 999 877</a> &nbsp;|&nbsp;
+                    <a href="mailto:ai@ionity.today">ai@ionity.today</a> &nbsp;|&nbsp;
+                    <a href="https://www.ionity.world" target="_blank" rel="noopener noreferrer">www.ionity.world</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- END SCROLLABLE CONTENT -->
+
     <script type="importmap">
         {
             "imports": {
