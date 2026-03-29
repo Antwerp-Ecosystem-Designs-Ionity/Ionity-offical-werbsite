@@ -311,7 +311,9 @@
         #gateway-slide {
             display: flex;
             flex-direction: column;
-            min-height: 100vh;
+            height: 100vh;
+            max-height: 100vh;
+            overflow: hidden;
             background: var(--bg-dark);
         }
 
@@ -321,19 +323,18 @@
             z-index: 10;
             max-width: 1400px;
             margin: 0 auto;
-            padding: 4rem 5vw;
-            margin-top: 80px;
+            padding: 1.5rem 5vw;
         }
 
         header {
-            margin-bottom: 4rem;
+            margin-bottom: 1rem;
         }
 
         h1 {
-            font-size: 5.2rem;
+            font-size: 3.5rem;
             font-weight: 200;
             letter-spacing: -0.1rem;
-            margin: 0 0 1rem 0;
+            margin: 0 0 0.5rem 0;
             color: #fff;
             text-shadow: 0 0 20px rgba(0, 210, 255, 0.2);
         }
@@ -341,9 +342,9 @@
         .hero-sub {
             font-family: 'Courier New', monospace;
             color: var(--accent-cyan);
-            margin-top: 1rem;
+            margin-top: 0.5rem;
             letter-spacing: 0.2rem;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             text-transform: uppercase;
             display: flex;
             align-items: center;
@@ -359,25 +360,26 @@
         footer {
             margin-top: auto;
             border-top: 1px solid var(--border);
-            padding: 3rem 5vw 1rem 5vw;
+            padding: 1rem 5vw 0.5rem 5vw;
             background: var(--bg-dark);
             text-align: center;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             color: var(--text-muted);
             position: relative;
             z-index: 10;
+            flex-shrink: 0;
         }
 
         .footer-logo-container {
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
             width: 100%;
         }
 
         .footer-logo {
-            height: 60px;
+            height: 40px;
             width: auto;
             opacity: 0.9;
             transition: all 0.3s ease;
@@ -415,16 +417,17 @@
         .portal-container {
             display: flex;
             justify-content: center;
-            align-items: flex-start;
-            padding: 2rem 0 4rem;
+            align-items: center;
+            padding: 0;
             flex: 1;
+            min-height: 0;
         }
 
         .portal-frame {
             background: rgba(10, 15, 20, 0.9);
             border: 1px solid rgba(51, 102, 255, 0.3);
             border-top: 3px solid #3366FF;
-            padding: 3.5rem 2.5rem;
+            padding: 2rem 2.5rem;
             width: 100%;
             max-width: 440px;
             backdrop-filter: blur(20px);
@@ -462,21 +465,21 @@
             text-transform: uppercase;
             letter-spacing: 0.3rem;
             margin-top: 0;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.3rem;
             text-shadow: 0 0 20px var(--accent-cyan);
-            font-size: 2rem;
+            font-size: 1.8rem;
         }
 
         .portal-status {
             text-align: center;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: var(--text-muted);
-            margin-bottom: 2rem;
+            margin-bottom: 1.2rem;
             font-family: 'Courier New', monospace;
         }
 
         .input-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
 
         .input-group label {
@@ -506,7 +509,7 @@
         }
 
         .auth-2fa-section {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -533,7 +536,7 @@
             cursor: pointer;
             transition: all 0.3s ease;
             clip-path: polygon(0 0, 100% 0, 100% 80%, 95% 100%, 0 100%);
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
 
         .btn-login:hover {
@@ -654,7 +657,7 @@
 
     <div class="deck-wrapper" id="deckWrapper">
         <section class="deck-section" id="gateway-slide">
-            <header style="padding: 0 5vw;">
+            <header style="padding: 0 5vw; flex-shrink: 0;">
                 <h1 id="glitch-header" data-value="GATEWAY INTERFACE">GATEWAY INTERFACE</h1>
                 <div class="hero-sub" data-value="System Access Point // Restricted">System Access Point // Restricted
                 </div>
