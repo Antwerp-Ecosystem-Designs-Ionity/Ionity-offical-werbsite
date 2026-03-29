@@ -214,6 +214,7 @@
 
 <link rel="manifest" href="/manifest.json">
 <link rel="canonical" href="https://www.ionity.today/ai-innovation.html" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- Alternate Language Hreflang for SEO -->
 <link rel="alternate" hreflang="en" href="https://www.ionity.today/ai-innovation.html" />
@@ -294,6 +295,7 @@
             align-items: center;
             border-bottom: 1px solid var(--border);
             background: rgba(2, 2, 4, 0.9);
+            -webkit-backdrop-filter: blur(12px);
             backdrop-filter: blur(12px);
             position: fixed;
             width: 100%;
@@ -304,45 +306,28 @@
         }
 
         .logo {
-            font-family: 'Courier New', monospace;
-            font-weight: 700;
-            letter-spacing: 0.2rem;
-            color: #fff;
-            text-decoration: none;
-            font-size: 1.2rem;
-            position: relative;
-            text-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
-            transition: all 0.3s;
             display: flex;
             align-items: center;
-        }
-
-        .logo:hover {
-            animation: neonPulse 1.5s infinite alternate;
+            text-decoration: none;
         }
 
         .nav-logo {
             height: 80px;
             width: auto;
-            vertical-align: middle;
             transition: all 0.3s ease;
         }
-        .nav-logo:hover {
-            filter: drop-shadow(0 0 8px var(--accent-cyan));
-        }
 
-        /* Desktop Nav */
         .nav-links {
             display: flex;
             gap: 2rem;
         }
 
         .nav-links a {
-            color: var(--text-muted);
+            color: rgba(255, 255, 255, 0.85);
             text-decoration: none;
-            font-size: 0.75rem;
+            font-size: 0.62rem;
             text-transform: uppercase;
-            letter-spacing: 0.1rem;
+            letter-spacing: 0.15rem;
             transition: all 0.3s ease;
             position: relative;
             padding: 0.5rem 0;
@@ -351,60 +336,43 @@
 
         .nav-links a:hover {
             color: #fff;
-            animation: neonPulse 1s infinite alternate;
+            text-shadow: 0 0 10px #00d2ff;
         }
 
         .nav-links a.active {
-            color: var(--accent-cyan);
-            text-shadow: 0 0 15px var(--accent-cyan);
-            border-bottom: 1px solid var(--accent-cyan);
+            color: #00d2ff;
+            text-shadow: 0 0 15px #00d2ff;
+            border-bottom: 1px solid #00d2ff;
         }
 
-        .nav-links a::before {
-            content: '';
-            position: absolute;
-            bottom: 0; left: 0; width: 0; height: 1px;
-            background: var(--accent-cyan);
-            transition: width 0.3s ease;
-            box-shadow: 0 0 10px var(--accent-cyan);
-        }
-
-        .nav-links a:hover::before { width: 100%; }
-
-        /* Mobile Menu Button */
         .mobile-menu-btn {
             display: none;
-            background: transparent;
-            border: 1px solid var(--border);
-            color: var(--accent-cyan);
+            background: none;
+            border: none;
+            color: #fff;
             font-size: 1.5rem;
             cursor: pointer;
-            padding: 0.5rem 0.8rem;
-            border-radius: 4px;
-            z-index: 101;
+            z-index: 1002;
         }
 
-        /* Mobile Dropdown */
         .mobile-dropdown {
             display: none;
             position: fixed;
             top: 80px;
             right: 0;
-            left: auto;
             width: 280px;
             background: rgba(5, 10, 15, 0.95);
-            border: 1px solid var(--accent-cyan);
-            border-right: none;
+            border: 1px solid #00d2ff;
             flex-direction: column;
             padding: 1rem 0;
-            box-shadow: -5px 5px 20px rgba(0, 0, 0, 0.8), 0 0 15px rgba(0, 210, 255, 0.2);
+            box-shadow: -5px 5px 20px rgba(0, 0, 0, 0.8);
             z-index: 1000;
+            -webkit-backdrop-filter: blur(20px);
             backdrop-filter: blur(20px);
         }
 
         .mobile-dropdown.open {
             display: flex;
-            animation: slideDown 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .mobile-dropdown a {
@@ -413,23 +381,9 @@
             text-decoration: none;
             text-transform: uppercase;
             letter-spacing: 0.1rem;
+            font-size: 0.7rem;
             border-bottom: 1px solid rgba(255,255,255,0.05);
-            transition: background 0.2s;
         }
-
-        .mobile-dropdown a.active {
-            color: var(--accent-cyan);
-            background: rgba(0, 210, 255, 0.05);
-            text-shadow: 0 0 15px var(--accent-cyan);
-            border-left: 3px solid var(--accent-cyan);
-        }
-
-        .mobile-dropdown a:hover {
-            background: rgba(0, 210, 255, 0.1);
-            color: var(--accent-cyan);
-        }
-
-        @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 
         @media (max-width: 1100px) {
             .nav-links { display: none; }
@@ -588,13 +542,16 @@
         </a>
         
         <div class="nav-links">
-            <a href="inner-Page.html">Systems</a>
+            <a href="index.html">Home</a>
+            <a href="system-architecture.html">Systems</a>
             <a href="services.html">Services</a>
             <a href="products.html">Products</a>
-            <a href="ai-innovation.html" class="active">Ai Innovation</a>
+            <a href="ai-innovation.html" class="active">AI Innovation</a>
             <a href="roadmap.html">Roadmap</a>
+            <a href="subscriptions.html">Subscriptions</a>
             <a href="license.html">License</a>
-            <a href="about.html">About Us</a>
+            <a href="privacy.html">Privacy</a>
+            <a href="about.html">About</a>
             <a href="aedi-online.html">AEDI Online</a>
             <a href="contact.html">Contact</a>
             <a href="firmware-development.html">Dev</a>
@@ -602,21 +559,31 @@
         </div>
 
         <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+        
+        <div class="mobile-dropdown" id="mobileDropdown">
+            <a href="index.html">Home</a>
+            <a href="system-architecture.html">Systems</a>
+            <a href="services.html">Services</a>
+            <a href="products.html">Products</a>
+            <a href="ai-innovation.html" class="active">AI Innovation</a>
+            <a href="roadmap.html">Roadmap</a>
+            <a href="subscriptions.html">Subscriptions</a>
+            <a href="license.html">License</a>
+            <a href="privacy.html">Privacy</a>
+            <a href="about.html">About</a>
+            <a href="aedi-online.html">AEDI Online</a>
+            <a href="contact.html">Contact</a>
+            <a href="firmware-development.html">Dev</a>
+            <a href="gateway.html">IO Way</a>
+        </div>
     </nav>
 
-    <div class="mobile-dropdown" id="mobileDropdown">
-        <a href="inner-Page.html">Systems</a>
-        <a href="services.html">Services</a>
-        <a href="products.html">Products</a>
-        <a href="ai-innovation.html" class="active">Ai Innovation</a>
-        <a href="roadmap.html">Roadmap</a>
-        <a href="license.html">License</a>
-        <a href="about.html">About Us</a>
-        <a href="aedi-online.html">AEDI Online</a>
-        <a href="contact.html">Contact</a>
-        <a href="firmware-development.html">Dev</a>
-        <a href="gateway.html">IO Way</a>
-    </div>
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileDropdown');
+            menu.classList.toggle('open');
+        }
+    </script>
 
     <!-- SecurePrivacy Consent Management -->
     <script src="https://consent.secureprivacy.ai/script/ionity-today.js"></script>
