@@ -307,6 +307,14 @@
             }
         }
 
+        /* --- DECK SECTION LAYOUT --- */
+        #gateway-slide {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background: var(--bg-dark);
+        }
+
         /* --- PAGE CONTENT LAYER --- */
         .page-container {
             position: relative;
@@ -349,10 +357,10 @@
 
         /* --- FOOTER --- */
         footer {
-            margin-top: 8rem;
+            margin-top: auto;
             border-top: 1px solid var(--border);
-            padding: 3rem 5vw 0 5vw;
-            background: rgba(2, 2, 4, 0.95);
+            padding: 3rem 5vw 1rem 5vw;
+            background: var(--bg-dark);
             text-align: center;
             font-size: 0.7rem;
             color: var(--text-muted);
@@ -409,6 +417,7 @@
             justify-content: center;
             align-items: flex-start;
             padding: 2rem 0 4rem;
+            flex: 1;
         }
 
         .portal-frame {
@@ -645,7 +654,7 @@
 
     <div class="deck-wrapper" id="deckWrapper">
         <section class="deck-section" id="gateway-slide">
-            <header>
+            <header style="padding: 0 5vw;">
                 <h1 id="glitch-header" data-value="GATEWAY INTERFACE">GATEWAY INTERFACE</h1>
                 <div class="hero-sub" data-value="System Access Point // Restricted">System Access Point // Restricted
                 </div>
@@ -732,28 +741,27 @@
                             rel="noopener noreferrer">Metadata</a>
                     </div>
                 </div>
+                <!-- Identity Modules -->
+                <div class="identity-modules">
+                    <a href="https://gravatar.com/antwerpdesigns" target="_blank" rel="noopener noreferrer" class="module-link"
+                        title="Global Identity Node">
+                        <img src="assets/images/gravatar-icon.svg" alt="Gravatar" class="module-icon">
+                        <span class="module-label">ID_NODE</span>
+                    </a>
+
+                    <a href="https://github.com/AntwerpDesignsIonity" target="_blank" rel="noopener noreferrer" class="module-link"
+                        title="Hardware/Software Architecture" style="display: none;">
+                        <img src="assets/images/github-icon.svg" alt="GitHub" class="module-icon">
+                        <span class="module-label">CORE_REPO</span>
+                    </a>
+
+                    <a href="https://www.linkedin.com/in/ionity" target="_blank" rel="noopener noreferrer" class="module-link"
+                        title="Ecosystem Solutionist Connection" style="display: none;">
+                        <img src="assets/images/linkedin-icon.svg" alt="LinkedIn" class="module-icon">
+                        <span class="module-label">SOL_CONNECT</span>
+                    </a>
+                </div>
             </footer>
-
-            <!-- Identity Modules -->
-            <div class="identity-modules">
-                <a href="https://gravatar.com/antwerpdesigns" target="_blank" rel="noopener noreferrer" class="module-link"
-                    title="Global Identity Node">
-                    <img src="assets/images/gravatar-icon.svg" alt="Gravatar" class="module-icon">
-                    <span class="module-label">ID_NODE</span>
-                </a>
-
-                <a href="https://github.com/AntwerpDesignsIonity" target="_blank" rel="noopener noreferrer" class="module-link"
-                    title="Hardware/Software Architecture" style="display: none;">
-                    <img src="assets/images/github-icon.svg" alt="GitHub" class="module-icon">
-                    <span class="module-label">CORE_REPO</span>
-                </a>
-
-                <a href="https://www.linkedin.com/in/ionity" target="_blank" rel="noopener noreferrer" class="module-link"
-                    title="Ecosystem Solutionist Connection" style="display: none;">
-                    <img src="assets/images/linkedin-icon.svg" alt="LinkedIn" class="module-icon">
-                    <span class="module-label">SOL_CONNECT</span>
-                </a>
-            </div>
 
         </section>
     </div> <!-- /deck-wrapper -->
