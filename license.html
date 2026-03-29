@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Google Tag Manager with Consent Mode v2 | ionity.yumyum -->
     <script>
@@ -283,6 +283,7 @@
             align-items: center;
             border-bottom: 1px solid var(--border);
             background: rgba(2, 2, 5, 0.95);
+            -webkit-backdrop-filter: blur(15px);
             backdrop-filter: blur(15px);
             position: fixed;
             width: 100%;
@@ -319,13 +320,13 @@
         .nav-links a {
             color: var(--text-muted);
             text-decoration: none;
-            font-size: 0.75rem;
+            font-size: 0.62rem;
             text-transform: uppercase;
-            letter-spacing: 0.1rem;
+            letter-spacing: 0.15rem;
             transition: 0.3s;
             font-weight: 600;
         }
-        .nav-links a:hover, .nav-links a.active { color: var(--accent-cyan); text-shadow: 0 0 10px var(--accent-cyan); }
+        .nav-links a:hover, .nav-links a.active { color: #fff; text-shadow: 0 0 10px #00d2ff; }
 
         /* Mobile Menu Button */
         .mobile-menu-btn {
@@ -356,6 +357,7 @@
             padding: 1rem 0;
             box-shadow: -5px 5px 20px rgba(0, 0, 0, 0.8), 0 0 15px rgba(0, 210, 255, 0.2);
             z-index: 99999;
+            -webkit-backdrop-filter: blur(20px);
             backdrop-filter: blur(20px);
         }
 
@@ -460,6 +462,7 @@
             align-items: center;
             gap: 12px;
             overflow: hidden;
+            -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
         }
 
@@ -714,12 +717,15 @@
         </a>
         
         <div class="nav-links">
-            <a href="inner-Page.html">Systems</a>
+            <a href="index.html">Home</a>
+            <a href="system-architecture.html">Systems</a>
             <a href="services.html">Services</a>
             <a href="products.html">Products</a>
-            <a href="ai-innovation.html">Ai Innovation</a>
+            <a href="ai-innovation.html">AI Innovation</a>
             <a href="roadmap.html">Roadmap</a>
+            <a href="subscriptions.html">Subscriptions</a>
             <a href="license.html" class="active">License</a>
+            <a href="privacy.html">Privacy</a>
             <a href="about.html">About</a>
             <a href="aedi-online.html">AEDI Online</a>
             <a href="contact.html">Contact</a>
@@ -730,12 +736,15 @@
         <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
         
         <div class="mobile-dropdown" id="mobileDropdown">
-            <a href="inner-Page.html">Systems</a>
+            <a href="index.html">Home</a>
+            <a href="system-architecture.html">Systems</a>
             <a href="services.html">Services</a>
             <a href="products.html">Products</a>
-            <a href="ai-innovation.html">Ai Innovation</a>
+            <a href="ai-innovation.html">AI Innovation</a>
             <a href="roadmap.html">Roadmap</a>
+            <a href="subscriptions.html">Subscriptions</a>
             <a href="license.html" class="active">License</a>
+            <a href="privacy.html">Privacy</a>
             <a href="about.html">About</a>
             <a href="aedi-online.html">AEDI Online</a>
             <a href="contact.html">Contact</a>

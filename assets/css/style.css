@@ -1,8 +1,70 @@
 /* ===================================
-   IONITY GLOBAL STYLES & OPTIMIZATIONS
+   NAVIGATION STANDARDIZATION
    =================================== */
+nav {
+    padding: 0 5vw;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid transparent;
+    background: transparent;
+    -webkit-backdrop-filter: blur(0px);
+    backdrop-filter: blur(0px);
+    position: fixed;
+    width: 100%;
+    box-sizing: border-box;
+    top: 0;
+    z-index: 1001;
+    transition: all 0.4s ease;
+}
 
-/* CTA Button Optimizations - Touch-Friendly */
+nav.scrolled {
+    background: rgba(2, 2, 4, 0.95);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+}
+
+.nav-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-links a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: 0.62rem; /* Reduced as requested */
+    text-transform: uppercase;
+    letter-spacing: 0.15rem;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 0.5rem 0;
+    font-weight: 600;
+}
+
+.nav-links a:hover, .nav-links a.active {
+    color: #00d2ff;
+    text-shadow: 0 0 10px #00d2ff;
+}
+
+.nav-links a::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: #00d2ff;
+    transition: width 0.3s ease;
+    box-shadow: 0 0 10px #00d2ff;
+}
+
+.nav-links a:hover::before, .nav-links a.active::before {
+    width: 100%;
+}
+
 .cta-button,
 .main-btn,
 .nav-btn,

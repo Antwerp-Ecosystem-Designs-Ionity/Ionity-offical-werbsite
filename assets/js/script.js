@@ -3,47 +3,86 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!document.getElementById('warp-loader')) {
         const loaderDiv = document.createElement('div');
         loaderDiv.id = 'warp-loader';
-        loaderDiv.innerHTML = \<div class='loader-ring'></div><div class='loader-text'>Initializing Protocol...</div>\;
+        loaderDiv.innerHTML = `
+            <div class="portal-container">
+                <div class="portal-ring ring-1"></div>
+                <div class="portal-ring ring-2"></div>
+                <div class="portal-ring ring-3"></div>
+                <div class="portal-core"></div>
+                <div class="loader-text">NEURAL LINK ESTABLISHED // WARPING</div>
+            </div>
+        `;
         document.body.prepend(loaderDiv);
 
         // Inject Loader Styles if not present
         if (!document.querySelector('style#warp-loader-style')) {
             const style = document.createElement('style');
             style.id = 'warp-loader-style';
-            style.textContent = \
+            style.textContent = `
+                @keyframes portalWarp {
+                    0% { transform: translateZ(-500px) scale(0.1); opacity: 0; }
+                    50% { opacity: 1; }
+                    100% { transform: translateZ(500px) scale(15); opacity: 0; }
+                }
+
+                @keyframes corePulse {
+                    from { transform: scale(1); opacity: 0.8; }
+                    to { transform: scale(1.5); opacity: 1; }
+                }
+
                 #warp-loader {
                     position: fixed;
                     top: 0; left: 0; width: 100%; height: 100%;
-                    background: rgba(2,2,4,0.9);
-                    z-index: 9999;
+                    background: #020204;
+                    z-index: 20000;
                     display: none;
                     align-items: center;
                     justify-content: center;
                     flex-direction: column;
+                    overflow: hidden;
+                    perspective: 1000px;
                 }
-                .loader-ring {
-                    width: 80px; height: 80px;
-                    border: 2px solid rgba(0, 210, 255, 0.1);
-                    border-top: 2px solid #00d2ff;
+                .portal-container {
+                    position: relative;
+                    width: 300px;
+                    height: 300px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    transform-style: preserve-3d;
+                }
+                .portal-ring {
+                    position: absolute;
+                    border: 2px solid #00d2ff;
                     border-radius: 50%;
-                    animation: spin 1s linear infinite;
-                    margin-bottom: 1.5rem;
+                    box-shadow: 0 0 30px #00d2ff, inset 0 0 30px #00d2ff;
+                    opacity: 0;
                 }
+                .ring-1 { width: 40px; height: 40px; animation: portalWarp 1.2s infinite linear; }
+                .ring-2 { width: 40px; height: 40px; animation: portalWarp 1.2s infinite linear 0.4s; }
+                .ring-3 { width: 40px; height: 40px; animation: portalWarp 1.2s infinite linear 0.8s; }
+                
+                .portal-core {
+                    width: 4px; height: 4px;
+                    background: #fff;
+                    border-radius: 50%;
+                    box-shadow: 0 0 50px 20px #fff, 0 0 100px 40px #00d2ff;
+                    animation: corePulse 0.5s infinite alternate;
+                }
+
                 .loader-text {
+                    position: absolute;
+                    bottom: -60px;
                     font-family: 'Courier New', monospace;
-                    font-size: 1rem;
-                    letter-spacing: 0.2rem;
+                    font-size: 0.7rem;
+                    letter-spacing: 0.4rem;
                     color: #00d2ff;
                     text-transform: uppercase;
-                    animation: neonPulse 1s infinite alternate;
+                    width: 100%;
+                    text-align: center;
+                    text-shadow: 0 0 10px #00d2ff;
                 }
-                @keyframes spin { to { transform: rotate(360deg); } }
-                @keyframes neonPulse {
-                    0% { text-shadow: 0 0 5px rgba(255,255,255,0.8), 0 0 10px #00d2ff; }
-                    50% { text-shadow: 0 0 10px #fff, 0 0 20px #00d2ff; }
-                    100% { text-shadow: 0 0 5px rgba(255,255,255,0.8), 0 0 10px #00d2ff; }
-                }
-            \;
+            `;
             document.head.appendChild(style);
         }
     }
@@ -56,15 +95,20 @@ document.addEventListener('DOMContentLoaded', () => {
         link.addEventListener('click', (e) => {
             const href = link.getAttribute('href');
             if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('javascript:')) return;
-             if (link.target === '_blank') return;
+            if (link.target === '_blank') return;
 
             e.preventDefault();
             
-            loader.style.display = 'flex';
-            
-            setTimeout(() => {
+            if (loader) {
+                loader.style.display = 'flex';
+                loader.style.opacity = '1';
+                
+                setTimeout(() => {
+                    window.location.href = href;
+                }, 1000);
+            } else {
                 window.location.href = href;
-            }, 1000);
+            }
         });
     });
 
@@ -150,13 +194,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- SLIDER DUPLICATION LOGIC ---
     const sliders = document.querySelectorAll('.slider-auto-scroll');
     sliders.forEach(slider => {
-        // Duplicate content for seamless loop
-        // We only duplicate if children exist and not already duplicated
         if (slider.children.length > 0 && !slider.getAttribute('data-duplicated')) {
             const children = Array.from(slider.children);
             children.forEach(child => {
                 const clone = child.cloneNode(true);
-                clone.setAttribute('aria-hidden', 'true'); // Accessibility: hide duplicate from screen readers
+                clone.setAttribute('aria-hidden', 'true');
                 clone.classList.add('slider-clone');
                 slider.appendChild(clone);
             });
@@ -177,87 +219,59 @@ document.addEventListener('DOMContentLoaded', () => {
         let translateX = 0;
         let startTranslateX = 0;
 
-        // Touch Start
         const handleTouchStart = (e) => {
             isDragging = true;
             startX = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
-
-            // Get current transform value
             const style = window.getComputedStyle(track);
             const matrix = new DOMMatrix(style.transform);
             startTranslateX = matrix.m41;
             translateX = startTranslateX;
-
             track.style.transition = 'none';
             viewport.style.cursor = 'grabbing';
         };
 
-        // Touch Move
         const handleTouchMove = (e) => {
             if (!isDragging) return;
-
-            e.preventDefault();
             currentX = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
             const diff = currentX - startX;
             translateX = startTranslateX + diff;
-
             track.style.transform = `translateX(${translateX}px)`;
         };
 
-        // Touch End
         const handleTouchEnd = (e) => {
             if (!isDragging) return;
-
             isDragging = false;
             viewport.style.cursor = 'grab';
-
             const diff = currentX - startX;
             const swipeThreshold = 50;
-
-            // Restore smooth transition
             track.style.transition = 'transform 0.6s cubic-bezier(0.23, 1, 0.32, 1)';
-
-            // Snap to nearest card if swipe was significant
             if (Math.abs(diff) > swipeThreshold) {
                 const cards = track.querySelectorAll('.card, .card-3d-scene, .tier-card');
                 if (cards.length === 0) return;
-
-                const cardWidth = cards[0].offsetWidth + 24; // Include gap
+                const cardWidth = cards[0].offsetWidth + 24;
                 const viewportWidth = viewport.clientWidth;
                 const maxTranslate = -(track.scrollWidth - viewportWidth);
-
                 if (diff > 0) {
-                    // Swiped right - go previous
                     translateX = Math.min(translateX + cardWidth, 0);
                 } else {
-                    // Swiped left - go next
                     translateX = Math.max(translateX - cardWidth, maxTranslate);
                 }
-
                 track.style.transform = `translateX(${translateX}px)`;
             } else {
-                // Revert to last position if swipe wasn't significant
                 track.style.transform = `translateX(${startTranslateX}px)`;
             }
         };
 
-        // Add event listeners for both touch and mouse
         viewport.addEventListener('touchstart', handleTouchStart, { passive: false });
         viewport.addEventListener('touchmove', handleTouchMove, { passive: false });
         viewport.addEventListener('touchend', handleTouchEnd, { passive: true });
-
-        // Mouse events for desktop dragging
         viewport.addEventListener('mousedown', handleTouchStart);
         viewport.addEventListener('mousemove', handleTouchMove);
         viewport.addEventListener('mouseup', handleTouchEnd);
         viewport.addEventListener('mouseleave', handleTouchEnd);
-
-        // Prevent default drag behavior on images and links
         viewport.addEventListener('dragstart', (e) => e.preventDefault());
-
-        // Set initial cursor
         viewport.style.cursor = 'grab';
     });
 
-    toggleBtn(); // Initial check
+    toggleBtn();
 });

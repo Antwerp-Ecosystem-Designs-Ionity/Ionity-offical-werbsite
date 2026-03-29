@@ -3,7 +3,7 @@
 <head>
     <script src="https://app.secureprivacy.ai/script/69999f793956998e8c6d4f9c.js"></script>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     
     <!-- SecurePrivacy Consent Management -->
@@ -1118,9 +1118,112 @@
             }
 
             /* Header Adjustments */
-            header {
-                padding: 2rem 1rem;
-            }
+        nav {
+            padding: 0 5vw;
+            height: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(2, 2, 4, 0.9);
+            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(12px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            box-sizing: border-box;
+            z-index: 1001;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            font-size: 0.62rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+            font-weight: 600;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+            text-shadow: 0 0 10px #00d2ff;
+        }
+
+        .nav-links a.active {
+            color: #00d2ff;
+            text-shadow: 0 0 15px #00d2ff;
+            border-bottom: 1px solid #00d2ff;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .nav-logo {
+            height: 80px;
+            width: auto;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1002;
+        }
+
+        .mobile-dropdown {
+            display: none;
+            position: fixed;
+            top: 80px;
+            right: 0;
+            width: 280px;
+            background: rgba(5, 10, 15, 0.95);
+            border: 1px solid #00d2ff;
+            flex-direction: column;
+            padding: 1rem 0;
+            box-shadow: -5px 5px 20px rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+        }
+
+        .mobile-dropdown.open {
+            display: flex;
+        }
+
+        .mobile-dropdown a {
+            color: #fff;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1rem;
+            font-size: 0.7rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        @media (max-width: 1024px) {
+            .nav-links { display: none; }
+            .mobile-menu-btn { display: block; }
+        }
+
+        header {
+            padding: 2rem 1rem;
+        }
 
             /* Center Action Area - Ensure Button is Visible */
             .center-action {
@@ -1249,10 +1352,59 @@
 
     <div id="canvas-container"></div>
 
+    <nav>
+        <a href="index.html" class="logo">
+             <img src="assets/images/ionity-logo-edited.png" alt="IONITY" class="nav-logo">
+        </a>
+        
+        <div class="nav-links">
+            <a href="index.html" class="active">Home</a>
+            <a href="system-architecture.html">Systems</a>
+            <a href="services.html">Services</a>
+            <a href="products.html">Products</a>
+            <a href="ai-innovation.html">AI Innovation</a>
+            <a href="roadmap.html">Roadmap</a>
+            <a href="subscriptions.html">Subscriptions</a>
+            <a href="license.html">License</a>
+            <a href="privacy.html">Privacy</a>
+            <a href="about.html">About</a>
+            <a href="aedi-online.html">AEDI Online</a>
+            <a href="contact.html">Contact</a>
+            <a href="firmware-development.html">Dev</a>
+            <a href="gateway.html">IO Way</a>
+        </div>
+
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+        
+        <div class="mobile-dropdown" id="mobileDropdown">
+            <a href="index.html" class="active">Home</a>
+            <a href="system-architecture.html">Systems</a>
+            <a href="services.html">Services</a>
+            <a href="products.html">Products</a>
+            <a href="ai-innovation.html">AI Innovation</a>
+            <a href="roadmap.html">Roadmap</a>
+            <a href="subscriptions.html">Subscriptions</a>
+            <a href="license.html">License</a>
+            <a href="privacy.html">Privacy</a>
+            <a href="about.html">About</a>
+            <a href="aedi-online.html">AEDI Online</a>
+            <a href="contact.html">Contact</a>
+            <a href="firmware-development.html">Dev</a>
+            <a href="gateway.html">IO Way</a>
+        </div>
+    </nav>
+
     <div id="ui-layer">
         <header>
             <h1>AEDI | Automated Ecosystems Designs Ionity</h1>
         </header>
+
+        <script>
+            function toggleMobileMenu() {
+                const menu = document.getElementById('mobileDropdown');
+                menu.classList.toggle('open');
+            }
+        </script>
 
         <!-- SecurePrivacy Consent Management -->
         <script src="https://consent.secureprivacy.ai/script/ionity-today.js"></script>
@@ -2497,6 +2649,7 @@
     </div>
     
     <!-- Cookie Consent System -->
+    <script src="assets/js/script.js" defer></script>
     <script src="assets/js/cookie-manager.js"></script>
     
     <!-- Cookie Banner -->
