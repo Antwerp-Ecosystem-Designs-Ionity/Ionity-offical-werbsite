@@ -837,18 +837,21 @@
     <canvas id="matrix-canvas"></canvas>
 
     <!-- NAV -->
-    <nav>
+            <nav id="mainNav">
         <a href="index.html" class="logo">
              <img src="assets/images/ionity-logo-edited.png" alt="IONITY" class="nav-logo">
         </a>
         
-        <!-- Desktop Menu -->
         <div class="nav-links">
-            <a href="inner-Page.html">Systems</a>
+            <a href="index.html">Home</a>
+            <a href="system-architecture.html">Systems</a>
             <a href="what-we-do.html">What We Do</a>
-            <a href="ai-innovation.html">Ai Innovation</a>
+            <a href="ai-innovation.html">AI Innovation</a>
             <a href="roadmap.html">Roadmap</a>
             <a href="license.html">License</a>
+            <a href="privacy.html">Privacy</a>
+            <a href="subscriptions.html">Subscriptions</a>
+            <a href="terms.html">Terms</a>
             <a href="about.html">About</a>
             <a href="aedi-online.html">AEDI Online</a>
             <a href="contact.html" class="active">Contact</a>
@@ -856,23 +859,25 @@
             <a href="gateway.html">IO Way</a>
         </div>
 
-        <!-- Mobile Button -->
-        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+        <button class="mobile-menu-btn" onclick="toggleMenu()">&#9776;</button>
+        
+        <div class="mobile-dropdown" id="mobileMenu">
+            <a href="index.html">Home</a>
+            <a href="system-architecture.html">Systems</a>
+            <a href="what-we-do.html">What We Do</a>
+            <a href="ai-innovation.html">AI Innovation</a>
+            <a href="roadmap.html">Roadmap</a>
+            <a href="license.html">License</a>
+            <a href="privacy.html">Privacy</a>
+            <a href="subscriptions.html">Subscriptions</a>
+            <a href="terms.html">Terms</a>
+            <a href="about.html">About</a>
+            <a href="aedi-online.html">AEDI Online</a>
+            <a href="contact.html" class="active">Contact</a>
+            <a href="firmware-development.html">Dev</a>
+            <a href="gateway.html">IO Way</a>
+        </div>
     </nav>
-
-    <!-- Mobile Dropdown -->
-    <div class="mobile-dropdown" id="mobileDropdown">
-        <a href="inner-Page.html">Systems</a>
-        <a href="what-we-do.html">What We Do</a>
-        <a href="ai-innovation.html">Ai Innovation</a>
-        <a href="roadmap.html">Roadmap</a>
-        <a href="license.html">License</a>
-        <a href="about.html">About</a>
-        <a href="aedi-online.html">AEDI Online</a>
-        <a href="contact.html" class="active">Contact</a>
-        <a href="firmware-development.html">Dev</a>
-        <a href="gateway.html">IO Way</a>
-    </div>
 
     <!-- SecurePrivacy Consent Management -->
     <script src="https://consent.secureprivacy.ai/script/ionity-today.js"></script>
@@ -880,7 +885,7 @@
     <!-- HERO TITLE SECTION WITH TYPING EFFECT -->
     <div class="hero-title-section">
         <h1 class="hero-main-title" id="main-title">Connect with Us</h1>
-        <div class="hero-subtitle" id="sub-title">Enquire</div>
+        <div class="hero-subtitle" id="sub-title">Understanding Startup</div>
     </div>
 
     <!-- GLOBE CONTAINER FOR PINNING LOCATIONS -->
@@ -925,6 +930,7 @@
     <div class="content-main">
         <div class="contact-info">
             <h1>Contact Us:</h1>
+            <p style="color: var(--text-muted); font-size: 1rem; line-height: 1.6; margin: 0 0 2rem 0; font-weight: 300;">We are a startup that understands startups. Whether you're building from the ground up or scaling your vision, Ionity is here to support you with real-world AIoT solutions, embedded hardware, and ecosystem engineering — built by founders, for founders.</p>
             
             <div class="info-item">
                 <span class="info-label">Support Services</span>
@@ -1100,11 +1106,11 @@
             await new Promise(r => setTimeout(r, 500));
             await typeText(mainTitle, 'Connect with Us', 80);
             await new Promise(r => setTimeout(r, 300));
-            await typeText(subTitle, 'Enquire', 100);
+            await typeText(subTitle, 'Understanding Startup', 100);
         });
 
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobileDropdown');
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
             menu.classList.toggle('open');
         }
 

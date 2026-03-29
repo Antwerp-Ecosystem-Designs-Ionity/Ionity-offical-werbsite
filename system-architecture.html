@@ -561,11 +561,11 @@
             <a href="gateway.html">IO Way</a>
         </div>
 
-        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">?</button>
+        <button class="mobile-menu-btn" onclick="toggleMenu()">?</button>
     </nav>
 
     <!-- Mobile Dropdown -->
-    <div class="mobile-dropdown" id="mobileDropdown">
+    <div class="mobile-dropdown" id="mobileMenu">
         <a href="index.html">Home</a>
         <a href="system-architecture.html" class="active">Systems</a>
         <a href="what-we-do.html">What We Do</a>
@@ -796,8 +796,8 @@
         initThree();
     </script>
     <script>
-        function toggleMobileMenu() {
-            document.getElementById('mobileDropdown').classList.toggle('open');
+        function toggleMenu() {
+            document.getElementById('mobileMenu').classList.toggle('open');
         }
 
         const deck = document.getElementById('deckWrapper');

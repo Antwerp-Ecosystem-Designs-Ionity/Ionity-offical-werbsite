@@ -556,11 +556,11 @@
             <a href="gateway.html">IO Way</a>
         </div>
 
-        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+        <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
     </nav>
 
     <!-- Mobile Dropdown -->
-    <div class="mobile-dropdown" id="mobileDropdown">
+    <div class="mobile-dropdown" id="mobileMenu">
         <a href="index.html">Home</a>
         <a href="system-architecture.html">Systems</a>
         <a href="what-we-do.html">What We Do</a>
@@ -907,8 +907,8 @@
             setInterval(matrix, 50);
         })();
 
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobileDropdown');
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
             menu.classList.toggle('open');
         }
     </script>

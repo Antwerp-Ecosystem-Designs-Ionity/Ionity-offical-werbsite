@@ -1404,7 +1404,7 @@
     <div class="scanlines"></div>
     <div class="vignette"></div>
 
-    <nav>
+            <nav id="mainNav">
         <a href="index.html" class="logo">
              <img src="assets/images/ionity-logo-edited.png" alt="IONITY" class="nav-logo">
         </a>
@@ -1418,6 +1418,7 @@
             <a href="license.html">License</a>
             <a href="privacy.html">Privacy</a>
             <a href="subscriptions.html">Subscriptions</a>
+            <a href="terms.html">Terms</a>
             <a href="about.html">About</a>
             <a href="aedi-online.html">AEDI Online</a>
             <a href="contact.html">Contact</a>
@@ -1425,9 +1426,9 @@
             <a href="gateway.html">IO Way</a>
         </div>
 
-        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+        <button class="mobile-menu-btn" onclick="toggleMenu()">&#9776;</button>
         
-        <div class="mobile-dropdown" id="mobileDropdown">
+        <div class="mobile-dropdown" id="mobileMenu">
             <a href="index.html">Home</a>
             <a href="system-architecture.html">Systems</a>
             <a href="what-we-do.html">What We Do</a>
@@ -1436,6 +1437,7 @@
             <a href="license.html">License</a>
             <a href="privacy.html">Privacy</a>
             <a href="subscriptions.html">Subscriptions</a>
+            <a href="terms.html">Terms</a>
             <a href="about.html">About</a>
             <a href="aedi-online.html">AEDI Online</a>
             <a href="contact.html">Contact</a>
@@ -2294,8 +2296,8 @@
         window.onload = init;
     </script>
     <script>
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobileDropdown');
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
             menu.classList.toggle('open');
         }
     </script>

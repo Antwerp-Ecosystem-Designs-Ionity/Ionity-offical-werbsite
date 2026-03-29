@@ -155,12 +155,27 @@
 
         @media (min-width: 769px) { .container { margin-top: 7rem; } }
 
+        /* ===== DECK SECTION CENTERING ===== */
+        .deck-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-left: 5vw;
+            padding-right: 5vw;
+        }
+
         /* ===== HERO ===== */
         .hero-section {
             margin-bottom: 6rem;
             animation: slideIn 1s ease-out;
             background: radial-gradient(circle at center, rgba(0,0,0,0.6), transparent 70%);
             padding: 2rem 0;
+            width: 100%;
+            max-width: 1400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
         }
 
         h1 {
@@ -184,6 +199,7 @@
             text-transform: uppercase;
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 1rem;
             text-shadow: 0 0 5px var(--accent-cyan);
         }
@@ -201,6 +217,7 @@
             line-height: 1.8;
             font-size: 1.1rem;
             text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+            text-align: center;
         }
 
         /* ===== TIER CARDS ===== */
@@ -209,6 +226,8 @@
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
             margin-bottom: 6rem;
+            width: 100%;
+            max-width: 1400px;
         }
 
         .card {
@@ -373,6 +392,8 @@
             text-transform: uppercase;
             letter-spacing: 0.2rem;
             font-weight: 300;
+            text-align: center;
+            width: 100%;
         }
         .section-heading span { color: var(--accent-cyan); }
 
@@ -386,6 +407,9 @@
             backdrop-filter: blur(5px);
             position: relative;
             overflow: hidden;
+            width: 100%;
+            max-width: 1400px;
+            box-sizing: border-box;
         }
 
         .comparison-table {
@@ -429,6 +453,9 @@
             margin-top: 2rem;
             margin-bottom: 6rem;
             padding: 5rem 3rem;
+            width: 100%;
+            max-width: 1400px;
+            box-sizing: border-box;
             border: 1px solid rgba(0,210,255,0.3);
             border-top: 4px solid var(--accent-cyan);
             border-bottom: 4px solid var(--accent-cyan);
@@ -580,11 +607,11 @@
             <a href="gateway.html">IO Way</a>
         </div>
 
-        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+        <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
     </nav>
 
     <!-- Mobile Dropdown -->
-    <div class="mobile-dropdown" id="mobileDropdown">
+    <div class="mobile-dropdown" id="mobileMenu">
         <a href="index.html">Home</a>
         <a href="system-architecture.html">Systems</a>
         <a href="what-we-do.html">What We Do</a>
@@ -822,8 +849,8 @@
     </footer>
 
     <script>
-        function toggleMobileMenu() {
-            document.getElementById('mobileDropdown').classList.toggle('open');
+        function toggleMenu() {
+            document.getElementById('mobileMenu').classList.toggle('open');
         }
 
         const deck = document.getElementById('deckWrapper');

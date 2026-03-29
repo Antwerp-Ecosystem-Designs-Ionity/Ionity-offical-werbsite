@@ -648,46 +648,47 @@
     <div id="canvas-container"></div>
 
     <!-- Navigation -->
-    <nav>
+            <nav id="mainNav">
         <a href="index.html" class="logo">
              <img src="assets/images/ionity-logo-edited.png" alt="IONITY" class="nav-logo">
         </a>
         
-        <!-- Desktop Menu -->
         <div class="nav-links">
-            <a href="inner-Page.html">Systems</a>
+            <a href="index.html">Home</a>
+            <a href="system-architecture.html">Systems</a>
             <a href="what-we-do.html">What We Do</a>
-            <a href="ai-innovation.html">Ai Innovation</a>
+            <a href="ai-innovation.html">AI Innovation</a>
             <a href="roadmap.html">Roadmap</a>
             <a href="license.html">License</a>
+            <a href="privacy.html">Privacy</a>
+            <a href="subscriptions.html">Subscriptions</a>
+            <a href="terms.html">Terms</a>
             <a href="about.html">About</a>
             <a href="aedi-online.html">AEDI Online</a>
             <a href="contact.html">Contact</a>
             <a href="firmware-development.html">Dev</a>
             <a href="gateway.html">IO Way</a>
-            <a href="wiki.html" class="active">Wiki</a>
         </div>
 
-        <!-- Mobile Button -->
-        <button class="mobile-menu-btn" id="mobileMenuBtn">
-            <i class="fas fa-bars"></i>
-        </button>
+        <button class="mobile-menu-btn" onclick="toggleMenu()">&#9776;</button>
+        
+        <div class="mobile-dropdown" id="mobileMenu">
+            <a href="index.html">Home</a>
+            <a href="system-architecture.html">Systems</a>
+            <a href="what-we-do.html">What We Do</a>
+            <a href="ai-innovation.html">AI Innovation</a>
+            <a href="roadmap.html">Roadmap</a>
+            <a href="license.html">License</a>
+            <a href="privacy.html">Privacy</a>
+            <a href="subscriptions.html">Subscriptions</a>
+            <a href="terms.html">Terms</a>
+            <a href="about.html">About</a>
+            <a href="aedi-online.html">AEDI Online</a>
+            <a href="contact.html">Contact</a>
+            <a href="firmware-development.html">Dev</a>
+            <a href="gateway.html">IO Way</a>
+        </div>
     </nav>
-
-    <!-- Mobile Dropdown -->
-    <div class="mobile-dropdown" id="mobileDropdown">
-        <a href="inner-Page.html">Systems</a>
-        <a href="what-we-do.html">What We Do</a>
-        <a href="ai-innovation.html">Ai Innovation</a>
-        <a href="roadmap.html">Roadmap</a>
-        <a href="license.html">License</a>
-        <a href="about.html">About</a>
-        <a href="aedi-online.html">AEDI Online</a>
-        <a href="contact.html">Contact</a>
-        <a href="firmware-development.html">Dev</a>
-        <a href="gateway.html">IO Way</a>
-        <a href="wiki.html" class="active">Wiki</a>
-    </div>
 
     <!-- Main Container -->
     <div class="container">
@@ -1062,7 +1063,7 @@
     <script>
         // Mobile Menu Toggle
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mobileDropdown = document.getElementById('mobileDropdown');
+        const mobileDropdown = document.getElementById('mobileMenu');
         
         if (mobileMenuBtn && mobileDropdown) {
             mobileMenuBtn.addEventListener('click', function() {

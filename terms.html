@@ -411,12 +411,12 @@
     <!-- Book Hallway Animation -->
     <script>
         // Mobile Menu
-        function toggleMobileMenu() {
-            const dropdown = document.getElementById('mobileDropdown');
+        function toggleMenu() {
+            const dropdown = document.getElementById('mobileMenu');
             dropdown.classList.toggle('open');
         }
         document.addEventListener('click', function(e) {
-            const dropdown = document.getElementById('mobileDropdown');
+            const dropdown = document.getElementById('mobileMenu');
             const btn = document.querySelector('.mobile-menu-btn');
             if (!dropdown.contains(e.target) && !btn.contains(e.target)) {
                 dropdown.classList.remove('open');
@@ -714,8 +714,8 @@
         })();
     </script>
     <script>
-        function toggleMobileMenu() {
-            document.getElementById('mobileDropdown').classList.toggle('open');
+        function toggleMenu() {
+            document.getElementById('mobileMenu').classList.toggle('open');
         }
     </script>
 </body>

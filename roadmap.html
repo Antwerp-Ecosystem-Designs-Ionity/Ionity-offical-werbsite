@@ -789,12 +789,11 @@
     <div id="canvas-container"></div>
     <div class="scanlines"></div>
 
-    <nav>
+            <nav id="mainNav">
         <a href="index.html" class="logo">
              <img src="assets/images/ionity-logo-edited.png" alt="IONITY" class="nav-logo">
         </a>
         
-        <!-- Desktop Menu -->
         <div class="nav-links">
             <a href="index.html">Home</a>
             <a href="system-architecture.html">Systems</a>
@@ -804,6 +803,7 @@
             <a href="license.html">License</a>
             <a href="privacy.html">Privacy</a>
             <a href="subscriptions.html">Subscriptions</a>
+            <a href="terms.html">Terms</a>
             <a href="about.html">About</a>
             <a href="aedi-online.html">AEDI Online</a>
             <a href="contact.html">Contact</a>
@@ -811,25 +811,25 @@
             <a href="gateway.html">IO Way</a>
         </div>
 
-        <!-- Mobile Button -->
-        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+        <button class="mobile-menu-btn" onclick="toggleMenu()">&#9776;</button>
+        
+        <div class="mobile-dropdown" id="mobileMenu">
+            <a href="index.html">Home</a>
+            <a href="system-architecture.html">Systems</a>
+            <a href="what-we-do.html">What We Do</a>
+            <a href="ai-innovation.html">AI Innovation</a>
+            <a href="roadmap.html" class="active">Roadmap</a>
+            <a href="license.html">License</a>
+            <a href="privacy.html">Privacy</a>
+            <a href="subscriptions.html">Subscriptions</a>
+            <a href="terms.html">Terms</a>
+            <a href="about.html">About</a>
+            <a href="aedi-online.html">AEDI Online</a>
+            <a href="contact.html">Contact</a>
+            <a href="firmware-development.html">Dev</a>
+            <a href="gateway.html">IO Way</a>
+        </div>
     </nav>
-
-    <div class="mobile-dropdown" id="mobileDropdown">
-        <a href="index.html">Home</a>
-        <a href="system-architecture.html">Systems</a>
-        <a href="what-we-do.html">What We Do</a>
-        <a href="ai-innovation.html">AI Innovation</a>
-        <a href="roadmap.html" class="active">Roadmap</a>
-        <a href="license.html">License</a>
-        <a href="privacy.html">Privacy</a>
-        <a href="subscriptions.html">Subscriptions</a>
-        <a href="about.html">About</a>
-        <a href="aedi-online.html">AEDI Online</a>
-        <a href="contact.html">Contact</a>
-        <a href="firmware-development.html">Dev</a>
-        <a href="gateway.html">IO Way</a>
-    </div>
 
     <!-- SecurePrivacy Consent Management -->
     <script src="https://consent.secureprivacy.ai/script/ionity-today.js"></script>
@@ -1197,8 +1197,8 @@
     
     <!-- UI Logic Script -->
     <script>
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobileDropdown');
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
             menu.classList.toggle('open');
         }
 
@@ -1278,8 +1278,8 @@
             }
         });
 
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobileDropdown');
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
             menu.classList.toggle('open');
         }
 
