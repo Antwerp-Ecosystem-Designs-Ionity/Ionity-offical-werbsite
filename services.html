@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <script src="https://app.secureprivacy.ai/script/69999f793956998e8c6d4f9c.js"></script>
@@ -12,7 +12,9 @@
   gtag('config', 'G-0GH52FYXR0');
 </script>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" href="assets/images/ionity-logo-edited.png">
+    <meta name="theme-color" content="#1A1A1A">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Google Tag Manager with Consent Mode v2 | ionity.yumyum -->
     <script>
@@ -59,8 +61,8 @@
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="revisit-after" content="7 days">
 
-<meta name="copyright" content="© 2018–2026 Antwerp Designs | Ionity (Pty) Ltd">
-<meta name="rights" content="All rights reserved. TM². Policy AED 986. License AED 900.">
+<meta name="copyright" content="Â© 2018â€“2026 Antwerp Designs | Ionity (Pty) Ltd">
+<meta name="rights" content="All rights reserved. TMÂ². Policy AED 986. License AED 900.">
 <meta name="license" content="https://creativecommons.org/licenses/by-nc-sa/4.0/">
 
 <meta name="geo.region" content="ZA-GT">
@@ -490,7 +492,7 @@
         /* --- CONTENT GRID --- */
         .system-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 2rem;
         }
 
@@ -1239,7 +1241,7 @@
         }
     </style>
 </head>
-<body>
+<body class="deck-layout">
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXX"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -1252,7 +1254,7 @@
     <div class="scanlines"></div>
 
     <!-- Navigation -->
-    <nav>
+    <nav id="mainNav">
         <a href="index.html" class="logo">
             <img src="assets/images/ionity-logo-edited.png" alt="IONITY" class="nav-logo">
         </a>
@@ -1260,13 +1262,13 @@
         <div class="nav-links">
             <a href="index.html">Home</a>
             <a href="system-architecture.html">Systems</a>
-            <a href="services.html" class="active">Services</a>
-            <a href="products.html">Products</a>
+            <a href="what-we-do.html">What We Do</a>
             <a href="ai-innovation.html">AI Innovation</a>
             <a href="roadmap.html">Roadmap</a>
             <a href="subscriptions.html">Subscriptions</a>
             <a href="license.html">License</a>
             <a href="privacy.html">Privacy</a>
+            <a href="terms.html">Terms</a>
             <a href="about.html">About</a>
             <a href="aedi-online.html">AEDI Online</a>
             <a href="contact.html">Contact</a>
@@ -1274,31 +1276,33 @@
             <a href="gateway.html">IO Way</a>
         </div>
 
-        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
-        
-        <div class="mobile-dropdown" id="mobileDropdown">
-            <a href="index.html">Home</a>
-            <a href="system-architecture.html">Systems</a>
-            <a href="services.html" class="active">Services</a>
-            <a href="products.html">Products</a>
-            <a href="ai-innovation.html">AI Innovation</a>
-            <a href="roadmap.html">Roadmap</a>
-            <a href="subscriptions.html">Subscriptions</a>
-            <a href="license.html">License</a>
-            <a href="privacy.html">Privacy</a>
-            <a href="about.html">About</a>
-            <a href="aedi-online.html">AEDI Online</a>
-            <a href="contact.html">Contact</a>
-            <a href="firmware-development.html">Dev</a>
-            <a href="gateway.html">IO Way</a>
-        </div>
+        <button class="mobile-menu-btn" onclick="toggleMenu()">â˜°</button>
     </nav>
+
+    <!-- Mobile Dropdown -->
+    <div class="mobile-dropdown" id="mobileMenu">
+        <a href="index.html">Home</a>
+        <a href="system-architecture.html">Systems</a>
+        <a href="what-we-do.html">What We Do</a>
+        <a href="ai-innovation.html">AI Innovation</a>
+        <a href="roadmap.html">Roadmap</a>
+        <a href="subscriptions.html">Subscriptions</a>
+        <a href="license.html">License</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="about.html">About</a>
+        <a href="aedi-online.html">AEDI Online</a>
+        <a href="contact.html">Contact</a>
+        <a href="firmware-development.html">Dev</a>
+        <a href="gateway.html">IO Way</a>
+    </div>
 
     <!-- SecurePrivacy Consent Management -->
     <script src="https://consent.secureprivacy.ai/script/ionity-today.js"></script>
 
-    <!-- Main Content -->
-    <div class="container">
+    <div class="deck-wrapper" id="deckWrapper">
+        <section class="deck-section" id="hero-cloud-slide">
+            <div class="container">
 
         <!-- Services Hero -->
         <div class="hero-section">
@@ -1307,7 +1311,7 @@
                 PREMADE-SOLUTIONS
             </div>
             <p class="hero-desc">
-                Architecting the nervous system of the digital world — from deployable edge hardware to enterprise-grade B2B SaaS platforms. 
+                Architecting the nervous system of the digital world â€” from deployable edge hardware to enterprise-grade B2B SaaS platforms. 
                 Full-stack solutions: Ionity Edge Control Nodes, AI Logic Gateways, Cloud-Native SaaS, and Zero-Trust Industrial IoT.
             </p>
         </div>
@@ -1332,7 +1336,7 @@
                         color: var(--accent-cyan);
                         box-shadow: 0 0 12px rgba(0,210,255,0.15);
                     ">
-                        <span style="font-size: 1rem;">☁</span> CLOUD
+                        <span style="font-size: 1rem;">â˜</span> CLOUD
                     </div>
                     <div style="
                         display: inline-flex; align-items: center; gap: 0.5rem;
@@ -1347,7 +1351,7 @@
                         color: #a78bfa;
                         box-shadow: 0 0 12px rgba(167,139,250,0.15);
                     ">
-                        <span style="font-size: 1rem;">⨳</span> AI
+                        <span style="font-size: 1rem;">â¨³</span> AI
                     </div>
                     <div style="
                         display: inline-flex; align-items: center; gap: 0.5rem;
@@ -1362,7 +1366,7 @@
                         color: #50e3c2;
                         box-shadow: 0 0 12px rgba(80,227,194,0.15);
                     ">
-                        <span style="font-size: 1rem;">⧖</span> DIGITAL TWINS
+                        <span style="font-size: 1rem;">â§–</span> DIGITAL TWINS
                     </div>
                     <div style="
                         display: inline-flex; align-items: center; gap: 0.5rem;
@@ -1377,19 +1381,19 @@
                         color: var(--accent-gold);
                         box-shadow: 0 0 12px rgba(255,215,0,0.15);
                     ">
-                        <span style="font-size: 1rem;">⫳</span> DATA
+                        <span style="font-size: 1rem;">â«³</span> DATA
                     </div>
                 </div>
 
                 <h2 style="font-size: 2.2rem; font-weight: 800; letter-spacing: -1px; margin: 0 0 0.5rem 0; text-transform: uppercase;">AEDI <span style="color: var(--accent-cyan);">CLOUD PLATFORM</span></h2>
                 <p style="color: rgba(255,255,255,0.65); font-size: 0.95rem; max-width: 700px; line-height: 1.7; margin: 0;">
-                    Enterprise B2B SaaS built for critical infrastructure. Five pillars of cloud-native intelligence, from predictive analytics to zero-trust security fabric — all unified under the AEDI architecture.
+                    Enterprise B2B SaaS built for critical infrastructure. Five pillars of cloud-native intelligence, from predictive analytics to zero-trust security fabric â€” all unified under the AEDI architecture.
                 </p>
             </div>
 
             <div class="saas-grid" style="
                 display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+                grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
                 gap: 1.5rem;
             ">
 
@@ -1407,9 +1411,9 @@
                    onmouseout="this.style.borderColor='rgba(0,210,255,0.25)';this.style.transform='translateY(0)';this.style.boxShadow='none';">
                     <div style="position: absolute; top: -20px; right: -20px; width: 100px; height: 100px; background: radial-gradient(circle, rgba(0,210,255,0.08) 0%, transparent 70%); pointer-events: none;"></div>
                     <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.2rem;">
-                        <div style="width: 44px; height: 44px; border: 1px solid var(--accent-cyan); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; color: var(--accent-cyan); flex-shrink: 0;">⟁</div>
+                        <div style="width: 44px; height: 44px; border: 1px solid var(--accent-cyan); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; color: var(--accent-cyan); flex-shrink: 0;">âŸ</div>
                         <div>
-                            <div style="font-family: 'Courier New', monospace; font-size: 0.65rem; color: rgba(0,210,255,0.7); letter-spacing: 0.2rem; text-transform: uppercase;">Core Platform · SaaS</div>
+                            <div style="font-family: 'Courier New', monospace; font-size: 0.65rem; color: rgba(0,210,255,0.7); letter-spacing: 0.2rem; text-transform: uppercase;">Core Platform Â· SaaS</div>
                             <h3 style="margin: 0; font-size: 1.1rem; font-weight: 700; letter-spacing: 0.05rem; text-transform: uppercase;">AEDI Cloud AI &amp;<br>Predictive Analytics</h3>
                         </div>
                     </div>
@@ -1418,15 +1422,15 @@
                     </p>
                     <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.8rem;">
                         <li style="display: flex; align-items: flex-start; gap: 0.7rem; font-size: 0.875rem; color: rgba(255,255,255,0.85);">
-                            <span style="color: var(--accent-cyan); font-size: 0.7rem; margin-top: 3px; flex-shrink: 0;">◆</span>
+                            <span style="color: var(--accent-cyan); font-size: 0.7rem; margin-top: 3px; flex-shrink: 0;">â—†</span>
                             <span><strong style="color:#fff;">Predictive Maintenance (PdM) Engine:</strong> Neural networks detecting anomalies and predicting equipment failure with 99.9% accuracy before downtime occurs.</span>
                         </li>
                         <li style="display: flex; align-items: flex-start; gap: 0.7rem; font-size: 0.875rem; color: rgba(255,255,255,0.85);">
-                            <span style="color: var(--accent-cyan); font-size: 0.7rem; margin-top: 3px; flex-shrink: 0;">◆</span>
-                            <span><strong style="color:#fff;">Live Digital Twin Sync:</strong> Dynamically mirrors physical assets in a 3D cloud interface for real-time simulation, stress testing, and remote 360° oversight.</span>
+                            <span style="color: var(--accent-cyan); font-size: 0.7rem; margin-top: 3px; flex-shrink: 0;">â—†</span>
+                            <span><strong style="color:#fff;">Live Digital Twin Sync:</strong> Dynamically mirrors physical assets in a 3D cloud interface for real-time simulation, stress testing, and remote 360Â° oversight.</span>
                         </li>
                         <li style="display: flex; align-items: flex-start; gap: 0.7rem; font-size: 0.875rem; color: rgba(255,255,255,0.85);">
-                            <span style="color: var(--accent-cyan); font-size: 0.7rem; margin-top: 3px; flex-shrink: 0;">◆</span>
+                            <span style="color: var(--accent-cyan); font-size: 0.7rem; margin-top: 3px; flex-shrink: 0;">â—†</span>
                             <span><strong style="color:#fff;">Automated Energy &amp; Resource Analytics:</strong> Deep data visualisation for optimising power consumption, tracking renewable generation, and driving ESG compliance.</span>
                         </li>
                     </ul>
@@ -1449,9 +1453,9 @@
                    onmouseout="this.style.borderColor='rgba(80,227,194,0.2)';this.style.transform='translateY(0)';this.style.boxShadow='none';">
                     <div style="position: absolute; top: -20px; right: -20px; width: 100px; height: 100px; background: radial-gradient(circle, rgba(80,227,194,0.07) 0%, transparent 70%); pointer-events: none;"></div>
                     <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.2rem;">
-                        <div style="width: 44px; height: 44px; border: 1px solid #50e3c2; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; color: #50e3c2; flex-shrink: 0;">⨠</div>
+                        <div style="width: 44px; height: 44px; border: 1px solid #50e3c2; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; color: #50e3c2; flex-shrink: 0;">â¨ </div>
                         <div>
-                            <div style="font-family: 'Courier New', monospace; font-size: 0.65rem; color: rgba(80,227,194,0.7); letter-spacing: 0.2rem; text-transform: uppercase;">Infrastructure · Middleware</div>
+                            <div style="font-family: 'Courier New', monospace; font-size: 0.65rem; color: rgba(80,227,194,0.7); letter-spacing: 0.2rem; text-transform: uppercase;">Infrastructure Â· Middleware</div>
                             <h3 style="margin: 0; font-size: 1.1rem; font-weight: 700; letter-spacing: 0.05rem; text-transform: uppercase; color: #fff;">Edge-to-Cloud<br>Middleware &amp; Data Pipelines</h3>
                         </div>
                     </div>
@@ -1460,16 +1464,16 @@
                     </p>
                     <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.8rem;">
                         <li style="display: flex; align-items: flex-start; gap: 0.7rem; font-size: 0.875rem; color: rgba(255,255,255,0.85);">
-                            <span style="color: #50e3c2; font-size: 0.7rem; margin-top: 3px; flex-shrink: 0;">◆</span>
+                            <span style="color: #50e3c2; font-size: 0.7rem; margin-top: 3px; flex-shrink: 0;">â—†</span>
                             <span><strong style="color:#fff;">Legacy Protocol Bridging:</strong> Seamlessly translates SCADA, Modbus, and OPC-UA into modern, automated API-driven grids without costly hardware replacement.</span>
                         </li>
                         <li style="display: flex; align-items: flex-start; gap: 0.7rem; font-size: 0.875rem; color: rgba(255,255,255,0.85);">
-                            <span style="color: #50e3c2; font-size: 0.7rem; margin-top: 3px; flex-shrink: 0;">◆</span>
+                            <span style="color: #50e3c2; font-size: 0.7rem; margin-top: 3px; flex-shrink: 0;">â—†</span>
                             <span><strong style="color:#fff;">Distributed ML Workloads:</strong> Train AI models centrally in the cloud, deploy via OTA pipelines for sub-millisecond local edge inference.</span>
                         </li>
                         <li style="display: flex; align-items: flex-start; gap: 0.7rem; font-size: 0.875rem; color: rgba(255,255,255,0.85);">
-                            <span style="color: #50e3c2; font-size: 0.7rem; margin-top: 3px; flex-shrink: 0;">◆</span>
-                            <span><strong style="color:#fff;">Self-Healing Adaptive Mesh:</strong> Autonomous sensor network routing — continuous data flow and zero point-of-failure, even in harsh or remote environments.</span>
+                            <span style="color: #50e3c2; font-size: 0.7rem; margin-top: 3px; flex-shrink: 0;">â—†</span>
+                            <span><strong style="color:#fff;">Self-Healing Adaptive Mesh:</strong> Autonomous sensor network routing â€” continuous data flow and zero point-of-failure, even in harsh or remote environments.</span>
                         </li>
                     </ul>
                     <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; font-family: 'Courier New', monospace; font-size: 0.7rem; color: rgba(80,227,194,0.6);">
@@ -1491,9 +1495,9 @@
                    onmouseout="this.style.borderColor='rgba(255,50,80,0.2)';this.style.transform='translateY(0)';this.style.boxShadow='none';">
                     <div style="position: absolute; top: -20px; right: -20px; width: 100px; height: 100px; background: radial-gradient(circle, rgba(255,50,80,0.07) 0%, transparent 70%); pointer-events: none;"></div>
                     <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.2rem;">
-                        <div style="width: 44px; height: 44px; border: 1px solid #ff4757; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; color: #ff4757; flex-shrink: 0;">⊘</div>
+                        <div style="width: 44px; height: 44px; border: 1px solid #ff4757; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; color: #ff4757; flex-shrink: 0;">âŠ˜</div>
                         <div>
-                            <div style="font-family: 'Courier New', monospace; font-size: 0.65rem; color: rgba(255,71,87,0.7); letter-spacing: 0.2rem; text-transform: uppercase;">Security · Zero-Trust</div>
+                            <div style="font-family: 'Courier New', monospace; font-size: 0.65rem; color: rgba(255,71,87,0.7); letter-spacing: 0.2rem; text-transform: uppercase;">Security Â· Zero-Trust</div>
                             <h3 style="margin: 0; font-size: 1.1rem; font-weight: 700; letter-spacing: 0.05rem; text-transform: uppercase; color: #fff;">Zero-Trust IoT<br>Security Fabric</h3>
                         </div>
                     </div>
@@ -1502,16 +1506,16 @@
                     </p>
                     <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.8rem;">
                         <li style="display: flex; align-items: flex-start; gap: 0.7rem; font-size: 0.875rem; color: rgba(255,255,255,0.85);">
-                            <span style="color: #ff4757; font-size: 0.7rem; margin-top: 3px; flex-shrink: 0;">◆</span>
+                            <span style="color: #ff4757; font-size: 0.7rem; margin-top: 3px; flex-shrink: 0;">â—†</span>
                             <span><strong style="color:#fff;">Identity-Based Access Control:</strong> Zero-trust architecture enforced at every communication boundary using Mutual TLS and encrypted OTA channels.</span>
                         </li>
                         <li style="display: flex; align-items: flex-start; gap: 0.7rem; font-size: 0.875rem; color: rgba(255,255,255,0.85);">
-                            <span style="color: #ff4757; font-size: 0.7rem; margin-top: 3px; flex-shrink: 0;">◆</span>
+                            <span style="color: #ff4757; font-size: 0.7rem; margin-top: 3px; flex-shrink: 0;">â—†</span>
                             <span><strong style="color:#fff;">Dynamic Geo-Fencing:</strong> Real-time geospatial boundary enforcement with automated event triggering and full audit trails.</span>
                         </li>
                         <li style="display: flex; align-items: flex-start; gap: 0.7rem; font-size: 0.875rem; color: rgba(255,255,255,0.85);">
-                            <span style="color: #ff4757; font-size: 0.7rem; margin-top: 3px; flex-shrink: 0;">◆</span>
-                            <span><strong style="color:#fff;">Regulatory Compliance:</strong> Fully POPIA and GDPR-compliant data architectures by design — built-in, not bolted on.</span>
+                            <span style="color: #ff4757; font-size: 0.7rem; margin-top: 3px; flex-shrink: 0;">â—†</span>
+                            <span><strong style="color:#fff;">Regulatory Compliance:</strong> Fully POPIA and GDPR-compliant data architectures by design â€” built-in, not bolted on.</span>
                         </li>
                     </ul>
                     <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; font-family: 'Courier New', monospace; font-size: 0.7rem; color: rgba(255,71,87,0.6);">
@@ -1533,9 +1537,9 @@
                    onmouseout="this.style.borderColor='rgba(255,215,0,0.2)';this.style.transform='translateY(0)';this.style.boxShadow='none';">
                     <div style="position: absolute; top: -20px; right: -20px; width: 100px; height: 100px; background: radial-gradient(circle, rgba(255,215,0,0.07) 0%, transparent 70%); pointer-events: none;"></div>
                     <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.2rem;">
-                        <div style="width: 44px; height: 44px; border: 1px solid var(--accent-gold); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; color: var(--accent-gold); flex-shrink: 0;">❖</div>
+                        <div style="width: 44px; height: 44px; border: 1px solid var(--accent-gold); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; color: var(--accent-gold); flex-shrink: 0;">â–</div>
                         <div>
-                            <div style="font-family: 'Courier New', monospace; font-size: 0.65rem; color: rgba(255,215,0,0.7); letter-spacing: 0.2rem; text-transform: uppercase;">SaaS Modules · Ready-to-Deploy</div>
+                            <div style="font-family: 'Courier New', monospace; font-size: 0.65rem; color: rgba(255,215,0,0.7); letter-spacing: 0.2rem; text-transform: uppercase;">SaaS Modules Â· Ready-to-Deploy</div>
                             <h3 style="margin: 0; font-size: 1.1rem; font-weight: 700; letter-spacing: 0.05rem; text-transform: uppercase; color: #fff;">Specialized SaaS<br>Dashboards &amp; Modules</h3>
                         </div>
                     </div>
@@ -1544,15 +1548,15 @@
                     </p>
                     <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.8rem;">
                         <li style="display: flex; align-items: flex-start; gap: 0.7rem; font-size: 0.875rem; color: rgba(255,255,255,0.85);">
-                            <span style="color: var(--accent-gold); font-size: 0.7rem; margin-top: 3px; flex-shrink: 0;">◆</span>
+                            <span style="color: var(--accent-gold); font-size: 0.7rem; margin-top: 3px; flex-shrink: 0;">â—†</span>
                             <span><strong style="color:#fff;">HVAC &amp; Energy Management Dashboard:</strong> Cloud-based real-time electrical insights, remote switching control, and automated anomaly alerts for facility management.</span>
                         </li>
                         <li style="display: flex; align-items: flex-start; gap: 0.7rem; font-size: 0.875rem; color: rgba(255,255,255,0.85);">
-                            <span style="color: var(--accent-gold); font-size: 0.7rem; margin-top: 3px; flex-shrink: 0;">◆</span>
+                            <span style="color: var(--accent-gold); font-size: 0.7rem; margin-top: 3px; flex-shrink: 0;">â—†</span>
                             <span><strong style="color:#fff;">Fluid &amp; Resource Logistics System:</strong> Remote GSM auditing and automated access control (RFID/App-based) for metered resource dispensing.</span>
                         </li>
                         <li style="display: flex; align-items: flex-start; gap: 0.7rem; font-size: 0.875rem; color: rgba(255,255,255,0.85);">
-                            <span style="color: var(--accent-gold); font-size: 0.7rem; margin-top: 3px; flex-shrink: 0;">◆</span>
+                            <span style="color: var(--accent-gold); font-size: 0.7rem; margin-top: 3px; flex-shrink: 0;">â—†</span>
                             <span><strong style="color:#fff;">GIS &amp; Spatial Mapping Suite:</strong> Advanced Geographic Information Systems for tracking mobile assets, visualising complex data, and managing logistics fleets in real-time.</span>
                         </li>
                     </ul>
@@ -1576,30 +1580,30 @@
                    onmouseout="this.style.borderColor='rgba(41,121,255,0.3)';this.style.transform='translateY(0)';this.style.boxShadow='none';">
                     <div style="position: absolute; top: 0; right: 0; width: 300px; height: 100%; background: linear-gradient(135deg, transparent 0%, rgba(41,121,255,0.04) 100%); pointer-events: none;"></div>
                     <div style="display: grid; grid-template-columns: auto 1fr; gap: 2rem; align-items: start;">
-                        <div style="width: 56px; height: 56px; border: 1px solid var(--accent-blue); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; color: var(--accent-blue);">⨦</div>
+                        <div style="width: 56px; height: 56px; border: 1px solid var(--accent-blue); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; color: var(--accent-blue);">â¨¦</div>
                         <div>
-                            <div style="font-family: 'Courier New', monospace; font-size: 0.65rem; color: rgba(41,121,255,0.7); letter-spacing: 0.2rem; text-transform: uppercase; margin-bottom: 0.3rem;">AI-as-a-Service · MLOps · Enterprise Enablement</div>
+                            <div style="font-family: 'Courier New', monospace; font-size: 0.65rem; color: rgba(41,121,255,0.7); letter-spacing: 0.2rem; text-transform: uppercase; margin-bottom: 0.3rem;">AI-as-a-Service Â· MLOps Â· Enterprise Enablement</div>
                             <h3 style="margin: 0 0 0.5rem 0; font-size: 1.3rem; font-weight: 800; letter-spacing: 0.05rem; text-transform: uppercase; color: #fff;">AIaaS &amp; MLOps <span style="color: var(--accent-blue);">// Enterprise Enablement</span></h3>
                             <p style="font-size: 0.9rem; color: rgba(255,255,255,0.7); line-height: 1.7; margin: 0 0 1.5rem 0; max-width: 700px;">
-                                End-to-end enablement for enterprises transitioning to AI-driven operations. We don't just deploy AI — we embed it into your operational culture.
+                                End-to-end enablement for enterprises transitioning to AI-driven operations. We don't just deploy AI â€” we embed it into your operational culture.
                             </p>
                         </div>
                     </div>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-top: 1rem;">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-top: 1rem;">
                         <div style="background: rgba(41,121,255,0.07); border: 1px solid rgba(41,121,255,0.2); padding: 1.5rem;">
-                            <div style="color: var(--accent-blue); font-size: 1.2rem; margin-bottom: 0.7rem;">⚒</div>
+                            <div style="color: var(--accent-blue); font-size: 1.2rem; margin-bottom: 0.7rem;">âš’</div>
                             <strong style="font-size: 0.9rem; color: #fff; display: block; margin-bottom: 0.5rem;">Custom AI Infrastructure</strong>
                             <p style="font-size: 0.82rem; color: rgba(255,255,255,0.65); margin: 0; line-height: 1.6;">Pre-trained models, secure Google Cloud Tunnels, and seamless CI/CD deployment pipelines tailored to your infrastructure stack.</p>
                         </div>
                         <div style="background: rgba(41,121,255,0.07); border: 1px solid rgba(41,121,255,0.2); padding: 1.5rem;">
-                            <div style="color: var(--accent-blue); font-size: 1.2rem; margin-bottom: 0.7rem;">⚗</div>
+                            <div style="color: var(--accent-blue); font-size: 1.2rem; margin-bottom: 0.7rem;">âš—</div>
                             <strong style="font-size: 0.9rem; color: #fff; display: block; margin-bottom: 0.5rem;">AI Skills Labs &amp; Onboarding</strong>
                             <p style="font-size: 0.82rem; color: rgba(255,255,255,0.65); margin: 0; line-height: 1.6;">Immersive, sandbox-based training utilising live data pipelines to upskill enterprise teams in applied AI and edge inference.</p>
                         </div>
                         <div style="background: rgba(41,121,255,0.07); border: 1px solid rgba(41,121,255,0.2); padding: 1.5rem;">
-                            <div style="color: var(--accent-blue); font-size: 1.2rem; margin-bottom: 0.7rem;">⨳</div>
+                            <div style="color: var(--accent-blue); font-size: 1.2rem; margin-bottom: 0.7rem;">â¨³</div>
                             <strong style="font-size: 0.9rem; color: #fff; display: block; margin-bottom: 0.5rem;">MLOps &amp; Model Lifecycle</strong>
-                            <p style="font-size: 0.82rem; color: rgba(255,255,255,0.65); margin: 0; line-height: 1.6;">Continuous model monitoring, retraining pipelines, versioning, and automated deployment — keeping your AI accurate as environments evolve.</p>
+                            <p style="font-size: 0.82rem; color: rgba(255,255,255,0.65); margin: 0; line-height: 1.6;">Continuous model monitoring, retraining pipelines, versioning, and automated deployment â€” keeping your AI accurate as environments evolve.</p>
                         </div>
                     </div>
                     <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
@@ -1620,47 +1624,16 @@
                             transition: all 0.25s ease;
                         " onmouseover="this.style.background='var(--accent-blue)';this.style.color='#000';"
                            onmouseout="this.style.background='rgba(41,121,255,0.08)';this.style.color='var(--accent-blue)';">
-                            Enquire for AIaaS ⟶
+                            Enquire for AIaaS âŸ¶
                         </a>
                     </div>
                 </div>
-
             </div>
+        </section>
 
-            <!-- Manifesto Quote -->
-            <div style="
-                margin-top: 3rem;
-                padding: 2.5rem 3rem;
-                background: linear-gradient(135deg, rgba(0,210,255,0.04) 0%, rgba(41,121,255,0.04) 50%, rgba(80,227,194,0.03) 100%);
-                border: 1px solid rgba(255,255,255,0.08);
-                border-left: 4px solid var(--accent-cyan);
-                position: relative;
-                overflow: hidden;
-            ">
-                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: linear-gradient(90deg, var(--accent-cyan), #a78bfa, #50e3c2, var(--accent-gold)); opacity: 0.5;"></div>
-                <div style="position: absolute; top: 1.5rem; right: 2rem; font-family: 'Courier New', monospace; font-size: 5rem; color: rgba(0,210,255,0.06); line-height: 1; pointer-events: none; user-select: none;">&ldquo;</div>
-                <p style="
-                    font-size: 1.05rem;
-                    line-height: 1.85;
-                    color: rgba(255,255,255,0.80);
-                    margin: 0;
-                    font-style: italic;
-                    max-width: 900px;
-                    position: relative;
-                    z-index: 1;
-                ">
-                    Ionity provides a cloud-native SaaS platform that transforms static industrial infrastructure into living digital twins.
-                    We deploy proprietary edge-computing middleware to capture zero-latency real-time telemetry, powering our AI for
-                    predictive maintenance, zero-trust security, and autonomous operations.
-                    <strong style="color: #fff; font-style: normal;">We turn raw physical data into highly scalable, recurring cloud intelligence.</strong>
-                </p>
-                <div style="margin-top: 1.2rem; display: flex; align-items: center; gap: 1rem;">
-                    <div style="width: 30px; height: 1px; background: var(--accent-cyan);"></div>
-                    <span style="font-family: 'Courier New', monospace; font-size: 0.7rem; letter-spacing: 0.2rem; color: rgba(0,210,255,0.6); text-transform: uppercase;">Ionity &mdash; AEDI Cloud Platform</span>
-                </div>
-            </div>
-
-        </div>
+        <!-- Slide 2: Proximity & RTLS -->
+        <section class="deck-section" id="proximity-rtls-slide">
+            <div class="container">
 
         <!-- ===== PROXIMITY SERVICES & RTLS ===== -->
         <style>
@@ -1693,7 +1666,7 @@
             }
             .prox-grid {
                 display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
                 gap: 1.5rem;
             }
             .prox-card {
@@ -1812,7 +1785,7 @@
             .data-title span { color: var(--accent-gold, #ffd700); }
             .data-grid {
                 display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
                 gap: 1.5rem;
                 margin-top: 2.5rem;
             }
@@ -1900,7 +1873,7 @@
                 <div class="prox-eyebrow">Location Intelligence &amp; Proximity</div>
                 <h2 class="prox-title">PROXIMITY SERVICES<br>&amp; <span>RTLS</span></h2>
                 <p class="prox-subtitle">
-                    Real-Time Location Systems (RTLS) and proximity intelligence are the backbone of the connected industrial floor. Ionity engineers complete indoor and outdoor tracking ecosystems — from BLE beacons to UWB anchors — delivering centimetre-accurate asset location, zone-based automation, and spatial analytics directly into your cloud dashboard.
+                    Real-Time Location Systems (RTLS) and proximity intelligence are the backbone of the connected industrial floor. Ionity engineers complete indoor and outdoor tracking ecosystems â€” from BLE beacons to UWB anchors â€” delivering centimetre-accurate asset location, zone-based automation, and spatial analytics directly into your cloud dashboard.
                 </p>
             </div>
 
@@ -1908,7 +1881,7 @@
 
                 <!-- Card 1: RTLS -->
                 <div class="prox-card">
-                    <div class="prox-card-icon">⌖</div>
+                    <div class="prox-card-icon">âŒ–</div>
                     <div class="prox-card-label">Core Infrastructure</div>
                     <h3>Real-Time Location Systems (RTLS)</h3>
                     <p>Full deployment of UWB, BLE, Wi-Fi, and RFID-based RTLS infrastructure for indoor and outdoor environments. Track assets, personnel, and vehicles with centimetre-to-metre precision, mapped into live 2D/3D digital twin overlays.</p>
@@ -1922,10 +1895,10 @@
 
                 <!-- Card 2: Proximity Triggers -->
                 <div class="prox-card">
-                    <div class="prox-card-icon">◉</div>
+                    <div class="prox-card-icon">â—‰</div>
                     <div class="prox-card-label">Automation Layer</div>
                     <h3>Proximity-Triggered Automation</h3>
-                    <p>Zone-based rules that automatically trigger actions when assets or personnel enter, exit, or dwell within defined proximity zones — from access control and equipment lockouts to automated alerts, lighting, and HVAC control changes.</p>
+                    <p>Zone-based rules that automatically trigger actions when assets or personnel enter, exit, or dwell within defined proximity zones â€” from access control and equipment lockouts to automated alerts, lighting, and HVAC control changes.</p>
                     <div class="prox-tags">
                         <span class="prox-tag">Geofencing</span>
                         <span class="prox-tag">Zone Rules</span>
@@ -1935,7 +1908,7 @@
 
                 <!-- Card 3: Asset Tracking -->
                 <div class="prox-card">
-                    <div class="prox-card-icon">⬡</div>
+                    <div class="prox-card-icon">â¬¡</div>
                     <div class="prox-card-label">Asset Intelligence</div>
                     <h3>Asset &amp; Fleet Tracking</h3>
                     <p>Cloud-unified tracking of movable assets, tooling, and mobile equipment across facilities. Historical path replay, utilisation heatmaps, dwell-time analytics, and predictive loss-prevention alerts delivered into the AEDI CMS.</p>
@@ -1948,7 +1921,7 @@
 
                 <!-- Card 4: Spatial Analytics -->
                 <div class="prox-card">
-                    <div class="prox-card-icon">⊹</div>
+                    <div class="prox-card-icon">âŠ¹</div>
                     <div class="prox-card-label">GIS &amp; Spatial Data</div>
                     <h3>GIS-Integrated Spatial Analytics</h3>
                     <p>Fusing RTLS data with Geographic Information Systems (GIS) layers for multi-site spatial intelligence. Campus flow modelling, outdoor asset GIS pinning, logistics corridor optimisation, and integration with global mapping platforms.</p>
@@ -1961,7 +1934,7 @@
 
                 <!-- Card 5: Personnel Safety -->
                 <div class="prox-card">
-                    <div class="prox-card-icon">⬟</div>
+                    <div class="prox-card-icon">â¬Ÿ</div>
                     <div class="prox-card-label">Safety &amp; Compliance</div>
                     <h3>Personnel Safety &amp; Mustering</h3>
                     <p>Emergency mustering, lone worker monitoring, and proximity-enforced social / safety distancing systems. Real-time personnel accountability dashboards for compliance, with automated audit logs for regulatory reporting.</p>
@@ -1974,10 +1947,10 @@
 
                 <!-- Card 6: Indoor Navigation -->
                 <div class="prox-card">
-                    <div class="prox-card-icon">⟁</div>
+                    <div class="prox-card-icon">âŸ</div>
                     <div class="prox-card-label">Wayfinding</div>
                     <h3>Indoor Navigation &amp; Wayfinding</h3>
-                    <p>Turn-by-turn indoor navigation for large facilities, hospitals, manufacturing plants, and warehouses. Delivered via web, native app, or embedded kiosk — integrated with RTLS anchors for live self-localisation.</p>
+                    <p>Turn-by-turn indoor navigation for large facilities, hospitals, manufacturing plants, and warehouses. Delivered via web, native app, or embedded kiosk â€” integrated with RTLS anchors for live self-localisation.</p>
                     <div class="prox-tags">
                         <span class="prox-tag">Indoor Nav</span>
                         <span class="prox-tag">Kiosk</span>
@@ -1989,31 +1962,32 @@
 
             <!-- RTLS tech bar -->
             <div class="rtls-banner">
-                <div class="rtls-banner-icon">⌖</div>
+                <div class="rtls-banner-icon">âŒ–</div>
                 <div class="rtls-banner-text">
                     <strong>Infrastructure-to-Cloud RTLS Pipeline</strong>
-                    <p>From anchor hardware deployment and firmware to cloud ingestion, AEDI CMS dashboards, and GIS overlays — Ionity delivers the full RTLS stack. Every location datapoint flows in real-time into your digital twin, enabling spatial AI inference at the edge.</p>
+                    <p>From anchor hardware deployment and firmware to cloud ingestion, AEDI CMS dashboards, and GIS overlays â€” Ionity delivers the full RTLS stack. Every location datapoint flows in real-time into your digital twin, enabling spatial AI inference at the edge.</p>
                 </div>
             </div>
-        </div>
-        <!-- END PROXIMITY & RTLS -->
+            </div>
+        </section>
 
-        <!-- ===== DATA SERVICES & CLOUD STORAGE ===== -->
-        <div class="data-section">
+        <!-- Slide 3: Data Services -->
+        <section class="deck-section" id="data-services-slide">
+            <div class="container">
             <div class="data-eyebrow">Cloud Data Intelligence</div>
             <h2 class="data-title">DATA SERVICES &amp;<br><span>CLOUD STORAGE</span></h2>
             <p class="prox-subtitle" style="color: rgba(255,255,255,0.6); font-size: 0.95rem; max-width: 720px; line-height: 1.7;">
-                From raw telemetry ingestion to long-term archival and real-time analytics pipelines, Ionity provides the full spectrum of industrial cloud data services — built for scale, security, and actionable intelligence.
+                From raw telemetry ingestion to long-term archival and real-time analytics pipelines, Ionity provides the full spectrum of industrial cloud data services â€” built for scale, security, and actionable intelligence.
             </p>
 
             <div class="data-grid">
 
                 <!-- Card 1: Time-Series Storage -->
                 <div class="data-card">
-                    <div class="data-card-icon">⏱</div>
+                    <div class="data-card-icon">â±</div>
                     <div class="data-card-label">Telemetry Backbone</div>
                     <h3>Time-Series Data Storage</h3>
-                    <p>High-throughput ingestion and cloud storage for IoT telemetry, sensor readings, and event streams. Purpose-built for industrial scale — millions of data points per second, retained and queryable in real-time.</p>
+                    <p>High-throughput ingestion and cloud storage for IoT telemetry, sensor readings, and event streams. Purpose-built for industrial scale â€” millions of data points per second, retained and queryable in real-time.</p>
                     <div class="data-tags">
                         <span class="data-tag">InfluxDB</span>
                         <span class="data-tag">MQTT</span>
@@ -2023,10 +1997,10 @@
 
                 <!-- Card 2: Data Lakes -->
                 <div class="data-card">
-                    <div class="data-card-icon">⫴</div>
+                    <div class="data-card-icon">â«´</div>
                     <div class="data-card-label">Long-Term Archival</div>
                     <h3>Data Lakes &amp; Cold Storage</h3>
-                    <p>Scalable cloud data lake architecture for multi-year historical retention of operational data. Automated tiering between hot, warm, and cold storage — keeping costs optimised while data remains queryable on demand.</p>
+                    <p>Scalable cloud data lake architecture for multi-year historical retention of operational data. Automated tiering between hot, warm, and cold storage â€” keeping costs optimised while data remains queryable on demand.</p>
                     <div class="data-tags">
                         <span class="data-tag">Data Lake</span>
                         <span class="data-tag">Tiered Storage</span>
@@ -2036,7 +2010,7 @@
 
                 <!-- Card 3: Real-Time Pipelines -->
                 <div class="data-card">
-                    <div class="data-card-icon">⟶</div>
+                    <div class="data-card-icon">âŸ¶</div>
                     <div class="data-card-label">Stream Processing</div>
                     <h3>Real-Time Data Pipelines</h3>
                     <p>End-to-end streaming pipelines that transform raw edge data into structured, enriched events in milliseconds. Kafka, MQTT bridge, and custom Ionity middleware ensure zero-latency delivery from hardware to dashboard.</p>
@@ -2049,10 +2023,10 @@
 
                 <!-- Card 4: Analytics & BI -->
                 <div class="data-card">
-                    <div class="data-card-icon">⫶</div>
+                    <div class="data-card-icon">â«¶</div>
                     <div class="data-card-label">Business Intelligence</div>
                     <h3>Analytics &amp; Reporting Dashboards</h3>
-                    <p>Interactive cloud dashboards with drill-down analytics, KPI trend visualisation, ESG reporting, and automated scheduled reports — turning raw operational data into executive-grade business intelligence.</p>
+                    <p>Interactive cloud dashboards with drill-down analytics, KPI trend visualisation, ESG reporting, and automated scheduled reports â€” turning raw operational data into executive-grade business intelligence.</p>
                     <div class="data-tags">
                         <span class="data-tag">BI Dashboards</span>
                         <span class="data-tag">ESG</span>
@@ -2062,10 +2036,10 @@
 
                 <!-- Card 5: Cloud Backup & DR -->
                 <div class="data-card">
-                    <div class="data-card-icon">⊛</div>
+                    <div class="data-card-icon">âŠ›</div>
                     <div class="data-card-label">Resilience</div>
                     <h3>Cloud Backup &amp; Disaster Recovery</h3>
-                    <p>Automated multi-region backup schedules, encrypted snapshots, and tested disaster recovery runbooks. RPO and RTO objectives aligned to your operational criticality — from minutes to near-zero downtime failover.</p>
+                    <p>Automated multi-region backup schedules, encrypted snapshots, and tested disaster recovery runbooks. RPO and RTO objectives aligned to your operational criticality â€” from minutes to near-zero downtime failover.</p>
                     <div class="data-tags">
                         <span class="data-tag">Multi-Region</span>
                         <span class="data-tag">Encrypted</span>
@@ -2075,7 +2049,7 @@
 
                 <!-- Card 6: Data Governance -->
                 <div class="data-card">
-                    <div class="data-card-icon">⬡</div>
+                    <div class="data-card-icon">â¬¡</div>
                     <div class="data-card-label">Governance &amp; Compliance</div>
                     <h3>Data Governance &amp; Security</h3>
                     <p>Role-based access control, data lineage tracking, POPIA/GDPR-aligned retention policies, and end-to-end encryption at rest and in transit. Full audit trails for every read, write, and export event across your data estate.</p>
@@ -2089,55 +2063,57 @@
             </div>
 
             <div class="data-manifesto">
-                Every byte matters. Ionity's data infrastructure is designed from the ground up for <strong>industrial-grade reliability</strong> — ingesting raw physical-world events, enriching them through AI pipelines, and surfacing them as <strong>scalable, governed, actionable cloud intelligence</strong> across your entire operational ecosystem.
+                Every byte matters. Ionity's data infrastructure is designed from the ground up for <strong>industrial-grade reliability</strong> â€” ingesting raw physical-world events, enriching them through AI pipelines, and surfacing them as <strong>scalable, governed, actionable cloud intelligence</strong> across your entire operational ecosystem.
             </div>
-        </div>
-        <!-- END DATA SERVICES -->
+            </div>
+        </section>
 
-        <!-- Service Segments -->
+        <!-- Slide 4: Ecosystem & Portfolio -->
+        <section class="deck-section" id="portfolio-slide">
+            <div class="container">
         <div class="segments-section" style="margin-bottom: 6rem;">
             <h2 style="font-size: 2rem; font-weight: 300; letter-spacing: 0.2rem; margin-bottom: 3rem; color: #fff; border-left: 2px solid var(--accent-cyan); padding-left: 1rem;">ECOSYSTEM <span style="color: var(--accent-cyan);">SEGMENTS</span></h2>
             <div class="system-grid">
                 
                 <!-- CLOUD -->
                 <div class="card" style="border-top: 3px solid var(--accent-cyan);">
-                    <div class="card-icon" style="font-size: 2.5rem;">☁</div>
+                    <div class="card-icon" style="font-size: 2.5rem;">â˜</div>
                     <h3 style="letter-spacing: 0.1rem;">CLOUD</h3>
                     <p style="margin-bottom: 1.5rem; font-style: italic; font-size: 0.85rem;">Global scale processing and storage</p>
                     <ul style="list-style: none; padding: 0; margin: 0; color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">
-                        <li style="margin-bottom: 1rem;"><span style="color: var(--accent-cyan); margin-right: 8px;">⟁</span> <strong>Data Management:</strong> Secure, scalable architectures.</li>
-                        <li style="margin-bottom: 1rem;"><span style="color: var(--accent-cyan); margin-right: 8px;">⟁</span> <strong>AI as a Service (AIaaS):</strong> Custom and premade artificial intelligence, machine learning, and cognitive computing tools, pre-trained models, training infrastructure, and MLOps tools.</li>
-                        <li style="margin-bottom: 1rem;"><span style="color: var(--accent-cyan); margin-right: 8px;">⟁</span> <strong>Cloud Storage:</strong> Reliable hosted storage and Cloud Services.</li>
-                        <li style="margin-bottom: 1rem;"><span style="color: var(--accent-cyan); margin-right: 8px;">⟁</span> <strong>Google Cloud Tunnels:</strong> Hosted secure tunnels and enterprise security networks.</li>
-                        <li style="margin-bottom: 1rem;"><span style="color: var(--accent-cyan); margin-right: 8px;">⟁</span> <strong>Infrastructure & Dev OPS:</strong> Seamless integration, automation, and deployment pipelines.</li>
-                        <li><span style="color: var(--accent-cyan); margin-right: 8px;">⟁</span> <strong>Custom to Client Needs:</strong> <a href="contact.html" style="color: var(--accent-cyan);">Enquire for more on request</a>.</li>
+                        <li style="margin-bottom: 1rem;"><span style="color: var(--accent-cyan); margin-right: 8px;">âŸ</span> <strong>Data Management:</strong> Secure, scalable architectures.</li>
+                        <li style="margin-bottom: 1rem;"><span style="color: var(--accent-cyan); margin-right: 8px;">âŸ</span> <strong>AI as a Service (AIaaS):</strong> Custom and premade artificial intelligence, machine learning, and cognitive computing tools, pre-trained models, training infrastructure, and MLOps tools.</li>
+                        <li style="margin-bottom: 1rem;"><span style="color: var(--accent-cyan); margin-right: 8px;">âŸ</span> <strong>Cloud Storage:</strong> Reliable hosted storage and Cloud Services.</li>
+                        <li style="margin-bottom: 1rem;"><span style="color: var(--accent-cyan); margin-right: 8px;">âŸ</span> <strong>Google Cloud Tunnels:</strong> Hosted secure tunnels and enterprise security networks.</li>
+                        <li style="margin-bottom: 1rem;"><span style="color: var(--accent-cyan); margin-right: 8px;">âŸ</span> <strong>Infrastructure & Dev OPS:</strong> Seamless integration, automation, and deployment pipelines.</li>
+                        <li><span style="color: var(--accent-cyan); margin-right: 8px;">âŸ</span> <strong>Custom to Client Needs:</strong> <a href="contact.html" style="color: var(--accent-cyan);">Enquire for more on request</a>.</li>
                     </ul>
                 </div>
 
                 <!-- EDGE -->
                 <div class="card" style="border-top: 3px solid #50e3c2;">
-                    <div class="card-icon" style="font-size: 2.5rem; color: #50e3c2;">⨠</div>
+                    <div class="card-icon" style="font-size: 2.5rem; color: #50e3c2;">â¨ </div>
                     <h3 style="letter-spacing: 0.1rem;">EDGE (LOCAL)</h3>
                     <p style="margin-bottom: 1.5rem; font-style: italic; font-size: 0.85rem;">Zero-latency local hardware intelligence</p>
                     <ul style="list-style: none; padding: 0; margin: 0; color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">
-                        <li style="margin-bottom: 1rem;"><span style="color: #50e3c2; margin-right: 8px;">⟁</span> <strong>On-Device AI:</strong> Real-time inference without cloud dependency or latency.</li>
-                        <li style="margin-bottom: 1rem;"><span style="color: #50e3c2; margin-right: 8px;">⟁</span> <strong>IoT Sensor Nodes:</strong> Secure local data acquisition and hardware telemetry.</li>
-                        <li style="margin-bottom: 1rem;"><span style="color: #50e3c2; margin-right: 8px;">⟁</span> <strong>Zero-Trust Security:</strong> Localized air-gapped protection mechanisms.</li>
-                        <li style="margin-bottom: 1rem;"><span style="color: #50e3c2; margin-right: 8px;">⟁</span> <strong>Power-Saving Units:</strong> Ultra-low power hardware deployments and sleep cycle optimization.</li>
-                        <li><span style="color: #50e3c2; margin-right: 8px;">⟁</span> <strong>SCADA Integration:</strong> Direct machine-level control systems and preventative maintenance.</li>
+                        <li style="margin-bottom: 1rem;"><span style="color: #50e3c2; margin-right: 8px;">âŸ</span> <strong>On-Device AI:</strong> Real-time inference without cloud dependency or latency.</li>
+                        <li style="margin-bottom: 1rem;"><span style="color: #50e3c2; margin-right: 8px;">âŸ</span> <strong>IoT Sensor Nodes:</strong> Secure local data acquisition and hardware telemetry.</li>
+                        <li style="margin-bottom: 1rem;"><span style="color: #50e3c2; margin-right: 8px;">âŸ</span> <strong>Zero-Trust Security:</strong> Localized air-gapped protection mechanisms.</li>
+                        <li style="margin-bottom: 1rem;"><span style="color: #50e3c2; margin-right: 8px;">âŸ</span> <strong>Power-Saving Units:</strong> Ultra-low power hardware deployments and sleep cycle optimization.</li>
+                        <li><span style="color: #50e3c2; margin-right: 8px;">âŸ</span> <strong>SCADA Integration:</strong> Direct machine-level control systems and preventative maintenance.</li>
                     </ul>
                 </div>
 
                 <!-- HYBRID -->
                 <div class="card" style="border-top: 3px solid var(--accent-gold);">
-                    <div class="card-icon" style="font-size: 2.5rem; color: var(--accent-gold);">❖</div>
+                    <div class="card-icon" style="font-size: 2.5rem; color: var(--accent-gold);">â–</div>
                     <h3 style="letter-spacing: 0.1rem;">HYBRID</h3>
                     <p style="margin-bottom: 1.5rem; font-style: italic; font-size: 0.85rem;">The complete unified architecture</p>
                     <ul style="list-style: none; padding: 0; margin: 0; color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">
-                        <li style="margin-bottom: 1rem;"><span style="color: var(--accent-gold); margin-right: 8px;">⟁</span> <strong>Cloud-to-Edge Continuity:</strong> Fluid data pipelines between local nodes and global cloud presence.</li>
-                        <li style="margin-bottom: 1rem;"><span style="color: var(--accent-gold); margin-right: 8px;">⟁</span> <strong>Digital Twin Architecture:</strong> Physical assets mirrored dynamically in 3D cloud interfaces.</li>
-                        <li style="margin-bottom: 1rem;"><span style="color: var(--accent-gold); margin-right: 8px;">⟁</span> <strong>Distributed Workloads:</strong> Heavy AI training on cloud, rapid inference execution on the edge.</li>
-                        <li><span style="color: var(--accent-gold); margin-right: 8px;">⟁</span> <strong>Resilient Operations:</strong> Continuous functioning even when cloud connections are interrupted.</li>
+                        <li style="margin-bottom: 1rem;"><span style="color: var(--accent-gold); margin-right: 8px;">âŸ</span> <strong>Cloud-to-Edge Continuity:</strong> Fluid data pipelines between local nodes and global cloud presence.</li>
+                        <li style="margin-bottom: 1rem;"><span style="color: var(--accent-gold); margin-right: 8px;">âŸ</span> <strong>Digital Twin Architecture:</strong> Physical assets mirrored dynamically in 3D cloud interfaces.</li>
+                        <li style="margin-bottom: 1rem;"><span style="color: var(--accent-gold); margin-right: 8px;">âŸ</span> <strong>Distributed Workloads:</strong> Heavy AI training on cloud, rapid inference execution on the edge.</li>
+                        <li><span style="color: var(--accent-gold); margin-right: 8px;">âŸ</span> <strong>Resilient Operations:</strong> Continuous functioning even when cloud connections are interrupted.</li>
                     </ul>
                 </div>
 
@@ -2175,7 +2151,7 @@
             <div class="card">
                 <div class="card-inner">
                     <div class="card-front">
-                        <div class="card-icon">⟁</div>
+                        <div class="card-icon">âŸ</div>
                         <h3>IoT INTEGRATION</h3>
                         <div class="card-status">SENSOR GRID</div>
                     </div>
@@ -2194,7 +2170,7 @@
             <div class="card">
                 <div class="card-inner">
                     <div class="card-front">
-                        <div class="card-icon">⌬</div>
+                        <div class="card-icon">âŒ¬</div>
                         <h3>AI & ANALYTICS</h3>
                         <div class="card-status">MODEL: ACTIVE</div>
                     </div>
@@ -2213,7 +2189,7 @@
             <div class="card">
                 <div class="card-inner">
                     <div class="card-front">
-                        <div class="card-icon">❖</div>
+                        <div class="card-icon">â–</div>
                         <h3>ECOSYSTEM DESIGN</h3>
                         <div class="card-status">ARCH: HYBRID</div>
                     </div>
@@ -2232,7 +2208,7 @@
             <div class="card">
                 <div class="card-inner">
                     <div class="card-front">
-                        <div class="card-icon">☇</div>
+                        <div class="card-icon">â˜‡</div>
                         <h3>SELF-SUSTAINED AUTO</h3>
                         <div class="card-status">AUTO: L5</div>
                     </div>
@@ -2251,7 +2227,7 @@
             <div class="card">
                 <div class="card-inner">
                     <div class="card-front">
-                        <div class="card-icon">⨠</div>
+                        <div class="card-icon">â¨ </div>
                         <h3>EDGE COMPUTING</h3>
                         <div class="card-status">LATENCY: ZERO</div>
                     </div>
@@ -2270,15 +2246,15 @@
             <div class="card">
                 <div class="card-inner">
                     <div class="card-front">
-                        <div class="card-icon">◉</div>
+                        <div class="card-icon">â—‰</div>
                         <h3>MONITORING</h3>
-                        <div class="card-status">VIEW: 360°</div>
+                        <div class="card-status">VIEW: 360Â°</div>
                     </div>
                     <div class="card-back">
                         <h3>MONITORING</h3>
                         <p>Comprehensive remote oversight for industrial assets. 24/7 visuals and status tracking from anywhere in the world.</p>
                         <div class="card-meta">
-                            <span>VIEW: 360°</span>
+                            <span>VIEW: 360Â°</span>
                             <span>ALERT: INSTANT</span>
                         </div>
                     </div>
@@ -2289,7 +2265,7 @@
             <div class="card">
                 <div class="card-inner">
                     <div class="card-front">
-                        <div class="card-icon">⫳</div>
+                        <div class="card-icon">â«³</div>
                         <h3>DATA ACQUISITION</h3>
                         <div class="card-status">DAQ: ACTIVE</div>
                     </div>
@@ -2308,7 +2284,7 @@
             <div class="card">
                 <div class="card-inner">
                     <div class="card-front">
-                        <div class="card-icon">⬡</div>
+                        <div class="card-icon">â¬¡</div>
                         <h3>PREVENTATIVE MAINT</h3>
                         <div class="card-status">UPTIME: MAX</div>
                     </div>
@@ -2327,7 +2303,7 @@
             <div class="card">
                 <div class="card-inner">
                     <div class="card-front">
-                        <div class="card-icon">⌖</div>
+                        <div class="card-icon">âŒ–</div>
                         <h3>QUOTE ACCURACY</h3>
                         <div class="card-status">COST: PRECISE</div>
                     </div>
@@ -2346,7 +2322,7 @@
             <div class="card">
                 <div class="card-inner">
                     <div class="card-front">
-                        <div class="card-icon">⏚</div>
+                        <div class="card-icon">âš</div>
                         <h3>ENERGY ANALYTICS</h3>
                         <div class="card-status">EFFICIENCY: HIGH</div>
                     </div>
@@ -2365,7 +2341,7 @@
             <div class="card">
                 <div class="card-inner">
                     <div class="card-front">
-                        <div class="card-icon">⨦</div>
+                        <div class="card-icon">â¨¦</div>
                         <h3>AI & IoT</h3>
                         <div class="card-status">NEURAL MESH</div>
                     </div>
@@ -2384,7 +2360,7 @@
             <div class="card">
                 <div class="card-inner">
                     <div class="card-front">
-                        <div class="card-icon">⦾</div>
+                        <div class="card-icon">â¦¾</div>
                         <h3>AEDI CORE</h3>
                         <div class="card-status">LIVING GRID</div>
                     </div>
@@ -2403,7 +2379,7 @@
             <div class="card">
                 <div class="card-inner">
                     <div class="card-front">
-                        <div class="card-icon">⧈</div>
+                        <div class="card-icon">â§ˆ</div>
                         <h3>HARDWARE</h3>
                         <div class="card-status">INDUSTRIAL</div>
                     </div>
@@ -2422,7 +2398,7 @@
             <div class="card">
                 <div class="card-inner">
                     <div class="card-front">
-                        <div class="card-icon">🜨</div>
+                        <div class="card-icon">ðŸœ¨</div>
                         <h3>GIS & SPATIAL</h3>
                         <div class="card-status">MAPPING</div>
                     </div>
@@ -2441,7 +2417,7 @@
             <div class="card">
                 <div class="card-inner">
                     <div class="card-front">
-                        <div class="card-icon">⨝</div>
+                        <div class="card-icon">â¨</div>
                         <h3>SYSTEM INTEGRATIONS</h3>
                         <div class="card-status">API</div>
                     </div>
@@ -2460,7 +2436,7 @@
             <div class="card">
                 <div class="card-inner">
                     <div class="card-front">
-                        <div class="card-icon">⚒</div>
+                        <div class="card-icon">âš’</div>
                         <h3>SOFTWARE DEV</h3>
                         <div class="card-status">DEV: IN-HOUSE</div>
                     </div>
@@ -2475,10 +2451,12 @@
                 </div>
             </div>
             
-        </div>
-        </div>
-        <div class="slide-indicator"></div>
-        </div>
+            </div>
+        </section>
+
+        <!-- Slide 5: Inhouse Solutions -->
+        <section class="deck-section" id="inhouse-solutions-slide">
+            <div class="container">
 
         <!-- Inhouse Solutions Hero -->
         <div class="hero-section">
@@ -2499,7 +2477,7 @@
              <div class="card">
                 <div class="card-inner">
                     <div class="card-front">
-                        <div class="card-icon">✳</div>
+                        <div class="card-icon">âœ³</div>
                         <h3>SMART AC</h3>
                         <div class="card-status">HVAC: LIVE</div>
                     </div>
@@ -2524,7 +2502,7 @@
             <div class="card">
                 <div class="card-inner">
                     <div class="card-front">
-                        <div class="card-icon">≋</div>
+                        <div class="card-icon">â‰‹</div>
                         <h3>WATER ATM</h3>
                         <div class="card-status">FLOW: METERED</div>
                     </div>
@@ -2549,7 +2527,7 @@
             <div class="card">
                 <div class="card-inner">
                     <div class="card-front">
-                        <div class="card-icon">☼</div>
+                        <div class="card-icon">â˜¼</div>
                         <h3>ENERGY METER</h3>
                         <div class="card-status">SOLAR: TRACKED</div>
                     </div>
@@ -2574,7 +2552,7 @@
             <div class="card">
                 <div class="card-inner">
                     <div class="card-front">
-                        <div class="card-icon">∰</div>
+                        <div class="card-icon">âˆ°</div>
                         <h3>GROUND WATER</h3>
                         <div class="card-status">PWR: SOLAR</div>
                     </div>
@@ -2599,13 +2577,13 @@
             <div class="card">
                 <div class="card-inner">
                     <div class="card-front">
-                        <div class="card-icon">⧉</div>
+                        <div class="card-icon">â§‰</div>
                         <h3>ERP SOFTWARE</h3>
                         <div class="card-status">AI: ENHANCED</div>
                     </div>
                     <div class="card-back">
                         <h3>ERP Software Relations</h3>
-                        <p>Human insight and monitoring software. AI-enhanced creation — not just innovation. Secure and safe.</p>
+                        <p>Human insight and monitoring software. AI-enhanced creation â€” not just innovation. Secure and safe.</p>
                         <div class="card-meta">
                             <span>AI: ENHANCED</span>
                             <span><a href="contact.html?subject=ERP%20Software%20Pre-Order" style="color: var(--accent-gold); text-decoration: none;">PRE-ORDER</a></span>
@@ -2614,10 +2592,12 @@
                 </div>
             </div>
 
-        </div>
-        </div>
-        <div class="slide-indicator"></div>
-        </div>
+            </div>
+        </section>
+
+        <!-- Slide 6: Industries Deployed -->
+        <section class="deck-section" id="industries-deployed-slide">
+            <div class="container">
 
         <!-- Industries Section -->
         <div class="hero-section">
@@ -2636,7 +2616,7 @@
             <div class="card">
                 <div class="card-inner">
                     <div class="card-front">
-                        <div class="card-icon">⛟</div>
+                        <div class="card-icon">â›Ÿ</div>
                         <h3>TRANSPORT</h3>
                         <div class="card-status">LOGISTICS: LIVE</div>
                     </div>
@@ -2653,7 +2633,7 @@
             <div class="card">
                 <div class="card-inner">
                     <div class="card-front">
-                        <div class="card-icon">↯</div>
+                        <div class="card-icon">â†¯</div>
                         <h3>ENERGY</h3>
                         <div class="card-status">SOLAR: REFINED</div>
                     </div>
@@ -2670,7 +2650,7 @@
             <div class="card">
                 <div class="card-inner">
                     <div class="card-front">
-                        <div class="card-icon">✛</div>
+                        <div class="card-icon">âœ›</div>
                         <h3>MEDICAL</h3>
                         <div class="card-status">DATA: SECURE</div>
                     </div>
@@ -2687,7 +2667,7 @@
             <div class="card">
                 <div class="card-inner">
                     <div class="card-front">
-                        <div class="card-icon">⫷</div>
+                        <div class="card-icon">â«·</div>
                         <h3>BANKING</h3>
                         <div class="card-status">VIDEO: ASSIST</div>
                     </div>
@@ -2704,7 +2684,7 @@
             <div class="card">
                 <div class="card-inner">
                     <div class="card-front">
-                        <div class="card-icon">🛡</div>
+                        <div class="card-icon">ðŸ›¡</div>
                         <h3>SECURITY</h3>
                         <div class="card-status">THREAT: ZERO</div>
                     </div>
@@ -2721,7 +2701,7 @@
             <div class="card">
                 <div class="card-inner">
                     <div class="card-front">
-                        <div class="card-icon">⨁</div>
+                        <div class="card-icon">â¨</div>
                         <h3>GIS</h3>
                         <div class="card-status">MAP: PRECISE</div>
                     </div>
@@ -2738,7 +2718,7 @@
             <div class="card">
                 <div class="card-inner">
                     <div class="card-front">
-                        <div class="card-icon">⫸</div>
+                        <div class="card-icon">â«¸</div>
                         <h3>PREMADE-SOLUTIONS</h3>
                         <div class="card-status">SETUP: FAST</div>
                     </div>
@@ -2755,7 +2735,7 @@
             <div class="card">
                 <div class="card-inner">
                     <div class="card-front">
-                        <div class="card-icon">⨅</div>
+                        <div class="card-icon">â¨…</div>
                         <h3>MINING</h3>
                         <div class="card-status">ENV: HARSH</div>
                     </div>
@@ -2772,7 +2752,7 @@
             <div class="card">
                 <div class="card-inner">
                     <div class="card-front">
-                        <div class="card-icon">⌂</div>
+                        <div class="card-icon">âŒ‚</div>
                         <h3>HOSPITALITY</h3>
                         <div class="card-status">COMFORT: AUTO</div>
                     </div>
@@ -2789,7 +2769,7 @@
             <div class="card">
                 <div class="card-inner">
                     <div class="card-front">
-                        <div class="card-icon">⊞</div>
+                        <div class="card-icon">âŠž</div>
                         <h3>RETAIL</h3>
                         <div class="card-status">TRAFFIC: LIVE</div>
                     </div>
@@ -2806,7 +2786,7 @@
             <div class="card">
                 <div class="card-inner">
                     <div class="card-front">
-                        <div class="card-icon">⧇</div>
+                        <div class="card-icon">â§‡</div>
                         <h3>CORPORATE IT</h3>
                         <div class="card-status">SERVER: COOL</div>
                     </div>
@@ -2823,7 +2803,7 @@
             <div class="card">
                 <div class="card-inner">
                     <div class="card-front">
-                        <div class="card-icon">⬢</div>
+                        <div class="card-icon">â¬¢</div>
                         <h3>INDUSTRIAL</h3>
                         <div class="card-status">PLANT: AUTO</div>
                     </div>
@@ -2837,10 +2817,12 @@
                     </div>
                 </div>
             </div>
-        </div>
-        </div>
-        <div class="slide-indicator"></div>
-        </div>
+            </div>
+        </section>
+
+        <!-- Slide 7: Integrations -->
+        <section class="deck-section" id="integrations-slide">
+            <div class="container">
 
         <!-- AEDI Integrations Hero -->
         <div class="hero-section">
@@ -2849,7 +2831,7 @@
                 AEDI // CORE
             </div>
             <p class="hero-desc">
-                Antwerp Ecosystem Designs Ionity — the "IO" of Integrations. We don't just build devices; we engineer the living ecosystem that binds them together. Every protocol, every platform, every device — unified under one intelligent architecture that communicates, learns, and reacts in real time.
+                Antwerp Ecosystem Designs Ionity â€” the "IO" of Integrations. We don't just build devices; we engineer the living ecosystem that binds them together. Every protocol, every platform, every device â€” unified under one intelligent architecture that communicates, learns, and reacts in real time.
             </p>
         </div>
 
@@ -2861,13 +2843,13 @@
             <div class="card">
                 <div class="card-inner">
                     <div class="card-front">
-                        <div class="card-icon">⤡</div>
+                        <div class="card-icon">â¤¡</div>
                         <h3>CROSS-PLATFORM</h3>
                         <div class="card-status">OS: AGNOSTIC</div>
                     </div>
                     <div class="card-back">
                         <h3>Cross-Platform</h3>
-                        <p>Platform-agnostic by design. AEDI deploys natively across Linux, Windows, and embedded RTOS environments — one unified runtime, zero compatibility compromises, from industrial gateways to constrained microcontrollers.</p>
+                        <p>Platform-agnostic by design. AEDI deploys natively across Linux, Windows, and embedded RTOS environments â€” one unified runtime, zero compatibility compromises, from industrial gateways to constrained microcontrollers.</p>
                         <div class="card-meta">
                             <span>OS: AGNOSTIC</span>
                             <span>RUNTIME: NATIVE</span>
@@ -2879,13 +2861,13 @@
             <div class="card">
                 <div class="card-inner">
                     <div class="card-front">
-                        <div class="card-icon">⨳</div>
+                        <div class="card-icon">â¨³</div>
                         <h3>MACHINE LEARNING</h3>
                         <div class="card-status">EDGE: AI</div>
                     </div>
                     <div class="card-back">
                         <h3>Machine Learning at the Edge</h3>
-                        <p>Deploy and orchestrate ML models directly on edge hardware for sub-millisecond, real-time decisioning. Models are trained centrally and pushed via OTA pipelines — enabling autonomous intelligence where cloud connectivity cannot be guaranteed.</p>
+                        <p>Deploy and orchestrate ML models directly on edge hardware for sub-millisecond, real-time decisioning. Models are trained centrally and pushed via OTA pipelines â€” enabling autonomous intelligence where cloud connectivity cannot be guaranteed.</p>
                         <div class="card-meta">
                             <span>EDGE: AI</span>
                             <span>INFER: LOCAL</span>
@@ -2897,13 +2879,13 @@
             <div class="card">
                 <div class="card-inner">
                     <div class="card-front">
-                        <div class="card-icon">⫯</div>
+                        <div class="card-icon">â«¯</div>
                         <h3>DATA CAPTURING</h3>
                         <div class="card-status">FREQ: HIGH</div>
                     </div>
                     <div class="card-back">
                         <h3>High-Fidelity Data Capturing</h3>
-                        <p>AEDI's sensor mesh acquires high-resolution telemetry at industrial sampling rates. From voltage waveforms to CSI signals — every data point is timestamped, logged, and streamed to cloud archives for deep retrospective analysis and pattern recognition.</p>
+                        <p>AEDI's sensor mesh acquires high-resolution telemetry at industrial sampling rates. From voltage waveforms to CSI signals â€” every data point is timestamped, logged, and streamed to cloud archives for deep retrospective analysis and pattern recognition.</p>
                         <div class="card-meta">
                             <span>FREQ: HIGH</span>
                             <span>LOG: CLOUD</span>
@@ -2915,13 +2897,13 @@
             <div class="card">
                 <div class="card-inner">
                     <div class="card-front">
-                        <div class="card-icon">◬</div>
+                        <div class="card-icon">â—¬</div>
                         <h3>GEO FENCING</h3>
                         <div class="card-status">ZONE: ACTIVE</div>
                     </div>
                     <div class="card-back">
                         <h3>Dynamic GEO Fencing</h3>
-                        <p>Real-time geospatial boundary enforcement with automated event triggering based on live asset location. Define, monitor, and enforce custom operational zones — from industrial exclusion perimeters to logistics delivery corridors — with instant alerts and full audit trails.</p>
+                        <p>Real-time geospatial boundary enforcement with automated event triggering based on live asset location. Define, monitor, and enforce custom operational zones â€” from industrial exclusion perimeters to logistics delivery corridors â€” with instant alerts and full audit trails.</p>
                         <div class="card-meta">
                             <span>ZONE: ACTIVE</span>
                             <span>BOUNDARY: LIVE</span>
@@ -2934,13 +2916,13 @@
             <div class="card">
                 <div class="card-inner">
                     <div class="card-front">
-                        <div class="card-icon">⊳</div>
+                        <div class="card-icon">âŠ³</div>
                         <h3>NOTIFY OTA</h3>
                         <div class="card-status">OTA: LIVE</div>
                     </div>
                     <div class="card-back">
                         <h3>Notify OTA & PdM</h3>
-                        <p>Broadcast firmware and configuration updates across all connected hardware and software endpoints simultaneously — zero downtime, zero manual intervention. The integrated PdM engine dispatches predictive maintenance alerts in real time the moment anomalous behaviour is detected, preventing failures before they occur.</p>
+                        <p>Broadcast firmware and configuration updates across all connected hardware and software endpoints simultaneously â€” zero downtime, zero manual intervention. The integrated PdM engine dispatches predictive maintenance alerts in real time the moment anomalous behaviour is detected, preventing failures before they occur.</p>
                         <div class="card-meta">
                             <span>OTA: LIVE</span>
                             <span>PdM: ACTIVE</span>
@@ -2953,13 +2935,13 @@
             <div class="card">
                 <div class="card-inner">
                     <div class="card-front">
-                        <div class="card-icon">⇌</div>
+                        <div class="card-icon">â‡Œ</div>
                         <h3>CROSS-DEVICE</h3>
                         <div class="card-status">SYNC: LIVE</div>
                     </div>
                     <div class="card-back">
                         <h3>Cross-Device Synchronisation</h3>
-                        <p>Unified state synchronisation across all endpoint types — mobile apps, desktop dashboards, embedded nodes, and cloud services. A single action propagates instantly across every connected device in the ecosystem, maintaining coherent, conflict-free data in real time.</p>
+                        <p>Unified state synchronisation across all endpoint types â€” mobile apps, desktop dashboards, embedded nodes, and cloud services. A single action propagates instantly across every connected device in the ecosystem, maintaining coherent, conflict-free data in real time.</p>
                         <div class="card-meta">
                             <span>SYNC: LIVE</span>
                             <span>DEVICES: ALL</span>
@@ -2972,13 +2954,13 @@
             <div class="card">
                 <div class="card-inner">
                     <div class="card-front">
-                        <div class="card-icon">◈</div>
+                        <div class="card-icon">â—ˆ</div>
                         <h3>DATA SECURITY</h3>
                         <div class="card-status">POSTURE: HARDENED</div>
                     </div>
                     <div class="card-back">
                         <h3>Data Security & Privacy</h3>
-                        <p>Zero-trust security enforced at every communication boundary. Mutual TLS, token-based authentication, encrypted OTA channels, and hardware-level attestation ensure no device, service, or data packet is ever implicitly trusted — from embedded node to cloud endpoint. Full POPIA / GDPR compliance by design.</p>
+                        <p>Zero-trust security enforced at every communication boundary. Mutual TLS, token-based authentication, encrypted OTA channels, and hardware-level attestation ensure no device, service, or data packet is ever implicitly trusted â€” from embedded node to cloud endpoint. Full POPIA / GDPR compliance by design.</p>
                         <div class="card-meta">
                             <span>AUTH: MULTI-LAYER</span>
                             <span>COMPLY: GDPR</span>
@@ -2991,13 +2973,13 @@
             <div class="card">
                 <div class="card-inner">
                     <div class="card-front">
-                        <div class="card-icon">⬡</div>
+                        <div class="card-icon">â¬¡</div>
                         <h3>PROTOCOL BRIDGING</h3>
                         <div class="card-status">PROTO: MULTI</div>
                     </div>
                     <div class="card-back">
                         <h3>Protocol Bridging</h3>
-                        <p>Retrofit legacy SCADA, Modbus RTU/TCP, OPC-UA, MQTT, and CANbus infrastructure into the unified AEDI data fabric. Our translation layer eliminates integration friction — connecting decades-old industrial assets to modern cloud APIs without costly hardware replacement.</p>
+                        <p>Retrofit legacy SCADA, Modbus RTU/TCP, OPC-UA, MQTT, and CANbus infrastructure into the unified AEDI data fabric. Our translation layer eliminates integration friction â€” connecting decades-old industrial assets to modern cloud APIs without costly hardware replacement.</p>
                         <div class="card-meta">
                             <span>PROTO: MULTI</span>
                             <span>BRIDGE: ACTIVE</span>
@@ -3010,13 +2992,13 @@
             <div class="card">
                 <div class="card-inner">
                     <div class="card-front">
-                        <div class="card-icon">⧉</div>
+                        <div class="card-icon">â§‰</div>
                         <h3>MESH NETWORKING</h3>
                         <div class="card-status">TOPOLOGY: ADAPTIVE</div>
                     </div>
                     <div class="card-back">
                         <h3>Adaptive Mesh Networking</h3>
-                        <p>Self-organising sensor networks where every node functions as both a data source and a signal relay. If a node drops offline, the mesh autonomously reroutes — delivering continuous data flow with no single point of failure across wide-area field deployments.</p>
+                        <p>Self-organising sensor networks where every node functions as both a data source and a signal relay. If a node drops offline, the mesh autonomously reroutes â€” delivering continuous data flow with no single point of failure across wide-area field deployments.</p>
                         <div class="card-meta">
                             <span>TOPOLOGY: ADAPTIVE</span>
                             <span>NODES: SELF-HEAL</span>
@@ -3029,7 +3011,7 @@
             <div class="card">
                 <div class="card-inner">
                     <div class="card-front">
-                        <div class="card-icon">⧖</div>
+                        <div class="card-icon">â§–</div>
                         <h3>DIGITAL TWIN</h3>
                         <div class="card-status">SYNC: VIRTUAL</div>
                     </div>
@@ -3048,7 +3030,7 @@
             <div class="card">
                 <div class="card-inner">
                     <div class="card-front">
-                        <div class="card-icon">⊘</div>
+                        <div class="card-icon">âŠ˜</div>
                         <h3>ZERO-TRUST</h3>
                         <div class="card-status">ACCESS: VERIFIED</div>
                     </div>
@@ -3067,13 +3049,13 @@
             <div class="card">
                 <div class="card-inner">
                     <div class="card-front">
-                        <div class="card-icon">⌖</div>
+                        <div class="card-icon">âŒ–</div>
                         <h3>ONSITE TRAINING</h3>
                         <div class="card-status">MODE: IN-PERSON</div>
                     </div>
                     <div class="card-back">
                         <h3>Onsite Technical Training</h3>
-                        <p>Hands-on, instructor-led training delivered at your facility. AEDI specialists embed with your team to transfer knowledge in hardware deployment, system configuration, and operational maintenance — tailored to your exact environment and infrastructure stack.</p>
+                        <p>Hands-on, instructor-led training delivered at your facility. AEDI specialists embed with your team to transfer knowledge in hardware deployment, system configuration, and operational maintenance â€” tailored to your exact environment and infrastructure stack.</p>
                         <div class="card-meta">
                             <span>MODE: IN-PERSON</span>
                             <span>SCOPE: CUSTOM</span>
@@ -3086,13 +3068,13 @@
             <div class="card">
                 <div class="card-inner">
                     <div class="card-front">
-                        <div class="card-icon">⊡</div>
+                        <div class="card-icon">âŠ¡</div>
                         <h3>ONLINE TRAINING</h3>
                         <div class="card-status">ACCESS: GLOBAL</div>
                     </div>
                     <div class="card-back">
                         <h3>Online Training Platform</h3>
-                        <p>Structured, self-paced learning modules accessible from anywhere. Covering AEDI ecosystem architecture, IoT fundamentals, cloud integration, and platform operations — with live webinar sessions, assessments, and certification pathways available on demand.</p>
+                        <p>Structured, self-paced learning modules accessible from anywhere. Covering AEDI ecosystem architecture, IoT fundamentals, cloud integration, and platform operations â€” with live webinar sessions, assessments, and certification pathways available on demand.</p>
                         <div class="card-meta">
                             <span>ACCESS: GLOBAL</span>
                             <span>CERT: AVAILABLE</span>
@@ -3105,13 +3087,13 @@
             <div class="card">
                 <div class="card-inner">
                     <div class="card-front">
-                        <div class="card-icon">⨦</div>
+                        <div class="card-icon">â¨¦</div>
                         <h3>AI ADVANCEMENT</h3>
                         <div class="card-status">LEVEL: APPLIED</div>
                     </div>
                     <div class="card-back">
                         <h3>Application AI Advancement Training</h3>
-                        <p>Practical, industry-focused AI upskilling programmes. From prompt engineering and model deployment to MLOps pipelines and edge inference — designed for engineers, operators, and decision-makers who need applied AI knowledge, not just theory.</p>
+                        <p>Practical, industry-focused AI upskilling programmes. From prompt engineering and model deployment to MLOps pipelines and edge inference â€” designed for engineers, operators, and decision-makers who need applied AI knowledge, not just theory.</p>
                         <div class="card-meta">
                             <span>LEVEL: APPLIED</span>
                             <span>FOCUS: INDUSTRY</span>
@@ -3124,13 +3106,13 @@
             <div class="card">
                 <div class="card-inner">
                     <div class="card-front">
-                        <div class="card-icon">⚗</div>
+                        <div class="card-icon">âš—</div>
                         <h3>AI SKILLS LAB</h3>
                         <div class="card-status">LAB: ACTIVE</div>
                     </div>
                     <div class="card-back">
                         <h3>AI Skills Labs</h3>
-                        <p>Immersive, sandbox-based AI experimentation environments. Teams work hands-on with live data pipelines, real sensor feeds, and pre-configured AEDI toolchains — building confidence and competency through practice on real-world scenarios, not simulations.</p>
+                        <p>Immersive, sandbox-based AI experimentation environments. Teams work hands-on with live data pipelines, real sensor feeds, and pre-configured AEDI toolchains â€” building confidence and competency through practice on real-world scenarios, not simulations.</p>
                         <div class="card-meta">
                             <span>LAB: ACTIVE</span>
                             <span>DATA: LIVE</span>
@@ -3140,8 +3122,11 @@
             </div>
 
             </div>
-        </div>
-        </div>
+        </section>
+
+        <!-- Slide 8: Subscriptions -->
+        <section class="deck-section" id="subscriptions-slide">
+            <div class="container">
 
 
         <!-- Subscriptions CTA -->
@@ -3151,7 +3136,7 @@
                 EULA // GOVERNED
             </div>
             <p class="hero-desc">
-                Flexible, scalable tier plans engineered for every stage of your digital journey —
+                Flexible, scalable tier plans engineered for every stage of your digital journey â€”
                 from isolated edge deployments to full global cloud continuity.
             </p>
             <a href="subscriptions.html" style="
@@ -3169,11 +3154,11 @@
                 transition: all 0.25s ease;
             " onmouseover="this.style.background='var(--accent-cyan)';this.style.color='#0a0f1a';"
                onmouseout="this.style.background='transparent';this.style.color='var(--accent-cyan)';">
-                VIEW TIER PLANS ⟶
+                VIEW TIER PLANS âŸ¶
             </a>
-        </div>
-
-    </div>
+            </div>
+        </section>
+    </div><!-- End Deck Wrapper -->
 
     <style>
         /* Carousel Controls */
@@ -3284,7 +3269,7 @@
                     const vw = viewport.clientWidth;
                     const tw = track.scrollWidth;
                     if (tw <= vw) {
-                        // Everything fits — center the whole track
+                        // Everything fits â€” center the whole track
                         const centered = (vw - tw) / 2;
                         return { min: centered, max: centered };
                     }
@@ -3304,15 +3289,15 @@
                     return Math.min(b.max, Math.max(b.min, val));
                 };
 
-                // Set initial position — start from left for wide tracks, center for small tracks
+                // Set initial position â€” start from left for wide tracks, center for small tracks
                 const initPosition = () => {
                     const vw = viewport.clientWidth;
                     const tw = track.scrollWidth;
                     if (tw <= vw) {
-                        // Everything fits — center the whole track
+                        // Everything fits â€” center the whole track
                         currentOffset = (vw - tw) / 2;
                     } else {
-                        // Track wider than viewport — start from left edge, no auto-centering
+                        // Track wider than viewport â€” start from left edge, no auto-centering
                         currentOffset = 0;
                     }
                     track.style.transition = 'none';
@@ -3351,7 +3336,7 @@
                     track.style.transform = `translateX(${currentOffset}px)`;
                 });
 
-                // — Free swipe: track follows finger, stays where released —
+                // â€” Free swipe: track follows finger, stays where released â€”
                 const handleDragStart = (e) => {
                     isDragging = true;
                     startX = e.type.includes('mouse') ? e.pageX : e.touches[0].pageX;
@@ -3372,26 +3357,63 @@
                 const handleDragEnd = () => {
                     if (!isDragging) return;
                     isDragging = false;
-                    // Just keep wherever the user released — no snap-back
+                    // Just keep wherever the user released â€” no snap-back
                     const diff = currentX - startX;
                     currentOffset = clamp(dragStartOffset + diff);
                     track.style.transform = `translateX(${currentOffset}px)`;
                 };
 
                 // Button events (prev/next by one card width)
-                if (nextBtn) nextBtn.addEventListener('click', () => moveSlide('next'));
-                if (prevBtn) prevBtn.addEventListener('click', () => moveSlide('prev'));
+                if (nextBtn) nextBtn.addEventListener('click', () => { moveSlide('next'); resetAutoScroll(); });
+                if (prevBtn) prevBtn.addEventListener('click', () => { moveSlide('prev'); resetAutoScroll(); });
 
                 // Touch events
-                viewport.addEventListener('touchstart', handleDragStart, { passive: true });
+                viewport.addEventListener('touchstart', (e) => { handleDragStart(e); pauseAutoScroll(); }, { passive: true });
                 viewport.addEventListener('touchmove', handleDragMove, { passive: false });
-                viewport.addEventListener('touchend', handleDragEnd, { passive: true });
+                viewport.addEventListener('touchend', (e) => { handleDragEnd(e); resetAutoScroll(); }, { passive: true });
 
                 // Mouse events for desktop drag
-                viewport.addEventListener('mousedown', handleDragStart);
+                viewport.addEventListener('mousedown', (e) => { handleDragStart(e); pauseAutoScroll(); });
                 viewport.addEventListener('mousemove', handleDragMove);
-                viewport.addEventListener('mouseup', handleDragEnd);
-                viewport.addEventListener('mouseleave', handleDragEnd);
+                viewport.addEventListener('mouseup', (e) => { handleDragEnd(); resetAutoScroll(); });
+                viewport.addEventListener('mouseleave', (e) => { handleDragEnd(); resetAutoScroll(); });
+
+                // --- AUTO-SCROLL: rotate until stopped ---
+                let autoScrollInterval = null;
+                let autoScrollPaused = false;
+
+                const startAutoScroll = () => {
+                    if (autoScrollInterval) return;
+                    autoScrollInterval = setInterval(() => {
+                        if (autoScrollPaused || isDragging) return;
+                        const b = getBounds();
+                        // If we've reached the end, loop back to start
+                        if (currentOffset <= b.min + 5) {
+                            currentOffset = b.max;
+                            track.style.transition = 'none';
+                            track.style.transform = `translateX(${currentOffset}px)`;
+                            setTimeout(() => moveSlide('next'), 50);
+                        } else {
+                            moveSlide('next');
+                        }
+                    }, 3000);
+                };
+
+                const pauseAutoScroll = () => { autoScrollPaused = true; };
+                const resetAutoScroll = () => {
+                    autoScrollPaused = false;
+                    // Restart timer so it waits 5s after interaction
+                    clearInterval(autoScrollInterval);
+                    autoScrollInterval = null;
+                    setTimeout(() => startAutoScroll(), 5000);
+                };
+
+                // Pause on hover
+                wrapper.addEventListener('mouseenter', pauseAutoScroll);
+                wrapper.addEventListener('mouseleave', resetAutoScroll);
+
+                // Start auto-scroll after 2s
+                setTimeout(() => startAutoScroll(), 2000);
             });
         });
     </script>
@@ -3400,53 +3422,51 @@
         <style>
             @keyframes footerGlow {
                 0% { text-shadow: 0 0 2px rgba(255,255,255,0.1); }
-                100% { text-shadow: 0 0 8px rgba(0, 210, 255, 0.3); }
+                100% { text-shadow: 0 0 8px rgba(0,210,255,0.3); }
             }
-            .footer-content {
-                animation: footerGlow 3s infinite alternate;
-            }
+            .footer-content { animation: footerGlow 3s infinite alternate; }
             .footer-logo-container {
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                margin-bottom: 2rem;
+                margin-bottom: 1rem;
                 width: 100%;
             }
             .footer-logo {
-                height: 80px;
+                height: 60px;
                 width: auto;
                 opacity: 0.9;
                 transition: all 0.3s ease;
             }
             .footer-logo:hover {
                 opacity: 1;
-                filter: drop-shadow(0 0 15px rgba(0, 210, 255, 0.4));
+                filter: drop-shadow(0 0 15px rgba(0,210,255,0.4));
             }
-            footer a { 
-                color: var(--accent-cyan);
+            footer a {
+                color: var(--accent-cyan, #00d2ff);
                 text-decoration: none;
                 margin: 0 10px;
                 transition: all 0.3s ease;
                 font-weight: 600;
-                text-shadow: 0 0 8px rgba(0, 210, 255, 0.3);
+                text-shadow: 0 0 8px rgba(0,210,255,0.3);
             }
-            footer a:hover { 
+            footer a:hover {
                 color: #fff;
-                text-shadow: 0 0 15px var(--accent-cyan);
+                text-shadow: 0 0 15px var(--accent-cyan, #00d2ff);
             }
         </style>
         <div class="footer-logo-container">
             <img src="assets/images/ionity-logo-edited.png" alt="Ionity Logo" class="footer-logo">
         </div>
-        <div class="footer-content" style="opacity: 0.7; line-height: 2; color: var(--text-muted);">
+        <div class="footer-content" style="opacity: 0.7; line-height: 1.8; color: var(--text-muted, rgba(255,255,255,0.5));">
             <div>Ionity™ (Pty) Ltd 2025-2026 | Creative Commons BY-NC-SA 4.0 | Made with AEDI™ | Author: Antwerp Designs</div>
             <div>South Africa Centurion 0157 | Policy AED 986 | License AED 900 | Ionity™ IoT-Ai-DAQ-PdM-CMS-F-iT Hardware, Software Integrations, ALL RIGHTS RESERVED</div>
             <div>
                 <a href="tel:+27646999877">+27 646 999 877</a> &nbsp;|&nbsp;
-                <a href="mailto:ai@ionity.today">ai@ionity.today</a> &nbsp;|&nbsp; 
-                <a href="https://www.ionity.world" target="_blank">www.ionity.world</a>
+                <a href="mailto:ai@ionity.today">ai@ionity.today</a> &nbsp;|&nbsp;
+                <a href="https://www.ionity.world" target="_blank" rel="noopener noreferrer">www.ionity.world</a>
             </div>
-            <div style="margin-top: 1rem;">
+            <div style="margin-top: 0.75rem;">
                 <a href="https://antwerpdesignsionity.github.io/Metadata" target="_blank" rel="noopener noreferrer">Metadata</a>
             </div>
         </div>
@@ -3744,7 +3764,7 @@
             cards.forEach(card => observer.observe(card));
         });
 
-        const letters = "██▓▓▒▒░░▖▗▘▙▚▛▜▝▞▟"; 
+        const letters = "â–ˆâ–ˆâ–“â–“â–’â–’â–‘â–‘â––â–—â–˜â–™â–šâ–›â–œâ–â–žâ–Ÿ"; 
 
         function runGlitch(element) {
             if (element.dataset.isCoolingDown === "true") return;
@@ -3934,7 +3954,7 @@
     <div id="cookie-banner">
         <div class="cookie-banner-content">
             <div class="cookie-banner-text">
-                <h3>🍪 We Value Your Privacy</h3>
+                <h3>ðŸª We Value Your Privacy</h3>
                 <p>
                     We use cookies to enhance your experience, analyze site traffic, and personalize content. 
                     By clicking "Accept All", you consent to our use of cookies. 
@@ -3961,7 +3981,7 @@
             <div class="cookie-modal-header">
                 <h2>Cookie Preferences</h2>
                 <button class="cookie-modal-close" onclick="cookieManager?.closeSettings();" aria-label="Close">
-                    ×
+                    Ã—
                 </button>
             </div>
             <div class="cookie-modal-body">
@@ -3982,7 +4002,7 @@
 
                 <div class="cookie-category">
                     <div class="cookie-category-header">
-                        <h3>🔒 Security Cookies</h3>
+                        <h3>ðŸ”’ Security Cookies</h3>
                         <label class="cookie-toggle">
                             <input type="checkbox" checked disabled>
                             <span class="cookie-toggle-slider"></span>
@@ -4050,22 +4070,89 @@
         </div>
     </div>
 
-    <!-- Identity Modules -->
-    <div class="identity-modules">
-        <a href="https://gravatar.com/antwerpdesigns" target="_blank" rel="noopener noreferrer" class="module-link" title="Global Identity Node">
-            <img src="assets/images/gravatar-icon.svg" alt="Gravatar" class="module-icon">
-            <span class="module-label">ID_NODE</span>
-        </a>
-
-        <a href="https://github.com/AntwerpDesignsIonity" target="_blank" rel="noopener noreferrer" class="module-link" title="Hardware/Software Architecture" style="display: none;">
-            <img src="assets/images/github-icon.svg" alt="GitHub" class="module-icon">
-            <span class="module-label">CORE_REPO</span>
-        </a>
-
-        <a href="https://www.linkedin.com/in/ionity" target="_blank" rel="noopener noreferrer" class="module-link" title="Ecosystem Solutionist Connection" style="display: none;">
-            <img src="assets/images/linkedin-icon.svg" alt="LinkedIn" class="module-icon">
-            <span class="module-label">SOL_CONNECT</span>
-        </a>
     </div>
+    </section>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('mobileMenu').classList.toggle('open');
+        }
+
+        const deck = document.getElementById('deckWrapper');
+        
+        // --- Mouse wheel: vertical scroll within section, horizontal scroll between sections ---
+        deck.addEventListener('wheel', (e) => {
+            const focused = document.activeElement;
+            const activeSection = (focused && focused !== document.body && focused !== document.documentElement)
+                ? focused.closest('.deck-section')
+                : deck.querySelector('.deck-section:hover');
+            
+            if (activeSection) {
+                const isAtTop = activeSection.scrollTop === 0;
+                const isAtBottom = Math.abs(activeSection.scrollHeight - activeSection.scrollTop - activeSection.clientHeight) < 2;
+                
+                if ((e.deltaY < 0 && isAtTop) || (e.deltaY > 0 && isAtBottom)) {
+                    e.preventDefault();
+                    deck.scrollBy({
+                        left: e.deltaY * 3,
+                        behavior: 'auto'
+                    });
+                }
+            } else {
+                e.preventDefault();
+                deck.scrollBy({
+                    left: e.deltaY * 3,
+                    behavior: 'auto'
+                });
+            }
+        }, { passive: false });
+
+        // --- Touch swipe: horizontal swipe moves between slides, vertical swipe scrolls within ---
+        let deckTouchStartX = 0, deckTouchStartY = 0, deckTouchDir = null;
+        
+        deck.addEventListener('touchstart', (e) => {
+            deckTouchStartX = e.touches[0].clientX;
+            deckTouchStartY = e.touches[0].clientY;
+            deckTouchDir = null;
+        }, { passive: true });
+
+        deck.addEventListener('touchmove', (e) => {
+            const dx = e.touches[0].clientX - deckTouchStartX;
+            const dy = e.touches[0].clientY - deckTouchStartY;
+            
+            // Determine swipe direction on first significant move
+            if (!deckTouchDir && (Math.abs(dx) > 10 || Math.abs(dy) > 10)) {
+                deckTouchDir = Math.abs(dx) > Math.abs(dy) ? 'horizontal' : 'vertical';
+            }
+            
+            if (deckTouchDir === 'horizontal') {
+                e.preventDefault();
+            }
+            // vertical: let browser handle native section scroll
+        }, { passive: false });
+
+        deck.addEventListener('touchend', (e) => {
+            const dx = e.changedTouches[0].clientX - deckTouchStartX;
+            
+            if (deckTouchDir === 'horizontal' && Math.abs(dx) > 60) {
+                // Snap to next/prev slide
+                const slideWidth = window.innerWidth;
+                const currentSlide = Math.round(deck.scrollLeft / slideWidth);
+                const target = dx < 0 ? currentSlide + 1 : currentSlide - 1;
+                deck.scrollTo({ left: target * slideWidth, behavior: 'smooth' });
+            }
+            deckTouchDir = null;
+        }, { passive: true });
+
+        deck.addEventListener('scroll', () => {
+            const nav = document.getElementById('mainNav');
+            if (deck.scrollLeft > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+    </script>
 </body>
 </html>

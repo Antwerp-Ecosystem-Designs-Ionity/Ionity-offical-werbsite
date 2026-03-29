@@ -52,17 +52,9 @@
         <priority>0.8</priority>
     </url>
     
-    <!-- Products - AIoT Solutions -->
+    <!-- What We Do - Products & Services -->
     <url>
-        <loc>https://www.ionity.today/products.html</loc>
-        <lastmod>2026-03-26T05:30:00+02:00</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-    </url>
-    
-    <!-- Services - AIoT Services -->
-    <url>
-        <loc>https://www.ionity.today/services.html</loc>
+        <loc>https://www.ionity.today/what-we-do.html</loc>
         <lastmod>2026-03-26T05:30:00+02:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>

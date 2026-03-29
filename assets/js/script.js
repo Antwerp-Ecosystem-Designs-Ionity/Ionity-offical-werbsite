@@ -1,4 +1,28 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Premium Audio Context for Transitions
+    let audioCtx;
+    const playWarpSound = () => {
+        try {
+            if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(40, audioCtx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(800, audioCtx.currentTime + 0.6);
+            
+            gain.gain.setValueAtTime(0, audioCtx.currentTime);
+            gain.gain.linearRampToValueAtTime(0.1, audioCtx.currentTime + 0.1);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.7);
+            
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.7);
+        } catch (e) { console.warn("Audio Context blocked."); }
+    };
+
     // Inject Loader HTML if not present
     if (!document.getElementById('warp-loader')) {
         const loaderDiv = document.createElement('div');
@@ -9,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="portal-ring ring-2"></div>
                 <div class="portal-ring ring-3"></div>
                 <div class="portal-core"></div>
-                <div class="loader-text">NEURAL LINK ESTABLISHED // WARPING</div>
+                <div class="loader-text">NEURAL LINK // SYNCING</div>
             </div>
         `;
         document.body.prepend(loaderDiv);
@@ -21,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
             style.textContent = `
                 @keyframes portalWarp {
                     0% { transform: translateZ(-500px) scale(0.1); opacity: 0; }
-                    50% { opacity: 1; }
+                    50% { opacity: 0.8; }
                     100% { transform: translateZ(500px) scale(15); opacity: 0; }
                 }
 
@@ -33,54 +57,55 @@ document.addEventListener('DOMContentLoaded', () => {
                 #warp-loader {
                     position: fixed;
                     top: 0; left: 0; width: 100%; height: 100%;
-                    background: #020204;
+                    background: rgba(2, 2, 5, 0.85);
+                    backdrop-filter: blur(40px);
+                    -webkit-backdrop-filter: blur(40px);
                     z-index: 20000;
                     display: none;
                     align-items: center;
                     justify-content: center;
                     flex-direction: column;
                     overflow: hidden;
-                    perspective: 1000px;
+                    perspective: 1200px;
+                    transition: opacity 0.4s ease;
                 }
                 .portal-container {
                     position: relative;
-                    width: 300px;
-                    height: 300px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
+                    width: 300px; height: 300px;
+                    display: flex; align-items: center; justify-content: center;
                     transform-style: preserve-3d;
                 }
                 .portal-ring {
                     position: absolute;
-                    border: 2px solid #00d2ff;
+                    border: 1.5px solid rgba(0, 210, 255, 0.6);
                     border-radius: 50%;
-                    box-shadow: 0 0 30px #00d2ff, inset 0 0 30px #00d2ff;
+                    box-shadow: 0 0 40px rgba(0, 210, 255, 0.4);
                     opacity: 0;
                 }
-                .ring-1 { width: 40px; height: 40px; animation: portalWarp 1.2s infinite linear; }
-                .ring-2 { width: 40px; height: 40px; animation: portalWarp 1.2s infinite linear 0.4s; }
-                .ring-3 { width: 40px; height: 40px; animation: portalWarp 1.2s infinite linear 0.8s; }
+                .ring-1 { width: 50px; height: 50px; animation: portalWarp 1s infinite linear; }
+                .ring-2 { width: 50px; height: 50px; animation: portalWarp 1s infinite linear 0.3s; }
+                .ring-3 { width: 50px; height: 50px; animation: portalWarp 1s infinite linear 0.6s; }
                 
                 .portal-core {
-                    width: 4px; height: 4px;
+                    width: 6px; height: 6px;
                     background: #fff;
                     border-radius: 50%;
-                    box-shadow: 0 0 50px 20px #fff, 0 0 100px 40px #00d2ff;
-                    animation: corePulse 0.5s infinite alternate;
+                    box-shadow: 0 0 60px 25px rgba(255,255,255,0.4), 0 0 120px 50px rgba(0, 210, 255, 0.3);
+                    animation: corePulse 0.4s infinite alternate;
                 }
 
                 .loader-text {
                     position: absolute;
-                    bottom: -60px;
+                    bottom: -80px;
                     font-family: 'Courier New', monospace;
-                    font-size: 0.7rem;
-                    letter-spacing: 0.4rem;
-                    color: #00d2ff;
+                    font-size: 0.65rem;
+                    letter-spacing: 0.5rem;
+                    color: rgba(255,255,255,0.9);
                     text-transform: uppercase;
                     width: 100%;
                     text-align: center;
-                    text-shadow: 0 0 10px #00d2ff;
+                    text-shadow: 0 0 15px rgba(0, 210, 255, 0.8);
+                    font-weight: 700;
                 }
             `;
             document.head.appendChild(style);
@@ -98,6 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (link.target === '_blank') return;
 
             e.preventDefault();
+            playWarpSound();
             
             if (loader) {
                 loader.style.display = 'flex';
@@ -105,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 setTimeout(() => {
                     window.location.href = href;
-                }, 1000);
+                }, 700); // Reduced delay for faster flow
             } else {
                 window.location.href = href;
             }
@@ -274,4 +300,104 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     toggleBtn();
+
+    // --- SCROLL DIRECTION BOUNCE HINT ---
+    // Inject bounce styles (self-contained so it works on all pages)
+    if (!document.querySelector('style#scroll-bounce-style')) {
+        const bounceStyle = document.createElement('style');
+        bounceStyle.id = 'scroll-bounce-style';
+        bounceStyle.textContent = `
+            @keyframes scrollBounceHint {
+                0%   { transform: translateY(0); }
+                20%  { transform: translateY(12px); }
+                40%  { transform: translateY(-4px); }
+                60%  { transform: translateY(5px); }
+                80%  { transform: translateY(-2px); }
+                100% { transform: translateY(0); }
+            }
+            @keyframes chevronPulse {
+                0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.8; }
+                50%      { transform: translateX(-50%) translateY(10px); opacity: 1; }
+            }
+            body.scroll-bounce-active {
+                animation: scrollBounceHint 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.6s 1 both;
+            }
+            .scroll-hint-indicator {
+                position: fixed;
+                bottom: 28px;
+                left: 50%;
+                transform: translateX(-50%);
+                z-index: 9999;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 4px;
+                animation: chevronPulse 1.4s ease-in-out infinite;
+                transition: opacity 0.5s ease;
+                pointer-events: none;
+            }
+            .scroll-hint-indicator .chevron {
+                width: 14px;
+                height: 14px;
+                border-right: 2px solid rgba(0, 210, 255, 0.7);
+                border-bottom: 2px solid rgba(0, 210, 255, 0.7);
+                transform: rotate(45deg);
+                filter: drop-shadow(0 0 6px rgba(0, 210, 255, 0.4));
+            }
+            .scroll-hint-indicator .chevron:nth-child(2) {
+                opacity: 0.5;
+                margin-top: -8px;
+            }
+            .scroll-hint-indicator.hidden {
+                opacity: 0;
+                pointer-events: none;
+            }
+        `;
+        document.head.appendChild(bounceStyle);
+    }
+
+    // Subtle bounce on load to indicate page is scrollable
+    const canScroll = document.documentElement.scrollHeight > window.innerHeight;
+    if (canScroll) {
+        // Delay bounce until after any loader has finished
+        const bounceDelay = loader ? 1400 : 300;
+
+        setTimeout(() => {
+            document.body.classList.add('scroll-bounce-active');
+
+            // Create scroll chevron indicator
+            const hint = document.createElement('div');
+            hint.className = 'scroll-hint-indicator';
+            hint.setAttribute('aria-hidden', 'true');
+            hint.innerHTML = '<span class="chevron"></span><span class="chevron"></span>';
+            document.body.appendChild(hint);
+
+            // Hide indicator on first scroll or touch
+            const dismissHint = () => {
+                hint.classList.add('hidden');
+                setTimeout(() => hint.remove(), 600);
+                window.removeEventListener('scroll', dismissHint);
+                window.removeEventListener('touchstart', dismissHint);
+                window.removeEventListener('wheel', dismissHint);
+            };
+            window.addEventListener('scroll', dismissHint, { once: true });
+            window.addEventListener('touchstart', dismissHint, { once: true });
+            window.addEventListener('wheel', dismissHint, { once: true });
+
+            // Auto-hide after 4 seconds if user doesn't scroll
+            setTimeout(() => {
+                if (document.body.contains(hint)) {
+                    hint.classList.add('hidden');
+                    setTimeout(() => { if (document.body.contains(hint)) hint.remove(); }, 600);
+                }
+            }, 4000);
+        }, bounceDelay);
+
+        // Remove bounce class after animation ends
+        document.body.addEventListener('animationend', (e) => {
+            if (e.animationName === 'scrollBounceHint') {
+                document.body.classList.remove('scroll-bounce-active');
+            }
+        });
+    }
 });

@@ -183,10 +183,15 @@ class CookieManager {
 
     // Cookie utility methods
     setCookie(name, value, days) {
+        try {
+            localStorage.setItem(name, value);
+        } catch (e) { console.warn('localStorage not available'); }
+
         const date = new Date();
         date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
         const expires = "expires=" + date.toUTCString();
-        document.cookie = name + "=" + value + ";" + expires + ";path=/;SameSite=Lax;Secure";
+        const secureFlag = location.protocol === 'https:' ? ';Secure' : '';
+        document.cookie = name + "=" + value + ";" + expires + ";path=/;SameSite=Lax" + secureFlag;
     }
 
     setSecurityCookie(name, value, days) {
@@ -195,7 +200,8 @@ class CookieManager {
         date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
         const expires = "expires=" + date.toUTCString();
         // Use SameSite=Strict and Secure for enhanced security
-        document.cookie = name + "=" + value + ";" + expires + ";path=/;SameSite=Strict;Secure;HttpOnly";
+        const secureFlag = location.protocol === 'https:' ? ';Secure' : '';
+        document.cookie = name + "=" + value + ";" + expires + ";path=/;SameSite=Strict" + secureFlag;
     }
 
     generateToken() {
@@ -206,6 +212,11 @@ class CookieManager {
     }
 
     getCookie(name) {
+        try {
+            const localVal = localStorage.getItem(name);
+            if (localVal) return localVal;
+        } catch (e) {}
+
         const nameEQ = name + "=";
         const cookies = document.cookie.split(';');
         for (let i = 0; i < cookies.length; i++) {

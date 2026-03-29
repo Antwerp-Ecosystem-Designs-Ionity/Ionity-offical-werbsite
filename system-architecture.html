@@ -1,23 +1,27 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    
+
     <!-- SecurePrivacy Consent Management -->
     <script src="https://consent.secureprivacy.ai/script/ionity-today.js"></script>
-    
+
     <title>Systems Architecture | Ionity AEDI Ecosystem</title>
-    <meta name="description" content="Ionity's advanced system architecture for AIoT ecosystems, connecting hardware, edge computing, and cloud intelligence through AEDI.">
+    <meta name="description"
+        content="Ionity's advanced system architecture for AIoT ecosystems, connecting hardware, edge computing, and cloud intelligence through AEDI.">
     <meta name="author" content="Johan Wilhelm van Antwerp">
     <meta name="theme-color" content="#1A1A1A">
-    
+
     <link rel="icon" type="image/png" href="assets/images/ionity-logo-edited.png">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+
     <style>
         :root {
             --bg: #1A1A1A;
@@ -48,7 +52,10 @@
         body::after {
             content: "";
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%);
             background-size: 100% 4px;
             pointer-events: none;
@@ -58,8 +65,11 @@
 
         .grid-bg {
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: 
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
                 linear-gradient(var(--border) 1px, transparent 1px),
                 linear-gradient(90deg, var(--border) 1px, transparent 1px);
             background-size: 40px 40px;
@@ -120,7 +130,7 @@
         }
 
         .simple-card {
-            background: rgba(255,255,255,0.03);
+            background: rgba(255, 255, 255, 0.03);
             border: 1px solid var(--border);
             padding: 3rem 2.5rem;
             border-radius: 4px;
@@ -170,17 +180,69 @@
             background: linear-gradient(180deg, transparent, rgba(51, 102, 255, 0.05) 50%, transparent);
         }
 
+        /* Cloud Visual (CSS-generated) */
         .cloud-visual {
             flex: 1;
             position: relative;
+            min-height: 340px;
         }
-
-        .cloud-img {
+        .cloud-network {
+            position: relative;
             width: 100%;
-            max-width: 600px;
-            border-radius: 4px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.8), 0 0 20px rgba(51, 102, 255, 0.2);
+            max-width: 500px;
+            height: 340px;
             border: 1px solid var(--border);
+            border-radius: 4px;
+            background: radial-gradient(ellipse at 50% 40%, rgba(51,102,255,0.12) 0%, transparent 70%);
+            overflow: hidden;
+        }
+        .cloud-node {
+            position: absolute;
+            width: 12px; height: 12px;
+            background: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 12px var(--accent-glow), 0 0 30px rgba(51,102,255,0.15);
+            animation: cloudPulse 3s ease-in-out infinite alternate;
+        }
+        .cloud-node:nth-child(1) { top: 20%; left: 25%; animation-delay: 0s; }
+        .cloud-node:nth-child(2) { top: 15%; left: 60%; animation-delay: 0.5s; }
+        .cloud-node:nth-child(3) { top: 45%; left: 45%; animation-delay: 1s; width: 18px; height: 18px; }
+        .cloud-node:nth-child(4) { top: 55%; left: 18%; animation-delay: 1.5s; }
+        .cloud-node:nth-child(5) { top: 50%; left: 75%; animation-delay: 0.8s; }
+        .cloud-node:nth-child(6) { top: 78%; left: 40%; animation-delay: 1.2s; }
+        .cloud-node:nth-child(7) { top: 80%; left: 68%; animation-delay: 0.3s; }
+        .cloud-line {
+            position: absolute;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            opacity: 0.25;
+            transform-origin: left center;
+            animation: cloudLinePulse 4s ease-in-out infinite alternate;
+        }
+        .cloud-line:nth-child(8)  { top: 23%; left: 27%; width: 140px; transform: rotate(  -5deg); animation-delay: 0s; }
+        .cloud-line:nth-child(9)  { top: 30%; left: 30%; width: 120px; transform: rotate( 40deg); animation-delay: 0.6s; }
+        .cloud-line:nth-child(10) { top: 48%; left: 20%; width: 130px; transform: rotate(-10deg); animation-delay: 1.2s; }
+        .cloud-line:nth-child(11) { top: 50%; left: 50%; width: 110px; transform: rotate( 15deg); animation-delay: 0.4s; }
+        .cloud-line:nth-child(12) { top: 65%; left: 42%; width: 120px; transform: rotate( 30deg); animation-delay: 0.9s; }
+        .cloud-label {
+            position: absolute;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.6rem;
+            color: var(--accent);
+            letter-spacing: 0.15rem;
+            text-transform: uppercase;
+            opacity: 0.6;
+        }
+        .cloud-label:nth-child(13) { top: 8%; left: 35%; }
+        .cloud-label:nth-child(14) { top: 90%; left: 28%; }
+        .cloud-label:nth-child(15) { top: 42%; left: 5%; }
+        @keyframes cloudPulse {
+            0% { transform: scale(1); opacity: 0.7; }
+            100% { transform: scale(1.4); opacity: 1; }
+        }
+        @keyframes cloudLinePulse {
+            0% { opacity: 0.1; }
+            100% { opacity: 0.4; }
         }
 
         .cloud-content {
@@ -194,7 +256,9 @@
             margin-bottom: 2rem;
         }
 
-        .cloud-content h2 span { color: var(--accent); }
+        .cloud-content h2 span {
+            color: var(--accent);
+        }
 
         .cloud-list {
             list-style: none;
@@ -210,7 +274,7 @@
         }
 
         .cloud-list li::before {
-            content: "◆";
+            content: "â—†";
             color: var(--accent);
             text-shadow: 0 0 10px var(--accent);
         }
@@ -231,7 +295,7 @@
         .stack-item {
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.8rem;
-            color: rgba(255,255,255,0.4);
+            color: rgba(255, 255, 255, 0.4);
             letter-spacing: 0.2rem;
             text-transform: uppercase;
         }
@@ -271,7 +335,10 @@
             transition: 0.3s;
         }
 
-        .footer-col a:hover { opacity: 1; color: var(--accent); }
+        .footer-col a:hover {
+            opacity: 1;
+            color: var(--accent);
+        }
 
         .footer-bottom {
             margin-top: 60px;
@@ -280,20 +347,199 @@
             font-size: 0.8rem;
         }
 
+        /* --- INDUSTRIAL AI SECTION --- */
+        .ai-section {
+            padding: 120px 8vw;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .ai-hero-block {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+        .ai-hero-block h2 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 1.2rem;
+        }
+        .ai-hero-block h2 span { color: var(--accent); text-shadow: 0 0 30px var(--accent-glow); }
+        .ai-hero-block .ai-sub {
+            font-size: 1.15rem;
+            opacity: 0.55;
+            max-width: 720px;
+            margin: 0 auto 2rem;
+            font-weight: 300;
+        }
+        .aedi-banner {
+            background: rgba(51, 102, 255, 0.06);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--accent);
+            padding: 1.8rem 2.2rem;
+            margin: 0 auto 4rem;
+            max-width: 860px;
+            text-align: left;
+        }
+        .aedi-banner strong { color: var(--accent); }
+        .aedi-banner p {
+            font-size: 0.95rem;
+            opacity: 0.7;
+            line-height: 1.7;
+        }
+        .ai-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+        .ai-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            padding: 2.5rem 2rem;
+            border-radius: 4px;
+            transition: 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+        .ai-card:hover {
+            background: rgba(51, 102, 255, 0.05);
+            border-color: var(--accent);
+            transform: translateY(-6px);
+        }
+        .ai-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            opacity: 0;
+            transition: 0.4s;
+        }
+        .ai-card:hover::before { opacity: 1; }
+        .ai-card h3 {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--accent);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.25rem;
+            margin-bottom: 1rem;
+        }
+        .ai-card h4 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.15;
+        }
+        .ai-card p {
+            font-size: 0.95rem;
+            opacity: 0.55;
+            font-weight: 300;
+            line-height: 1.7;
+        }
+        .ai-card .ai-stat {
+            display: inline-block;
+            margin-top: 1.2rem;
+            padding: 0.4rem 1rem;
+            background: rgba(51, 102, 255, 0.1);
+            border: 1px solid rgba(51, 102, 255, 0.25);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--accent);
+            letter-spacing: 0.1rem;
+        }
+        .ai-pillars {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+        .ai-pillar {
+            text-align: center;
+            padding: 2.5rem 1.5rem;
+            border: 1px solid var(--border);
+            background: rgba(0,0,0,0.3);
+            transition: 0.4s;
+        }
+        .ai-pillar:hover {
+            border-color: var(--accent);
+            background: rgba(51, 102, 255, 0.04);
+        }
+        .ai-pillar h4 {
+            font-size: 1.1rem;
+            font-weight: 800;
+            margin-bottom: 0.8rem;
+        }
+        .ai-pillar p {
+            font-size: 0.85rem;
+            opacity: 0.5;
+            line-height: 1.6;
+        }
+        .ask-ai-bar {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+        .ask-ai-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            padding: 0.9rem 2rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            letter-spacing: 0.15rem;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: #fff;
+            border: 1px solid var(--border);
+            background: rgba(255,255,255,0.03);
+            transition: 0.4s;
+        }
+        .ask-ai-btn:hover {
+            border-color: var(--accent);
+            background: rgba(51,102,255,0.1);
+            color: var(--accent);
+            box-shadow: 0 0 20px rgba(51,102,255,0.15);
+        }
+        .ask-ai-btn svg { width: 18px; height: 18px; fill: currentColor; }
+
+        @media (max-width: 768px) {
+            .ai-pillars { grid-template-columns: 1fr; }
+            .ai-hero-block h2 { font-size: 2.4rem; }
+            .aedi-banner { padding: 1.2rem 1.5rem; }
+        }
+
         /* Mobile Adjustments */
         @media (max-width: 1024px) {
-            .nav-links { display: none; }
-            .menu-btn { display: block; }
-            .hero h1 { font-size: 3.5rem; }
-            .cloud-section { flex-direction: column; text-align: center; }
-            .cloud-content { order: -1; }
+            .nav-links {
+                display: none;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+
+            .cloud-section {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .cloud-content {
+                order: -1;
+            }
         }
     </style>
 </head>
-<body>
-    <div class="grid-bg"></div>
 
-    <nav id="mainNav">
+<body class="deck-layout">
+    <div id="canvas-container"></div>
+    <div class="scanlines"></div>
+    <div class="grid-bg"></div>    <nav id="mainNav">
         <a href="index.html" class="logo">
              <img src="assets/images/ionity-logo-edited.png" alt="IONITY" class="nav-logo">
         </a>
@@ -301,13 +547,13 @@
         <div class="nav-links">
             <a href="index.html">Home</a>
             <a href="system-architecture.html" class="active">Systems</a>
-            <a href="services.html">Services</a>
-            <a href="products.html">Products</a>
+            <a href="what-we-do.html">What We Do</a>
             <a href="ai-innovation.html">AI Innovation</a>
             <a href="roadmap.html">Roadmap</a>
             <a href="subscriptions.html">Subscriptions</a>
             <a href="license.html">License</a>
             <a href="privacy.html">Privacy</a>
+            <a href="terms.html">Terms</a>
             <a href="about.html">About</a>
             <a href="aedi-online.html">AEDI Online</a>
             <a href="contact.html">Contact</a>
@@ -315,121 +561,283 @@
             <a href="gateway.html">IO Way</a>
         </div>
 
-        <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
-        
-        <div class="mobile-dropdown" id="mobileMenu">
-            <a href="index.html">Home</a>
-            <a href="system-architecture.html" class="active">Systems</a>
-            <a href="services.html">Services</a>
-            <a href="products.html">Products</a>
-            <a href="ai-innovation.html">AI Innovation</a>
-            <a href="roadmap.html">Roadmap</a>
-            <a href="subscriptions.html">Subscriptions</a>
-            <a href="license.html">License</a>
-            <a href="privacy.html">Privacy</a>
-            <a href="about.html">About</a>
-            <a href="aedi-online.html">AEDI Online</a>
-            <a href="contact.html">Contact</a>
-            <a href="firmware-development.html">Dev</a>
-            <a href="gateway.html">IO Way</a>
-        </div>
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">â˜°</button>
     </nav>
 
+    <!-- Mobile Dropdown -->
+    <div class="mobile-dropdown" id="mobileDropdown">
+        <a href="index.html">Home</a>
+        <a href="system-architecture.html" class="active">Systems</a>
+        <a href="what-we-do.html">What We Do</a>
+        <a href="ai-innovation.html">AI Innovation</a>
+        <a href="roadmap.html">Roadmap</a>
+        <a href="subscriptions.html">Subscriptions</a>
+        <a href="license.html">License</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="about.html">About</a>
+        <a href="aedi-online.html">AEDI Online</a>
+        <a href="contact.html">Contact</a>
+        <a href="firmware-development.html">Dev</a>
+        <a href="gateway.html">IO Way</a>
+    </div>
+
     <main>
-        <section class="hero">
-            <div data-aos="fade-up">
-                <h1>Architecture <span>Reborn.</span></h1>
-                <p>We've simplified the complex. A three-tier ecosystem that bridges the gap between raw hardware and global intelligence.</p>
-                <div class="stack-item">Status: <strong>Operational v3.2</strong> | Uplink: <strong>Stable</strong></div>
-            </div>
+    <div class="deck-wrapper" id="deckWrapper">
+        <section class="deck-section" id="hero-slide">
+            <header class="hero">
+                <div data-aos="fade-up">
+                    <h1>Architecture <span>Reborn.</span></h1>
+                    <p>We've simplified the complex. A three-tier ecosystem that bridges the gap between raw
+                        hardware and global intelligence.</p>
+                    <div class="stack-item">Status: <strong>Operational v3.2</strong> | Uplink:
+                        <strong>Stable</strong></div>
+                </div>
+            </header>
         </section>
 
         <!-- LATEST TECH STACK -->
-        <section class="stack-bar">
-            <div class="stack-item">Edge: <strong>RISC-V / ARM</strong></div>
-            <div class="stack-item">Logic: <strong>C++ / Rust</strong></div>
-            <div class="stack-item">Brain: <strong>TensorFlow</strong></div>
-            <div class="stack-item">Cloud: <strong>Kubernetes</strong></div>
-            <div class="stack-item">Security: <strong>Zero-Trust</strong></div>
-        </section>
-
-        <!-- TECH SIMPLIFIED (Bulletpoints) -->
-        <section class="tech-simple">
-            <div class="simple-grid">
-                <div class="simple-card">
-                    <h3>Layer 01</h3>
-                    <h2>The Nerve Endings</h2>
-                    <p>Our <strong>Edge Units</strong> are like nerve endings. They feel the world, gather data, and make split-second decisions locally so your system never has to "wait" for an answer.</p>
-                </div>
-                <div class="simple-card">
-                    <h3>Layer 02</h3>
-                    <h2>The Digital Brain</h2>
-                    <p><strong>AEDI Logic</strong> is the consciousness. It connects your machines to the cloud, organizing data into real intelligence that helps you predict the future.</p>
-                </div>
-                <div class="simple-card">
-                    <h3>Layer 03</h3>
-                    <h2>The Global Reach</h2>
-                    <p>Our <strong>Cloud Ecosystem</strong> is the memory. It stores everything, scales instantly, and ensures that you can control your entire world from a single screen.</p>
+        <section class="deck-section" id="stack-slide">
+            <div class="stack-bar">
+                <div class="stack-item">Edge: <strong>RISC-V / ARM</strong></div>
+                <div class="stack-item">Logic: <strong>C++ / Rust</strong></div>
+                <div class="stack-item">Brain: <strong>TensorFlow</strong></div>
+                <div class="stack-item">Cloud: <strong>Kubernetes</strong></div>
+                <div class="stack-item">Security: <strong>Zero-Trust</strong></div>
+            </div>
+            
+            <div class="tech-simple">
+                <div class="simple-grid">
+                    <div class="simple-card">
+                        <h3>Layer 01</h3>
+                        <h2>The Nerve Endings</h2>
+                        <p>Our <strong>Edge Units</strong> are like nerve endings. They feel the world, gather data, and
+                            make split-second decisions locally so your system never has to "wait" for an answer.</p>
+                    </div>
+                    <div class="simple-card">
+                        <h3>Layer 02</h3>
+                        <h2>The Digital Brain</h2>
+                        <p><strong>AEDI Logic</strong> is the consciousness. It connects your machines to the cloud,
+                            organizing data into real intelligence that helps you predict the future.</p>
+                    </div>
+                    <div class="simple-card">
+                        <h3>Layer 03</h3>
+                        <h2>The Global Reach</h2>
+                        <p>Our <strong>Cloud Ecosystem</strong> is the memory. It stores everything, scales instantly,
+                            and ensures that you can control your entire world from a single screen.</p>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- CLOUD CONTINUITY -->
-        <section class="cloud-section">
-            <div class="cloud-visual">
-                <img src="assets/images/cloud_continuity_visual_1774784422976.png" class="cloud-img" alt="IONITY Cloud Continuity">
-            </div>
-            <div class="cloud-content">
-                <h2>Real-Time <span>Cloud</span> Uplink.</h2>
-                <p>Latest cloud technology means you are never disconnected. We use a hybrid-mesh architecture that makes downtime a thing of the past.</p>
-                <ul class="cloud-list">
-                    <li><strong>Continuous IQ:</strong> Systems learn 24/7, even while you sleep.</li>
-                    <li><strong>Infinite Scale:</strong> From 1 device to 1 million in seconds.</li>
-                    <li><strong>Bulletproof Security:</strong> AES-256 encryption on every packet.</li>
-                    <li><strong>Zero-Touch Ops:</strong> Automated updates that fix problems before you notice.</li>
-                </ul>
+        <section class="deck-section" id="cloud-slide">
+            <div class="cloud-section">
+                <div class="cloud-visual">
+                    <div class="cloud-network">
+                        <div class="cloud-node"></div>
+                        <div class="cloud-node"></div>
+                        <div class="cloud-node"></div>
+                        <div class="cloud-node"></div>
+                        <div class="cloud-node"></div>
+                        <div class="cloud-node"></div>
+                        <div class="cloud-node"></div>
+                        <div class="cloud-line"></div>
+                        <div class="cloud-line"></div>
+                        <div class="cloud-line"></div>
+                        <div class="cloud-line"></div>
+                        <div class="cloud-line"></div>
+                        <span class="cloud-label">CLOUD CORE</span>
+                        <span class="cloud-label">EDGE NODES</span>
+                        <span class="cloud-label">UPLINK</span>
+                    </div>
+                </div>
+                <div class="cloud-content">
+                    <h2>Real-Time <span>Cloud</span> Uplink.</h2>
+                    <p>Latest cloud technology means you are never disconnected. We use a hybrid-mesh architecture that
+                        makes downtime a thing of the past.</p>
+                    <ul class="cloud-list">
+                        <li><strong>Continuous IQ:</strong> Systems learn 24/7, even while you sleep.</li>
+                        <li><strong>Infinite Scale:</strong> From 1 device to 1 million in seconds.</li>
+                        <li><strong>Bulletproof Security:</strong> AES-256 encryption on every packet.</li>
+                        <li><strong>Zero-Touch Ops:</strong> Automated updates that fix problems before you notice.</li>
+                    </ul>
+                </div>
             </div>
         </section>
+
+        <!-- INDUSTRIAL AI -->
+        <section class="deck-section" id="ai-slide">
+            <div class="ai-section">
+                <div class="ai-hero-block">
+                    <h2>Industrial <span>AI.</span></h2>
+                    <p class="ai-sub">AI-driven decisions, unstoppable performance&mdash;from engineering to operations. Smarter growth, continuous innovation, zero guesswork.</p>
+                </div>
+
+                <div class="aedi-banner">
+                    <p><strong>AEDI &mdash; Automated Ecosystem Designs Ionity</strong> is our proprietary AI-integration framework spanning software, hardware, and system integrations. AEDI secures data privacy from hybrid to cloud&mdash;with or without a man in the middle. One framework. Every layer. Total sovereignty.</p>
+                </div>
+
+                <div class="ai-grid">
+                    <div class="ai-card">
+                        <h3>Engineering &amp; Design</h3>
+                        <h4>Build Faster. Think Less.</h4>
+                        <p>AI accelerates 3D modeling, auto-routes piping, suggests constraint-based layouts, and transforms raw point-cloud scans into usable design data&mdash;cutting manual effort by orders of magnitude.</p>
+                        <span class="ai-stat">&#9650; 90% faster pipe-support analysis</span>
+                    </div>
+                    <div class="ai-card">
+                        <h3>Operations</h3>
+                        <h4>See Everything. Miss Nothing.</h4>
+                        <p>Vision AI detects anomalies in real time&mdash;leaks, missing safety gear, equipment drift. Predictive analytics spot failures weeks before they happen, turning reactive maintenance into a relic.</p>
+                        <span class="ai-stat">$37M saved via 6-week early detection</span>
+                    </div>
+                    <div class="ai-card">
+                        <h3>Optimization</h3>
+                        <h4>Tune Everything. Waste Nothing.</h4>
+                        <p>Gray-box simulation fuses physics with ML for near-real-time modeling. Unified supply chain AI runs &ldquo;what-if&rdquo; scenarios across feedstock, scheduling, and market demand simultaneously.</p>
+                        <span class="ai-stat">99.7% reactor-yield accuracy</span>
+                    </div>
+                </div>
+
+                <div class="ai-pillars">
+                    <div class="ai-pillar">
+                        <h4>Open &amp; Agnostic</h4>
+                        <p>Source-agnostic data analysis. Works with any format, any vendor, any protocol. Exceeds human-scale analysis.</p>
+                    </div>
+                    <div class="ai-pillar">
+                        <h4>Navigate Complexity</h4>
+                        <p>Automate sprawling processes, analyze vast datasets, and adapt to new information continuously&mdash;without manual intervention.</p>
+                    </div>
+                    <div class="ai-pillar">
+                        <h4>Innovate on Autopilot</h4>
+                        <p>AI-powered digital twins learn, predict, simulate, and prescribe in real time&mdash;compounding ROI across the full lifecycle.</p>
+                    </div>
+                </div>
+
+                <div class="ask-ai-bar">
+                    <a href="https://www.google.com/search?udm=50&q=How+does+Ionity+Ai+IoT+From+South+Africa+apply+AI+across+the+full+industrial+lifecycle+%E2%80%94+from+engineering+and+design+to+operations%2C+optimization%2C+and+sustainability+%E2%80%94+and+what+does+that+mean+in+practice" target="_blank" rel="noopener" class="ask-ai-btn">
+                        <svg viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+                        Ask Gemini
+                    </a>
+                    <a href="https://chatgpt.com/?q=How+does+Ionity+Ai+IoT+From+South+Africa+apply+AI+across+the+full+industrial+lifecycle+%E2%80%94+from+engineering+and+design+to+operations%2C+optimization%2C+and+sustainability+%E2%80%94+and+what+does+that+mean+in+practice" target="_blank" rel="noopener" class="ask-ai-btn">
+                        <svg viewBox="0 0 24 24"><path d="M22.282 9.821a5.985 5.985 0 0 0-.516-4.91 6.046 6.046 0 0 0-6.51-2.9A6.065 6.065 0 0 0 4.981 4.18a5.998 5.998 0 0 0-3.998 2.9 6.045 6.045 0 0 0 .743 7.097 5.98 5.98 0 0 0 .51 4.911 6.051 6.051 0 0 0 6.515 2.9A5.985 5.985 0 0 0 13.26 24a6.056 6.056 0 0 0 5.772-4.206 5.99 5.99 0 0 0 3.997-2.9 6.056 6.056 0 0 0-.747-7.073zM13.26 22.43a4.476 4.476 0 0 1-2.876-1.04l.141-.081 4.779-2.758a.795.795 0 0 0 .392-.681v-6.737l2.02 1.168a.071.071 0 0 1 .038.052v5.583a4.504 4.504 0 0 1-4.494 4.494zM3.6 18.304a4.47 4.47 0 0 1-.535-3.014l.142.085 4.783 2.759a.771.771 0 0 0 .78 0l5.843-3.369v2.332a.08.08 0 0 1-.033.062L9.74 19.95a4.5 4.5 0 0 1-6.14-1.646zM2.34 7.896a4.485 4.485 0 0 1 2.366-1.973V11.6a.766.766 0 0 0 .388.676l5.815 3.355-2.02 1.168a.076.076 0 0 1-.071 0l-4.83-2.786A4.504 4.504 0 0 1 2.34 7.872zm16.597 3.855l-5.833-3.387L15.119 7.2a.076.076 0 0 1 .071 0l4.83 2.791a4.494 4.494 0 0 1-.676 8.105v-5.678a.79.79 0 0 0-.407-.667zm2.01-3.023l-.141-.085-4.774-2.782a.776.776 0 0 0-.785 0L9.409 9.23V6.897a.066.066 0 0 1 .028-.061l4.83-2.787a4.5 4.5 0 0 1 6.68 4.66zm-12.64 4.135l-2.02-1.164a.08.08 0 0 1-.038-.057V6.075a4.5 4.5 0 0 1 7.375-3.453l-.142.08L8.704 5.46a.795.795 0 0 0-.393.681zm1.097-2.365l2.602-1.5 2.607 1.5v2.999l-2.597 1.5-2.607-1.5z"/></svg>
+                        Ask GPT
+                    </a>
+                </div>
+            </div>
+
+        <!-- Footer inside last slide so it's visible -->
+        <footer style="margin-top: 4rem; padding: 0.75rem 1.5rem; border-top: 1px solid rgba(51,102,255,0.15); background: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; font-size: 0.7rem; color: rgba(255,255,255,0.45); font-family: 'JetBrains Mono', monospace;">
+            <span>© 2025-2026 Ionity™ (Pty) Ltd | CC BY-NC-SA 4.0 | Made with AEDI™</span>
+            <span>
+                <a href="tel:+27646999877" style="color: var(--accent); text-decoration: none; margin: 0 6px;">+27 646 999 877</a>|
+                <a href="mailto:ai@ionity.today" style="color: var(--accent); text-decoration: none; margin: 0 6px;">ai@ionity.today</a>|
+                <a href="https://www.ionity.world" target="_blank" style="color: var(--accent); text-decoration: none; margin: 0 6px;">ionity.world</a>|
+                <a href="https://antwerpdesignsionity.github.io/Metadata" target="_blank" rel="noopener noreferrer" style="color: var(--accent); text-decoration: none; margin: 0 6px;">Metadata</a>
+            </span>
+        </footer>
+
+        </section>
+    </div>
     </main>
 
-    <footer>
-        <div class="footer-grid">
-            <div class="footer-col">
-                <h4>Ecosystem</h4>
-                <a href="index.html">Main Terminal</a>
-                <a href="system-architecture.html">Systems</a>
-                <a href="inner-Page.html">Inner Labs</a>
-            </div>
-            <div class="footer-col">
-                <h4>Intelligence</h4>
-                <a href="ai-innovation.html">Neural Engine</a>
-                <a href="services.html">Global Services</a>
-                <a href="products.html">Hardware Stack</a>
-            </div>
-            <div class="footer-col">
-                <h4>Direct</h4>
-                <a href="contact.html">Uplink Source</a>
-                <a href="privacy.html">Data Shield</a>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            &copy; 2018-2026 Ionity (Pty) Ltd | Antwerp Designs | Johan Wilhelm van Antwerp
-        </div>
-    </footer>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
-        function toggleMenu() {
-            const menu = document.getElementById('mobileMenu');
-            menu.classList.toggle('open');
+        // Blueprint Backdrop Extension
+        let scene, camera, renderer, points, grid;
+        
+        function initThree() {
+            const container = document.getElementById('canvas-container');
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.z = 5;
+
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            container.appendChild(renderer.domElement);
+
+            // Create Grid
+            const size = 20;
+            const divisions = 20;
+            grid = new THREE.GridHelper(size, divisions, 0x3366FF, 0x111111);
+            grid.rotation.x = Math.PI / 2;
+            scene.add(grid);
+
+            // Create Points (Blueprints nodes)
+            const geometry = new THREE.BufferGeometry();
+            const vertices = [];
+            for (let i = 0; i < 500; i++) {
+                vertices.push(THREE.MathUtils.randFloatSpread(20)); // x
+                vertices.push(THREE.MathUtils.randFloatSpread(20)); // y
+                vertices.push(THREE.MathUtils.randFloatSpread(20)); // z
+            }
+            geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+            const material = new THREE.PointsMaterial({ color: 0x3366FF, size: 0.05 });
+            points = new THREE.Points(geometry, material);
+            scene.add(points);
+
+            animateThree();
         }
-        window.addEventListener('scroll', function() {
+
+        function animateThree() {
+            requestAnimationFrame(animateThree);
+            points.rotation.x += 0.001;
+            points.rotation.y += 0.001;
+            grid.rotation.z += 0.0005;
+            renderer.render(scene, camera);
+        }
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        initThree();
+    </script>
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('mobileDropdown').classList.toggle('open');
+        }
+
+        const deck = document.getElementById('deckWrapper');
+
+        deck.addEventListener('wheel', (e) => {
+            const focused = document.activeElement;
+            const activeSection = (focused && focused !== document.body && focused !== document.documentElement)
+                ? focused.closest('.deck-section')
+                : deck.querySelector('.deck-section:hover');
+
+            if (activeSection) {
+                const isAtTop = activeSection.scrollTop === 0;
+                const isAtBottom = Math.abs(activeSection.scrollHeight - activeSection.scrollTop - activeSection.clientHeight) < 2;
+
+                if ((e.deltaY < 0 && isAtTop) || (e.deltaY > 0 && isAtBottom)) {
+                    e.preventDefault();
+                    deck.scrollBy({
+                        left: e.deltaY * 3,
+                        behavior: 'auto'
+                    });
+                }
+            } else {
+                e.preventDefault();
+                deck.scrollBy({
+                    left: e.deltaY * 3,
+                    behavior: 'auto'
+                });
+            }
+        }, { passive: false });
+
+        deck.addEventListener('scroll', () => {
             const nav = document.getElementById('mainNav');
-            if (window.scrollY > 50) {
+            if (deck.scrollLeft > 50) {
                 nav.classList.add('scrolled');
             } else {
                 nav.classList.remove('scrolled');
             }
         });
     </script>
+    <script src="assets/js/script.js" defer></script>
 </body>
+
 </html>

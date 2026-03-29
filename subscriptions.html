@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <script src="https://app.secureprivacy.ai/script/69999f793956998e8c6d4f9c.js"></script>
@@ -44,14 +44,15 @@
     <meta name="theme-color" content="#FFFFFF">
     <meta name="format-detection" content="telephone=yes">
 
-    <title>Ionity Subscriptions | AEDI Tier Plans — Edge, Cloud & Hybrid</title>
-    <meta name="description" content="Explore Ionity's AEDI subscription tiers — Edge, Full Cloud, and Hybrid plans designed to scale with your organisation's data, security, and integration requirements.">
+    <title>Ionity Subscriptions | AEDI Tier Plans â€” Edge, Cloud & Hybrid</title>
+    <meta name="description" content="Explore Ionity's AEDI subscription tiers â€” Edge, Full Cloud, and Hybrid plans designed to scale with your organisation's data, security, and integration requirements.">
     <meta name="keywords" content="Ionity Subscriptions, AEDI Edge Tier, AEDI Full Cloud, AEDI Hybrid, IoT Subscription Plans, AIoT Pricing, Edge AI Plans, South Africa">
     <meta name="author" content="Johan Wilhelm van Antwerp">
     <meta name="generator" content="AEDI Automated Ecosystems Designs Intelligence">
     <meta name="robots" content="index, follow, max-image-preview:large">
     <link rel="icon" type="image/png" href="assets/images/ionity-logo-edited.png">
     <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="assets/css/style.css">
 
     <style>
         :root {
@@ -547,22 +548,16 @@
         }
     </style>
 </head>
-<body>
-    <!-- Particle Canvas Background -->
+<body class="deck-layout">
     <canvas id="canvas-bg"></canvas>
-
-    <!-- HUD Corner Overlays -->
     <div id="ontop-gui">
         <div class="gui-corner gui-tl"><div class="gui-text">AEDI // TIER PLANS</div></div>
         <div class="gui-corner gui-tr"><div class="gui-text">EULA // GOVERNED</div></div>
         <div class="gui-corner gui-bl"><div class="gui-text">IONITY.TODAY</div></div>
         <div class="gui-corner gui-br"><div class="gui-text" id="live-clock">--:--:--</div></div>
     </div>
-
-    <!-- Scanlines -->
     <div class="scanlines"></div>
 
-    <!-- Navigation -->
     <nav id="mainNav">
         <a href="index.html" class="logo">
              <img src="assets/images/ionity-logo-edited.png" alt="IONITY" class="nav-logo">
@@ -571,8 +566,7 @@
         <div class="nav-links">
             <a href="index.html">Home</a>
             <a href="system-architecture.html">Systems</a>
-            <a href="services.html">Services</a>
-            <a href="products.html">Products</a>
+            <a href="what-we-do.html">What We Do</a>
             <a href="ai-innovation.html">AI Innovation</a>
             <a href="roadmap.html">Roadmap</a>
             <a href="subscriptions.html" class="active">Subscriptions</a>
@@ -586,64 +580,66 @@
             <a href="gateway.html">IO Way</a>
         </div>
 
-        <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
-        
-        <div class="mobile-dropdown" id="mobileMenu">
-            <a href="index.html">Home</a>
-            <a href="system-architecture.html">Systems</a>
-            <a href="services.html">Services</a>
-            <a href="products.html">Products</a>
-            <a href="ai-innovation.html">AI Innovation</a>
-            <a href="roadmap.html">Roadmap</a>
-            <a href="subscriptions.html" class="active">Subscriptions</a>
-            <a href="license.html">License</a>
-            <a href="privacy.html">Privacy</a>
-            <a href="terms.html">Terms</a>
-            <a href="about.html">About</a>
-            <a href="aedi-online.html">AEDI Online</a>
-            <a href="contact.html">Contact</a>
-            <a href="firmware-development.html">Dev</a>
-            <a href="gateway.html">IO Way</a>
-        </div>
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">â˜°</button>
     </nav>
+
+    <!-- Mobile Dropdown -->
+    <div class="mobile-dropdown" id="mobileDropdown">
+        <a href="index.html">Home</a>
+        <a href="system-architecture.html">Systems</a>
+        <a href="what-we-do.html">What We Do</a>
+        <a href="ai-innovation.html">AI Innovation</a>
+        <a href="roadmap.html">Roadmap</a>
+        <a href="subscriptions.html" class="active">Subscriptions</a>
+        <a href="license.html">License</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="about.html">About</a>
+        <a href="aedi-online.html">AEDI Online</a>
+        <a href="contact.html">Contact</a>
+        <a href="firmware-development.html">Dev</a>
+        <a href="gateway.html">IO Way</a>
+    </div>
 
     <!-- SecurePrivacy Consent Management -->
     <script src="https://consent.secureprivacy.ai/script/ionity-today.js"></script>
 
     <!-- Main Content -->
-    <div class="container">
-
-        <!-- Hero -->
-        <div class="hero-section">
-            <h1>SUBSCRIPTIONS</h1>
-            <div class="hero-sub">EULA // GOVERNED &nbsp;&nbsp;|&nbsp;&nbsp; AEDI // TIER PLANS</div>
-            <p class="hero-desc">
-                Flexible, scalable tier plans engineered for every stage of your organisation's digital journey.
-                From isolated edge deployments to full global cloud continuity — choose the architecture that fits your operations and grows with them.
-            </p>
-        </div>
+    <div class="deck-wrapper" id="deckWrapper">
+        <section class="deck-section" id="hero-slide">
+            <div class="hero-section">
+                <h1>SUBSCRIPTIONS</h1>
+                <div class="hero-sub">EULA // GOVERNED &nbsp;&nbsp;|&nbsp;&nbsp; AEDI // TIER PLANS</div>
+                <p class="hero-desc">
+                    Flexible, scalable tier plans engineered for every stage of your organisation's digital journey.
+                    From isolated edge deployments to full global cloud continuity â€” choose the architecture that fits your operations and grows with them.
+                </p>
+                <div id="audio-hint">Subscription Intelligence Active</div>
+            </div>
+        </section>
 
         <!-- Tier Cards -->
-        <h2 class="section-heading">SELECT <span>YOUR TIER</span></h2>
-        <div class="system-grid">
+        <section class="deck-section" id="tier-grid-slide">
+            <h2 class="section-heading">SELECT <span>YOUR TIER</span></h2>
+            <div class="system-grid">
 
             <!-- EDGE TIER -->
             <div class="card">
-                <div class="tier-icon">⛨</div>
+                <div class="tier-icon">â›¨</div>
                 <div class="tier-name">AEDI EDGE TIER</div>
                 <div class="tier-price">
                     <span class="amount">From $92</span>
-                    <span class="period">/ MONTH — BILLED ANNUALLY</span>
+                    <span class="period">/ MONTH â€” BILLED ANNUALLY</span>
                 </div>
                 <p class="tier-desc">
-                    Isolated edge intelligence. No data uploads beyond agreed requirements — only configuration and model updates are received from the cloud. Ideal for air-gapped, high-security, or bandwidth-constrained environments.
+                    Isolated edge intelligence. No data uploads beyond agreed requirements â€” only configuration and model updates are received from the cloud. Ideal for air-gapped, high-security, or bandwidth-constrained environments.
                 </p>
                 <ul class="tier-features">
-                    <li><span class="feat-icon">⟁</span> Local edge processing &amp; inference</li>
-                    <li><span class="feat-icon">⟁</span> Cloud-to-edge OTA update delivery</li>
-                    <li><span class="feat-icon">⟁</span> Encrypted firmware channels</li>
-                    <li><span class="feat-icon">⟁</span> Zero-trust local authentication</li>
-                    <li><span class="feat-icon">⟁</span> Standard support (email)</li>
+                    <li><span class="feat-icon">âŸ</span> Local edge processing &amp; inference</li>
+                    <li><span class="feat-icon">âŸ</span> Cloud-to-edge OTA update delivery</li>
+                    <li><span class="feat-icon">âŸ</span> Encrypted firmware channels</li>
+                    <li><span class="feat-icon">âŸ</span> Zero-trust local authentication</li>
+                    <li><span class="feat-icon">âŸ</span> Standard support (email)</li>
                 </ul>
                 <div class="card-meta">
                     <span>UPLOAD: NONE</span>
@@ -655,22 +651,22 @@
             <!-- FULL CLOUD -->
             <div class="card gold-accent">
                 <div class="tier-badge">MOST POPULAR</div>
-                <div class="tier-icon gold">☁</div>
+                <div class="tier-icon gold">â˜</div>
                 <div class="tier-name">AEDI FULL CLOUD</div>
                 <div class="tier-price">
                     <span class="amount">From $350</span>
-                    <span class="period">/ MONTH — BILLED ANNUALLY</span>
+                    <span class="period">/ MONTH â€” BILLED ANNUALLY</span>
                 </div>
                 <p class="tier-desc">
-                    Full bidirectional data flow with no limits on where data is sent or received. Encrypted globally and locally secure across all devices and platforms — the complete connected intelligence experience.
+                    Full bidirectional data flow with no limits on where data is sent or received. Encrypted globally and locally secure across all devices and platforms â€” the complete connected intelligence experience.
                 </p>
                 <ul class="tier-features">
-                    <li><span class="feat-icon">⟁</span> Unlimited bi-directional data transfer</li>
-                    <li><span class="feat-icon">⟁</span> Global cloud storage &amp; analytics</li>
-                    <li><span class="feat-icon">⟁</span> Real-time cross-device synchronisation</li>
-                    <li><span class="feat-icon">⟁</span> AI model management &amp; hosting</li>
-                    <li><span class="feat-icon">⟁</span> Advanced threat detection &amp; alerts</li>
-                    <li><span class="feat-icon">⟁</span> Priority support &amp; SLA guarantee</li>
+                    <li><span class="feat-icon">âŸ</span> Unlimited bi-directional data transfer</li>
+                    <li><span class="feat-icon">âŸ</span> Global cloud storage &amp; analytics</li>
+                    <li><span class="feat-icon">âŸ</span> Real-time cross-device synchronisation</li>
+                    <li><span class="feat-icon">âŸ</span> AI model management &amp; hosting</li>
+                    <li><span class="feat-icon">âŸ</span> Advanced threat detection &amp; alerts</li>
+                    <li><span class="feat-icon">âŸ</span> Priority support &amp; SLA guarantee</li>
                 </ul>
                 <div class="card-meta">
                     <span>GLOBAL: SECURE</span>
@@ -681,22 +677,22 @@
 
             <!-- HYBRID TIER -->
             <div class="card purple-accent">
-                <div class="tier-icon purple">❖</div>
+                <div class="tier-icon purple">â–</div>
                 <div class="tier-name">AEDI HYBRID TIER</div>
                 <div class="tier-price">
                     <span class="amount">From $450</span>
-                    <span class="period">/ MONTH — BILLED ANNUALLY</span>
+                    <span class="period">/ MONTH â€” BILLED ANNUALLY</span>
                 </div>
                 <p class="tier-desc">
-                    The complete architecture. Operate securely across local and international infrastructure simultaneously. Granularly lock down data categories and access layers — keeping specific assets private even within internal organisation tiers. Full control, full continuity.
+                    The complete architecture. Operate securely across local and international infrastructure simultaneously. Granularly lock down data categories and access layers â€” keeping specific assets private even within internal organisation tiers. Full control, full continuity.
                 </p>
                 <ul class="tier-features">
-                    <li><span class="feat-icon">⟁</span> Cloud-to-edge &amp; edge-to-cloud continuity</li>
-                    <li><span class="feat-icon">⟁</span> Granular data category lockdown controls</li>
-                    <li><span class="feat-icon">⟁</span> Digital twin synchronisation</li>
-                    <li><span class="feat-icon">⟁</span> Multi-region failover &amp; redundancy</li>
-                    <li><span class="feat-icon">⟁</span> Custom EULA &amp; data governance policy</li>
-                    <li><span class="feat-icon">⟁</span> Dedicated account manager &amp; SLA</li>
+                    <li><span class="feat-icon">âŸ</span> Cloud-to-edge &amp; edge-to-cloud continuity</li>
+                    <li><span class="feat-icon">âŸ</span> Granular data category lockdown controls</li>
+                    <li><span class="feat-icon">âŸ</span> Digital twin synchronisation</li>
+                    <li><span class="feat-icon">âŸ</span> Multi-region failover &amp; redundancy</li>
+                    <li><span class="feat-icon">âŸ</span> Custom EULA &amp; data governance policy</li>
+                    <li><span class="feat-icon">âŸ</span> Dedicated account manager &amp; SLA</li>
                 </ul>
                 <div class="card-meta">
                     <span>CONTROL: FULL</span>
@@ -721,16 +717,16 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td>Local Edge Processing</td><td><span class="check">✔</span></td><td><span class="check">✔</span></td><td><span class="check-gold">✔</span></td></tr>
-                        <tr><td>Cloud Data Upload</td><td><span class="cross">—</span></td><td><span class="check">✔</span></td><td><span class="check-gold">✔</span></td></tr>
-                        <tr><td>OTA Firmware Updates</td><td><span class="check">✔</span></td><td><span class="check">✔</span></td><td><span class="check-gold">✔</span></td></tr>
-                        <tr><td>Global Cloud Storage</td><td><span class="cross">—</span></td><td><span class="check">✔</span></td><td><span class="check-gold">✔</span></td></tr>
-                        <tr><td>Real-Time Cross-Device Sync</td><td><span class="cross">—</span></td><td><span class="check">✔</span></td><td><span class="check-gold">✔</span></td></tr>
-                        <tr><td>AI Model Hosting</td><td><span class="cross">—</span></td><td><span class="check">✔</span></td><td><span class="check-gold">✔</span></td></tr>
-                        <tr><td>Digital Twin Synchronisation</td><td><span class="cross">—</span></td><td><span class="cross">—</span></td><td><span class="check-gold">✔</span></td></tr>
-                        <tr><td>Granular Data Category Lockdown</td><td><span class="cross">—</span></td><td><span class="cross">—</span></td><td><span class="check-gold">✔</span></td></tr>
-                        <tr><td>Multi-Region Failover</td><td><span class="cross">—</span></td><td><span class="cross">—</span></td><td><span class="check-gold">✔</span></td></tr>
-                        <tr><td>Custom EULA &amp; Governance</td><td><span class="cross">—</span></td><td><span class="cross">—</span></td><td><span class="check-gold">✔</span></td></tr>
+                        <tr><td>Local Edge Processing</td><td><span class="check">âœ”</span></td><td><span class="check">âœ”</span></td><td><span class="check-gold">âœ”</span></td></tr>
+                        <tr><td>Cloud Data Upload</td><td><span class="cross">â€”</span></td><td><span class="check">âœ”</span></td><td><span class="check-gold">âœ”</span></td></tr>
+                        <tr><td>OTA Firmware Updates</td><td><span class="check">âœ”</span></td><td><span class="check">âœ”</span></td><td><span class="check-gold">âœ”</span></td></tr>
+                        <tr><td>Global Cloud Storage</td><td><span class="cross">â€”</span></td><td><span class="check">âœ”</span></td><td><span class="check-gold">âœ”</span></td></tr>
+                        <tr><td>Real-Time Cross-Device Sync</td><td><span class="cross">â€”</span></td><td><span class="check">âœ”</span></td><td><span class="check-gold">âœ”</span></td></tr>
+                        <tr><td>AI Model Hosting</td><td><span class="cross">â€”</span></td><td><span class="check">âœ”</span></td><td><span class="check-gold">âœ”</span></td></tr>
+                        <tr><td>Digital Twin Synchronisation</td><td><span class="cross">â€”</span></td><td><span class="cross">â€”</span></td><td><span class="check-gold">âœ”</span></td></tr>
+                        <tr><td>Granular Data Category Lockdown</td><td><span class="cross">â€”</span></td><td><span class="cross">â€”</span></td><td><span class="check-gold">âœ”</span></td></tr>
+                        <tr><td>Multi-Region Failover</td><td><span class="cross">â€”</span></td><td><span class="cross">â€”</span></td><td><span class="check-gold">âœ”</span></td></tr>
+                        <tr><td>Custom EULA &amp; Governance</td><td><span class="cross">â€”</span></td><td><span class="cross">â€”</span></td><td><span class="check-gold">âœ”</span></td></tr>
                         <tr><td>Support Level</td><td>Standard Email</td><td>Priority + SLA</td><td>Dedicated Manager</td></tr>
                         <tr><td>Starting Price</td><td>From $92/mo</td><td>From $350/mo</td><td>From $450/mo</td></tr>
                     </tbody>
@@ -746,33 +742,127 @@
             <div class="cad-corner cad-corner-br"></div>
             <div class="gen-ai-content">
                 <h2>NOT SURE WHICH TIER FITS?</h2>
-                <p>Our ecosystem architects will analyse your environment and recommend the optimal AEDI configuration for your organisation — from hardware topology to cloud governance policy.</p>
+                <p>Our ecosystem architects will analyse your environment and recommend the optimal AEDI configuration for your organisation â€” from hardware topology to cloud governance policy.</p>
                 <a href="contact.html?subject=AEDI%20Subscription%20Enquiry" class="cta-btn">Speak to an Architect</a>
             </div>
         </div>
 
+        </section>
     </div>
 
     <!-- Footer -->
     <footer>
-        <p>© 2018–2026 <a href="about.html">Antwerp Designs | Ionity (Pty) Ltd</a> &nbsp;|&nbsp; All Rights Reserved &nbsp;|&nbsp; TM². Policy AED 986 &nbsp;|&nbsp; <a href="license.html">License AED 900</a></p>
-        <p>Author: <a href="about.html">Johan Wilhelm van Antwerp</a> &nbsp;|&nbsp; Ecosystems Solutionist &nbsp;|&nbsp; <a href="contact.html">Contact</a></p>
+            <style>
+                @keyframes footerGlow {
+                    0% {
+                        text-shadow: 0 0 2px rgba(255, 255, 255, 0.1);
+                    }
+
+                    100% {
+                        text-shadow: 0 0 8px rgba(0, 210, 255, 0.3);
+                    }
+                }
+
+                .footer-content {
+                    animation: footerGlow 3s infinite alternate;
+                }
+
+                .footer-logo-container {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-bottom: 1rem;
+                    width: 100%;
+                }
+
+                .footer-logo {
+                    height: 60px;
+                    width: auto;
+                    opacity: 0.9;
+                    transition: all 0.3s ease;
+                }
+
+                .footer-logo:hover {
+                    opacity: 1;
+                    filter: drop-shadow(0 0 15px rgba(0, 210, 255, 0.4));
+                }
+
+                footer a {
+                    color: var(--accent-cyan);
+                    text-decoration: none;
+                    margin: 0 10px;
+                    transition: all 0.3s ease;
+                    font-weight: 600;
+                    text-shadow: 0 0 8px rgba(0, 210, 255, 0.3);
+                }
+
+                footer a:hover {
+                    color: #fff;
+                    text-shadow: 0 0 15px var(--accent-cyan);
+                }
+            </style>
+            <div class="footer-logo-container">
+                <img src="assets/images/ionity-logo-edited.png" alt="Ionity Logo" class="footer-logo">
+            </div>
+            <div class="footer-content" style="opacity: 0.7; line-height: 1.8; color: var(--text-muted);">
+                <div>Ionityâ„¢ (Pty) Ltd 2025-2026 | Creative Commons BY-NC-SA 4.0 | Made with AEDIâ„¢ | Author: Antwerp
+                    Designs</div>
+                <div>South Africa Centurion 0157 | Policy AED 986 | License AED 900 | Ionityâ„¢ IoT-Ai-DAQ-PdM-CMS-F-iT
+                    Hardware, Software Integrations, ALL RIGHTS RESERVED</div>
+                <div>
+                    <a href="tel:+27646999877">+27 646 999 877</a> &nbsp;|&nbsp;
+                    <a href="mailto:ai@ionity.today">ai@ionity.today</a> &nbsp;|&nbsp;
+                    <a href="https://www.ionity.world" target="_blank" rel="noopener noreferrer">www.ionity.world</a>
+                </div>
+                <div style="margin-top: 0.75rem;">
+                    <a href="https://antwerpdesignsionity.github.io/Metadata" target="_blank"
+                        rel="noopener noreferrer">Metadata</a>
+                </div>
+            </div>
     </footer>
 
-    <!-- Identity Modules -->
-    <div class="identity-modules">
-        <a href="https://gravatar.com/antwerpdesigns" target="_blank" rel="noopener noreferrer" class="module-link" title="Global Identity Node">
-            <img src="assets/images/gravatar-icon.svg" alt="Gravatar" class="module-icon">
-            <span class="module-label">ID_NODE</span>
-        </a>
-        <a href="https://github.com/AntwerpDesignsIonity" target="_blank" rel="noopener noreferrer" class="module-link" title="Hardware/Software Architecture" style="display:none;">
-            <img src="assets/images/github-icon.svg" alt="GitHub" class="module-icon">
-            <span class="module-label">CORE_REPO</span>
-        </a>
-    </div>
-
     <script>
-        // ===== PARTICLE CANVAS BACKGROUND =====
+        function toggleMobileMenu() {
+            document.getElementById('mobileDropdown').classList.toggle('open');
+        }
+
+        const deck = document.getElementById('deckWrapper');
+        
+        deck.addEventListener('wheel', (e) => {
+            const focused = document.activeElement;
+            const activeSection = (focused && focused !== document.body && focused !== document.documentElement)
+                ? focused.closest('.deck-section')
+                : deck.querySelector('.deck-section:hover');
+            
+            if (activeSection) {
+                const isAtTop = activeSection.scrollTop === 0;
+                const isAtBottom = Math.abs(activeSection.scrollHeight - activeSection.scrollTop - activeSection.clientHeight) < 2;
+                
+                if ((e.deltaY < 0 && isAtTop) || (e.deltaY > 0 && isAtBottom)) {
+                    e.preventDefault();
+                    deck.scrollBy({
+                        left: e.deltaY * 3,
+                        behavior: 'auto'
+                    });
+                }
+            } else {
+                e.preventDefault();
+                deck.scrollBy({
+                    left: e.deltaY * 3,
+                    behavior: 'auto'
+                });
+            }
+        }, { passive: false });
+
+        deck.addEventListener('scroll', () => {
+            const nav = document.getElementById('mainNav');
+            if (deck.scrollLeft > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
         (function() {
             const canvas = document.getElementById('canvas-bg');
             const ctx = canvas.getContext('2d');
@@ -839,8 +929,10 @@
         // ===== LIVE CLOCK =====
         function updateClock() {
             const now = new Date();
-            document.getElementById('live-clock').textContent =
-                now.toTimeString().split(' ')[0];
+            const clockEl = document.getElementById('live-clock');
+            if (clockEl) {
+                clockEl.textContent = now.toTimeString().split(' ')[0];
+            }
         }
         setInterval(updateClock, 1000);
         updateClock();
@@ -856,5 +948,6 @@
         }, { threshold: 0.1 });
         document.querySelectorAll('.card').forEach(card => observer.observe(card));
     </script>
+    <script src="assets/js/script.js" defer></script>
 </body>
 </html>

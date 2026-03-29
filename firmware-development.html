@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -49,8 +49,8 @@
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="revisit-after" content="7 days">
 
-<meta name="copyright" content="© 2018–2026 Antwerp Designs | Ionity (Pty) Ltd">
-<meta name="rights" content="All rights reserved. TM². Policy AED 986. License AED 900.">
+<meta name="copyright" content="Â© 2018â€“2026 Antwerp Designs | Ionity (Pty) Ltd">
+<meta name="rights" content="All rights reserved. TMÂ². Policy AED 986. License AED 900.">
 <meta name="license" content="https://creativecommons.org/licenses/by-nc-sa/4.0/">
 
 <meta name="geo.region" content="ZA-GT">
@@ -277,159 +277,13 @@
             100% { text-shadow: 0 0 10px rgba(0,0,0,0.5); color: #fff; }
         }
 
-        /* --- NAVIGATION --- */
-        nav {
-            padding: 0 5vw;
-            height: 80px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid transparent;
-            background: transparent;
-            backdrop-filter: blur(0px);
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            box-sizing: border-box;
-            z-index: 1001;
-            transition: all 0.4s ease;
-        }
-
-        nav.scrolled {
-            background: rgba(2, 2, 4, 0.95);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
-        }
-
-        .logo {
-            font-family: 'Courier New', monospace;
-            font-weight: 700;
-            letter-spacing: 0.2rem;
-            color: #fff;
-            text-decoration: none;
-            font-size: 1.2rem;
-            position: relative;
-            text-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-        }
-        
-        .logo:hover {
-            animation: neonPulse 1.5s infinite alternate;
-        }
-
-        .nav-logo {
-            height: 80px;
-            width: auto;
-            vertical-align: middle;
-            transition: all 0.3s ease;
-        }
-        .nav-logo:hover {
-            filter: drop-shadow(0 0 8px var(--accent-cyan));
-        }
-
-        /* Desktop Nav */
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1rem;
-            transition: all 0.3s ease;
-            position: relative;
-            padding: 0.5rem 0;
-            font-weight: 600;
-        }
-
-        .nav-links a:hover {
-            color: #fff;
-            animation: neonPulse 1s infinite alternate;
-        }
-
-        .nav-links a.active {
-            color: var(--accent-cyan);
-            text-shadow: 0 0 15px var(--accent-cyan); 
-            border-bottom: 1px solid var(--accent-cyan);
-        }
-
-        .nav-links a::before {
-            content: '';
-            position: absolute;
-            bottom: 0; left: 0; width: 0; height: 1px;
-            background: var(--accent-cyan);
-            transition: width 0.3s ease;
-            box-shadow: 0 0 10px var(--accent-cyan);
-        }
-
-        .nav-links a:hover::before { width: 100%; }
-
-        /* Mobile Menu Button */
-        .mobile-menu-btn {
-            display: none;
-            background: transparent;
-            border: 1px solid var(--border);
-            color: var(--accent-cyan);
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: 0.5rem 0.8rem;
-            border-radius: 4px;
-            z-index: 101;
-        }
-
-        /* Mobile Dropdown */
-        .mobile-dropdown {
-            display: none;
-            position: fixed;
-            top: 80px;
-            right: 0;
-            left: auto;
-            width: 280px;
-            background: rgba(5, 10, 15, 0.95);
-            border: 1px solid var(--accent-cyan);
-            border-right: none;
-            flex-direction: column;
-            padding: 1rem 0;
-            box-shadow: -5px 5px 20px rgba(0, 0, 0, 0.8), 0 0 15px rgba(0, 210, 255, 0.2);
-            z-index: 1000;
-            backdrop-filter: blur(20px);
-        }
-
-        .mobile-dropdown.open {
-            display: flex;
-            animation: slideDown 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .mobile-dropdown a {
-            color: #fff;
-            padding: 1rem 2rem;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 0.1rem;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            transition: background 0.2s;
-        }
-        
-        .mobile-dropdown a.active {
-            color: var(--accent-cyan);
-            background: rgba(0, 210, 255, 0.05);
-            text-shadow: 0 0 15px var(--accent-cyan); 
-            border-left: 3px solid var(--accent-cyan);
-        }
-
-        .mobile-dropdown a:hover {
-            background: rgba(0, 210, 255, 0.1);
-            color: var(--accent-cyan);
-        }
-
         @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- NAVIGATION STANDARDIZATION --- */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .mobile-menu-btn { display: block; }
+        }
 
         /* --- LAYOUT --- */
         .container {
@@ -566,7 +420,7 @@
 
         /* Typewriter Cursor */
         .typing::after {
-            content: '█';
+            content: 'â–ˆ';
             display: inline-block;
             vertical-align: bottom;
             animation: blink 1s step-end infinite;
@@ -660,12 +514,12 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
             width: 100%;
         }
         
         .footer-logo {
-            height: 80px;
+            height: 60px;
             width: auto;
             opacity: 0.9;
             transition: all 0.3s ease;
@@ -802,7 +656,7 @@
 </style>
     <link rel="icon" type="image/png" href="assets/images/ionity-logo-edited.png">
 </head>
-<body>
+<body class="deck-layout">
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXX"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -812,19 +666,21 @@
     <div class="scanlines"></div>
     <div id="floating-components"></div>
 
-    <nav>
+    <nav id="mainNav">
         <a href="index.html" class="logo">
              <img src="assets/images/ionity-logo-edited.png" alt="IONITY" class="nav-logo">
         </a>
         
-        <!-- Desktop Menu -->
         <div class="nav-links">
-            <a href="inner-Page.html">Systems</a>
-            <a href="services.html">Services</a>
-            <a href="products.html">Products</a>
-            <a href="ai-innovation.html">Ai Innovation</a>
+            <a href="index.html">Home</a>
+            <a href="system-architecture.html">Systems</a>
+            <a href="what-we-do.html">What We Do</a>
+            <a href="ai-innovation.html">AI Innovation</a>
             <a href="roadmap.html">Roadmap</a>
+            <a href="subscriptions.html">Subscriptions</a>
             <a href="license.html">License</a>
+            <a href="privacy.html">Privacy</a>
+            <a href="terms.html">Terms</a>
             <a href="about.html">About</a>
             <a href="aedi-online.html">AEDI Online</a>
             <a href="contact.html">Contact</a>
@@ -832,43 +688,28 @@
             <a href="gateway.html">IO Way</a>
         </div>
 
-        <!-- Mobile Button -->
-        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
-
-        <!-- Mobile Dropdown -->
-        <div class="mobile-dropdown" id="mobileDropdown">
-            <a href="inner-Page.html">Systems</a>
-            <a href="services.html">Services</a>
-            <a href="products.html">Products</a>
-            <a href="ai-innovation.html">Ai Innovation</a>
-            <a href="roadmap.html">Roadmap</a>
-            <a href="license.html">License</a>
-            <a href="about.html">About</a>
-            <a href="aedi-online.html">AEDI Online</a>
-            <a href="contact.html">Contact</a>
-            <a href="firmware-development.html" class="active">Dev</a>
-            <a href="gateway.html">IO Way</a>
-        </div>
+        <button class="mobile-menu-btn" onclick="toggleMenu()">â˜°</button>
     </nav>
 
     <!-- SecurePrivacy Consent Management -->
     <script src="https://consent.secureprivacy.ai/script/ionity-today.js"></script>
 
-    <div class="container">
-
-        <!-- Hero -->
-        <div class="hero-section">
-            <h1 data-value="FIRMWARE DEVELOPMENT">FIRMWARE DEVELOPMENT & INTEGRATIONS</h1>
-            <div class="hero-sub" data-value="AEDI | Automated Ecosystem Designs Intelligence">
-                AEDI | Automated Ecosystem Designs Intelligence
+    <div class="deck-wrapper" id="deckWrapper">
+        <section class="deck-section" id="hero-slide">
+            <div class="hero-section">
+                <h1 data-value="CUSTOM FIRMWARE & CLOUD OTA SOLUTIONS">CUSTOM FIRMWARE & CLOUD OTA SOLUTIONS ACROSS INDUSTRIES</h1>
+                <div class="hero-sub" data-value="AEDI | Automated Ecosystem Designs Intelligence">
+                    AEDI | Automated Ecosystem Designs Intelligence
+                </div>
+                <p class="hero-desc">
+                    Designing hardware intelligence that bridges the gap between mechanical force and cloud foresight. Our Agentic Core SDK enables custom firmware that transforms industrial machines into secure, autonomous AIoT assets with robust Cloud OTA (Over-The-Air) capabilities for rapid evolution in high-stakes environments.
+                </p>
+                <div id="audio-hint">System Intelligence Active</div>
             </div>
-            <p class="hero-desc">
-                Firmware is the ring that connects our hardware developed in-house with other external hardware and requirements, delivering the most valuable market-ready product to enhance your ecosystem.
-            </p>
-        </div>
+        </section>
 
-        <!-- Content Grid -->
-        <div class="system-grid">
+        <section class="deck-section" id="dev-grid-slide">
+            <div class="system-grid">
             
             <!-- Ecosystem Enhancement -->
             <div class="card">
@@ -973,7 +814,7 @@
                 <div class="card-icon"><i class="fa-solid fa-bolt"></i></div>
                 <h3>2. DAQ & CMS Inputs</h3>
                 <p><strong>The Sensory Input</strong></p>
-                <p>The SDK’s <strong>Agentic Core</strong> treats every sensor as a "data document", handling the planning of how to slice data for analysis.</p>
+                <p>The SDKâ€™s <strong>Agentic Core</strong> treats every sensor as a "data document", handling the planning of how to slice data for analysis.</p>
                 <ul>
                     <li><strong>High-Speed DAQ:</strong> Radxa Penta SATA HAT + SSD stack for vibration/thermal telemetry.</li>
                     <li><strong>Pattern Recognition:</strong> Autonomous CMS executing Python-based FFT on the fly to monitor "Bearing harmonics".</li>
@@ -998,8 +839,6 @@
             </div>
         </div>
 
-    </div>
-
     <footer>
         <style>
             @keyframes footerGlow {
@@ -1013,11 +852,11 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                margin-bottom: 2rem;
+                margin-bottom: 1rem;
                 width: 100%;
             }
             .footer-logo {
-                height: 80px;
+                height: 60px;
                 width: auto;
                 opacity: 0.9;
                 transition: all 0.3s ease;
@@ -1042,19 +881,22 @@
         <div class="footer-logo-container">
             <img src="assets/images/ionity-logo-edited.png" alt="Ionity Logo" class="footer-logo">
         </div>
-        <div class="footer-content" style="opacity: 0.7; line-height: 2; color: var(--text-muted);">
-            <div>Ionity™ (Pty) Ltd 2025-2026 | Creative Commons BY-NC-SA 4.0 | Made with AEDI™ | Author: Antwerp Designs</div>
-            <div>South Africa Centurion 0157 | Policy AED 986 | License AED 900 | Ionity™ IoT-Ai-DAQ-PdM-CMS-F-iT Hardware, Software Integrations, ALL RIGHTS RESERVED</div>
+        <div class="footer-content" style="opacity: 0.7; line-height: 1.8; color: var(--text-muted);">
+            <div>Ionityâ„¢ (Pty) Ltd 2025-2026 | Creative Commons BY-NC-SA 4.0 | Made with AEDIâ„¢ | Author: Antwerp Designs</div>
+            <div>South Africa Centurion 0157 | Policy AED 986 | License AED 900 | Ionityâ„¢ IoT-Ai-DAQ-PdM-CMS-F-iT Hardware, Software Integrations, ALL RIGHTS RESERVED</div>
             <div>
                 <a href="tel:+27646999877">+27 646 999 877</a> &nbsp;|&nbsp;
                 <a href="mailto:ai@ionity.today">ai@ionity.today</a> &nbsp;|&nbsp; 
-                <a href="https://www.ionity.world" target="_blank">www.ionity.world</a>
+                <a href="https://www.ionity.world" target="_blank" rel="noopener noreferrer">www.ionity.world</a>
             </div>
-            <div style="margin-top: 1rem;">
+            <div style="margin-top: 0.75rem;">
                 <a href="https://antwerpdesignsionity.github.io/Metadata" target="_blank" rel="noopener noreferrer">Metadata</a>
             </div>
         </div>
     </footer>
+
+        </section>
+    </div>
 
 
 
@@ -1078,15 +920,15 @@
         const SCROLL_SPEED = 2.5; 
         const GRID_SIZE = 2000;
         const GRID_DIVISIONS = 40;
+        const NODE_COUNT = 60;
+        const NODE_LINK_DISTANCE = 320;
 
         // --- SCENE ---
         const container = document.getElementById('canvas-container');
         const scene = new THREE.Scene();
-        // Deep fade-to-black fog for that endless "night" feel
-        scene.fog = new THREE.FogExp2(0x020204, 0.0015);
+        scene.fog = new THREE.FogExp2(0x020204, 0.0012);
 
         const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 5000);
-        // Positioned for a "Nightrider" / "Cyber Chess" perspective
         const BASE_HEIGHT = 60;
         camera.position.set(0, BASE_HEIGHT, 400); 
         camera.lookAt(0, 0, -400);
@@ -1102,16 +944,14 @@
         
         const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.5, 0.4, 0.85);
         bloomPass.threshold = 0.1;
-        bloomPass.strength = 1.6; // High bloom for neon effect
+        bloomPass.strength = 1.6;
         bloomPass.radius = 0.5;
         composer.addPass(bloomPass);
 
         // --- OBJECTS: THE DIGITAL CHESSBOARD GRID ---
         const gridGroup = new THREE.Group();
-        // Bright Cyan/Blue for the grid lines
         const gridColor = 0x00d2ff;
         
-        // Use standard GridHelpers for the vector line look
         const grid1 = new THREE.GridHelper(GRID_SIZE, GRID_DIVISIONS, gridColor, 0x0a1f30);
         const grid2 = new THREE.GridHelper(GRID_SIZE, GRID_DIVISIONS, gridColor, 0x0a1f30);
         
@@ -1121,20 +961,18 @@
         gridGroup.add(grid1);
         gridGroup.add(grid2);
 
-        // Add a checkerboard texture plane below for the "filled" board look
-        const canvas = document.createElement('canvas');
-        canvas.width = 128;
-        canvas.height = 128;
-        const ctx = canvas.getContext('2d');
-        
-        // --- CHESSBOARD TEXTURE (Black & Blue) ---
-        ctx.fillStyle = '#000000'; // Theme Black
+        // Checkerboard texture
+        const cvs = document.createElement('canvas');
+        cvs.width = 128;
+        cvs.height = 128;
+        const ctx = cvs.getContext('2d');
+        ctx.fillStyle = '#000000';
         ctx.fillRect(0,0,128,128);
-        ctx.fillStyle = '#001a4d'; // Theme Blue (Darkened for floor)
+        ctx.fillStyle = '#001a4d';
         ctx.fillRect(0,0,64,64);
         ctx.fillRect(64,64,64,64);
         
-        const texture = new THREE.CanvasTexture(canvas);
+        const texture = new THREE.CanvasTexture(cvs);
         texture.magFilter = THREE.NearestFilter;
         texture.wrapS = THREE.RepeatWrapping;
         texture.wrapT = THREE.RepeatWrapping;
@@ -1152,33 +990,27 @@
 
         gridGroup.add(floor1);
         gridGroup.add(floor2);
-        
         scene.add(gridGroup);
 
         // --- HARDWARE BACKDROP (PCBs, CPUS, RAM) ---
         const hardwareGroup = new THREE.Group();
-        // Use wireframe aesthetic to match scene
         const hwMaterial = new THREE.MeshBasicMaterial({ color: 0x00d2ff, wireframe: true, transparent: true, opacity: 0.15 });
         const hwHighlight = new THREE.MeshBasicMaterial({ color: 0x00ffff, wireframe: true, transparent: true, opacity: 0.3 });
 
         function createHardwareMesh(type) {
             const group = new THREE.Group();
             if (type === 'pcb') {
-                // Main board
                 const board = new THREE.Mesh(new THREE.BoxGeometry(100, 5, 140), hwMaterial);
                 group.add(board);
-                // Chip
                 const chip = new THREE.Mesh(new THREE.BoxGeometry(30, 8, 30), hwHighlight);
                 chip.position.set(10, 5, -20);
                 group.add(chip);
             } else if (type === 'cpu') {
-                // Processor style
                 const base = new THREE.Mesh(new THREE.BoxGeometry(50, 4, 50), hwMaterial);
                 const core = new THREE.Mesh(new THREE.BoxGeometry(30, 6, 30), hwHighlight);
                 group.add(base);
                 group.add(core);
             } else if (type === 'ram') {
-                // Memory stick style
                 const stick = new THREE.Mesh(new THREE.BoxGeometry(120, 4, 15), hwMaterial);
                 group.add(stick);
                 for(let k=-3; k<=3; k+=2) {
@@ -1190,27 +1022,22 @@
             return group;
         }
 
-        // Create orbiting hardware elements
         for (let i = 0; i < 25; i++) {
             const types = ['pcb', 'cpu', 'ram'];
             const type = types[Math.floor(Math.random() * types.length)];
             const mesh = createHardwareMesh(type);
             
-            // Random Orbit Parameters
             const angle = Math.random() * Math.PI * 2;
             const radius = 700 + Math.random() * 1200;
             
-            // Initial Position
             mesh.position.set(
                 Math.cos(angle) * radius,
                 (Math.random() - 0.5) * 800 + 400, 
                 Math.sin(angle) * radius - 1500
             );
             
-            // Random Rotation
             mesh.rotation.set(Math.random()*Math.PI, Math.random()*Math.PI, 0);
 
-            // Scale variation
             const s = 1.0 + Math.random() * 1.5;
             mesh.scale.set(s,s,s);
 
@@ -1225,18 +1052,86 @@
             
             hardwareGroup.add(mesh);
         }
-        
         scene.add(hardwareGroup);
 
+        // --- LIVING NODES (Digiverse Network) ---
+        const nodesGroup = new THREE.Group();
+        const nodeData = [];
+        const nodeSphereGeo = new THREE.SphereGeometry(3, 8, 8);
+        const nodeCoreMat = new THREE.MeshBasicMaterial({ color: 0x00ffff, transparent: true, opacity: 0.9 });
+        const nodeGlowMat = new THREE.MeshBasicMaterial({ color: 0x00d2ff, transparent: true, opacity: 0.25 });
+        const glowGeo = new THREE.SphereGeometry(7, 8, 8);
+
+        for (let i = 0; i < NODE_COUNT; i++) {
+            const nodeGroup = new THREE.Group();
+
+            // Core sphere
+            const core = new THREE.Mesh(nodeSphereGeo, nodeCoreMat.clone());
+            nodeGroup.add(core);
+
+            // Glow shell
+            const glow = new THREE.Mesh(glowGeo, nodeGlowMat.clone());
+            nodeGroup.add(glow);
+
+            // Position in a wide volume around the scene
+            const px = (Math.random() - 0.5) * 2400;
+            const py = 40 + Math.random() * 600;
+            const pz = -Math.random() * 2800;
+            nodeGroup.position.set(px, py, pz);
+
+            // Velocity for drifting
+            const nd = {
+                mesh: nodeGroup,
+                core: core,
+                vx: (Math.random() - 0.5) * 0.6,
+                vy: (Math.random() - 0.5) * 0.3,
+                vz: (Math.random() - 0.5) * 0.4,
+                baseY: py,
+                phase: Math.random() * Math.PI * 2,
+                pulseSpeed: 0.5 + Math.random() * 1.5,
+                originX: px,
+                originZ: pz
+            };
+
+            nodeData.push(nd);
+            nodesGroup.add(nodeGroup);
+        }
+        scene.add(nodesGroup);
+
+        // Dynamic links between nearby nodes
+        const linkMat = new THREE.LineBasicMaterial({ color: 0x00d2ff, transparent: true, opacity: 0.15 });
+        const linksGroup = new THREE.Group();
+        scene.add(linksGroup);
+
+        function updateNodeLinks() {
+            // Remove old links
+            while (linksGroup.children.length > 0) {
+                const child = linksGroup.children[0];
+                child.geometry.dispose();
+                linksGroup.remove(child);
+            }
+
+            // Build new links between nearby nodes
+            for (let i = 0; i < nodeData.length; i++) {
+                const a = nodeData[i].mesh.position;
+                for (let j = i + 1; j < nodeData.length; j++) {
+                    const b = nodeData[j].mesh.position;
+                    const dist = a.distanceTo(b);
+                    if (dist < NODE_LINK_DISTANCE) {
+                        const opacity = 0.2 * (1 - dist / NODE_LINK_DISTANCE);
+                        const mat = new THREE.LineBasicMaterial({ color: 0x00d2ff, transparent: true, opacity: opacity });
+                        const geo = new THREE.BufferGeometry().setFromPoints([a.clone(), b.clone()]);
+                        linksGroup.add(new THREE.Line(geo, mat));
+                    }
+                }
+            }
+        }
 
         // --- CHESS PIECES / PILLARS ---
         const piecesGroup = new THREE.Group();
         const pieceMaterial = new THREE.MeshBasicMaterial({ color: 0x00d2ff, wireframe: true });
         
-        // Helper to create a "Rook/Tower" shape
         function createRookGeometry() {
-            // Simplified geometry combining boxes or cylinders
-            // Just use a Cylinder for now for performance and look
             return new THREE.CylinderGeometry(10, 15, 60, 8);
         }
         
@@ -1244,7 +1139,6 @@
              return new THREE.ConeGeometry(8, 30, 8);
         }
 
-        // Generate Chess Pieces
         for(let i=0; i<30; i++) {
             let mesh;
             if (Math.random() > 0.6) {
@@ -1254,10 +1148,8 @@
             }
             
             resetPiecePosition(mesh);
-            // Randomly offset Z so they don't all start at once
             mesh.position.z = -Math.random() * 2000;
             
-            // Random scale for "Pillar" feel
             const s = 1 + Math.random() * 2;
             mesh.scale.set(s, s*1.5, s);
 
@@ -1266,18 +1158,12 @@
         scene.add(piecesGroup);
 
         function resetPiecePosition(mesh) {
-            mesh.position.z = -2000; // Far horizon
-            // Snap to grid columns: 20 units wide per cell approximately
+            mesh.position.z = -2000;
             const cellWidth = GRID_SIZE / GRID_DIVISIONS;
-            const lane = Math.floor((Math.random() - 0.5) * 20); // -10 to 10
+            const lane = Math.floor((Math.random() - 0.5) * 20);
             mesh.position.x = lane * cellWidth;
-            
-            // Sit on floor based on height
-            // Calculate height based on bounding box or known scale
-            // Approximate y pos
             mesh.position.y = 20 * mesh.scale.y; 
         }
-
 
         // --- INPUT HANDLING ---
         let mouseX = 0;
@@ -1286,21 +1172,13 @@
         let isJumping = false;
         
         const GRAVITY = -0.8;
-        const JUMP_FORCHardware (Orbiting)
-            hardwareGroup.children.forEach(hw => {
-                hw.userData.angle += hw.userData.speed;
-                // Orbit Logic (Circle around centerZ)
-                hw.position.x = Math.cos(hw.userData.angle) * hw.userData.radius;
-                hw.position.z = Math.sin(hw.userData.angle) * hw.userData.radius + hw.userData.centerZ;
-                
-                // Bobbing effect
-                hw.position.y = hw.userData.yBase + Math.sin(Date.now() * 0.001 + hw.userData.yOff) * 20;
-                
-                // Self rotation
-                hw.rotation.x += 0.005;
-                hw.rotation.y += 0.005;
-            });
-            // hardwareGroup.rotation.y += 0.0002
+        const JUMP_FORCE = 15;
+
+        // Mouse parallax for subtle camera movement
+        document.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+            targetX = mouseX * 200;
+        });
 
         // Space -> Jump
         document.addEventListener('keydown', (event) => {
@@ -1310,10 +1188,12 @@
             }
         });
 
-
         // --- ANIMATE ---
+        let linkTimer = 0;
+
         function animate() {
             requestAnimationFrame(animate);
+            const time = Date.now() * 0.001;
 
             // 1. Scroll the Grid
             gridGroup.position.z += SCROLL_SPEED;
@@ -1324,46 +1204,64 @@
             // 2. Move Pieces
             piecesGroup.children.forEach(p => {
                 p.position.z += SCROLL_SPEED;
-                p.rotation.y += 0.01; // Spin
-
+                p.rotation.y += 0.01;
                 if(p.position.z > 300) {
                     resetPiecePosition(p);
                 }
             });
 
-            // 3. Move Orbits (Background)
-            orbitGroup.children.forEach(orb => {
-                if(orb.userData.rotX) {
-                    orb.rotation.x += orb.userData.rotX;
-                    orb.rotation.y += orb.userData.rotY;
-                }
+            // 3. Hardware Orbiting
+            hardwareGroup.children.forEach(hw => {
+                hw.userData.angle += hw.userData.speed;
+                hw.position.x = Math.cos(hw.userData.angle) * hw.userData.radius;
+                hw.position.z = Math.sin(hw.userData.angle) * hw.userData.radius + hw.userData.centerZ;
+                hw.position.y = hw.userData.yBase + Math.sin(time + hw.userData.yOff) * 20;
+                hw.rotation.x += 0.005;
+                hw.rotation.y += 0.005;
             });
-            // Rotate the whole group slowly
-            orbitGroup.rotation.z += 0.001;
 
+            // 4. Living Nodes — drift, pulse, breathe
+            nodeData.forEach(nd => {
+                // Drift movement
+                nd.mesh.position.x += nd.vx;
+                nd.mesh.position.y = nd.baseY + Math.sin(time * 0.5 + nd.phase) * 30;
+                nd.mesh.position.z += nd.vz;
 
-            // 4. Player Movement (Camera Strafe & Jump)
-            // LERP X
+                // Boundary wrapping — keep nodes in the visible volume
+                if (nd.mesh.position.x > 1200) nd.mesh.position.x = -1200;
+                if (nd.mesh.position.x < -1200) nd.mesh.position.x = 1200;
+                if (nd.mesh.position.z > 200) nd.mesh.position.z = -2800;
+                if (nd.mesh.position.z < -2800) nd.mesh.position.z = 200;
+
+                // Pulse glow
+                const pulse = 0.6 + 0.4 * Math.sin(time * nd.pulseSpeed + nd.phase);
+                nd.core.material.opacity = 0.5 + pulse * 0.5;
+                nd.core.scale.setScalar(0.8 + pulse * 0.4);
+            });
+
+            // Rebuild links every ~15 frames for performance
+            linkTimer++;
+            if (linkTimer % 15 === 0) {
+                updateNodeLinks();
+            }
+
+            // 5. Camera — strafe & jump
             camera.position.x += (targetX - camera.position.x) * 0.05;
             
-            // Physics Y
             if (isJumping) {
                 camera.position.y += jumpVelocity;
                 jumpVelocity += GRAVITY;
-                
                 if(camera.position.y <= BASE_HEIGHT) {
                     camera.position.y = BASE_HEIGHT;
                     isJumping = false;
                     jumpVelocity = 0;
                 }
             } else {
-                // Ensure we stick to base height if not jumping
                 if(camera.position.y > BASE_HEIGHT) {
                      camera.position.y += (BASE_HEIGHT - camera.position.y) * 0.1;
                 }
             }
             
-            // Dynamic lookAt to keep focus forward but slightly banking
             camera.lookAt( camera.position.x * 0.3, camera.position.y - 40, -400 );
 
             composer.render();
@@ -1430,17 +1328,119 @@
         })();
     </script>
 
-    <!-- UI // --- SCROLL HEADER LOGIC ---
+    <!-- Scroll, Swipe & Navigation Logic -->
+    <script>
+        // --- SCROLL HEADER LOGIC ---
+        (function() {
             const nav = document.querySelector('nav');
-            window.addEventListener('scroll', () => {
-                if(window.scrollY > 50) {
-                    nav.classList.add('scrolled');
-                } else {
-                    nav.classList.remove('scrolled');
+            const deckWrapper = document.getElementById('deckWrapper');
+
+            // Listen on the deck-wrapper for horizontal scroll (deck layout)
+            if (deckWrapper) {
+                deckWrapper.addEventListener('scroll', () => {
+                    if (deckWrapper.scrollLeft > 50) {
+                        nav.classList.add('scrolled');
+                    } else {
+                        nav.classList.remove('scrolled');
+                    }
+                });
+            }
+
+            // Also listen on deck-sections for vertical scroll inside panels
+            document.querySelectorAll('.deck-section').forEach(section => {
+                section.addEventListener('scroll', () => {
+                    if (section.scrollTop > 50) {
+                        nav.classList.add('scrolled');
+                    } else if (deckWrapper && deckWrapper.scrollLeft <= 50) {
+                        nav.classList.remove('scrolled');
+                    }
+                });
+            });
+
+            // --- TOUCH SWIPE FOR DECK NAVIGATION ---
+            let touchStartX = 0;
+            let touchStartY = 0;
+            let isSwiping = false;
+
+            if (deckWrapper) {
+                deckWrapper.addEventListener('touchstart', (e) => {
+                    touchStartX = e.touches[0].clientX;
+                    touchStartY = e.touches[0].clientY;
+                    isSwiping = true;
+                }, { passive: true });
+
+                deckWrapper.addEventListener('touchend', (e) => {
+                    if (!isSwiping) return;
+                    isSwiping = false;
+
+                    const touchEndX = e.changedTouches[0].clientX;
+                    const touchEndY = e.changedTouches[0].clientY;
+                    const deltaX = touchEndX - touchStartX;
+                    const deltaY = touchEndY - touchStartY;
+
+                    // Only swipe horizontally if the gesture is more horizontal than vertical
+                    if (Math.abs(deltaX) > 60 && Math.abs(deltaX) > Math.abs(deltaY) * 1.5) {
+                        const sections = deckWrapper.querySelectorAll('.deck-section');
+                        const currentIndex = Math.round(deckWrapper.scrollLeft / window.innerWidth);
+
+                        if (deltaX < 0 && currentIndex < sections.length - 1) {
+                            // Swipe left → next section
+                            sections[currentIndex + 1].scrollIntoView({ behavior: 'smooth', inline: 'start' });
+                        } else if (deltaX > 0 && currentIndex > 0) {
+                            // Swipe right → previous section
+                            sections[currentIndex - 1].scrollIntoView({ behavior: 'smooth', inline: 'start' });
+                        }
+                    }
+                }, { passive: true });
+            }
+
+            // --- KEYBOARD NAVIGATION (Arrow keys to switch deck sections) ---
+            document.addEventListener('keydown', (e) => {
+                if (!deckWrapper) return;
+                const sections = deckWrapper.querySelectorAll('.deck-section');
+                const currentIndex = Math.round(deckWrapper.scrollLeft / window.innerWidth);
+
+                if (e.key === 'ArrowRight' && currentIndex < sections.length - 1) {
+                    sections[currentIndex + 1].scrollIntoView({ behavior: 'smooth', inline: 'start' });
+                } else if (e.key === 'ArrowLeft' && currentIndex > 0) {
+                    sections[currentIndex - 1].scrollIntoView({ behavior: 'smooth', inline: 'start' });
                 }
             });
 
-            Logic Script -->
+            // --- MOUSE WHEEL → HORIZONTAL SCROLL (desktop) ---
+            if (deckWrapper) {
+                deckWrapper.addEventListener('wheel', (e) => {
+                    // If the active section can scroll vertically, let it
+                    const sections = deckWrapper.querySelectorAll('.deck-section');
+                    const currentIndex = Math.round(deckWrapper.scrollLeft / window.innerWidth);
+                    const activeSection = sections[currentIndex];
+
+                    if (activeSection) {
+                        const canScrollDown = activeSection.scrollTop < (activeSection.scrollHeight - activeSection.clientHeight - 5);
+                        const canScrollUp = activeSection.scrollTop > 5;
+                        const isVerticalScroll = Math.abs(e.deltaY) > Math.abs(e.deltaX);
+
+                        // If the section has vertical overflow and user is scrolling vertically, let it scroll
+                        if (isVerticalScroll && (canScrollDown && e.deltaY > 0 || canScrollUp && e.deltaY < 0)) {
+                            return; // Let default vertical scroll happen inside the section
+                        }
+                    }
+
+                    // Otherwise, convert vertical wheel to horizontal deck navigation
+                    if (Math.abs(e.deltaY) > 30) {
+                        e.preventDefault();
+                        if (e.deltaY > 0 && currentIndex < sections.length - 1) {
+                            sections[currentIndex + 1].scrollIntoView({ behavior: 'smooth', inline: 'start' });
+                        } else if (e.deltaY < 0 && currentIndex > 0) {
+                            sections[currentIndex - 1].scrollIntoView({ behavior: 'smooth', inline: 'start' });
+                        }
+                    }
+                }, { passive: false });
+            }
+        })();
+    </script>
+
+    <!-- UI Logic Script -->
     <script>
         function toggleMobileMenu() {
             const menu = document.getElementById('mobileDropdown');
@@ -1492,7 +1492,8 @@
 
             const observerOptions = {
                 threshold: 0.15,
-                rootMargin: "0px"
+                rootMargin: "0px",
+                root: document.getElementById('dev-grid-slide')
             };
 
             const observer = new IntersectionObserver((entries) => {
@@ -1522,7 +1523,7 @@
             cards.forEach(card => observer.observe(card));
         });
 
-        const letters = "██▓▓▒▒░░▖▗▘▙▚▛▜▝▞▟"; 
+        const letters = "â–ˆâ–ˆâ–“â–“â–’â–’â–‘â–‘â––â–—â–˜â–™â–šâ–›â–œâ–â–žâ–Ÿ"; 
 
         function runGlitch(element) {
             if (element.dataset.isCoolingDown === "true") return;
@@ -1581,7 +1582,7 @@
     <!-- IndexNow SEO -->
     <script src="assets/js/indexnow-manager.js"></script>
 
-    <div id="cookie-banner"><div class="cookie-banner-content"><div class="cookie-banner-text"><h3>🍪 Privacy</h3><p>We use cookies. <a href="#" onclick="event.preventDefault(); cookieManager?.openSettings();">Settings</a></p></div><div class="cookie-banner-actions"><button class="cookie-btn cookie-btn-necessary" onclick="cookieManager?.acceptNecessary();">Necessary</button><button class="cookie-btn cookie-btn-accept" onclick="cookieManager?.acceptAll();">Accept All</button></div></div></div><div id="cookie-settings-modal"><div class="cookie-modal-content"><div class="cookie-modal-header"><h2>Cookies</h2><button class="cookie-modal-close" onclick="cookieManager?.closeSettings();">×</button></div><div class="cookie-modal-body"><div class="cookie-category"><div class="cookie-category-header"><h3>Necessary</h3><label class="cookie-toggle"><input type="checkbox" checked disabled><span class="cookie-toggle-slider"></span></label></div></div><div class="cookie-category"><div class="cookie-category-header"><h3>Analytics</h3><label class="cookie-toggle"><input type="checkbox" id="cookie-analytics"><span class="cookie-toggle-slider"></span></label></div></div><div class="cookie-category"><div class="cookie-category-header"><h3>Marketing</h3><label class="cookie-toggle"><input type="checkbox" id="cookie-marketing"><span class="cookie-toggle-slider"></span></label></div></div><div class="cookie-category"><div class="cookie-category-header"><h3>Preferences</h3><label class="cookie-toggle"><input type="checkbox" id="cookie-preferences"><span class="cookie-toggle-slider"></span></label></div></div></div><div class="cookie-modal-footer"><button class="cookie-btn cookie-btn-necessary" onclick="cookieManager?.acceptNecessary();">Necessary</button><button class="cookie-btn cookie-btn-accept" onclick="cookieManager?.saveCustomPreferences();">Save</button></div></div></div>
+    <div id="cookie-banner"><div class="cookie-banner-content"><div class="cookie-banner-text"><h3>ðŸª Privacy</h3><p>We use cookies. <a href="#" onclick="event.preventDefault(); cookieManager?.openSettings();">Settings</a></p></div><div class="cookie-banner-actions"><button class="cookie-btn cookie-btn-necessary" onclick="cookieManager?.acceptNecessary();">Necessary</button><button class="cookie-btn cookie-btn-accept" onclick="cookieManager?.acceptAll();">Accept All</button></div></div></div><div id="cookie-settings-modal"><div class="cookie-modal-content"><div class="cookie-modal-header"><h2>Cookies</h2><button class="cookie-modal-close" onclick="cookieManager?.closeSettings();">Ã—</button></div><div class="cookie-modal-body"><div class="cookie-category"><div class="cookie-category-header"><h3>Necessary</h3><label class="cookie-toggle"><input type="checkbox" checked disabled><span class="cookie-toggle-slider"></span></label></div></div><div class="cookie-category"><div class="cookie-category-header"><h3>Analytics</h3><label class="cookie-toggle"><input type="checkbox" id="cookie-analytics"><span class="cookie-toggle-slider"></span></label></div></div><div class="cookie-category"><div class="cookie-category-header"><h3>Marketing</h3><label class="cookie-toggle"><input type="checkbox" id="cookie-marketing"><span class="cookie-toggle-slider"></span></label></div></div><div class="cookie-category"><div class="cookie-category-header"><h3>Preferences</h3><label class="cookie-toggle"><input type="checkbox" id="cookie-preferences"><span class="cookie-toggle-slider"></span></label></div></div></div><div class="cookie-modal-footer"><button class="cookie-btn cookie-btn-necessary" onclick="cookieManager?.acceptNecessary();">Necessary</button><button class="cookie-btn cookie-btn-accept" onclick="cookieManager?.saveCustomPreferences();">Save</button></div></div></div>
 
     <!-- Identity Modules -->
     <div class="identity-modules">

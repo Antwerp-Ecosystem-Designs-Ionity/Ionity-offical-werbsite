@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
  <script src="https://app.secureprivacy.ai/script/69999f793956998e8c6d4f9c.js"></script>
@@ -58,8 +58,8 @@
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="revisit-after" content="7 days">
 
-<meta name="copyright" content="© 2018–2026 Antwerp Designs | Ionity (Pty) Ltd">
-<meta name="rights" content="All rights reserved. TM². Policy AED 986. License AED 900.">
+<meta name="copyright" content="Â© 2018â€“2026 Antwerp Designs | Ionity (Pty) Ltd">
+<meta name="rights" content="All rights reserved. TMÂ². Policy AED 986. License AED 900.">
 <meta name="license" content="https://creativecommons.org/licenses/by-nc-sa/4.0/">
 
 <meta name="geo.region" content="ZA-GT">
@@ -581,12 +581,12 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
             width: 100%;
         }
 
         .footer-logo {
-            height: 80px;
+            height: 60px;
             width: auto;
             opacity: 0.9;
             transition: all 0.3s ease;
@@ -603,6 +603,38 @@
 
         a { color: var(--accent-cyan); text-decoration: none; transition: 0.3s; }
         a:hover { text-shadow: 0 0 8px var(--accent-cyan); color: #fff; }
+
+        /* --- A-Z FILTER --- */
+        .az-filter {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: rgba(5, 10, 20, 0.4);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+        }
+
+        .az-btn {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-muted);
+            padding: 0.4rem 0.8rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .az-btn:hover, .az-btn.active {
+            background: rgba(0, 210, 255, 0.15);
+            color: #fff;
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 10px rgba(0, 210, 255, 0.3);
+        }
 
         /* --- ADDED RESOURCE CARD STYLES --- */
         .resource-card {
@@ -756,8 +788,7 @@
         <!-- Desktop Menu -->
         <div class="nav-links">
             <a href="inner-Page.html">Systems</a>
-            <a href="services.html">Services</a>
-            <a href="products.html">Products</a>
+            <a href="what-we-do.html">What We Do</a>
             <a href="ai-innovation.html">Ai Innovation</a>
             <a href="roadmap.html">Roadmap</a>
             <a href="license.html">License</a>
@@ -770,20 +801,19 @@
 
         <!-- Search Bar -->
         <div class="nav-search">
-            <span class="nav-search-icon">⌕</span>
+            <span class="nav-search-icon">âŒ•</span>
             <input type="text" id="portalSearch" placeholder="Search AI tools..." autocomplete="off">
             <span class="search-count" id="searchCount"></span>
         </div>
 
         <!-- Mobile Button -->
-        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">â˜°</button>
     </nav>
 
     <!-- Mobile Dropdown -->
     <div class="mobile-dropdown" id="mobileDropdown">
         <a href="inner-Page.html">Systems</a>
-        <a href="services.html">Services</a>
-        <a href="products.html">Products</a>
+        <a href="what-we-do.html">What We Do</a>
         <a href="ai-innovation.html">Ai Innovation</a>
         <a href="roadmap.html">Roadmap</a>
         <a href="license.html">License</a>
@@ -818,6 +848,54 @@
                     The AEDI Online system is preparing for initialization.<br>
                     Access the frontier of Artificial Intelligence. Curated connections to global technology leaders, cutting-edge generative models, security standards, and regulatory frameworks.
                 </p>
+            </div>
+
+            <!-- A-Z Filter -->
+            <div class="az-filter" id="azFilter">
+                <button class="az-btn active" data-letter="ALL">ALL</button>
+                <button class="az-btn" data-letter="A">A</button>
+                <button class="az-btn" data-letter="B">B</button>
+                <button class="az-btn" data-letter="C">C</button>
+                <button class="az-btn" data-letter="D">D</button>
+                <button class="az-btn" data-letter="E">E</button>
+                <button class="az-btn" data-letter="F">F</button>
+                <button class="az-btn" data-letter="G">G</button>
+                <button class="az-btn" data-letter="H">H</button>
+                <button class="az-btn" data-letter="I">I</button>
+                <button class="az-btn" data-letter="J">J</button>
+                <button class="az-btn" data-letter="K">K</button>
+                <button class="az-btn" data-letter="L">L</button>
+                <button class="az-btn" data-letter="M">M</button>
+                <button class="az-btn" data-letter="N">N</button>
+                <button class="az-btn" data-letter="O">O</button>
+                <button class="az-btn" data-letter="P">P</button>
+                <button class="az-btn" data-letter="Q">Q</button>
+                <button class="az-btn" data-letter="R">R</button>
+                <button class="az-btn" data-letter="S">S</button>
+                <button class="az-btn" data-letter="T">T</button>
+                <button class="az-btn" data-letter="U">U</button>
+                <button class="az-btn" data-letter="V">V</button>
+                <button class="az-btn" data-letter="W">W</button>
+                <button class="az-btn" data-letter="X">X</button>
+                <button class="az-btn" data-letter="Y">Y</button>
+                <button class="az-btn" data-letter="Z">Z</button>
+                <button class="az-btn" data-letter="0-9">0-9</button>
+            </div>
+
+            <!-- Recommended Core Tools -->
+            <div style="position: relative;" id="recommended-section">
+                <div style="position: absolute; top: -10px; right: 20px; background: var(--bg-dark); padding: 0 10px; color: #ffd93d; font-size: 0.6rem; border: 1px solid #ffd93d; opacity: 0.7;">RECOMMENDED</div>
+                <h3 style="color: #fff; border-left: 3px solid #ffd93d; padding-left: 1rem; margin-bottom: 2rem; font-size: 1.5rem; letter-spacing: 0.1rem;">Recommended Platform Standards</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem;">
+                    <a href="https://gemini.google.com/" target="_blank" class="resource-card">Google Gemini (Default AI)</a>
+                    <a href="https://cloud.google.com/vertex-ai" target="_blank" class="resource-card">Vertex AI Platform</a>
+                    <a href="https://github.com/features/copilot" target="_blank" class="resource-card">GitHub Copilot</a>
+                    <a href="https://www.midjourney.com/" target="_blank" class="resource-card">Midjourney (Design)</a>
+                    <a href="https://elevenlabs.io/" target="_blank" class="resource-card">ElevenLabs (Voice)</a>
+                    <a href="https://runwayml.com/" target="_blank" class="resource-card">RunwayML (Video)</a>
+                    <a href="https://www.cursor.com/" target="_blank" class="resource-card">Cursor (Code)</a>
+                    <a href="https://suno.com/" target="_blank" class="resource-card">Suno (Music)</a>
+                </div>
             </div>
 
             <!-- 1. Global Tech Leaders -->
@@ -1047,7 +1125,7 @@
                 <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem;">
                     <a href="https://www.midjourney.com/" target="_blank" class="resource-card">Midjourney</a>
                     <a href="https://stability.ai/" target="_blank" class="resource-card">Stable Diffusion</a>
-                    <a href="https://openai.com/dall-e-3" target="_blank" class="resource-card">DALL·E 3</a>
+                    <a href="https://openai.com/dall-e-3" target="_blank" class="resource-card">DALLÂ·E 3</a>
                     <a href="https://www.adobe.com/products/firefly.html" target="_blank" class="resource-card">Adobe Firefly</a>
                     <a href="https://www.artbreeder.com/" target="_blank" class="resource-card">Artbreeder</a>
                     <a href="https://deepdreamgenerator.com/" target="_blank" class="resource-card">DeepDream</a>
@@ -1192,6 +1270,42 @@
                 </div>
             </div>
 
+            <!-- 19. Specialized AI Agents & Bots -->
+            <div style="position: relative;">
+                <div style="position: absolute; top: -10px; right: 20px; background: var(--bg-dark); padding: 0 10px; color: var(--accent-cyan); font-size: 0.6rem; border: 1px solid var(--border); opacity: 0.7;">NEW SECTION</div>
+                <h3 style="color: #fff; border-left: 3px solid var(--accent-cyan); padding-left: 1rem; margin-bottom: 2rem; font-size: 1.5rem; letter-spacing: 0.1rem;">Specialized AI Agents & Bots</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem;">
+                    <a href="https://chat.openai.com/gpts" target="_blank" class="resource-card">Custom GPTs</a>
+                    <a href="https://a16z.com/ai-agents/" target="_blank" class="resource-card">Autonomous Agents (a16z)</a>
+                    <a href="https://www.harpa.ai/" target="_blank" class="resource-card">Harpa AI (Agent)</a>
+                    <a href="https://www.agentai.com/" target="_blank" class="resource-card">Agent AI</a>
+                    <a href="https://brave.com/leo/" target="_blank" class="resource-card">Brave Leo (Browser)</a>
+                    <a href="https://www.chatpdf.com/" target="_blank" class="resource-card">ChatPDF</a>
+                    <a href="https://www.tldv.io/" target="_blank" class="resource-card">tl;dv (Meeting Bot)</a>
+                    <a href="https://fireflies.ai/" target="_blank" class="resource-card">Fireflies.ai</a>
+                    <a href="https://www.lindyai.com/" target="_blank" class="resource-card">Lindy (Personal Assistant)</a>
+                    <a href="https://devin.ai/" target="_blank" class="resource-card">Devin (AI Software Engineer)</a>
+                </div>
+            </div>
+
+            <!-- 20. Hardware & Edge AI Integration -->
+            <div style="position: relative;">
+                <div style="position: absolute; top: -10px; right: 20px; background: var(--bg-dark); padding: 0 10px; color: var(--accent-cyan); font-size: 0.6rem; border: 1px solid var(--border); opacity: 0.7;">NEW SECTION</div>
+                <h3 style="color: #fff; border-left: 3px solid var(--accent-cyan); padding-left: 1rem; margin-bottom: 2rem; font-size: 1.5rem; letter-spacing: 0.1rem;">Hardware & Edge AI Integration</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem;">
+                    <a href="https://developer.nvidia.com/embedded/jetson-nano" target="_blank" class="resource-card">NVIDIA Jetson</a>
+                    <a href="https://coral.ai/" target="_blank" class="resource-card">Google Coral Edge TPU</a>
+                    <a href="https://www.raspberrypi.com/" target="_blank" class="resource-card">Raspberry Pi AI Mod</a>
+                    <a href="https://www.st.com/en/microcontrollers-microprocessors/stm32-arm-cortex-mcus.html" target="_blank" class="resource-card">STM32 Cube AI</a>
+                    <a href="https://www.espressif.com/en/solutions/aiot" target="_blank" class="resource-card">ESP32 AIoT</a>
+                    <a href="https://edgeimpulse.com/" target="_blank" class="resource-card">Edge Impulse</a>
+                    <a href="https://arduino.cc/en/hardware/nano-33-ble-sense" target="_blank" class="resource-card">Arduino Nano 33 BLE</a>
+                    <a href="https://www.nxp.com/design/design-center/software/machine-learning:MACHINE-LEARNING" target="_blank" class="resource-card">NXP eIQ</a>
+                    <a href="https://www.qualcomm.com/products/technology/artificial-intelligence" target="_blank" class="resource-card">Qualcomm AI Engine</a>
+                    <a href="https://hailo.ai/" target="_blank" class="resource-card">Hailo AI Processors</a>
+                </div>
+            </div>
+
         </main>
 
     </div>
@@ -1209,11 +1323,11 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                margin-bottom: 2rem;
+                margin-bottom: 1rem;
                 width: 100%;
             }
             .footer-logo {
-                height: 80px;
+                height: 60px;
                 width: auto;
                 opacity: 0.9;
                 transition: all 0.3s ease;
@@ -1238,15 +1352,15 @@
         <div class="footer-logo-container">
             <img src="assets/images/ionity-logo-edited.png" alt="Ionity Logo" class="footer-logo">
         </div>
-        <div class="footer-content" style="opacity: 0.7; line-height: 2; color: var(--text-muted);">
-            <div>Ionity™ (Pty) Ltd 2025-2026 | Creative Commons BY-NC-SA 4.0 | Made with AEDI™ | Author: Antwerp Designs</div>
-            <div>South Africa Centurion 0157 | Policy AED 986 | License AED 900 | Ionity™ IoT-Ai-DAQ-PdM-CMS-F-iT Hardware, Software Integrations, ALL RIGHTS RESERVED</div>
+        <div class="footer-content" style="opacity: 0.7; line-height: 1.8; color: var(--text-muted);">
+            <div>Ionityâ„¢ (Pty) Ltd 2025-2026 | Creative Commons BY-NC-SA 4.0 | Made with AEDIâ„¢ | Author: Antwerp Designs</div>
+            <div>South Africa Centurion 0157 | Policy AED 986 | License AED 900 | Ionityâ„¢ IoT-Ai-DAQ-PdM-CMS-F-iT Hardware, Software Integrations, ALL RIGHTS RESERVED</div>
             <div>
                 <a href="tel:+27646999877">+27 646 999 877</a> &nbsp;|&nbsp;
                 <a href="mailto:ai@ionity.today">ai@ionity.today</a> &nbsp;|&nbsp; 
-                <a href="https://www.ionity.world" target="_blank">www.ionity.world</a>
+                <a href="https://www.ionity.world" target="_blank" rel="noopener noreferrer">www.ionity.world</a>
             </div>
-            <div style="margin-top: 1rem;">
+            <div style="margin-top: 0.75rem;">
                 <a href="https://antwerpdesignsionity.github.io/Metadata" target="_blank" rel="noopener noreferrer">Metadata</a>
             </div>
         </div>
@@ -1395,7 +1509,21 @@
             allCards.forEach(card => {
                 const text = card.textContent.toLowerCase();
                 const href = (card.getAttribute('href') || '').toLowerCase();
-                if (text.includes(query) || href.includes(query)) {
+                
+                // Allow A-Z filtering to work alongside search
+                const currentLetter = document.querySelector('.az-btn.active')?.dataset.letter;
+                let letterMatch = true;
+                
+                if (currentLetter && currentLetter !== 'ALL') {
+                    const firstChar = card.textContent.trim().charAt(0).toUpperCase();
+                    if (currentLetter === '0-9') {
+                        letterMatch = /[0-9]/.test(firstChar);
+                    } else {
+                        letterMatch = firstChar === currentLetter;
+                    }
+                }
+
+                if ((text.includes(query) || href.includes(query)) && letterMatch) {
                     card.classList.remove('search-hidden');
                     card.classList.add('search-highlight');
                     matchCount++;
@@ -1405,23 +1533,75 @@
                 }
             });
 
-            // Hide sections where ALL cards are hidden
+            // Hide empty sections
             allSections.forEach(section => {
-                const cards = section.querySelectorAll('.resource-card');
-                if (cards.length === 0) {
-                    // Intro section or non-card section stays visible
-                    return;
-                }
+                // skip recommended and intro sections if all are unhidden
+                if (section.id === 'recommended-section') return; 
+                
                 const visibleCards = section.querySelectorAll('.resource-card:not(.search-hidden)');
-                if (visibleCards.length === 0) {
+                if (visibleCards.length === 0 && section.querySelector('.resource-card')) {
                     section.classList.add('section-hidden');
                 } else {
                     section.classList.remove('section-hidden');
                 }
             });
 
-            searchCount.textContent = matchCount + ' found';
+            searchCount.textContent = `${matchCount} found`;
             searchCount.classList.add('visible');
+        });
+
+        // --- A-Z FILTER LOGIC ---
+        const azButtons = document.querySelectorAll('.az-btn');
+        azButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Update active state
+                azButtons.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                const letter = this.dataset.letter;
+                const allCards = document.querySelectorAll('.resource-card');
+                const allSections = document.querySelectorAll('main > div');
+                
+                // Clear search highlights
+                searchInput.value = '';
+                searchCount.classList.remove('visible');
+                
+                allCards.forEach(card => {
+                    card.classList.remove('search-highlight');
+                    
+                    if (letter === 'ALL') {
+                        card.classList.remove('search-hidden');
+                        return;
+                    }
+                    
+                    const firstChar = card.textContent.trim().charAt(0).toUpperCase();
+                    let match = false;
+                    
+                    if (letter === '0-9') {
+                        match = /[0-9]/.test(firstChar);
+                    } else {
+                        match = firstChar === letter;
+                    }
+                    
+                    if (match) {
+                        card.classList.remove('search-hidden');
+                    } else {
+                        card.classList.add('search-hidden');
+                    }
+                });
+                
+                // Hide empty sections (except intro)
+                allSections.forEach(section => {
+                    if (!section.querySelector('h3')) return; // keep intro visible
+                    
+                    const visibleCards = section.querySelectorAll('.resource-card:not(.search-hidden)');
+                    if (visibleCards.length === 0) {
+                        section.classList.add('section-hidden');
+                    } else {
+                        section.classList.remove('section-hidden');
+                    }
+                });
+            });
         });
 
         // Keyboard shortcut: Ctrl+K or / to focus search
@@ -1483,7 +1663,7 @@
     <!-- IndexNow SEO -->
     <script src="assets/js/indexnow-manager.js"></script>
 
-    <div id="cookie-banner"><div class="cookie-banner-content"><div class="cookie-banner-text"><h3>🍪 We Value Your Privacy</h3><p>We use cookies to enhance your experience. <a href="#" onclick="event.preventDefault(); cookieManager?.openSettings();">Settings</a></p></div><div class="cookie-banner-actions"><button class="cookie-btn cookie-btn-necessary" onclick="cookieManager?.acceptNecessary();">Necessary Only</button><button class="cookie-btn cookie-btn-settings" onclick="cookieManager?.openSettings();">Settings</button><button class="cookie-btn cookie-btn-accept" onclick="cookieManager?.acceptAll();">Accept All</button></div></div></div><div id="cookie-settings-modal"><div class="cookie-modal-content"><div class="cookie-modal-header"><h2>Cookie Preferences</h2><button class="cookie-modal-close" onclick="cookieManager?.closeSettings();">×</button></div><div class="cookie-modal-body"><div class="cookie-category"><div class="cookie-category-header"><h3>Necessary Cookies</h3><label class="cookie-toggle"><input type="checkbox" checked disabled><span class="cookie-toggle-slider"></span></label></div><p>Essential cookies.</p></div><div class="cookie-category"><div class="cookie-category-header"><h3>Analytics Cookies</h3><label class="cookie-toggle"><input type="checkbox" id="cookie-analytics"><span class="cookie-toggle-slider"></span></label></div><p>Visitor analytics.</p></div><div class="cookie-category"><div class="cookie-category-header"><h3>Marketing Cookies</h3><label class="cookie-toggle"><input type="checkbox" id="cookie-marketing"><span class="cookie-toggle-slider"></span></label></div><p>Advertisement tracking.</p></div><div class="cookie-category"><div class="cookie-category-header"><h3>Preference Cookies</h3><label class="cookie-toggle"><input type="checkbox" id="cookie-preferences"><span class="cookie-toggle-slider"></span></label></div><p>User preferences.</p></div></div><div class="cookie-modal-footer"><button class="cookie-btn cookie-btn-necessary" onclick="cookieManager?.acceptNecessary();">Necessary Only</button><button class="cookie-btn cookie-btn-accept" onclick="cookieManager?.saveCustomPreferences();">Save</button></div></div></div>
+    <div id="cookie-banner"><div class="cookie-banner-content"><div class="cookie-banner-text"><h3>ðŸª We Value Your Privacy</h3><p>We use cookies to enhance your experience. <a href="#" onclick="event.preventDefault(); cookieManager?.openSettings();">Settings</a></p></div><div class="cookie-banner-actions"><button class="cookie-btn cookie-btn-necessary" onclick="cookieManager?.acceptNecessary();">Necessary Only</button><button class="cookie-btn cookie-btn-settings" onclick="cookieManager?.openSettings();">Settings</button><button class="cookie-btn cookie-btn-accept" onclick="cookieManager?.acceptAll();">Accept All</button></div></div></div><div id="cookie-settings-modal"><div class="cookie-modal-content"><div class="cookie-modal-header"><h2>Cookie Preferences</h2><button class="cookie-modal-close" onclick="cookieManager?.closeSettings();">Ã—</button></div><div class="cookie-modal-body"><div class="cookie-category"><div class="cookie-category-header"><h3>Necessary Cookies</h3><label class="cookie-toggle"><input type="checkbox" checked disabled><span class="cookie-toggle-slider"></span></label></div><p>Essential cookies.</p></div><div class="cookie-category"><div class="cookie-category-header"><h3>Analytics Cookies</h3><label class="cookie-toggle"><input type="checkbox" id="cookie-analytics"><span class="cookie-toggle-slider"></span></label></div><p>Visitor analytics.</p></div><div class="cookie-category"><div class="cookie-category-header"><h3>Marketing Cookies</h3><label class="cookie-toggle"><input type="checkbox" id="cookie-marketing"><span class="cookie-toggle-slider"></span></label></div><p>Advertisement tracking.</p></div><div class="cookie-category"><div class="cookie-category-header"><h3>Preference Cookies</h3><label class="cookie-toggle"><input type="checkbox" id="cookie-preferences"><span class="cookie-toggle-slider"></span></label></div><p>User preferences.</p></div></div><div class="cookie-modal-footer"><button class="cookie-btn cookie-btn-necessary" onclick="cookieManager?.acceptNecessary();">Necessary Only</button><button class="cookie-btn cookie-btn-accept" onclick="cookieManager?.saveCustomPreferences();">Save</button></div></div></div>
 
     <!-- Identity Modules -->
     <div class="identity-modules">

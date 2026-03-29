@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -56,7 +56,7 @@
     <meta name="theme-color" content="#FFFFFF">
     <meta name="format-detection" content="telephone=yes">
 
-    <title>About Us | Ionity — AIoT Innovation & Power-Saving Hardware Ecosystems</title>
+    <title>About Us | Ionity â€” AIoT Innovation & Power-Saving Hardware Ecosystems</title>
     <meta name="description"
         content="Ionity designs secure Cloud, Edge, AI, and AIoT ecosystems. We build power-saving hardware units, SCADA systems, and custom software for global automation. Precision, performance, and long-term stability with AIoT integration.">
     <meta name="keywords"
@@ -66,8 +66,8 @@
     <meta name="robots" content="index, follow, max-image-preview:large">
     <meta name="revisit-after" content="7 days">
 
-    <meta name="copyright" content="© 2018–2026 Antwerp Designs | Ionity (Pty) Ltd">
-    <meta name="rights" content="All rights reserved. TM². Policy AED 986. License AED 900.">
+    <meta name="copyright" content="Â© 2018â€“2026 Antwerp Designs | Ionity (Pty) Ltd">
+    <meta name="rights" content="All rights reserved. TMÂ². Policy AED 986. License AED 900.">
     <meta name="license" content="https://creativecommons.org/licenses/by-nc-sa/4.0/">
 
     <meta name="geo.region" content="ZA-GT">
@@ -77,7 +77,7 @@
 
     <meta property="og:type" content="business.business">
     <meta property="og:site_name" content="Ionity | Antwerp Designs">
-    <meta property="og:title" content="About Us | Ionity — AIoT Innovation & Power-Saving Hardware Ecosystems">
+    <meta property="og:title" content="About Us | Ionity â€” AIoT Innovation & Power-Saving Hardware Ecosystems">
     <meta property="og:url" content="https://www.ionity.today/about.html">
     <meta property="og:image" content="https://www.ionity.today/assets/images/ionity-social-card.png">
     <meta property="og:image:alt" content="About Ionity - AIoT Innovation and Edge AI Ecosystems">
@@ -96,7 +96,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@AntwerpDesigns">
     <meta name="twitter:creator" content="@AntwerpDesigns">
-    <meta name="twitter:title" content="About Us | Ionity — AIoT Innovation & Edge AI Ecosystems">
+    <meta name="twitter:title" content="About Us | Ionity â€” AIoT Innovation & Edge AI Ecosystems">
     <meta name="twitter:description"
         content="Ionity designs secure AIoT ecosystems, power-saving hardware, SCADA systems, and edge AI solutions. Founded by Johan Wilhelm van Antwerp.">
     <meta name="twitter:image" content="https://www.ionity.today/assets/images/ionity-social-card.png">
@@ -365,7 +365,7 @@
         .container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 220px 2rem 4rem;
+            padding: 40px 2rem 4rem; /* Reduced top padding to fix first placement */
             min-height: 80vh;
             position: relative;
             z-index: 10;
@@ -947,7 +947,7 @@
     </style>
 </head>
 
-<body>
+<body class="deck-layout">
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXX" height="0" width="0"
             style="display:none;visibility:hidden"></iframe></noscript>
@@ -956,7 +956,7 @@
     <div id="canvas-container"></div>
     <div class="scanlines"></div>
 
-    <nav>
+    <nav id="mainNav">
         <a href="index.html" class="logo">
             <img src="assets/images/ionity-logo-edited.png" alt="IONITY" class="nav-logo">
         </a>
@@ -965,13 +965,13 @@
         <div class="nav-links">
             <a href="index.html">Home</a>
             <a href="system-architecture.html">Systems</a>
-            <a href="services.html">Services</a>
-            <a href="products.html">Products</a>
+            <a href="what-we-do.html">What We Do</a>
             <a href="ai-innovation.html">AI Innovation</a>
             <a href="roadmap.html">Roadmap</a>
             <a href="subscriptions.html">Subscriptions</a>
             <a href="license.html">License</a>
             <a href="privacy.html">Privacy</a>
+            <a href="terms.html">Terms</a>
             <a href="about.html" class="active">About</a>
             <a href="aedi-online.html">AEDI Online</a>
             <a href="contact.html">Contact</a>
@@ -980,20 +980,20 @@
         </div>
 
         <!-- Mobile Button -->
-        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">â˜°</button>
     </nav>
 
     <!-- Mobile Dropdown -->
     <div class="mobile-dropdown" id="mobileDropdown">
         <a href="index.html">Home</a>
         <a href="system-architecture.html">Systems</a>
-        <a href="services.html">Services</a>
-        <a href="products.html">Products</a>
+        <a href="what-we-do.html">What We Do</a>
         <a href="ai-innovation.html">AI Innovation</a>
         <a href="roadmap.html">Roadmap</a>
         <a href="subscriptions.html">Subscriptions</a>
         <a href="license.html">License</a>
         <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
         <a href="about.html" class="active">About</a>
         <a href="aedi-online.html">AEDI Online</a>
         <a href="contact.html">Contact</a>
@@ -1001,10 +1001,9 @@
         <a href="gateway.html">IO Way</a>
     </div>
 
-    <!-- SecurePrivacy Consent Management -->
-    <script src="https://consent.secureprivacy.ai/script/ionity-today.js"></script>
-
-    <div class="container">
+    <div class="deck-wrapper" id="deckWrapper">
+        <section class="deck-section" id="about-hero-slide">
+            <div class="container">
 
         <!-- ===== ABOUT US HERO ===== -->
         <div class="hero-section" style="margin-bottom: 3rem;">
@@ -1215,7 +1214,7 @@
                             It all started on a late Friday afternoon. Fueled by the excitement of the upcoming weekend, a
                             six-year-old Johan Wilhelm van Antwerp sat mesmerized by the pixelated screensaver of a Windows
                             '95 OS drifting through the digiverse. With the lights off, he stared into that digital depth
-                            for hours. Just him and that heavy machine in a dark room — the beginning of a lifelong
+                            for hours. Just him and that heavy machine in a dark room â€” the beginning of a lifelong
                             obsession driven by pure passion.
                         </p>
                         <p>
@@ -1229,11 +1228,6 @@
                             on client feedback and mechanical innovation.
                         </p>
                     </div>
-                    <!-- Origin Image: Young Johan -->
-                    <div style="flex-shrink:0; max-width:240px; position:relative; align-self:center;">
-                        <img src="assets/images/johan-origin-retro.png" alt="Young Johan Wilhelm van Antwerp — The Origin" style="width:100%; height:auto; border-radius:6px; filter: drop-shadow(0 0 18px rgba(0, 210, 255, 0.25)); mix-blend-mode: screen; background:transparent;">
-                        <div style="font-family:'Courier New',monospace; font-size:0.6rem; color:var(--accent-cyan); text-align:center; margin-top:0.6rem; opacity:0.7; letter-spacing:0.15rem;">SYS.ORIGIN // WIN95_ERA</div>
-                    </div>
                 </div>
             </div>
 
@@ -1245,7 +1239,7 @@
                     <div class="timeline-item">
                         <div class="timeline-year">2018</div>
                         <div class="timeline-title">Antwerp Designs is Born</div>
-                        <div class="timeline-text">The foundation was laid for a new kind of technical innovation —
+                        <div class="timeline-text">The foundation was laid for a new kind of technical innovation â€”
                             where engineering discipline meets digital possibility.</div>
                     </div>
                     <div class="timeline-item">
@@ -1271,7 +1265,7 @@
                 <div class="story-chapter-label" style="margin-bottom: 0.8rem;">Chapter 03</div>
                 <h2>The Rise of <span>Ionity</span></h2>
                 <p>From that period of deep focus, Ionity rose.</p>
-                <p>Today, we are pioneering the unseen and unheard of — building the future through AI, IoT, Cloud
+                <p>Today, we are pioneering the unseen and unheard of â€” building the future through AI, IoT, Cloud
                     Solutions, and advanced Edge computing.</p>
                 <div class="ionity-tagline">
                     Ionity is the <em>UNITY</em> between <em>OFFLINE</em> and <em>ONLINE</em>, <em>DIGITAL</em> and
@@ -1290,7 +1284,7 @@
             <!-- Founder Portrait -->
             <div style="display:flex; justify-content:center; margin:2.5rem 0 1.5rem;">
                 <div style="position:relative; width:160px; height:160px; border-radius:50%; overflow:hidden; border:2px solid var(--accent-cyan); box-shadow: 0 0 30px rgba(0,210,255,0.2), 0 0 60px rgba(0,210,255,0.08); background:transparent;">
-                    <img src="assets/images/johan-portrait.jpg" alt="Johan Wilhelm van Antwerp — Founder" style="width:100%; height:100%; object-fit:cover; filter: grayscale(30%) contrast(1.1); transition: all 0.4s ease;">
+                    <img src="assets/images/johan-portrait.jpg" alt="Johan Wilhelm van Antwerp â€” Founder" style="width:100%; height:100%; object-fit:cover; filter: grayscale(30%) contrast(1.1); transition: all 0.4s ease;">
                 </div>
             </div>
 
@@ -1315,7 +1309,7 @@
                 Ionity (Pty) Ltd is dissolving the barrier between industrial rigidity and digital adaptability. We
                 architect <strong>Living Digital Ecosystems</strong> by fusing atoms with algorithms.
                 <br><br>
-                Our mission is to establish a seamless connection across all levels—merging <strong>IoT, Artificial
+                Our mission is to establish a seamless connection across all levelsâ€”merging <strong>IoT, Artificial
                     Intelligence, and Human Insight</strong> into a unified, self regulating system. We don't just build
                 networks; we cultivate intelligence that evolves.
             </p>
@@ -1327,7 +1321,7 @@
                 <h2 data-value="AEDI: The Digital Architect">AEDI: The Digital<br>Architect</h2>
                 <div class="feature-line"></div>
                 <p>
-                    <strong>Automated Ecosystem Design Intelligence (AEDI)</strong> is the "robot" in the machine—an
+                    <strong>Automated Ecosystem Design Intelligence (AEDI)</strong> is the "robot" in the machineâ€”an
                     autonomous engine driving Ionity's Living Ecosystems.
                     It operates tirelessly, weaving
                     <strong>IoT, AI, DAQ, and PdM</strong> into a singular, self-healing fabric.
@@ -1336,7 +1330,7 @@
                     From hardware integration (F-iT) to high-level CMS analytics, AEDI monitors, optimizes, and evolves
                     the ecosystem in real-time.
                     It bridges the gap between raw data and human decision-making, ensuring that the system doesn't just
-                    function—it <strong>lives</strong>.
+                    functionâ€”it <strong>lives</strong>.
                 </p>
             </div>
             <div class="feature-visual">
@@ -1612,7 +1606,7 @@
                     <p>To engineer the seamless connection between the <em>physical and digital worlds</em>. Through
                         cutting-edge AI, IoT, and Cloud solutions, we empower our clients to innovate, adapt, and thrive
                         at the exact point where hardware and software meet.</p>
-                    <p>Born from a lifelong obsession with technology — our mission is to <em>build and upgrade the
+                    <p>Born from a lifelong obsession with technology â€” our mission is to <em>build and upgrade the
                             future</em>, driven by real client feedback and relentless mechanical innovation.</p>
                 </div>
 
@@ -1622,7 +1616,7 @@
                     <div class="mv-card-eyebrow">Our Vision</div>
                     <h3>The Universal Catalyst for Technological Unity</h3>
                     <p>To become the universal catalyst for technological unity. We envision a future where <em>offline
-                            and online realities merge perfectly</em> — creating unseen, unheard-of solutions that push
+                            and online realities merge perfectly</em> â€” creating unseen, unheard-of solutions that push
                         the boundaries of mechanical and digital innovation.</p>
                     <p>We are building a world where your physical reality and your <em>digital twin</em> operate in
                         perfect harmony.</p>
@@ -1631,8 +1625,8 @@
 
             <!-- Switching Point accent bar -->
             <div class="switching-point-bar">
-                <div class="sp-icon">⟁</div>
-                <p>To be the definitive <strong>"Switching Point"</strong> — the place where offline and online unite to
+                <div class="sp-icon">âŸ</div>
+                <p>To be the definitive <strong>"Switching Point"</strong> â€” the place where offline and online unite to
                     create the unseen technologies of tomorrow. Where Ionity exists: <strong>DIGITAL meets PHYSICAL.
                         HARDWARE meets SOFTWARE. TODAY meets TOMORROW.</strong></p>
             </div>
@@ -1646,7 +1640,7 @@
             <div class="cv-grid">
                 <!-- Build & Upgrade -->
                 <div class="cv-card cv-build">
-                    <div class="cv-icon">⬆</div>
+                    <div class="cv-icon">â¬†</div>
                     <div class="cv-title">Build &amp; Upgrade</div>
                     <div class="cv-text">We believe in continuous improvement. We choose to upgrade, adapt, and evolve
                         rather than downgrade or discard. Every system we touch becomes stronger, smarter, and more
@@ -1655,18 +1649,18 @@
 
                 <!-- Client-Driven Engineering -->
                 <div class="cv-card cv-client">
-                    <div class="cv-icon">◎</div>
+                    <div class="cv-icon">â—Ž</div>
                     <div class="cv-title">Client-Driven Engineering</div>
                     <div class="cv-text">Innovation means nothing in a vacuum. Our mechanical and digital designs are
-                        deeply rooted in listening to our clients — turning real-world feedback into
+                        deeply rooted in listening to our clients â€” turning real-world feedback into
                         precision-engineered solutions.</div>
                 </div>
 
                 <!-- Digital Unity -->
                 <div class="cv-card cv-unity">
-                    <div class="cv-icon">⟁</div>
+                    <div class="cv-icon">âŸ</div>
                     <div class="cv-title">Digital Unity</div>
-                    <div class="cv-text">We don't see hardware and software as separate entities — they are twins. We
+                    <div class="cv-text">We don't see hardware and software as separate entities â€” they are twins. We
                         design for the perfect synergy between the machine and the cloud, between the physical and the
                         digital.</div>
                 </div>
@@ -1685,7 +1679,7 @@
                         Africa's IoT market), with Ian Raven (Industrial Engineering background cross industry) and
                         Darrell Culverwell (Mechanical Engineer and Successful Businessman). Born from 2019's groundwork
                         and 2024's AI revolution up until now with Ai-M boards Q1 2026, we foresaw that static systems
-                        would fail a hyper-connected future—specifically within Monitoring for Cost-saving, production
+                        would fail a hyper-connected futureâ€”specifically within Monitoring for Cost-saving, production
                         enhancement, and labor relations.</p>
                     <div class="card-meta">
                         <span>ORIGIN</span>
@@ -1695,7 +1689,7 @@
 
                 <!-- Card 2 -->
                 <div class="card">
-                    <div class="card-icon">◉</div>
+                    <div class="card-icon">â—‰</div>
                     <h3 data-value="Active Realtime Ecosystems">Active Realtime Ecosystems</h3>
                     <p>We do not build software; we cultivate digital environments with Hardware and Integrate IoT with
                         Ai. An Ionity ecosystem is a self regulating system that learns from its nodes (IoT), adapts to
@@ -1709,7 +1703,7 @@
 
                 <!-- Card 3 -->
                 <div class="card">
-                    <div class="card-icon">❖</div>
+                    <div class="card-icon">â–</div>
                     <h3 data-value="Total Scope Integration">Total Scope Integration</h3>
                     <p>A unified fusion of IoT, AI, Data Acquisition (DAQ), and Predictive Maintenance (PdM). Our scope
                         encompasses the entire spectrum: from hardware sensors to cloud-based / edge Computer Monitoring
@@ -1723,7 +1717,7 @@
 
                 <!-- Card 4 -->
                 <div class="card">
-                    <div class="card-icon">⎔</div>
+                    <div class="card-icon">âŽ”</div>
                     <h3 data-value="Project Alpha: Cloud Encryption & Regulatory Standards">Project Alpha: Cloud
                         Encryption & Regulatory Standards</h3>
                     <p>The genesis of our technology. Born from the urgent need to secure and automate critical
@@ -1738,7 +1732,7 @@
 
                 <!-- Card 5 -->
                 <div class="card">
-                    <div class="card-icon">⌬</div>
+                    <div class="card-icon">âŒ¬</div>
                     <h3 data-value="Global Interface">Global Interface</h3>
                     <p>AEDI Online provides a real-time window into the ecosystem. Data analysis from anywhere globally,
                         offering Front-end User Interface control over industrial rigidity. We are scaling to redefine
@@ -1751,7 +1745,7 @@
 
                 <!-- Card 6 -->
                 <div class="card">
-                    <div class="card-icon">⏣</div>
+                    <div class="card-icon">â£</div>
                     <h3 data-value="Human Centric Ai">Human Centric Ai</h3>
                     <p>Technology serves humanity. Our systems elevate human potential, allowing operators to become
                         architects. AEDI enhances decision-making, providing insights for improved maintenance intervals
@@ -1953,7 +1947,7 @@
                 <h2 class="mv-section-title">WHAT WE <span>DO</span></h2>
 
                 <p class="wwd-intro">
-                    At Ionity, we don't just build software or assemble hardware — we engineer the <em>exact point where
+                    At Ionity, we don't just build software or assemble hardware â€” we engineer the <em>exact point where
                         the two meet</em>. From mechanical foundations to the digital frontier, our services are
                     designed to bring the physical and digital worlds into perfect alignment.
                 </p>
@@ -1965,7 +1959,7 @@
                         <div class="wwd-pillar-num">01</div>
                         <div class="wwd-pillar-body">
                             <div class="wwd-pillar-eyebrow">Artificial Intelligence &amp; Edge Computing</div>
-                            <div class="wwd-pillar-title">The "New Fire" — Intelligence at the Edge</div>
+                            <div class="wwd-pillar-title">The "New Fire" â€” Intelligence at the Edge</div>
                             <div class="wwd-capabilities">
                                 <div>
                                     <div class="wwd-cap-title">AI on Edge &amp; Cloud</div>
@@ -1998,7 +1992,7 @@
                                 <div>
                                     <div class="wwd-cap-title">Seamless Interoperability</div>
                                     <div class="wwd-cap-text">We bridge the gap between legacy systems, modern software,
-                                        and hardware ecosystems — ensuring all your platforms speak the same language
+                                        and hardware ecosystems â€” ensuring all your platforms speak the same language
                                         and creating a unified, friction-free flow of data across your entire
                                         infrastructure.</div>
                                 </div>
@@ -2022,7 +2016,7 @@
                                 <div>
                                     <div class="wwd-cap-title">Complex Data Mapping</div>
                                     <div class="wwd-cap-text">We specialise in turning physical actions into actionable
-                                        digital insights — such as integrating hardware like water payment systems
+                                        digital insights â€” such as integrating hardware like water payment systems
                                         directly into global GIS networks.</div>
                                 </div>
                             </div>
@@ -2034,18 +2028,18 @@
                         <div class="wwd-pillar-num">04</div>
                         <div class="wwd-pillar-body">
                             <div class="wwd-pillar-eyebrow">Product Design &amp; Mechanical Innovation</div>
-                            <div class="wwd-pillar-title">Hardware Meets Software — Built to Upgrade</div>
+                            <div class="wwd-pillar-title">Hardware Meets Software â€” Built to Upgrade</div>
                             <div class="wwd-capabilities">
                                 <div>
                                     <div class="wwd-cap-title">Hardware Meets Software</div>
                                     <div class="wwd-cap-text">Rooted in the legacy of Antwerp Designs, we engineer
-                                        physical products with their "Digital Twins" in mind — every component designed
+                                        physical products with their "Digital Twins" in mind â€” every component designed
                                         from the ground up to live in both the real and digital world.</div>
                                 </div>
                                 <div>
                                     <div class="wwd-cap-title">Client-Driven Engineering</div>
                                     <div class="wwd-cap-text">Every physical prototype and mechanical innovation is
-                                        built directly around client feedback. We don't just build to spec — we build to
+                                        built directly around client feedback. We don't just build to spec â€” we build to
                                         upgrade your entire operational reality.</div>
                                 </div>
                             </div>
@@ -2078,12 +2072,12 @@
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    margin-bottom: 2rem;
+                    margin-bottom: 1rem;
                     width: 100%;
                 }
 
                 .footer-logo {
-                    height: 80px;
+                    height: 60px;
                     width: auto;
                     opacity: 0.9;
                     transition: all 0.3s ease;
@@ -2111,17 +2105,17 @@
             <div class="footer-logo-container">
                 <img src="assets/images/ionity-logo-edited.png" alt="Ionity Logo" class="footer-logo">
             </div>
-            <div class="footer-content" style="opacity: 0.7; line-height: 2; color: var(--text-muted);">
-                <div>Ionity™ (Pty) Ltd 2025-2026 | Creative Commons BY-NC-SA 4.0 | Made with AEDI™ | Author: Antwerp
+            <div class="footer-content" style="opacity: 0.7; line-height: 1.8; color: var(--text-muted);">
+                <div>Ionityâ„¢ (Pty) Ltd 2025-2026 | Creative Commons BY-NC-SA 4.0 | Made with AEDIâ„¢ | Author: Antwerp
                     Designs</div>
-                <div>South Africa Centurion 0157 | Policy AED 986 | License AED 900 | Ionity™ IoT-Ai-DAQ-PdM-CMS-F-iT
+                <div>South Africa Centurion 0157 | Policy AED 986 | License AED 900 | Ionityâ„¢ IoT-Ai-DAQ-PdM-CMS-F-iT
                     Hardware, Software Integrations, ALL RIGHTS RESERVED</div>
                 <div>
                     <a href="tel:+27646999877">+27 646 999 877</a> &nbsp;|&nbsp;
                     <a href="mailto:ai@ionity.today">ai@ionity.today</a> &nbsp;|&nbsp;
                     <a href="https://www.ionity.world" target="_blank" rel="noopener noreferrer">www.ionity.world</a>
                 </div>
-                <div style="margin-top: 1rem;">
+                <div style="margin-top: 0.75rem;">
                     <a href="https://antwerpdesignsionity.github.io/Metadata" target="_blank"
                         rel="noopener noreferrer">Metadata</a>
                 </div>
@@ -2519,7 +2513,7 @@
                 cards.forEach(card => observer.observe(card));
             });
 
-            const letters = "██▓▓▒▒░░▖▗▘▙▚▛▜▝▞▟";
+            const letters = "â–ˆâ–ˆâ–“â–“â–’â–’â–‘â–‘â––â–—â–˜â–™â–šâ–›â–œâ–â–žâ–Ÿ";
 
             function runGlitch(element) {
                 if (element.dataset.isCoolingDown === "true") return;
@@ -2576,7 +2570,7 @@
         <div id="cookie-banner">
             <div class="cookie-banner-content">
                 <div class="cookie-banner-text">
-                    <h3>🍪 We Value Your Privacy</h3>
+                    <h3>ðŸª We Value Your Privacy</h3>
                     <p>
                         We use cookies to enhance your experience, analyze site traffic, and personalize content.
                         By clicking "Accept All", you consent to our use of cookies.
@@ -2604,7 +2598,7 @@
                 <div class="cookie-modal-header">
                     <h2>Cookie Preferences</h2>
                     <button class="cookie-modal-close" onclick="cookieManager?.closeSettings();" aria-label="Close">
-                        ×
+                        Ã—
                     </button>
                 </div>
                 <div class="cookie-modal-body">
@@ -2867,6 +2861,50 @@
                 <span class="module-label">SOL_CONNECT</span>
             </a>
         </div>
-</body>
+    </section>
+    </div>
 
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('mobileDropdown').classList.toggle('open');
+        }
+
+        const deck = document.getElementById('deckWrapper');
+        
+        deck.addEventListener('wheel', (e) => {
+            const focused = document.activeElement;
+            const activeSection = (focused && focused !== document.body && focused !== document.documentElement)
+                ? focused.closest('.deck-section')
+                : deck.querySelector('.deck-section:hover');
+
+            if (activeSection) {
+                const isAtTop = activeSection.scrollTop === 0;
+                const isAtBottom = Math.abs(activeSection.scrollHeight - activeSection.scrollTop - activeSection.clientHeight) < 2;
+                
+                if ((e.deltaY < 0 && isAtTop) || (e.deltaY > 0 && isAtBottom)) {
+                    e.preventDefault();
+                    deck.scrollBy({
+                        left: e.deltaY * 3,
+                        behavior: 'auto'
+                    });
+                }
+            } else {
+                e.preventDefault();
+                deck.scrollBy({
+                    left: e.deltaY * 3,
+                    behavior: 'auto'
+                });
+            }
+        }, { passive: false });
+
+        deck.addEventListener('scroll', () => {
+            const nav = document.getElementById('mainNav');
+            if (deck.scrollLeft > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
 </html>
