@@ -792,25 +792,165 @@
             pointer-events: none; /* Allow interaction with content */
         }
 
-        /* UI Layer */
+        /* UI Layer — Split Layout */
         #ui-layer {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            min-height: 100%; /* Allow content to expand */
+            height: 100%;
             z-index: 10;
             display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            flex-direction: row;
             pointer-events: none;
-            background: radial-gradient(circle at center, transparent 50%, rgba(0, 0, 0, 0.4) 150%);
             transition: opacity 1s ease-in-out;
+        }
+
+        /* Left Panel — Access System + Node Backdrop */
+        .split-left {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            pointer-events: auto;
+            background: radial-gradient(circle at 50% 50%, transparent 30%, rgba(0, 0, 0, 0.45) 110%);
+        }
+
+        /* Right Panel — Navigation Arrows */
+        .split-right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            pointer-events: auto;
+            background: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.35) 25%, rgba(10, 10, 18, 0.6) 100%);
+            border-left: 1px solid rgba(0, 210, 255, 0.06);
+        }
+
+        .split-right::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 18%;
+            height: 64%;
+            width: 1px;
+            background: linear-gradient(180deg, transparent, rgba(0, 210, 255, 0.25), transparent);
+        }
+
+        /* Navigation Arrows */
+        .nav-arrows {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.8rem;
+        }
+
+        .nav-arrows-label {
+            font-family: 'Courier New', monospace;
+            font-size: 0.6rem;
+            letter-spacing: 0.35rem;
+            text-transform: uppercase;
+            color: rgba(0, 210, 255, 0.45);
+            margin-bottom: 0.8rem;
+        }
+
+        .nav-arrow-row {
+            display: flex;
+            gap: 2.2rem;
+            align-items: center;
+        }
+
+        .nav-arrow {
+            width: 68px;
+            height: 68px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            color: rgba(255, 255, 255, 0.55);
+            font-size: 1.3rem;
+            text-decoration: none;
+        }
+
+        .nav-arrow:hover {
+            border-color: rgba(0, 210, 255, 0.55);
+            color: #fff;
+            box-shadow: 0 0 25px rgba(0, 210, 255, 0.18), inset 0 0 12px rgba(0, 210, 255, 0.04);
+            transform: scale(1.08);
+            background: rgba(0, 210, 255, 0.07);
+        }
+
+        .nav-arrow::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Courier New', monospace;
+            font-size: 0.45rem;
+            letter-spacing: 0.15rem;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.25);
+            white-space: nowrap;
+        }
+
+        .nav-arrow-right::after { content: 'ENTER'; }
+        .nav-arrow-up::after    { content: 'UP'; }
+        .nav-arrow-down::after  { content: 'DOWN'; }
+
+        .nav-arrow svg {
+            width: 22px;
+            height: 22px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-arrow-right:hover svg { transform: translateX(3px); }
+        .nav-arrow-up:hover svg    { transform: translateY(-3px); }
+        .nav-arrow-down:hover svg  { transform: translateY(3px); }
+
+        .nav-arrow-right {
+            width: 88px;
+            height: 88px;
+            border-color: rgba(0, 210, 255, 0.18);
+            animation: arrowPulse 3s ease-in-out infinite;
+        }
+        .nav-arrow-right svg {
+            width: 30px;
+            height: 30px;
+        }
+
+        @keyframes arrowPulse {
+            0%, 100% { opacity: 0.6; }
+            50%      { opacity: 1; }
+        }
+
+        .nav-arrows-sublabel {
+            font-family: 'Courier New', monospace;
+            font-size: 0.5rem;
+            letter-spacing: 0.2rem;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.2);
+            margin-top: 1.5rem;
         }
 
         /* Header */
         header {
-            padding: 3rem 2rem;
+            padding: 1.5rem 2rem;
             text-align: center;
             animation: fadeDown 1.8s ease-out;
             pointer-events: auto;
@@ -854,9 +994,8 @@
         .center-action {
             display: flex;
             justify-content: center;
-            align-items: flex-end;
-            padding-bottom: 6vh;
-            flex-grow: 1;
+            align-items: center;
+            margin-top: 1.5rem;
             pointer-events: none;
         }
 
@@ -1095,6 +1234,46 @@
             img { max-width: 100%; height: auto; }
             footer { padding: 2rem 1rem 0 1rem; font-size: 0.6rem; }
 
+            /* Split Layout → Stack Vertically */
+            #ui-layer {
+                flex-direction: column;
+            }
+            .split-left {
+                flex: 2;
+                justify-content: center;
+            }
+            .split-right {
+                flex: 1;
+                border-left: none;
+                border-top: 1px solid rgba(0, 210, 255, 0.06);
+                background: linear-gradient(180deg, transparent 0%, rgba(10, 10, 18, 0.5) 100%);
+            }
+            .split-right::before {
+                display: none;
+            }
+            .nav-arrows {
+                flex-direction: row;
+                gap: 1.2rem;
+            }
+            .nav-arrows-label {
+                display: none;
+            }
+            .nav-arrows-sublabel {
+                display: none;
+            }
+            .nav-arrow {
+                width: 52px;
+                height: 52px;
+            }
+            .nav-arrow-right {
+                width: 66px;
+                height: 66px;
+            }
+            .nav-arrow::after {
+                font-size: 0.35rem;
+                bottom: -16px;
+            }
+
             /* Logo Sizing */
             .logo-img {
                 max-width: 280px;
@@ -1302,19 +1481,45 @@
     <div class="deck-wrapper" id="deckWrapper">
         <section class="deck-section" id="hero-slide">
             <div id="ui-layer">
-                <header>
-                    <h1>AEDI | Automated Ecosystems Designs Ionity</h1>
-                </header>
-        
-                <div class="center-action">
-                    <div id="audio-hint">System Sound Active</div>
-                    <div class="btn-container" id="interaction-target">
-                        <div class="protection-ring"></div>
-                        <div class="orbit-ring"></div>
-                        <button class="enter-btn" id="enter-trigger">Access System</button>
+                <!-- LEFT PANEL: Access System + Node Backdrop -->
+                <div class="split-left">
+                    <header>
+                        <h1>AEDI | Automated Ecosystems<br>Designs Ionity</h1>
+                    </header>
+
+                    <div class="center-action">
+                        <div id="audio-hint">System Sound Active</div>
+                        <div class="btn-container" id="interaction-target">
+                            <div class="protection-ring"></div>
+                            <div class="orbit-ring"></div>
+                            <button class="enter-btn" id="enter-trigger">Access System</button>
+                        </div>
                     </div>
                 </div>
-                
+
+                <!-- RIGHT PANEL: Navigation Arrows -->
+                <div class="split-right">
+                    <div class="nav-arrows">
+                        <div class="nav-arrows-label">Navigate</div>
+
+                        <div class="nav-arrow nav-arrow-up" id="nav-up" title="Scroll Up">
+                            <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"></polyline></svg>
+                        </div>
+
+                        <div class="nav-arrow-row">
+                            <div class="nav-arrow nav-arrow-right" id="nav-right" title="Enter System">
+                                <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                            </div>
+                        </div>
+
+                        <div class="nav-arrow nav-arrow-down" id="nav-down" title="Scroll Down">
+                            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </div>
+
+                        <div class="nav-arrows-sublabel">IO // WAY</div>
+                    </div>
+                </div>
+
                 <button id="cBackToTop" title="Back to Top">&uarr;</button>
             </div>
         </section>
@@ -2602,6 +2807,30 @@
                 nav.classList.remove('scrolled');
             }
         });
+
+        // Navigation Arrow Handlers
+        const navRight = document.getElementById('nav-right');
+        const navUp    = document.getElementById('nav-up');
+        const navDown  = document.getElementById('nav-down');
+        const heroSlide = document.getElementById('hero-slide');
+
+        if (navRight) {
+            navRight.addEventListener('click', () => {
+                deck.scrollBy({ left: window.innerWidth, behavior: 'smooth' });
+            });
+        }
+        if (navUp) {
+            navUp.addEventListener('click', () => {
+                const activeSection = document.querySelector('.deck-section:last-child');
+                if (activeSection) activeSection.scrollBy({ top: -window.innerHeight * 0.6, behavior: 'smooth' });
+            });
+        }
+        if (navDown) {
+            navDown.addEventListener('click', () => {
+                const activeSection = document.querySelector('.deck-section:last-child');
+                if (activeSection) activeSection.scrollBy({ top: window.innerHeight * 0.6, behavior: 'smooth' });
+            });
+        }
     </script>
     
     <footer>

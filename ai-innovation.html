@@ -245,10 +245,7 @@
             background-color: var(--bg-dark);
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             color: var(--text-main);
-            overflow-x: hidden;
             width: 100%;
-            min-height: 100%;
-            overflow-y: auto; /* Enable vertical scrolling */
         }
 
         /* --- 3D CANVAS BACKGROUND --- */
@@ -524,18 +521,10 @@
             opacity: 0.9;
         }
 
-        /* --- DECK LAYOUT --- */
-        .deck-wrapper {
-            position: relative;
-            width: 100%;
-        }
-        .deck-section {
-            position: relative;
-            width: 100%;
-        }
+        /* --- DECK LAYOUT (horizontal scroll) handled by style.css body.deck-layout --- */
     </style>
 </head>
-<body>
+<body class="deck-layout">
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXX"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -809,8 +798,6 @@
         </div>
 
         </div>
-    </section>
-</div>
 
     <footer>
         <style>
@@ -868,6 +855,9 @@
         </div>
     </footer>
 
+    </section>
+</div>
+
     <!-- Three.js Import -->
     <script type="importmap">
         {
@@ -920,6 +910,35 @@
         function toggleMobileMenu() {
             const menu = document.getElementById('mobileDropdown');
             menu.classList.toggle('open');
+        }
+    </script>
+    <script>
+        // --- DECK HORIZONTAL SCROLL ---
+        const deck = document.getElementById('deckWrapper');
+        if (deck) {
+            deck.addEventListener('wheel', (e) => {
+                const activeSection = deck.querySelector('.deck-section:hover');
+                if (activeSection) {
+                    const isAtTop = activeSection.scrollTop === 0;
+                    const isAtBottom = Math.abs(activeSection.scrollHeight - activeSection.scrollTop - activeSection.clientHeight) < 2;
+                    if ((e.deltaY < 0 && isAtTop) || (e.deltaY > 0 && isAtBottom)) {
+                        e.preventDefault();
+                        deck.scrollBy({ left: e.deltaY * 3, behavior: 'auto' });
+                    }
+                } else {
+                    e.preventDefault();
+                    deck.scrollBy({ left: e.deltaY * 3, behavior: 'auto' });
+                }
+            }, { passive: false });
+
+            deck.addEventListener('scroll', () => {
+                const nav = document.getElementById('mainNav');
+                if (deck.scrollLeft > 50) {
+                    nav.classList.add('scrolled');
+                } else {
+                    nav.classList.remove('scrolled');
+                }
+            });
         }
     </script>
     <script src="assets/js/audio-manager.js"></script>
