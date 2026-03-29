@@ -95,7 +95,7 @@
         }
         .gui-corner {
             position: absolute;
-            width: 15rem; height: 15rem;
+            width: 10rem; height: 10rem;
             border: 1px solid rgba(0, 210, 255, 0.3);
             box-shadow: 0 0 15px rgba(0, 210, 255, 0.3), inset 0 0 10px rgba(0, 210, 255, 0.1);
             pointer-events: none;
@@ -106,10 +106,10 @@
         .gui-br { bottom: 20px; right: 20px; border-left: none; border-top: none; text-align: right; display: flex; align-items: flex-end; justify-content: flex-end; }
         .gui-text {
             font-family: 'Courier New', monospace;
-            font-size: 0.75rem;
+            font-size: 0.65rem;
             font-weight: 600;
             color: rgba(0, 160, 200, 0.8);
-            padding: 1rem;
+            padding: 0.8rem;
             text-transform: uppercase;
             letter-spacing: 0.1rem;
             opacity: 0.9;
@@ -136,101 +136,6 @@
         @keyframes slideIn { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
         @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes fadeUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
-
-        /* ===== NAV ===== */
-        nav {
-            padding: 0 5vw;
-            height: 80px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--border);
-            background: rgba(2, 2, 4, 0.9);
-            backdrop-filter: blur(12px);
-            position: fixed;
-            width: 100%;
-            top: 0; left: 0;
-            box-sizing: border-box;
-            z-index: 1001;
-            transition: all 0.3s ease;
-        }
-
-        .nav-logo {
-            height: 80px; width: auto;
-            vertical-align: middle;
-            transition: all 0.3s ease;
-        }
-        .nav-logo:hover { filter: drop-shadow(0 0 8px var(--accent-cyan)); }
-
-        .nav-links { display: flex; gap: 2rem; }
-        .nav-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.62rem;
-            text-transform: uppercase;
-            letter-spacing: 0.15rem;
-            transition: all 0.3s ease;
-            position: relative;
-            padding: 0.5rem 0;
-            font-weight: 600;
-        }
-        .nav-links a:hover, .nav-links a.active {
-            color: #fff;
-            text-shadow: 0 0 10px #00d2ff;
-        }
-        .nav-links a::before {
-            content: '';
-            position: absolute;
-            bottom: 0; left: 0; width: 0; height: 1px;
-            background: var(--accent-cyan);
-            transition: width 0.3s ease;
-            box-shadow: 0 0 10px var(--accent-cyan);
-        }
-        .nav-links a:hover::before { width: 100%; }
-
-        .mobile-menu-btn {
-            display: none;
-            background: transparent;
-            border: 1px solid var(--border);
-            color: var(--accent-cyan);
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: 0.5rem 0.8rem;
-            border-radius: 4px;
-            z-index: 101;
-        }
-
-        .mobile-dropdown {
-            display: none;
-            position: fixed;
-            top: 80px; right: 0; left: auto;
-            width: 280px;
-            background: rgba(5, 10, 15, 0.95);
-            border: 1px solid var(--accent-cyan);
-            border-right: none;
-            flex-direction: column;
-            padding: 1rem 0;
-            box-shadow: -5px 5px 20px rgba(0,0,0,0.8), 0 0 15px rgba(0,210,255,0.2);
-            z-index: 1000;
-            backdrop-filter: blur(20px);
-        }
-        .mobile-dropdown.open { display: flex; animation: slideDown 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
-        .mobile-dropdown a {
-            color: #fff;
-            padding: 1rem 2rem;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 0.1rem;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            transition: background 0.2s;
-        }
-        .mobile-dropdown a.active {
-            color: var(--accent-cyan);
-            background: rgba(0,210,255,0.05);
-            text-shadow: 0 0 15px var(--accent-cyan);
-            border-left: 3px solid var(--accent-cyan);
-        }
-        .mobile-dropdown a:hover { background: rgba(0,210,255,0.1); color: var(--accent-cyan); }
 
         @media (max-width: 768px) {
             .nav-links { display: none; }
@@ -658,10 +563,11 @@
     <div class="scanlines"></div>
 
     <!-- Navigation -->
-    <nav>
+    <nav id="mainNav">
         <a href="index.html" class="logo">
-            <img src="assets/images/ionity-logo-edited.png" alt="IONITY" class="nav-logo">
+             <img src="assets/images/ionity-logo-edited.png" alt="IONITY" class="nav-logo">
         </a>
+        
         <div class="nav-links">
             <a href="index.html">Home</a>
             <a href="system-architecture.html">Systems</a>
@@ -672,13 +578,16 @@
             <a href="subscriptions.html" class="active">Subscriptions</a>
             <a href="license.html">License</a>
             <a href="privacy.html">Privacy</a>
+            <a href="terms.html">Terms</a>
             <a href="about.html">About</a>
             <a href="aedi-online.html">AEDI Online</a>
             <a href="contact.html">Contact</a>
             <a href="firmware-development.html">Dev</a>
             <a href="gateway.html">IO Way</a>
         </div>
-        <button class="mobile-menu-btn" onclick="document.getElementById('mobileMenu').classList.toggle('open')">☰</button>
+
+        <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+        
         <div class="mobile-dropdown" id="mobileMenu">
             <a href="index.html">Home</a>
             <a href="system-architecture.html">Systems</a>
@@ -689,6 +598,7 @@
             <a href="subscriptions.html" class="active">Subscriptions</a>
             <a href="license.html">License</a>
             <a href="privacy.html">Privacy</a>
+            <a href="terms.html">Terms</a>
             <a href="about.html">About</a>
             <a href="aedi-online.html">AEDI Online</a>
             <a href="contact.html">Contact</a>

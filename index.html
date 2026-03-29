@@ -1118,113 +1118,63 @@
                 padding-top: 0.6rem;
             }
 
-            /* Header Adjustments */
-        nav {
-            padding: 0 5vw;
-            height: 80px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-            background: rgba(2, 2, 4, 0.9);
-            -webkit-backdrop-filter: blur(12px);
-            backdrop-filter: blur(12px);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            left: 0;
-            box-sizing: border-box;
-            z-index: 1001;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: rgba(255, 255, 255, 0.85);
-            text-decoration: none;
-            font-size: 0.62rem;
-            text-transform: uppercase;
-            letter-spacing: 0.15rem;
-            transition: all 0.3s ease;
-            position: relative;
-            padding: 0.5rem 0;
-            font-weight: 600;
-        }
-
-        .nav-links a:hover {
-            color: #fff;
-            text-shadow: 0 0 10px #00d2ff;
-        }
-
-        .nav-links a.active {
-            color: #00d2ff;
-            text-shadow: 0 0 15px #00d2ff;
-            border-bottom: 1px solid #00d2ff;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-        }
-
-        .nav-logo {
-            height: 80px;
-            width: auto;
-            transition: all 0.3s ease;
-        }
-
-        .mobile-menu-btn {
+            /* Back to Top Button */
+        #cBackToTop {
             display: none;
-            background: none;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 9999;
+            font-size: 20px;
             border: none;
-            color: #fff;
-            font-size: 1.5rem;
+            outline: none;
             cursor: pointer;
-            z-index: 1002;
+            padding: 12px 16px;
+            color: #111;
+            background: linear-gradient(135deg, #00d2ff, #ffffff);
+            border-radius: 50%;
+            box-shadow: 0 0 15px rgba(0, 210, 255, 0.6);
+            transition: all 0.3s ease;
         }
 
-        .mobile-dropdown {
-            display: none;
-            position: fixed;
-            top: 80px;
-            right: 0;
-            width: 280px;
-            background: rgba(5, 10, 15, 0.95);
-            border: 1px solid #00d2ff;
-            flex-direction: column;
-            padding: 1rem 0;
-            box-shadow: -5px 5px 20px rgba(0, 0, 0, 0.8);
-            z-index: 1000;
-            -webkit-backdrop-filter: blur(20px);
-            backdrop-filter: blur(20px);
+        #cBackToTop:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 25px rgba(0, 210, 255, 0.9);
+            color: #000;
         }
 
-        .mobile-dropdown.open {
-            display: flex;
-        }
+        /* Mobile / Tablet Adjustments */
+        @media (max-width: 768px) {
+            img { max-width: 100%; height: auto; }
+            footer { padding: 2rem 1rem 0 1rem; font-size: 0.6rem; }
 
-        .mobile-dropdown a {
-            color: #fff;
-            padding: 1rem 2rem;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 0.1rem;
-            font-size: 0.7rem;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
+            /* Logo Sizing */
+            .logo-img {
+                max-width: 280px;
+                width: 90%;
+            }
 
-        @media (max-width: 1024px) {
-            .nav-links { display: none; }
-            .mobile-menu-btn { display: block; }
-        }
+            /* Hero Title - Improved Readability */
+            h1 {
+                font-size: clamp(1.2rem, 5vw, 1.8rem) !important;
+                letter-spacing: 0.1rem;
+                line-height: 1.4;
+                text-align: center;
+                padding: 0 1rem;
+                max-width: 100%;
+                margin: 1rem auto;
+            }
 
-        header {
-            padding: 2rem 1rem;
-        }
+            /* Sub-brand Text */
+            .sub-brand {
+                font-size: 0.7rem;
+                letter-spacing: 0.2rem;
+                padding-top: 0.6rem;
+            }
+
+            header {
+                padding: 2rem 1rem;
+            }
 
             /* Center Action Area - Ensure Button is Visible */
             .center-action {
@@ -1353,7 +1303,7 @@
 
     <div id="canvas-container"></div>
 
-    <nav>
+    <nav id="mainNav">
         <a href="index.html" class="logo">
              <img src="assets/images/ionity-logo-edited.png" alt="IONITY" class="nav-logo">
         </a>
@@ -1375,9 +1325,9 @@
             <a href="gateway.html">IO Way</a>
         </div>
 
-        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+        <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
         
-        <div class="mobile-dropdown" id="mobileDropdown">
+        <div class="mobile-dropdown" id="mobileMenu">
             <a href="index.html" class="active">Home</a>
             <a href="system-architecture.html">Systems</a>
             <a href="services.html">Services</a>
@@ -1401,10 +1351,18 @@
         </header>
 
         <script>
-            function toggleMobileMenu() {
-                const menu = document.getElementById('mobileDropdown');
+            function toggleMenu() {
+                const menu = document.getElementById('mobileMenu');
                 menu.classList.toggle('open');
             }
+            window.addEventListener('scroll', function() {
+                const nav = document.getElementById('mainNav');
+                if (window.scrollY > 50) {
+                    nav.classList.add('scrolled');
+                } else {
+                    nav.classList.remove('scrolled');
+                }
+            });
         </script>
 
         <!-- SecurePrivacy Consent Management -->
@@ -1654,7 +1612,6 @@
 
         <!-- HERO: SYSTEM OPERATIONAL -->
         <div class="idx-section">
-            <div class="idx-status"><div class="idx-status-dot"></div> System Operational</div>
             <h2 class="idx-hero-title">Secure Edge AI &amp;<br><span>Cloud Solutions</span></h2>
             <p class="idx-hero-sub">
                 We build automated, energy-efficient ecosystems that connect edge hardware with powerful Cloud AI to optimise industrial IoT operations.

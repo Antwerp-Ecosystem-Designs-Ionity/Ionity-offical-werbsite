@@ -8,36 +8,6 @@
     <!-- SecurePrivacy Consent Management -->
     <script src="https://consent.secureprivacy.ai/script/ionity-today.js"></script>
     
-    <!-- Google Tag Manager with Consent Mode v2 -->
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('consent', 'default', {
-        'ad_storage': 'denied',
-        'ad_user_data': 'denied',
-        'ad_personalization': 'denied',
-        'analytics_storage': 'denied',
-        'wait_for_update': 500
-      });
-      const GTM_ID = 'GTM-XXXXXX';
-      function loadGTM() {
-        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer', GTM_ID);
-      }
-      if (localStorage.getItem('ionity_cookie_consent') === 'granted') {
-        gtag('consent', 'update', {
-          'ad_storage': 'granted',
-          'ad_user_data': 'granted',
-          'ad_personalization': 'granted',
-          'analytics_storage': 'granted'
-        });
-        loadGTM();
-      }
-    </script>
-    
     <title>Systems Architecture | Ionity AEDI Ecosystem</title>
     <meta name="description" content="Ionity's advanced system architecture for AIoT ecosystems, connecting hardware, edge computing, and cloud intelligence through AEDI.">
     <meta name="author" content="Johan Wilhelm van Antwerp">
@@ -56,7 +26,7 @@
             --accent-glow: rgba(51, 102, 255, 0.4);
             --card-bg: rgba(255, 255, 255, 0.05);
             --border: rgba(255, 255, 255, 0.1);
-            --glass: rgba(0, 0, 0, 0.6);
+            --glass: rgba(0, 0, 0, 0.7);
         }
 
         * {
@@ -64,13 +34,14 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Outfit', sans-serif;
+            scroll-behavior: smooth;
         }
 
         body {
             background-color: var(--bg);
             color: var(--text);
             overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
+            line-height: 1.6;
         }
 
         /* Scanline Overlay */
@@ -78,555 +49,345 @@
             content: "";
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
-                        linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
-            background-size: 100% 2px, 3px 100%;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%);
+            background-size: 100% 4px;
             pointer-events: none;
             z-index: 1000;
+            opacity: 0.3;
         }
 
-        /* Grid Background */
         .grid-bg {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             background-image: 
                 linear-gradient(var(--border) 1px, transparent 1px),
                 linear-gradient(90deg, var(--border) 1px, transparent 1px);
-            background-size: 50px 50px;
+            background-size: 40px 40px;
             z-index: -1;
-            opacity: 0.2;
+            opacity: 0.15;
         }
 
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 1.5rem 5vw;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: var(--glass);
-            -webkit-backdrop-filter: blur(5px);
-            backdrop-filter: blur(5px);
-            border-bottom: 1px solid var(--border);
-            z-index: 100;
-        }
-
-        .nav-logo img {
-            height: 35px;
-            filter: drop-shadow(0 0 5px var(--accent-glow));
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: var(--text);
-            text-decoration: none;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1rem;
-            opacity: 0.7;
-            transition: 0.3s;
-            font-weight: 600;
-        }
-
-        .nav-links a:hover, .nav-links a.active {
-            opacity: 1;
-            color: var(--accent);
-            text-shadow: 0 0 10px var(--accent-glow);
-        }
-
-        .mobile-menu-btn {
+        .menu-btn {
             display: none;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
             cursor: pointer;
+            z-index: 2100;
+            font-size: 1.5rem;
         }
 
-        /* Hero Section */
+        /* Hero */
         .hero {
-            padding: 180px 5vw 100px;
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
-            position: relative;
-            background: radial-gradient(circle at center, rgba(51, 102, 255, 0.1) 0%, transparent 70%);
-        }
-
-        .hero-label {
-            font-family: 'JetBrains Mono', monospace;
-            color: var(--accent);
-            text-transform: uppercase;
-            letter-spacing: 0.5rem;
-            font-size: 0.8rem;
-            margin-bottom: 1.5rem;
-            display: block;
+            padding: 0 10vw;
+            background: radial-gradient(circle at center, rgba(51, 102, 255, 0.15), transparent 60%);
         }
 
         .hero h1 {
-            font-size: 4.5rem;
+            font-size: 5rem;
             font-weight: 800;
-            margin-bottom: 2rem;
-            letter-spacing: -2px;
-            line-height: 1;
+            letter-spacing: -3px;
+            line-height: 0.95;
+            margin-bottom: 1.5rem;
         }
 
         .hero h1 span {
             color: var(--accent);
-            text-shadow: 0 0 20px var(--accent-glow);
+            text-shadow: 0 0 30px var(--accent-glow);
         }
 
         .hero p {
-            max-width: 800px;
-            margin: 0 auto 3rem;
-            font-size: 1.2rem;
-            line-height: 1.6;
+            font-size: 1.4rem;
+            max-width: 700px;
             opacity: 0.7;
+            margin-bottom: 3rem;
         }
 
-        /* Systems Overview Section */
-        .systems-grid {
-            padding: 50px 5vw;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
+        /* Tech Simplified Cards */
+        .tech-simple {
+            padding: 120px 5vw;
             max-width: 1400px;
             margin: 0 auto;
         }
 
-        .system-card {
-            background: var(--card-bg);
+        .simple-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .simple-card {
+            background: rgba(255,255,255,0.03);
             border: 1px solid var(--border);
-            padding: 3rem;
+            padding: 3rem 2.5rem;
             border-radius: 4px;
+            transition: 0.4s;
             position: relative;
-            overflow: hidden;
-            transition: 0.4s ease;
-            backdrop-filter: blur(5px);
         }
 
-        .system-card:hover {
+        .simple-card:hover {
+            background: rgba(51, 102, 255, 0.05);
             border-color: var(--accent);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 40px rgba(0,0,0,0.5), 0 0 20px rgba(51, 102, 255, 0.1);
+            transform: translateY(-8px);
         }
 
-        .system-card::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 2px;
-            background: linear-gradient(90deg, transparent, var(--accent), transparent);
-            transform: scaleX(0);
-            transition: 0.6s ease;
-        }
-
-        .system-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .system-icon {
-            font-size: 2.5rem;
-            color: var(--accent);
-            margin-bottom: 1.5rem;
-            filter: drop-shadow(0 0 8px var(--accent-glow));
-        }
-
-        .system-card h3 {
-            font-size: 1.6rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            letter-spacing: -0.5px;
-        }
-
-        .system-card p {
-            font-size: 0.95rem;
-            line-height: 1.7;
-            opacity: 0.6;
-            margin-bottom: 1.5rem;
-        }
-
-        .system-meta {
+        .simple-card h3 {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.75rem;
+            color: var(--accent);
+            font-size: 1rem;
             text-transform: uppercase;
-            letter-spacing: 0.1rem;
-            color: var(--accent);
-            border-top: 1px solid var(--border);
-            padding-top: 1.5rem;
-            display: flex;
-            justify-content: space-between;
+            letter-spacing: 0.3rem;
+            margin-bottom: 1.5rem;
         }
 
-        /* Architecture Flow Visual */
-        .flow-section {
-            padding: 100px 5vw;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .flow-container {
-            display: flex;
-            flex-direction: column;
-            gap: 4rem;
-            position: relative;
-        }
-
-        .flow-container::before {
-            content: "";
-            position: absolute;
-            left: 50%;
-            top: 0; bottom: 0;
-            width: 1px;
-            background: linear-gradient(to bottom, var(--accent), transparent);
-            opacity: 0.3;
-            transform: translateX(-50%);
-        }
-
-        .flow-step {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            z-index: 2;
-        }
-
-        .flow-box {
-            background: rgba(0,0,0,0.8);
-            border: 1px solid var(--accent);
-            padding: 2rem;
-            border-radius: 2px;
-            text-align: center;
-            width: 300px;
-            box-shadow: 0 0 20px var(--accent-glow);
-            transition: 0.3s;
-        }
-
-        .flow-box:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 35px var(--accent-glow);
-        }
-
-        .flow-box h4 {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
-            margin-bottom: 0.5rem;
-            color: var(--accent);
-            opacity: 0.8;
-        }
-
-        .flow-box h2 {
-            font-size: 1.4rem;
+        .simple-card h2 {
+            font-size: 2.2rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
             font-weight: 800;
         }
 
-        /* Data Visualization Section */
-        .viz-section {
-            padding: 100px 5vw;
-            background: #111;
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
+        .simple-card p {
+            font-size: 1.1rem;
+            opacity: 0.6;
+            font-weight: 300;
         }
 
-        .viz-header {
-            text-align: center;
-            margin-bottom: 4rem;
+        .simple-card p strong {
+            color: #fff;
+            opacity: 1;
         }
 
-        .viz-header h2 {
-             font-size: 3rem;
-             margin-bottom: 1rem;
-        }
-
-        .viz-canvas {
-            width: 100%;
-            height: 500px;
-            border: 1px solid var(--border);
-            background: black url('assets/images/system_architecture_hero_1774784055854.png') center/cover no-repeat;
-            position: relative;
+        /* Cloud Section */
+        .cloud-section {
+            padding: 150px 10vw;
             display: flex;
             align-items: center;
-            justify-content: center;
-            overflow: hidden;
+            gap: 10vw;
+            background: linear-gradient(180deg, transparent, rgba(51, 102, 255, 0.05) 50%, transparent);
         }
 
-        .viz-overlay {
-            position: absolute;
-            bottom: 2rem;
-            left: 2rem;
-            left: 2rem;
-            background: var(--glass);
-            padding: 1.5rem;
-            border: 1px solid var(--accent);
-            -webkit-backdrop-filter: blur(10px);
-            backdrop-filter: blur(10px);
-            max-width: 300px;
+        .cloud-visual {
+            flex: 1;
+            position: relative;
         }
 
-        .viz-overlay h4 {
-            font-family: 'JetBrains Mono', monospace;
+        .cloud-img {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 4px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.8), 0 0 20px rgba(51, 102, 255, 0.2);
+            border: 1px solid var(--border);
+        }
+
+        .cloud-content {
+            flex: 1;
+        }
+
+        .cloud-content h2 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 2rem;
+        }
+
+        .cloud-content h2 span { color: var(--accent); }
+
+        .cloud-list {
+            list-style: none;
+            margin-top: 2rem;
+        }
+
+        .cloud-list li {
+            font-size: 1.2rem;
+            margin-bottom: 1.2rem;
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .cloud-list li::before {
+            content: "◆";
             color: var(--accent);
-            margin-bottom: 1rem;
+            text-shadow: 0 0 10px var(--accent);
         }
 
-        .viz-stats {
+        /* Tech Stack Section */
+        .stack-bar {
+            padding: 60px 0;
+            background: #0d0d0d;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            overflow: hidden;
             display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
+            justify-content: center;
+            gap: 4rem;
+            flex-wrap: wrap;
         }
 
-        .stat-row {
-            display: flex;
-            justify-content: space-between;
+        .stack-item {
+            font-family: 'JetBrains Mono', monospace;
             font-size: 0.8rem;
-            opacity: 0.7;
+            color: rgba(255,255,255,0.4);
+            letter-spacing: 0.2rem;
+            text-transform: uppercase;
+        }
+
+        .stack-item strong {
+            color: var(--accent);
+            opacity: 1;
         }
 
         /* Footer */
         footer {
-            padding: 100px 5vw 50px;
+            padding: 100px 10vw 50px;
+            background: #000;
             border-top: 1px solid var(--border);
-            background: #0d0d0d;
         }
 
         .footer-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 4rem;
-            max-width: 1400px;
-            margin: 0 auto;
         }
 
         .footer-col h4 {
             color: var(--accent);
-            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
             text-transform: uppercase;
-            font-size: 0.75rem;
-            margin-bottom: 1.5rem;
             letter-spacing: 0.2rem;
+            margin-bottom: 1.5rem;
         }
 
         .footer-col a {
             display: block;
-            color: var(--text);
+            color: #fff;
             text-decoration: none;
-            opacity: 0.5;
+            opacity: 0.4;
             margin-bottom: 0.8rem;
             transition: 0.3s;
-            font-size: 0.9rem;
         }
 
-        .footer-col a:hover {
-            opacity: 1;
-            color: var(--accent);
-        }
+        .footer-col a:hover { opacity: 1; color: var(--accent); }
 
         .footer-bottom {
-            margin-top: 5rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--border);
+            margin-top: 60px;
             text-align: center;
+            opacity: 0.3;
             font-size: 0.8rem;
-            opacity: 0.4;
-        }
-
-        /* Animations */
-        @keyframes scan {
-            from { transform: translateY(-100%); }
-            to { transform: translateY(100%); }
-        }
-
-        .scanning-line {
-            position: absolute;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: var(--accent);
-            box-shadow: 0 0 15px var(--accent);
-            z-index: 5;
-            opacity: 0.5;
-            animation: scan 4s linear infinite;
         }
 
         /* Mobile Adjustments */
         @media (max-width: 1024px) {
             .nav-links { display: none; }
-            .mobile-menu-btn { display: block; }
-            .hero h1 { font-size: 3rem; }
+            .menu-btn { display: block; }
+            .hero h1 { font-size: 3.5rem; }
+            .cloud-section { flex-direction: column; text-align: center; }
+            .cloud-content { order: -1; }
         }
-
-        .mobile-nav {
-            position: fixed;
-            top: 70px;
-            right: -100%;
-            width: 100%;
-            height: calc(100vh - 70px);
-            background: var(--bg);
-            z-index: 99;
-            transition: 0.4s ease;
-            display: flex;
-            flex-direction: column;
-            padding: 2rem 5vw;
-            gap: 1.5rem;
-            border-top: 1px solid var(--border);
-        }
-
-        .mobile-nav.active {
-            right: 0;
-        }
-
-        .mobile-nav a {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: white;
-            text-decoration: none;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 1rem;
-        }
-        .status-operational { color: #4ade80; }
     </style>
 </head>
 <body>
     <div class="grid-bg"></div>
 
-    <nav>
-        <a href="index.html" class="nav-logo">
-            <img src="assets/images/ionity-logo-edited.png" alt="IONITY">
+    <nav id="mainNav">
+        <a href="index.html" class="logo">
+             <img src="assets/images/ionity-logo-edited.png" alt="IONITY" class="nav-logo">
         </a>
+        
         <div class="nav-links">
             <a href="index.html">Home</a>
             <a href="system-architecture.html" class="active">Systems</a>
             <a href="services.html">Services</a>
             <a href="products.html">Products</a>
-            <a href="ai-innovation.html">AI</a>
+            <a href="ai-innovation.html">AI Innovation</a>
             <a href="roadmap.html">Roadmap</a>
+            <a href="subscriptions.html">Subscriptions</a>
+            <a href="license.html">License</a>
+            <a href="privacy.html">Privacy</a>
             <a href="about.html">About</a>
+            <a href="aedi-online.html">AEDI Online</a>
             <a href="contact.html">Contact</a>
+            <a href="firmware-development.html">Dev</a>
+            <a href="gateway.html">IO Way</a>
         </div>
-        <button class="mobile-menu-btn" onclick="toggleMobileNav()">☰</button>
+
+        <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+        
+        <div class="mobile-dropdown" id="mobileMenu">
+            <a href="index.html">Home</a>
+            <a href="system-architecture.html" class="active">Systems</a>
+            <a href="services.html">Services</a>
+            <a href="products.html">Products</a>
+            <a href="ai-innovation.html">AI Innovation</a>
+            <a href="roadmap.html">Roadmap</a>
+            <a href="subscriptions.html">Subscriptions</a>
+            <a href="license.html">License</a>
+            <a href="privacy.html">Privacy</a>
+            <a href="about.html">About</a>
+            <a href="aedi-online.html">AEDI Online</a>
+            <a href="contact.html">Contact</a>
+            <a href="firmware-development.html">Dev</a>
+            <a href="gateway.html">IO Way</a>
+        </div>
     </nav>
 
-    <div class="mobile-nav" id="mobileNav">
-        <a href="index.html">Home</a>
-        <a href="system-architecture.html">Systems</a>
-        <a href="services.html">Services</a>
-        <a href="products.html">Products</a>
-        <a href="ai-innovation.html">AI Innovation</a>
-        <a href="roadmap.html">Roadmap</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
-    </div>
-
     <main>
-        <header class="hero">
-            <span class="hero-label">Architectural Schema v3.2</span>
-            <h1>The New <span>Standard</span> of AIoT.</h1>
-            <p>Unified architecture designed for multi-layered intelligence. Connecting deep-edge hardware with cloud-native orchestration through AEDI logic.</p>
-        </header>
-
-        <section class="systems-grid">
-            <div class="system-card">
-                <div class="system-icon">◈</div>
-                <h3>Hardware Layer</h3>
-                <p>Ultra-low power edge units designed for survival in extreme industrial environments. Built-in security and local data retention.</p>
-                <div class="system-meta">
-                    <span>Edge (local)</span>
-                    <span>99.9% Uptime</span>
-                </div>
+        <section class="hero">
+            <div data-aos="fade-up">
+                <h1>Architecture <span>Reborn.</span></h1>
+                <p>We've simplified the complex. A three-tier ecosystem that bridges the gap between raw hardware and global intelligence.</p>
+                <div class="stack-item">Status: <strong>Operational v3.2</strong> | Uplink: <strong>Stable</strong></div>
             </div>
+        </section>
 
-            <div class="system-card">
-                <div class="system-icon">⬡</div>
-                <h3>Logic Engine (AEDI)</h3>
-                <p>The neural center of the ecosystem. Analyzes incoming telemetry and orchestrates autonomous response protocols without latency.</p>
-                <div class="system-meta">
-                    <span>AI Process</span>
-                    <span>12.4ms Latency</span>
+        <!-- LATEST TECH STACK -->
+        <section class="stack-bar">
+            <div class="stack-item">Edge: <strong>RISC-V / ARM</strong></div>
+            <div class="stack-item">Logic: <strong>C++ / Rust</strong></div>
+            <div class="stack-item">Brain: <strong>TensorFlow</strong></div>
+            <div class="stack-item">Cloud: <strong>Kubernetes</strong></div>
+            <div class="stack-item">Security: <strong>Zero-Trust</strong></div>
+        </section>
+
+        <!-- TECH SIMPLIFIED (Bulletpoints) -->
+        <section class="tech-simple">
+            <div class="simple-grid">
+                <div class="simple-card">
+                    <h3>Layer 01</h3>
+                    <h2>The Nerve Endings</h2>
+                    <p>Our <strong>Edge Units</strong> are like nerve endings. They feel the world, gather data, and make split-second decisions locally so your system never has to "wait" for an answer.</p>
                 </div>
-            </div>
-
-            <div class="system-card">
-                <div class="system-icon">⛊</div>
-                <h3>Zero-Trust Security</h3>
-                <p>Every packet is verified. Decentralized authentication ensure that even edge nodes remain secure against intrusion attempts.</p>
-                <div class="system-meta">
-                    <span>AES-256</span>
-                    <span>Encrypted</span>
+                <div class="simple-card">
+                    <h3>Layer 02</h3>
+                    <h2>The Digital Brain</h2>
+                    <p><strong>AEDI Logic</strong> is the consciousness. It connects your machines to the cloud, organizing data into real intelligence that helps you predict the future.</p>
                 </div>
-            </div>
-
-            <div class="system-card">
-                <div class="system-icon">⎔</div>
-                <h3>Digital Twin Hub</h3>
-                <p>Real-time synchronization between physical hardware and digital schemas. Predict failures before they manifest physically.</p>
-                <div class="system-meta">
-                    <span>PdM Logic</span>
-                    <span>Sync Active</span>
+                <div class="simple-card">
+                    <h3>Layer 03</h3>
+                    <h2>The Global Reach</h2>
+                    <p>Our <strong>Cloud Ecosystem</strong> is the memory. It stores everything, scales instantly, and ensures that you can control your entire world from a single screen.</p>
                 </div>
             </div>
         </section>
 
-        <section class="flow-section">
-            <div class="flow-container">
-                <div class="flow-step">
-                    <div class="flow-box">
-                        <h4>Level 01</h4>
-                        <h2>DATA ACQUISITION</h2>
-                    </div>
-                </div>
-                <div class="flow-step">
-                    <div class="flow-box">
-                        <h4>Level 02</h4>
-                        <h2>EDGE PROCESSING</h2>
-                    </div>
-                </div>
-                <div class="flow-step">
-                    <div class="flow-box">
-                        <h4>Level 03</h4>
-                        <h2>AI ORCHESTRATION</h2>
-                    </div>
-                </div>
-                <div class="flow-step">
-                    <div class="flow-box">
-                        <h4>Level 04</h4>
-                        <h2>VISUAL OUTPUT</h2>
-                    </div>
-                </div>
+        <!-- CLOUD CONTINUITY -->
+        <section class="cloud-section">
+            <div class="cloud-visual">
+                <img src="assets/images/cloud_continuity_visual_1774784422976.png" class="cloud-img" alt="IONITY Cloud Continuity">
             </div>
-        </section>
-
-        <section class="viz-section">
-            <div class="viz-header">
-                <h2>Real-Time Visualization</h2>
-                <p>Live architectural synchronization across the Ionity global network.</p>
-            </div>
-            <div class="viz-canvas">
-                <div class="scanning-line"></div>
-                <div class="viz-overlay">
-                    <h4>SYSTEM CORE</h4>
-                    <div class="viz-stats">
-                        <div class="stat-row">
-                            <span>Status:</span>
-                            <span class="status-operational">Operational</span>
-                        </div>
-                        <div class="stat-row">
-                            <span>Nodes:</span>
-                            <span>4,129 Active</span>
-                        </div>
-                        <div class="stat-row">
-                            <span>Traffic:</span>
-                            <span>821 GB/s</span>
-                        </div>
-                        <div class="stat-row">
-                            <span>Security:</span>
-                            <span>Level 09</span>
-                        </div>
-                    </div>
-                </div>
+            <div class="cloud-content">
+                <h2>Real-Time <span>Cloud</span> Uplink.</h2>
+                <p>Latest cloud technology means you are never disconnected. We use a hybrid-mesh architecture that makes downtime a thing of the past.</p>
+                <ul class="cloud-list">
+                    <li><strong>Continuous IQ:</strong> Systems learn 24/7, even while you sleep.</li>
+                    <li><strong>Infinite Scale:</strong> From 1 device to 1 million in seconds.</li>
+                    <li><strong>Bulletproof Security:</strong> AES-256 encryption on every packet.</li>
+                    <li><strong>Zero-Touch Ops:</strong> Automated updates that fix problems before you notice.</li>
+                </ul>
             </div>
         </section>
     </main>
@@ -636,41 +397,38 @@
             <div class="footer-col">
                 <h4>Ecosystem</h4>
                 <a href="index.html">Main Terminal</a>
-                <a href="system-architecture.html">Architecture</a>
-                <a href="roadmap.html">Future Ops</a>
-                <a href="license.html">Legal Framework</a>
+                <a href="system-architecture.html">Systems</a>
+                <a href="inner-Page.html">Inner Labs</a>
             </div>
             <div class="footer-col">
                 <h4>Intelligence</h4>
-                <a href="ai-innovation.html">Neural Labs</a>
-                <a href="services.html">Integration</a>
-                <a href="products.html">Hardware</a>
-                <a href="aedi-online.html">AEDI Cloud</a>
+                <a href="ai-innovation.html">Neural Engine</a>
+                <a href="services.html">Global Services</a>
+                <a href="products.html">Hardware Stack</a>
             </div>
             <div class="footer-col">
-                <h4>Developer</h4>
-                <a href="firmware-development.html">SDK/API</a>
-                <a href="gateway.html">IO Gateway</a>
-                <a href="privacy.html">Data Security</a>
-                <a href="contact.html">Direct Uplink</a>
+                <h4>Direct</h4>
+                <a href="contact.html">Uplink Source</a>
+                <a href="privacy.html">Data Shield</a>
             </div>
         </div>
         <div class="footer-bottom">
-            &copy; 2018-2026 Ionity (Pty) Ltd | Antwerp Designs | Built by Johan Wilhelm van Antwerp
+            &copy; 2018-2026 Ionity (Pty) Ltd | Antwerp Designs | Johan Wilhelm van Antwerp
         </div>
     </footer>
 
     <script>
-        function toggleMobileNav() {
-            const nav = document.getElementById('mobileNav');
-            nav.classList.toggle('active');
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('open');
         }
-
-        // Close mobile nav when clicking a link
-        document.querySelectorAll('.mobile-nav a').forEach(link => {
-            link.addEventListener('click', () => {
-                document.getElementById('mobileNav').classList.remove('active');
-            });
+        window.addEventListener('scroll', function() {
+            const nav = document.getElementById('mainNav');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
         });
     </script>
 </body>
