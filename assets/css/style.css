@@ -45,8 +45,8 @@ nav.scrolled {
 }
 
 .nav-links a:hover, .nav-links a.active {
-    color: #00d2ff;
-    text-shadow: 0 0 10px #00d2ff;
+    color: #3366FF;
+    text-shadow: 0 0 10px rgba(51, 102, 255, 0.5);
 }
 
 .nav-links a::before {
@@ -56,9 +56,9 @@ nav.scrolled {
     left: 0;
     width: 0;
     height: 1px;
-    background: #00d2ff;
+    background: #3366FF;
     transition: width 0.3s ease;
-    box-shadow: 0 0 10px #00d2ff;
+    box-shadow: 0 0 10px rgba(51, 102, 255, 0.5);
 }
 
 .nav-links a:hover::before, .nav-links a.active::before {
@@ -137,7 +137,7 @@ input, textarea, select {
     margin: 0 0 0.5rem 0;
     font-size: 1.2rem;
     font-weight: 600;
-    color: #00d2ff;
+    color: #3366FF;
     letter-spacing: 0.05rem;
 }
 
@@ -175,9 +175,9 @@ input, textarea, select {
 }
 
 .cookie-btn-accept {
-    background: linear-gradient(135deg, #00d2ff, #0099cc);
-    color: #000000;
-    box-shadow: 0 4px 15px rgba(0, 210, 255, 0.3);
+    background: linear-gradient(135deg, #3366FF, #0044CC);
+    color: #FFFFFF;
+    box-shadow: 0 4px 15px rgba(51, 102, 255, 0.3);
 }
 
 .cookie-btn-accept:hover {
@@ -199,8 +199,8 @@ input, textarea, select {
 
 .cookie-btn-settings {
     background: transparent;
-    color: #00d2ff;
-    border: 1px solid #00d2ff;
+    color: #3366FF;
+    border: 1px solid #3366FF;
 }
 
 .cookie-btn-settings:hover {

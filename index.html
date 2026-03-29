@@ -773,11 +773,12 @@
     <style>
         :root {
             --primary: #ffffff;
-            --accent: #00d2ff;
-            --accent-cyan: #00d2ff;
+            --accent: #3366FF;
+            --accent-cyan: #3366FF;
             --text-muted: rgba(255, 255, 255, 0.85); 
             --border: rgba(255, 255, 255, 0.15);
             --glass: rgba(255, 255, 255, 0.03);
+            --background: #1A1A1A;
             --dark-overlay: rgba(0, 0, 0, 0.85);
         }
         body, html {
@@ -787,7 +788,7 @@
             height: 100%;
             overflow-x: hidden;
             overflow-y: auto; /* Enable scrolling */
-            background-color: #111118; 
+            background-color: var(--background, #1A1A1A); 
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             color: var(--primary);
             user-select: none; /* Prevent text selection for immersive feel */

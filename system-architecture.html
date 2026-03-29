@@ -2,13 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- Google Tag Manager with Consent Mode v2 | ionity.yumyum -->
+    
+    <!-- SecurePrivacy Consent Management -->
+    <script src="https://consent.secureprivacy.ai/script/ionity-today.js"></script>
+    
+    <!-- Google Tag Manager with Consent Mode v2 -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
-      
       gtag('consent', 'default', {
         'ad_storage': 'denied',
         'ad_user_data': 'denied',
@@ -16,9 +19,7 @@
         'analytics_storage': 'denied',
         'wait_for_update': 500
       });
-
       const GTM_ID = 'GTM-XXXXXX';
-      
       function loadGTM() {
         (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -26,7 +27,6 @@
         'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
         })(window,document,'script','dataLayer', GTM_ID);
       }
-
       if (localStorage.getItem('ionity_cookie_consent') === 'granted') {
         gtag('consent', 'update', {
           'ad_storage': 'granted',
@@ -37,1010 +37,641 @@
         loadGTM();
       }
     </script>
-    <!-- End Google Tag Manager -->
-    <meta name="theme-color" content="#FFFFFF">
-    <meta name="format-detection" content="telephone=yes">
-
-    <title>Ionity System Architecture | Sustainable AIoT & Digital Twin Systems</title>
-    <meta name="description" content="Discover Ionity's system architecture for sustainable AIoT ecosystems. Built on digital twin principles, autonomous systems design, and zero-trust security for enterprise industrial automation.">
-    <meta name="keywords" content="AIoT Architecture, Sustainable IoT Ecosystems, Digital Twin Architecture, System Architecture Design, Zero-Trust IoT Security, Autonomous Systems, Edge AI Integration, SCADA Architecture, Predictive Maintenance Systems, Energy-Efficient Platforms, Enterprise IoT Solutions, Enterprise AIoT, Ionity Architecture, South Africa">
-    <meta name="author" content="Johan Wilhelm van Antwerp">
-    <meta name="generator" content="AEDI Automated Ecosystems Designs Intelligence">
-    <meta name="robots" content="index, follow, max-image-preview:large">
-    <meta name="revisit-after" content="7 days">
-
-    <meta name="copyright" content="© 2018–2026 Antwerp Designs | Ionity (Pty) Ltd">
-    <meta name="rights" content="All rights reserved. TM². Policy AED 986. License AED 900.">
-    <meta name="license" content="https://creativecommons.org/licenses/by-nc-sa/4.0/">
-
-    <meta name="geo.region" content="ZA-GT">
-    <meta name="geo.placename" content="Pretoria">
-    <meta name="geo.position" content="-25.7479;28.2293">
-    <meta name="ICBM" content="-25.7479, 28.2293">
-
-    <meta property="og:type" content="business.business">
-    <meta property="og:site_name" content="Ionity | Antwerp Designs">
-    <meta property="og:title" content="Ionity | Building Tomorrow, Today">
-    <meta property="og:url" content="https://www.ionity.today/">
-    <meta property="og:image" content="https://www.ionity.today/assets/images/ionity-social-card.png">
-    <meta property="og:image:alt" content="Ionity Ecosystems - Hardware and Software Integration">
-    <meta property="og:description" content="Ecosystems Solutionist. Connecting Cloud, Edge, AI, and Hardware. Creator of power-saving units and secure automation systems. Anything is Possible with God.">
-    <meta property="og:locale" content="en_US">
-    <meta property="business:contact_data:street_address" content="Pretoria, Gauteng">
-    <meta property="business:contact_data:locality" content="Pretoria">
-    <meta property="business:contact_data:region" content="Gauteng">
-    <meta property="business:contact_data:postal_code" content="0157">
-    <meta property="business:contact_data:country_name" content="South Africa">
-    <meta property="business:contact_data:email" content="johan@ionity.today">
-    <meta property="business:contact_data:phone_number" content="+27 64 699 9877">
-    <meta property="business:contact_data:website" content="https://www.ionity.today/">
-
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@AntwerpDesigns">
-    <meta name="twitter:creator" content="@AntwerpDesigns">
-    <meta name="twitter:title" content="Ionity | IoT & AI Hardware Systems">
-    <meta name="twitter:description" content="Developing the future of Edge Computing, SCADA, and Power-Saving Hardware. Founder: Johan Wilhelm van Antwerp.">
-    <meta name="twitter:image" content="https://www.ionity.today/assets/images/ionity-social-card.png">
-
-    <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/">
-    <meta name="DC.title" content="Ionity | Antwerp Designs Ecosystems">
-    <meta name="DC.creator" content="Johan Wilhelm van Antwerp">
-    <meta name="DC.identifier" content="ID: 9003135105083">
-    <meta name="DC.subject" content="IoT, AI, Hardware Development, Cloud Integration">
-    <meta name="DC.description" content="Official portal for Ionity and Antwerp Designs ecosystem solutions.">
-    <meta name="DC.publisher" content="Ionity (Pty) Ltd">
-    <meta name="DC.date" content="2026-02-12">
-    <meta name="DC.language" content="en">
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "Organization",
-          "@id": "https://www.ionity.today/#organization",
-          "name": "Ionity",
-          "alternateName": [
-            "Antwerp Designs", 
-            "AEDI", 
-            "Antwerp Ecosystems Designs Ionity", 
-            "Ionity (Pty) Ltd"
-          ],
-          "url": "https://www.ionity.today/",
-          "logo": "https://www.ionity.today/assets/images/logo.png",
-          "foundingDate": "2018",
-          "slogan": "Building Tomorrow, Today. Anything is Possible with God.",
-          "description": "Designers and builders of secure systems connecting devices, automating operations, and unlocking real-time intelligence. Specialists in edge computing, embedded hardware, and power-saving units.",
-          "email": [
-            "johan@ionity.today",
-            "ai@ionity.today",
-            "services@ionity.world",
-            "admin@ionity.today"
-          ],
-          "telephone": "+27-64-699-9877",
-          "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Pretoria",
-            "addressRegion": "Gauteng",
-            "addressCountry": "ZA"
-          },
-          "areaServed": "Global",
-          "contactPoint": [
-            {
-              "@type": "ContactPoint",
-              "telephone": "+27-64-699-9877",
-              "contactType": "technical support",
-              "email": "johan@ionity.today",
-              "availableLanguage": ["English", "Afrikaans"]
-            },
-            {
-              "@type": "ContactPoint",
-              "email": "ai@ionity.today",
-              "contactType": "AI services"
-            }
-          ]
-        },
-        {
-          "@type": "Person",
-          "@id": "https://www.ionity.today/#author",
-          "name": "Johan Wilhelm van Antwerp",
-          "alternateName": "IO",
-          "identifier": [
-            {
-              "@type": "PropertyValue",
-              "propertyID": "ID",
-              "value": "9003135105083"
-            },
-            {
-              "@type": "PropertyValue",
-              "propertyID": "ORCID",
-              "value": "0009-0005-7181-0347"
-            }
-          ],
-          "jobTitle": [
-            "Ecosystems Solutionist",
-            "IoT Engineer",
-            "Toolmaker & Product Developer",
-            "Mechanical Engineer",
-            "Integration Specialist",
-            "Founder"
-          ],
-          "worksFor": {
-            "@id": "https://www.ionity.today/#organization"
-          },
-          "url": "https://www.ionity.world",
-          "knowsAbout": [
-            "IoT (Internet of Things)",
-            "AI (Artificial Intelligence)",
-            "Hardware Design",
-            "Software Development",
-            "Cloud Services",
-            "Cyber Security",
-            "PdM",
-            "CMS",
-            "DAQ",
-            "F-iT"
-          ],
-          "email": "johanvanantwerp@gmail.com"
-        },
-        {
-          "@type": "WebSite",
-          "@id": "https://www.ionity.today/#website",
-          "url": "https://www.ionity.today/",
-          "name": "Ionity Digital Ecosystem",
-          "description": "Unity in IO | Ionity",
-          "publisher": {
-            "@id": "https://www.ionity.today/#organization"
-          },
-          "copyrightHolder": {
-            "@id": "https://www.ionity.today/#organization"
-          },
-          "copyrightYear": "2026",
-          "license": "https://creativecommons.org/licenses/by-nc-sa/4.0/"
-        }
-      ]
-    }
-    </script>
-
-    <link rel="manifest" href="/manifest.json">
-    <link rel="canonical" href="https://www.ionity.today/system-architecture.html" />
     
-    <!-- Alternate Language Hreflang for SEO -->
-    <link rel="alternate" hreflang="en" href="https://www.ionity.today/system-architecture.html" />
-    <link rel="alternate" hreflang="en-ZA" href="https://www.ionity.today/system-architecture.html" />
-    <link rel="alternate" hreflang="x-default" href="https://www.ionity.today/system-architecture.html" />
+    <title>Systems Architecture | Ionity AEDI Ecosystem</title>
+    <meta name="description" content="Ionity's advanced system architecture for AIoT ecosystems, connecting hardware, edge computing, and cloud intelligence through AEDI.">
+    <meta name="author" content="Johan Wilhelm van Antwerp">
+    <meta name="theme-color" content="#1A1A1A">
     
     <link rel="icon" type="image/png" href="assets/images/ionity-logo-edited.png">
-    <link type="text/plain" rel="author" href="humans.txt" />
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --primary: #000000;
-            --accent: #00d2ff;
-            --accent-glow: rgba(0, 210, 255, 0.3);
-            --bg: #ffffff;
-            --glass: rgba(0, 0, 0, 0.03);
+            --bg: #1A1A1A;
+            --text: #FFFFFF;
+            --accent: #3366FF;
+            --accent-glow: rgba(51, 102, 255, 0.4);
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --border: rgba(255, 255, 255, 0.1);
+            --glass: rgba(0, 0, 0, 0.6);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
         }
 
         body {
-            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            color: var(--primary);
-            padding: 2rem;
-            min-height: 100vh;
+            background-color: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        .container {
+        /* Scanline Overlay */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        /* Grid Background */
+        .grid-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(var(--border) 1px, transparent 1px),
+                linear-gradient(90deg, var(--border) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            opacity: 0.2;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5vw;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--glass);
+            -webkit-backdrop-filter: blur(5px);
+            backdrop-filter: blur(5px);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+        }
+
+        .nav-logo img {
+            height: 35px;
+            filter: drop-shadow(0 0 5px var(--accent-glow));
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1rem;
+            opacity: 0.7;
+            transition: 0.3s;
+            font-weight: 600;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            opacity: 1;
+            color: var(--accent);
+            text-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 180px 5vw 100px;
+            text-align: center;
+            position: relative;
+            background: radial-gradient(circle at center, rgba(51, 102, 255, 0.1) 0%, transparent 70%);
+        }
+
+        .hero-label {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.5rem;
+            font-size: 0.8rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            letter-spacing: -2px;
+            line-height: 1;
+        }
+
+        .hero h1 span {
+            color: var(--accent);
+            text-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        .hero p {
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            opacity: 0.7;
+        }
+
+        /* Systems Overview Section */
+        .systems-grid {
+            padding: 50px 5vw;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
             max-width: 1400px;
             margin: 0 auto;
         }
 
-        h1 {
-            text-align: center;
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .subtitle {
-            text-align: center;
-            color: #666;
-            margin-bottom: 4rem;
-            font-size: 1.2rem;
-        }
-
-        .option-section {
-            background: white;
-            border-radius: 20px;
+        .system-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
             padding: 3rem;
-            margin-bottom: 3rem;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-        }
-
-        .option-title {
-            font-size: 2rem;
-            margin-bottom: 2rem;
-            color: var(--accent);
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        /* ============================================
-           OPTION 1: ANIMATED FLOW PIPELINE
-        ============================================ */
-        .flow-pipeline {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
-            padding: 2rem;
+            border-radius: 4px;
             position: relative;
             overflow: hidden;
+            transition: 0.4s ease;
+            backdrop-filter: blur(5px);
         }
 
-        .flow-node {
-            flex: 1;
-            text-align: center;
+        .system-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5), 0 0 20px rgba(51, 102, 255, 0.1);
+        }
+
+        .system-card::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            transform: scaleX(0);
+            transition: 0.6s ease;
+        }
+
+        .system-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .system-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            filter: drop-shadow(0 0 8px var(--accent-glow));
+        }
+
+        .system-card h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
+        }
+
+        .system-card p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            opacity: 0.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .system-meta {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1rem;
+            color: var(--accent);
+            border-top: 1px solid var(--border);
+            padding-top: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Architecture Flow Visual */
+        .flow-section {
+            padding: 100px 5vw;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .flow-container {
+            display: flex;
+            flex-direction: column;
+            gap: 4rem;
+            position: relative;
+        }
+
+        .flow-container::before {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 0; bottom: 0;
+            width: 1px;
+            background: linear-gradient(to bottom, var(--accent), transparent);
+            opacity: 0.3;
+            transform: translateX(-50%);
+        }
+
+        .flow-step {
+            display: flex;
+            align-items: center;
+            justify-content: center;
             position: relative;
             z-index: 2;
         }
 
-        .node-card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 15px;
-            padding: 2rem 1.5rem;
-            color: white;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .node-card:hover {
-            transform: translateY(-10px) scale(1.05);
-            box-shadow: 0 20px 40px rgba(0, 210, 255, 0.4);
-        }
-
-        .node-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transform: rotate(45deg);
-            animation: shine 3s infinite;
-        }
-
-        @keyframes shine {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-        }
-
-        .node-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
-        }
-
-        .node-title {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-        }
-
-        .node-subtitle {
-            font-size: 0.9rem;
-            opacity: 0.9;
-        }
-
-        .flow-connector {
-            width: 60px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent) 0%, #667eea 100%);
-            position: relative;
-            flex-shrink: 0;
-        }
-
-        .flow-connector::after {
-            content: '→';
-            position: absolute;
-            right: -15px;
-            top: -12px;
-            font-size: 2rem;
-            color: var(--accent);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.6; transform: scale(1.2); }
-        }
-
-        /* Particle animation */
-        .particle {
-            position: absolute;
-            width: 8px;
-            height: 8px;
-            background: var(--accent);
-            border-radius: 50%;
-            top: 50%;
-            animation: flowParticle 4s linear infinite;
-            box-shadow: 0 0 10px var(--accent-glow);
-        }
-
-        @keyframes flowParticle {
-            0% { left: 0%; opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { left: 100%; opacity: 0; }
-        }
-
-        /* ============================================
-           OPTION 2: ORBITAL SYSTEM
-        ============================================ */
-        .orbital-system {
-            position: relative;
-            width: 100%;
-            height: 600px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .core-system {
-            position: absolute;
-            width: 200px;
-            height: 200px;
-            background: linear-gradient(135deg, var(--accent) 0%, #667eea 100%);
-            border-radius: 50%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            font-size: 1.5rem;
-            box-shadow: 0 0 60px var(--accent-glow), 0 0 100px var(--accent-glow);
-            animation: coreGlow 3s ease-in-out infinite;
-            z-index: 5;
-        }
-
-        @keyframes coreGlow {
-            0%, 100% { box-shadow: 0 0 60px var(--accent-glow), 0 0 100px var(--accent-glow); }
-            50% { box-shadow: 0 0 80px var(--accent-glow), 0 0 140px var(--accent-glow); }
-        }
-
-        .core-status {
-            font-size: 0.8rem;
-            margin-top: 0.5rem;
-            padding: 0.3rem 0.8rem;
-            background: rgba(0, 255, 0, 0.3);
-            border-radius: 20px;
-            animation: blink 2s infinite;
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-
-        .orbit {
-            position: absolute;
-            border: 2px dashed rgba(0, 210, 255, 0.3);
-            border-radius: 50%;
-            animation: rotate 20s linear infinite;
-        }
-
-        .orbit-1 { width: 300px; height: 300px; animation-duration: 15s; }
-        .orbit-2 { width: 400px; height: 400px; animation-duration: 20s; }
-        .orbit-3 { width: 500px; height: 500px; animation-duration: 25s; }
-        .orbit-4 { width: 600px; height: 600px; animation-duration: 30s; }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .orbital-node {
-            position: absolute;
-            width: 120px;
-            height: 120px;
-            background: white;
-            border: 3px solid var(--accent);
-            border-radius: 50%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
-            animation: rotateReverse 20s linear infinite;
-        }
-
-        .orbital-node:hover {
-            transform: scale(1.2);
-            box-shadow: 0 15px 40px var(--accent-glow);
-            z-index: 10;
-        }
-
-        @keyframes rotateReverse {
-            from { transform: rotate(360deg); }
-            to { transform: rotate(0deg); }
-        }
-
-        .orbit-1 .orbital-node { top: -60px; left: 50%; margin-left: -60px; }
-        .orbit-2 .orbital-node { top: 50%; right: -60px; margin-top: -60px; }
-        .orbit-3 .orbital-node { bottom: -60px; left: 50%; margin-left: -60px; }
-        .orbit-4 .orbital-node { top: 50%; left: -60px; margin-top: -60px; }
-
-        .orbital-icon {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .orbital-title {
-            font-size: 0.75rem;
-            font-weight: bold;
+        .flow-box {
+            background: rgba(0,0,0,0.8);
+            border: 1px solid var(--accent);
+            padding: 2rem;
+            border-radius: 2px;
             text-align: center;
+            width: 300px;
+            box-shadow: 0 0 20px var(--accent-glow);
+            transition: 0.3s;
         }
 
-        /* ============================================
-           OPTION 3: NEURAL NETWORK STYLE
-        ============================================ */
-        .neural-network {
-            position: relative;
+        .flow-box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 35px var(--accent-glow);
+        }
+
+        .flow-box h4 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+            opacity: 0.8;
+        }
+
+        .flow-box h2 {
+            font-size: 1.4rem;
+            font-weight: 800;
+        }
+
+        /* Data Visualization Section */
+        .viz-section {
+            padding: 100px 5vw;
+            background: #111;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .viz-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .viz-header h2 {
+             font-size: 3rem;
+             margin-bottom: 1rem;
+        }
+
+        .viz-canvas {
             width: 100%;
             height: 500px;
-            background: radial-gradient(circle at center, rgba(0, 210, 255, 0.05) 0%, transparent 70%);
-        }
-
-        .neural-canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        .neural-node {
-            position: absolute;
-            width: 140px;
-            height: 140px;
-            background: white;
-            border: 3px solid var(--accent);
-            border-radius: 20px;
+            border: 1px solid var(--border);
+            background: black url('assets/images/system_architecture_hero_1774784055854.png') center/cover no-repeat;
+            position: relative;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            transition: all 0.3s ease;
-            z-index: 2;
+            overflow: hidden;
         }
 
-        .neural-node:hover {
-            transform: scale(1.1);
-            box-shadow: 0 15px 40px var(--accent-glow);
-            border-color: #667eea;
-        }
-
-        .neural-node-1 { top: 20%; left: 10%; }
-        .neural-node-2 { top: 20%; left: 40%; }
-        .neural-node-3 { top: 60%; left: 25%; }
-        .neural-node-4 { top: 40%; left: 70%; }
-
-        .connection-line {
+        .viz-overlay {
             position: absolute;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent) 0%, #667eea 100%);
-            transform-origin: left center;
-            z-index: 1;
-            animation: dataFlow 2s linear infinite;
+            bottom: 2rem;
+            left: 2rem;
+            left: 2rem;
+            background: var(--glass);
+            padding: 1.5rem;
+            border: 1px solid var(--accent);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            max-width: 300px;
         }
 
-        @keyframes dataFlow {
-            0% { opacity: 0.3; }
-            50% { opacity: 1; }
-            100% { opacity: 0.3; }
-        }
-
-        /* ============================================
-           OPTION 4: VERTICAL TIMELINE CARDS
-        ============================================ */
-        .timeline-vertical {
-            position: relative;
-            padding: 2rem 0;
-        }
-
-        .timeline-line {
-            position: absolute;
-            left: 50%;
-            top: 0;
-            bottom: 0;
-            width: 4px;
-            background: linear-gradient(180deg, var(--accent) 0%, #667eea 100%);
-            transform: translateX(-50%);
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 4rem;
-            display: flex;
-            align-items: center;
-        }
-
-        .timeline-item:nth-child(odd) {
-            flex-direction: row;
-        }
-
-        .timeline-item:nth-child(even) {
-            flex-direction: row-reverse;
-        }
-
-        .timeline-content {
-            flex: 1;
-            background: white;
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            margin: 0 2rem;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-
-        .timeline-content:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px var(--accent-glow);
-            border-color: var(--accent);
-        }
-
-        .timeline-dot {
-            width: 30px;
-            height: 30px;
-            background: var(--accent);
-            border: 5px solid white;
-            border-radius: 50%;
-            box-shadow: 0 0 0 4px var(--accent);
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 3;
-            animation: dotPulse 2s infinite;
-        }
-
-        @keyframes dotPulse {
-            0%, 100% { transform: translateX(-50%) scale(1); }
-            50% { transform: translateX(-50%) scale(1.2); }
-        }
-
-        .timeline-number {
-            font-size: 3rem;
-            font-weight: bold;
+        .viz-overlay h4 {
+            font-family: 'JetBrains Mono', monospace;
             color: var(--accent);
-            opacity: 0.2;
             margin-bottom: 1rem;
         }
 
-        .timeline-title {
-            font-size: 1.8rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-            color: var(--primary);
+        .viz-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
         }
 
-        .timeline-subtitle {
-            color: #666;
-            margin-bottom: 1rem;
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            opacity: 0.7;
         }
 
-        .timeline-icon {
-            font-size: 3rem;
-            margin-top: 1rem;
+        /* Footer */
+        footer {
+            padding: 100px 5vw 50px;
+            border-top: 1px solid var(--border);
+            background: #0d0d0d;
         }
 
-        /* Status Badge */
-        .status-badge {
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            background: linear-gradient(135deg, #00ff00 0%, #00cc00 100%);
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-col h4 {
+            color: var(--accent);
+            font-family: 'JetBrains Mono', monospace;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.2rem;
+        }
+
+        .footer-col a {
+            display: block;
+            color: var(--text);
+            text-decoration: none;
+            opacity: 0.5;
+            margin-bottom: 0.8rem;
+            transition: 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .footer-col a:hover {
+            opacity: 1;
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            margin-top: 5rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            font-size: 0.8rem;
+            opacity: 0.4;
+        }
+
+        /* Animations */
+        @keyframes scan {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(100%); }
+        }
+
+        .scanning-line {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--accent);
+            box-shadow: 0 0 15px var(--accent);
+            z-index: 5;
+            opacity: 0.5;
+            animation: scan 4s linear infinite;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 1024px) {
+            .nav-links { display: none; }
+            .mobile-menu-btn { display: block; }
+            .hero h1 { font-size: 3rem; }
+        }
+
+        .mobile-nav {
+            position: fixed;
+            top: 70px;
+            right: -100%;
+            width: 100%;
+            height: calc(100vh - 70px);
+            background: var(--bg);
+            z-index: 99;
+            transition: 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            padding: 2rem 5vw;
+            gap: 1.5rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .mobile-nav.active {
+            right: 0;
+        }
+
+        .mobile-nav a {
+            font-size: 1.5rem;
+            font-weight: 800;
             color: white;
-            border-radius: 20px;
-            font-weight: bold;
-            margin-top: 1rem;
-            animation: statusPulse 2s infinite;
+            text-decoration: none;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 1rem;
         }
-
-        @keyframes statusPulse {
-            0%, 100% { box-shadow: 0 0 10px rgba(0, 255, 0, 0.5); }
-            50% { box-shadow: 0 0 20px rgba(0, 255, 0, 0.8); }
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .flow-pipeline {
-                flex-direction: column;
-            }
-            
-            .flow-connector {
-                width: 4px;
-                height: 60px;
-            }
-            
-            .flow-connector::after {
-                content: '↓';
-                top: auto;
-                bottom: -15px;
-                right: -8px;
-            }
-
-            .timeline-item,
-            .timeline-item:nth-child(even) {
-                flex-direction: column !important;
-            }
-
-            .timeline-line {
-                left: 2rem;
-            }
-
-            .timeline-dot {
-                left: 2rem;
-            }
-
-            .orbital-system {
-                height: 400px;
-            }
-
-            .orbit-1, .orbit-2, .orbit-3, .orbit-4 {
-                width: 250px;
-                height: 250px;
-            }
-        }
+        .status-operational { color: #4ade80; }
     </style>
 </head>
 <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXX"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
+    <div class="grid-bg"></div>
 
-    <!-- SecurePrivacy Consent Management -->
-    <script src="https://consent.secureprivacy.ai/script/ionity-today.js"></script>
+    <nav>
+        <a href="index.html" class="nav-logo">
+            <img src="assets/images/ionity-logo-edited.png" alt="IONITY">
+        </a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="system-architecture.html" class="active">Systems</a>
+            <a href="services.html">Services</a>
+            <a href="products.html">Products</a>
+            <a href="ai-innovation.html">AI</a>
+            <a href="roadmap.html">Roadmap</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <button class="mobile-menu-btn" onclick="toggleMobileNav()">☰</button>
+    </nav>
 
-    <div class="container">
-        <h1>System Architecture Visualization</h1>
-        <p class="subtitle">Choose your preferred visual style</p>
-
-        <!-- OPTION 1: Animated Flow Pipeline -->
-        <section class="option-section">
-            <h2 class="option-title">
-                <span>🌊</span> Option 1: Animated Flow Pipeline
-            </h2>
-            <div class="flow-pipeline">
-                <div class="particle" style="animation-delay: 0s;"></div>
-                <div class="particle" style="animation-delay: 1s;"></div>
-                <div class="particle" style="animation-delay: 2s;"></div>
-                <div class="particle" style="animation-delay: 3s;"></div>
-                
-                <div class="flow-node">
-                    <div class="node-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-                        <div class="node-icon">🎨</div>
-                        <div class="node-title">ADA</div>
-                        <div class="node-subtitle">Automated Design</div>
-                    </div>
-                </div>
-
-                <div class="flow-connector"></div>
-
-                <div class="flow-node">
-                    <div class="node-card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
-                        <div class="node-icon">📊</div>
-                        <div class="node-title">DAQ</div>
-                        <div class="node-subtitle">Data Acquisition</div>
-                    </div>
-                </div>
-
-                <div class="flow-connector"></div>
-
-                <div class="flow-node">
-                    <div class="node-card" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
-                        <div class="node-icon">📈</div>
-                        <div class="node-title">Monitoring</div>
-                        <div class="node-subtitle">Real-time Analytics</div>
-                    </div>
-                </div>
-
-                <div class="flow-connector"></div>
-
-                <div class="flow-node">
-                    <div class="node-card" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
-                        <div class="node-icon">🔮</div>
-                        <div class="node-title">PdM</div>
-                        <div class="node-subtitle">Predictive Maintenance</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- OPTION 2: Orbital System -->
-        <section class="option-section">
-            <h2 class="option-title">
-                <span>🌐</span> Option 2: Orbital System
-            </h2>
-            <div class="orbital-system">
-                <div class="core-system">
-                    <div>CORE</div>
-                    <div>SYSTEM</div>
-                    <div class="core-status">● ONLINE</div>
-                </div>
-
-                <div class="orbit orbit-1">
-                    <div class="orbital-node">
-                        <div class="orbital-icon">🎨</div>
-                        <div class="orbital-title">ADA<br>Automated Design</div>
-                    </div>
-                </div>
-
-                <div class="orbit orbit-2">
-                    <div class="orbital-node">
-                        <div class="orbital-icon">📊</div>
-                        <div class="orbital-title">DAQ<br>Data Acquisition</div>
-                    </div>
-                </div>
-
-                <div class="orbit orbit-3">
-                    <div class="orbital-node">
-                        <div class="orbital-icon">📈</div>
-                        <div class="orbital-title">Monitoring<br>Real-time Analytics</div>
-                    </div>
-                </div>
-
-                <div class="orbit orbit-4">
-                    <div class="orbital-node">
-                        <div class="orbital-icon">🔮</div>
-                        <div class="orbital-title">PdM<br>Predictive Maint.</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- OPTION 3: Neural Network Style -->
-        <section class="option-section">
-            <h2 class="option-title">
-                <span>🧠</span> Option 3: Neural Network Style
-            </h2>
-            <div class="neural-network">
-                <svg class="neural-canvas" viewBox="0 0 1000 500">
-                    <!-- Connections -->
-                    <line x1="150" y1="150" x2="450" y2="150" stroke="url(#grad1)" stroke-width="3" class="connection-line" />
-                    <line x1="450" y1="150" x2="350" y2="350" stroke="url(#grad1)" stroke-width="3" class="connection-line" />
-                    <line x1="350" y1="350" x2="750" y2="300" stroke="url(#grad1)" stroke-width="3" class="connection-line" />
-                    <line x1="150" y1="150" x2="750" y2="300" stroke="url(#grad2)" stroke-width="2" stroke-dasharray="5,5" opacity="0.3" />
-                    
-                    <defs>
-                        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
-                            <stop offset="0%" style="stop-color:#00d2ff;stop-opacity:1" />
-                            <stop offset="100%" style="stop-color:#667eea;stop-opacity:1" />
-                        </linearGradient>
-                        <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="0%">
-                            <stop offset="0%" style="stop-color:#667eea;stop-opacity:0.5" />
-                            <stop offset="100%" style="stop-color:#00d2ff;stop-opacity:0.5" />
-                        </linearGradient>
-                    </defs>
-                </svg>
-
-                <div class="neural-node neural-node-1">
-                    <div class="orbital-icon">🎨</div>
-                    <div style="font-weight: bold;">ADA</div>
-                    <div style="font-size: 0.75rem; color: #666;">Design</div>
-                </div>
-
-                <div class="neural-node neural-node-2">
-                    <div class="orbital-icon">📊</div>
-                    <div style="font-weight: bold;">DAQ</div>
-                    <div style="font-size: 0.75rem; color: #666;">Acquisition</div>
-                </div>
-
-                <div class="neural-node neural-node-3">
-                    <div class="orbital-icon">📈</div>
-                    <div style="font-weight: bold;">Monitoring</div>
-                    <div style="font-size: 0.75rem; color: #666;">Analytics</div>
-                </div>
-
-                <div class="neural-node neural-node-4">
-                    <div class="orbital-icon">🔮</div>
-                    <div style="font-weight: bold;">PdM</div>
-                    <div style="font-size: 0.75rem; color: #666;">Predictive</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- OPTION 4: Vertical Timeline -->
-        <section class="option-section">
-            <h2 class="option-title">
-                <span>📊</span> Option 4: Vertical Timeline Cards
-            </h2>
-            <div class="timeline-vertical">
-                <div class="timeline-line"></div>
-
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-number">01</div>
-                        <div class="timeline-title">ADA • Automated Design</div>
-                        <div class="timeline-subtitle">Intelligent design automation and system architecture generation</div>
-                        <div class="timeline-icon">🎨</div>
-                    </div>
-                    <div style="flex: 1;"></div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div style="flex: 1;"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-number">02</div>
-                        <div class="timeline-title">DAQ • Data Acquisition</div>
-                        <div class="timeline-subtitle">Real-time data collection and processing pipeline</div>
-                        <div class="timeline-icon">📊</div>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-number">03</div>
-                        <div class="timeline-title">Monitoring • Real-time Analytics</div>
-                        <div class="timeline-subtitle">Advanced analytics and performance tracking</div>
-                        <div class="timeline-icon">📈</div>
-                    </div>
-                    <div style="flex: 1;"></div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div style="flex: 1;"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-number">04</div>
-                        <div class="timeline-title">PdM • Predictive Maintenance</div>
-                        <div class="timeline-subtitle">AI-powered predictive analytics and maintenance optimization</div>
-                        <div class="timeline-icon">🔮</div>
-                        <div class="status-badge">🟢 CORE SYSTEM ONLINE</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
+    <div class="mobile-nav" id="mobileNav">
+        <a href="index.html">Home</a>
+        <a href="system-architecture.html">Systems</a>
+        <a href="services.html">Services</a>
+        <a href="products.html">Products</a>
+        <a href="ai-innovation.html">AI Innovation</a>
+        <a href="roadmap.html">Roadmap</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
     </div>
 
-    <script>
-        // Add smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
+    <main>
+        <header class="hero">
+            <span class="hero-label">Architectural Schema v3.2</span>
+            <h1>The New <span>Standard</span> of AIoT.</h1>
+            <p>Unified architecture designed for multi-layered intelligence. Connecting deep-edge hardware with cloud-native orchestration through AEDI logic.</p>
+        </header>
 
-        // Add intersection observer for animations
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, { threshold: 0.1 });
+        <section class="systems-grid">
+            <div class="system-card">
+                <div class="system-icon">◈</div>
+                <h3>Hardware Layer</h3>
+                <p>Ultra-low power edge units designed for survival in extreme industrial environments. Built-in security and local data retention.</p>
+                <div class="system-meta">
+                    <span>Edge (local)</span>
+                    <span>99.9% Uptime</span>
+                </div>
+            </div>
 
-        document.querySelectorAll('.option-section').forEach(section => {
-            section.style.opacity = '0';
-            section.style.transform = 'translateY(30px)';
-            section.style.transition = 'all 0.6s ease-out';
-            observer.observe(section);
-        });
-    </script>
+            <div class="system-card">
+                <div class="system-icon">⬡</div>
+                <h3>Logic Engine (AEDI)</h3>
+                <p>The neural center of the ecosystem. Analyzes incoming telemetry and orchestrates autonomous response protocols without latency.</p>
+                <div class="system-meta">
+                    <span>AI Process</span>
+                    <span>12.4ms Latency</span>
+                </div>
+            </div>
 
-    <!-- Footer -->
-    <footer style="margin-top: 4rem; padding: 3rem 5vw; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; color: rgba(255,255,255,0.5); font-size: 0.7rem; position: relative; z-index: 10; background: rgba(2, 2, 4, 0.95);">
-        <style>
-            @keyframes footerGlow {
-                0% { text-shadow: 0 0 2px rgba(255,255,255,0.1); }
-                100% { text-shadow: 0 0 8px rgba(0, 210, 255, 0.3); }
-            }
-            .footer-content {
-                animation: footerGlow 3s infinite alternate;
-            }
-            .footer-logo-container {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                margin-bottom: 2rem;
-                width: 100%;
-            }
-            .footer-logo {
-                height: 80px;
-                width: auto;
-                opacity: 0.9;
-                transition: all 0.3s ease;
-            }
-            .footer-logo:hover {
-                opacity: 1;
-                filter: drop-shadow(0 0 15px rgba(0, 210, 255, 0.4));
-            }
-            footer a { 
-                color: var(--accent, #00d2ff);
-                text-decoration: none;
-                margin: 0 10px;
-                transition: all 0.3s ease;
-                font-weight: 600;
-                text-shadow: 0 0 8px rgba(0, 210, 255, 0.3);
-            }
-            footer a:hover { 
-                color: #fff;
-                text-shadow: 0 0 15px var(--accent, #00d2ff);
-            }
-            @media (max-width: 768px) {
-                footer { padding: 2rem 1rem !important; font-size: 0.6rem !important; }
-                .footer-logo { height: 50px; }
-            }
-        </style>
-        <div class="footer-logo-container">
-            <img src="assets/images/ionity-logo-edited.png" alt="Ionity Logo" class="footer-logo">
+            <div class="system-card">
+                <div class="system-icon">⛊</div>
+                <h3>Zero-Trust Security</h3>
+                <p>Every packet is verified. Decentralized authentication ensure that even edge nodes remain secure against intrusion attempts.</p>
+                <div class="system-meta">
+                    <span>AES-256</span>
+                    <span>Encrypted</span>
+                </div>
+            </div>
+
+            <div class="system-card">
+                <div class="system-icon">⎔</div>
+                <h3>Digital Twin Hub</h3>
+                <p>Real-time synchronization between physical hardware and digital schemas. Predict failures before they manifest physically.</p>
+                <div class="system-meta">
+                    <span>PdM Logic</span>
+                    <span>Sync Active</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="flow-section">
+            <div class="flow-container">
+                <div class="flow-step">
+                    <div class="flow-box">
+                        <h4>Level 01</h4>
+                        <h2>DATA ACQUISITION</h2>
+                    </div>
+                </div>
+                <div class="flow-step">
+                    <div class="flow-box">
+                        <h4>Level 02</h4>
+                        <h2>EDGE PROCESSING</h2>
+                    </div>
+                </div>
+                <div class="flow-step">
+                    <div class="flow-box">
+                        <h4>Level 03</h4>
+                        <h2>AI ORCHESTRATION</h2>
+                    </div>
+                </div>
+                <div class="flow-step">
+                    <div class="flow-box">
+                        <h4>Level 04</h4>
+                        <h2>VISUAL OUTPUT</h2>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="viz-section">
+            <div class="viz-header">
+                <h2>Real-Time Visualization</h2>
+                <p>Live architectural synchronization across the Ionity global network.</p>
+            </div>
+            <div class="viz-canvas">
+                <div class="scanning-line"></div>
+                <div class="viz-overlay">
+                    <h4>SYSTEM CORE</h4>
+                    <div class="viz-stats">
+                        <div class="stat-row">
+                            <span>Status:</span>
+                            <span class="status-operational">Operational</span>
+                        </div>
+                        <div class="stat-row">
+                            <span>Nodes:</span>
+                            <span>4,129 Active</span>
+                        </div>
+                        <div class="stat-row">
+                            <span>Traffic:</span>
+                            <span>821 GB/s</span>
+                        </div>
+                        <div class="stat-row">
+                            <span>Security:</span>
+                            <span>Level 09</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Ecosystem</h4>
+                <a href="index.html">Main Terminal</a>
+                <a href="system-architecture.html">Architecture</a>
+                <a href="roadmap.html">Future Ops</a>
+                <a href="license.html">Legal Framework</a>
+            </div>
+            <div class="footer-col">
+                <h4>Intelligence</h4>
+                <a href="ai-innovation.html">Neural Labs</a>
+                <a href="services.html">Integration</a>
+                <a href="products.html">Hardware</a>
+                <a href="aedi-online.html">AEDI Cloud</a>
+            </div>
+            <div class="footer-col">
+                <h4>Developer</h4>
+                <a href="firmware-development.html">SDK/API</a>
+                <a href="gateway.html">IO Gateway</a>
+                <a href="privacy.html">Data Security</a>
+                <a href="contact.html">Direct Uplink</a>
+            </div>
         </div>
-        <div class="footer-content" style="opacity: 0.7; line-height: 2; color: rgba(255,255,255,0.5);">
-            <div>Ionity™ (Pty) Ltd 2025-2026 | Creative Commons BY-NC-SA 4.0 | Made with AEDI™ | Author: Antwerp Designs</div>
-            <div>South Africa Centurion 0157 | Policy AED 986 | License AED 900 | Ionity™ IoT-Ai-DAQ-PdM-CMS-F-iT Hardware, Software Integrations, ALL RIGHTS RESERVED</div>
-            <div>
-                <a href="tel:+27646999877">+27 646 999 877</a> &nbsp;|&nbsp;
-                <a href="mailto:ai@ionity.today">ai@ionity.today</a> &nbsp;|&nbsp; 
-                <a href="https://www.ionity.world" target="_blank">www.ionity.world</a>
-            </div>
-            <div style="margin-top: 1rem;">
-                <a href="https://antwerpdesignsionity.github.io/Metadata" target="_blank" rel="noopener noreferrer">Metadata</a>
-            </div>
+        <div class="footer-bottom">
+            &copy; 2018-2026 Ionity (Pty) Ltd | Antwerp Designs | Built by Johan Wilhelm van Antwerp
         </div>
     </footer>
 
-    <script src="assets/js/cookie-manager.js"></script>
+    <script>
+        function toggleMobileNav() {
+            const nav = document.getElementById('mobileNav');
+            nav.classList.toggle('active');
+        }
 
-    <!-- ionity.yumyum -->
-    <script>window.ionity=window.ionity||{};window.$yum=window.ionity.yumyum={set:function(n,v,d,p){let e="";if(d){const t=new Date();t.setTime(t.getTime()+(d*864e5));e="; expires="+t.toUTCString()}document.cookie=n+"="+(v||"")+e+"; path="+(p||"/")+"; SameSite=Lax"},get:function(n){const nEQ=n+"=";const ca=document.cookie.split(';');for(let i=0;i<ca.length;i++){let c=ca[i].trim();if(c.indexOf(nEQ)===0)return c.substring(nEQ.length,c.length)}return null},check:function(n){return this.get(n)!==null},create:function(n,j,d,p){this.set(n,JSON.stringify(j),d||30,p||"/")},readJSON:function(n){const v=this.get(n);return v?JSON.parse(v):null},readValue:function(n,k){const j=this.readJSON(n);return j?j[k]:null},addValue:function(n,k,v,d,p){let j=this.readJSON(n)||{};j[k]=v;this.create(n,j,d||30,p||"/")}}</script>
-
-    <!-- IndexNow SEO -->
-    <script src="assets/js/indexnow-manager.js"></script>
-
-    <div id="cookie-banner"><div class="cookie-banner-content"><div class="cookie-banner-text"><h3>🍪 Privacy</h3><p>We use cookies. <a href="#" onclick="event.preventDefault(); cookieManager?.openSettings();">Settings</a></p></div><div class="cookie-banner-actions"><button class="cookie-btn cookie-btn-necessary" onclick="cookieManager?.acceptNecessary();">Necessary</button><button class="cookie-btn cookie-btn-accept" onclick="cookieManager?.acceptAll();">Accept All</button></div></div></div><div id="cookie-settings-modal"><div class="cookie-modal-content"><div class="cookie-modal-header"><h2>Cookie Preferences</h2><button class="cookie-modal-close" onclick="cookieManager?.closeSettings();">×</button></div><div class="cookie-modal-body"><div class="cookie-category"><div class="cookie-category-header"><h3>Necessary</h3><label class="cookie-toggle"><input type="checkbox" checked disabled><span class="cookie-toggle-slider"></span></label></div></div><div class="cookie-category"><div class="cookie-category-header"><h3>Analytics</h3><label class="cookie-toggle"><input type="checkbox" id="cookie-analytics"><span class="cookie-toggle-slider"></span></label></div></div><div class="cookie-category"><div class="cookie-category-header"><h3>Marketing</h3><label class="cookie-toggle"><input type="checkbox" id="cookie-marketing"><span class="cookie-toggle-slider"></span></label></div></div><div class="cookie-category"><div class="cookie-category-header"><h3>Preferences</h3><label class="cookie-toggle"><input type="checkbox" id="cookie-preferences"><span class="cookie-toggle-slider"></span></label></div></div></div><div class="cookie-modal-footer"><button class="cookie-btn cookie-btn-necessary" onclick="cookieManager?.acceptNecessary();">Necessary</button><button class="cookie-btn cookie-btn-accept" onclick="cookieManager?.saveCustomPreferences();">Save</button></div></div></div>
-
-    <!-- Identity Modules -->
-    <div class="identity-modules">
-        <a href="https://gravatar.com/antwerpdesigns" target="_blank" rel="noopener noreferrer" class="module-link" title="Global Identity Node">
-            <img src="assets/images/gravatar-icon.svg" alt="Gravatar" class="module-icon">
-            <span class="module-label">ID_NODE</span>
-        </a>
-
-        <a href="https://github.com/AntwerpDesignsIonity" target="_blank" rel="noopener noreferrer" class="module-link" title="Hardware/Software Architecture" style="display: none;">
-            <img src="assets/images/github-icon.svg" alt="GitHub" class="module-icon">
-            <span class="module-label">CORE_REPO</span>
-        </a>
-
-        <a href="https://www.linkedin.com/in/ionity" target="_blank" rel="noopener noreferrer" class="module-link" title="Ecosystem Solutionist Connection" style="display: none;">
-            <img src="assets/images/linkedin-icon.svg" alt="LinkedIn" class="module-icon">
-            <span class="module-label">SOL_CONNECT</span>
-        </a>
-    </div>
+        // Close mobile nav when clicking a link
+        document.querySelectorAll('.mobile-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobileNav').classList.remove('active');
+            });
+        });
+    </script>
 </body>
 </html>
