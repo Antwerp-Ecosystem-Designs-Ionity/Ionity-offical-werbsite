@@ -69,24 +69,24 @@ document.addEventListener('DOMContentLoaded', () => {
                     perspective: 1200px;
                     transition: opacity 0.4s ease;
                 }
-                .portal-container {
+                #warp-loader .portal-container {
                     position: relative;
                     width: 300px; height: 300px;
                     display: flex; align-items: center; justify-content: center;
                     transform-style: preserve-3d;
                 }
-                .portal-ring {
+                #warp-loader .portal-ring {
                     position: absolute;
                     border: 1.5px solid rgba(0, 210, 255, 0.6);
                     border-radius: 50%;
                     box-shadow: 0 0 40px rgba(0, 210, 255, 0.4);
                     opacity: 0;
                 }
-                .ring-1 { width: 50px; height: 50px; animation: portalWarp 1s infinite linear; }
-                .ring-2 { width: 50px; height: 50px; animation: portalWarp 1s infinite linear 0.3s; }
-                .ring-3 { width: 50px; height: 50px; animation: portalWarp 1s infinite linear 0.6s; }
+                #warp-loader .ring-1 { width: 50px; height: 50px; animation: portalWarp 1s infinite linear; }
+                #warp-loader .ring-2 { width: 50px; height: 50px; animation: portalWarp 1s infinite linear 0.3s; }
+                #warp-loader .ring-3 { width: 50px; height: 50px; animation: portalWarp 1s infinite linear 0.6s; }
                 
-                .portal-core {
+                #warp-loader .portal-core {
                     width: 6px; height: 6px;
                     background: #fff;
                     border-radius: 50%;
@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     animation: corePulse 0.4s infinite alternate;
                 }
 
-                .loader-text {
+                #warp-loader .loader-text {
                     position: absolute;
                     bottom: -80px;
                     font-family: 'Courier New', monospace;

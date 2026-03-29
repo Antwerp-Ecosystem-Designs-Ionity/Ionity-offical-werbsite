@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -49,8 +49,8 @@
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="revisit-after" content="7 days">
 
-<meta name="copyright" content="Â© 2018â€“2026 Antwerp Designs | Ionity (Pty) Ltd">
-<meta name="rights" content="All rights reserved. TMÂ². Policy AED 986. License AED 900.">
+<meta name="copyright" content="© 2018–2026 Antwerp Designs | Ionity (Pty) Ltd">
+<meta name="rights" content="All rights reserved. TM². Policy AED 986. License AED 900.">
 <meta name="license" content="https://creativecommons.org/licenses/by-nc-sa/4.0/">
 
 <meta name="geo.region" content="ZA-GT">
@@ -420,7 +420,7 @@
 
         /* Typewriter Cursor */
         .typing::after {
-            content: 'â–ˆ';
+            content: '█';
             display: inline-block;
             vertical-align: bottom;
             animation: blink 1s step-end infinite;
@@ -677,9 +677,9 @@
             <a href="what-we-do.html">What We Do</a>
             <a href="ai-innovation.html">AI Innovation</a>
             <a href="roadmap.html">Roadmap</a>
-            <a href="subscriptions.html">Subscriptions</a>
             <a href="license.html">License</a>
             <a href="privacy.html">Privacy</a>
+            <a href="subscriptions.html">Subscriptions</a>
             <a href="terms.html">Terms</a>
             <a href="about.html">About</a>
             <a href="aedi-online.html">AEDI Online</a>
@@ -688,7 +688,7 @@
             <a href="gateway.html">IO Way</a>
         </div>
 
-        <button class="mobile-menu-btn" onclick="toggleMenu()">â˜°</button>
+        <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
     </nav>
 
     <!-- SecurePrivacy Consent Management -->
@@ -814,7 +814,7 @@
                 <div class="card-icon"><i class="fa-solid fa-bolt"></i></div>
                 <h3>2. DAQ & CMS Inputs</h3>
                 <p><strong>The Sensory Input</strong></p>
-                <p>The SDKâ€™s <strong>Agentic Core</strong> treats every sensor as a "data document", handling the planning of how to slice data for analysis.</p>
+                <p>The SDK’s <strong>Agentic Core</strong> treats every sensor as a "data document", handling the planning of how to slice data for analysis.</p>
                 <ul>
                     <li><strong>High-Speed DAQ:</strong> Radxa Penta SATA HAT + SSD stack for vibration/thermal telemetry.</li>
                     <li><strong>Pattern Recognition:</strong> Autonomous CMS executing Python-based FFT on the fly to monitor "Bearing harmonics".</li>
@@ -882,8 +882,8 @@
             <img src="assets/images/ionity-logo-edited.png" alt="Ionity Logo" class="footer-logo">
         </div>
         <div class="footer-content" style="opacity: 0.7; line-height: 1.8; color: var(--text-muted);">
-            <div>Ionityâ„¢ (Pty) Ltd 2025-2026 | Creative Commons BY-NC-SA 4.0 | Made with AEDIâ„¢ | Author: Antwerp Designs</div>
-            <div>South Africa Centurion 0157 | Policy AED 986 | License AED 900 | Ionityâ„¢ IoT-Ai-DAQ-PdM-CMS-F-iT Hardware, Software Integrations, ALL RIGHTS RESERVED</div>
+            <div>Ionity™ (Pty) Ltd 2025-2026 | Creative Commons BY-NC-SA 4.0 | Made with AEDI™ | Author: Antwerp Designs</div>
+            <div>South Africa Centurion 0157 | Policy AED 986 | License AED 900 | Ionity™ IoT-Ai-DAQ-PdM-CMS-F-iT Hardware, Software Integrations, ALL RIGHTS RESERVED</div>
             <div>
                 <a href="tel:+27646999877">+27 646 999 877</a> &nbsp;|&nbsp;
                 <a href="mailto:ai@ionity.today">ai@ionity.today</a> &nbsp;|&nbsp; 
@@ -1220,14 +1220,14 @@
                 hw.rotation.y += 0.005;
             });
 
-            // 4. Living Nodes — drift, pulse, breathe
+            // 4. Living Nodes � drift, pulse, breathe
             nodeData.forEach(nd => {
                 // Drift movement
                 nd.mesh.position.x += nd.vx;
                 nd.mesh.position.y = nd.baseY + Math.sin(time * 0.5 + nd.phase) * 30;
                 nd.mesh.position.z += nd.vz;
 
-                // Boundary wrapping — keep nodes in the visible volume
+                // Boundary wrapping � keep nodes in the visible volume
                 if (nd.mesh.position.x > 1200) nd.mesh.position.x = -1200;
                 if (nd.mesh.position.x < -1200) nd.mesh.position.x = 1200;
                 if (nd.mesh.position.z > 200) nd.mesh.position.z = -2800;
@@ -1245,7 +1245,7 @@
                 updateNodeLinks();
             }
 
-            // 5. Camera — strafe & jump
+            // 5. Camera � strafe & jump
             camera.position.x += (targetX - camera.position.x) * 0.05;
             
             if (isJumping) {
@@ -1384,10 +1384,10 @@
                         const currentIndex = Math.round(deckWrapper.scrollLeft / window.innerWidth);
 
                         if (deltaX < 0 && currentIndex < sections.length - 1) {
-                            // Swipe left → next section
+                            // Swipe left ? next section
                             sections[currentIndex + 1].scrollIntoView({ behavior: 'smooth', inline: 'start' });
                         } else if (deltaX > 0 && currentIndex > 0) {
-                            // Swipe right → previous section
+                            // Swipe right ? previous section
                             sections[currentIndex - 1].scrollIntoView({ behavior: 'smooth', inline: 'start' });
                         }
                     }
@@ -1407,7 +1407,7 @@
                 }
             });
 
-            // --- MOUSE WHEEL → HORIZONTAL SCROLL (desktop) ---
+            // --- MOUSE WHEEL ? HORIZONTAL SCROLL (desktop) ---
             if (deckWrapper) {
                 deckWrapper.addEventListener('wheel', (e) => {
                     // If the active section can scroll vertically, let it
@@ -1523,7 +1523,7 @@
             cards.forEach(card => observer.observe(card));
         });
 
-        const letters = "â–ˆâ–ˆâ–“â–“â–’â–’â–‘â–‘â––â–—â–˜â–™â–šâ–›â–œâ–â–žâ–Ÿ"; 
+        const letters = "██▓▓▒▒░░▖▗▘▙▚▛▜▝▞▟"; 
 
         function runGlitch(element) {
             if (element.dataset.isCoolingDown === "true") return;
@@ -1582,7 +1582,7 @@
     <!-- IndexNow SEO -->
     <script src="assets/js/indexnow-manager.js"></script>
 
-    <div id="cookie-banner"><div class="cookie-banner-content"><div class="cookie-banner-text"><h3>ðŸª Privacy</h3><p>We use cookies. <a href="#" onclick="event.preventDefault(); cookieManager?.openSettings();">Settings</a></p></div><div class="cookie-banner-actions"><button class="cookie-btn cookie-btn-necessary" onclick="cookieManager?.acceptNecessary();">Necessary</button><button class="cookie-btn cookie-btn-accept" onclick="cookieManager?.acceptAll();">Accept All</button></div></div></div><div id="cookie-settings-modal"><div class="cookie-modal-content"><div class="cookie-modal-header"><h2>Cookies</h2><button class="cookie-modal-close" onclick="cookieManager?.closeSettings();">Ã—</button></div><div class="cookie-modal-body"><div class="cookie-category"><div class="cookie-category-header"><h3>Necessary</h3><label class="cookie-toggle"><input type="checkbox" checked disabled><span class="cookie-toggle-slider"></span></label></div></div><div class="cookie-category"><div class="cookie-category-header"><h3>Analytics</h3><label class="cookie-toggle"><input type="checkbox" id="cookie-analytics"><span class="cookie-toggle-slider"></span></label></div></div><div class="cookie-category"><div class="cookie-category-header"><h3>Marketing</h3><label class="cookie-toggle"><input type="checkbox" id="cookie-marketing"><span class="cookie-toggle-slider"></span></label></div></div><div class="cookie-category"><div class="cookie-category-header"><h3>Preferences</h3><label class="cookie-toggle"><input type="checkbox" id="cookie-preferences"><span class="cookie-toggle-slider"></span></label></div></div></div><div class="cookie-modal-footer"><button class="cookie-btn cookie-btn-necessary" onclick="cookieManager?.acceptNecessary();">Necessary</button><button class="cookie-btn cookie-btn-accept" onclick="cookieManager?.saveCustomPreferences();">Save</button></div></div></div>
+    <div id="cookie-banner"><div class="cookie-banner-content"><div class="cookie-banner-text"><h3>🍪 Privacy</h3><p>We use cookies. <a href="#" onclick="event.preventDefault(); cookieManager?.openSettings();">Settings</a></p></div><div class="cookie-banner-actions"><button class="cookie-btn cookie-btn-necessary" onclick="cookieManager?.acceptNecessary();">Necessary</button><button class="cookie-btn cookie-btn-accept" onclick="cookieManager?.acceptAll();">Accept All</button></div></div></div><div id="cookie-settings-modal"><div class="cookie-modal-content"><div class="cookie-modal-header"><h2>Cookies</h2><button class="cookie-modal-close" onclick="cookieManager?.closeSettings();">×</button></div><div class="cookie-modal-body"><div class="cookie-category"><div class="cookie-category-header"><h3>Necessary</h3><label class="cookie-toggle"><input type="checkbox" checked disabled><span class="cookie-toggle-slider"></span></label></div></div><div class="cookie-category"><div class="cookie-category-header"><h3>Analytics</h3><label class="cookie-toggle"><input type="checkbox" id="cookie-analytics"><span class="cookie-toggle-slider"></span></label></div></div><div class="cookie-category"><div class="cookie-category-header"><h3>Marketing</h3><label class="cookie-toggle"><input type="checkbox" id="cookie-marketing"><span class="cookie-toggle-slider"></span></label></div></div><div class="cookie-category"><div class="cookie-category-header"><h3>Preferences</h3><label class="cookie-toggle"><input type="checkbox" id="cookie-preferences"><span class="cookie-toggle-slider"></span></label></div></div></div><div class="cookie-modal-footer"><button class="cookie-btn cookie-btn-necessary" onclick="cookieManager?.acceptNecessary();">Necessary</button><button class="cookie-btn cookie-btn-accept" onclick="cookieManager?.saveCustomPreferences();">Save</button></div></div></div>
 
     <!-- Identity Modules -->
     <div class="identity-modules">
