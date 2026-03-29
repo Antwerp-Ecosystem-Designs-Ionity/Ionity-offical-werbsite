@@ -171,7 +171,6 @@ body.deck-layout {
     padding-top: 80px;
     box-sizing: border-box;
     scroll-behavior: smooth;
-    zoom: 0.9;
 }
 
 /* Internal vertical scroll styling */
@@ -900,6 +899,68 @@ img[loading="lazy"].loaded {
     .slider-track .card-3d-scene {
         width: 60vw !important;
         max-width: 400px !important;
+    }
+}
+
+/* ===================================
+   GLOBAL MOBILE QUALITY FIXES
+   =================================== */
+
+/* Prevent horizontal overflow globally */
+html, body {
+    overflow-x: hidden;
+    max-width: 100vw;
+}
+
+/* Ensure images never overflow their containers */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Global responsive grids — ensure 1fr on mobile */
+@media (max-width: 768px) {
+    .system-grid,
+    .card-grid,
+    .fit-card-grid,
+    .simple-grid,
+    .ai-pillars,
+    .service-grid,
+    .features-grid,
+    .tech-grid,
+    .benefits-grid,
+    .policy-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+        padding: 0 1rem !important;
+    }
+
+    /* Prevent any fixed-width element from overflowing */
+    section, main, article, .page-container, .container {
+        max-width: 100vw;
+        overflow-x: hidden;
+        box-sizing: border-box;
+    }
+
+    /* Ensure deck sections don't clip vertically */
+    .deck-section {
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    /* Better mobile nav spacing */
+    nav {
+        padding: 0 3vw;
+    }
+
+    .nav-logo {
+        height: 60px;
+    }
+
+    /* Mobile dropdown full height scroll */
+    .mobile-dropdown {
+        max-height: calc(100vh - 80px);
+        overflow-y: auto;
     }
 }
 

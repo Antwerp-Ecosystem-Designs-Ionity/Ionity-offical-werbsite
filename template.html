@@ -509,7 +509,7 @@
         }
 
         @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
+            h1 { font-size: clamp(1.8rem, 5vw, 2.5rem); }
             nav { padding: 0 1rem; height: 60px; }
             nav.scrolled { height: 50px; }
             .mobile-dropdown { top: 60px; }
@@ -520,6 +520,10 @@
             .logo { font-size: 1rem; }
             h1 { animation: neonPulse 3s infinite alternate; }
             .mobile-dropdown a.active { animation: neonPulse 2s infinite alternate; }
+            .system-grid { grid-template-columns: 1fr; }
+            .container { padding: 100px 4vw 2rem; }
+            footer { padding: 2rem 1rem 0 1rem; font-size: 0.6rem; }
+            .footer-logo { height: 40px; }
         }
     </style>
 </head>

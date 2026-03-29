@@ -305,6 +305,54 @@
             .mobile-menu-btn {
                 display: block;
             }
+
+            .portal-ring {
+                display: none;
+            }
+
+            .portal-frame {
+                max-width: 92vw;
+                padding: 1.8rem 1.5rem 1.5rem;
+            }
+
+            .portal-header {
+                font-size: 1.2rem;
+                letter-spacing: 0.3rem;
+            }
+
+            .data-stream {
+                display: none;
+            }
+
+            .page-container {
+                padding: 1rem 3vw;
+            }
+
+            h1 {
+                font-size: clamp(1.5rem, 5vw, 2.5rem);
+                letter-spacing: 0.15rem;
+            }
+
+            .hero-sub {
+                font-size: 0.6rem;
+                letter-spacing: 0.1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .btn-login, .btn-google {
+                font-size: 0.8rem;
+                padding: 0.9rem;
+            }
+
+            footer {
+                padding: 0.8rem 3vw 0.4rem;
+                font-size: 0.55rem;
+            }
+
+            .footer-logo {
+                height: 35px;
+            }
         }
 
         /* --- DECK SECTION LAYOUT --- */
@@ -963,9 +1011,12 @@
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         document.getElementById('canvas-container').appendChild(renderer.domElement);
 
+        // Reduce particles on mobile for performance
+        const isMobile = window.innerWidth <= 768;
+
         // Main star particles
         const geometry = new THREE.BufferGeometry();
-        const count = 6000;
+        const count = isMobile ? 2000 : 6000;
         const positions = new Float32Array(count * 3);
         const sizes = new Float32Array(count);
 
@@ -991,7 +1042,7 @@
 
         // Secondary particle layer — slower, dim, larger spread
         const geo2 = new THREE.BufferGeometry();
-        const count2 = 2000;
+        const count2 = isMobile ? 600 : 2000;
         const pos2 = new Float32Array(count2 * 3);
         for (let i = 0; i < count2 * 3; i++) {
             pos2[i] = (Math.random() - 0.5) * 150;
