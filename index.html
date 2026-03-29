@@ -1042,6 +1042,7 @@
             text-transform: uppercase;
             display: flex;
             align-items: center;
+            -webkit-backdrop-filter: blur(4px);
             backdrop-filter: blur(4px);
             transition: all 0.3s ease;
             cursor: default;
@@ -1280,11 +1281,11 @@
         .idx-content {
             position: relative;
             z-index: 10;
-            background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.95) 5%, #0a0a12 8%);
+            background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.55) 5%, rgba(10,10,18,0.65) 8%);
             padding: 0 5vw;
         }
-        .idx-section { max-width: 1100px; margin: 0 auto; padding: 5rem 0; }
-        .idx-section + .idx-section { border-top: 1px solid rgba(255,255,255,0.05); }
+        .idx-section { max-width: 1100px; margin: 0 auto; padding: 5rem 0; background: transparent; }
+        .idx-section + .idx-section { border-top: 1px solid rgba(255,255,255,0.06); }
 
         /* Status badge */
         .idx-status {
@@ -1360,9 +1361,11 @@
             gap: 1.5rem;
         }
         .idx-card {
-            background: rgba(10,15,20,0.6); border: 1px solid rgba(255,255,255,0.08);
+            background: rgba(10,15,20,0.35); border: 1px solid rgba(255,255,255,0.10);
             padding: 2.2rem; position: relative; overflow: hidden;
-            transition: all 0.4s ease; backdrop-filter: blur(8px);
+            transition: all 0.4s ease;
+            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(12px);
         }
         .idx-card:hover {
             transform: translateY(-4px);
@@ -1412,8 +1415,10 @@
         /* Leader card */
         .idx-leader {
             display: flex; gap: 2rem; align-items: flex-start;
-            background: rgba(10,15,20,0.5); border: 1px solid rgba(255,255,255,0.08);
-            padding: 2.5rem; backdrop-filter: blur(8px);
+            background: rgba(10,15,20,0.3); border: 1px solid rgba(255,255,255,0.10);
+            padding: 2.5rem;
+            -webkit-backdrop-filter: blur(14px);
+            backdrop-filter: blur(14px);
             transition: all 0.4s ease;
         }
         .idx-leader:hover {
@@ -1451,8 +1456,10 @@
         /* CTA */
         .idx-cta-box {
             text-align: center; padding: 4rem 2rem;
-            background: linear-gradient(135deg, rgba(0,210,255,0.04) 0%, rgba(41,121,255,0.03) 100%);
-            border: 1px solid rgba(0,210,255,0.15);
+            background: linear-gradient(135deg, rgba(0,210,255,0.06) 0%, rgba(41,121,255,0.04) 100%);
+            border: 1px solid rgba(0,210,255,0.18);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
         }
         .idx-cta-title {
             font-size: 2rem; font-weight: 800; color: #fff; margin: 0 0 1rem 0;
@@ -1474,6 +1481,7 @@
             padding: 3rem 0 0; border-top: 1px solid rgba(255,255,255,0.08);
             text-align: center; font-size: 0.7rem;
             color: rgba(255,255,255,0.5); line-height: 2.2;
+            background: transparent;
         }
         .idx-footer a { color: var(--accent-cyan, #00d2ff); text-decoration: none; margin: 0 10px; transition: color 0.3s; font-weight: 600; }
         .idx-footer a:hover { color: #fff; text-shadow: 0 0 10px var(--accent-cyan, #00d2ff); }
