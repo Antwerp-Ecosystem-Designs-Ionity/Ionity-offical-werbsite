@@ -472,12 +472,13 @@
 
         /* --- LAYOUT --- */
         .container {
-            max-width: 1400px;
+            max-width: 1100px; /* narrower for more readable line length */
             margin: 0 auto;
-            padding: 4rem 2rem;
+            padding: 4rem 4rem; /* increase side padding so content isn't flush to edges */
             min-height: 80vh;
             position: relative;
             z-index: 10;
+            box-sizing: border-box;
         }
 
         /* --- HERO HEADER --- */
@@ -742,7 +743,7 @@
 
         /* --- FOOTER --- */
         footer {
-            padding: 3rem 5vw 0 5vw;
+            padding: 3rem 4rem 0 4rem;
             border-top: 1px solid var(--border);
             text-align: center;
             color: var(--text-muted);
