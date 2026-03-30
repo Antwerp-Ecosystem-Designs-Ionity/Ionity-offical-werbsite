@@ -1985,6 +1985,69 @@
         <div class="cloud-kw-chip" style="background:rgba(0,0,0,0.35);color:var(--accent-cyan);padding:0.45rem 0.8rem;border-radius:999px;border:1px solid rgba(10,240,255,0.08);font-family:'Share Tech Mono',monospace;font-size:0.86rem;">Vertex Ai *</div>
     </div>
 
+    <!-- AEDI Mindmap / Flow (top-of-page, sits with the cloud chips) -->
+    <style>
+        /* Mindmap container */
+        #aediMindmap {
+            position:fixed;
+            top:118px;
+            left:50%;
+            transform:translateX(-50%);
+            width:calc(100% - 4rem);
+            max-width:1400px;
+            height:160px;
+            pointer-events:auto;
+            z-index:1000;
+        }
+        #aediMindmap .mm-center {
+            position:absolute;
+            left:50%;
+            top:50%;
+            transform:translate(-50%,-50%);
+            background:linear-gradient(90deg, rgba(0,210,255,0.14), rgba(0,210,255,0.06));
+            border:1px solid rgba(0,210,255,0.12);
+            color:var(--accent-cyan);
+            padding:0.6rem 1.2rem;
+            border-radius:999px;
+            font-family:'Share Tech Mono',monospace;
+            font-weight:700;
+            letter-spacing:0.08rem;
+            box-shadow:0 6px 30px rgba(0,210,255,0.06);
+        }
+        #aediMindmap .mm-node {
+            position:absolute;
+            background:rgba(2,6,10,0.55);
+            border:1px solid rgba(0,210,255,0.08);
+            color:var(--text-muted);
+            padding:0.35rem 0.6rem;
+            border-radius:14px;
+            font-family:'Share Tech Mono',monospace;
+            font-size:0.82rem;
+            text-align:center;
+            transition:transform 0.6s ease, box-shadow 0.3s ease;
+            filter:drop-shadow(0 6px 18px rgba(0,0,0,0.45));
+        }
+        /* small float animation */
+        @keyframes mmFloat { 0% { transform: translateY(0px);} 50% { transform: translateY(-6px);} 100% { transform: translateY(0px);} }
+        #aediMindmap .mm-node { animation: mmFloat 6s ease-in-out infinite; }
+        /* ensure icons use theme color */
+        .card-icon svg, .carousel-card .card-icon svg, .card .card-icon svg { fill: currentColor; color: var(--accent-cyan); opacity:0.95; }
+
+        /* Enquire CTA centered style */
+        .cta-enquire { display:inline-block; padding:1rem 3rem; background: rgba(0,210,255,0.1); border:1px solid var(--accent-cyan); color:#fff; text-decoration:none; text-transform:uppercase; letter-spacing:0.2rem; font-weight:700; transition: all 0.25s ease; box-shadow:0 0 20px rgba(0,210,255,0.18); border-radius:6px; }
+        .cta-enquire:hover { background: rgba(0,210,255,0.22); box-shadow:0 0 40px rgba(0,210,255,0.4); }
+    </style>
+
+    <div id="aediMindmap" aria-hidden="false">
+        <div id="mm-svg-holder" style="position:absolute;inset:0;pointer-events:none;"></div>
+        <div id="mm-center" class="mm-center">AEDI</div>
+        <div class="mm-node" data-pos="-42,10" style="left:8%;top:20%;">Edge AI</div>
+        <div class="mm-node" data-pos="-20,-40" style="left:26%;top:12%;">GenAIaaS</div>
+        <div class="mm-node" data-pos="0,-62" style="left:46%;top:6%;">AIaaS</div>
+        <div class="mm-node" data-pos="20,-40" style="left:66%;top:12%;">Multi-agent</div>
+        <div class="mm-node" data-pos="42,10" style="left:88%;top:22%;">Verticalized</div>
+    </div>
+
             <nav id="mainNav">
         <a href="index.html" class="logo">
              <img src="assets/images/ionity-logo-edited.png" alt="IONITY" class="nav-logo">
@@ -2648,21 +2711,7 @@
         </div>
 
         <div class="inner-container" style="text-align: center; margin: 0; padding: 2rem 0;">
-            <a href="contact.html" style="
-                display: inline-block;
-                padding: 1rem 3rem;
-                background: rgba(0, 210, 255, 0.1);
-                border: 1px solid var(--accent-cyan);
-                color: #fff;
-                text-decoration: none;
-                text-transform: uppercase;
-                letter-spacing: 0.2rem;
-                font-weight: bold;
-                transition: all 0.3s ease;
-                box-shadow: 0 0 20px rgba(0, 210, 255, 0.2);
-            " onmouseover="this.style.background='rgba(0, 210, 255, 0.3)'; this.style.boxShadow='0 0 40px rgba(0, 210, 255, 0.5)';" onmouseout="this.style.background='rgba(0, 210, 255, 0.1)'; this.style.boxShadow='0 0 20px rgba(0, 210, 255, 0.2)';">
-                Enquire Now
-            </a>
+                <a href="contact.html" class="cta-enquire" id="enquireCta">Enquire Now</a>
         </div>
 
         <!-- SECTION: THE LIVING ECOSYSTEM -->
@@ -5793,5 +5842,87 @@
             </div>
         </div>
     </div>
+
+    <script>
+        // Top mindmap SVG connectors and simple animation
+        (function initAediMindmap(){
+            function buildSVG(){
+                const holder = document.getElementById('mm-svg-holder');
+                if (!holder) return;
+                holder.innerHTML = '';
+                const svg = document.createElementNS('http://www.w3.org/2000/svg','svg');
+                svg.setAttribute('width','100%'); svg.setAttribute('height','100%'); svg.setAttribute('preserveAspectRatio','none');
+                svg.style.position='absolute'; svg.style.left='0'; svg.style.top='0';
+                holder.appendChild(svg);
+
+                const center = document.getElementById('mm-center');
+                const nodes = Array.from(document.querySelectorAll('#aediMindmap .mm-node'));
+
+                function connectAll(){
+                    svg.innerHTML = '';
+                    const holderRect = holder.getBoundingClientRect();
+                    const rectC = center.getBoundingClientRect();
+                    nodes.forEach(n => {
+                        const rect = n.getBoundingClientRect();
+                        const x1 = rectC.left + rectC.width/2 - holderRect.left;
+                        const y1 = rectC.top + rectC.height/2 - holderRect.top;
+                        const x2 = rect.left + rect.width/2 - holderRect.left;
+                        const y2 = rect.top + rect.height/2 - holderRect.top;
+                        const line = document.createElementNS('http://www.w3.org/2000/svg','line');
+                        line.setAttribute('x1', x1); line.setAttribute('y1', y1); line.setAttribute('x2', x2); line.setAttribute('y2', y2);
+                        line.setAttribute('stroke','rgba(0,210,255,0.12)'); line.setAttribute('stroke-width','2');
+                        line.setAttribute('stroke-linecap','round');
+                        svg.appendChild(line);
+                    });
+                }
+
+                // reposition connectors on resize and periodically for float effect
+                connectAll();
+                window.addEventListener('resize', () => { setTimeout(connectAll, 120); });
+
+                // gentle pulse of nodes (reposition transform to create small orbit feel)
+                let t = 0;
+                function step(){
+                    t += 0.008;
+                    nodes.forEach((n, i) => {
+                        const ox = Math.sin(t + i) * (6 + (i%2)*4);
+                        const oy = Math.cos(t*1.1 + i) * (4 + (i%3)*3);
+                        n.style.transform = `translate(${ox}px, ${oy}px)`;
+                    });
+                    connectAll();
+                    requestAnimationFrame(step);
+                }
+                requestAnimationFrame(step);
+            }
+            document.addEventListener('DOMContentLoaded', buildSVG);
+            if (document.readyState !== 'loading') buildSVG();
+        })();
+
+        // Ensure all slider/track elements auto-advance as a fallback
+        (function ensureTracksAutoAdvance(){
+            function initTrackAuto(track){
+                if (!track || track.dataset.aediAutoplayInit) return;
+                track.dataset.aediAutoplayInit = '1';
+                const cards = Array.from(track.querySelectorAll('.card, .carousel-card, .card-3d-scene'));
+                if (!cards.length) return;
+                let index = 0;
+                const parentWidth = track.parentElement?.clientWidth || track.clientWidth;
+                const step = () => {
+                    index = (index + 1) % cards.length;
+                    const card = cards[index];
+                    const left = card.offsetLeft - Math.max(0, (parentWidth - card.offsetWidth)/2);
+                    track.style.transition = 'transform 0.8s cubic-bezier(0.23,1,0.32,1)';
+                    track.style.transform = `translateX(${-left}px)`;
+                };
+                // gentle interval
+                setInterval(step, 9000);
+            }
+
+            document.addEventListener('DOMContentLoaded', () => {
+                document.querySelectorAll('.slider-track, .carousel-track').forEach(initTrackAuto);
+            });
+        })();
+    </script>
+
 </body>
 </html>
