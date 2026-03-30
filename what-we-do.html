@@ -1974,6 +1974,17 @@
     <div class="scanlines"></div>
     <div class="vignette"></div>
 
+    <!-- Top banner: AI terms requested by user -->
+    <div id="topBanner" style="position:fixed;top:78px;left:0;right:0;z-index:1005;display:flex;justify-content:center;padding:0.45rem 1rem;background:linear-gradient(90deg, rgba(2,6,10,0.65), rgba(2,6,10,0.5));backdrop-filter:blur(6px);gap:0.6rem;flex-wrap:wrap;pointer-events:auto;">
+        <div class="cloud-kw-chip" style="background:rgba(0,0,0,0.35);color:var(--accent-cyan);padding:0.45rem 0.8rem;border-radius:999px;border:1px solid rgba(10,240,255,0.08);font-family:'Share Tech Mono',monospace;font-size:0.86rem;">Artificial Intelligence as a Service (AIaaS)</div>
+        <div class="cloud-kw-chip" style="background:rgba(0,0,0,0.35);color:var(--accent-cyan);padding:0.45rem 0.8rem;border-radius:999px;border:1px solid rgba(10,240,255,0.08);font-family:'Share Tech Mono',monospace;font-size:0.86rem;">AI-First Cloud Platforms</div>
+        <div class="cloud-kw-chip" style="background:rgba(0,0,0,0.35);color:var(--accent-cyan);padding:0.45rem 0.8rem;border-radius:999px;border:1px solid rgba(10,240,255,0.08);font-family:'Share Tech Mono',monospace;font-size:0.86rem;">Verticalized AIaaS</div>
+        <div class="cloud-kw-chip" style="background:rgba(0,0,0,0.35);color:var(--accent-cyan);padding:0.45rem 0.8rem;border-radius:999px;border:1px solid rgba(10,240,255,0.08);font-family:'Share Tech Mono',monospace;font-size:0.86rem;">GenAIaaS</div>
+        <div class="cloud-kw-chip" style="background:rgba(0,0,0,0.35);color:var(--accent-cyan);padding:0.45rem 0.8rem;border-radius:999px;border:1px solid rgba(10,240,255,0.08);font-family:'Share Tech Mono',monospace;font-size:0.86rem;">Multi-agent Systems</div>
+        <div class="cloud-kw-chip" style="background:rgba(0,0,0,0.35);color:var(--accent-cyan);padding:0.45rem 0.8rem;border-radius:999px;border:1px solid rgba(10,240,255,0.08);font-family:'Share Tech Mono',monospace;font-size:0.86rem;">Edge AI Services</div>
+        <div class="cloud-kw-chip" style="background:rgba(0,0,0,0.35);color:var(--accent-cyan);padding:0.45rem 0.8rem;border-radius:999px;border:1px solid rgba(10,240,255,0.08);font-family:'Share Tech Mono',monospace;font-size:0.86rem;">Vertex Ai *</div>
+    </div>
+
             <nav id="mainNav">
         <a href="index.html" class="logo">
              <img src="assets/images/ionity-logo-edited.png" alt="IONITY" class="nav-logo">
@@ -4869,24 +4880,24 @@
                         } else {
                             moveSlide('next');
                         }
-                    }, 3000);
+                    }, 9000);
                 };
 
                 const pauseAutoScroll = () => { autoScrollPaused = true; };
                 const resetAutoScroll = () => {
                     autoScrollPaused = false;
-                    // Restart timer so it waits 5s after interaction
+                    // Restart timer so it waits after interaction
                     clearInterval(autoScrollInterval);
                     autoScrollInterval = null;
-                    setTimeout(() => startAutoScroll(), 5000);
+                    setTimeout(() => startAutoScroll(), 9000);
                 };
 
                 // Pause on hover
                 wrapper.addEventListener('mouseenter', pauseAutoScroll);
                 wrapper.addEventListener('mouseleave', resetAutoScroll);
 
-                // Start auto-scroll after 2s
-                setTimeout(() => startAutoScroll(), 2000);
+                // Start auto-scroll after a short delay
+                setTimeout(() => startAutoScroll(), 4000);
             });
         });
     </script>
@@ -5030,6 +5041,47 @@
             const sunGlow = new THREE.Mesh(glowGeo, glowMat);
             sun.add(sunGlow);
             scene.add(sun);
+
+            // AEDI core label (canvas texture on a sprite) — stays at the sun's center
+            (function addAediLabel() {
+                const canvas = document.createElement('canvas');
+                canvas.width = 1024;
+                canvas.height = 512;
+                const ctx = canvas.getContext('2d');
+
+                // Transparent background
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                // Text styling (uses Share Tech Mono if available)
+                const fontSize = 220;
+                ctx.font = `bold ${fontSize}px 'Share Tech Mono', monospace`;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+
+                // Glow / stroke
+                ctx.lineWidth = 18;
+                ctx.strokeStyle = 'rgba(0,0,0,0.6)';
+                ctx.strokeText('AEDI', canvas.width / 2, canvas.height / 2);
+
+                // Fill text
+                ctx.fillStyle = '#00d2ff';
+                ctx.fillText('AEDI', canvas.width / 2, canvas.height / 2);
+
+                const tex = new THREE.CanvasTexture(canvas);
+                tex.needsUpdate = true;
+
+                const mat = new THREE.SpriteMaterial({ map: tex, transparent: true, depthTest: false });
+                const sprite = new THREE.Sprite(mat);
+
+                // Scale relative to scene: roughly match sun size (sun radius ~100)
+                sprite.scale.set(420, 210, 1);
+
+                // Place slightly in front of the sun so it's visible through the wireframe
+                sprite.position.set(0, 0, 120);
+
+                // Attach to sun so label moves/rotates with it
+                sun.add(sprite);
+            })();
 
             // --- PLANETS ---
             // Simplified data: name, size, distance, color, speed
@@ -5434,7 +5486,7 @@
                         }
                         this.updateCarousel();
                     }
-                }, 5000); // Random direction every 5 seconds
+                }, 9000); // Random direction every 9 seconds (slower auto-rotate)
             }
 
             stopAutoPlay() {
