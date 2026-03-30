@@ -577,8 +577,19 @@
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             pointer-events: none;
-            z-index: 1; /* Behind content */
+            z-index: 4; /* Behind content but above canvas fade */
             overflow: hidden;
+        }
+
+        /* --- CANVAS FADE OVERLAY (subtle backdrop fade) --- */
+        #canvas-fade {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 3; /* sits above the raw canvas but beneath floating elements and content */
+            background: linear-gradient(to bottom, rgba(2,2,4,0.72) 0%, rgba(2,2,4,0.45) 30%, rgba(2,2,4,0.25) 60%, rgba(2,2,4,0.0) 100%);
+            mix-blend-mode: multiply;
+            opacity: 0.98;
         }
 
         .float-wrapper {
@@ -856,6 +867,85 @@
                 </div>
             </div>
         </div>
+
+        <!-- SOFTWARE & CLOUD SERVICES (expanded context for DEV / Firmware) -->
+        <h2 style="text-align: center; font-weight: 300; font-size: 2.2rem; margin: 4rem 0 1.5rem; color: #fff;">Software & Cloud Services</h2>
+
+        <section class="deck-section">
+            <div class="system-grid">
+                <div class="card gold-accent">
+                    <div class="card-icon"><i class="fa-solid fa-cloud-arrow-down"></i></div>
+                    <h3>Fleet OTA & Update Management</h3>
+                    <p>Secure, signed Over-The-Air updates with delta patching, staged rollouts, canary releases and automated rollback. Designed for large fleets with minimal bandwidth and strong security guarantees.</p>
+                    <ul>
+                        <li>Delta & compressed updates</li>
+                        <li>Signed artifacts & secure boot integration</li>
+                        <li>Staged/canary deployments and rollbacks</li>
+                        <li>Bandwidth-aware scheduling</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon"><i class="fa-solid fa-wrench"></i></div>
+                    <h3>CI/CD for Embedded Builds</h3>
+                    <p>Cloud-native CI pipelines for reproducible cross-compiles, artifact signing, test automation and binary provenance. We integrate with common CI providers or run private runners to match project constraints.</p>
+                    <ul>
+                        <li>Cross-compile matrix & reproducible builds</li>
+                        <li>Hardware-in-the-loop test gating</li>
+                        <li>Artifact signing & provenance</li>
+                        <li>Release orchestration</li>
+                    </ul>
+                </div>
+
+                <div class="card purple-accent">
+                    <div class="card-icon"><i class="fa-solid fa-robot"></i></div>
+                    <h3>Agentic Core & Assistants</h3>
+                    <p>On-device agents for local reasoning and assistants in the cloud for fleet orchestration. Agents handle local telemetry summarisation, fault triage, and lightweight decision making while the cloud coordinates updates and model distribution.</p>
+                    <ul>
+                        <li>Local inference & summarisation</li>
+                        <li>Cloud orchestration of agent policies</li>
+                        <li>Assistants for diagnostics & runbooks</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon"><i class="fa-solid fa-chart-line"></i></div>
+                    <h3>Monitoring, Telemetry & PdM</h3>
+                    <p>Highly-available telemetry pipelines for DAQ ingestion, time-series storage, alerting and predictive maintenance models. Real-time dashboards and automated anomaly detection.</p>
+                    <ul>
+                        <li>Low-latency telemetry ingestion (MQTT/HTTP/gRPC)</li>
+                        <li>Time-series & event storage</li>
+                        <li>Alerting, dashboards & ML pipelines</li>
+                    </ul>
+                </div>
+
+                <div class="card gold-accent">
+                    <div class="card-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                    <h3>Security & Identity</h3>
+                    <p>Device identity, secure enrollment, hardware-backed keys, mutual TLS and secure element integration. We treat security as a feature: signed boot chains, update attestations and audit trails.</p>
+                    <ul>
+                        <li>Secure enrollment & device lifecycle</li>
+                        <li>Hardware-backed key management</li>
+                        <li>Signed updates & attestation</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon"><i class="fa-solid fa-network-wired"></i></div>
+                    <h3>Cloud Integration & APIs</h3>
+                    <p>Well-defined APIs and edge proxies for integrating OTA, telemetry and agent control into customer clouds or our managed platform. Multi-tenant, role-based access and data partitioning available on request.</p>
+                    <ul>
+                        <li>REST / gRPC / MQTT APIs</li>
+                        <li>Edge gateway & proxy patterns</li>
+                        <li>Multi-tenant tenancy & RBAC</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="margin-top:2rem; max-width:900px; margin-left:auto; margin-right:auto; color:var(--text-muted); text-align:center;">
+                <strong>Customer-specific needs & requirements:</strong> we tailor CI/CD, OTA cadence, security posture and telemetry retention to each customer's constraints (connectivity, regulatory, hardware). Enquire — we provide OTA and CI/CD remote update services.
+            </div>
+        </section>
 
     <footer>
         <style>
