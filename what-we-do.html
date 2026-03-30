@@ -1976,13 +1976,13 @@
 
     <!-- Top banner: AI terms requested by user -->
     <div id="topBanner" style="position:fixed;top:78px;left:0;right:0;z-index:1005;display:flex;justify-content:center;padding:0.45rem 1rem;background:linear-gradient(90deg, rgba(2,6,10,0.65), rgba(2,6,10,0.5));backdrop-filter:blur(6px);gap:0.6rem;flex-wrap:wrap;pointer-events:auto;">
-        <div class="cloud-kw-chip" style="background:rgba(0,0,0,0.35);color:var(--accent-cyan);padding:0.45rem 0.8rem;border-radius:999px;border:1px solid rgba(10,240,255,0.08);font-family:'Share Tech Mono',monospace;font-size:0.86rem;">Artificial Intelligence as a Service (AIaaS)</div>
-        <div class="cloud-kw-chip" style="background:rgba(0,0,0,0.35);color:var(--accent-cyan);padding:0.45rem 0.8rem;border-radius:999px;border:1px solid rgba(10,240,255,0.08);font-family:'Share Tech Mono',monospace;font-size:0.86rem;">AI-First Cloud Platforms</div>
-        <div class="cloud-kw-chip" style="background:rgba(0,0,0,0.35);color:var(--accent-cyan);padding:0.45rem 0.8rem;border-radius:999px;border:1px solid rgba(10,240,255,0.08);font-family:'Share Tech Mono',monospace;font-size:0.86rem;">Verticalized AIaaS</div>
-        <div class="cloud-kw-chip" style="background:rgba(0,0,0,0.35);color:var(--accent-cyan);padding:0.45rem 0.8rem;border-radius:999px;border:1px solid rgba(10,240,255,0.08);font-family:'Share Tech Mono',monospace;font-size:0.86rem;">GenAIaaS</div>
-        <div class="cloud-kw-chip" style="background:rgba(0,0,0,0.35);color:var(--accent-cyan);padding:0.45rem 0.8rem;border-radius:999px;border:1px solid rgba(10,240,255,0.08);font-family:'Share Tech Mono',monospace;font-size:0.86rem;">Multi-agent Systems</div>
-        <div class="cloud-kw-chip" style="background:rgba(0,0,0,0.35);color:var(--accent-cyan);padding:0.45rem 0.8rem;border-radius:999px;border:1px solid rgba(10,240,255,0.08);font-family:'Share Tech Mono',monospace;font-size:0.86rem;">Edge AI Services</div>
-        <div class="cloud-kw-chip" style="background:rgba(0,0,0,0.35);color:var(--accent-cyan);padding:0.45rem 0.8rem;border-radius:999px;border:1px solid rgba(10,240,255,0.08);font-family:'Share Tech Mono',monospace;font-size:0.86rem;">Vertex Ai *</div>
+        <div class="cloud-kw-chip" title="Artificial Intelligence as a Service — hosted AI products" style="background:rgba(0,0,0,0.35);color:var(--accent-cyan);padding:0.45rem 0.8rem;border-radius:999px;border:1px solid rgba(10,240,255,0.08);font-family:'Share Tech Mono',monospace;font-size:0.86rem;">Artificial Intelligence as a Service (AIaaS)</div>
+        <div class="cloud-kw-chip" title="Cloud platforms designed for AI-first workflows" style="background:rgba(0,0,0,0.35);color:var(--accent-cyan);padding:0.45rem 0.8rem;border-radius:999px;border:1px solid rgba(10,240,255,0.08);font-family:'Share Tech Mono',monospace;font-size:0.86rem;">AI-First Cloud Platforms</div>
+        <div class="cloud-kw-chip" title="Industry-specific AIaaS solutions" style="background:rgba(0,0,0,0.35);color:var(--accent-cyan);padding:0.45rem 0.8rem;border-radius:999px;border:1px solid rgba(10,240,255,0.08);font-family:'Share Tech Mono',monospace;font-size:0.86rem;">Verticalized AIaaS</div>
+        <div class="cloud-kw-chip" title="Generative AI delivered as a hosted service" style="background:rgba(0,0,0,0.35);color:var(--accent-cyan);padding:0.45rem 0.8rem;border-radius:999px;border:1px solid rgba(10,240,255,0.08);font-family:'Share Tech Mono',monospace;font-size:0.86rem;">GenAIaaS</div>
+        <div class="cloud-kw-chip" title="Coordinated multi-agent AI systems" style="background:rgba(0,0,0,0.35);color:var(--accent-cyan);padding:0.45rem 0.8rem;border-radius:999px;border:1px solid rgba(10,240,255,0.08);font-family:'Share Tech Mono',monospace;font-size:0.86rem;">Multi-agent Systems</div>
+        <div class="cloud-kw-chip" title="AI services running at the edge" style="background:rgba(0,0,0,0.35);color:var(--accent-cyan);padding:0.45rem 0.8rem;border-radius:999px;border:1px solid rgba(10,240,255,0.08);font-family:'Share Tech Mono',monospace;font-size:0.86rem;">Edge AI Services</div>
+        <div class="cloud-kw-chip" title="Google Vertex AI (example)" style="background:rgba(0,0,0,0.35);color:var(--accent-cyan);padding:0.45rem 0.8rem;border-radius:999px;border:1px solid rgba(10,240,255,0.08);font-family:'Share Tech Mono',monospace;font-size:0.86rem;">Vertex Ai *</div>
     </div>
 
     <!-- AEDI Mindmap / Flow (top-of-page, sits with the cloud chips) -->
@@ -2036,6 +2036,16 @@
         /* Enquire CTA centered style */
         .cta-enquire { display:inline-block; padding:1rem 3rem; background: rgba(0,210,255,0.1); border:1px solid var(--accent-cyan); color:#fff; text-decoration:none; text-transform:uppercase; letter-spacing:0.2rem; font-weight:700; transition: all 0.25s ease; box-shadow:0 0 20px rgba(0,210,255,0.18); border-radius:6px; }
         .cta-enquire:hover { background: rgba(0,210,255,0.22); box-shadow:0 0 40px rgba(0,210,255,0.4); }
+        /* Page-specific offset to prevent top overlays covering hero */
+        .page-with-top-overlay {
+            padding-top: 320px;
+        }
+
+        @media (max-width: 900px) {
+            .page-with-top-overlay { padding-top: 200px; }
+            #aediMindmap { display: none; }
+            #topBanner { top:64px; }
+        }
     </style>
 
     <div id="aediMindmap" aria-hidden="false">
@@ -2093,7 +2103,7 @@
     <!-- SecurePrivacy Consent Management -->
     <script src="https://consent.secureprivacy.ai/script/ionity-today.js"></script>
 
-    <div class="container">
+    <div class="container page-with-top-overlay">
         <div class="inner-container">
         <div class="hero-section">
             <h1>What We Do</h1>
