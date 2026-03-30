@@ -947,9 +947,21 @@
             </div>
         </section>
 
-        <!-- EMBEDDED SYSTEMS & SERVICES -->
+        <!-- EMBEDDED SYSTEMS & SERVICES (expanded per user request) -->
         <section class="deck-section" id="embedded-services" style="margin-top:3rem;">
+            <style>
+                /* Prevent floating/overflow issues in long lists and emoji characters */
+                #embedded-services .card p, #embedded-services .card ul {
+                    overflow-wrap: break-word;
+                    word-break: break-word;
+                    white-space: normal;
+                    hyphens: auto;
+                }
+                #embedded-services .system-grid { align-items: start; }
+            </style>
+
             <h2 style="text-align:center; font-weight:300; font-size:2.2rem; margin: 2rem 0; color: #fff;">Embedded Systems & Services</h2>
+
             <div class="system-grid" style="margin-bottom:2.5rem;">
                 <div class="card">
                     <div class="card-icon">⚙️</div>
@@ -964,7 +976,6 @@
                         <li>✓ OTA (Over-The-Air) firmware updates</li>
                         <li>✓ Motor control, PWM, and actuator systems</li>
                     </ul>
-                    <div class="card-meta"><span>SERVICE: EMBEDDED</span><span>TYPE: FIRMWARE</span></div>
                 </div>
 
                 <div class="card">
@@ -980,7 +991,6 @@
                         <li>✓ GPS/GSM/LTE module integration (Quectel, SIM800)</li>
                         <li>✓ Smart energy management and metering systems</li>
                     </ul>
-                    <div class="card-meta"><span>SERVICE: IOT</span><span>TYPE: CONNECTIVITY</span></div>
                 </div>
 
                 <div class="card">
@@ -996,7 +1006,16 @@
                         <li>✓ Hardware testing, debugging, and validation</li>
                         <li>✓ Simulation using Proteus, Multisim, and MATLAB/Simulink</li>
                     </ul>
-                    <div class="card-meta"><span>SERVICE: HARDWARE</span><span>TYPE: DESIGN</span></div>
+                    <p><strong>Professional PCB layouts ready for production.</strong></p>
+                    <ul>
+                        <li>✓ Schematic capture and PCB layout (EasyEDA, KiCad, Altium)</li>
+                        <li>✓ Single-layer to multi-layer PCB design</li>
+                        <li>✓ SMD and through-hole component placement</li>
+                        <li>✓ Design for Manufacturability (DFM) review</li>
+                        <li>✓ Gerber file preparation and manufacturer coordination</li>
+                        <li>✓ Compact and low-power board design</li>
+                        <li>✓ Enclosure integration and mechanical fit checks</li>
+                    </ul>
                 </div>
 
                 <div class="card">
@@ -1009,9 +1028,9 @@
                         <li>✓ Bluetooth (BLE) and Wi-Fi device control apps</li>
                         <li>✓ Real-time sensor data visualization</li>
                         <li>✓ Cloud-integrated dashboards and alerts</li>
+                        <li>✓ User authentication, notifications, and settings panels</li>
                         <li>✓ App Store and Play Store deployment support</li>
                     </ul>
-                    <div class="card-meta"><span>SERVICE: MOBILE</span><span>TYPE: UI/UX</span></div>
                 </div>
 
                 <div class="card">
@@ -1027,7 +1046,6 @@
                         <li>✓ User research, personas, and journey mapping</li>
                         <li>✓ Handoff-ready designs for development teams</li>
                     </ul>
-                    <div class="card-meta"><span>SERVICE: DESIGN</span><span>TYPE: UX</span></div>
                 </div>
             </div>
         </section>
