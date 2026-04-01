@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Ionity | Energy-Efficient Edge AI Systems &amp; Secure Industrial IoT | Antwerp Designs</title>
+    <title>Ionity | Ai Cloud Solutions &Energy-Efficient Edge AI Systems &amp; Secure Industrial IoT | Antwerp Designs</title>
     <script src="https://consent.secureprivacy.ai/script/ionity-today.js" defer></script>
     
     <!-- Google Tag Manager with Consent Mode v2 | ionity.yumyum -->
@@ -58,7 +58,7 @@
 
     <meta property="og:type" content="business.business">
     <meta property="og:site_name" content="Ionity | Antwerp Designs">
-    <meta property="og:title" content="Ionity | Energy-Efficient Edge AI Systems &amp; Secure Industrial IoT | Antwerp Designs">
+    <meta property="og:title" content="Ionity | Building Tomorrow, Today">
     <meta property="og:url" content="https://www.ionity.today/">
     <meta property="og:image" content="https://www.ionity.today/assets/images/ionity-social-card.png">
     <meta property="og:image:alt" content="Ionity Ecosystems - Hardware and Software Integration">
@@ -72,7 +72,7 @@
     <meta property="og:image:alt" content="Ionity GUI - Graphical User Interface">
     <meta property="og:image" content="https://www.ionity.today/assets/images/IONITY_REPO.jpeg">
     <meta property="og:image:alt" content="Ionity Repository - Hardware and Software Assets">
-    <meta property="og:description" content="Ionity creates energy-efficient edge AI systems with secure cloud integration. Ultra-low power hardware, digital twin architectures, and zero-trust AIoT solutions for sustainable industrial automation in South Africa.">
+    <meta property="og:description" content="Ecosystems Solutionist. Connecting Cloud, Edge, AI, and Hardware. Creator of power-saving units and secure automation systems. Anything is Possible with God.">
     <meta property="og:locale" content="en_US">
     <meta property="business:contact_data:street_address" content="Pretoria, Gauteng">
     <meta property="business:contact_data:locality" content="Pretoria">
@@ -350,7 +350,7 @@
       },
       "keywords": "IoT, AI, Hardware, Power-Saving Units, Edge Computing, Edge AI Integration, Sustainable IoT Ecosystems, Zero-Trust IoT Security, Digital Twin Architecture, Autonomous Systems Design, Green Hardware Engineering, South Africa",
       "datePublished": "2026-02-12",
-      "dateModified": "2026-04-01",
+      "dateModified": "2026-03-26",
       "about": [
         {
           "@type": "Thing",
@@ -842,98 +842,112 @@
             background: linear-gradient(180deg, transparent, rgba(0, 210, 255, 0.25), transparent);
         }
 
-        /* Navigation — Enter Button */
-        .nav-enter-wrap {
+        /* Navigation Arrows */
+        .nav-arrows {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 1.6rem;
+            gap: 1.8rem;
         }
 
-        .nav-enter-label {
+        .nav-arrows-label {
             font-family: 'Courier New', monospace;
-            font-size: 0.58rem;
-            letter-spacing: 0.38rem;
+            font-size: 0.6rem;
+            letter-spacing: 0.35rem;
             text-transform: uppercase;
-            color: rgba(0, 210, 255, 0.5);
+            color: rgba(0, 210, 255, 0.45);
+            margin-bottom: 0.8rem;
         }
 
-        .nav-enter-btn {
-            position: relative;
-            width: 110px;
-            height: 110px;
+        .nav-arrow-row {
+            display: flex;
+            gap: 2.2rem;
+            align-items: center;
+        }
+
+        .nav-arrow {
+            width: 68px;
+            height: 68px;
             display: flex;
             justify-content: center;
             align-items: center;
-            border: 1px solid rgba(0, 210, 255, 0.22);
-            background: rgba(0, 0, 0, 0.35);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             cursor: pointer;
-            transition: all 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            color: rgba(255, 255, 255, 0.6);
-            animation: enterPulse 3s ease-in-out infinite;
-            clip-path: polygon(12px 0%, 100% 0%, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0% 100%, 0% 12px);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            color: rgba(255, 255, 255, 0.55);
+            font-size: 1.3rem;
+            text-decoration: none;
         }
 
-        /* Corner accent lines */
-        .nav-enter-btn::before,
-        .nav-enter-btn::after {
+        .nav-arrow:hover {
+            border-color: rgba(0, 210, 255, 0.55);
+            color: #fff;
+            box-shadow: 0 0 25px rgba(0, 210, 255, 0.18), inset 0 0 12px rgba(0, 210, 255, 0.04);
+            transform: scale(1.08);
+            background: rgba(0, 210, 255, 0.07);
+        }
+
+        .nav-arrow::after {
             content: '';
             position: absolute;
-            width: 18px;
-            height: 18px;
-            transition: all 0.45s ease;
-        }
-        .nav-enter-btn::before {
-            top: -1px; right: -1px;
-            border-top: 2px solid rgba(0, 210, 255, 0.7);
-            border-right: 2px solid rgba(0, 210, 255, 0.7);
-        }
-        .nav-enter-btn::after {
-            bottom: -1px; left: -1px;
-            border-bottom: 2px solid rgba(0, 210, 255, 0.7);
-            border-left: 2px solid rgba(0, 210, 255, 0.7);
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Courier New', monospace;
+            font-size: 0.45rem;
+            letter-spacing: 0.15rem;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.25);
+            white-space: nowrap;
         }
 
-        .nav-enter-btn:hover {
-            border-color: rgba(0, 210, 255, 0.7);
-            color: #fff;
-            box-shadow: 0 0 40px rgba(0, 210, 255, 0.22), inset 0 0 20px rgba(0, 210, 255, 0.06);
-            transform: scale(1.07);
-            background: rgba(0, 210, 255, 0.06);
-        }
-        .nav-enter-btn:hover::before,
-        .nav-enter-btn:hover::after {
-            width: 26px;
-            height: 26px;
-            border-color: #fff;
-        }
-        .nav-enter-btn:hover svg { transform: translateX(5px); }
+        .nav-arrow-right::after { content: 'ENTER'; }
+        .nav-arrow-up::after    { content: 'UP'; }
+        .nav-arrow-down::after  { content: 'DOWN'; }
 
-        .nav-enter-btn svg {
-            width: 36px;
-            height: 36px;
+        .nav-arrow svg {
+            width: 22px;
+            height: 22px;
             stroke: currentColor;
             fill: none;
-            stroke-width: 1.8;
+            stroke-width: 2;
             stroke-linecap: round;
             stroke-linejoin: round;
-            transition: transform 0.35s ease;
-            filter: drop-shadow(0 0 6px rgba(0, 210, 255, 0.5));
+            transition: transform 0.3s ease;
         }
 
-        @keyframes enterPulse {
-            0%, 100% { opacity: 0.65; box-shadow: 0 0 12px rgba(0, 210, 255, 0.08); }
-            50%      { opacity: 1;    box-shadow: 0 0 30px rgba(0, 210, 255, 0.22); }
+        .nav-arrow-right:hover svg { transform: translateX(3px); }
+        .nav-arrow-up:hover svg    { transform: translateY(-3px); }
+        .nav-arrow-down:hover svg  { transform: translateY(3px); }
+
+        .nav-arrow-right {
+            width: 100px;
+            height: 100px;
+            border-color: rgba(0, 210, 255, 0.28);
+            box-shadow: 0 0 18px rgba(0, 210, 255, 0.08);
+            animation: arrowPulse 3s ease-in-out infinite;
+        }
+        .nav-arrow-right svg {
+            width: 38px;
+            height: 38px;
         }
 
-        .nav-enter-sublabel {
+        @keyframes arrowPulse {
+            0%, 100% { opacity: 0.6; }
+            50%      { opacity: 1; }
+        }
+
+        .nav-arrows-sublabel {
             font-family: 'Courier New', monospace;
-            font-size: 0.48rem;
-            letter-spacing: 0.22rem;
+            font-size: 0.5rem;
+            letter-spacing: 0.2rem;
             text-transform: uppercase;
-            color: rgba(255, 255, 255, 0.18);
+            color: rgba(255, 255, 255, 0.2);
+            margin-top: 1.5rem;
         }
 
         /* Header */
@@ -1230,8 +1244,10 @@
                 flex: 2;
                 justify-content: center;
             }
+            .split-left { padding-right: 0; }
             .split-right {
                 flex: 1;
+                padding-left: 0;
                 border-left: none;
                 border-top: 1px solid rgba(0, 210, 255, 0.06);
                 background: linear-gradient(180deg, transparent 0%, rgba(10, 10, 18, 0.5) 100%);
@@ -1239,11 +1255,18 @@
             .split-right::before {
                 display: none;
             }
-            .nav-enter-btn {
-                width: 80px;
-                height: 80px;
+            .nav-arrows {
+                flex-direction: row;
+                gap: 1.2rem;
+                align-items: center;
             }
-            .nav-enter-btn svg {
+            .nav-arrows-label { display: none; }
+            .nav-arrows-sublabel { display: none; }
+            .nav-arrow-right {
+                width: 70px;
+                height: 70px;
+            }
+            .nav-arrow-right svg {
                 width: 28px;
                 height: 28px;
             }
@@ -1471,16 +1494,18 @@
                     </div>
                 </div>
 
-                <!-- RIGHT PANEL: Enter Navigation -->
+                <!-- RIGHT PANEL: Navigate to Content -->
                 <div class="split-right">
-                    <div class="nav-enter-wrap">
-                        <div class="nav-enter-label">Enter System</div>
+                    <div class="nav-arrows">
+                        <div class="nav-arrows-label">Navigate</div>
 
-                        <div class="nav-enter-btn" id="nav-right" title="Enter System">
-                            <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        <div class="nav-arrow-row">
+                            <div class="nav-arrow nav-arrow-right" id="nav-right" title="View Content">
+                                <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                            </div>
                         </div>
 
-                        <div class="nav-enter-sublabel">IO &nbsp;//&nbsp; WAY</div>
+                        <div class="nav-arrows-sublabel">IO // WAY</div>
                     </div>
                 </div>
 
@@ -2777,7 +2802,12 @@
 
         if (navRight) {
             navRight.addEventListener('click', () => {
-                btnContainer.click(); // Reuse the warp-enter effect
+                const contentSlide = document.getElementById('content-slide');
+                if (contentSlide) {
+                    contentSlide.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+                } else {
+                    deck.scrollTo({ left: deck.scrollLeft + window.innerWidth, behavior: 'smooth' });
+                }
             });
         }
     </script>
