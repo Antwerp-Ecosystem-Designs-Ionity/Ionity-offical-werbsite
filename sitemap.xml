@@ -5,12 +5,12 @@
         xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
 
     <!-- Generated sitemap - includes all public HTML pages in the repo -->
-    <!-- lastmod set to 2026-03-30 (repo update) -->
+    <!-- lastmod set to 2026-04-01 (SEO fix update) -->
 
 
-    <!-- Updated for all public HTML pages as of 2026-03-30 -->
-    <url><loc>https://www.ionity.today/</loc><lastmod>2026-03-30T10:00:00+02:00</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
-    <url><loc>https://www.ionity.today/index.html</loc><lastmod>2026-03-30T10:00:00+02:00</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+    <!-- Updated for all public HTML pages as of 2026-04-01 -->
+    <url><loc>https://www.ionity.today/</loc><lastmod>2026-04-01T10:00:00+02:00</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+    <url><loc>https://www.ionity.today/index.html</loc><lastmod>2026-04-01T10:00:00+02:00</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
     <url><loc>https://www.ionity.today/about.html</loc><lastmod>2026-03-30T10:00:00+02:00</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
     <url><loc>https://www.ionity.today/aedi-online.html</loc><lastmod>2026-03-30T10:00:00+02:00</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
     <url><loc>https://www.ionity.today/ai-innovation.html</loc><lastmod>2026-03-30T10:00:00+02:00</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
