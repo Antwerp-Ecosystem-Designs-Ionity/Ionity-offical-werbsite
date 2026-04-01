@@ -770,7 +770,7 @@
     </div> <!-- /deck-wrapper -->
 
     <script>
-        // --- 3D VORTEX PIXEL BACKGROUND --- pixels fly forward out of the vortex toward viewer ---
+        // --- 3D SPIRAL WARP BACKGROUND --- particles spiral inward and plunge into the vortex ---
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
@@ -778,66 +778,64 @@
         renderer.setSize(window.innerWidth, window.innerHeight);
         document.getElementById('canvas-container').appendChild(renderer.domElement);
 
-        // Particles
-        const geometry = new THREE.BufferGeometry();
         const count = 4000;
+        const geometry = new THREE.BufferGeometry();
         const positions = new Float32Array(count * 3);
 
-        // Store XY seeds per particle (start tight at center, spread outward as they approach)
-        const seeds = new Float32Array(count * 2);
-        for (let i = 0; i < count; i++) {
-            const zStart = (Math.random() - 0.5) * 110; // spread initial Z
-            positions[i * 3 + 2] = zStart;
-            // Seed a small radial XY value — depth will scale it
-            seeds[i * 2]     = (Math.random() - 0.5) * 2;
-            seeds[i * 2 + 1] = (Math.random() - 0.5) * 2;
-            const depth = (zStart + 55) / 110; // 0..1
-            positions[i * 3]     = seeds[i * 2]     * depth * 55;
-            positions[i * 3 + 1] = seeds[i * 2 + 1] * depth * 55;
+        // Per-particle spiral state
+        const angles   = new Float32Array(count); // current angle around the spiral
+        const radii    = new Float32Array(count); // current radius from center
+        const depths   = new Float32Array(count); // Z depth (near → far into screen)
+        const speeds   = new Float32Array(count); // individual speed variation
+
+        function initParticle(i) {
+            angles[i]  = Math.random() * Math.PI * 2;
+            radii[i]   = 5 + Math.random() * 55;   // start spread out from center
+            depths[i]  = (Math.random() - 0.5) * 80; // spread along Z
+            speeds[i]  = 0.6 + Math.random() * 0.8;
         }
+
+        for (let i = 0; i < count; i++) initParticle(i);
 
         geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
         const material = new THREE.PointsMaterial({
-            size: 0.18,
+            size: 0.22,
             color: 0x00d2ff,
             transparent: true,
-            opacity: 0.9,
+            opacity: 0.85,
             blending: THREE.AdditiveBlending
         });
 
         const particles = new THREE.Points(geometry, material);
         scene.add(particles);
+        camera.position.z = 55;
 
-        camera.position.z = 50;
-
-        // Animate — pixels fly forward out of the vortex toward the viewer
+        // Animate — particles spiral inward and dive into the depth of the vortex
         function animate() {
             requestAnimationFrame(animate);
-
             const pos = particles.geometry.attributes.position.array;
 
             for (let i = 0; i < count; i++) {
-                // Move each pixel toward the camera (increasing Z)
-                pos[i * 3 + 2] += 0.9;
+                // Rotate angle (spiral spin)
+                angles[i] += 0.012 * speeds[i];
 
-                // Once past the camera, reset back to deep in the vortex
-                if (pos[i * 3 + 2] > 55) {
-                    pos[i * 3 + 2] = -55;
-                    seeds[i * 2]     = (Math.random() - 0.5) * 2;
-                    seeds[i * 2 + 1] = (Math.random() - 0.5) * 2;
+                // Shrink radius toward center — the closer to center the faster
+                radii[i] -= 0.08 * speeds[i] * (1 + (55 - radii[i]) / 55);
+
+                // Plunge into the screen as radius shrinks
+                depths[i] -= 0.35 * speeds[i];
+
+                // Reset when sucked into the center or too far back
+                if (radii[i] < 0.3 || depths[i] < -80) {
+                    initParticle(i);
                 }
 
-                // Scale XY by depth — tight at the vortex center, spreading wide as they fly forward
-                const depth = (pos[i * 3 + 2] + 55) / 110; // 0 (far) → 1 (near)
-                pos[i * 3]     = seeds[i * 2]     * depth * 55;
-                pos[i * 3 + 1] = seeds[i * 2 + 1] * depth * 55;
+                pos[i * 3]     = Math.cos(angles[i]) * radii[i];
+                pos[i * 3 + 1] = Math.sin(angles[i]) * radii[i];
+                pos[i * 3 + 2] = depths[i];
             }
 
             particles.geometry.attributes.position.needsUpdate = true;
-
-            // Very slow vortex rotation
-            particles.rotation.z += 0.001;
-
             renderer.render(scene, camera);
         }
 
