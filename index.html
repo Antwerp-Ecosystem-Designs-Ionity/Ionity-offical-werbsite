@@ -1,20 +1,3 @@
-        <script>
-        // Animate right arrow to slide further right on click
-        document.addEventListener('DOMContentLoaded', function() {
-            var navRight = document.getElementById('nav-right');
-            if (navRight) {
-                navRight.addEventListener('mousedown', function() {
-                    navRight.style.transform = 'translateX(60px) scale(1.18)';
-                });
-                navRight.addEventListener('mouseup', function() {
-                    navRight.style.transform = '';
-                });
-                navRight.addEventListener('mouseleave', function() {
-                    navRight.style.transform = '';
-                });
-            }
-        });
-        </script>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -836,7 +819,7 @@
             background: radial-gradient(circle at 50% 50%, transparent 30%, rgba(0, 0, 0, 0.45) 110%);
         }
 
-        /* Right Panel � Navigation Arrows */
+        /* Right Panel — Red Choice */
         .split-right {
             flex: 1;
             display: flex;
@@ -845,8 +828,8 @@
             align-items: center;
             position: relative;
             pointer-events: auto;
-            background: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.35) 25%, rgba(10, 10, 18, 0.6) 100%);
-            border-left: 1px solid rgba(0, 210, 255, 0.06);
+            background: radial-gradient(circle at 50% 50%, transparent 30%, rgba(0, 0, 0, 0.45) 110%);
+            border-left: 1px solid rgba(255, 40, 40, 0.06);
         }
 
         .split-right::before {
@@ -856,7 +839,50 @@
             top: 18%;
             height: 64%;
             width: 1px;
-            background: linear-gradient(180deg, transparent, rgba(0, 210, 255, 0.25), transparent);
+            background: linear-gradient(180deg, transparent, rgba(255, 40, 40, 0.25), transparent);
+        }
+
+        /* Red accent overrides for the right panel */
+        .split-right h1 {
+            text-shadow: 0 0 20px rgba(255, 40, 40, 0.2);
+        }
+
+        .split-right .orbit-ring {
+            border-top: 2px solid #ff2828;
+            border-left: 1px solid rgba(255, 40, 40, 0.3);
+            animation: orbitSpin 4s linear infinite, pulseGlowRed 3s ease-in-out infinite;
+        }
+
+        .split-right .orbit-ring::after {
+            border-top: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .split-right .protection-ring {
+            border: 1px dashed rgba(255, 40, 40, 0.15);
+            border-left: 1px solid rgba(255, 40, 40, 0.4);
+            border-right: 1px solid rgba(255, 40, 40, 0.4);
+        }
+
+        .split-right .protection-ring::before {
+            background: #ff2828;
+            box-shadow: 0 0 10px #ff2828;
+        }
+
+        .split-right .enter-btn {
+            text-shadow: 0 0 5px rgba(255, 40, 40, 0.2);
+        }
+
+        .split-right .btn-container:hover .enter-btn {
+            text-shadow: 0 0 15px rgba(255, 40, 40, 0.9);
+        }
+
+        .split-right #audio-hint-red {
+            color: rgba(255, 40, 40, 0.4);
+        }
+
+        @keyframes pulseGlowRed {
+            0%, 100% { box-shadow: 0 0 10px rgba(255, 40, 40, 0.1); border-top-color: #ff2828; }
+            50% { box-shadow: 0 0 30px rgba(255, 40, 40, 0.5); border-top-color: #fff; }
         }
 
         /* Navigation Arrows */
@@ -1122,17 +1148,17 @@
 
         /* Audio hint */
         #audio-hint {
-            position: absolute;
-            bottom: 120px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 0.5rem;
-            color: rgba(0, 210, 255, 0.4);
+            position: fixed;
+            bottom: 1.5rem;
+            left: 2rem;
+            font-size: 0.55rem;
+            color: rgba(255, 255, 255, 0.7);
             text-transform: uppercase;
             letter-spacing: 0.2rem;
-            opacity: 0;
+            opacity: 1;
             transition: opacity 2s;
             pointer-events: none;
+            z-index: 9998;
         }
 
         @keyframes orbitSpin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
@@ -1274,26 +1300,11 @@
                 flex: 1;
                 padding-left: 0;
                 border-left: none;
-                border-top: 1px solid rgba(0, 210, 255, 0.06);
-                background: linear-gradient(180deg, transparent 0%, rgba(10, 10, 18, 0.5) 100%);
+                border-top: 1px solid rgba(255, 40, 40, 0.06);
+                background: radial-gradient(circle at 50% 50%, transparent 30%, rgba(0, 0, 0, 0.45) 110%);
             }
             .split-right::before {
                 display: none;
-            }
-            .nav-arrows {
-                flex-direction: row;
-                gap: 1.2rem;
-                align-items: center;
-            }
-            .nav-arrows-label { display: none; }
-            .nav-arrows-sublabel { display: none; }
-            .nav-arrow-right {
-                width: 70px;
-                height: 70px;
-            }
-            .nav-arrow-right svg {
-                width: 28px;
-                height: 28px;
             }
 
             /* Logo Sizing */
@@ -1349,7 +1360,8 @@
 
             /* Audio Hint Positioning */
             #audio-hint {
-                bottom: 140px;
+                bottom: 1rem;
+                left: 1rem;
                 font-size: 0.45rem;
                 letter-spacing: 0.15rem;
             }
@@ -1411,7 +1423,8 @@
 
             #audio-hint {
                 font-size: 0.4rem;
-                bottom: 130px;
+                bottom: 0.8rem;
+                left: 0.8rem;
             }
 
             #cBackToTop {
@@ -1468,6 +1481,7 @@
             <a href="inner-Page.html">Systems</a>
             <a href="what-we-do.html">What We Do</a>
             <a href="ai-innovation.html">AI Innovation</a>
+            <a href="ai-news.html">AI News</a>
             <a href="roadmap.html">Roadmap</a>
             <a href="license.html">License</a>
             <a href="privacy.html">Privacy</a>
@@ -1487,6 +1501,7 @@
             <a href="inner-Page.html">Systems</a>
             <a href="what-we-do.html">What We Do</a>
             <a href="ai-innovation.html">AI Innovation</a>
+            <a href="ai-news.html">AI News</a>
             <a href="roadmap.html">Roadmap</a>
             <a href="license.html">License</a>
             <a href="privacy.html">Privacy</a>
@@ -1510,7 +1525,7 @@
                     </header>
 
                     <div class="center-action">
-                        <div id="audio-hint">System Sound Active</div>
+                        <div id="audio-hint">♫ System Sound Muted</div>
                         <div class="btn-container" id="interaction-target">
                             <div class="protection-ring"></div>
                             <div class="orbit-ring"></div>
@@ -1519,33 +1534,18 @@
                     </div>
                 </div>
 
-                <!-- RIGHT PANEL: Navigate to Content -->
+                <!-- RIGHT PANEL: IO Way (Red Choice) -->
                 <div class="split-right">
-                    <div class="nav-arrows">
-                                                <div class="nav-arrows-label">Navigate</div>
-                                                <div class="nav-arrow-row" style="justify-content:center;">
-                                                        <div class="nav-arrow nav-arrow-right nav-arrow-unique" id="nav-right" title="Enter IO Way">
-                                                                <!-- Unique animated SVG: futuristic right arrow with glow and corner accents -->
-                                                                <svg viewBox="0 0 80 80" width="60" height="60">
-                                                                    <defs>
-                                                                        <radialGradient id="glow" cx="50%" cy="50%" r="50%">
-                                                                            <stop offset="0%" stop-color="#00d2ff" stop-opacity="1"/>
-                                                                            <stop offset="100%" stop-color="#00d2ff" stop-opacity="0"/>
-                                                                        </radialGradient>
-                                                                    </defs>
-                                                                    <!-- Glow background -->
-                                                                    <circle cx="40" cy="40" r="30" fill="url(#glow)" opacity="0.25">
-                                                                        <animate attributeName="r" values="28;34;28" dur="2s" repeatCount="indefinite"/>
-                                                                    </circle>
-                                                                    <!-- Futuristic arrow -->
-                                                                    <polyline points="30,20 54,40 30,60" fill="none" stroke="#00d2ff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"/>
-                                                                    <!-- Corner accents -->
-                                                                    <rect x="18" y="18" width="8" height="8" fill="#00d2ff" opacity="0.18" rx="2"/>
-                                                                    <rect x="54" y="54" width="8" height="8" fill="#00d2ff" opacity="0.18" rx="2"/>
-                                                                </svg>
-                                                        </div>
-                                                </div>
-                                                <div class="nav-arrows-sublabel">IO // WAY</div>
+                    <header>
+                        <h1>IO // WAY | Enter The<br>Gateway System</h1>
+                    </header>
+
+                    <div class="center-action">
+                        <div class="btn-container" id="interaction-target-red">
+                            <div class="protection-ring"></div>
+                            <div class="orbit-ring"></div>
+                            <button class="enter-btn" id="enter-trigger-red">IO Way</button>
+                        </div>
                     </div>
                 </div>
 
@@ -1957,9 +1957,9 @@
                     
                     this.isInitialized = true;
                     
-                    // Show visual hint
+                    // Update sound status hint
                     const hint = document.getElementById('audio-hint');
-                    if(hint) hint.style.opacity = 1;
+                    if(hint) hint.textContent = '\u266B System Sound Active';
                     
                 } catch(e) {
                     console.log("Audio waiting for user gesture...");
@@ -2269,6 +2269,19 @@
             uiLayer.style.opacity = '0';
             setTimeout(() => { window.location.href = TARGET_URL; }, 2800);
         });
+
+        // Red Button (IO Way) Click Handler — scrolls right to content
+        const btnContainerRed = document.getElementById('interaction-target-red');
+        if (btnContainerRed) {
+            btnContainerRed.addEventListener('click', () => {
+                const contentSlide = document.getElementById('content-slide');
+                if (contentSlide) {
+                    contentSlide.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+                } else {
+                    deck.scrollTo({ left: deck.scrollLeft + window.innerWidth, behavior: 'smooth' });
+                }
+            });
+        }
 
         // Initialize
         window.onload = () => {
@@ -2781,6 +2794,7 @@
         <a href="inner-Page.html">Systems</a>
         <a href="what-we-do.html">What We Do</a>
         <a href="ai-innovation.html">AI Innovation</a>
+        <a href="ai-news.html">AI News</a>
         <a href="roadmap.html">Roadmap</a>
         <a href="license.html">License</a>
         <a href="privacy.html">Privacy</a>
