@@ -460,12 +460,15 @@ For complete legal information, see [license.html](https://www.ionity.today/lice
 - [GitHub Pages Setup Guide](GITHUB_PAGES_SETUP.md)
 - [SEO Strategy 2026](SEO-STRATEGY-2026.md)
 - [SEO Implementation Checklist](SEO-IMPLEMENTATION-CHECKLIST.md)
+- [Metadata Gist](docs/meta/metadata-gist.md)
 - [Humans.txt](humans.txt)
 - [Security.txt](security.txt)
 
 ### Related Repositories
 
 - [Metadata Repository](https://github.com/AntwerpDesignsIonity/Metadata)
+- [Metadata Wiki](https://github.com/AntwerpDesignsIonity/Metadata/wiki/Ionity-Meta%E2%80%90data)
+- [Website Repository](https://github.com/Antwerp-Ecosystem-Designs-Ionity/Ionity-offical-werbsite)
 - [Antwerp Designs Organization](https://github.com/Antwerp-Ecosystem-Designs-Ionity)
 
 ### External Links

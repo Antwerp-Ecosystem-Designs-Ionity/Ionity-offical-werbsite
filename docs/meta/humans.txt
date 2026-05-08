@@ -20,13 +20,18 @@ Automated Ecosystems Designs for IoT, AI, and Power-Saving Hardware.
   Location: Pretoria, South Africa
 
   Contact: johan@ionity.today
+  Contact: ai@ionity.today
+  Contact: services@ionity.today
   GitHub: https://github.com/AntwerpDesignsIonity
   LinkedIn: https://www.linkedin.com/in/ionity
   Website: https://www.ionity.world
+  Website: https://www.ionity.today
   Gravatar Profile: https://gravatar.com/johanvanantwerp007
   ORCID: https://orcid.org/0009-0005-7181-0347
 
   Repository: Antwerp-Ecosystem-Designs-Ionity/Ionity-offical-werbsite
+  Metadata Repository: AntwerpDesignsIonity/Metadata
+  Metadata Wiki: https://github.com/AntwerpDesignsIonity/Metadata/wiki/Ionity-Meta%E2%80%90data
   Project: Ionity Official Website & Ecosystem Platform
   Verified Identity: Global Identity Node Established (RelMeAuth)
 
