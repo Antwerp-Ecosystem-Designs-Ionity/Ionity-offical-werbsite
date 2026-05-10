@@ -29,11 +29,13 @@ document.addEventListener('DOMContentLoaded', () => {
         loaderDiv.id = 'warp-loader';
         loaderDiv.innerHTML = `
             <div class="portal-container">
+                <div class="portal-grid"></div>
                 <div class="portal-ring ring-1"></div>
                 <div class="portal-ring ring-2"></div>
                 <div class="portal-ring ring-3"></div>
-                <div class="portal-core"></div>
-                <div class="loader-text">NEURAL LINK // SYNCING</div>
+                <div class="scan-sweep"></div>
+                <div class="loader-track"><span></span></div>
+                <div class="loader-text">SECURE LINK // CALIBRATING</div>
             </div>
         `;
         document.body.prepend(loaderDiv);
@@ -43,15 +45,20 @@ document.addEventListener('DOMContentLoaded', () => {
             const style = document.createElement('style');
             style.id = 'warp-loader-style';
             style.textContent = `
-                @keyframes portalWarp {
-                    0% { transform: translateZ(-500px) scale(0.1); opacity: 0; }
-                    50% { opacity: 0.8; }
-                    100% { transform: translateZ(500px) scale(15); opacity: 0; }
+                @keyframes ringRotate {
+                    from { transform: rotate(0deg); }
+                    to { transform: rotate(360deg); }
                 }
 
-                @keyframes corePulse {
-                    from { transform: scale(1); opacity: 0.8; }
-                    to { transform: scale(1.5); opacity: 1; }
+                @keyframes sweepRotate {
+                    from { transform: rotate(0deg); opacity: 0.4; }
+                    50% { opacity: 0.9; }
+                    to { transform: rotate(360deg); opacity: 0.4; }
+                }
+
+                @keyframes trackProgress {
+                    from { transform: translateX(-100%); }
+                    to { transform: translateX(100%); }
                 }
 
                 #warp-loader {
@@ -71,40 +78,89 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 #warp-loader .portal-container {
                     position: relative;
-                    width: 300px; height: 300px;
+                    width: 300px;
+                    height: 300px;
                     display: flex; align-items: center; justify-content: center;
                     transform-style: preserve-3d;
                 }
+
+                #warp-loader .portal-grid {
+                    position: absolute;
+                    width: 260px;
+                    height: 260px;
+                    border-radius: 50%;
+                    background:
+                        radial-gradient(circle, rgba(5, 20, 35, 0.8) 30%, rgba(0, 0, 0, 0) 75%),
+                        repeating-radial-gradient(circle, rgba(0, 160, 255, 0.18) 0 1px, transparent 1px 18px);
+                    box-shadow: inset 0 0 35px rgba(0, 160, 255, 0.25);
+                }
+
                 #warp-loader .portal-ring {
                     position: absolute;
-                    border: 1.5px solid rgba(0, 210, 255, 0.6);
                     border-radius: 50%;
-                    box-shadow: 0 0 40px rgba(0, 210, 255, 0.4);
-                    opacity: 0;
+                    border: 1.5px solid transparent;
+                    border-top-color: rgba(0, 210, 255, 0.9);
+                    border-right-color: rgba(0, 140, 255, 0.5);
+                    box-shadow: 0 0 20px rgba(0, 210, 255, 0.35);
+                    will-change: transform;
                 }
-                #warp-loader .ring-1 { width: 50px; height: 50px; animation: portalWarp 1s infinite linear; }
-                #warp-loader .ring-2 { width: 50px; height: 50px; animation: portalWarp 1s infinite linear 0.3s; }
-                #warp-loader .ring-3 { width: 50px; height: 50px; animation: portalWarp 1s infinite linear 0.6s; }
-                
-                #warp-loader .portal-core {
-                    width: 6px; height: 6px;
-                    background: #fff;
+
+                #warp-loader .ring-1 {
+                    width: 220px;
+                    height: 220px;
+                    animation: ringRotate 1.8s linear infinite;
+                }
+
+                #warp-loader .ring-2 {
+                    width: 170px;
+                    height: 170px;
+                    animation: ringRotate 1.2s linear infinite reverse;
+                }
+
+                #warp-loader .ring-3 {
+                    width: 120px;
+                    height: 120px;
+                    animation: ringRotate 0.9s linear infinite;
+                }
+
+                #warp-loader .scan-sweep {
+                    position: absolute;
+                    width: 240px;
+                    height: 240px;
                     border-radius: 50%;
-                    box-shadow: 0 0 60px 25px rgba(255,255,255,0.4), 0 0 120px 50px rgba(0, 210, 255, 0.3);
-                    animation: corePulse 0.4s infinite alternate;
+                    background: conic-gradient(from 0deg, transparent 0%, rgba(0, 210, 255, 0.45) 8%, transparent 18%);
+                    filter: blur(1px);
+                    animation: sweepRotate 2.2s linear infinite;
+                }
+
+                #warp-loader .loader-track {
+                    position: absolute;
+                    bottom: -38px;
+                    width: 210px;
+                    height: 2px;
+                    overflow: hidden;
+                    background: rgba(0, 120, 190, 0.4);
+                }
+
+                #warp-loader .loader-track span {
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.95) 50%, transparent 100%);
+                    animation: trackProgress 1.1s ease-in-out infinite;
                 }
 
                 #warp-loader .loader-text {
                     position: absolute;
-                    bottom: -80px;
+                    bottom: -75px;
                     font-family: 'Courier New', monospace;
                     font-size: 0.65rem;
                     letter-spacing: 0.5rem;
-                    color: rgba(255,255,255,0.9);
+                    color: rgba(225, 245, 255, 0.95);
                     text-transform: uppercase;
                     width: 100%;
                     text-align: center;
-                    text-shadow: 0 0 15px rgba(0, 210, 255, 0.8);
+                    text-shadow: 0 0 12px rgba(0, 170, 255, 0.7);
                     font-weight: 700;
                 }
             `;
