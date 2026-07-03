@@ -36,9 +36,9 @@
     <meta name="theme-color" content="#020204">
     <meta name="format-detection" content="telephone=yes">
 
-    <title>Ionity Subscriptions | AEDI Tier Plans — Edge, Cloud & Hybrid</title>
-    <meta name="description" content="Explore Ionity's AEDI subscription tiers — Edge, Full Cloud, and Hybrid plans designed to scale with your organisation's data, security, and integration requirements.">
-    <meta name="keywords" content="Ionity Subscriptions, AEDI Edge Tier, AEDI Full Cloud, AEDI Hybrid, IoT Subscription Plans, AIoT Pricing, Edge AI Plans, South Africa">
+    <title>Ionity Services | Cloud Hosting, Development, AI &amp; Support — Contact Us</title>
+    <meta name="description" content="Ionity provides cloud &amp; edge hosting, custom software and firmware development, practical AI &amp; automation, and ongoing support. Every project is tailored — contact us for details and a quote.">
+    <meta name="keywords" content="Ionity services, cloud hosting South Africa, edge hosting, custom software development, firmware development, IoT development, AI automation, predictive maintenance, managed support, retainer, contact Ionity">
     <meta name="author" content="Johan Wilhelm van Antwerp">
     <meta name="generator" content="AEDI Automated Ecosystems Designs Intelligence">
     <meta name="robots" content="index, follow, max-image-preview:large">
@@ -54,8 +54,8 @@
     <meta property="og:url" content="https://www.ionity.today/subscriptions.html">
     <meta property="og:site_name" content="Ionity">
     <meta property="og:locale" content="en_ZA">
-    <meta property="og:title" content="AEDI Subscription Plans — Edge, Cloud &amp; Hybrid | Ionity">
-    <meta property="og:description" content="Three-tier subscription model for the Ionity AEDI platform: Edge ($92/mo), Full Cloud ($350/mo), and Hybrid ($450/mo). Scalable IoT, edge AI, and cloud intelligence for industrial organisations.">
+    <meta property="og:title" content="Ionity Services — Cloud Hosting, Development, AI &amp; Support">
+    <meta property="og:description" content="Cloud &amp; edge hosting, custom development, AI &amp; automation, and ongoing support — tailored to your operation. Contact us for details and a quote.">
     <meta property="og:image" content="https://www.ionity.today/assets/images/ionity-logo-edited.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -63,8 +63,8 @@
 
     <!-- Twitter / X Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="AEDI Subscription Plans — Edge, Cloud &amp; Hybrid | Ionity">
-    <meta name="twitter:description" content="Edge ($92/mo), Full Cloud ($350/mo), Hybrid ($450/mo) — scalable IoT and edge-AI plans for industrial operations.">
+    <meta name="twitter:title" content="Ionity Services — Cloud Hosting, Development, AI &amp; Support">
+    <meta name="twitter:description" content="Cloud &amp; edge hosting, custom development, AI &amp; automation, and ongoing support — tailored to your operation. Contact us for a quote.">
     <meta name="twitter:image" content="https://www.ionity.today/assets/images/ionity-logo-edited.png">
 
     <!-- Geo / Regional SEO -->
@@ -74,9 +74,9 @@
     <meta name="ICBM" content="-25.8553, 28.1881">
 
     <!-- Dublin Core relations -->
-    <meta name="DC.title" content="AEDI Subscription Plans — Ionity">
-    <meta name="DC.subject" content="IoT subscriptions, edge AI, industrial automation, cloud intelligence">
-    <meta name="DC.description" content="Flexible, scalable AEDI tier plans — Edge, Full Cloud, and Hybrid — for industrial IoT and AI operations.">
+    <meta name="DC.title" content="Ionity Services — Cloud Hosting, Development, AI &amp; Support">
+    <meta name="DC.subject" content="cloud hosting, software development, AI automation, managed support, IoT">
+    <meta name="DC.description" content="Ionity's tailored services: cloud &amp; edge hosting, custom development, AI &amp; automation, and ongoing support. Contact us for details and a quote.">
     <meta name="DC.publisher" content="Ionity (Pty) Ltd">
     <meta name="DC.creator" content="Johan Wilhelm van Antwerp">
     <meta name="DC.language" content="en">
@@ -473,6 +473,61 @@
         .check-gold { color: var(--accent-gold); }
         .cross { color: rgba(255,255,255,0.2); }
 
+        /* ===== HOW IT WORKS ===== */
+        .how-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+        .how-step {
+            border: 1px solid var(--border);
+            border-top: 3px solid var(--accent-cyan);
+            background: rgba(0,210,255,0.03);
+            padding: 2rem 1.75rem;
+            transition: all 0.3s ease;
+        }
+        .how-step:hover {
+            background: rgba(0,210,255,0.06);
+            border-color: var(--border-active);
+            transform: translateY(-4px);
+        }
+        .how-num {
+            font-family: 'Courier New', monospace;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--accent-cyan);
+            letter-spacing: 0.1rem;
+            margin-bottom: 0.75rem;
+            text-shadow: 0 0 12px rgba(0,210,255,0.4);
+        }
+        .how-title {
+            font-size: 1.15rem;
+            font-weight: 500;
+            color: #fff;
+            margin-bottom: 0.75rem;
+        }
+        .how-text {
+            font-size: 0.92rem;
+            line-height: 1.65;
+            color: var(--text-muted);
+            margin: 0;
+        }
+        .price-note {
+            margin: 2.5rem auto 0;
+            max-width: 820px;
+            text-align: center;
+            font-size: 0.98rem;
+            line-height: 1.75;
+            color: var(--text-muted);
+        }
+        .price-note strong { color: #fff; }
+        .price-note a { color: var(--accent-cyan); text-decoration: none; border-bottom: 1px solid rgba(0,210,255,0.4); }
+        .price-note a:hover { color: #fff; }
+
+        @media (max-width: 860px) {
+            .how-grid { grid-template-columns: 1fr; }
+        }
+
         /* ===== CTA BLOCK ===== */
         .gen-ai-section {
             margin-top: 2rem;
@@ -655,12 +710,12 @@
       "@type": "WebPage",
       "@id": "https://www.ionity.today/subscriptions.html",
       "url": "https://www.ionity.today/subscriptions.html",
-      "name": "AEDI Subscription Plans — Edge, Cloud & Hybrid Tiers | Ionity",
-      "description": "Explore Ionity's AEDI subscription tiers — Edge ($92/mo), Full Cloud ($350/mo), and Hybrid ($450/mo) plans designed for industrial IoT, edge AI, and cloud-connected operations.",
+      "name": "Ionity Services — Cloud Hosting, Development, AI & Support",
+      "description": "Ionity provides cloud & edge hosting, custom software and firmware development, practical AI & automation, and ongoing support. Every engagement is tailored — contact us for details and a quote.",
       "inLanguage": "en",
       "isPartOf": { "@id": "https://www.ionity.today/" },
       "about": { "@id": "https://www.ionity.today/#organization" },
-      "dateModified": "2026-06-29",
+      "dateModified": "2026-07-03",
       "author": {
         "@type": "Person",
         "name": "Johan Wilhelm van Antwerp",
@@ -670,7 +725,7 @@
         "@type": "BreadcrumbList",
         "itemListElement": [
           { "@type": "ListItem", "position": 1, "name": "Ionity", "item": "https://www.ionity.today" },
-          { "@type": "ListItem", "position": 2, "name": "Subscriptions", "item": "https://www.ionity.today/subscriptions.html" }
+          { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://www.ionity.today/subscriptions.html" }
         ]
       },
       "speakable": {
@@ -680,101 +735,65 @@
     }
     </script>
 
-    <!-- 3. ItemList: AEDI Tier Products with Pricing -->
+    <!-- 3. Service catalogue (pricing on request — tailored per engagement) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "ItemList",
-      "name": "AEDI Subscription Tiers by Ionity",
-      "description": "Three-tier subscription model for the Ionity AEDI edge-AI and IoT platform",
-      "url": "https://www.ionity.today/subscriptions.html",
-      "numberOfItems": 3,
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "item": {
-            "@type": "Product",
-            "@id": "https://www.ionity.today/subscriptions.html#edge-tier",
-            "name": "AEDI Edge Tier",
-            "description": "Isolated edge intelligence. Local processing with no cloud data uploads beyond agreed requirements. Ideal for air-gapped, high-security, or bandwidth-constrained industrial environments.",
-            "brand": { "@type": "Brand", "name": "Ionity AEDI" },
-            "category": "IoT / Edge AI Subscription",
-            "offers": {
-              "@type": "Offer",
-              "priceCurrency": "USD",
-              "price": "92.00",
-              "priceValidUntil": "2027-12-31",
-              "availability": "https://schema.org/InStock",
-              "url": "https://www.ionity.today/contact.html?subject=AEDI%20EDGE%20TIER",
-              "seller": { "@id": "https://www.ionity.today/#organization" },
-              "priceSpecification": {
-                "@type": "UnitPriceSpecification",
-                "priceCurrency": "USD",
-                "price": "92.00",
-                "unitText": "MON",
-                "billingDuration": { "@type": "QuantitativeValue", "value": 1, "unitCode": "MON" }
-              }
+      "@type": "Service",
+      "@id": "https://www.ionity.today/subscriptions.html#services",
+      "serviceType": "Cloud hosting, software & firmware development, AI & automation, and managed support",
+      "provider": { "@id": "https://www.ionity.today/#organization" },
+      "areaServed": [
+        { "@type": "Country", "name": "South Africa" },
+        { "@type": "Place", "name": "Global" }
+      ],
+      "description": "Ionity delivers tailored cloud & edge hosting, custom development, practical AI & automation, and ongoing support. Pricing is quoted per engagement — contact us for details.",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Ionity Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "url": "https://www.ionity.today/contact.html?subject=Cloud%20Hosting",
+            "availability": "https://schema.org/InStock",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Cloud & Edge Hosting",
+              "description": "Managed hosting for your systems and data — in the cloud, at the edge, or a hybrid of both. Secure storage, backups, and high-uptime infrastructure, deployed locally or globally."
+            }
+          },
+          {
+            "@type": "Offer",
+            "url": "https://www.ionity.today/contact.html?subject=Development%20Services",
+            "availability": "https://schema.org/InStock",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Development Services",
+              "description": "Custom software, firmware, and integrations — from IoT and edge devices to dashboards and APIs. We take projects from prototype through to production."
+            }
+          },
+          {
+            "@type": "Offer",
+            "url": "https://www.ionity.today/contact.html?subject=AI%20%26%20Automation",
+            "availability": "https://schema.org/InStock",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "AI & Automation",
+              "description": "Practical AI that runs on your data — on-device or in the cloud. Predictive maintenance, real-time monitoring, smart automation, and model hosting and management."
+            }
+          },
+          {
+            "@type": "Offer",
+            "url": "https://www.ionity.today/contact.html?subject=Support%20%26%20Overtime",
+            "availability": "https://schema.org/InStock",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Ongoing Support & Overtime",
+              "description": "We stay on after launch — maintenance, monitoring, incident response, priority and after-hours support, retainers, and additional development hours when you need them."
             }
           }
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "item": {
-            "@type": "Product",
-            "@id": "https://www.ionity.today/subscriptions.html#full-cloud",
-            "name": "AEDI Full Cloud",
-            "description": "Full bidirectional data flow with unlimited global cloud storage, real-time sync, AI model management, and priority SLA support. The complete connected intelligence experience.",
-            "brand": { "@type": "Brand", "name": "Ionity AEDI" },
-            "category": "IoT / Cloud AI Subscription",
-            "offers": {
-              "@type": "Offer",
-              "priceCurrency": "USD",
-              "price": "350.00",
-              "priceValidUntil": "2027-12-31",
-              "availability": "https://schema.org/InStock",
-              "url": "https://www.ionity.today/contact.html?subject=AEDI%20Full%20Cloud",
-              "seller": { "@id": "https://www.ionity.today/#organization" },
-              "priceSpecification": {
-                "@type": "UnitPriceSpecification",
-                "priceCurrency": "USD",
-                "price": "350.00",
-                "unitText": "MON",
-                "billingDuration": { "@type": "QuantitativeValue", "value": 1, "unitCode": "MON" }
-              }
-            }
-          }
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "item": {
-            "@type": "Product",
-            "@id": "https://www.ionity.today/subscriptions.html#hybrid-tier",
-            "name": "AEDI Hybrid Tier",
-            "description": "The complete architecture: cloud-to-edge and edge-to-cloud continuity, granular data category lockdown, digital twin synchronisation, multi-region failover, custom EULA, and dedicated account management.",
-            "brand": { "@type": "Brand", "name": "Ionity AEDI" },
-            "category": "IoT / Hybrid AI Subscription",
-            "offers": {
-              "@type": "Offer",
-              "priceCurrency": "USD",
-              "price": "450.00",
-              "priceValidUntil": "2027-12-31",
-              "availability": "https://schema.org/InStock",
-              "url": "https://www.ionity.today/contact.html?subject=AEDI%20Hybrid%20Tier",
-              "seller": { "@id": "https://www.ionity.today/#organization" },
-              "priceSpecification": {
-                "@type": "UnitPriceSpecification",
-                "priceCurrency": "USD",
-                "price": "450.00",
-                "unitText": "MON",
-                "billingDuration": { "@type": "QuantitativeValue", "value": 1, "unitCode": "MON" }
-              }
-            }
-          }
-        }
-      ]
+        ]
+      }
     }
     </script>
 
@@ -786,58 +805,58 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "How much does the Ionity AEDI Edge Tier cost?",
+          "name": "What services does Ionity offer?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "The AEDI Edge Tier starts from $92 per month, billed annually. It delivers isolated edge intelligence with local processing, OTA firmware updates, encrypted firmware channels, and zero-trust local authentication — no cloud data uploads beyond agreed requirements."
+            "text": "Ionity offers four main services: cloud and edge hosting; custom software and firmware development; AI and automation; and ongoing support (maintenance, monitoring, and additional development hours). Services can be combined and are tailored to each client's operation."
           }
         },
         {
           "@type": "Question",
-          "name": "What is included in the AEDI Full Cloud subscription?",
+          "name": "How much do Ionity's services cost?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "The AEDI Full Cloud plan starts from $350 per month (billed annually). It includes unlimited bi-directional data transfer, global cloud storage and analytics, real-time cross-device synchronisation, AI model management and hosting, advanced threat detection, and priority support with an SLA guarantee."
+            "text": "Pricing is quoted per project because every operation is different. Rather than fixed packages, Ionity scopes what you actually need across hosting, development, AI, and support, then provides a clear, tailored quote. Contact Ionity to get a quote."
           }
         },
         {
           "@type": "Question",
-          "name": "What does the AEDI Hybrid Tier offer?",
+          "name": "Does Ionity offer cloud hosting?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "The AEDI Hybrid Tier starts from $450 per month (billed annually). It combines cloud-to-edge and edge-to-cloud continuity, granular data category lockdown controls, digital twin synchronisation, multi-region failover and redundancy, a custom EULA and data governance policy, and a dedicated account manager with SLA."
+            "text": "Yes. Ionity provides managed hosting in the cloud, at the edge, or as a hybrid of both, including secure data storage, backups, and high-uptime infrastructure. Deployments can be local (South Africa) or global, and are aligned with POPIA and GDPR."
           }
         },
         {
           "@type": "Question",
-          "name": "Which Ionity AEDI plan is best for air-gapped or high-security environments?",
+          "name": "Can Ionity build custom software or firmware?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "The AEDI Edge Tier is specifically designed for air-gapped, high-security, or bandwidth-constrained environments. All processing runs locally without uploading operational data to the cloud — making it the right choice for industrial facilities with strict data-isolation requirements."
+            "text": "Yes. Ionity builds custom software, embedded firmware for IoT and edge devices, dashboards, APIs, and system integrations — taking projects from prototype through to production, including combined hardware and software design."
           }
         },
         {
           "@type": "Question",
-          "name": "Can Ionity AEDI run on both edge hardware and cloud simultaneously?",
+          "name": "Can Ionity add AI to my existing systems?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes. The AEDI Hybrid Tier allows organisations to operate securely across local edge infrastructure and international cloud infrastructure simultaneously, with granular control over which data categories are shared between layers."
+            "text": "Yes. Ionity implements practical AI that runs on your data, on-device or in the cloud — including predictive maintenance, real-time monitoring and alerts, process automation, and hosting and management of AI models."
           }
         },
         {
           "@type": "Question",
-          "name": "What is the AEDI platform by Ionity?",
+          "name": "Does Ionity provide ongoing support and maintenance?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "AEDI (Automated Ecosystems Designs Intelligence) is Ionity's native-AI platform for industrial IoT, edge AI, data acquisition (DAQ), predictive maintenance (PdM), and cloud-managed systems. It is available in three subscription tiers — Edge, Full Cloud, and Hybrid — and is governed by Ionity's Policy AED 986 and License AED 900."
+            "text": "Yes. Beyond delivery, Ionity offers maintenance and updates, monitoring and incident response, priority and after-hours support, retainers, and additional development hours (overtime) when you need extra capacity."
           }
         },
         {
           "@type": "Question",
-          "name": "Where is Ionity based and which regions do they serve?",
+          "name": "How do I get a quote from Ionity?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Ionity (Pty) Ltd is headquartered in Centurion, Gauteng, South Africa (postal code 0157). The AEDI platform serves organisations globally, with local support and solutions available via ionity.co.za for the South African market."
+            "text": "Get in touch through the contact page, by email at ai@ionity.today, or by phone on +27 64 699 9877. Tell Ionity what you are building and they will scope it and provide a tailored quote. Ionity is based in Centurion, Gauteng, South Africa and serves clients globally, with local support via ionity.co.za."
           }
         }
       ]
@@ -847,8 +866,8 @@
 <body class="deck-layout">
     <canvas id="canvas-bg"></canvas>
     <div id="ontop-gui">
-        <div class="gui-corner gui-tl"><div class="gui-text">AEDI // TIER PLANS</div></div>
-        <div class="gui-corner gui-tr"><div class="gui-text">EULA // GOVERNED</div></div>
+        <div class="gui-corner gui-tl"><div class="gui-text">AEDI // SERVICES</div></div>
+        <div class="gui-corner gui-tr"><div class="gui-text">TALK TO US // ANYTIME</div></div>
         <div class="gui-corner gui-bl"><div class="gui-text">IONITY.TODAY</div></div>
         <div class="gui-corner gui-br"><div class="gui-text" id="live-clock">--:--:--</div></div>
     </div>
@@ -904,129 +923,135 @@
     <div class="deck-wrapper" id="deckWrapper">
         <section class="deck-section" id="hero-slide">
             <div class="hero-section">
-                <h1>SUBSCRIPTIONS</h1>
-                <div class="hero-sub">EULA // GOVERNED &nbsp;&nbsp;|&nbsp;&nbsp; AEDI // TIER PLANS</div>
+                <h1>SERVICES &amp; PLANS</h1>
+                <div class="hero-sub">CLOUD HOSTING &nbsp;&middot;&nbsp; DEVELOPMENT &nbsp;&middot;&nbsp; AI &nbsp;&middot;&nbsp; SUPPORT</div>
                 <p class="hero-desc">
-                    Flexible, scalable tier plans engineered for every stage of your organisation's digital journey.
-                    From isolated edge deployments to full global cloud continuity — choose the architecture that fits your operations and grows with them.
+                    We help you build, run, and look after your digital systems &mdash; cloud &amp; edge hosting,
+                    custom development, practical AI, and ongoing support. Every project is different, so we
+                    tailor the work to what you actually need and give you a clear quote. Tell us what you're
+                    building and we'll map it out with you.
                 </p>
+                <a href="contact.html?subject=General%20Enquiry" class="tier-btn" style="margin-top:2rem;">Contact Us for Details</a>
             </div>
         </section>
 
         <!-- Tier Cards -->
         <section class="deck-section" id="tier-grid-slide">
-            <h2 class="section-heading">SELECT <span>YOUR TIER</span></h2>
+            <h2 class="section-heading">WHAT WE <span>DO FOR YOU</span></h2>
             <div class="system-grid">
 
-            <!-- EDGE TIER -->
+            <!-- CLOUD & EDGE HOSTING -->
+            <div class="card">
+                <div class="tier-icon">☁</div>
+                <div class="tier-name">Cloud &amp; Edge Hosting</div>
+                <p class="tier-desc">
+                    We host your systems and data &mdash; in the cloud, at the edge, or a mix of both. Reliable, secure, and sized to what you actually run. Deployed locally in South Africa or globally.
+                </p>
+                <ul class="tier-features">
+                    <li><span class="feat-icon">⟁</span> Managed cloud &amp; edge hosting</li>
+                    <li><span class="feat-icon">⟁</span> Secure data storage &amp; automated backups</li>
+                    <li><span class="feat-icon">⟁</span> High-uptime infrastructure (99.9% target)</li>
+                    <li><span class="feat-icon">⟁</span> Local (SA) or global deployment</li>
+                    <li><span class="feat-icon">⟁</span> POPIA &amp; GDPR-aligned</li>
+                </ul>
+                <div class="card-meta">
+                    <span>HOSTING</span>
+                    <span>CLOUD + EDGE</span>
+                </div>
+                <a href="contact.html?subject=Cloud%20Hosting" class="tier-btn">Contact for Details</a>
+            </div>
+
+            <!-- DEVELOPMENT SERVICES -->
+            <div class="card gold-accent">
+                <div class="tier-badge">POPULAR</div>
+                <div class="tier-icon gold">❖</div>
+                <div class="tier-name">Development Services</div>
+                <p class="tier-desc">
+                    Custom software, firmware, and integrations &mdash; built around how your operation actually works. From IoT and edge devices to dashboards, apps, and APIs, we take projects from idea to production.
+                </p>
+                <ul class="tier-features">
+                    <li><span class="feat-icon">⟁</span> Custom software &amp; web/app builds</li>
+                    <li><span class="feat-icon">⟁</span> Firmware &amp; embedded (IoT/edge) development</li>
+                    <li><span class="feat-icon">⟁</span> System integrations &amp; APIs</li>
+                    <li><span class="feat-icon">⟁</span> Hardware + software co-design</li>
+                    <li><span class="feat-icon">⟁</span> Prototype through to production</li>
+                </ul>
+                <div class="card-meta">
+                    <span>BUILD</span>
+                    <span>IDEA → PRODUCTION</span>
+                </div>
+                <a href="contact.html?subject=Development%20Services" class="tier-btn">Contact for Details</a>
+            </div>
+
+            <!-- AI & AUTOMATION -->
+            <div class="card purple-accent">
+                <div class="tier-icon purple">◈</div>
+                <div class="tier-name">AI &amp; Automation</div>
+                <p class="tier-desc">
+                    Practical AI that works on your data &mdash; on-device or in the cloud. We help you catch problems early, cut manual work, and get useful answers from what your systems already collect.
+                </p>
+                <ul class="tier-features">
+                    <li><span class="feat-icon">⟁</span> On-device &amp; cloud AI</li>
+                    <li><span class="feat-icon">⟁</span> Predictive maintenance (PdM)</li>
+                    <li><span class="feat-icon">⟁</span> Real-time monitoring &amp; alerts</li>
+                    <li><span class="feat-icon">⟁</span> Process automation</li>
+                    <li><span class="feat-icon">⟁</span> AI model hosting &amp; management</li>
+                </ul>
+                <div class="card-meta">
+                    <span>AI</span>
+                    <span>ON-DEVICE + CLOUD</span>
+                </div>
+                <a href="contact.html?subject=AI%20%26%20Automation" class="tier-btn">Contact for Details</a>
+            </div>
+
+            <!-- ONGOING SUPPORT & OVERTIME -->
             <div class="card">
                 <div class="tier-icon">⛨</div>
-                <div class="tier-name">AEDI EDGE TIER</div>
-                <div class="tier-price">
-                    <span class="amount">From $92</span>
-                    <span class="period">/ MONTH — BILLED ANNUALLY</span>
-                </div>
+                <div class="tier-name">Ongoing Support &amp; Overtime</div>
                 <p class="tier-desc">
-                    Isolated edge intelligence. No data uploads beyond agreed requirements — only configuration and model updates are received from the cloud. Ideal for air-gapped, high-security, or bandwidth-constrained environments.
+                    We stay with you after launch &mdash; keeping things running, fixing issues fast, and adding extra hands whenever you need them. Ongoing cover or ad-hoc help, whichever suits you.
                 </p>
                 <ul class="tier-features">
-                    <li><span class="feat-icon">⟁</span> Local edge processing &amp; inference</li>
-                    <li><span class="feat-icon">⟁</span> Cloud-to-edge OTA update delivery</li>
-                    <li><span class="feat-icon">⟁</span> Encrypted firmware channels</li>
-                    <li><span class="feat-icon">⟁</span> Zero-trust local authentication</li>
-                    <li><span class="feat-icon">⟁</span> Standard support (email)</li>
+                    <li><span class="feat-icon">⟁</span> Maintenance &amp; updates</li>
+                    <li><span class="feat-icon">⟁</span> Monitoring &amp; incident response</li>
+                    <li><span class="feat-icon">⟁</span> Priority &amp; after-hours support</li>
+                    <li><span class="feat-icon">⟁</span> Retainers &amp; extra development hours</li>
+                    <li><span class="feat-icon">⟁</span> SLA options</li>
                 </ul>
                 <div class="card-meta">
-                    <span>UPLOAD: NONE</span>
-                    <span>SCOPE: LOCAL</span>
+                    <span>SUPPORT</span>
+                    <span>ONGOING</span>
                 </div>
-                <a href="contact.html?subject=AEDI%20EDGE%20TIER" class="tier-btn">Select Plan</a>
-            </div>
-
-            <!-- FULL CLOUD -->
-            <div class="card gold-accent">
-                <div class="tier-badge">MOST POPULAR</div>
-                <div class="tier-icon gold">☁</div>
-                <div class="tier-name">AEDI FULL CLOUD</div>
-                <div class="tier-price">
-                    <span class="amount">From $350</span>
-                    <span class="period">/ MONTH — BILLED ANNUALLY</span>
-                </div>
-                <p class="tier-desc">
-                    Full bidirectional data flow with no limits on where data is sent or received. Encrypted globally and locally secure across all devices and platforms — the complete connected intelligence experience.
-                </p>
-                <ul class="tier-features">
-                    <li><span class="feat-icon">⟁</span> Unlimited bi-directional data transfer</li>
-                    <li><span class="feat-icon">⟁</span> Global cloud storage &amp; analytics</li>
-                    <li><span class="feat-icon">⟁</span> Real-time cross-device synchronisation</li>
-                    <li><span class="feat-icon">⟁</span> AI model management &amp; hosting</li>
-                    <li><span class="feat-icon">⟁</span> Advanced threat detection &amp; alerts</li>
-                    <li><span class="feat-icon">⟁</span> Priority support &amp; SLA guarantee</li>
-                </ul>
-                <div class="card-meta">
-                    <span>GLOBAL: SECURE</span>
-                    <span>UPTIME: 99.9%</span>
-                </div>
-                <a href="contact.html?subject=AEDI%20Full%20Cloud" class="tier-btn">Select Plan</a>
-            </div>
-
-            <!-- HYBRID TIER -->
-            <div class="card purple-accent">
-                <div class="tier-icon purple">❖</div>
-                <div class="tier-name">AEDI HYBRID TIER</div>
-                <div class="tier-price">
-                    <span class="amount">From $450</span>
-                    <span class="period">/ MONTH — BILLED ANNUALLY</span>
-                </div>
-                <p class="tier-desc">
-                    The complete architecture. Operate securely across local and international infrastructure simultaneously. Granularly lock down data categories and access layers — keeping specific assets private even within internal organisation tiers. Full control, full continuity.
-                </p>
-                <ul class="tier-features">
-                    <li><span class="feat-icon">⟁</span> Cloud-to-edge &amp; edge-to-cloud continuity</li>
-                    <li><span class="feat-icon">⟁</span> Granular data category lockdown controls</li>
-                    <li><span class="feat-icon">⟁</span> Digital twin synchronisation</li>
-                    <li><span class="feat-icon">⟁</span> Multi-region failover &amp; redundancy</li>
-                    <li><span class="feat-icon">⟁</span> Custom EULA &amp; data governance policy</li>
-                    <li><span class="feat-icon">⟁</span> Dedicated account manager &amp; SLA</li>
-                </ul>
-                <div class="card-meta">
-                    <span>CONTROL: FULL</span>
-                    <span>SCOPE: GLOBAL + LOCAL</span>
-                </div>
-                <a href="contact.html?subject=AEDI%20Hybrid%20Tier" class="tier-btn">Select Plan</a>
+                <a href="contact.html?subject=Support%20%26%20Overtime" class="tier-btn">Contact for Details</a>
             </div>
 
         </div>
 
-        <!-- Comparison Table -->
+        <!-- How it works -->
         <div class="architecture-section">
-            <h2 class="section-heading" style="margin-bottom:2rem;">TIER <span>COMPARISON</span></h2>
-            <div style="overflow-x:auto;">
-                <table class="comparison-table">
-                    <thead>
-                        <tr>
-                            <th>FEATURE</th>
-                            <th>EDGE TIER</th>
-                            <th>FULL CLOUD</th>
-                            <th>HYBRID TIER</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>Local Edge Processing</td><td><span class="check">✔</span></td><td><span class="check">✔</span></td><td><span class="check-gold">✔</span></td></tr>
-                        <tr><td>Cloud Data Upload</td><td><span class="cross">—</span></td><td><span class="check">✔</span></td><td><span class="check-gold">✔</span></td></tr>
-                        <tr><td>OTA Firmware Updates</td><td><span class="check">✔</span></td><td><span class="check">✔</span></td><td><span class="check-gold">✔</span></td></tr>
-                        <tr><td>Global Cloud Storage</td><td><span class="cross">—</span></td><td><span class="check">✔</span></td><td><span class="check-gold">✔</span></td></tr>
-                        <tr><td>Real-Time Cross-Device Sync</td><td><span class="cross">—</span></td><td><span class="check">✔</span></td><td><span class="check-gold">✔</span></td></tr>
-                        <tr><td>AI Model Hosting</td><td><span class="cross">—</span></td><td><span class="check">✔</span></td><td><span class="check-gold">✔</span></td></tr>
-                        <tr><td>Digital Twin Synchronisation</td><td><span class="cross">—</span></td><td><span class="cross">—</span></td><td><span class="check-gold">✔</span></td></tr>
-                        <tr><td>Granular Data Category Lockdown</td><td><span class="cross">—</span></td><td><span class="cross">—</span></td><td><span class="check-gold">✔</span></td></tr>
-                        <tr><td>Multi-Region Failover</td><td><span class="cross">—</span></td><td><span class="cross">—</span></td><td><span class="check-gold">✔</span></td></tr>
-                        <tr><td>Custom EULA &amp; Governance</td><td><span class="cross">—</span></td><td><span class="cross">—</span></td><td><span class="check-gold">✔</span></td></tr>
-                        <tr><td>Support Level</td><td>Standard Email</td><td>Priority + SLA</td><td>Dedicated Manager</td></tr>
-                        <tr><td>Starting Price</td><td>From $92/mo</td><td>From $350/mo</td><td>From $450/mo</td></tr>
-                    </tbody>
-                </table>
+            <h2 class="section-heading" style="margin-bottom:2.5rem;">HOW IT <span>WORKS</span></h2>
+            <div class="how-grid">
+                <div class="how-step">
+                    <div class="how-num">01</div>
+                    <div class="how-title">Tell us what you need</div>
+                    <p class="how-text">A quick, no-pressure chat about your goals, the systems you already have, and any constraints. There's no obligation.</p>
+                </div>
+                <div class="how-step">
+                    <div class="how-num">02</div>
+                    <div class="how-title">We scope &amp; quote</div>
+                    <p class="how-text">We put together a clear plan and a tailored quote. No rigid packages &mdash; you only pay for the work that fits your operation.</p>
+                </div>
+                <div class="how-step">
+                    <div class="how-num">03</div>
+                    <div class="how-title">We build &amp; support</div>
+                    <p class="how-text">We deliver the work, then keep it running &mdash; with hosting, maintenance, and support for as long as you need us.</p>
+                </div>
             </div>
+            <p class="price-note">
+                <strong>Why no fixed price list?</strong> Every operation is different. Instead of forcing you into a
+                one-size-fits-all package, we scope hosting, development, AI, and support around your real needs and give
+                you a clear, honest quote. <a href="contact.html?subject=General%20Enquiry">Get in touch</a> and we'll map it out with you.
+            </p>
         </div>
 
         <!-- CTA -->
@@ -1036,9 +1061,14 @@
             <div class="cad-corner cad-corner-bl"></div>
             <div class="cad-corner cad-corner-br"></div>
             <div class="gen-ai-content">
-                <h2>NOT SURE WHICH TIER FITS?</h2>
-                <p>Our ecosystem architects will analyse your environment and recommend the optimal AEDI configuration for your organisation — from hardware topology to cloud governance policy.</p>
-                <a href="contact.html?subject=AEDI%20Subscription%20Enquiry" class="cta-btn">Speak to an Architect</a>
+                <h2>TELL US WHAT YOU'RE BUILDING</h2>
+                <p>Not sure where to start? Tell us about your operation and we'll recommend the right mix of hosting, development, AI, and support &mdash; and give you a clear, tailored quote. No obligation.</p>
+                <a href="contact.html?subject=General%20Enquiry" class="cta-btn">Contact Us</a>
+                <div style="margin-top:2rem; font-family:'Courier New',monospace; font-size:0.8rem; letter-spacing:0.08rem; color:rgba(255,255,255,0.6);">
+                    <a href="tel:+27646999877" style="color:var(--accent-cyan); text-decoration:none;">+27&nbsp;64&nbsp;699&nbsp;9877</a>
+                    &nbsp;&middot;&nbsp;
+                    <a href="mailto:ai@ionity.today" style="color:var(--accent-cyan); text-decoration:none;">ai@ionity.today</a>
+                </div>
             </div>
         </div>
 
