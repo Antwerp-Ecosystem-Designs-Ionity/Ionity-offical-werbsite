@@ -319,8 +319,15 @@
             display: flex;
             flex-direction: column;
             height: 100vh;
+            height: 100dvh;
             max-height: 100vh;
-            overflow: hidden;
+            max-height: 100dvh;
+            /* Scroll vertically instead of clipping when content exceeds the
+               viewport (was overflow:hidden, which caused footer/form overlap
+               on phones and short screens). */
+            overflow-y: auto;
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
             background: transparent;
         }
 
@@ -601,6 +608,33 @@
                 top: 100%;
                 opacity: 0;
             }
+        }
+
+        /* --- RESPONSIVE: phones & short screens --- */
+        @media (max-width: 768px), (max-height: 760px) {
+            /* Let content stack and scroll naturally instead of being force-fit
+               into one viewport (which squeezed the form and overlapped the footer). */
+            #gateway-slide { justify-content: flex-start; }
+            .portal-container {
+                flex: 0 0 auto;
+                padding: 1.25rem 5vw 2rem;
+            }
+            h1 {
+                font-size: 2rem;
+                letter-spacing: -0.03rem;
+            }
+            .hero-sub { font-size: 0.7rem; }
+            .portal-frame {
+                padding: 1.5rem 1.25rem;
+                max-width: 100%;
+            }
+            .portal-header {
+                font-size: 1.4rem;
+                letter-spacing: 0.2rem;
+            }
+            /* Fixed bottom-right badge overlaps the footer on small screens;
+               the same Gravatar link already lives in the footer. */
+            .identity-modules { display: none; }
         }
     </style>
     <!-- Three.js Library -->
