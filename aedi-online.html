@@ -1,6 +1,8 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- IONITY consent-default (pre-tag) -->
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{'ad_storage':'denied','ad_user_data':'denied','ad_personalization':'denied','analytics_storage':'denied','wait_for_update':500});</script>
  <script src="https://app.secureprivacy.ai/script/69999f793956998e8c6d4f9c.js"></script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-0GH52FYXR0"></script>
@@ -36,15 +38,22 @@
         })(window,document,'script','dataLayer', GTM_ID);
       }
 
-      if (localStorage.getItem('ionity_cookie_consent') === 'granted') {
-        gtag('consent', 'update', {
-          'ad_storage': 'granted',
-          'ad_user_data': 'granted',
-          'ad_personalization': 'granted',
-          'analytics_storage': 'granted'
-        });
-        loadGTM();
-      }
+      try {
+        var _ip = JSON.parse(localStorage.getItem('ionity_cookie_prefs') || 'null');
+        if (_ip) {
+          gtag('consent', 'update', {
+            'ad_storage': _ip.marketing ? 'granted' : 'denied',
+            'ad_user_data': _ip.marketing ? 'granted' : 'denied',
+            'ad_personalization': _ip.marketing ? 'granted' : 'denied',
+            'analytics_storage': _ip.analytics ? 'granted' : 'denied'
+          });
+        } else if (localStorage.getItem('ionity_cookie_consent') === 'granted') {
+          gtag('consent', 'update', {
+            'ad_storage': 'granted', 'ad_user_data': 'granted',
+            'ad_personalization': 'granted', 'analytics_storage': 'granted'
+          });
+        }
+      } catch (e) {}
     </script>
     <!-- End Google Tag Manager -->
 <meta name="theme-color" content="#FFFFFF">
@@ -177,7 +186,7 @@
       "worksFor": {
         "@id": "https://www.ionity.today/#organization"
       },
-      "url": "https://www.ionity.world",
+      "url": "https://gravatar.com/ionity",
       "knowsAbout": [
         "IoT (Internet of Things)",
         "AI (Artificial Intelligence)",
@@ -551,7 +560,7 @@
             .nav-search-icon { font-size: 0.7rem; left: 0.5rem; }
             /* Mobile adjustments for header */
             h1 {
-                font-size: 2.5rem;
+                font-size: clamp(1.8rem, 5vw, 2.5rem);
                 text-align: center;
             }
             .hero-sub {
@@ -559,8 +568,16 @@
                 font-size: 0.7rem;
             }
             .page-container {
-                padding-top: 120px;
+                padding: 100px 3vw 2rem;
                 text-align: center;
+            }
+            .resource-card {
+                font-size: 0.75rem;
+                padding: 1rem;
+            }
+            footer {
+                margin-top: 3rem;
+                padding: 2rem 3vw 0;
             }
         }
 
@@ -581,12 +598,12 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
             width: 100%;
         }
 
         .footer-logo {
-            height: 80px;
+            height: 60px;
             width: auto;
             opacity: 0.9;
             transition: all 0.3s ease;
@@ -603,6 +620,38 @@
 
         a { color: var(--accent-cyan); text-decoration: none; transition: 0.3s; }
         a:hover { text-shadow: 0 0 8px var(--accent-cyan); color: #fff; }
+
+        /* --- A-Z FILTER --- */
+        .az-filter {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: rgba(5, 10, 20, 0.4);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+        }
+
+        .az-btn {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-muted);
+            padding: 0.4rem 0.8rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .az-btn:hover, .az-btn.active {
+            background: rgba(0, 210, 255, 0.15);
+            color: #fff;
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 10px rgba(0, 210, 255, 0.3);
+        }
 
         /* --- ADDED RESOURCE CARD STYLES --- */
         .resource-card {
@@ -738,29 +787,31 @@
     </style>
     <!-- Three.js Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- IONITY ENHANCE LAYER -->
+    <link rel="stylesheet" href="assets/css/enhance.css">
+    <script src="assets/js/enhance.js" defer></script>
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXX"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
     <div id="canvas-container"></div>
-    <div class="scanlines"></div>
-
-    <nav>
+<nav id="mainNav">
         <a href="index.html" class="logo">
              <img src="assets/images/ionity-logo-edited.png" alt="IONITY" class="nav-logo">
         </a>
         
-        <!-- Desktop Menu -->
         <div class="nav-links">
+            <a href="index.html">Home</a>
             <a href="inner-Page.html">Systems</a>
-            <a href="services.html">Services</a>
-            <a href="products.html">Products</a>
-            <a href="ai-innovation.html">Ai Innovation</a>
+            <a href="what-we-do.html">What We Do</a>
+            <a href="ai-innovation.html">AI Innovation</a>
+            <a href="ai-news.html">AI News</a>
             <a href="roadmap.html">Roadmap</a>
             <a href="license.html">License</a>
+            <a href="privacy.html">Privacy</a>
+            <a href="subscriptions.html">Subscriptions</a>
+            <a href="terms.html">Terms</a>
             <a href="about.html">About</a>
             <a href="aedi-online.html" class="active">AEDI Online</a>
             <a href="contact.html">Contact</a>
@@ -768,31 +819,26 @@
             <a href="gateway.html">IO Way</a>
         </div>
 
-        <!-- Search Bar -->
-        <div class="nav-search">
-            <span class="nav-search-icon">⌕</span>
-            <input type="text" id="portalSearch" placeholder="Search AI tools..." autocomplete="off">
-            <span class="search-count" id="searchCount"></span>
+        <button class="mobile-menu-btn" onclick="toggleMenu()">&#9776;</button>
+        
+        <div class="mobile-dropdown" id="mobileMenu">
+            <a href="index.html">Home</a>
+            <a href="inner-Page.html">Systems</a>
+            <a href="what-we-do.html">What We Do</a>
+            <a href="ai-innovation.html">AI Innovation</a>
+            <a href="ai-news.html">AI News</a>
+            <a href="roadmap.html">Roadmap</a>
+            <a href="license.html">License</a>
+            <a href="privacy.html">Privacy</a>
+            <a href="subscriptions.html">Subscriptions</a>
+            <a href="terms.html">Terms</a>
+            <a href="about.html">About</a>
+            <a href="aedi-online.html" class="active">AEDI Online</a>
+            <a href="contact.html">Contact</a>
+            <a href="firmware-development.html">Dev</a>
+            <a href="gateway.html">IO Way</a>
         </div>
-
-        <!-- Mobile Button -->
-        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
     </nav>
-
-    <!-- Mobile Dropdown -->
-    <div class="mobile-dropdown" id="mobileDropdown">
-        <a href="inner-Page.html">Systems</a>
-        <a href="services.html">Services</a>
-        <a href="products.html">Products</a>
-        <a href="ai-innovation.html">Ai Innovation</a>
-        <a href="roadmap.html">Roadmap</a>
-        <a href="license.html">License</a>
-        <a href="about.html">About</a>
-        <a href="aedi-online.html" class="active">AEDI Online</a>
-        <a href="contact.html">Contact</a>
-        <a href="firmware-development.html">Dev</a>
-        <a href="gateway.html">IO Way</a>
-    </div>
 
     <!-- SecurePrivacy Consent Management -->
     <script src="https://consent.secureprivacy.ai/script/ionity-today.js"></script>
@@ -818,6 +864,54 @@
                     The AEDI Online system is preparing for initialization.<br>
                     Access the frontier of Artificial Intelligence. Curated connections to global technology leaders, cutting-edge generative models, security standards, and regulatory frameworks.
                 </p>
+            </div>
+
+            <!-- A-Z Filter -->
+            <div class="az-filter" id="azFilter">
+                <button class="az-btn active" data-letter="ALL">ALL</button>
+                <button class="az-btn" data-letter="A">A</button>
+                <button class="az-btn" data-letter="B">B</button>
+                <button class="az-btn" data-letter="C">C</button>
+                <button class="az-btn" data-letter="D">D</button>
+                <button class="az-btn" data-letter="E">E</button>
+                <button class="az-btn" data-letter="F">F</button>
+                <button class="az-btn" data-letter="G">G</button>
+                <button class="az-btn" data-letter="H">H</button>
+                <button class="az-btn" data-letter="I">I</button>
+                <button class="az-btn" data-letter="J">J</button>
+                <button class="az-btn" data-letter="K">K</button>
+                <button class="az-btn" data-letter="L">L</button>
+                <button class="az-btn" data-letter="M">M</button>
+                <button class="az-btn" data-letter="N">N</button>
+                <button class="az-btn" data-letter="O">O</button>
+                <button class="az-btn" data-letter="P">P</button>
+                <button class="az-btn" data-letter="Q">Q</button>
+                <button class="az-btn" data-letter="R">R</button>
+                <button class="az-btn" data-letter="S">S</button>
+                <button class="az-btn" data-letter="T">T</button>
+                <button class="az-btn" data-letter="U">U</button>
+                <button class="az-btn" data-letter="V">V</button>
+                <button class="az-btn" data-letter="W">W</button>
+                <button class="az-btn" data-letter="X">X</button>
+                <button class="az-btn" data-letter="Y">Y</button>
+                <button class="az-btn" data-letter="Z">Z</button>
+                <button class="az-btn" data-letter="0-9">0-9</button>
+            </div>
+
+            <!-- Recommended Core Tools -->
+            <div style="position: relative;" id="recommended-section">
+                <div style="position: absolute; top: -10px; right: 20px; background: var(--bg-dark); padding: 0 10px; color: #ffd93d; font-size: 0.6rem; border: 1px solid #ffd93d; opacity: 0.7;">RECOMMENDED</div>
+                <h3 style="color: #fff; border-left: 3px solid #ffd93d; padding-left: 1rem; margin-bottom: 2rem; font-size: 1.5rem; letter-spacing: 0.1rem;">Recommended Platform Standards</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem;">
+                    <a href="https://gemini.google.com/" target="_blank" class="resource-card">Google Gemini (Default AI)</a>
+                    <a href="https://cloud.google.com/vertex-ai" target="_blank" class="resource-card">Vertex AI Platform</a>
+                    <a href="https://github.com/features/copilot" target="_blank" class="resource-card">GitHub Copilot</a>
+                    <a href="https://www.midjourney.com/" target="_blank" class="resource-card">Midjourney (Design)</a>
+                    <a href="https://elevenlabs.io/" target="_blank" class="resource-card">ElevenLabs (Voice)</a>
+                    <a href="https://runwayml.com/" target="_blank" class="resource-card">RunwayML (Video)</a>
+                    <a href="https://www.cursor.com/" target="_blank" class="resource-card">Cursor (Code)</a>
+                    <a href="https://suno.com/" target="_blank" class="resource-card">Suno (Music)</a>
+                </div>
             </div>
 
             <!-- 1. Global Tech Leaders -->
@@ -1192,11 +1286,60 @@
                 </div>
             </div>
 
+            <!-- 19. Specialized AI Agents & Bots -->
+            <div style="position: relative;">
+                <div style="position: absolute; top: -10px; right: 20px; background: var(--bg-dark); padding: 0 10px; color: var(--accent-cyan); font-size: 0.6rem; border: 1px solid var(--border); opacity: 0.7;">NEW SECTION</div>
+                <h3 style="color: #fff; border-left: 3px solid var(--accent-cyan); padding-left: 1rem; margin-bottom: 2rem; font-size: 1.5rem; letter-spacing: 0.1rem;">Specialized AI Agents & Bots</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem;">
+                    <a href="https://chat.openai.com/gpts" target="_blank" class="resource-card">Custom GPTs</a>
+                    <a href="https://a16z.com/ai-agents/" target="_blank" class="resource-card">Autonomous Agents (a16z)</a>
+                    <a href="https://www.harpa.ai/" target="_blank" class="resource-card">Harpa AI (Agent)</a>
+                    <a href="https://www.agentai.com/" target="_blank" class="resource-card">Agent AI</a>
+                    <a href="https://brave.com/leo/" target="_blank" class="resource-card">Brave Leo (Browser)</a>
+                    <a href="https://www.chatpdf.com/" target="_blank" class="resource-card">ChatPDF</a>
+                    <a href="https://www.tldv.io/" target="_blank" class="resource-card">tl;dv (Meeting Bot)</a>
+                    <a href="https://fireflies.ai/" target="_blank" class="resource-card">Fireflies.ai</a>
+                    <a href="https://www.lindyai.com/" target="_blank" class="resource-card">Lindy (Personal Assistant)</a>
+                    <a href="https://devin.ai/" target="_blank" class="resource-card">Devin (AI Software Engineer)</a>
+                </div>
+            </div>
+
+            <!-- 20. Hardware & Edge AI Integration -->
+            <div style="position: relative;">
+                <div style="position: absolute; top: -10px; right: 20px; background: var(--bg-dark); padding: 0 10px; color: var(--accent-cyan); font-size: 0.6rem; border: 1px solid var(--border); opacity: 0.7;">NEW SECTION</div>
+                <h3 style="color: #fff; border-left: 3px solid var(--accent-cyan); padding-left: 1rem; margin-bottom: 2rem; font-size: 1.5rem; letter-spacing: 0.1rem;">Hardware & Edge AI Integration</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem;">
+                    <a href="https://developer.nvidia.com/embedded/jetson-nano" target="_blank" class="resource-card">NVIDIA Jetson</a>
+                    <a href="https://coral.ai/" target="_blank" class="resource-card">Google Coral Edge TPU</a>
+                    <a href="https://www.raspberrypi.com/" target="_blank" class="resource-card">Raspberry Pi AI Mod</a>
+                    <a href="https://www.st.com/en/microcontrollers-microprocessors/stm32-arm-cortex-mcus.html" target="_blank" class="resource-card">STM32 Cube AI</a>
+                    <a href="https://www.espressif.com/en/solutions/aiot" target="_blank" class="resource-card">ESP32 AIoT</a>
+                    <a href="https://edgeimpulse.com/" target="_blank" class="resource-card">Edge Impulse</a>
+                    <a href="https://arduino.cc/en/hardware/nano-33-ble-sense" target="_blank" class="resource-card">Arduino Nano 33 BLE</a>
+                    <a href="https://www.nxp.com/design/design-center/software/machine-learning:MACHINE-LEARNING" target="_blank" class="resource-card">NXP eIQ</a>
+                    <a href="https://www.qualcomm.com/products/technology/artificial-intelligence" target="_blank" class="resource-card">Qualcomm AI Engine</a>
+                    <a href="https://hailo.ai/" target="_blank" class="resource-card">Hailo AI Processors</a>
+                </div>
+            </div>
+
         </main>
 
     </div>
 
     <footer>
+  <!-- IONITY NETWORK (static, crawlable) -->
+  <div class="ion-net">
+    <div class="ion-net__label">The Ionity Network</div>
+    <div class="ion-net__grid">
+      <a class="ion-net__card" href="https://www.ionity.today" target="_blank" rel="noopener"><span class="d">ionity.today</span><span class="s">Global · Native-AI Ecosystems &amp; Edge Intelligence</span><span class="go">Visit</span></a>
+      <a class="ion-net__card is-primary" href="https://www.ionity.co.za" target="_blank" rel="noopener"><span class="d">ionity.co.za</span><span class="s">Ionity South Africa · Local Solutions &amp; Support</span><span class="go">Visit</span></a>
+      <a class="ion-net__card" href="https://gravatar.com/ionity" target="_blank" rel="me noopener"><span class="d">AntwerpDesigns</span><span class="s">Ionity Founder · Design Studio &amp; Creator Profile</span><span class="go">Visit</span></a>
+    </div>
+    <div class="ion-trust" aria-label="Compliance and standards">
+      <span>POPIA &amp; GDPR Aligned</span><span>WCAG-Minded Accessibility</span><span>CC BY-NC-SA 4.0</span><span>Made with AEDI®</span><span>Policy AED 986</span>
+    </div>
+  </div>
+
         <style>
             @keyframes footerGlow {
                 0% { text-shadow: 0 0 2px rgba(255,255,255,0.1); }
@@ -1209,11 +1352,11 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                margin-bottom: 2rem;
+                margin-bottom: 1rem;
                 width: 100%;
             }
             .footer-logo {
-                height: 80px;
+                height: 60px;
                 width: auto;
                 opacity: 0.9;
                 transition: all 0.3s ease;
@@ -1238,15 +1381,15 @@
         <div class="footer-logo-container">
             <img src="assets/images/ionity-logo-edited.png" alt="Ionity Logo" class="footer-logo">
         </div>
-        <div class="footer-content" style="opacity: 0.7; line-height: 2; color: var(--text-muted);">
+        <div class="footer-content" style="opacity: 0.7; line-height: 1.8; color: var(--text-muted);">
             <div>Ionity™ (Pty) Ltd 2025-2026 | Creative Commons BY-NC-SA 4.0 | Made with AEDI™ | Author: Antwerp Designs</div>
             <div>South Africa Centurion 0157 | Policy AED 986 | License AED 900 | Ionity™ IoT-Ai-DAQ-PdM-CMS-F-iT Hardware, Software Integrations, ALL RIGHTS RESERVED</div>
             <div>
                 <a href="tel:+27646999877">+27 646 999 877</a> &nbsp;|&nbsp;
                 <a href="mailto:ai@ionity.today">ai@ionity.today</a> &nbsp;|&nbsp; 
-                <a href="https://www.ionity.world" target="_blank">www.ionity.world</a>
+                <a href="https://gravatar.com/ionity" target="_blank" rel="me noopener noreferrer">gravatar.com/ionity</a>
             </div>
-            <div style="margin-top: 1rem;">
+            <div style="margin-top: 0.75rem;">
                 <a href="https://antwerpdesignsionity.github.io/Metadata" target="_blank" rel="noopener noreferrer">Metadata</a>
             </div>
         </div>
@@ -1363,8 +1506,8 @@
         animate();
 
         // --- MOBILE MENU ---
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobileDropdown');
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
             menu.classList.toggle('open');
         }
 
@@ -1395,7 +1538,21 @@
             allCards.forEach(card => {
                 const text = card.textContent.toLowerCase();
                 const href = (card.getAttribute('href') || '').toLowerCase();
-                if (text.includes(query) || href.includes(query)) {
+                
+                // Allow A-Z filtering to work alongside search
+                const currentLetter = document.querySelector('.az-btn.active')?.dataset.letter;
+                let letterMatch = true;
+                
+                if (currentLetter && currentLetter !== 'ALL') {
+                    const firstChar = card.textContent.trim().charAt(0).toUpperCase();
+                    if (currentLetter === '0-9') {
+                        letterMatch = /[0-9]/.test(firstChar);
+                    } else {
+                        letterMatch = firstChar === currentLetter;
+                    }
+                }
+
+                if ((text.includes(query) || href.includes(query)) && letterMatch) {
                     card.classList.remove('search-hidden');
                     card.classList.add('search-highlight');
                     matchCount++;
@@ -1405,23 +1562,75 @@
                 }
             });
 
-            // Hide sections where ALL cards are hidden
+            // Hide empty sections
             allSections.forEach(section => {
-                const cards = section.querySelectorAll('.resource-card');
-                if (cards.length === 0) {
-                    // Intro section or non-card section stays visible
-                    return;
-                }
+                // skip recommended and intro sections if all are unhidden
+                if (section.id === 'recommended-section') return; 
+                
                 const visibleCards = section.querySelectorAll('.resource-card:not(.search-hidden)');
-                if (visibleCards.length === 0) {
+                if (visibleCards.length === 0 && section.querySelector('.resource-card')) {
                     section.classList.add('section-hidden');
                 } else {
                     section.classList.remove('section-hidden');
                 }
             });
 
-            searchCount.textContent = matchCount + ' found';
+            searchCount.textContent = `${matchCount} found`;
             searchCount.classList.add('visible');
+        });
+
+        // --- A-Z FILTER LOGIC ---
+        const azButtons = document.querySelectorAll('.az-btn');
+        azButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Update active state
+                azButtons.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                const letter = this.dataset.letter;
+                const allCards = document.querySelectorAll('.resource-card');
+                const allSections = document.querySelectorAll('main > div');
+                
+                // Clear search highlights
+                searchInput.value = '';
+                searchCount.classList.remove('visible');
+                
+                allCards.forEach(card => {
+                    card.classList.remove('search-highlight');
+                    
+                    if (letter === 'ALL') {
+                        card.classList.remove('search-hidden');
+                        return;
+                    }
+                    
+                    const firstChar = card.textContent.trim().charAt(0).toUpperCase();
+                    let match = false;
+                    
+                    if (letter === '0-9') {
+                        match = /[0-9]/.test(firstChar);
+                    } else {
+                        match = firstChar === letter;
+                    }
+                    
+                    if (match) {
+                        card.classList.remove('search-hidden');
+                    } else {
+                        card.classList.add('search-hidden');
+                    }
+                });
+                
+                // Hide empty sections (except intro)
+                allSections.forEach(section => {
+                    if (!section.querySelector('h3')) return; // keep intro visible
+                    
+                    const visibleCards = section.querySelectorAll('.resource-card:not(.search-hidden)');
+                    if (visibleCards.length === 0) {
+                        section.classList.add('section-hidden');
+                    } else {
+                        section.classList.remove('section-hidden');
+                    }
+                });
+            });
         });
 
         // Keyboard shortcut: Ctrl+K or / to focus search
@@ -1487,7 +1696,7 @@
 
     <!-- Identity Modules -->
     <div class="identity-modules">
-        <a href="https://gravatar.com/antwerpdesigns" target="_blank" rel="noopener noreferrer" class="module-link" title="Global Identity Node">
+        <a href="https://gravatar.com/ionity" target="_blank" rel="noopener noreferrer" class="module-link" title="Global Identity Node">
             <img src="assets/images/gravatar-icon.svg" alt="Gravatar" class="module-icon">
             <span class="module-label">ID_NODE</span>
         </a>

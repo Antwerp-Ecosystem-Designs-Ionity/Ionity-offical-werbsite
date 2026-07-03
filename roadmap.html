@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Google Tag Manager with Consent Mode v2 | ionity.yumyum -->
     <script>
@@ -27,15 +27,22 @@
         })(window,document,'script','dataLayer', GTM_ID);
       }
 
-      if (localStorage.getItem('ionity_cookie_consent') === 'granted') {
-        gtag('consent', 'update', {
-          'ad_storage': 'granted',
-          'ad_user_data': 'granted',
-          'ad_personalization': 'granted',
-          'analytics_storage': 'granted'
-        });
-        loadGTM();
-      }
+      try {
+        var _ip = JSON.parse(localStorage.getItem('ionity_cookie_prefs') || 'null');
+        if (_ip) {
+          gtag('consent', 'update', {
+            'ad_storage': _ip.marketing ? 'granted' : 'denied',
+            'ad_user_data': _ip.marketing ? 'granted' : 'denied',
+            'ad_personalization': _ip.marketing ? 'granted' : 'denied',
+            'analytics_storage': _ip.analytics ? 'granted' : 'denied'
+          });
+        } else if (localStorage.getItem('ionity_cookie_consent') === 'granted') {
+          gtag('consent', 'update', {
+            'ad_storage': 'granted', 'ad_user_data': 'granted',
+            'ad_personalization': 'granted', 'analytics_storage': 'granted'
+          });
+        }
+      } catch (e) {}
     </script>
     <!-- End Google Tag Manager -->
     <meta name="theme-color" content="#FFFFFF">
@@ -168,7 +175,7 @@
           "worksFor": {
             "@id": "https://www.ionity.today/#organization"
           },
-          "url": "https://www.ionity.world",
+          "url": "https://gravatar.com/ionity",
           "knowsAbout": [
             "IoT (Internet of Things)",
             "AI (Artificial Intelligence)",
@@ -283,6 +290,7 @@
             align-items: center;
             border-bottom: 1px solid var(--border);
             background: rgba(2, 2, 4, 0.9);
+            -webkit-backdrop-filter: blur(12px);
             backdrop-filter: blur(12px);
             position: fixed;
             width: 100%;
@@ -328,9 +336,9 @@
         .nav-links a {
             color: var(--text-muted);
             text-decoration: none;
-            font-size: 0.75rem;
+            font-size: 0.62rem;
             text-transform: uppercase;
-            letter-spacing: 0.1rem;
+            letter-spacing: 0.15rem;
             transition: all 0.3s ease;
             position: relative;
             padding: 0.5rem 0;
@@ -339,7 +347,7 @@
 
         .nav-links a:hover {
             color: #fff;
-            animation: neonPulse 1s infinite alternate;
+            text-shadow: 0 0 10px #00d2ff;
         }
 
         .nav-links a.active {
@@ -387,6 +395,7 @@
             padding: 1rem 0;
             box-shadow: -5px 5px 20px rgba(0, 0, 0, 0.8), 0 0 15px rgba(0, 210, 255, 0.2);
             z-index: 1000;
+            -webkit-backdrop-filter: blur(20px);
             backdrop-filter: blur(20px);
         }
 
@@ -757,11 +766,11 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
             width: 100%;
         }
         .footer-logo {
-            height: 80px;
+            height: 60px;
             width: auto;
             opacity: 0.9;
             transition: all 0.3s ease;
@@ -777,29 +786,31 @@
 </style>
     <link rel="icon" type="image/png" href="assets/images/ionity-logo-edited.png">
     <link rel="manifest" href="manifest.json">
+    <!-- IONITY ENHANCE LAYER -->
+    <link rel="stylesheet" href="assets/css/enhance.css">
+    <script src="assets/js/enhance.js" defer></script>
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXX"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
     <div id="canvas-container"></div>
-    <div class="scanlines"></div>
-
-    <nav>
+<nav id="mainNav">
         <a href="index.html" class="logo">
              <img src="assets/images/ionity-logo-edited.png" alt="IONITY" class="nav-logo">
         </a>
         
-        <!-- Desktop Menu -->
         <div class="nav-links">
+            <a href="index.html">Home</a>
             <a href="inner-Page.html">Systems</a>
-            <a href="services.html">Services</a>
-            <a href="products.html">Products</a>
-            <a href="ai-innovation.html">Ai Innovation</a>
+            <a href="what-we-do.html">What We Do</a>
+            <a href="ai-innovation.html">AI Innovation</a>
+            <a href="ai-news.html">AI News</a>
             <a href="roadmap.html" class="active">Roadmap</a>
             <a href="license.html">License</a>
+            <a href="privacy.html">Privacy</a>
+            <a href="subscriptions.html">Subscriptions</a>
+            <a href="terms.html">Terms</a>
             <a href="about.html">About</a>
             <a href="aedi-online.html">AEDI Online</a>
             <a href="contact.html">Contact</a>
@@ -807,24 +818,26 @@
             <a href="gateway.html">IO Way</a>
         </div>
 
-        <!-- Mobile Button -->
-        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+        <button class="mobile-menu-btn" onclick="toggleMenu()">&#9776;</button>
+        
+        <div class="mobile-dropdown" id="mobileMenu">
+            <a href="index.html">Home</a>
+            <a href="inner-Page.html">Systems</a>
+            <a href="what-we-do.html">What We Do</a>
+            <a href="ai-innovation.html">AI Innovation</a>
+            <a href="ai-news.html">AI News</a>
+            <a href="roadmap.html" class="active">Roadmap</a>
+            <a href="license.html">License</a>
+            <a href="privacy.html">Privacy</a>
+            <a href="subscriptions.html">Subscriptions</a>
+            <a href="terms.html">Terms</a>
+            <a href="about.html">About</a>
+            <a href="aedi-online.html">AEDI Online</a>
+            <a href="contact.html">Contact</a>
+            <a href="firmware-development.html">Dev</a>
+            <a href="gateway.html">IO Way</a>
+        </div>
     </nav>
-
-    <!-- Mobile Dropdown -->
-    <div class="mobile-dropdown" id="mobileDropdown">
-        <a href="inner-Page.html">Systems</a>
-        <a href="services.html">Services</a>
-        <a href="products.html">Products</a>
-        <a href="ai-innovation.html">Ai Innovation</a>
-        <a href="roadmap.html" class="active">Roadmap</a>
-        <a href="license.html">License</a>
-        <a href="about.html">About</a>
-        <a href="aedi-online.html">AEDI Online</a>
-        <a href="contact.html">Contact</a>
-        <a href="firmware-development.html">Dev</a>
-        <a href="gateway.html">IO Way</a>
-    </div>
 
     <!-- SecurePrivacy Consent Management -->
     <script src="https://consent.secureprivacy.ai/script/ionity-today.js"></script>
@@ -952,6 +965,19 @@
 
     <!-- Footer -->
     <footer>
+  <!-- IONITY NETWORK (static, crawlable) -->
+  <div class="ion-net">
+    <div class="ion-net__label">The Ionity Network</div>
+    <div class="ion-net__grid">
+      <a class="ion-net__card" href="https://www.ionity.today" target="_blank" rel="noopener"><span class="d">ionity.today</span><span class="s">Global · Native-AI Ecosystems &amp; Edge Intelligence</span><span class="go">Visit</span></a>
+      <a class="ion-net__card is-primary" href="https://www.ionity.co.za" target="_blank" rel="noopener"><span class="d">ionity.co.za</span><span class="s">Ionity South Africa · Local Solutions &amp; Support</span><span class="go">Visit</span></a>
+      <a class="ion-net__card" href="https://gravatar.com/ionity" target="_blank" rel="me noopener"><span class="d">AntwerpDesigns</span><span class="s">Ionity Founder · Design Studio &amp; Creator Profile</span><span class="go">Visit</span></a>
+    </div>
+    <div class="ion-trust" aria-label="Compliance and standards">
+      <span>POPIA &amp; GDPR Aligned</span><span>WCAG-Minded Accessibility</span><span>CC BY-NC-SA 4.0</span><span>Made with AEDI®</span><span>Policy AED 986</span>
+    </div>
+  </div>
+
         <style>
             @keyframes footerGlow {
                 0% { text-shadow: 0 0 2px rgba(255,255,255,0.1); }
@@ -964,11 +990,11 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                margin-bottom: 2rem;
+                margin-bottom: 1rem;
                 width: 100%;
             }
             .footer-logo {
-                height: 80px;
+                height: 60px;
                 width: auto;
                 opacity: 0.9;
                 transition: all 0.3s ease;
@@ -993,15 +1019,15 @@
         <div class="footer-logo-container">
             <img src="assets/images/ionity-logo-edited.png" alt="Ionity Logo" class="footer-logo">
         </div>
-        <div class="footer-content" style="opacity: 0.7; line-height: 2; color: var(--text-muted);">
+        <div class="footer-content" style="opacity: 0.7; line-height: 1.8; color: var(--text-muted);">
             <div>Ionity™ (Pty) Ltd 2025-2026 | Creative Commons BY-NC-SA 4.0 | Made with AEDI™ | Author: Antwerp Designs</div>
             <div>South Africa Centurion 0157 | Policy AED 986 | License AED 900 | Ionity™ IoT-Ai-DAQ-PdM-CMS-F-iT Hardware, Software Integrations, ALL RIGHTS RESERVED</div>
             <div>
                 <a href="tel:+27646999877">+27 646 999 877</a> &nbsp;|&nbsp;
                 <a href="mailto:ai@ionity.today">ai@ionity.today</a> &nbsp;|&nbsp; 
-                <a href="https://www.ionity.world" target="_blank">www.ionity.world</a>
+                <a href="https://gravatar.com/ionity" target="_blank" rel="me noopener noreferrer">gravatar.com/ionity</a>
             </div>
-            <div style="margin-top: 1rem;">
+            <div style="margin-top: 0.75rem;">
                 <a href="https://antwerpdesignsionity.github.io/Metadata" target="_blank" rel="noopener noreferrer">Metadata</a>
             </div>
         </div>
@@ -1192,8 +1218,8 @@
     
     <!-- UI Logic Script -->
     <script>
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobileDropdown');
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
             menu.classList.toggle('open');
         }
 
@@ -1273,8 +1299,8 @@
             }
         });
 
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobileDropdown');
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
             menu.classList.toggle('open');
         }
 
@@ -1293,7 +1319,7 @@
 
     <!-- Identity Modules -->
     <div class="identity-modules">
-        <a href="https://gravatar.com/antwerpdesigns" target="_blank" rel="noopener noreferrer" class="module-link" title="Global Identity Node">
+        <a href="https://gravatar.com/ionity" target="_blank" rel="noopener noreferrer" class="module-link" title="Global Identity Node">
             <img src="assets/images/gravatar-icon.svg" alt="Gravatar" class="module-icon">
             <span class="module-label">ID_NODE</span>
         </a>

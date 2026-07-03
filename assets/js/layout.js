@@ -24,6 +24,7 @@
             this.setupBackToTop();
             this.setupActiveLink();
             this.setupResponsiveImages();
+            this.setupScrollBounceHint();
             console.log('Layout Manager initialized');
         },
 
@@ -203,6 +204,63 @@
                     img.src = img.dataset.src;
                 });
             }
+        },
+
+        // Scroll Bounce Hint – subtle nudge so users know the page scrolls
+        setupScrollBounceHint() {
+            let userHasInteracted = false;
+            let bounceTimer = null;
+            const idleDelay = 6000;  // ms before first nudge
+            const bounceAmount = 28; // px to bounce down
+            const bounceDuration = 600; // ms per half-bounce
+
+            const markInteracted = () => { userHasInteracted = true; };
+            window.addEventListener('scroll', markInteracted, { once: true, passive: true });
+            window.addEventListener('wheel', markInteracted, { once: true, passive: true });
+            window.addEventListener('touchmove', markInteracted, { once: true, passive: true });
+            window.addEventListener('keydown', (e) => {
+                if (['ArrowDown','ArrowUp','PageDown','PageUp','Space'].includes(e.code)) markInteracted();
+            }, { once: true, passive: true });
+
+            const doBounce = () => {
+                if (userHasInteracted || window.scrollY > 10) return;
+                // Page must actually be scrollable
+                if (document.documentElement.scrollHeight <= window.innerHeight) return;
+
+                const start = window.scrollY;
+                const peak = start + bounceAmount;
+                let phase = 'down';
+                let startTime = null;
+
+                const animate = (ts) => {
+                    if (!startTime) startTime = ts;
+                    const elapsed = ts - startTime;
+
+                    if (phase === 'down') {
+                        const progress = Math.min(elapsed / bounceDuration, 1);
+                        const ease = progress < 0.5
+                            ? 2 * progress * progress
+                            : -1 + (4 - 2 * progress) * progress;
+                        window.scrollTo(0, start + bounceAmount * ease);
+                        if (progress >= 1) {
+                            phase = 'up';
+                            startTime = null;
+                        }
+                    } else {
+                        const progress = Math.min(elapsed / bounceDuration, 1);
+                        const ease = progress < 0.5
+                            ? 2 * progress * progress
+                            : -1 + (4 - 2 * progress) * progress;
+                        window.scrollTo(0, peak - bounceAmount * ease);
+                        if (progress >= 1) return; // done
+                    }
+                    requestAnimationFrame(animate);
+                };
+
+                requestAnimationFrame(animate);
+            };
+
+            bounceTimer = setTimeout(doBounce, idleDelay);
         },
 
         // Utility: Debounce function

@@ -1,0 +1,279 @@
+/* ============================================================================
+   IONITY — ENHANCE LAYER  v1.0
+   Premium, additive global polish. Loaded AFTER style.css on every page.
+   Namespaced (.ion- / #ion-) + conservative refinements only. Never hides the
+   THREE.js backdrop (#canvas-container). Respects prefers-reduced-motion.
+   Author: Antwerp Designs · Ionity (Pty) Ltd
+   ========================================================================== */
+
+:root {
+  /* Extended palette — layered on top of existing --accent (#3366FF) */
+  --ion-obsidian:   #05060a;
+  --ion-ink:        #0a0e1a;
+  --ion-blue:       #3366ff;
+  --ion-azure:      #2f8bff;
+  --ion-cyan:       #00d2ff;
+  --ion-platinum:   #e8edf6;
+  --ion-mist:       rgba(232, 237, 246, 0.62);
+  --ion-line:       rgba(255, 255, 255, 0.10);
+  --ion-line-soft:  rgba(255, 255, 255, 0.06);
+  --ion-glass:      rgba(255, 255, 255, 0.035);
+  --ion-glass-2:    rgba(12, 18, 32, 0.55);
+  --ion-grad:       linear-gradient(120deg, var(--ion-blue) 0%, var(--ion-cyan) 100%);
+  --ion-grad-soft:  linear-gradient(120deg, rgba(51,102,255,.18), rgba(0,210,255,.18));
+  --ion-glow:       0 0 24px rgba(51, 102, 255, .35);
+  --ion-ease:       cubic-bezier(.22, .61, .36, 1);
+}
+
+/* ---- Typographic polish (additive, non-breaking) ---------------------- */
+html { -webkit-text-size-adjust: 100%; }
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+h1, h2, h3, .hero-title, .cta-title {
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+p, li { text-wrap: pretty; }
+
+/* ---- Premium scrollbar ----------------------------------------------- */
+* { scrollbar-width: thin; scrollbar-color: rgba(51,102,255,.45) transparent; }
+::-webkit-scrollbar { width: 11px; height: 11px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--ion-blue), var(--ion-cyan));
+  border-radius: 20px; border: 3px solid transparent; background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover { filter: brightness(1.2); }
+/* Respect containers the layout deliberately hides scrollbars on (Firefox) */
+.deck-wrapper, .slider-viewport, .carousel-track, .deck { scrollbar-width: none; }
+
+/* ---- Selection ------------------------------------------------------- */
+::selection { background: rgba(51,102,255,.32); color: #fff; }
+
+/* ---- Accessibility: visible focus (compliance) ----------------------- */
+a:focus-visible, button:focus-visible, [tabindex]:focus-visible,
+input:focus-visible, textarea:focus-visible, select:focus-visible {
+  outline: 2px solid var(--ion-cyan);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+.ion-skip-link {
+  position: fixed; top: -120px; left: 16px; z-index: 100002;
+  background: var(--ion-grad); color: #fff; padding: 12px 20px;
+  border-radius: 0 0 10px 10px; font: 600 .85rem/1 'Segoe UI', sans-serif;
+  letter-spacing: .04em; text-decoration: none; transition: top .25s var(--ion-ease);
+}
+.ion-skip-link:focus { top: 0; }
+
+/* ---- Conservative interactive refinement ----------------------------- */
+/* NOTE: .card is intentionally EXCLUDED — pages use `.card { transition: all }`
+   for an IntersectionObserver opacity reveal; overriding it would kill the fade. */
+.btn-primary, .cta-button, .btn-outline, .nav-btn, button {
+  transition: transform .35s var(--ion-ease), box-shadow .35s var(--ion-ease),
+              border-color .35s var(--ion-ease), filter .35s var(--ion-ease);
+}
+.btn-primary:hover, .cta-button:hover, .nav-btn:hover {
+  box-shadow: 0 10px 30px rgba(51,102,255,.35), var(--ion-glow);
+  transform: translateY(-2px);
+}
+
+/* ===========================================================================
+   PREMIUM LOADER + PAGE TRANSITION  (#ion-loader)
+   ========================================================================= */
+/* Neutralise the legacy "SYSTEM INITIALIZING" / "NEURAL LINK // SYNCING"
+   loaders — the premium #ion-loader replaces both. */
+#loader, #warp-loader { display: none !important; }
+
+#ion-loader {
+  position: fixed; inset: 0; z-index: 100000;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  background:
+    radial-gradient(1200px 700px at 50% -10%, rgba(51,102,255,.10), transparent 60%),
+    radial-gradient(900px 600px at 85% 110%, rgba(0,210,255,.08), transparent 55%),
+    linear-gradient(180deg, var(--ion-ink) 0%, var(--ion-obsidian) 100%);
+  opacity: 1; visibility: visible;
+  transition: opacity .7s var(--ion-ease), visibility .7s var(--ion-ease);
+}
+#ion-loader.ion-hide { opacity: 0; visibility: hidden; pointer-events: none; }
+
+/* drifting aurora field */
+#ion-loader::before, #ion-loader::after {
+  content: ""; position: absolute; width: 60vmax; height: 60vmax; border-radius: 50%;
+  filter: blur(50px); opacity: .35; pointer-events: none; will-change: transform;
+  background: radial-gradient(circle at 30% 30%, rgba(51,102,255,.55), transparent 60%);
+  animation: ionAurora 14s ease-in-out infinite alternate;
+}
+#ion-loader::after {
+  background: radial-gradient(circle at 70% 70%, rgba(0,210,255,.45), transparent 60%);
+  animation-duration: 18s; animation-delay: -6s;
+}
+@keyframes ionAurora {
+  0%   { transform: translate(-22%, -18%); }
+  100% { transform: translate(20%, 16%); }
+}
+
+/* subtle vignette + grid for depth */
+#ion-loader .ion-grid {
+  position: absolute; inset: 0; pointer-events: none; opacity: .14;
+  background-image:
+    linear-gradient(rgba(255,255,255,.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.07) 1px, transparent 1px);
+  background-size: 46px 46px;
+  mask-image: radial-gradient(circle at 50% 45%, #000 0%, transparent 72%);
+  -webkit-mask-image: radial-gradient(circle at 50% 45%, #000 0%, transparent 72%);
+}
+
+.ion-stage {
+  position: relative; z-index: 2;
+  display: flex; flex-direction: column; align-items: center; gap: 26px;
+  animation: ionStageIn 1s var(--ion-ease) both;
+}
+@keyframes ionStageIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+/* orbital ring around the mark */
+.ion-orbit {
+  position: relative; width: 132px; height: 132px;
+  display: grid; place-items: center;
+}
+.ion-orbit::before, .ion-orbit::after {
+  content: ""; position: absolute; inset: 0; border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.10);
+}
+.ion-orbit::after {
+  inset: 14px;
+  border: 1px solid transparent;
+  border-top-color: var(--ion-cyan);
+  border-right-color: rgba(51,102,255,.6);
+  animation: ionSpin 1.4s linear infinite;
+  box-shadow: 0 0 22px rgba(0,210,255,.25);
+}
+.ion-orbit .ion-node {
+  position: absolute; top: 6px; left: 50%; width: 8px; height: 8px; margin-left: -4px;
+  background: var(--ion-cyan); border-radius: 50%;
+  box-shadow: 0 0 14px var(--ion-cyan), 0 0 28px rgba(0,210,255,.6);
+  transform-origin: 4px 60px; animation: ionSpin 2.4s linear infinite reverse;
+}
+@keyframes ionSpin { to { transform: rotate(360deg); } }
+
+.ion-mark {
+  width: 72px; height: 72px; object-fit: contain;
+  filter: drop-shadow(0 0 18px rgba(51,102,255,.55));
+  animation: ionMark 3.2s ease-in-out infinite;
+}
+@keyframes ionMark { 0%,100% { transform: scale(1); opacity: .96; } 50% { transform: scale(1.06); opacity: 1; } }
+
+.ion-word {
+  font: 600 .82rem/1 'Segoe UI', Roboto, sans-serif;
+  letter-spacing: .3em; text-transform: uppercase;
+  color: var(--ion-platinum); padding-left: .42em;
+  background: var(--ion-grad); -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.ion-tag {
+  font: 500 .62rem/1 'Segoe UI', Roboto, sans-serif;
+  letter-spacing: .28em; text-transform: uppercase; color: var(--ion-mist);
+  padding-left: .28em;
+}
+
+/* progress */
+.ion-progress {
+  position: relative; width: 220px; height: 3px; border-radius: 4px;
+  background: rgba(255,255,255,.08); overflow: hidden; margin-top: 4px;
+}
+.ion-progress > i {
+  position: absolute; inset: 0; width: 0%; border-radius: 4px;
+  background: var(--ion-grad);
+  box-shadow: 0 0 16px rgba(0,210,255,.55);
+  transition: width .35s var(--ion-ease);
+}
+.ion-progress.ion-indeterminate > i {
+  width: 38% !important; animation: ionIndet 1.2s var(--ion-ease) infinite;
+}
+@keyframes ionIndet {
+  0% { transform: translateX(-130%); } 100% { transform: translateX(330%); }
+}
+.ion-pct {
+  font: 600 .58rem/1 'Segoe UI', sans-serif; letter-spacing: .2em;
+  color: var(--ion-mist); margin-top: 2px;
+}
+
+/* ===========================================================================
+   B2B FOOTER NETWORK BAR  (.ion-net)  — injected into every <footer>
+   ========================================================================= */
+.ion-net {
+  max-width: 1180px; margin: 0 auto 1.4rem; padding: 1.6rem 1.25rem .4rem;
+  border-top: 1px solid var(--ion-line);
+}
+.ion-net__label {
+  font: 600 .62rem/1 'Segoe UI', sans-serif; letter-spacing: .34em;
+  text-transform: uppercase; color: var(--ion-mist);
+  text-align: center; margin-bottom: 1.1rem;
+}
+.ion-net__grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: .9rem;
+}
+.ion-net__card {
+  display: flex; flex-direction: column; gap: .25rem;
+  padding: .95rem 1.05rem; border: 1px solid var(--ion-line);
+  border-radius: 14px; background: var(--ion-glass);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  text-decoration: none; transition: border-color .3s var(--ion-ease),
+    transform .3s var(--ion-ease), box-shadow .3s var(--ion-ease), background .3s var(--ion-ease);
+}
+.ion-net__card:hover {
+  border-color: rgba(0,210,255,.5); transform: translateY(-3px);
+  background: var(--ion-grad-soft);
+  box-shadow: 0 14px 34px rgba(0,0,0,.35), 0 0 0 1px rgba(0,210,255,.12) inset;
+}
+.ion-net__card .d {
+  display: flex; align-items: center; gap: .5rem;
+  font: 700 .98rem/1.1 'Segoe UI', sans-serif; color: var(--ion-platinum);
+}
+.ion-net__card .d::before {
+  content: ""; width: 8px; height: 8px; border-radius: 50%;
+  background: var(--ion-grad); box-shadow: 0 0 10px rgba(0,210,255,.6); flex: none;
+}
+.ion-net__card.is-primary { border-color: rgba(0,210,255,.4); background: var(--ion-grad-soft); }
+.ion-net__card .s {
+  font: 500 .68rem/1.3 'Segoe UI', sans-serif; letter-spacing: .02em; color: var(--ion-mist);
+}
+.ion-net__card .go {
+  margin-top: .35rem; font: 600 .6rem/1 'Segoe UI', sans-serif;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--ion-cyan);
+  display: inline-flex; align-items: center; gap: .35rem;
+}
+.ion-net__card .go::after { content: "→"; transition: transform .3s var(--ion-ease); }
+.ion-net__card:hover .go::after { transform: translateX(4px); }
+
+.ion-trust {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+  gap: .55rem; margin-top: 1.2rem;
+}
+.ion-trust span {
+  font: 600 .56rem/1 'Segoe UI', sans-serif; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--ion-mist); border: 1px solid var(--ion-line);
+  background: rgba(0,0,0,.25); padding: 6px 12px; border-radius: 999px;
+}
+
+@media (max-width: 1024px) {
+  .ion-net__grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 760px) {
+  .ion-net__grid { grid-template-columns: 1fr; }
+  .ion-word { letter-spacing: .3em; }
+}
+
+/* ===========================================================================
+   MOTION-SAFETY (compliance / accessibility)
+   ========================================================================= */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .001ms !important; animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important; scroll-behavior: auto !important;
+  }
+  #ion-loader::before, #ion-loader::after { animation: none; }
+  .ion-orbit::after, .ion-orbit .ion-node { animation: none; }
+}

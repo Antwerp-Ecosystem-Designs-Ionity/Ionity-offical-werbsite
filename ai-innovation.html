@@ -1,6 +1,8 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
-<head
+<head>
+    <!-- IONITY consent-default (pre-tag) -->
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{'ad_storage':'denied','ad_user_data':'denied','ad_personalization':'denied','analytics_storage':'denied','wait_for_update':500});</script>
     <script src="https://app.secureprivacy.ai/script/69999f793956998e8c6d4f9c.js"></script>
     <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-0GH52FYXR0"></script>
@@ -11,9 +13,11 @@
 
   gtag('config', 'G-0GH52FYXR0');
 </script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" href="assets/images/ionity-logo-edited.png">
+    <meta name="theme-color" content="#1A1A1A">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Google Tag Manager with Consent Mode v2 | ionity.yumyum -->
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -37,18 +41,25 @@
         })(window,document,'script','dataLayer', GTM_ID);
       }
 
-      if (localStorage.getItem('ionity_cookie_consent') === 'granted') {
-        gtag('consent', 'update', {
-          'ad_storage': 'granted',
-          'ad_user_data': 'granted',
-          'ad_personalization': 'granted',
-          'analytics_storage': 'granted'
-        });
-        loadGTM();
-      }
+      try {
+        var _ip = JSON.parse(localStorage.getItem('ionity_cookie_prefs') || 'null');
+        if (_ip) {
+          gtag('consent', 'update', {
+            'ad_storage': _ip.marketing ? 'granted' : 'denied',
+            'ad_user_data': _ip.marketing ? 'granted' : 'denied',
+            'ad_personalization': _ip.marketing ? 'granted' : 'denied',
+            'analytics_storage': _ip.analytics ? 'granted' : 'denied'
+          });
+        } else if (localStorage.getItem('ionity_cookie_consent') === 'granted') {
+          gtag('consent', 'update', {
+            'ad_storage': 'granted', 'ad_user_data': 'granted',
+            'ad_personalization': 'granted', 'analytics_storage': 'granted'
+          });
+        }
+      } catch (e) {}
     </script>
     <!-- End Google Tag Manager -->
-<meta name="theme-color" content="#FFFFFF">
+
 <meta name="format-detection" content="telephone=yes">
 
 <title>Ionity AI Innovation | Generative AI for Hardware & AIoT Intelligence</title>
@@ -178,7 +189,7 @@
       "worksFor": {
         "@id": "https://www.ionity.today/#organization"
       },
-      "url": "https://www.ionity.world",
+      "url": "https://gravatar.com/ionity",
       "knowsAbout": [
         "IoT (Internet of Things)",
         "AI (Artificial Intelligence)",
@@ -215,6 +226,7 @@
 <link rel="manifest" href="/manifest.json">
 <link rel="canonical" href="https://www.ionity.today/ai-innovation.html" />
 
+
 <!-- Alternate Language Hreflang for SEO -->
 <link rel="alternate" hreflang="en" href="https://www.ionity.today/ai-innovation.html" />
 <link rel="alternate" hreflang="en-ZA" href="https://www.ionity.today/ai-innovation.html" />
@@ -225,9 +237,6 @@
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="dns-prefetch" href="https://fonts.googleapis.com">
-    
-    <!-- Cookie Consent Styles -->
-    <link rel="stylesheet" href="assets/css/style.css">
     
     <style>
         :root {
@@ -245,10 +254,7 @@
             background-color: var(--bg-dark);
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             color: var(--text-main);
-            overflow-x: hidden;
             width: 100%;
-            min-height: 100%;
-            overflow-y: auto; /* Enable vertical scrolling */
         }
 
         /* --- 3D CANVAS BACKGROUND --- */
@@ -294,6 +300,7 @@
             align-items: center;
             border-bottom: 1px solid var(--border);
             background: rgba(2, 2, 4, 0.9);
+            -webkit-backdrop-filter: blur(12px);
             backdrop-filter: blur(12px);
             position: fixed;
             width: 100%;
@@ -304,45 +311,28 @@
         }
 
         .logo {
-            font-family: 'Courier New', monospace;
-            font-weight: 700;
-            letter-spacing: 0.2rem;
-            color: #fff;
-            text-decoration: none;
-            font-size: 1.2rem;
-            position: relative;
-            text-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
-            transition: all 0.3s;
             display: flex;
             align-items: center;
-        }
-
-        .logo:hover {
-            animation: neonPulse 1.5s infinite alternate;
+            text-decoration: none;
         }
 
         .nav-logo {
             height: 80px;
             width: auto;
-            vertical-align: middle;
             transition: all 0.3s ease;
         }
-        .nav-logo:hover {
-            filter: drop-shadow(0 0 8px var(--accent-cyan));
-        }
 
-        /* Desktop Nav */
         .nav-links {
             display: flex;
             gap: 2rem;
         }
 
         .nav-links a {
-            color: var(--text-muted);
+            color: rgba(255, 255, 255, 0.85);
             text-decoration: none;
-            font-size: 0.75rem;
+            font-size: 0.62rem;
             text-transform: uppercase;
-            letter-spacing: 0.1rem;
+            letter-spacing: 0.15rem;
             transition: all 0.3s ease;
             position: relative;
             padding: 0.5rem 0;
@@ -351,60 +341,43 @@
 
         .nav-links a:hover {
             color: #fff;
-            animation: neonPulse 1s infinite alternate;
+            text-shadow: 0 0 10px #00d2ff;
         }
 
         .nav-links a.active {
-            color: var(--accent-cyan);
-            text-shadow: 0 0 15px var(--accent-cyan);
-            border-bottom: 1px solid var(--accent-cyan);
+            color: #00d2ff;
+            text-shadow: 0 0 15px #00d2ff;
+            border-bottom: 1px solid #00d2ff;
         }
 
-        .nav-links a::before {
-            content: '';
-            position: absolute;
-            bottom: 0; left: 0; width: 0; height: 1px;
-            background: var(--accent-cyan);
-            transition: width 0.3s ease;
-            box-shadow: 0 0 10px var(--accent-cyan);
-        }
-
-        .nav-links a:hover::before { width: 100%; }
-
-        /* Mobile Menu Button */
         .mobile-menu-btn {
             display: none;
-            background: transparent;
-            border: 1px solid var(--border);
-            color: var(--accent-cyan);
+            background: none;
+            border: none;
+            color: #fff;
             font-size: 1.5rem;
             cursor: pointer;
-            padding: 0.5rem 0.8rem;
-            border-radius: 4px;
-            z-index: 101;
+            z-index: 1002;
         }
 
-        /* Mobile Dropdown */
         .mobile-dropdown {
             display: none;
             position: fixed;
             top: 80px;
             right: 0;
-            left: auto;
             width: 280px;
             background: rgba(5, 10, 15, 0.95);
-            border: 1px solid var(--accent-cyan);
-            border-right: none;
+            border: 1px solid #00d2ff;
             flex-direction: column;
             padding: 1rem 0;
-            box-shadow: -5px 5px 20px rgba(0, 0, 0, 0.8), 0 0 15px rgba(0, 210, 255, 0.2);
+            box-shadow: -5px 5px 20px rgba(0, 0, 0, 0.8);
             z-index: 1000;
+            -webkit-backdrop-filter: blur(20px);
             backdrop-filter: blur(20px);
         }
 
         .mobile-dropdown.open {
             display: flex;
-            animation: slideDown 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .mobile-dropdown a {
@@ -413,23 +386,9 @@
             text-decoration: none;
             text-transform: uppercase;
             letter-spacing: 0.1rem;
+            font-size: 0.7rem;
             border-bottom: 1px solid rgba(255,255,255,0.05);
-            transition: background 0.2s;
         }
-
-        .mobile-dropdown a.active {
-            color: var(--accent-cyan);
-            background: rgba(0, 210, 255, 0.05);
-            text-shadow: 0 0 15px var(--accent-cyan);
-            border-left: 3px solid var(--accent-cyan);
-        }
-
-        .mobile-dropdown a:hover {
-            background: rgba(0, 210, 255, 0.1);
-            color: var(--accent-cyan);
-        }
-
-        @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 
         @media (max-width: 1100px) {
             .nav-links { display: none; }
@@ -570,30 +529,35 @@
             width: auto;
             opacity: 0.9;
         }
+
+        /* --- DECK LAYOUT (horizontal scroll) handled by style.css body.deck-layout --- */
     </style>
+    <!-- IONITY ENHANCE LAYER -->
+    <link rel="stylesheet" href="assets/css/enhance.css">
+    <script src="assets/js/enhance.js" defer></script>
 </head>
-<body>
+<body class="deck-layout">
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXX"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
     <canvas id="matrix-canvas"></canvas>
     <div id="canvas-container"></div>
-    <div class="scanlines"></div>
-
-    <nav>
+<nav id="mainNav">
         <a href="index.html" class="logo">
              <img src="assets/images/ionity-logo-edited.png" alt="IONITY" class="nav-logo">
         </a>
         
         <div class="nav-links">
+            <a href="index.html">Home</a>
             <a href="inner-Page.html">Systems</a>
-            <a href="services.html">Services</a>
-            <a href="products.html">Products</a>
-            <a href="ai-innovation.html" class="active">Ai Innovation</a>
+            <a href="what-we-do.html">What We Do</a>
+            <a href="ai-innovation.html" class="active">AI Innovation</a>
+            <a href="ai-news.html">AI News</a>
             <a href="roadmap.html">Roadmap</a>
             <a href="license.html">License</a>
+            <a href="privacy.html">Privacy</a>
+            <a href="subscriptions.html">Subscriptions</a>
+            <a href="terms.html">Terms</a>
             <a href="about.html">About</a>
             <a href="aedi-online.html">AEDI Online</a>
             <a href="contact.html">Contact</a>
@@ -601,16 +565,21 @@
             <a href="gateway.html">IO Way</a>
         </div>
 
-        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+        <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
     </nav>
 
-    <div class="mobile-dropdown" id="mobileDropdown">
+    <!-- Mobile Dropdown -->
+    <div class="mobile-dropdown" id="mobileMenu">
+        <a href="index.html">Home</a>
         <a href="inner-Page.html">Systems</a>
-        <a href="services.html">Services</a>
-        <a href="products.html">Products</a>
-        <a href="ai-innovation.html" class="active">Ai Innovation</a>
+        <a href="what-we-do.html">What We Do</a>
+        <a href="ai-innovation.html" class="active">AI Innovation</a>
+        <a href="ai-news.html">AI News</a>
         <a href="roadmap.html">Roadmap</a>
         <a href="license.html">License</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="subscriptions.html">Subscriptions</a>
+        <a href="terms.html">Terms</a>
         <a href="about.html">About</a>
         <a href="aedi-online.html">AEDI Online</a>
         <a href="contact.html">Contact</a>
@@ -621,28 +590,239 @@
     <!-- SecurePrivacy Consent Management -->
     <script src="https://consent.secureprivacy.ai/script/ionity-today.js"></script>
 
-    <div class="hero-container">
-        <div class="content-overlay">
-            <h1 class="main-title">
-                <span class="digital-decor">SYS.ID: 994-ALPHA</span>
-                Ai F.IT Forensic IT
-            </h1>
-            <div class="sub-title">
-                Cross Platform, System, Operating systems, Hardware, Software, datacapturing over devices secure and stable Ai Edge/Cloud/Hybrid you choose. Tomorrow, Today
+    <div class="deck-wrapper" id="deckWrapper">
+        <section class="deck-section" id="hero-slide">
+            <div class="hero-container">
+                <div class="content-overlay">
+                    <h1 class="main-title">
+                        <span class="digital-decor">SYS.ID: 994-ALPHA</span>
+                        Ai F.IT Forensic IT
+                    </h1>
+                    <div class="sub-title">
+                        Refine what is known into what is possible. Welcome to the cutting edge of data integrity and intelligent systems. At Ionity, our <strong>Ai F.IT (Forensic Information Technology)</strong> protocol ensures that your transition into the future of Gen-AI is not just innovative, but completely secure, stable, and transparent.
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
+        </section>
 
-    <section class="details-section">
-        <div class="details-content">
-            <h2 class="details-title">IoT - Ai - Data Management and Engineering</h2>
-            <div class="details-text">
-                Refine what is known into what can be possible. Making use of latest hardware and software for Gen-Ai to ensure the flow of Encrypted even edge data between devices is captured secure and safely. Data Management and Monitoring in detail and scope to enhance business flow daily and overtime.
+        <section class="deck-section" id="details-slide">
+            <div class="details-section">
+        <style>
+            .fit-section { margin-bottom: 5rem; }
+            .fit-section-header {
+                font-family: 'Courier New', monospace;
+                font-size: 0.7rem;
+                letter-spacing: 0.3rem;
+                text-transform: uppercase;
+                color: var(--accent-cyan);
+                opacity: 0.7;
+                margin-bottom: 0.5rem;
+            }
+            .fit-section h2 {
+                font-size: 2rem;
+                font-weight: 800;
+                color: #fff;
+                margin: 0 0 1.5rem 0;
+                letter-spacing: -0.5px;
+                border-left: 3px solid var(--accent-cyan);
+                padding-left: 1.5rem;
+            }
+            .fit-section h2 span { color: var(--accent-cyan); }
+            .fit-body {
+                max-width: 900px;
+                font-size: 1.1rem;
+                line-height: 1.8;
+                color: #dcdcdc;
+            }
+            .fit-body p { margin: 0 0 1.5rem 0; }
+            .fit-body strong { color: #fff; }
+            .fit-card-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 1.5rem;
+                margin-top: 2rem;
+            }
+            .fit-card {
+                background: rgba(10, 15, 20, 0.6);
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                padding: 2rem;
+                position: relative;
+                overflow: hidden;
+                transition: all 0.4s ease;
+                backdrop-filter: blur(8px);
+            }
+            .fit-card:hover {
+                transform: translateY(-4px);
+                border-color: rgba(0, 210, 255, 0.4);
+                box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 210, 255, 0.08);
+            }
+            .fit-card::before {
+                content: '';
+                position: absolute;
+                top: 0; left: 0; width: 3px; height: 0;
+                background: var(--accent-cyan);
+                transition: height 0.5s ease;
+                box-shadow: 0 0 10px var(--accent-cyan);
+            }
+            .fit-card:hover::before { height: 100%; }
+            .fit-card-icon { font-size: 1.8rem; margin-bottom: 1rem; color: var(--accent-cyan); filter: drop-shadow(0 0 8px var(--accent-cyan)); }
+            .wifi-card .fit-card-icon { color: #a78bfa; filter: drop-shadow(0 0 8px #a78bfa); }
+            .fit-card h3 {
+                font-size: 1rem;
+                font-weight: 700;
+                color: #fff;
+                margin: 0 0 0.8rem 0;
+                text-transform: uppercase;
+                letter-spacing: 0.05rem;
+            }
+            .fit-card p {
+                font-size: 0.92rem;
+                line-height: 1.7;
+                color: rgba(255,255,255,0.75);
+                margin: 0;
+            }
+            .fit-card p strong { color: var(--accent-cyan); }
+            .wifi-accent { color: #a78bfa; }
+            .wifi-accent-border { border-color: #a78bfa !important; }
+            .fit-card.wifi-card:hover { border-color: rgba(167,139,250,0.5); box-shadow: 0 12px 40px rgba(0,0,0,0.5), 0 0 20px rgba(167,139,250,0.1); }
+            .fit-card.wifi-card::before { background: #a78bfa; box-shadow: 0 0 10px #a78bfa; }
+            @media (max-width: 768px) {
+                .fit-section h2 { font-size: 1.5rem; }
+                .fit-body { font-size: 1rem; }
+                .fit-card-grid { grid-template-columns: 1fr; }
+            }
+        </style>
+
+        <!-- ===== SECTION 1: THE ARCHITECTURE ===== -->
+        <div class="fit-section">
+            <div class="fit-section-header">Protocol // 994-Alpha</div>
+            <h2>The Architecture: <span>Tomorrow, Today</span></h2>
+            <div class="fit-body">
+                <p>We build <strong>universally agnostic ecosystems</strong>. Whether you need an architecture that is purely Edge, Cloud, or a Hybrid of the two — you choose the environment, and we build the bridge.</p>
+            </div>
+            <div class="fit-card-grid">
+                <div class="fit-card">
+                    <div class="fit-card-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg></div>
+                    <h3>Scalable Cloud Infrastructure</h3>
+                    <p>We design robust, high-availability cloud environments built to handle massive data pipelines. From serverless computing to secure private clouds, our architecture provides the horsepower needed to process complex IoT telemetry with <strong>near-zero latency</strong>.</p>
+                </div>
+                <div class="fit-card">
+                    <div class="fit-card-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/></svg></div>
+                    <h3>Cross-Platform Mastery</h3>
+                    <p>Seamless integration across disparate operating systems, legacy hardware, and modern software layers. We bridge every gap between your physical infrastructure and digital operations.</p>
+                </div>
+                <div class="fit-card">
+                    <div class="fit-card-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg></div>
+                    <h3>Universal Data Capture</h3>
+                    <p>We engineer stable, <strong>encrypted data-capturing pipelines</strong> that pull telemetry from physical devices across any network constraint — wired, wireless, or satellite.</p>
+                </div>
             </div>
         </div>
-    </section>
+
+        <!-- ===== SECTION 2: GEN-AI & SECURITY ===== -->
+        <div class="fit-section">
+            <div class="fit-section-header">Intelligence // Gen-AI</div>
+            <h2>Next-Gen Security &amp; <span>Gen-AI</span></h2>
+            <div class="fit-body">
+                <p>We leverage the absolute latest in hardware and software to deploy <strong>Generative AI environments</strong> that you can trust.</p>
+            </div>
+            <div class="fit-card-grid">
+                <div class="fit-card">
+                    <div class="fit-card-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M13 1.07V9h7c0-4.08-3.05-7.44-7-7.93zM4 15c0 4.42 3.58 8 8 8s8-3.58 8-8v-4H4v4zm7-13.93C7.05 1.56 4 4.92 4 9h7V1.07z"/></svg></div>
+                    <h3>Powered by Gemini &amp; Gemma</h3>
+                    <p>We bring state-of-the-art cognitive capabilities directly to your infrastructure. We leverage <strong>Google's Gemini</strong> models for deep, multimodal reasoning and complex data analysis in the cloud, while deploying agile <strong>Gemma open-weights</strong> models directly on your hardware for hyper-fast, localized Edge intelligence.</p>
+                </div>
+                <div class="fit-card">
+                    <div class="fit-card-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg></div>
+                    <h3>Encrypted Edge Flow</h3>
+                    <p>We ensure that the flow of your data — even raw telemetry captured at the extreme physical Edge — is <strong>heavily encrypted, secured, and safely transported</strong> to your Digital Twin.</p>
+                </div>
+                <div class="fit-card">
+                    <div class="fit-card-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></div>
+                    <h3>Forensic-Level Tracking</h3>
+                    <p>Every data packet, command, and AI decision is logged with <strong>forensic precision</strong>, giving you total visibility and auditability into your automated systems.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== SECTION 3: IoT, AI & DATA ENGINEERING ===== -->
+        <div class="fit-section">
+            <div class="fit-section-header">Engineering // Data Pipeline</div>
+            <h2>IoT, AI &amp; <span>Data Engineering</span></h2>
+            <div class="fit-body">
+                <p>We don't just collect data; we <strong>engineer it</strong> to enhance your operational reality.</p>
+            </div>
+            <div class="fit-card-grid">
+                <div class="fit-card">
+                    <div class="fit-card-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg></div>
+                    <h3>Granular Monitoring</h3>
+                    <p>Deep-scope data management that gives you a <strong>microscopic view</strong> of your hardware's health, power usage, and mechanical efficiency.</p>
+                </div>
+                <div class="fit-card">
+                    <div class="fit-card-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg></div>
+                    <h3>Business Flow Optimization</h3>
+                    <p>By feeding secure, structured data into our advanced AI models, we translate raw physical metrics into <strong>actionable digital insights</strong> that streamline your daily operations and scale your business growth over time.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== SECTION 4: WiFi CSI / BLE SCANNING ===== -->
+        <div class="fit-section">
+            <div class="fit-section-header" style="color: #a78bfa;">Sensing // RF Intelligence</div>
+            <h2 style="border-left-color: #a78bfa;">WiFi CSI &amp; <span style="color:#a78bfa;">BLE Sensing</span></h2>
+            <div class="fit-body">
+                <p>Ionity's proprietary <strong>WiFi Channel State Information (CSI)</strong> and <strong>Bluetooth Low Energy (BLE)</strong> scanning platform transforms standard wireless infrastructure into a high-precision sensing layer — no cameras, no wearables, <strong>zero privacy intrusion</strong>.</p>
+            </div>
+            <div class="fit-card-grid">
+                <div class="fit-card wifi-card">
+                    <div class="fit-card-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z"/></svg></div>
+                    <h3>WiFi CSI Presence Detection</h3>
+                    <p>Our firmware extracts <strong>sub-carrier amplitude and phase data</strong> from standard WiFi signals to detect human presence, movement patterns, and room occupancy without any on-body devices.</p>
+                </div>
+                <div class="fit-card wifi-card">
+                    <div class="fit-card-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+                    <h3>Health &amp; Biometric Monitoring</h3>
+                    <p>Advanced FFT-based signal processing extracts <strong>breathing rate and heartbeat signatures</strong> from CSI variance data — enabling contactless health monitoring for elderly care, hospitals, and secure facilities.</p>
+                </div>
+                <div class="fit-card wifi-card">
+                    <div class="fit-card-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14zm-4.2-5.78v1.75l3.2-2.99L12.8 9v1.7c-3.11.43-4.35 2.56-4.8 4.7 1.11-1.5 2.58-2.18 4.8-2.18z"/></svg></div>
+                    <h3>BLE Device Scanning</h3>
+                    <p>Continuous BLE scanning for <strong>asset tracking, proximity triggers, and device inventory</strong>. Detect, classify, and locate BLE-enabled equipment across your facility in real-time.</p>
+                </div>
+                <div class="fit-card wifi-card">
+                    <div class="fit-card-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg></div>
+                    <h3>RF Security &amp; Threat Detection</h3>
+                    <p>Monitor the wireless spectrum for <strong>rogue access points, unauthorized BLE devices, and signal anomalies</strong>. Our AI correlates RF fingerprints against known baselines for automated intrusion alerts.</p>
+                </div>
+                <div class="fit-card wifi-card">
+                    <div class="fit-card-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z"/></svg></div>
+                    <h3>Spatial Analytics &amp; Indoor Navigation</h3>
+                    <p>Combine CSI + BLE + RSSI for <strong>sub-meter indoor positioning</strong> and spatial analytics. Generate heatmaps, traffic flow visualizations, and occupancy patterns from raw RF data.</p>
+                </div>
+                <div class="fit-card wifi-card">
+                    <div class="fit-card-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg></div>
+                    <h3>Edge-Native Processing</h3>
+                    <p>All CSI/BLE data is processed <strong>on-device via ESP32-S3 firmware</strong> — ensuring sub-millisecond response times, zero cloud dependency, and full offline capability.</p>
+                </div>
+            </div>
+        </div>
+
+        </div>
 
     <footer>
+  <!-- IONITY NETWORK (static, crawlable) -->
+  <div class="ion-net">
+    <div class="ion-net__label">The Ionity Network</div>
+    <div class="ion-net__grid">
+      <a class="ion-net__card" href="https://www.ionity.today" target="_blank" rel="noopener"><span class="d">ionity.today</span><span class="s">Global · Native-AI Ecosystems &amp; Edge Intelligence</span><span class="go">Visit</span></a>
+      <a class="ion-net__card is-primary" href="https://www.ionity.co.za" target="_blank" rel="noopener"><span class="d">ionity.co.za</span><span class="s">Ionity South Africa · Local Solutions &amp; Support</span><span class="go">Visit</span></a>
+      <a class="ion-net__card" href="https://gravatar.com/ionity" target="_blank" rel="me noopener"><span class="d">AntwerpDesigns</span><span class="s">Ionity Founder · Design Studio &amp; Creator Profile</span><span class="go">Visit</span></a>
+    </div>
+    <div class="ion-trust" aria-label="Compliance and standards">
+      <span>POPIA &amp; GDPR Aligned</span><span>WCAG-Minded Accessibility</span><span>CC BY-NC-SA 4.0</span><span>Made with AEDI®</span><span>Policy AED 986</span>
+    </div>
+  </div>
+
         <style>
             @keyframes footerGlow {
                 0% { text-shadow: 0 0 2px rgba(255,255,255,0.1); }
@@ -655,11 +835,11 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                margin-bottom: 2rem;
+                margin-bottom: 1rem;
                 width: 100%;
             }
             .footer-logo {
-                height: 80px;
+                height: 60px;
                 width: auto;
                 opacity: 0.9;
                 transition: all 0.3s ease;
@@ -684,19 +864,22 @@
         <div class="footer-logo-container">
             <img src="assets/images/ionity-logo-edited.png" alt="Ionity Logo" class="footer-logo">
         </div>
-        <div class="footer-content" style="opacity: 0.7; line-height: 2; color: var(--text-muted);">
+        <div class="footer-content" style="opacity: 0.7; line-height: 1.8; color: var(--text-muted);">
             <div>Ionity™ (Pty) Ltd 2025-2026 | Creative Commons BY-NC-SA 4.0 | Made with AEDI™ | Author: Antwerp Designs</div>
             <div>South Africa Centurion 0157 | Policy AED 986 | License AED 900 | Ionity™ IoT-Ai-DAQ-PdM-CMS-F-iT Hardware, Software Integrations, ALL RIGHTS RESERVED</div>
             <div>
                 <a href="tel:+27646999877">+27 646 999 877</a> &nbsp;|&nbsp;
                 <a href="mailto:ai@ionity.today">ai@ionity.today</a> &nbsp;|&nbsp; 
-                <a href="https://www.ionity.world" target="_blank">www.ionity.world</a>
+                <a href="https://gravatar.com/ionity" target="_blank" rel="me noopener noreferrer">gravatar.com/ionity</a>
             </div>
-            <div style="margin-top: 1rem;">
+            <div style="margin-top: 0.75rem;">
                 <a href="https://antwerpdesignsionity.github.io/Metadata" target="_blank" rel="noopener noreferrer">Metadata</a>
             </div>
         </div>
     </footer>
+
+    </section>
+</div>
 
     <!-- Three.js Import -->
     <script type="importmap">
@@ -747,9 +930,38 @@
             setInterval(matrix, 50);
         })();
 
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobileDropdown');
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
             menu.classList.toggle('open');
+        }
+    </script>
+    <script>
+        // --- DECK HORIZONTAL SCROLL ---
+        const deck = document.getElementById('deckWrapper');
+        if (deck) {
+            deck.addEventListener('wheel', (e) => {
+                const activeSection = deck.querySelector('.deck-section:hover');
+                if (activeSection) {
+                    const isAtTop = activeSection.scrollTop === 0;
+                    const isAtBottom = Math.abs(activeSection.scrollHeight - activeSection.scrollTop - activeSection.clientHeight) < 2;
+                    if ((e.deltaY < 0 && isAtTop) || (e.deltaY > 0 && isAtBottom)) {
+                        e.preventDefault();
+                        deck.scrollBy({ left: e.deltaY * 3, behavior: 'auto' });
+                    }
+                } else {
+                    e.preventDefault();
+                    deck.scrollBy({ left: e.deltaY * 3, behavior: 'auto' });
+                }
+            }, { passive: false });
+
+            deck.addEventListener('scroll', () => {
+                const nav = document.getElementById('mainNav');
+                if (deck.scrollLeft > 50) {
+                    nav.classList.add('scrolled');
+                } else {
+                    nav.classList.remove('scrolled');
+                }
+            });
         }
     </script>
     <script src="assets/js/audio-manager.js"></script>
@@ -918,7 +1130,7 @@
 
     <!-- Identity Modules -->
     <div class="identity-modules">
-        <a href="https://gravatar.com/antwerpdesigns" target="_blank" rel="noopener noreferrer" class="module-link" title="Global Identity Node">
+        <a href="https://gravatar.com/ionity" target="_blank" rel="noopener noreferrer" class="module-link" title="Global Identity Node">
             <img src="assets/images/gravatar-icon.svg" alt="Gravatar" class="module-icon">
             <span class="module-label">ID_NODE</span>
         </a>

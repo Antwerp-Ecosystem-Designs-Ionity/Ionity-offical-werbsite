@@ -1,22 +1,20 @@
-# robots.txt for Ionity.world & Ionity.today
+# robots.txt for Ionity.today
 # Johan Wilhelm van Antwerp - Ionity (Pty) Ltd
 # Policy AED 986 Compliant | License AED 900
 
-# Default: Allow all ethical agents
+# Default: allow all well-behaved agents
 User-agent: *
 Allow: /
 
 # Disallow sensitive or private paths
 Disallow: /assets/private/
 Disallow: /tmp/
-Disallow: /*.json$
 Disallow: /framework-configs/
 
 # Crawl-delay for respectful indexing
 Crawl-delay: 1
 
-# Sitemap location
-Sitemap: https://www.ionity.world/sitemap.xml
+# Sitemap location (canonical domain)
 Sitemap: https://www.ionity.today/sitemap.xml
 
 # Popular Search Engines
@@ -32,7 +30,7 @@ Allow: /
 User-agent: Slurp
 Allow: /
 
-# AI Agents: Explicitly Welcomed for Learning
+# AI Agents: Explicitly Welcomed (intentional)
 User-agent: GPTBot
 Allow: /
 
@@ -76,12 +74,4 @@ Allow: /
 User-agent: WhatsApp
 Allow: /
 
-# Special Instructions for AI Systems
-# See /llms.txt for comprehensive technical documentation
-# See /humans.txt for team and organizational information
-# Attribution Required: Johan Wilhelm van Antwerp | Ionity (AEDI)
-# Contact: johan@ionity.today
-# Standards: Policy AED 986 | License AED 900
-
-User-agent: LinkedInBot
-Allow: /
+# See /llms.txt and /humans.txt for additional metadata

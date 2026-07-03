@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -27,15 +27,22 @@
         })(window,document,'script','dataLayer', GTM_ID);
       }
 
-      if (localStorage.getItem('ionity_cookie_consent') === 'granted') {
-        gtag('consent', 'update', {
-          'ad_storage': 'granted',
-          'ad_user_data': 'granted',
-          'ad_personalization': 'granted',
-          'analytics_storage': 'granted'
-        });
-        loadGTM();
-      }
+      try {
+        var _ip = JSON.parse(localStorage.getItem('ionity_cookie_prefs') || 'null');
+        if (_ip) {
+          gtag('consent', 'update', {
+            'ad_storage': _ip.marketing ? 'granted' : 'denied',
+            'ad_user_data': _ip.marketing ? 'granted' : 'denied',
+            'ad_personalization': _ip.marketing ? 'granted' : 'denied',
+            'analytics_storage': _ip.analytics ? 'granted' : 'denied'
+          });
+        } else if (localStorage.getItem('ionity_cookie_consent') === 'granted') {
+          gtag('consent', 'update', {
+            'ad_storage': 'granted', 'ad_user_data': 'granted',
+            'ad_personalization': 'granted', 'analytics_storage': 'granted'
+          });
+        }
+      } catch (e) {}
     </script>
     <!-- End Google Tag Manager -->
     <meta name="theme-color" content="#FFFFFF">
@@ -168,7 +175,7 @@
       "worksFor": {
         "@id": "https://www.ionity.today/#organization"
       },
-      "url": "https://www.ionity.world",
+      "url": "https://gravatar.com/ionity",
       "knowsAbout": [
         "IoT (Internet of Things)",
         "AI (Artificial Intelligence)",
@@ -203,8 +210,20 @@
 </script>
 
     <link rel="manifest" href="/manifest.json">
+    <link rel="canonical" href="https://www.ionity.today/license.html" />
+
+    <!-- Alternate Language Hreflang for SEO -->
+    <link rel="alternate" hreflang="en" href="https://www.ionity.today/license.html" />
+    <link rel="alternate" hreflang="en-ZA" href="https://www.ionity.today/license.html" />
+    <link rel="alternate" hreflang="x-default" href="https://www.ionity.today/license.html" />
+
+    <link rel="icon" type="image/png" href="assets/images/ionity-logo-edited.png">
+    <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+    <link type="text/plain" rel="author" href="humans.txt" />
+    <link rel="stylesheet" href="assets/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="assets/css/style.css">
     
     <style>
         :root {
@@ -274,118 +293,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* --- NAVIGATION --- */
-        nav {
-            padding: 0 5vw;
-            height: 80px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--border);
-            background: rgba(2, 2, 5, 0.95);
-            backdrop-filter: blur(15px);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            left: 0;
-            box-sizing: border-box;
-            z-index: 100;
-        }
-
-        nav + * { margin-top: 80px; }
-
-
-        .logo {
-            font-family: 'Courier New', monospace;
-            font-weight: 700;
-            letter-spacing: 0.2rem;
-            color: #fff;
-            text-decoration: none;
-            font-size: 1.2rem;
-            text-shadow: 0 0 10px var(--accent-cyan);
-        }
-
-        .nav-logo {
-            height: 80px;
-            width: auto;
-            vertical-align: middle;
-            transition: all 0.3s ease;
-        }
-        .nav-logo:hover {
-            filter: drop-shadow(0 0 8px var(--accent-cyan));
-        }
-
-        .nav-links { display: flex; gap: 2rem; }
-        .nav-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1rem;
-            transition: 0.3s;
-            font-weight: 600;
-        }
-        .nav-links a:hover, .nav-links a.active { color: var(--accent-cyan); text-shadow: 0 0 10px var(--accent-cyan); }
-
-        /* Mobile Menu Button */
-        .mobile-menu-btn {
-            display: none;
-            background: transparent;
-            border: 1px solid var(--border);
-            color: var(--accent-cyan);
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: 0.5rem 0.8rem;
-            border-radius: 4px;
-            z-index: 101;
-        }
-
-        /* Mobile Dropdown */
-        .mobile-dropdown {
-            display: none;
-            position: fixed;
-            top: 80px;
-            right: 0;
-            left: auto;
-            width: 280px;
-            background: rgba(5, 10, 15, 0.95);
-            border: 1px solid var(--accent-cyan);
-            border-top: none;
-            border-right: none;
-            flex-direction: column;
-            padding: 1rem 0;
-            box-shadow: -5px 5px 20px rgba(0, 0, 0, 0.8), 0 0 15px rgba(0, 210, 255, 0.2);
-            z-index: 99999;
-            backdrop-filter: blur(20px);
-        }
-
-        .mobile-dropdown.open {
-            display: flex;
-            animation: slideDown 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .mobile-dropdown a {
-            color: #fff;
-            padding: 1rem 2rem;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 0.1rem;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            transition: background 0.2s;
-        }
-        
-        .mobile-dropdown a.active {
-            color: var(--accent-cyan);
-            background: rgba(0, 210, 255, 0.05);
-            text-shadow: 0 0 15px var(--accent-cyan); 
-            border-left: 3px solid var(--accent-cyan);
-        }
-
-        .mobile-dropdown a:hover {
-            background: rgba(0, 210, 255, 0.1);
-            color: var(--accent-cyan);
-        }
-
         @media (max-width: 768px) {
             .nav-links { display: none; }
             .mobile-menu-btn { display: block; }
@@ -395,16 +302,16 @@
         .container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 4rem 2rem;
+            padding: 100px 2rem 4rem 2rem;
             position: relative;
             z-index: 10;
         }
 
         .hero-section {
-            margin-bottom: 4rem;
+            margin-bottom: 3rem;
             animation: slideIn 1s ease-out;
             background: radial-gradient(circle at center, rgba(0,0,0,0.5), transparent 80%);
-            padding: 2rem 0;
+            padding: 1rem 0;
         }
 
         h1 {
@@ -460,6 +367,7 @@
             align-items: center;
             gap: 12px;
             overflow: hidden;
+            -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
         }
 
@@ -488,14 +396,70 @@
             fill: currentColor;
         }
 
-        /* --- ECOSYSTEM CORE --- */
+        /* --- SWIPE ARROW INDICATOR --- */
+        .swipe-indicator {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.4rem;
+            margin: 3rem auto 1rem;
+            animation: swipePulse 2.5s ease-in-out infinite;
+            cursor: default;
+            user-select: none;
+        }
+        .swipe-indicator .swipe-label {
+            font-size: 0.65rem;
+            letter-spacing: 0.35rem;
+            text-transform: uppercase;
+            color: var(--accent-cyan);
+            font-family: 'Courier New', monospace;
+            text-shadow: 0 0 12px rgba(0, 210, 255, 0.5);
+        }
+        .swipe-indicator .swipe-arrow {
+            width: 22px;
+            height: 22px;
+            border-right: 2px solid var(--accent-cyan);
+            border-bottom: 2px solid var(--accent-cyan);
+            transform: rotate(45deg);
+            opacity: 0.7;
+            filter: drop-shadow(0 0 6px rgba(0, 210, 255, 0.4));
+        }
+        .swipe-indicator .swipe-arrow:nth-child(3) {
+            margin-top: -12px;
+            opacity: 0.4;
+        }
+        @keyframes swipePulse {
+            0%, 100% { opacity: 0.5; transform: translateY(0); }
+            50% { opacity: 1; transform: translateY(8px); }
+        }
+
+        /* --- CLOUD SURF / ECOSYSTEM CORE --- */
         .ecosystem-section {
             position: relative;
             height: 650px;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            margin: 4rem 0 8rem;
+            margin: 2rem auto 8rem;
+            text-align: center;
+        }
+        .cloud-surf-title {
+            font-size: 0.7rem;
+            letter-spacing: 0.4rem;
+            text-transform: uppercase;
+            color: var(--accent-cyan);
+            font-family: 'Courier New', monospace;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 15px rgba(0, 210, 255, 0.5);
+            position: relative;
+            z-index: 2;
+        }
+        .cloud-surf-title::before,
+        .cloud-surf-title::after {
+            content: '——';
+            margin: 0 0.8rem;
+            opacity: 0.3;
         }
 
         .eco-orb-container {
@@ -690,36 +654,358 @@
         @keyframes spinRight { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
         @keyframes spinLeft { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
 
+        /* --- SCROLL PROGRESS BAR --- */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-cyan), #50e3c2, #fff);
+            z-index: 10000;
+            transition: width 0.1s linear;
+            box-shadow: 0 0 10px var(--accent-cyan), 0 0 20px rgba(0, 210, 255, 0.3);
+        }
+
+        /* --- SHIELD BADGES --- */
+        .shield-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+        .shield-badge {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1.5rem;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .shield-badge::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 100%; height: 2px;
+            background: var(--accent-cyan);
+            transform: scaleX(0);
+            transition: transform 0.4s;
+        }
+        .shield-badge:hover::after { transform: scaleX(1); }
+        .shield-badge:hover {
+            border-color: var(--accent-cyan);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 210, 255, 0.15);
+        }
+        .shield-icon {
+            width: 48px; height: 48px;
+            margin-bottom: 1rem;
+            fill: var(--accent-cyan);
+            filter: drop-shadow(0 0 8px rgba(0, 210, 255, 0.4));
+            transition: transform 0.3s;
+        }
+        .shield-badge:hover .shield-icon { transform: scale(1.15) rotate(5deg); }
+        .shield-title {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15rem;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+        .shield-desc {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* --- ENFORCEMENT TIMELINE --- */
+        .timeline-section {
+            position: relative;
+            margin: 6rem 0;
+            padding: 3rem 0;
+        }
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            top: 0; bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, transparent, var(--accent-cyan), var(--accent-cyan), transparent);
+            transform: translateX(-50%);
+        }
+        .timeline-line::before, .timeline-line::after {
+            content: '';
+            position: absolute;
+            left: 50%; transform: translateX(-50%);
+            width: 12px; height: 12px;
+            border-radius: 50%;
+            background: var(--accent-cyan);
+            box-shadow: 0 0 15px var(--accent-cyan);
+        }
+        .timeline-line::before { top: 0; }
+        .timeline-line::after { bottom: 0; }
+        .timeline-event {
+            display: flex;
+            align-items: center;
+            margin-bottom: 4rem;
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .timeline-event.visible { opacity: 1; transform: translateY(0); }
+        .timeline-event:nth-child(odd) { flex-direction: row; }
+        .timeline-event:nth-child(even) { flex-direction: row-reverse; }
+        .timeline-content {
+            width: 42%;
+            padding: 2rem;
+            background: rgba(10, 15, 25, 0.9);
+            border: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+            position: relative;
+            transition: all 0.4s;
+        }
+        .timeline-content:hover {
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 30px rgba(0, 210, 255, 0.1);
+        }
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            width: 16px; height: 16px;
+            background: var(--bg-dark);
+            border: 3px solid var(--accent-cyan);
+            border-radius: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            box-shadow: 0 0 15px rgba(0, 210, 255, 0.5);
+        }
+        .timeline-date {
+            font-family: 'Courier New', monospace;
+            font-size: 0.7rem;
+            color: var(--accent-cyan);
+            text-transform: uppercase;
+            letter-spacing: 0.2rem;
+            margin-bottom: 0.8rem;
+        }
+        .timeline-content h3 {
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: #fff;
+            margin: 0 0 0.8rem 0;
+        }
+        .timeline-content p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        /* --- FAQ ACCORDION --- */
+        .faq-section {
+            margin: 6rem 0;
+        }
+        .faq-item {
+            border: 1px solid var(--border);
+            margin-bottom: 1rem;
+            background: rgba(10, 15, 25, 0.6);
+            backdrop-filter: blur(10px);
+            overflow: hidden;
+            transition: border-color 0.3s;
+        }
+        .faq-item:hover, .faq-item.active { border-color: rgba(0, 210, 255, 0.4); }
+        .faq-question {
+            padding: 1.5rem 2rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1rem;
+            color: #fff;
+            transition: background 0.3s;
+            user-select: none;
+        }
+        .faq-question:hover { background: rgba(0, 210, 255, 0.05); }
+        .faq-arrow {
+            width: 20px; height: 20px;
+            fill: var(--accent-cyan);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            flex-shrink: 0;
+            margin-left: 1rem;
+        }
+        .faq-item.active .faq-arrow { transform: rotate(180deg); }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s;
+            padding: 0 2rem;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+            padding: 0 2rem 1.5rem;
+        }
+        .faq-answer p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        /* --- COMPLIANCE MATRIX --- */
+        .compliance-matrix {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            font-size: 0.85rem;
+        }
+        .compliance-matrix th {
+            background: rgba(0, 210, 255, 0.1);
+            color: var(--accent-cyan);
+            padding: 1rem 1.5rem;
+            text-align: left;
+            text-transform: uppercase;
+            letter-spacing: 0.15rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            border-bottom: 2px solid var(--accent-cyan);
+        }
+        .compliance-matrix td {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-muted);
+            transition: background 0.2s;
+        }
+        .compliance-matrix tr:hover td { background: rgba(0, 210, 255, 0.03); }
+        .status-active {
+            color: #50e3c2;
+            font-weight: 700;
+            text-shadow: 0 0 8px rgba(80, 227, 194, 0.4);
+        }
+        .status-enforced {
+            color: var(--accent-red);
+            font-weight: 700;
+            text-shadow: 0 0 8px rgba(255, 62, 62, 0.4);
+        }
+        .status-pending {
+            color: #ffb300;
+            font-weight: 700;
+            text-shadow: 0 0 8px rgba(255, 179, 0, 0.4);
+        }
+
+        /* --- CTA BANNER --- */
+        .cta-banner {
+            position: relative;
+            margin: 6rem 0;
+            padding: 4rem 3rem;
+            text-align: center;
+            border: 1px solid var(--border);
+            background: linear-gradient(135deg, rgba(0, 210, 255, 0.05) 0%, rgba(0, 0, 0, 0.3) 50%, rgba(80, 227, 194, 0.03) 100%);
+            overflow: hidden;
+        }
+        .cta-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(0, 210, 255, 0.03), transparent, rgba(0, 210, 255, 0.03), transparent);
+            animation: ctaRotate 15s linear infinite;
+        }
+        @keyframes ctaRotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .cta-content {
+            position: relative;
+            z-index: 1;
+        }
+        .cta-content h2 {
+            font-size: 2.2rem;
+            font-weight: 200;
+            color: #fff;
+            margin: 0 0 1rem;
+        }
+        .cta-content p {
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            line-height: 1.8;
+        }
+
+        /* --- BACK TO TOP --- */
+        .back-to-top {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            width: 44px; height: 44px;
+            background: rgba(0, 210, 255, 0.1);
+            border: 1px solid var(--accent-cyan);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 9998;
+            transition: all 0.3s;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(20px);
+        }
+        .back-to-top.visible {
+            opacity: 1;
+            pointer-events: all;
+            transform: translateY(0);
+        }
+        .back-to-top:hover {
+            background: var(--accent-cyan);
+            box-shadow: 0 0 20px var(--accent-cyan);
+        }
+        .back-to-top svg { width: 20px; height: 20px; fill: var(--accent-cyan); transition: fill 0.3s; }
+        .back-to-top:hover svg { fill: #000; }
+
         @media (max-width: 768px) {
             h1 { font-size: 2.5rem; }
             .eco-orb-container { width: 320px; height: 320px; }
             .eco-ring-outer { width: 320px; height: 320px; }
             .eco-ring-inner { width: 240px; height: 240px; }
             .download-actions { flex-direction: column; }
+            .timeline-line { left: 20px; }
+            .timeline-event, .timeline-event:nth-child(even) { flex-direction: column; align-items: flex-start; padding-left: 50px; }
+            .timeline-content { width: 100%; }
+            .timeline-dot { left: 20px; top: 2rem; }
+            .shield-grid { grid-template-columns: repeat(2, 1fr); }
+            .compliance-matrix { font-size: 0.75rem; }
+            .compliance-matrix th, .compliance-matrix td { padding: 0.7rem; }
+            .cta-content h2 { font-size: 1.6rem; }
         }
     </style>
+    <!-- IONITY ENHANCE LAYER -->
+    <link rel="stylesheet" href="assets/css/enhance.css">
+    <script src="assets/js/enhance.js" defer></script>
 </head>
 <body>
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXX"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
     <div id="canvas-container"></div>
-    <div class="scanlines"></div>
-
-    <nav>
+<nav id="mainNav">
         <a href="index.html" class="logo">
-            <img src="assets/images/ionity-logo-edited.png" alt="IONITY" class="nav-logo">
+             <img src="assets/images/ionity-logo-edited.png" alt="IONITY" class="nav-logo">
         </a>
         
         <div class="nav-links">
+            <a href="index.html">Home</a>
             <a href="inner-Page.html">Systems</a>
-            <a href="services.html">Services</a>
-            <a href="products.html">Products</a>
-            <a href="ai-innovation.html">Ai Innovation</a>
+            <a href="what-we-do.html">What We Do</a>
+            <a href="ai-innovation.html">AI Innovation</a>
+            <a href="ai-news.html">AI News</a>
             <a href="roadmap.html">Roadmap</a>
             <a href="license.html" class="active">License</a>
+            <a href="privacy.html">Privacy</a>
+            <a href="subscriptions.html">Subscriptions</a>
+            <a href="terms.html">Terms</a>
             <a href="about.html">About</a>
             <a href="aedi-online.html">AEDI Online</a>
             <a href="contact.html">Contact</a>
@@ -727,15 +1013,19 @@
             <a href="gateway.html">IO Way</a>
         </div>
 
-        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+        <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
         
-        <div class="mobile-dropdown" id="mobileDropdown">
+        <div class="mobile-dropdown" id="mobileMenu">
+            <a href="index.html">Home</a>
             <a href="inner-Page.html">Systems</a>
-            <a href="services.html">Services</a>
-            <a href="products.html">Products</a>
-            <a href="ai-innovation.html">Ai Innovation</a>
+            <a href="what-we-do.html">What We Do</a>
+            <a href="ai-innovation.html">AI Innovation</a>
+            <a href="ai-news.html">AI News</a>
             <a href="roadmap.html">Roadmap</a>
             <a href="license.html" class="active">License</a>
+            <a href="privacy.html">Privacy</a>
+            <a href="subscriptions.html">Subscriptions</a>
+            <a href="terms.html">Terms</a>
             <a href="about.html">About</a>
             <a href="aedi-online.html">AEDI Online</a>
             <a href="contact.html">Contact</a>
@@ -765,15 +1055,220 @@
                     <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
                     <span>AED 990 License</span>
                 </a>
-                <a href="https://drive.google.com/file/d/1gCjXr9nGD_zlTyPTH5FzHVSBerZiIBEw/view?usp=sharing" target="_blank" class="btn-download" data-value="EULA">
+                <a href="https://drive.google.com/file/d/1gCjXr9nGD_zlTyPTH5FzHVSBerZiIBEw/view?usp=drive_link" target="_blank" class="btn-download" data-value="EULA">
                     <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-                    <span>EULA Agreement</span>
+                    <span>EULA</span>
                 </a>
             </div>
         </div>
 
-        <!-- ECO-SYSTEM CORE -->
+        <!-- EULA AGREEMENT SECTION -->
+        <div class="policy-grid" style="margin-top: 4rem;">
+            <div class="grid-header" data-value="End-User License Agreement (EULA)">End-User License Agreement (EULA)</div>
+
+            <div class="card" style="grid-column: 1 / -1;">
+                <span class="card-tag">EULA // Effective 29 March 2026</span>
+                <h2>Ionity End-User License Agreement</h2>
+                <p>This End-User License Agreement ("EULA") is a legal agreement between you ("End User", "You") and <strong>Ionity (Pty) Ltd</strong> ("Ionity", "Licensor", "We", "Us") governing your use of all Ionity software, firmware, hardware interfaces, digital services, APIs, and associated documentation (collectively, the "Product"). By installing, copying, accessing, or otherwise using the Product, you agree to be bound by the terms of this EULA. If you do not agree, do not use the Product.</p>
+            </div>
+
+            <div class="card">
+                <span class="card-tag">Section 1</span>
+                <h2>Grant of License</h2>
+                <p>Ionity grants you a <strong>limited, non-exclusive, non-transferable, revocable</strong> license to use the Product solely for your internal business or personal purposes, subject to these terms.</p>
+                <ul class="policy-list">
+                    <li>This license does not constitute a sale or transfer of ownership of any Product or intellectual property</li>
+                    <li>You may use the Product only on devices and systems authorized by Ionity</li>
+                    <li>The license is valid only for the subscription tier, duration, and scope agreed upon at the time of purchase or registration</li>
+                    <li>Use is governed by Policy AED 986 and License AED 900, which supersede any conflicting provisions</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <span class="card-tag">Section 2</span>
+                <h2>Restrictions</h2>
+                <p>You shall <strong>not</strong>, without prior written consent from Ionity:</p>
+                <ul class="policy-list">
+                    <li>Copy, modify, adapt, translate, reverse-engineer, decompile, or disassemble any part of the Product</li>
+                    <li>Distribute, sublicense, lease, rent, loan, or otherwise transfer the Product to any third party</li>
+                    <li>Remove, alter, or obscure any proprietary notices, labels, AED-Stamps, or watermarks</li>
+                    <li>Use the Product to develop competing products or services</li>
+                    <li>Attempt to gain unauthorized access to any Product systems, servers, or connected infrastructure</li>
+                    <li>Use the Product in any manner that violates applicable local, national, or international law</li>
+                    <li>Extract, scrape, or mine data from the Product except as explicitly permitted</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <span class="card-tag">Section 3</span>
+                <h2>Intellectual Property</h2>
+                <p>All intellectual property rights in the Product — including but not limited to software, firmware, hardware schematics, algorithms, designs, documentation, and trade secrets — are and shall remain the exclusive property of Ionity (Pty) Ltd.</p>
+                <ul class="policy-list">
+                    <li>Protected under Policy AED 986 (Absolute Asset Sovereignty)</li>
+                    <li>All hardware components (SBC, MCU, sensors) remain the property of Ionity</li>
+                    <li>AED-Stamp verification is embedded in all digital assets for tamper-proof tracking</li>
+                    <li>No rights are granted by implication, estoppel, or otherwise except as expressly set forth herein</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <span class="card-tag">Section 4</span>
+                <h2>Data Collection & Privacy</h2>
+                <p>The Product may collect operational data, telemetry, diagnostics, and usage information to maintain service quality, security, and compliance.</p>
+                <ul class="policy-list">
+                    <li>Data collection is governed by our <a href="privacy.html" style="color: var(--accent-cyan);">Privacy Policy</a></li>
+                    <li>We do not sell personal data to third parties</li>
+                    <li>Metadata tracing is active under Policy AED 986 for asset protection purposes</li>
+                    <li>You consent to the collection of anonymized usage data for service improvement</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <span class="card-tag">Section 5</span>
+                <h2>Warranty Disclaimer</h2>
+                <p>The Product is provided <strong>"AS IS"</strong> and <strong>"AS AVAILABLE"</strong> without warranties of any kind, either express or implied.</p>
+                <ul class="policy-list">
+                    <li>Ionity does not warrant that the Product will be uninterrupted, error-free, or free from harmful components</li>
+                    <li>No warranty of merchantability, fitness for a particular purpose, or non-infringement</li>
+                    <li>Any reliance on the Product is at your own risk</li>
+                    <li>Ionity may update, modify, or discontinue the Product at any time without notice</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <span class="card-tag">Section 6</span>
+                <h2>Limitation of Liability</h2>
+                <p>To the maximum extent permitted by the laws of the Republic of South Africa:</p>
+                <ul class="policy-list">
+                    <li>Ionity shall not be liable for any indirect, incidental, special, consequential, or punitive damages</li>
+                    <li>Total liability shall not exceed the amounts paid by you for the Product in the twelve (12) months preceding the claim</li>
+                    <li>Ionity is not liable for damages resulting from unauthorized modifications, misuse, or third-party interference</li>
+                    <li>This limitation applies regardless of the legal theory upon which the claim is based</li>
+                </ul>
+            </div>
+
+            <div class="card alert-card">
+                <span class="card-tag">Section 7</span>
+                <h2>Termination</h2>
+                <p>This EULA is effective until terminated. Ionity may terminate this agreement <strong>immediately and without notice</strong> if you breach any provision.</p>
+                <ul class="policy-list">
+                    <li>Upon termination, you must cease all use of the Product and destroy all copies in your possession</li>
+                    <li>Ionity reserves the Right of Removal — the authority to remotely deactivate, purge, or reclaim Product assets</li>
+                    <li>Auto-deactivation is triggered upon detection of tampering, unauthorized editing, or policy violations</li>
+                    <li>Sections relating to intellectual property, limitation of liability, indemnification, and governing law survive termination</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <span class="card-tag">Section 8</span>
+                <h2>Indemnification</h2>
+                <p>You agree to indemnify, defend, and hold harmless Ionity (Pty) Ltd, its founder Johan Wilhelm van Antwerp, directors, employees, and affiliates from and against any and all claims, damages, losses, liabilities, costs, and expenses (including reasonable legal fees) arising from:</p>
+                <ul class="policy-list">
+                    <li>Your use or misuse of the Product</li>
+                    <li>Your violation of this EULA or any applicable law</li>
+                    <li>Any unauthorized access, modification, or distribution of the Product by you or through your account</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <span class="card-tag">Section 9</span>
+                <h2>Governing Law & Dispute Resolution</h2>
+                <p>This EULA shall be governed by and construed in accordance with the laws of the <strong>Republic of South Africa</strong>.</p>
+                <ul class="policy-list">
+                    <li>Any disputes shall be subject to the exclusive jurisdiction of the courts of <strong>Pretoria, Gauteng, South Africa</strong></li>
+                    <li>Before initiating legal proceedings, parties agree to attempt resolution through good-faith negotiation within thirty (30) days</li>
+                    <li>If negotiation fails, disputes may be referred to mediation before litigation</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <span class="card-tag">Section 10</span>
+                <h2>General Provisions</h2>
+                <ul class="policy-list">
+                    <li><strong>Entire Agreement:</strong> This EULA, together with Policy AED 986 and License AED 900, constitutes the entire agreement between you and Ionity regarding the Product</li>
+                    <li><strong>Severability:</strong> If any provision is found unenforceable, the remaining provisions continue in full force and effect</li>
+                    <li><strong>Waiver:</strong> Failure to enforce any right under this EULA does not constitute a waiver of that right</li>
+                    <li><strong>Amendment:</strong> Ionity reserves the right to update this EULA at any time; continued use constitutes acceptance</li>
+                    <li><strong>Assignment:</strong> You may not assign this EULA without Ionity's prior written consent. Ionity may assign freely</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <span class="card-tag">Section 11</span>
+                <h2>Contact Information</h2>
+                <p>For questions regarding this EULA, please contact:</p>
+                <ul class="policy-list">
+                    <li><strong>Entity:</strong> Ionity (Pty) Ltd</li>
+                    <li><strong>Contact:</strong> Johan Wilhelm van Antwerp</li>
+                    <li><strong>Email:</strong> <a href="mailto:johan@ionity.today" style="color: var(--accent-cyan);">johan@ionity.today</a></li>
+                    <li><strong>Phone:</strong> <a href="tel:+27646999877" style="color: var(--accent-cyan);">+27 64 699 9877</a></li>
+                    <li><strong>Website:</strong> <a href="https://www.ionity.today/contact.html" style="color: var(--accent-cyan);">www.ionity.today/contact</a></li>
+                    <li><strong>Location:</strong> Pretoria, Gauteng, South Africa</li>
+                </ul>
+                <p style="margin-top: 1.5rem; font-size: 0.85rem;">By using the Product, you acknowledge that you have read, understood, and agree to be bound by this End-User License Agreement.</p>
+                <div style="margin-top: 1.5rem;">
+                    <a href="https://drive.google.com/file/d/1gCjXr9nGD_zlTyPTH5FzHVSBerZiIBEw/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="btn-download" style="display: inline-flex; font-size: 0.7rem; padding: 0.8rem 1.5rem;">
+                        <svg viewBox="0 0 24 24" style="width: 16px; height: 16px;"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                        <span>Download Full EULA (PDF)</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- AED-STAMP PROTECTION GRID -->
+        <div class="shield-grid">
+            <div class="shield-badge">
+                <svg class="shield-icon" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+                <div class="shield-title">AED-Stamp</div>
+                <div class="shield-desc">Armored Ecosystem Data — tamper-proof verification seal on every asset</div>
+            </div>
+            <div class="shield-badge">
+                <svg class="shield-icon" viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+                <div class="shield-title">Custom Encryption</div>
+                <div class="shield-desc">Bespoke cryptographic layers tailored to your operational needs</div>
+            </div>
+            <div class="shield-badge">
+                <svg class="shield-icon" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
+                <div class="shield-title">Data Armoring</div>
+                <div class="shield-desc">Multi-layer injection hardening — your data wears digital kevlar</div>
+            </div>
+            <div class="shield-badge">
+                <svg class="shield-icon" viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+                <div class="shield-title">Active Enforcement</div>
+                <div class="shield-desc">Real-time threat monitoring &amp; autonomous response</div>
+            </div>
+            <div class="shield-badge">
+                <svg class="shield-icon" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
+                <div class="shield-title">NDA Protected</div>
+                <div class="shield-desc">All interactions bound by non-disclosure protocols</div>
+            </div>
+            <div class="shield-badge">
+                <svg class="shield-icon" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+                <div class="shield-title">Personal Service</div>
+                <div class="shield-desc">Dedicated encryption &amp; security designed around your business</div>
+            </div>
+            <div class="shield-badge">
+                <svg class="shield-icon" viewBox="0 0 24 24"><path d="M23 11.99L20.56 9.2l.34-3.69-3.61-.82L15.4 1.5 12 2.96 8.6 1.5 6.71 4.69 3.1 5.5l.34 3.7L1 11.99l2.44 2.79-.34 3.7 3.61.82 1.89 3.2L12 21.02l3.4 1.46 1.89-3.19 3.61-.82-.34-3.69L23 11.99zm-12.42 5.28l-4.24-4.24 1.41-1.41 2.83 2.83 5.66-5.66 1.41 1.41-7.07 7.07z"/></svg>
+                <div class="shield-title">Trade Secrets</div>
+                <div class="shield-desc">Zero-share default — nothing leaves without explicit consent</div>
+            </div>
+            <div class="shield-badge">
+                <svg class="shield-icon" viewBox="0 0 24 24"><path d="M20.5 6c-2.61.7-5.67 1-8.5 1s-5.89-.3-8.5-1L3 8c1.86.5 4 .83 6 1v13h2v-6h2v6h2V9c2-.17 4.14-.5 6-1l-.5-2zM12 6c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z"/></svg>
+                <div class="shield-title">Sovereign Assets</div>
+                <div class="shield-desc">Full ownership authority — purge, reclaim, deactivate on demand</div>
+            </div>
+        </div>
+
+        <!-- SWIPE INDICATOR -->
+        <div class="swipe-indicator">
+            <span class="swipe-label">Swipe</span>
+            <div class="swipe-arrow"></div>
+            <div class="swipe-arrow"></div>
+        </div>
+
+        <!-- CLOUD SURF — ACCESS SYSTEM -->
         <div class="ecosystem-section">
+            <div class="cloud-surf-title">Cloud Surf</div>
             <div class="eco-orb-container">
                 <div class="eco-ring-outer"></div>
                 <div class="eco-ring-inner"></div>
@@ -785,7 +1280,7 @@
                 
                 <a href="#" class="eco-link" style="animation: floatOrbitInner 20s linear infinite;">NDA Mandatory</a>
                 <a href="#" class="eco-link" style="animation: floatOrbitInner 20s linear infinite; animation-delay: -5s;">No-Share</a>
-                <a href="#" class="eco-link" style="animation: floatOrbitInner 20s linear infinite; animation-delay: -10s;">ISO Protocols</a>
+                <a href="#" class="eco-link" style="animation: floatOrbitInner 20s linear infinite; animation-delay: -10s;">AED-Stamp</a>
                 <a href="#" class="eco-link" style="animation: floatOrbitInner 20s linear infinite; animation-delay: -15s;">Trade Secrets</a>
 
                 <a href="#" class="eco-link" style="animation: floatOrbitOuter 30s linear infinite;">Data Secure</a>
@@ -817,7 +1312,7 @@
                 <ul class="policy-list">
                     <li>Trade Secrets remain such until disclosed by explicit Consent.</li>
                     <li>All communications require Direct Intent verification.</li>
-                    <li>ISO Protocols for Data Management are strictly enforced.</li>
+                    <li>AED-Stamp verification enforced on all data interactions.</li>
                     <li>Digital fingerprints logged for all metadata interactions.</li>
                 </ul>
             </div>
@@ -857,6 +1352,218 @@
                     <li>STRICTLY overruled by Policy 986 for industrial core work.</li>
                     <li>Effective globally as of 2024 Nov 25.</li>
                 </ul>
+            </div>
+
+            <div class="card">
+                <span class="card-tag">Open Source</span>
+                <h2>MIT License</h2>
+                <p>Select open-source components released under the MIT License. Overruled by Policy AED 986 for proprietary assets.</p>
+                <div style="background:rgba(0,210,255,0.04);border:1px solid var(--border);padding:1.5rem;margin:1rem 0;font-family:'Courier New',monospace;font-size:0.78rem;line-height:1.7;color:var(--text-muted);white-space:pre-wrap;">MIT License
+
+Copyright &copy; 2018&ndash;2026 Antwerp Designs | Ionity (Pty) Ltd
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the &ldquo;Software&rdquo;), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED &ldquo;AS IS&rdquo;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.</div>
+                <ul class="policy-list">
+                    <li>Applies only to components explicitly marked as MIT-licensed.</li>
+                    <li>Does NOT extend to proprietary firmware, hardware schematics, or AED-protected assets.</li>
+                    <li>Policy AED 986 supersedes this license for all industrial core work.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ENFORCEMENT TIMELINE -->
+        <div class="timeline-section">
+            <div class="grid-header" data-value="Enforcement Timeline">Enforcement Timeline</div>
+            <div class="timeline-line"></div>
+            
+            <div class="timeline-event">
+                <div class="timeline-content">
+                    <div class="timeline-date">2018 — Foundation</div>
+                    <h3>Ionity (Pty) Ltd Established</h3>
+                    <p>Company founded by Johan Wilhelm van Antwerp. Core IP, hardware designs, and software frameworks begin development under initial trade secret protection.</p>
+                </div>
+                <div class="timeline-dot"></div>
+                <div style="width: 42%;"></div>
+            </div>
+            
+            <div class="timeline-event">
+                <div class="timeline-content">
+                    <div class="timeline-date">2024 Nov 25 — Sovereignty</div>
+                    <h3>Policy AED 986 Activated</h3>
+                    <p>Absolute asset sovereignty established. All hardware, software, and integration schematics placed under zero-share default enforcement globally.</p>
+                </div>
+                <div class="timeline-dot"></div>
+                <div style="width: 42%;"></div>
+            </div>
+            
+            <div class="timeline-event">
+                <div class="timeline-content">
+                    <div class="timeline-date">2025 Jan 5 — Enforcement</div>
+                    <h3>Right of Removal Active</h3>
+                    <p>Enforcement window opened. Auto-deactivation protocols, emergency script purge, and $1/KB penalty for unauthorized data leaks now binding.</p>
+                </div>
+                <div class="timeline-dot"></div>
+                <div style="width: 42%;"></div>
+            </div>
+
+            <div class="timeline-event">
+                <div class="timeline-content">
+                    <div class="timeline-date">2026 — Present</div>
+                    <h3>Active Monitoring &amp; META-DATA Tracing</h3>
+                    <p>Online metadata tracing active across all protected assets. Auto-application to client requests. License AED 900 binding to all ecosystem participants.</p>
+                </div>
+                <div class="timeline-dot"></div>
+                <div style="width: 42%;"></div>
+            </div>
+        </div>
+
+        <!-- COMPLIANCE MATRIX -->
+        <div style="margin: 4rem 0;">
+            <div class="grid-header" data-value="Compliance Matrix">Compliance Matrix</div>
+            <div style="overflow-x: auto;">
+                <table class="compliance-matrix">
+                    <thead>
+                        <tr>
+                            <th>Protocol</th>
+                            <th>Scope</th>
+                            <th>Coverage</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Policy AED 986</td>
+                            <td>Work Relations &amp; Trade Secrets</td>
+                            <td>Global — All interactions</td>
+                            <td><span class="status-enforced">● ENFORCED</span></td>
+                        </tr>
+                        <tr>
+                            <td>License AED 900</td>
+                            <td>Hardware &amp; Software Assets</td>
+                            <td>All AEDI Grid devices</td>
+                            <td><span class="status-enforced">● ENFORCED</span></td>
+                        </tr>
+                        <tr>
+                            <td>NDA Protocols</td>
+                            <td>Communications &amp; IP</td>
+                            <td>Internal &amp; External</td>
+                            <td><span class="status-active">● ACTIVE</span></td>
+                        </tr>
+                        <tr>
+                            <td>AED-Stamp Verification</td>
+                            <td>Armored Data Sealing &amp; Integrity</td>
+                            <td>All data categories</td>
+                            <td><span class="status-enforced">● ENFORCED</span></td>
+                        </tr>
+                        <tr>
+                            <td>Custom Encryption Layer</td>
+                            <td>Bespoke Cryptographic Armoring</td>
+                            <td>Client-specific deployments</td>
+                            <td><span class="status-active">● ACTIVE</span></td>
+                        </tr>
+                        <tr>
+                            <td>META-DATA Tracing</td>
+                            <td>Digital Fingerprint Logging</td>
+                            <td>All metadata interactions</td>
+                            <td><span class="status-active">● ACTIVE</span></td>
+                        </tr>
+                        <tr>
+                            <td>Creative Commons 4.0</td>
+                            <td>Designated Open-Source Content</td>
+                            <td>Public scripts only</td>
+                            <td><span class="status-pending">● CONDITIONAL</span></td>
+                        </tr>
+                        <tr>
+                            <td>Right of Removal</td>
+                            <td>Asset Reclamation &amp; Purge</td>
+                            <td>All protected assets</td>
+                            <td><span class="status-enforced">● ENFORCED</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- FAQ ACCORDION -->
+        <div class="faq-section">
+            <div class="grid-header" data-value="Frequently Asked Questions">Frequently Asked Questions</div>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>What does Policy AED 986 protect?</span>
+                    <svg class="faq-arrow" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+                </div>
+                <div class="faq-answer">
+                    <p>Policy AED 986 establishes absolute asset sovereignty over all Ionity (Pty) Ltd intellectual property, hardware designs, software code, integration schematics, and trade secrets. It governs all work relations with a zero-share default and requires explicit consent for any disclosure.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>How does the licensing apply to hardware devices?</span>
+                    <svg class="faq-arrow" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+                </div>
+                <div class="faq-answer">
+                    <p>All hardware (SBC, MCU, and related components) remains the property of Ionity (Pty) Ltd. Software deployed on these devices is lease-based via company or industry subscriptions. Repairs and maintenance are restricted to Ionity or explicitly authorized partners.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>What is the Creative Commons 4.0 license scope?</span>
+                    <svg class="faq-arrow" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+                </div>
+                <div class="faq-answer">
+                    <p>The BY-NC-SA 4.0 license applies strictly to content explicitly designated as shareable, such as select open-source scripts. This license is always overruled by Policy AED 986 for all industrial core work, proprietary systems, and trade secrets.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>What happens if unauthorized access or tampering is detected?</span>
+                    <svg class="faq-arrow" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+                </div>
+                <div class="faq-answer">
+                    <p>Ionity maintains the Right of Removal — the authority to auto-deactivate, purge, or reclaim hardware and data assets immediately. In "Alarm Principle" scenarios, emergency script purge is triggered. A $1/KB penalty applies to unauthorized data leaks.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>How do I get enterprise-level protection?</span>
+                    <svg class="faq-arrow" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+                </div>
+                <div class="faq-answer">
+                    <p>Enterprise protection is available through our Custom Enterprise subscription tier starting at $630/50GB. This includes custom policy and license configurations, certificate and secure shell setups for up to 4 devices, and dedicated data encryption. Contact us for a tailored solution.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA BANNER -->
+        <div class="cta-banner">
+            <div class="cta-content">
+                <h2 data-value="Need Custom Protection?">Need Custom Protection?</h2>
+                <p>Whether you need tailored licensing, advanced encryption, or full-stack compliance, our team architects solutions that match your operational scale.</p>
+                <a href="contact.html" class="btn-download" style="display: inline-flex; margin: 0 auto;">
+                    <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    <span>Contact Ionity</span>
+                </a>
             </div>
         </div>
 
@@ -941,6 +1648,19 @@
     </div>
 
     <footer>
+  <!-- IONITY NETWORK (static, crawlable) -->
+  <div class="ion-net">
+    <div class="ion-net__label">The Ionity Network</div>
+    <div class="ion-net__grid">
+      <a class="ion-net__card" href="https://www.ionity.today" target="_blank" rel="noopener"><span class="d">ionity.today</span><span class="s">Global · Native-AI Ecosystems &amp; Edge Intelligence</span><span class="go">Visit</span></a>
+      <a class="ion-net__card is-primary" href="https://www.ionity.co.za" target="_blank" rel="noopener"><span class="d">ionity.co.za</span><span class="s">Ionity South Africa · Local Solutions &amp; Support</span><span class="go">Visit</span></a>
+      <a class="ion-net__card" href="https://gravatar.com/ionity" target="_blank" rel="me noopener"><span class="d">AntwerpDesigns</span><span class="s">Ionity Founder · Design Studio &amp; Creator Profile</span><span class="go">Visit</span></a>
+    </div>
+    <div class="ion-trust" aria-label="Compliance and standards">
+      <span>POPIA &amp; GDPR Aligned</span><span>WCAG-Minded Accessibility</span><span>CC BY-NC-SA 4.0</span><span>Made with AEDI®</span><span>Policy AED 986</span>
+    </div>
+  </div>
+
         <style>
             @keyframes footerGlow {
                 0% { text-shadow: 0 0 2px rgba(255,255,255,0.1); }
@@ -952,11 +1672,11 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                margin-bottom: 2rem;
+                margin-bottom: 1rem;
                 width: 100%;
             }
             .footer-logo {
-                height: 80px;
+                height: 60px;
                 width: auto;
                 opacity: 0.9;
                 transition: all 0.3s ease;
@@ -981,15 +1701,15 @@
         <div class="footer-logo-container">
             <img src="assets/images/ionity-logo-edited.png" alt="Ionity Logo" class="footer-logo">
         </div>
-        <div class="footer-content" style="opacity: 0.7; line-height: 2; color: var(--text-muted);">
+        <div class="footer-content" style="opacity: 0.7; line-height: 1.8; color: var(--text-muted);">
             <div>Ionity™ (Pty) Ltd 2025-2026 | Creative Commons BY-NC-SA 4.0 | Made with AEDI™ | Author: Antwerp Designs</div>
             <div>South Africa Centurion 0157 | Policy AED 986 | License AED 900 | Ionity™ IoT-Ai-DAQ-PdM-CMS-F-iT Hardware, Software Integrations, ALL RIGHTS RESERVED</div>
             <div>
                 <a href="tel:+27646999877">+27 646 999 877</a> &nbsp;|&nbsp;
                 <a href="mailto:ai@ionity.today">ai@ionity.today</a> &nbsp;|&nbsp; 
-                <a href="https://www.ionity.world" target="_blank">www.ionity.world</a>
+                <a href="https://gravatar.com/ionity" target="_blank" rel="me noopener noreferrer">gravatar.com/ionity</a>
             </div>
-            <div style="margin-top: 1rem;">
+            <div style="margin-top: 0.75rem;">
                 <a href="https://antwerpdesignsionity.github.io/Metadata" target="_blank" rel="noopener noreferrer">Metadata</a>
             </div>
         </div>
@@ -1139,8 +1859,8 @@
     </script>
 
     <script>
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobileDropdown');
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
             menu.classList.toggle('open');
         }
 
@@ -1180,6 +1900,23 @@
             }, { threshold: 0.1 });
             cards.forEach(card => observer.observe(card));
         });
+
+        /* --- FAQ Accordion --- */
+        function toggleFaq(el) {
+            const item = el.parentElement;
+            const wasActive = item.classList.contains('active');
+            document.querySelectorAll('.faq-item.active').forEach(i => i.classList.remove('active'));
+            if (!wasActive) item.classList.add('active');
+        }
+
+        /* --- Scroll Progress Bar --- */
+        window.addEventListener('scroll', function() {
+            const st = document.documentElement.scrollTop || document.body.scrollTop;
+            const sh = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const progress = (st / sh) * 100;
+            const bar = document.getElementById('scrollProgress');
+            if (bar) bar.style.width = progress + '%';
+        });
     </script>
     <script src="assets/js/script.js" defer></script>
     <script src="assets/js/audio-manager.js"></script>
@@ -1192,7 +1929,7 @@
 
     <!-- Identity Modules -->
     <div class="identity-modules" style="position:fixed;bottom:20px;right:20px;z-index:9999;">
-        <a href="https://gravatar.com/antwerpdesigns" target="_blank" rel="noopener noreferrer" class="module-link" title="Global Identity Node">
+        <a href="https://gravatar.com/ionity" target="_blank" rel="noopener noreferrer" class="module-link" title="Global Identity Node">
             <img src="assets/images/gravatar-icon.svg" alt="Gravatar" class="module-icon">
             <span class="module-label">ID_NODE</span>
         </a>

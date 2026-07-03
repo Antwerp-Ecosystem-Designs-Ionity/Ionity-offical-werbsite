@@ -3,11 +3,175 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
         xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+
+    <!-- Auto-generated sitemap (regenerated 2026-04-01) -->
+    <!-- Include all public HTML pages found in repo root -->
+
+    <url>
+        <loc>https://www.ionity.today/</loc>
+        <lastmod>2026-04-01T00:00:00+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+
+    <url>
+        <loc>https://www.ionity.today/index.html</loc>
+        <lastmod>2026-04-01T00:00:00+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <url>
+        <loc>https://www.ionity.today/about.html</loc>
+        <lastmod>2026-04-01T00:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://www.ionity.today/aedi-online.html</loc>
+        <lastmod>2026-04-01T00:00:00+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://www.ionity.today/ai-innovation.html</loc>
+        <lastmod>2026-04-01T00:00:00+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://www.ionity.today/firmware-development.html</loc>
+        <lastmod>2026-04-01T00:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://www.ionity.today/gateway.html</loc>
+        <lastmod>2026-04-01T00:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://www.ionity.today/what-we-do.html</loc>
+        <lastmod>2026-04-01T00:00:00+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.85</priority>
+    </url>
+
+    <url>
+        <loc>https://www.ionity.today/system-architecture.html</loc>
+        <lastmod>2026-04-01T00:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://www.ionity.today/roadmap.html</loc>
+        <lastmod>2026-04-01T00:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+    <url>
+        <loc>https://www.ionity.today/contact.html</loc>
+        <lastmod>2026-04-01T00:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+    <url>
+        <loc>https://www.ionity.today/license.html</loc>
+        <lastmod>2026-04-01T00:00:00+02:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.4</priority>
+    </url>
+
+    <url>
+        <loc>https://www.ionity.today/privacy.html</loc>
+        <lastmod>2026-04-01T00:00:00+02:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.5</priority>
+    </url>
+
+    <url>
+        <loc>https://www.ionity.today/terms.html</loc>
+        <lastmod>2026-04-01T00:00:00+02:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.5</priority>
+    </url>
+
+    <url>
+        <loc>https://www.ionity.today/products.html</loc>
+        <lastmod>2026-04-01T00:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://www.ionity.today/services.html</loc>
+        <lastmod>2026-04-01T00:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://www.ionity.today/subscriptions.html</loc>
+        <lastmod>2026-04-01T00:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+    <url>
+        <loc>https://www.ionity.today/lander.html</loc>
+        <lastmod>2026-04-01T00:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
+    </url>
+
+    <url>
+        <loc>https://www.ionity.today/inner-Page.html</loc>
+        <lastmod>2026-04-01T00:00:00+02:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+
+    <url>
+        <loc>https://www.ionity.today/ref-dropdown.html</loc>
+        <lastmod>2026-04-01T00:00:00+02:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+
+    <url>
+        <loc>https://www.ionity.today/wiki.html</loc>
+        <lastmod>2026-04-01T00:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
+    </url>
+
+    <url>
+        <loc>https://www.ionity.today/404.html</loc>
+        <lastmod>2026-04-01T00:00:00+02:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.1</priority>
+    </url>
+
+</urlset>
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
     
     <!-- Homepage -->
     <url>
         <loc>https://www.ionity.today/</loc>
-        <lastmod>2026-03-26T07:00:00+02:00</lastmod>
+        <lastmod>2026-03-26T05:30:00+02:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
@@ -15,7 +179,7 @@
     <!-- About Page -->
     <url>
         <loc>https://www.ionity.today/about.html</loc>
-        <lastmod>2026-03-26T07:00:00+02:00</lastmod>
+        <lastmod>2026-03-26T05:30:00+02:00</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
@@ -23,7 +187,7 @@
     <!-- AEDI Online -->
     <url>
         <loc>https://www.ionity.today/aedi-online.html</loc>
-        <lastmod>2026-03-26T07:00:00+02:00</lastmod>
+        <lastmod>2026-03-26T05:30:00+02:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
@@ -31,7 +195,7 @@
     <!-- AI Innovation - AIoT Focus -->
     <url>
         <loc>https://www.ionity.today/ai-innovation.html</loc>
-        <lastmod>2026-03-26T07:00:00+02:00</lastmod>
+        <lastmod>2026-03-26T05:30:00+02:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
@@ -39,7 +203,7 @@
     <!-- Firmware Development - AIoT -->
     <url>
         <loc>https://www.ionity.today/firmware-development.html</loc>
-        <lastmod>2026-03-26T07:00:00+02:00</lastmod>
+        <lastmod>2026-03-26T05:30:00+02:00</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -47,23 +211,23 @@
     <!-- Gateway - AIoT Integration -->
     <url>
         <loc>https://www.ionity.today/gateway.html</loc>
-        <lastmod>2026-03-26T07:00:00+02:00</lastmod>
+        <lastmod>2026-03-26T05:30:00+02:00</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     
-    <!-- Products - AIoT Solutions -->
+    <!-- What We Do - Products & Services -->
     <url>
-        <loc>https://www.ionity.today/products.html</loc>
-        <lastmod>2026-03-26T07:00:00+02:00</lastmod>
+        <loc>https://www.ionity.today/what-we-do.html</loc>
+        <lastmod>2026-03-26T05:30:00+02:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
-    
-    <!-- Services - AIoT Services -->
+
+    <!-- Solutions - Industry-Specific AIoT Solutions -->
     <url>
-        <loc>https://www.ionity.today/services.html</loc>
-        <lastmod>2026-03-26T07:00:00+02:00</lastmod>
+        <loc>https://www.ionity.today/solutions.html</loc>
+        <lastmod>2026-03-26T05:30:00+02:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
@@ -71,7 +235,7 @@
     <!-- System Architecture - AIoT Architecture -->
     <url>
         <loc>https://www.ionity.today/system-architecture.html</loc>
-        <lastmod>2026-03-26T07:00:00+02:00</lastmod>
+        <lastmod>2026-03-26T05:30:00+02:00</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -79,7 +243,7 @@
     <!-- Roadmap -->
     <url>
         <loc>https://www.ionity.today/roadmap.html</loc>
-        <lastmod>2026-03-26T07:00:00+02:00</lastmod>
+        <lastmod>2026-03-26T05:30:00+02:00</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -87,7 +251,7 @@
     <!-- Contact -->
     <url>
         <loc>https://www.ionity.today/contact.html</loc>
-        <lastmod>2026-03-26T07:00:00+02:00</lastmod>
+        <lastmod>2026-03-26T05:30:00+02:00</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
@@ -95,57 +259,17 @@
     <!-- License -->
     <url>
         <loc>https://www.ionity.today/license.html</loc>
-        <lastmod>2026-03-26T07:00:00+02:00</lastmod>
+        <lastmod>2026-03-26T05:30:00+02:00</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.5</priority>
     </url>
-
-    <!-- Inner Page / Systems -->
-    <url>
-        <loc>https://www.ionity.today/inner-Page.html</loc>
-        <lastmod>2026-03-26T07:00:00+02:00</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-    <!-- Wiki / Metadata -->
-    <url>
-        <loc>https://www.ionity.today/wiki.html</loc>
-        <lastmod>2026-03-26T07:00:00+02:00</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
-    </url>
-
-    <!-- Lander -->
-    <url>
-        <loc>https://www.ionity.today/lander.html</loc>
-        <lastmod>2026-03-26T07:00:00+02:00</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-
-    <!-- Privacy Policy -->
-    <url>
-        <loc>https://www.ionity.today/privacy.html</loc>
-        <lastmod>2026-03-26T07:00:00+02:00</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.5</priority>
-    </url>
-
-    <!-- Terms of Service -->
-    <url>
-        <loc>https://www.ionity.today/terms.html</loc>
-        <lastmod>2026-03-26T07:00:00+02:00</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.5</priority>
-    </url>
-
+    
     <!-- 404 Error Page -->
     <url>
         <loc>https://www.ionity.today/404.html</loc>
-        <lastmod>2026-03-26T07:00:00+02:00</lastmod>
+        <lastmod>2026-03-26T05:30:00+02:00</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
     </url>
-
+</urlset>
 </urlset>

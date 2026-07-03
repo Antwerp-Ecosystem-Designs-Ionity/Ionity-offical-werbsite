@@ -24,8 +24,17 @@ class CookieManager {
         const consent = this.getCookie(this.cookieName);
         
         if (consent) {
-            this.preferences = JSON.parse(consent);
-            this.consentGiven = true;
+            try {
+                if (consent === 'granted') {
+                    // Legacy or global set
+                    this.consentGiven = true;
+                } else {
+                    this.preferences = JSON.parse(consent);
+                    this.consentGiven = true;
+                }
+            } catch(e) { 
+                this.consentGiven = true; // if parsing fails, assume granted to stop popup
+            }
             this.applyPreferences();
         } else {
             // Show cookie banner after a short delay
@@ -87,7 +96,26 @@ class CookieManager {
 
     savePreferences() {
         this.setCookie(this.cookieName, JSON.stringify(this.preferences), this.cookieExpiry);
+        try {
+            // Granular preferences are the source of truth for the per-page consent gate.
+            localStorage.setItem('ionity_cookie_prefs', JSON.stringify(this.preferences));
+            // Legacy flag is 'granted' ONLY when the user actually allowed a
+            // non-essential category — never on "Necessary only".
+            localStorage.setItem(this.cookieName,
+                (this.preferences.analytics || this.preferences.marketing) ? 'granted' : 'denied');
+        } catch(e) {}
         this.consentGiven = true;
+
+        // Reflect the exact choice into Google Consent Mode v2 immediately,
+        // per-category, with no page reload required.
+        if (typeof gtag === 'function') {
+            gtag('consent', 'update', {
+                'ad_storage':        this.preferences.marketing ? 'granted' : 'denied',
+                'ad_user_data':      this.preferences.marketing ? 'granted' : 'denied',
+                'ad_personalization':this.preferences.marketing ? 'granted' : 'denied',
+                'analytics_storage': this.preferences.analytics ? 'granted' : 'denied'
+            });
+        }
     }
 
     applyPreferences() {
@@ -183,10 +211,15 @@ class CookieManager {
 
     // Cookie utility methods
     setCookie(name, value, days) {
+        try {
+            localStorage.setItem(name, value);
+        } catch (e) { console.warn('localStorage not available'); }
+
         const date = new Date();
         date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
         const expires = "expires=" + date.toUTCString();
-        document.cookie = name + "=" + value + ";" + expires + ";path=/;SameSite=Lax;Secure";
+        const secureFlag = location.protocol === 'https:' ? ';Secure' : '';
+        document.cookie = name + "=" + value + ";" + expires + ";path=/;SameSite=Lax" + secureFlag;
     }
 
     setSecurityCookie(name, value, days) {
@@ -195,8 +228,8 @@ class CookieManager {
         date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
         const expires = "expires=" + date.toUTCString();
         // Use SameSite=Strict and Secure for enhanced security
-        // Note: HttpOnly cannot be set from JavaScript, only from server-side
-        document.cookie = name + "=" + value + ";" + expires + ";path=/;SameSite=Strict;Secure";
+        const secureFlag = location.protocol === 'https:' ? ';Secure' : '';
+        document.cookie = name + "=" + value + ";" + expires + ";path=/;SameSite=Strict" + secureFlag;
     }
 
     generateToken() {
@@ -207,6 +240,11 @@ class CookieManager {
     }
 
     getCookie(name) {
+        try {
+            const localVal = localStorage.getItem(name);
+            if (localVal) return localVal;
+        } catch (e) {}
+
         const nameEQ = name + "=";
         const cookies = document.cookie.split(';');
         for (let i = 0; i < cookies.length; i++) {

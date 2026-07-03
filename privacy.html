@@ -1,8 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- IONITY consent-default (pre-tag) -->
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{'ad_storage':'denied','ad_user_data':'denied','ad_personalization':'denied','analytics_storage':'denied','wait_for_update':500});</script>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Google Tag Manager with Consent Mode v2 | ionity.yumyum -->
     <script>
@@ -27,15 +29,22 @@
         })(window,document,'script','dataLayer', GTM_ID);
       }
 
-      if (localStorage.getItem('ionity_cookie_consent') === 'granted') {
-        gtag('consent', 'update', {
-          'ad_storage': 'granted',
-          'ad_user_data': 'granted',
-          'ad_personalization': 'granted',
-          'analytics_storage': 'granted'
-        });
-        loadGTM();
-      }
+      try {
+        var _ip = JSON.parse(localStorage.getItem('ionity_cookie_prefs') || 'null');
+        if (_ip) {
+          gtag('consent', 'update', {
+            'ad_storage': _ip.marketing ? 'granted' : 'denied',
+            'ad_user_data': _ip.marketing ? 'granted' : 'denied',
+            'ad_personalization': _ip.marketing ? 'granted' : 'denied',
+            'analytics_storage': _ip.analytics ? 'granted' : 'denied'
+          });
+        } else if (localStorage.getItem('ionity_cookie_consent') === 'granted') {
+          gtag('consent', 'update', {
+            'ad_storage': 'granted', 'ad_user_data': 'granted',
+            'ad_personalization': 'granted', 'analytics_storage': 'granted'
+          });
+        }
+      } catch (e) {}
     </script>
     <!-- End Google Tag Manager -->
     <meta name="theme-color" content="#FFFFFF">
@@ -180,7 +189,12 @@
             width: 100%;
             top: 0; left: 0;
             box-sizing: border-box;
-            z-index: 100;
+            z-index: 1000;
+        }
+        nav.scrolled {
+            background: rgba(2, 2, 5, 0.98);
+            height: 70px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
         }
         nav + * { margin-top: 80px; }
 
@@ -206,13 +220,13 @@
         .nav-links a {
             color: var(--text-muted);
             text-decoration: none;
-            font-size: 0.75rem;
+            font-size: 0.62rem;
             text-transform: uppercase;
-            letter-spacing: 0.1rem;
+            letter-spacing: 0.15rem;
             transition: 0.3s;
             font-weight: 600;
         }
-        .nav-links a:hover, .nav-links a.active { color: var(--accent-cyan); text-shadow: 0 0 10px var(--accent-cyan); }
+        .nav-links a:hover, .nav-links a.active { color: #fff; text-shadow: 0 0 10px #00d2ff; }
 
         .mobile-menu-btn {
             display: none;
@@ -238,6 +252,7 @@
             padding: 1rem 0;
             box-shadow: -5px 5px 20px rgba(0, 0, 0, 0.8), 0 0 15px rgba(0, 210, 255, 0.2);
             z-index: 99999;
+            -webkit-backdrop-filter: blur(20px);
             backdrop-filter: blur(20px);
         }
         .mobile-dropdown.open { display: flex; animation: slideDown 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
@@ -312,6 +327,7 @@
             padding: 2.5rem;
             background: rgba(10, 15, 25, 0.6);
             border: 1px solid var(--border);
+            -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
             transition: border-color 0.4s;
             animation: slideIn 0.8s ease-out;
@@ -406,51 +422,59 @@
             .policy-section { padding: 1.5rem; }
         }
     </style>
+    <!-- IONITY ENHANCE LAYER -->
+    <link rel="stylesheet" href="assets/css/enhance.css">
+    <script src="assets/js/enhance.js" defer></script>
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXX"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
     <div id="canvas-container"></div>
-    <div class="scanlines"></div>
-
-    <nav>
+<nav id="mainNav">
         <a href="index.html" class="logo">
             <img src="assets/images/ionity-logo-edited.png" alt="IONITY" class="nav-logo" loading="lazy">
         </a>
         
         <div class="nav-links">
+            <a href="index.html">Home</a>
             <a href="inner-Page.html">Systems</a>
-            <a href="services.html">Services</a>
-            <a href="products.html">Products</a>
-            <a href="ai-innovation.html">Ai Innovation</a>
+            <a href="what-we-do.html">What We Do</a>
+            <a href="ai-innovation.html">AI Innovation</a>
+            <a href="ai-news.html">AI News</a>
             <a href="roadmap.html">Roadmap</a>
             <a href="license.html">License</a>
+            <a href="terms.html">Terms</a>
             <a href="about.html">About</a>
             <a href="aedi-online.html">AEDI Online</a>
             <a href="contact.html">Contact</a>
             <a href="firmware-development.html">Dev</a>
+            <a href="privacy.html" class="active">Privacy</a>
+            <a href="subscriptions.html">Subscriptions</a>
             <a href="gateway.html">IO Way</a>
         </div>
 
-        <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Toggle navigation menu">☰</button>
-        
-        <div class="mobile-dropdown" id="mobileDropdown">
-            <a href="inner-Page.html">Systems</a>
-            <a href="services.html">Services</a>
-            <a href="products.html">Products</a>
-            <a href="ai-innovation.html">Ai Innovation</a>
-            <a href="roadmap.html">Roadmap</a>
-            <a href="license.html">License</a>
-            <a href="about.html">About</a>
-            <a href="aedi-online.html">AEDI Online</a>
-            <a href="contact.html">Contact</a>
-            <a href="firmware-development.html">Dev</a>
-            <a href="gateway.html">IO Way</a>
-        </div>
+        <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Toggle navigation menu">☰</button>
     </nav>
+
+    <!-- Mobile Dropdown -->
+    <div class="mobile-dropdown" id="mobileMenu">
+        <a href="index.html">Home</a>
+        <a href="inner-Page.html">Systems</a>
+        <a href="what-we-do.html">What We Do</a>
+        <a href="ai-innovation.html">AI Innovation</a>
+        <a href="ai-news.html">AI News</a>
+        <a href="roadmap.html">Roadmap</a>
+        <a href="license.html">License</a>
+        <a href="terms.html">Terms</a>
+        <a href="about.html">About</a>
+        <a href="aedi-online.html">AEDI Online</a>
+        <a href="contact.html">Contact</a>
+        <a href="firmware-development.html">Dev</a>
+        <a href="privacy.html" class="active">Privacy</a>
+        <a href="subscriptions.html">Subscriptions</a>
+        <a href="gateway.html">IO Way</a>
+    </div>
 
     <!-- SecurePrivacy Consent Management -->
     <script src="https://consent.secureprivacy.ai/script/ionity-today.js"></script>
@@ -580,35 +604,312 @@
     </div>
 
     <footer>
-        <img src="assets/images/ionity-logo-edited.png" alt="Ionity Logo" class="footer-logo" loading="lazy">
-        <div>
-            <a href="index.html">Home</a> |
-            <a href="about.html">About</a> |
-            <a href="services.html">Services</a> |
-            <a href="products.html">Products</a> |
-            <a href="contact.html">Contact</a> |
-            <a href="license.html">License</a> |
-            <a href="privacy.html">Privacy</a> |
-            <a href="terms.html">Terms</a>
+  <!-- IONITY NETWORK (static, crawlable) -->
+  <div class="ion-net">
+    <div class="ion-net__label">The Ionity Network</div>
+    <div class="ion-net__grid">
+      <a class="ion-net__card" href="https://www.ionity.today" target="_blank" rel="noopener"><span class="d">ionity.today</span><span class="s">Global · Native-AI Ecosystems &amp; Edge Intelligence</span><span class="go">Visit</span></a>
+      <a class="ion-net__card is-primary" href="https://www.ionity.co.za" target="_blank" rel="noopener"><span class="d">ionity.co.za</span><span class="s">Ionity South Africa · Local Solutions &amp; Support</span><span class="go">Visit</span></a>
+      <a class="ion-net__card" href="https://gravatar.com/ionity" target="_blank" rel="me noopener"><span class="d">AntwerpDesigns</span><span class="s">Ionity Founder · Design Studio &amp; Creator Profile</span><span class="go">Visit</span></a>
+    </div>
+    <div class="ion-trust" aria-label="Compliance and standards">
+      <span>POPIA &amp; GDPR Aligned</span><span>WCAG-Minded Accessibility</span><span>CC BY-NC-SA 4.0</span><span>Made with AEDI®</span><span>Policy AED 986</span>
+    </div>
+  </div>
+
+        <style>
+            @keyframes footerGlow {
+                0% { text-shadow: 0 0 2px rgba(255,255,255,0.1); }
+                100% { text-shadow: 0 0 8px rgba(0,210,255,0.3); }
+            }
+            .footer-content { animation: footerGlow 3s infinite alternate; }
+            .footer-logo-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 1rem;
+                width: 100%;
+            }
+            .footer-logo {
+                height: 60px;
+                width: auto;
+                opacity: 0.9;
+                transition: all 0.3s ease;
+            }
+            .footer-logo:hover {
+                opacity: 1;
+                filter: drop-shadow(0 0 15px rgba(0,210,255,0.4));
+            }
+            footer a {
+                color: var(--accent-cyan, #00d2ff);
+                text-decoration: none;
+                margin: 0 10px;
+                transition: all 0.3s ease;
+                font-weight: 600;
+                text-shadow: 0 0 8px rgba(0,210,255,0.3);
+            }
+            footer a:hover {
+                color: #fff;
+                text-shadow: 0 0 15px var(--accent-cyan, #00d2ff);
+            }
+        </style>
+        <div class="footer-logo-container">
+            <img src="assets/images/ionity-logo-edited.png" alt="Ionity Logo" class="footer-logo">
         </div>
-        <p>© 2018–2026 Ionity (Pty) Ltd | Antwerp Ecosystem Designs. All rights reserved.</p>
-        <p>Policy AED 986 | License AED 900 | Building Tomorrow, Today.</p>
-        <br>
+        <div class="footer-content" style="opacity: 0.7; line-height: 1.8; color: var(--text-muted, rgba(255,255,255,0.5));">
+            <div>Ionity® (Pty) Ltd 2025-2026 | Creative Commons BY-NC-SA 4.0 | Made with AEDI® | Author: Antwerp Designs</div>
+            <div>South Africa Centurion 0157 | Policy AED 986 | License AED 900 | Ionity® IoT-Ai-DAQ-PdM-CMS-F-iT Hardware, Software Integrations, ALL RIGHTS RESERVED</div>
+            <div>
+                <a href="tel:+27646999877">+27 646 999 877</a> &nbsp;|&nbsp;
+                <a href="mailto:ai@ionity.today">ai@ionity.today</a> &nbsp;|&nbsp;
+                <a href="https://gravatar.com/ionity" target="_blank" rel="me noopener noreferrer">gravatar.com/ionity</a>
+            </div>
+            <div style="margin-top: 0.75rem;">
+                <a href="https://antwerpdesignsionity.github.io/Metadata" target="_blank" rel="noopener noreferrer">Metadata</a>
+            </div>
+        </div>
     </footer>
 
+    <!-- Node Network Animation -->
     <script>
-        function toggleMobileMenu() {
-            const dropdown = document.getElementById('mobileDropdown');
+        // Mobile Menu
+        function toggleMenu() {
+            const dropdown = document.getElementById('mobileMenu');
             dropdown.classList.toggle('open');
         }
-
         document.addEventListener('click', function(e) {
-            const dropdown = document.getElementById('mobileDropdown');
+            const dropdown = document.getElementById('mobileMenu');
             const btn = document.querySelector('.mobile-menu-btn');
             if (!dropdown.contains(e.target) && !btn.contains(e.target)) {
                 dropdown.classList.remove('open');
             }
         });
+
+        // NODE NETWORK - Privacy Shield Visualization
+        (function() {
+            const container = document.getElementById('canvas-container');
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            container.appendChild(canvas);
+
+            let W, H, nodes = [], mouse = { x: -999, y: -999 }, packets = [];
+            const NODE_COUNT = 80;
+            const CONNECTION_DIST = 180;
+            const MOUSE_RADIUS = 200;
+
+            function resize() {
+                W = canvas.width = window.innerWidth;
+                H = canvas.height = window.innerHeight;
+            }
+            resize();
+            window.addEventListener('resize', resize);
+
+            document.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
+            document.addEventListener('mouseleave', () => { mouse.x = -999; mouse.y = -999; });
+
+            // Node class
+            class Node {
+                constructor() {
+                    this.x = Math.random() * W;
+                    this.y = Math.random() * H;
+                    this.vx = (Math.random() - 0.5) * 0.4;
+                    this.vy = (Math.random() - 0.5) * 0.4;
+                    this.radius = Math.random() * 2.5 + 1.5;
+                    this.pulsePhase = Math.random() * Math.PI * 2;
+                    this.pulseSpeed = 0.01 + Math.random() * 0.02;
+                    this.isLocked = Math.random() < 0.15; // 15% are "locked" nodes
+                    this.lockAngle = 0;
+                }
+
+                update() {
+                    this.pulsePhase += this.pulseSpeed;
+
+                    // Mouse interaction
+                    const dx = mouse.x - this.x;
+                    const dy = mouse.y - this.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < MOUSE_RADIUS && dist > 0) {
+                        const force = (MOUSE_RADIUS - dist) / MOUSE_RADIUS * 0.02;
+                        this.vx += dx / dist * force;
+                        this.vy += dy / dist * force;
+                    }
+
+                    this.vx *= 0.99;
+                    this.vy *= 0.99;
+                    this.x += this.vx;
+                    this.y += this.vy;
+
+                    // Wrap around
+                    if (this.x < -20) this.x = W + 20;
+                    if (this.x > W + 20) this.x = -20;
+                    if (this.y < -20) this.y = H + 20;
+                    if (this.y > H + 20) this.y = -20;
+
+                    if (this.isLocked) this.lockAngle += 0.03;
+                }
+
+                draw() {
+                    const pulse = Math.sin(this.pulsePhase) * 0.5 + 0.5;
+                    const r = this.radius + pulse * 1.5;
+
+                    // Outer glow
+                    const grad = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, r * 6);
+                    grad.addColorStop(0, this.isLocked ? 'rgba(0, 255, 180, 0.15)' : 'rgba(0, 210, 255, 0.12)');
+                    grad.addColorStop(1, 'transparent');
+                    ctx.fillStyle = grad;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, r * 6, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    // Core dot
+                    ctx.fillStyle = this.isLocked ? `rgba(0, 255, 180, ${0.7 + pulse * 0.3})` : `rgba(0, 210, 255, ${0.6 + pulse * 0.4})`;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, r, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    // Lock icon ring for locked nodes
+                    if (this.isLocked) {
+                        ctx.strokeStyle = `rgba(0, 255, 180, ${0.3 + pulse * 0.4})`;
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.arc(this.x, this.y, r + 6, this.lockAngle, this.lockAngle + Math.PI * 1.5);
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            // Data packet - travels between nodes
+            class Packet {
+                constructor(from, to) {
+                    this.from = from;
+                    this.to = to;
+                    this.t = 0;
+                    this.speed = 0.008 + Math.random() * 0.012;
+                    this.alive = true;
+                }
+
+                update() {
+                    this.t += this.speed;
+                    if (this.t >= 1) this.alive = false;
+                }
+
+                draw() {
+                    const x = this.from.x + (this.to.x - this.from.x) * this.t;
+                    const y = this.from.y + (this.to.y - this.from.y) * this.t;
+                    
+                    const grad = ctx.createRadialGradient(x, y, 0, x, y, 5);
+                    grad.addColorStop(0, 'rgba(255, 255, 255, 0.9)');
+                    grad.addColorStop(0.5, 'rgba(0, 210, 255, 0.6)');
+                    grad.addColorStop(1, 'transparent');
+                    ctx.fillStyle = grad;
+                    ctx.beginPath();
+                    ctx.arc(x, y, 5, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+
+            // Initialize nodes
+            for (let i = 0; i < NODE_COUNT; i++) {
+                nodes.push(new Node());
+            }
+
+            // Draw shield in center
+            function drawShield(time) {
+                const cx = W / 2, cy = H / 2;
+                const pulse = Math.sin(time * 0.001) * 0.15 + 0.85;
+                const size = 60 * pulse;
+
+                // Shield glow
+                const glow = ctx.createRadialGradient(cx, cy, 0, cx, cy, size * 3);
+                glow.addColorStop(0, 'rgba(0, 210, 255, 0.06)');
+                glow.addColorStop(0.5, 'rgba(0, 210, 255, 0.02)');
+                glow.addColorStop(1, 'transparent');
+                ctx.fillStyle = glow;
+                ctx.beginPath();
+                ctx.arc(cx, cy, size * 3, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Shield shape
+                ctx.beginPath();
+                ctx.moveTo(cx, cy - size);
+                ctx.quadraticCurveTo(cx + size * 1.2, cy - size * 0.6, cx + size, cy + size * 0.1);
+                ctx.quadraticCurveTo(cx + size * 0.5, cy + size * 0.9, cx, cy + size * 1.1);
+                ctx.quadraticCurveTo(cx - size * 0.5, cy + size * 0.9, cx - size, cy + size * 0.1);
+                ctx.quadraticCurveTo(cx - size * 1.2, cy - size * 0.6, cx, cy - size);
+                ctx.closePath();
+                ctx.strokeStyle = `rgba(0, 210, 255, ${0.2 + pulse * 0.15})`;
+                ctx.lineWidth = 1.5;
+                ctx.stroke();
+
+                // Lock keyhole
+                ctx.fillStyle = `rgba(0, 210, 255, ${0.15 + pulse * 0.1})`;
+                ctx.beginPath();
+                ctx.arc(cx, cy - 5, 10, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.fillRect(cx - 5, cy + 2, 10, 16);
+            }
+
+            let lastPacketTime = 0;
+
+            function animate(time) {
+                ctx.clearRect(0, 0, W, H);
+
+                // Spawn packets periodically
+                if (time - lastPacketTime > 300) {
+                    const i = Math.floor(Math.random() * nodes.length);
+                    let closest = null, closestDist = Infinity;
+                    for (let j = 0; j < nodes.length; j++) {
+                        if (j === i) continue;
+                        const dx = nodes[i].x - nodes[j].x;
+                        const dy = nodes[i].y - nodes[j].y;
+                        const d = Math.sqrt(dx * dx + dy * dy);
+                        if (d < CONNECTION_DIST && d < closestDist) {
+                            closestDist = d;
+                            closest = nodes[j];
+                        }
+                    }
+                    if (closest) packets.push(new Packet(nodes[i], closest));
+                    lastPacketTime = time;
+                }
+
+                // Draw connections
+                for (let i = 0; i < nodes.length; i++) {
+                    for (let j = i + 1; j < nodes.length; j++) {
+                        const dx = nodes[i].x - nodes[j].x;
+                        const dy = nodes[i].y - nodes[j].y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < CONNECTION_DIST) {
+                            const alpha = (1 - dist / CONNECTION_DIST) * 0.2;
+                            ctx.strokeStyle = `rgba(0, 210, 255, ${alpha})`;
+                            ctx.lineWidth = 0.5;
+                            ctx.beginPath();
+                            ctx.moveTo(nodes[i].x, nodes[i].y);
+                            ctx.lineTo(nodes[j].x, nodes[j].y);
+                            ctx.stroke();
+                        }
+                    }
+                }
+
+                // Draw shield
+                drawShield(time);
+
+                // Update & draw nodes
+                nodes.forEach(n => { n.update(); n.draw(); });
+
+                // Update & draw packets
+                packets = packets.filter(p => p.alive);
+                packets.forEach(p => { p.update(); p.draw(); });
+                
+                requestAnimationFrame(animate);
+            }
+            requestAnimationFrame(animate);
+        })();
     </script>
+    <script>
+        function toggleMenu() {
+            document.getElementById('mobileMenu').classList.toggle('open');
+        }
+    </script>
+    <script src="assets/js/script.js" defer></script>
 </body>
 </html>
