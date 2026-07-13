@@ -1,0 +1,22 @@
+/* TEAM */
+Founder, CEO & Architect: Johan Wilhelm van Antwerp
+Contact: ai [at] ionity.today | info [at] ionity.today
+ORCID: 0009-0005-7181-0347
+GitHub: @AntwerpDesignsIonity
+LinkedIn: https://www.linkedin.com/in/ionity
+Location: Centurion / Pretoria, Gauteng, South Africa
+
+/* SITE */
+Site: https://www.ionity.today
+Network: https://www.ionity.world | https://www.ionity.co.za | https://ionityearth.shop
+Last update: 2026/07/12
+Language: English / Afrikaans
+Standards: HTML5, CSS3, JavaScript, PWA, POPIA & GDPR aligned, WCAG-minded
+Components: AEDI - Automated Ecosystems Designs Ionity
+Software: Made with AEDI(R)
+
+/* GOVERNANCE */
+Policy: Policy 986 AED | License AED 900
+License: CC BY-NC-SA 4.0 where stated
+Rights: (c) 2018-2026 Antwerp Designs | Ionity (Pty) Ltd - All Rights Reserved - TM2
+Motto: Building Tomorrow, Today. | Anything is Possible with God.

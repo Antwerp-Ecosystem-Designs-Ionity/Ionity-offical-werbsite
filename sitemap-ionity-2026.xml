@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ADDITIVE supplementary sitemap - Ionity (Pty) Ltd | AEDI | Policy 986 AED | 2026-07-12 -->
+<!-- Deploy as /sitemap-ionity-2026.xml and reference from robots.txt; keep existing /sitemap.xml -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://www.ionity.today/</loc></url>
+  <url><loc>https://www.ionity.today/inner-Page.html</loc></url>
+  <url><loc>https://www.ionity.today/what-we-do.html</loc></url>
+  <url><loc>https://www.ionity.today/ai-innovation.html</loc></url>
+  <url><loc>https://www.ionity.today/ai-news.html</loc></url>
+  <url><loc>https://www.ionity.today/roadmap.html</loc></url>
+  <url><loc>https://www.ionity.today/license.html</loc></url>
+  <url><loc>https://www.ionity.today/privacy.html</loc></url>
+  <url><loc>https://www.ionity.today/subscriptions.html</loc></url>
+  <url><loc>https://www.ionity.today/terms.html</loc></url>
+  <url><loc>https://www.ionity.today/about.html</loc></url>
+  <url><loc>https://www.ionity.today/aedi-online.html</loc></url>
+  <url><loc>https://www.ionity.today/contact.html</loc></url>
+  <url><loc>https://www.ionity.today/firmware-development.html</loc></url>
+  <url><loc>https://www.ionity.today/gateway.html</loc></url>
+</urlset>

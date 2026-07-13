@@ -1,0 +1,129 @@
+# --------------------------------------------------------------------------------------
+# AEDI - IONITY GLOBAL - OFFICIAL LINKS & IDENTITY ASSETS
+# Author: Johan Wilhelm van Antwerp | Ionity (Pty) Ltd | AEDI
+# Document ID: DOC-2026-07-001 | Version: 1.1 | Updated: 2026-07-12 SAST
+# Governance: Policy 986 AED | License: AED 900 | CC BY-NC-SA 4.0 where stated
+# (c) 2018-2026 Antwerp Designs | Ionity (Pty) Ltd - All Rights Reserved - TM2
+# Web: https://www.ionity.today | https://www.ionity.world | Ref: https://www.ionity.co.za
+# Classification: PUBLIC | Building Tomorrow, Today. | Anything is Possible with God.
+# --------------------------------------------------------------------------------------
+meta:
+  title: Ionity Global - Official Links & Identity Assets
+  document_id: DOC-2026-07-001
+  version: '1.1'
+  updated: '2026-07-12'
+  timezone: UTC+2 (SAST)
+  classification: PUBLIC
+  author: Johan Wilhelm van Antwerp
+  organisation: Ionity (Pty) Ltd - formerly Antwerp Designs - AEDI (Antwerp Ecosystems Designs Ionity)
+  tagline: Building Tomorrow, Today.
+  governance: Policy 986 AED
+  license: AED 900 (Hardware & Software) | CC BY-NC-SA 4.0 where stated | governed by Policy 986 AED
+  rights: (c) 2018-2026 Antwerp Designs | Ionity (Pty) Ltd - All rights reserved - TM2
+  template_reference: https://github.com/Ionity-Global/ionity-assets-ionity-global-ionity-today/blob/main-Ionity/TEMPLATE_2026_OFFICAL_v1.1%20(1).docx
+  generator: AEDI brand-metadata pipeline (Claude Cowork)
+  purpose: Machine- and human-readable registry of all official Ionity / AEDI / Johan Wilhelm van Antwerp links
+    for the ionity-assets repository.
+identity:
+  name: Johan Wilhelm van Antwerp
+  roles:
+  - Founder, Technical Lead & Architect - Ionity (Pty) Ltd
+  - IoT Engineer | Ecosystems Architect | AI Solutions
+  - Design Engineer - EDC Engineering Design Consultants
+  orcid: 0009-0005-7181-0347
+  established: 2018
+  transition_to_ionity: 2025
+  location: Centurion, Gauteng, South Africa (mainly remote, global intent)
+  languages:
+  - Afrikaans (primary)
+  - English (secondary)
+  - Hebrew (learning)
+  motto: Anything is Possible with God.
+contact:
+  business_email:
+  - info@ionity.today
+  - johan@ionity.today
+  - ai@ionity.today
+  - services@ionity.world
+  - johan@ionity.world
+  - johan@ionityearth.shop
+  - johan@antwerpdesigns.com (maintenance)
+  published_personal_email: johanvanantwerp007@gmail.com
+  business_phone: +27 646 999 877
+  preferred: email
+websites:
+  primary: https://www.ionity.today
+  profile_and_links: https://www.ionity.world
+  reference: https://www.ionity.co.za
+  technology_shop: https://ionityearth.shop
+  wordpress: https://ionityearth.wordpress.com
+  wordpress_base64_logo: https://ionityearth.wordpress.com/base64
+  legacy_maintenance: http://antwerpdesigns.com
+youtube:
+  channel_handle: https://www.youtube.com/@Ionityglobal
+  channel_id_url: https://www.youtube.com/channel/UCQz2VHGFGhtdRVJU1CWGPMA
+  featured_video: https://www.youtube.com/watch?v=7kp34dicsXI
+social_media:
+  linkedin_ionity: https://www.linkedin.com/in/ionity
+  linkedin_personal: https://www.linkedin.com/in/johanvanantwerp
+  gravatar: https://www.gravatar.com/ionity
+  threads: https://threads.net/ampz007
+  x_twitter: https://x.com/JohanAntwerp
+  bluesky: https://bsky.app/profile/antwerpdesigns.bsky.social
+  tiktok: https://tiktok.com/@johanvanantwerp
+  twitch: https://twitch.tv/getampedwow
+  stack_overflow: https://stackoverflow.com/users/30675785/johan-wilhelm-van-antwerp
+  patreon: https://www.patreon.com/JohanWilhelmvanAntwerp
+  reddit: https://www.reddit.com/user/Complete-Dark2980
+  vimeo: https://vimeo.com/user241548135
+  foursquare: https://app.foursquare.com/user/1414177065
+  facebook: https://facebook.com/vanantwerpdesign.com
+  facebook_verification_note: https://support.gravatar.com/profiles/verified-accounts/#facebook
+portal_gateways:
+  gravatar_protocol: gravatar://ionity
+  gravatar_resolves_to: https://www.gravatar.com/ionity
+github:
+  persona: https://github.com/AntwerpDesignsIonity
+  persona_handle: '@AntwerpDesignsIonity'
+  sponsors: https://github.com/sponsors/AntwerpDesignsIonity
+  organisations:
+  - https://github.com/Ionity-Global-Pty-Ltd
+  - https://github.com/Ionity-Global
+  - https://github.com/Antwerp-Ecosystem-Designs-Ionity
+  enterprise: https://github.com/enterprises/ionity-global
+  assets_repository: https://github.com/Ionity-Global/ionity-assets-ionity-global-ionity-today
+  metadata_repository: https://github.com/Ionity-Global/Meta-Data-AEDI
+professional_profiles:
+  orcid: https://orcid.org/0009-0005-7181-0347
+  peopleperhour: http://pph.me/johanvanantwerp
+brand:
+  colors:
+    primary: '#00BFFF'
+    accent: '#00c6ff'
+    dark: '#0d1b2a'
+  logo_transparent_png: 'assets repo: Ionity_Global_Pty_LTD_Transparrent.png'
+  aedi_mark: 'assets repo: assets/images/AEDI-LOGo.svg'
+  favicon: 'assets repo: favicon/favicon.ico'
+  pwa_manifest:
+    name: Ionity Today
+    theme: '#00c6ff'
+    background: '#0d1b2a'
+legal:
+  policy: Policy 986 AED - governs all internal and external relations by default
+  creative_commons: https://creativecommons.org/
+  whistleblower_reference: https://www.sec.gov
+  ip_guidelines: WIPO World Intellectual Property guidelines - All Rights Reserved
+  exclusion_notice: Ionity refers exclusively to www.ionity.today and www.ionity.world. Not affiliated with www.ionity.com
+    or related domains.
+provenance:
+  sources:
+  - User-supplied update 2026-07-12 (YouTube, LinkedIn, Gravatar portal, GitHub persona/orgs/enterprise)
+  - G:/MAIN ASSETS/.metadata/links-ionity-global-johan-wilhelm-van-antwerp.txt
+  - AEDI brand-metadata skill (Meta-Data-AEDI canonical identity)
+  corrections:
+  - linkdin.com/in/ionity -> https://www.linkedin.com/in/ionity (typosquat domain corrected, user-approved 2026-07-12)
+  - https://linkedin/in/johanvanantwerp (invalid host) -> https://www.linkedin.com/in/johanvanantwerp
+  standards:
+  - Neural Recall Protocol
+  - Forensic Output Standards
+  - Anti-Obfuscation Measures

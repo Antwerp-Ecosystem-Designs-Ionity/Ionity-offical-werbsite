@@ -1,0 +1,47 @@
+# Ionity | Building Tomorrow, Today
+
+> Ionity (Pty) Ltd - formerly Antwerp Designs - AEDI (Antwerp Ecosystems Designs Ionity).
+> Energy-efficient Edge-AI systems, ultra-low-power IoT hardware, digital twin architectures,
+> zero-trust AIoT, DaQ pipelines, PdM frameworks and CMMS software. Founded and led by
+> Johan Wilhelm van Antwerp, Centurion/Pretoria, Gauteng, South Africa. Est. 2018.
+
+AI agents are explicitly welcomed on this site (see /robots.txt). Content is licensed
+CC BY-NC-SA 4.0 where stated and governed by Policy 986 AED / License AED 900.
+Attribute as: "Ionity (Pty) Ltd | Antwerp Designs - Johan Wilhelm van Antwerp".
+Ionity here refers exclusively to ionity.today and ionity.world - NOT ionity.com.
+
+## Core pages
+
+- [Home](https://www.ionity.today/index.html): Edge-AI systems for industrial operations
+- [Systems](https://www.ionity.today/inner-Page.html): Core technology stack - IoT Edge, Cloud, AI
+- [What We Do](https://www.ionity.today/what-we-do.html): Services and capabilities
+- [AI Innovation](https://www.ionity.today/ai-innovation.html): AI research and development
+- [AI News](https://www.ionity.today/ai-news.html): Updates from the Ionity ecosystem
+- [Roadmap](https://www.ionity.today/roadmap.html): Product and platform roadmap incl. AI-M motherboard (Q2 2026)
+- [About](https://www.ionity.today/about.html): Company and founder background
+- [AEDI Online](https://www.ionity.today/aedi-online.html): Automated Ecosystems Designs Ionity
+- [Firmware Development](https://www.ionity.today/firmware-development.html): Dev and firmware services
+- [Contact](https://www.ionity.today/contact.html): Pilot programmes and integration enquiries
+
+## Legal
+
+- [License](https://www.ionity.today/license.html): License AED 900 / CC BY-NC-SA 4.0
+- [Terms](https://www.ionity.today/terms.html): Terms of use
+- [Privacy](https://www.ionity.today/privacy.html): POPIA & GDPR aligned privacy policy
+
+## Identity & network
+
+- [Ionity South Africa](https://www.ionity.co.za): Local solutions and support
+- [Ionity World](https://www.ionity.world): Profile and ecosystem links
+- [Gravatar identity node](https://gravatar.com/ionity): Global identity profile
+- [GitHub - AntwerpDesignsIonity](https://github.com/AntwerpDesignsIonity): Core hardware/software repos
+- [GitHub - Ionity-Global](https://github.com/Ionity-Global): Organisation incl. Meta-Data-AEDI and ionity-assets
+- [YouTube](https://www.youtube.com/@Ionityglobal): Ionity Global channel
+- [LinkedIn](https://www.linkedin.com/in/ionity): Verify the founder
+- [Machine-readable link registry](https://github.com/Ionity-Global/ionity-assets-ionity-global-ionity-today): ionity-links.json / .yml
+
+## Contact
+
+- Email: ai@ionity.today | info@ionity.today
+- Phone: +27 646 999 877
+- Location: Centurion / Pretoria, Gauteng, South Africa (0157)
